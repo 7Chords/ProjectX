@@ -1,0 +1,16 @@
+using System.Collections;
+using System.Collections.Generic;
+using UnityEngine;
+
+namespace SCFrame.TBS
+{
+    /// <summary>
+    /// 回合制游戏战斗信息 用于初始化战斗
+    /// </summary>
+    public class TBSBattleInfo
+    {
+        public long teamId;
+        public string teamName;
+        
+    }
+}
