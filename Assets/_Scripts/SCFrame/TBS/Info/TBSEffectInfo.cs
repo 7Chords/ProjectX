@@ -4,9 +4,10 @@ using UnityEngine;
 
 namespace SCFrame.TBS
 {
-    public class TBSTeamInfo
+
+    public class TBSEffectInfo
     {
-        public string teamName;
-        public List<TBSActorInfo> actorInfoList;
+        public string effectName;
+        public ETBSEffectType effectType;
     }
 }

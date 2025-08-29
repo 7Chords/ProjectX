@@ -49,7 +49,7 @@ namespace SCFrame.TBS
             TBSTurnMgr turnMgr = new TBSTurnMgr();
             turnMgr.Initialize();
             //回合效果管理器
-            TBSEffectMgr effectMgr = new TBSEffectMgr();
+            TBSEventMgr effectMgr = new TBSEventMgr();
             effectMgr.Initialize();
             //单位管理器
             TBSActorMgr actorMgr = new TBSActorMgr();
@@ -100,12 +100,21 @@ namespace SCFrame.TBS
 
         private void onTBSGameStart(object[] _objs)
         {
-
+            if (_objs == null || _objs.Length == 0) return;
+            TBSBattleInfo battleInfo = _objs[0] as TBSBattleInfo;
+            if (battleInfo == null) return;
+            SCMsgCenter.SendMsg(SCMsgConst.TBS_TURN_WORK, battleInfo.firstMoveTurnType);
+            SCMsgCenter.SendMsg(SCMsgConst.TBS_ACTOR_WORK, battleInfo.teamInfoList);
+            SCMsgCenter.SendMsg(SCMsgConst.TBS_EFFECT_WORK, battleInfo.effectInfoList);
         }
 
         private void onTBSGameFinish(object[] _objs)
         {
+            if (_objs == null || _objs.Length == 0) return;
 
+            SCMsgCenter.SendMsg(SCMsgConst.TBS_TURN_REST);
+            SCMsgCenter.SendMsg(SCMsgConst.TBS_ACTOR_WORK);
+            SCMsgCenter.SendMsg(SCMsgConst.TBS_EFFECT_WORK);
         }
 
     }

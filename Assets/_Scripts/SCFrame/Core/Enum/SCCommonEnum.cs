@@ -16,8 +16,8 @@ namespace SCFrame
     {
         ACTOR,
         TURN,
-        EFFECT,
         COMP,
+        EFFECT,
     }
 
 }

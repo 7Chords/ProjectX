@@ -4,7 +4,7 @@ using UnityEngine;
 
 namespace SCFrame.TBS
 {
-    public class TBSEffectMgr : TBSSubMgrBase
+    public class TBSEventMgr : TBSSubMgrBase
     {
         public override ETBSSubMgrType tbsSubMgrType => ETBSSubMgrType.EFFECT;
 
