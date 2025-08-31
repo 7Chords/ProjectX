@@ -19,5 +19,6 @@ namespace SCFrame
         COMP,
         EFFECT,
     }
+   
 
 }

@@ -11,7 +11,9 @@ namespace SCFrame.TBS
     public class TBSBattleInfo
     {
         public ETBSTurnType firstMoveTurnType;
-        public List<TBSTeamInfo> teamInfoList;
+        public TBSTeamInfo playerTeamInfo;
+        public TBSTeamInfo enemyTeamInfo;
         public List<TBSEffectInfo> effectInfoList;
+        public List<ETBSCompType> basicCompTypeList;
     }
 }

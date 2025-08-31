@@ -103,18 +103,21 @@ namespace SCFrame.TBS
             if (_objs == null || _objs.Length == 0) return;
             TBSBattleInfo battleInfo = _objs[0] as TBSBattleInfo;
             if (battleInfo == null) return;
-            SCMsgCenter.SendMsg(SCMsgConst.TBS_TURN_WORK, battleInfo.firstMoveTurnType);
-            SCMsgCenter.SendMsg(SCMsgConst.TBS_ACTOR_WORK, battleInfo.teamInfoList);
-            SCMsgCenter.SendMsg(SCMsgConst.TBS_EFFECT_WORK, battleInfo.effectInfoList);
+            SCMsgCenter.SendMsg(SCMsgConst.TBS_TURN_MGR_WORK, battleInfo.firstMoveTurnType);
+            SCMsgCenter.SendMsg(SCMsgConst.TBS_ACTOR_MGR_WORK, battleInfo.playerTeamInfo,battleInfo.enemyTeamInfo);
+            SCMsgCenter.SendMsg(SCMsgConst.TBS_EFFECT_MGR_WORK, battleInfo.effectInfoList);
+            SCMsgCenter.SendMsg(SCMsgConst.TBS_COMP_MGR_WORK, battleInfo.basicCompTypeList);
+
         }
 
         private void onTBSGameFinish(object[] _objs)
         {
             if (_objs == null || _objs.Length == 0) return;
 
-            SCMsgCenter.SendMsg(SCMsgConst.TBS_TURN_REST);
-            SCMsgCenter.SendMsg(SCMsgConst.TBS_ACTOR_WORK);
-            SCMsgCenter.SendMsg(SCMsgConst.TBS_EFFECT_WORK);
+            SCMsgCenter.SendMsgAct(SCMsgConst.TBS_TURN_MGR_REST);
+            SCMsgCenter.SendMsgAct(SCMsgConst.TBS_ACTOR_MGR_REST);
+            SCMsgCenter.SendMsgAct(SCMsgConst.TBS_EFFECT_MGR_REST);
+            SCMsgCenter.SendMsgAct(SCMsgConst.TBS_COMP_MGR_REST);
         }
 
     }

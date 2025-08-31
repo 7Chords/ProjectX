@@ -1,0 +1,136 @@
+using System;
+using System.Collections;
+using System.Collections.Generic;
+using UnityEngine;
+using UnityEngine.AddressableAssets;
+using UnityEngine.ResourceManagement.AsyncOperations;
+
+namespace SCFrame
+{
+    public static class ResourcesHelper
+    {
+
+        /// <summary>
+        /// 加载Unity资源  如AudioClip Sprite 预制体
+        /// </summary>
+        /// <typeparam name="T"></typeparam>
+        /// <param name="path"></param>
+        /// <returns></returns>
+        public static T LoadAsset<T>(string _assetName) where T : UnityEngine.Object
+        {
+            return Addressables.LoadAssetAsync<T>(_assetName).WaitForCompletion();
+        }
+
+
+
+        /// <summary>
+        /// 加载游戏物体
+        /// </summary>
+        /// <param name="_assetName">资源名称</param>
+        /// <param name="_parent">父物体</param>
+        /// <param name="_automaticRelease">物体销毁时，会自动去调用一次Addressables.Release</param>
+        /// <returns></returns>
+        public static GameObject LoadGameObject(string _assetName, Transform _parent = null, bool _automaticRelease = true)
+        {
+            GameObject go = null;
+            go = Addressables.InstantiateAsync(_assetName, _parent).WaitForCompletion();
+            if (_automaticRelease)
+            {
+                go.transform.AddReleaseAddressableAsset(AutomaticReleaseAssetAction);
+            }
+            go.name = _assetName;
+            return go;
+        }
+
+        /// <summary>
+        /// 自动释放资源事件，基于事件工具
+        /// </summary>
+        private static void AutomaticReleaseAssetAction(GameObject _obj, object[] _arg2)
+        {
+            Addressables.ReleaseInstance(_obj);
+        }
+
+
+        /// <summary>
+        /// 获取实例--组件模式
+        /// </summary>
+        /// <typeparam name="T"></typeparam>
+        /// <param name="path"></param>
+        /// <param name="_parent"></param>
+        /// <returns></returns>
+        public static T Load<T>(string _assetName, Transform _parent = null) where T : Component
+        {
+            return LoadGameObject(_assetName, _parent).GetComponent<T>(); ;
+        }
+
+        /// <summary>
+        /// 异步加载游戏物体
+        /// </summary>
+        /// <typeparam name="T">具体的组件</typeparam>
+        public static void LoadGameObjectAsync<T>(string _assetName, Action<T> _callBack = null, Transform _parent = null) where T : UnityEngine.Object
+        {
+
+            SCTaskHelper.instance.StartCoroutine(DoLoadGameObjectAsync<T>(_assetName, _callBack, _parent));
+
+        }
+        static IEnumerator DoLoadGameObjectAsync<T>(string _assetName, Action<T> _callBack = null, Transform _parent = null) where T : UnityEngine.Object
+        {
+            AsyncOperationHandle<GameObject> request = Addressables.InstantiateAsync(_assetName, _parent);
+            yield return request;
+            _callBack?.Invoke(request.Result.GetComponent<T>());
+        }
+
+        /// <summary>
+        /// 异步加载Unity资源 AudioClip Sprite GameObject(预制体)
+        /// </summary>
+        /// <typeparam name="T"></typeparam>
+        /// <param name="path"></param>
+        /// <param name="_callBack"></param>
+        public static void LoadAssetAsync<T>(string _assetName, Action<T> _callBack) where T : UnityEngine.Object
+        {
+            SCTaskHelper.instance.StartCoroutine(DoLoadAssetAsync<T>(_assetName, _callBack));
+        }
+
+        static IEnumerator DoLoadAssetAsync<T>(string _assetName, Action<T> _callBack) where T : UnityEngine.Object
+        {
+            AsyncOperationHandle<T> request = Addressables.LoadAssetAsync<T>(_assetName);
+            yield return request;
+            _callBack?.Invoke(request.Result);
+        }
+
+        /// <summary>
+        /// 加载指定Key的所有资源
+        /// </summary>
+        public static IList<T> LoadAssets<T>(string _keyName, Action<T> _callBack = null)
+        {
+            return Addressables.LoadAssetsAsync<T>(_keyName, _callBack).WaitForCompletion();
+        }
+
+        /// <summary>
+        /// 异步加载指定Key的所有资源
+        /// </summary>
+        public static void LoadAssetsAsync<T>(string _keyName, Action<IList<T>> _callBack = null, Action<T> _callBackOnEveryOne = null)
+        {
+            SCTaskHelper.instance.StartCoroutine(DoLoadAssetsAsync<T>(_keyName, _callBack, _callBackOnEveryOne));
+        }
+
+        static IEnumerator DoLoadAssetsAsync<T>(string _keyName, Action<IList<T>> _callBack = null, Action<T> _callBackOnEveryOne = null)
+        {
+            AsyncOperationHandle<IList<T>> request = Addressables.LoadAssetsAsync<T>(_keyName, _callBackOnEveryOne);
+            yield return request;
+            _callBack?.Invoke(request.Result);
+        }
+
+        public static void Release<T>(T _obj)
+        {
+            Addressables.Release<T>(_obj);
+        }
+        /// <summary>
+        /// 释放实例
+        /// </summary>
+        public static bool ReleaseInstance(GameObject _obj)
+        {
+            return Addressables.ReleaseInstance(_obj);
+        }
+    }
+}
