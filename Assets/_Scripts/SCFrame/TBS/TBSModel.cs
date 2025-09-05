@@ -5,6 +5,9 @@ using UnityEngine;
 
 namespace SCFrame.TBS
 {
+    /// <summary>
+    /// 全局唯一 兼具数据持久化功能
+    /// </summary>
     public class TBSModel
     {
         public ETBSTurnType _m_curTurnType;
@@ -23,6 +26,19 @@ namespace SCFrame.TBS
             set { _m_curTurnCount = value; }
         }
 
+        private TBSBattleInfo _m_battleInfo;
 
+        public TBSBattleInfo battleInfo
+        {
+            get { return _m_battleInfo; }
+            set { _m_battleInfo = value; }
+        }
+
+        public void ResetData()
+        {
+            curTurnType = ETBSTurnType.PLAYER;
+            curTurnCount = 1;
+            battleInfo = null;
+        }
     }
 }

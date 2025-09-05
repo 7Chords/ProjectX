@@ -10,6 +10,9 @@ namespace GameCore
         {
             SCSystem.instance.Initialize();
             SCPlayer.instance.Initialize();
-        }
+
+            SCMsgCenter.SendMsg(SCMsgConst.GAME_START);
+        } 
+
     }
 }

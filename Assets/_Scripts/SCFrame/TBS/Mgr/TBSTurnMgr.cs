@@ -12,12 +12,12 @@ namespace SCFrame.TBS
         private int _m_curTurnCount;
         public override void OnInitialize()
         {
-            SCMsgCenter.RegisterMsg(SCMsgConst.TBS_TURN_MGR_WORK,onTBSTurnWork);
+            SCMsgCenter.RegisterMsgAct(SCMsgConst.TBS_TURN_MGR_WORK,onTBSTurnWork);
             SCMsgCenter.RegisterMsgAct(SCMsgConst.TBS_TURN_CHG, onTBSTurnChg);
         }
         public override void OnDiscard()
         {
-            SCMsgCenter.UnregisterMsg(SCMsgConst.TBS_TURN_MGR_WORK, onTBSTurnWork);
+            SCMsgCenter.UnregisterMsgAct(SCMsgConst.TBS_TURN_MGR_WORK, onTBSTurnWork);
             SCMsgCenter.UnregisterMsgAct(SCMsgConst.TBS_TURN_CHG, onTBSTurnChg);
         }
         public override void OnResume() { }
@@ -26,13 +26,10 @@ namespace SCFrame.TBS
 
 
         #region 事件回调
-        private void onTBSTurnWork(object[] _objs)
+        private void onTBSTurnWork()
         {
-            if (_objs == null || _objs.Length == 0) return;
-            _m_curTurnType = (ETBSTurnType)_objs[0];
-            _m_curTurnCount = 1;
-            SCModel.instance.tbsModel.curTurnType = _m_curTurnType;
-            SCModel.instance.tbsModel.curTurnCount = _m_curTurnCount;
+            _m_curTurnType = SCModel.instance.tbsModel.curTurnType;
+            _m_curTurnCount = SCModel.instance.tbsModel.curTurnCount;
         }
 
         private void onTBSTurnChg()

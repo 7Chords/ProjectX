@@ -13,11 +13,11 @@ namespace SCFrame.TBS
 
         public override void OnInitialize()
         {
-            SCMsgCenter.RegisterMsg(SCMsgConst.TBS_ACTOR_MGR_WORK, onTBSActorMgrWork);
+            SCMsgCenter.RegisterMsgAct(SCMsgConst.TBS_ACTOR_MGR_WORK, onTBSActorMgrWork);
         }
         public override void OnDiscard()
         {
-            SCMsgCenter.UnregisterMsg(SCMsgConst.TBS_ACTOR_MGR_WORK, onTBSActorMgrWork);
+            SCMsgCenter.UnregisterMsgAct(SCMsgConst.TBS_ACTOR_MGR_WORK, onTBSActorMgrWork);
         }
 
         public override void OnResume() { }
@@ -26,11 +26,10 @@ namespace SCFrame.TBS
 
         #region 事件回调
 
-        private void onTBSActorMgrWork(object[] _objs)
+        private void onTBSActorMgrWork()
         {
-            if (_objs == null || _objs.Length == 0) return;
-            _m_playerTeamInfo = _objs[0] as TBSTeamInfo;
-            _m_enemyTeamInfo = _objs[1] as TBSTeamInfo;
+            _m_playerTeamInfo = SCModel.instance.tbsModel.battleInfo.playerTeamInfo;
+            _m_enemyTeamInfo = SCModel.instance.tbsModel.battleInfo.enemyTeamInfo;
         }
         #endregion
     }

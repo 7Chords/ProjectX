@@ -13,8 +13,8 @@ namespace SCFrame.TBS
         public override void OnInitialize()
         {
             //注册事件
-            SCMsgCenter.RegisterMsg(SCMsgConst.TBS_GAME_START,onTBSGameStart);
-            SCMsgCenter.RegisterMsg(SCMsgConst.TBS_GAME_FINISH, onTBSGameFinish);
+            SCMsgCenter.RegisterMsgAct(SCMsgConst.TBS_GAME_START,onTBSGameStart);
+            SCMsgCenter.RegisterMsgAct(SCMsgConst.TBS_GAME_FINISH, onTBSGameFinish);
 
             _m_subMgrList = new List<TBSSubMgrBase>();
 
@@ -23,8 +23,8 @@ namespace SCFrame.TBS
         public override void OnDiscard()
         {
             //反注册事件
-            SCMsgCenter.UnregisterMsg(SCMsgConst.TBS_GAME_START, onTBSGameStart);
-            SCMsgCenter.UnregisterMsg(SCMsgConst.TBS_GAME_FINISH, onTBSGameFinish);
+            SCMsgCenter.UnregisterMsgAct(SCMsgConst.TBS_GAME_START, onTBSGameStart);
+            SCMsgCenter.UnregisterMsgAct(SCMsgConst.TBS_GAME_FINISH, onTBSGameFinish);
 
 
             discardAllSubMgr();
@@ -98,22 +98,17 @@ namespace SCFrame.TBS
         }
 
 
-        private void onTBSGameStart(object[] _objs)
+        private void onTBSGameStart()
         {
-            if (_objs == null || _objs.Length == 0) return;
-            TBSBattleInfo battleInfo = _objs[0] as TBSBattleInfo;
-            if (battleInfo == null) return;
-            SCMsgCenter.SendMsg(SCMsgConst.TBS_TURN_MGR_WORK, battleInfo.firstMoveTurnType);
-            SCMsgCenter.SendMsg(SCMsgConst.TBS_ACTOR_MGR_WORK, battleInfo.playerTeamInfo,battleInfo.enemyTeamInfo);
-            SCMsgCenter.SendMsg(SCMsgConst.TBS_EFFECT_MGR_WORK, battleInfo.effectInfoList);
-            SCMsgCenter.SendMsg(SCMsgConst.TBS_COMP_MGR_WORK, battleInfo.basicCompTypeList);
+            SCMsgCenter.SendMsgAct(SCMsgConst.TBS_TURN_MGR_WORK);
+            SCMsgCenter.SendMsgAct(SCMsgConst.TBS_ACTOR_MGR_WORK);
+            SCMsgCenter.SendMsgAct(SCMsgConst.TBS_EFFECT_MGR_WORK);
+            SCMsgCenter.SendMsgAct(SCMsgConst.TBS_COMP_MGR_WORK);
 
         }
 
-        private void onTBSGameFinish(object[] _objs)
+        private void onTBSGameFinish()
         {
-            if (_objs == null || _objs.Length == 0) return;
-
             SCMsgCenter.SendMsgAct(SCMsgConst.TBS_TURN_MGR_REST);
             SCMsgCenter.SendMsgAct(SCMsgConst.TBS_ACTOR_MGR_REST);
             SCMsgCenter.SendMsgAct(SCMsgConst.TBS_EFFECT_MGR_REST);

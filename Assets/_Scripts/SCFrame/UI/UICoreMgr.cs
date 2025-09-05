@@ -1,6 +1,4 @@
-using System.Collections;
 using System.Collections.Generic;
-using UnityEngine;
 
 namespace SCFrame.UI
 {
@@ -11,24 +9,55 @@ namespace SCFrame.UI
     {
         public override ECoreMgrType coreMgrType => ECoreMgrType.UI;
 
-        public override void OnDiscard()
-        {
-            throw new System.NotImplementedException();
-        }
+        private Stack<_ASCUINodeBase> _m_nodeStack;
 
         public override void OnInitialize()
         {
-            throw new System.NotImplementedException();
+            _m_nodeStack = new Stack<_ASCUINodeBase>();
+        }
+        public override void OnDiscard()
+        {
+            _m_nodeStack.Clear();
+            _m_nodeStack = null;
         }
 
         public override void OnResume()
         {
-            throw new System.NotImplementedException();
         }
 
         public override void OnSuspend()
         {
-            throw new System.NotImplementedException();
         }
+
+        #region ¹¦ÄÜ
+        public void AddNode(_ASCUINodeBase _node,bool _needShow = true)
+        {
+            if (_m_nodeStack == null)
+                return;
+
+            if (_node.EnterNode())
+                _m_nodeStack.Push(_node);
+
+            if (_needShow)
+                _node.ShowNode();
+        }
+
+        public void CloseCurNode()
+        {
+            if (_m_nodeStack == null || _m_nodeStack.Count == 0)
+                return;
+
+            _ASCUINodeBase node = _m_nodeStack.Peek();
+            if(node != null)
+            {
+                node.HideNode();
+                node.QuitNode();
+            }
+            _m_nodeStack.Pop();
+        }
+
+
+
+        #endregion
     }
 }
