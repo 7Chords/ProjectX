@@ -5,18 +5,41 @@ using UnityEngine;
 
 namespace SCFrame.UI
 {
-    public class GameMainNode : MonoBehaviour
+    public class GameMainNode : _ASCUINodeBase
     {
-        // Start is called before the first frame update
-        void Start()
+        public GameMainNode(SCUIShowType _showType) : base(_showType)
         {
-
         }
 
-        // Update is called once per frame
-        void Update()
-        {
+        public override bool needHideWhenEnterNewSameTypeNode => false;
 
+        public override bool canQuitByEsc => false;
+
+        public override bool canQuitByMouseRight => false;
+
+        public override string GetNodeName()
+        {
+            return nameof(GameMainNode);
+        }
+
+        public override void OnEnterNode()
+        {
+            
+        }
+
+        public override void OnHideNode()
+        {
+            
+        }
+
+        public override void OnQuitNode()
+        {
+            
+        }
+
+        public override void OnShowNode()
+        {
+            
         }
     }
 }

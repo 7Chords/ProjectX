@@ -9,16 +9,16 @@ namespace SCFrame.UI
     {
         public override ECoreMgrType coreMgrType => ECoreMgrType.UI;
 
-        private Stack<_ASCUINodeBase> _m_nodeStack;
+        private List<_ASCUINodeBase> _m_nodeList;
 
         public override void OnInitialize()
         {
-            _m_nodeStack = new Stack<_ASCUINodeBase>();
+            _m_nodeList = new List<_ASCUINodeBase>();
         }
         public override void OnDiscard()
         {
-            _m_nodeStack.Clear();
-            _m_nodeStack = null;
+            _m_nodeList.Clear();
+            _m_nodeList = null;
         }
 
         public override void OnResume()
@@ -32,11 +32,29 @@ namespace SCFrame.UI
         #region 功能
         public void AddNode(_ASCUINodeBase _node,bool _needShow = true)
         {
-            if (_m_nodeStack == null)
+            if (_m_nodeList == null)
                 return;
 
             if (_node.EnterNode())
-                _m_nodeStack.Push(_node);
+                _m_nodeList.Add(_node);
+
+            //上一个同类型的节点
+            _ASCUINodeBase lastSameTypeNode = null;
+            for (int i = _m_nodeList.Count - 2; i > -1; i--)
+            {
+                lastSameTypeNode = _m_nodeList[i];
+                if (lastSameTypeNode == null)
+                    continue;
+                if (lastSameTypeNode.showType == _node.showType)
+                {
+                    if (lastSameTypeNode.needHideWhenEnterNewSameTypeNode)
+                    {
+                        lastSameTypeNode.HideNode();
+                        break;
+                    }
+                }
+            }
+
 
             if (_needShow)
                 _node.ShowNode();
@@ -44,18 +62,55 @@ namespace SCFrame.UI
 
         public void CloseCurNode()
         {
-            if (_m_nodeStack == null || _m_nodeStack.Count == 0)
+            if (_m_nodeList == null || _m_nodeList.Count == 0)
                 return;
 
-            _ASCUINodeBase node = _m_nodeStack.Peek();
-            if(node != null)
+            _ASCUINodeBase topNode = _m_nodeList[_m_nodeList.Count - 1];
+            if(topNode != null)
             {
-                node.HideNode();
-                node.QuitNode();
+                topNode.HideNode();
+                topNode.QuitNode();
             }
-            _m_nodeStack.Pop();
+            _m_nodeList.RemoveAt(_m_nodeList.Count - 1 );
+
+            //上一个同类型的节点
+            _ASCUINodeBase lastSameTypeNode = null;
+
+            for(int i = _m_nodeList.Count - 1;i>-1;i--)
+            {
+                lastSameTypeNode = _m_nodeList[i];
+                if (lastSameTypeNode == null)
+                    continue;
+                if (lastSameTypeNode.showType == topNode.showType)
+                {
+                    if (lastSameTypeNode.needHideWhenEnterNewSameTypeNode)
+                    {
+                        lastSameTypeNode.ShowNode();
+                        break;
+                    }
+                }
+            }
         }
 
+        public void CloseNodeByEsc()
+        {
+            if (_m_nodeList == null || _m_nodeList.Count == 0)
+                return;
+            _ASCUINodeBase topNode = _m_nodeList[_m_nodeList.Count - 1];
+            if (!topNode.canQuitByEsc)
+                return;
+            CloseCurNode();
+        }
+
+        public void CloseNodeByMouseRight()
+        {
+            if (_m_nodeList == null || _m_nodeList.Count == 0)
+                return;
+            _ASCUINodeBase topNode = _m_nodeList[_m_nodeList.Count - 1];
+            if (!topNode.canQuitByMouseRight)
+                return;
+            CloseCurNode();
+        }
 
 
         #endregion
