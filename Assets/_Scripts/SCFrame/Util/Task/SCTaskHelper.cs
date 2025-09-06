@@ -91,5 +91,12 @@ namespace SCFrame
             GameObject go = Instantiate(_obj);
             return go;
         }
+
+        public void DestoryGameObject(GameObject _obj)
+        {
+            if (_obj == null)
+                return;
+            Destroy(_obj);
+        }
     }
 }

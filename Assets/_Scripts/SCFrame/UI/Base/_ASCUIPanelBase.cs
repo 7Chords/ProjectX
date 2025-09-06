@@ -41,11 +41,11 @@ namespace SCFrame.UI
         }
 
         public abstract void OnShowPanel();
-        public void ResetPanel()
-        {
-            OnResetPanel();
-        }
-        public abstract void OnResetPanel();
+        //public void ResetPanel()
+        //{
+        //    OnResetPanel();
+        //}
+        //public abstract void OnResetPanel();
         public void HidePanel()
         {
             _m_hasShowed = false;
@@ -55,6 +55,10 @@ namespace SCFrame.UI
 
         public abstract void OnHidePanel();
 
+
+        //对于ui面板 隐藏和显示替代了挂起恢复的功能
+        public sealed override void OnResume() { }
+        public sealed override void OnSuspend() { }
 
     }
 }

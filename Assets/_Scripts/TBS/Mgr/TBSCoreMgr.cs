@@ -1,8 +1,7 @@
-using System.Collections;
+using SCFrame;
 using System.Collections.Generic;
-using UnityEngine;
 
-namespace SCFrame.TBS
+namespace GameCore.TBS
 {
     public class TBSCoreMgr : ACoreMgrBase
     {

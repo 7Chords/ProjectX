@@ -1,5 +1,12 @@
-namespace SCFrame.TBS
+namespace GameCore.TBS
 {
+    public enum ETBSSubMgrType
+    {
+        ACTOR,
+        TURN,
+        COMP,
+        EFFECT,
+    }
     public enum ETBSTurnType
     {
         PLAYER,

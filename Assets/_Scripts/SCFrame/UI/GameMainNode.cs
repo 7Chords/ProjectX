@@ -22,6 +22,11 @@ namespace SCFrame.UI
             return nameof(GameMainNode);
         }
 
+        public override string GetResName()
+        {
+            return "NULL";
+        }
+
         public override void OnEnterNode()
         {
             

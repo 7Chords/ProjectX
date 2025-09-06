@@ -8,6 +8,6 @@ namespace SCFrame.UI
 
         void ShowPanel();
         void HidePanel();
-        void ResetPanel();
+        //void ResetPanel();
     }
 }

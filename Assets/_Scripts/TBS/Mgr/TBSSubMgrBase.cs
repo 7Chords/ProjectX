@@ -1,8 +1,7 @@
-using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+using SCFrame;
+using SCFrame.TBS;
 
-namespace SCFrame.TBS
+namespace GameCore.TBS
 {
     public abstract class TBSSubMgrBase : ASubMgrBase<TBSModuleBase>
     {

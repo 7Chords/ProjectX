@@ -1,20 +1,19 @@
-using SCFrame.TBS;
-using System.Collections.Generic;
+using GameCore.TBS;
+using SCFrame.UI;
 
 
 namespace SCFrame
 {
-    public class GameCoreMgr : _ASCLifeObjBase
+    public class GameCoreMgr : Singleton<GameCoreMgr>
     {
-        private List<ACoreMgrBase> _m_coreMgrList;//核心管理器列表
-
+        public TBSCoreMgr tbsCoreMgr;
+        public UICoreMgr uiCoreMgr;
         public override void OnInitialize()
         {
             //注册事件
             SCMsgCenter.RegisterMsg(SCMsgConst.GAME_START, onGameStart);
             SCMsgCenter.RegisterMsg(SCMsgConst.GAME_END, onGameEnd);
 
-            _m_coreMgrList = new List<ACoreMgrBase>();
             initAllCoreMgr();
         }
         public override void OnDiscard()
@@ -24,8 +23,6 @@ namespace SCFrame
             SCMsgCenter.UnregisterMsg(SCMsgConst.GAME_END, onGameEnd);
 
             discardAllCoreMgr();
-            _m_coreMgrList.Clear();
-            _m_coreMgrList = null;
         }
 
         public override void OnResume()
@@ -42,44 +39,33 @@ namespace SCFrame
         //初始化所有的子管理器
         private void initAllCoreMgr()
         {
-            TBSCoreMgr tbsCoreMgr = new TBSCoreMgr();
+            tbsCoreMgr = new TBSCoreMgr();
             tbsCoreMgr.Initialize();
-            _m_coreMgrList.Add(tbsCoreMgr);
+            uiCoreMgr = new UICoreMgr();
+            uiCoreMgr.Initialize();
 
-            
+
         }
 
         //销毁所有的子管理器
         private void discardAllCoreMgr()
         {
-            foreach(var mgr in _m_coreMgrList)
-            {
-                if (mgr == null)
-                    return;
-                mgr.Discard();
-            }
+            if (tbsCoreMgr != null)
+                tbsCoreMgr.Discard();
         }
 
         //恢复所有的子管理器
         private void resumeAllCoreMgr()
         {
-            foreach (var mgr in _m_coreMgrList)
-            {
-                if (mgr == null)
-                    return;
-                mgr.Resume();
-            }
+            if (tbsCoreMgr != null)
+                tbsCoreMgr.Resume();
         }
 
         //挂起所有的子管理器
         private void suspendAllCoreMgr()
         {
-            foreach (var mgr in _m_coreMgrList)
-            {
-                if (mgr == null)
-                    return;
-                mgr.Suspend();
-            }
+            if (tbsCoreMgr != null)
+                tbsCoreMgr.Suspend();
         }
 
         private void onGameStart(object[] _objs)

@@ -1,4 +1,4 @@
-using SCFrame.TBS;
+using GameCore.TBS;
 
 namespace SCFrame
 {

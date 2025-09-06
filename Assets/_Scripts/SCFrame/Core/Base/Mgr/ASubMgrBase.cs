@@ -1,4 +1,4 @@
-namespace SCFrame.TBS
+namespace SCFrame
 {
 
     /// <summary>

@@ -1,8 +1,6 @@
-using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+using SCFrame;
 
-namespace SCFrame.TBS
+namespace GameCore.TBS
 {
     public class TBSActorMgr : TBSSubMgrBase
     {

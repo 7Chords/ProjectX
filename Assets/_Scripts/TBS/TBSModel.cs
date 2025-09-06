@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 
 
-namespace SCFrame.TBS
+namespace GameCore.TBS
 {
     /// <summary>
     /// 全局唯一 兼具数据持久化功能

@@ -1,9 +1,6 @@
-using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
-
 namespace SCFrame
 {
+    //根据业务增加枚举
     public enum ECoreMgrType
     {
         TBS,
@@ -11,14 +8,5 @@ namespace SCFrame
         UI,
 
     }
-
-    public enum ETBSSubMgrType
-    {
-        ACTOR,
-        TURN,
-        COMP,
-        EFFECT,
-    }
-   
 
 }

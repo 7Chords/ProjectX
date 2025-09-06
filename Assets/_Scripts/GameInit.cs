@@ -1,4 +1,6 @@
+using GameCore.UI;
 using SCFrame;
+using SCFrame.UI;
 using UnityEngine;
 
 namespace GameCore
@@ -12,7 +14,18 @@ namespace GameCore
             SCPlayer.instance.Initialize();
 
             SCMsgCenter.SendMsg(SCMsgConst.GAME_START);
-        } 
+        }
+
+
+        private void Update()
+        {
+            //test
+            if(Input.GetKeyDown(KeyCode.T))
+            {
+                SCMsgCenter.SendMsg(SCMsgConst.TBS_GAME_START);
+                GameCoreMgr.instance.uiCoreMgr.AddNode(new TBSMainNode(SCUIShowType.Full));
+            }
+        }
 
     }
 }

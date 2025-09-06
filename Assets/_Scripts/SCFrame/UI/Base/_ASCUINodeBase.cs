@@ -13,7 +13,7 @@ namespace SCFrame.UI
         private bool _m_hasHideNode;
         private bool _m_hasExitNode;
 
-        private SCUIShowType _m_showType;
+        protected SCUIShowType _m_showType;
         public bool hasEnterNode { get => _m_hasEnterNode; }
         public bool hasHideNode { get => _m_hasHideNode; }
         public bool hasExitNode { get => _m_hasExitNode; }
@@ -96,5 +96,7 @@ namespace SCFrame.UI
 
         //获取节点的名字 全局唯一
         public abstract string GetNodeName();
+
+        public abstract string GetResName();
     }
 }
