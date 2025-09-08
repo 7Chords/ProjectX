@@ -41,7 +41,7 @@ namespace SCFrame.UI
                 return false;
             }
             _m_hasEnterNode = true;
-            _m_hasHideNode = false;
+            _m_hasHideNode = true;
             OnEnterNode();
             return true;
         }

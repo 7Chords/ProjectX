@@ -12,7 +12,7 @@ namespace SCFrame
     public static class SCEventListenerExtension
     {
         #region ¹¤¾ßº¯Êý
-        private static SCEventListener GetOrAddJKEventListener(Component _com)
+        private static SCEventListener GetOrAddSCEventListener(Component _com)
         {
             SCEventListener lis = _com.GetComponent<SCEventListener>();
             if (lis == null) return _com.gameObject.AddComponent<SCEventListener>();
@@ -24,12 +24,12 @@ namespace SCFrame
         }
         public static void AddEventListener<T>(this Component _com, int _customEventTypeInt, Action<T, object[]> _action, params object[] _args)
         {
-            SCEventListener lis = GetOrAddJKEventListener(_com);
+            SCEventListener lis = GetOrAddSCEventListener(_com);
             lis.AddListener(_customEventTypeInt, _action, _args);
         }
         public static void RemoveEventListener<T>(this Component _com, int _customEventTypeInt, Action<T, object[]> _action, bool _checkArgs = false, params object[] _args)
         {
-            SCEventListener lis = GetOrAddJKEventListener(_com);
+            SCEventListener lis = GetOrAddSCEventListener(_com);
             lis.RemoveListener(_customEventTypeInt, _action, _checkArgs, _args);
         }
         public static void RemoveEventListener<T>(this Component _com, ESCEventType _eventType, Action<T, object[]> _action, bool _checkArgs = false, params object[] _args)
@@ -38,7 +38,7 @@ namespace SCFrame
         }
         public static void RemoveAllListener(this Component _com, int _customEventTypeInt)
         {
-            SCEventListener lis = GetOrAddJKEventListener(_com);
+            SCEventListener lis = GetOrAddSCEventListener(_com);
             lis.RemoveAllListener(_customEventTypeInt);
         }
         public static void RemoveAllListener(this Component _com, ESCEventType _eventType)
@@ -47,12 +47,12 @@ namespace SCFrame
         }
         public static void RemoveAllListener(this Component _com)
         {
-            SCEventListener lis = GetOrAddJKEventListener(_com);
+            SCEventListener lis = GetOrAddSCEventListener(_com);
             lis.RemoveAllListener();
         }
         public static void TriggerCustomEvent<T>(this Component _com, int _customEventTypeInt, T _eventData)
         {
-            SCEventListener lis = GetOrAddJKEventListener(_com);
+            SCEventListener lis = GetOrAddSCEventListener(_com);
             lis.TriggerAction<T>(_customEventTypeInt, _eventData);
         }
         #endregion

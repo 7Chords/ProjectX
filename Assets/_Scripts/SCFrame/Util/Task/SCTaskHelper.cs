@@ -86,17 +86,18 @@ namespace SCFrame
             _m_fixedUpdateEvent?.Invoke();
         }
 
-        public GameObject InstantiateGameObject(GameObject _obj)
+        public void DoInNextUpdate()
         {
-            GameObject go = Instantiate(_obj);
-            return go;
+
         }
 
-        public void DestoryGameObject(GameObject _obj)
+        public void DoInNextFixedUpdate()
         {
-            if (_obj == null)
-                return;
-            Destroy(_obj);
+
+        }
+        public void DoInNextLateUpdate()
+        {
+
         }
     }
 }

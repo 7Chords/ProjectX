@@ -1,4 +1,6 @@
+using GameCore.UI;
 using SCFrame;
+using SCFrame.UI;
 using System.Collections.Generic;
 
 namespace GameCore.TBS
@@ -104,6 +106,7 @@ namespace GameCore.TBS
             SCMsgCenter.SendMsgAct(SCMsgConst.TBS_EFFECT_MGR_WORK);
             SCMsgCenter.SendMsgAct(SCMsgConst.TBS_COMP_MGR_WORK);
 
+            GameCoreMgr.instance.uiCoreMgr.AddNode(new TBSMainNode(SCUIShowType.Full));
         }
 
         private void onTBSGameFinish()

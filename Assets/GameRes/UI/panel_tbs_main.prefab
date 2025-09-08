@@ -494,6 +494,7 @@ GameObject:
   - component: {fileID: 5775233201935055556}
   - component: {fileID: 5775233201935055557}
   - component: {fileID: 2614531993942222222}
+  - component: {fileID: 3412546081141969071}
   m_Layer: 5
   m_Name: panel_tbs_main
   m_TagString: Untagged
@@ -543,7 +544,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 0.5, g: 0.5, b: 0.5, a: 0.8}
+  m_Color: {r: 0.5, g: 0.5, b: 0.5, a: 0}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
@@ -572,10 +573,22 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 237fc54109daa5e47bdb2446c4206654, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  btnSkill: {fileID: 0}
-  btnNormalAttack: {fileID: 0}
-  btnItem: {fileID: 0}
-  btnDefence: {fileID: 0}
+  btnSkill: {fileID: 9179361259669204950}
+  btnNormalAttack: {fileID: 2524496859480846490}
+  btnItem: {fileID: 6780722100675838738}
+  btnDefence: {fileID: 1284143785655602893}
+--- !u!114 &3412546081141969071
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5775233201935055559}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: afd251dee3dc8d148a13122496e60455, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &6085071334019199074
 GameObject:
   m_ObjectHideFlags: 0

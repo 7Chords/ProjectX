@@ -34,6 +34,11 @@ namespace GameCore.TBS
             set { _m_battleInfo = value; }
         }
 
+        public void InitData()
+        {
+
+        }
+
         public void ResetData()
         {
             curTurnType = ETBSTurnType.PLAYER;

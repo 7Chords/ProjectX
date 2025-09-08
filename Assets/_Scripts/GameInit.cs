@@ -12,8 +12,10 @@ namespace GameCore
         {
             SCSystem.instance.Initialize();
             SCPlayer.instance.Initialize();
+            SCModel.instance.Initialize();
 
             SCMsgCenter.SendMsg(SCMsgConst.GAME_START);
+            SCMsgCenter.SendMsgAct(SCMsgConst.TBS_GAME_START);
         }
 
 
@@ -23,7 +25,6 @@ namespace GameCore
             if(Input.GetKeyDown(KeyCode.T))
             {
                 SCMsgCenter.SendMsg(SCMsgConst.TBS_GAME_START);
-                GameCoreMgr.instance.uiCoreMgr.AddNode(new TBSMainNode(SCUIShowType.Full));
             }
         }
 
