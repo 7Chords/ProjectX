@@ -1,5 +1,8 @@
 namespace SCFrame
 {
+    /// <summary>
+    /// 状态机状态基类
+    /// </summary>
     public class StateBase
     {
         protected StateMachine stateMachine;
@@ -20,7 +23,7 @@ namespace SCFrame
         /// <summary>
         /// 反初始化
         /// </summary>
-        public virtual void UnInit()
+        public virtual void Discard()
         {
             // 放回对象池
             this.ObjectPushPool();

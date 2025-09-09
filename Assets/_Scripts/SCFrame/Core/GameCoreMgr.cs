@@ -4,6 +4,9 @@ using SCFrame.UI;
 
 namespace SCFrame
 {
+    /// <summary>
+    /// 游戏核心管理器
+    /// </summary>
     public class GameCoreMgr : Singleton<GameCoreMgr>
     {
         public TBSCoreMgr tbsCoreMgr;

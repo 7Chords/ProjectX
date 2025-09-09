@@ -3,7 +3,7 @@ using UnityEngine.UI;
 
 namespace GameCore.UI
 {
-    public class TBSMainMono : _ASCUIMonoBase
+    public class UIMonoTBSMain : _ASCUIMonoBase
     {
         public Button btnSkill;
         public Button btnNormalAttack;

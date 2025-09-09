@@ -4,7 +4,14 @@ using UnityEngine;
 
 namespace SCFrame
 {
+    /// <summary>
+    /// 状态机拥有者接口
+    /// </summary>
     public interface IStateMachineOwner { }
+
+    /// <summary>
+    /// SCFrame状态机
+    /// </summary>
     public class StateMachine : _ASCLifeObjBase
     {
         // 当前状态
@@ -37,7 +44,7 @@ namespace SCFrame
             var enumerator = _m_stateDic.GetEnumerator();
             while (enumerator.MoveNext())
             {
-                enumerator.Current.Value.UnInit();
+                enumerator.Current.Value.Discard();
             }
             _m_stateDic.Clear();
             // 放弃所有资源的引用

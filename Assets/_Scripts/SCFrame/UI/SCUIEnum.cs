@@ -4,10 +4,11 @@ using UnityEngine;
 
 namespace SCFrame.UI
 {
+    //UI显示类型
     public enum SCUIShowType
     {
-        Full,
-        Addition,
+        Full,//全屏
+        Addition,//叠加
     }
 
 

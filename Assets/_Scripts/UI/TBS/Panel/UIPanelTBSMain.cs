@@ -6,9 +6,9 @@ using UnityEngine;
 
 namespace GameCore.UI
 {
-    public class TBSMainPanel : _ASCUIPanelBase<TBSMainMono>
+    public class UIPanelTBSMain : _ASCUIPanelBase<UIMonoTBSMain>
     {
-        public TBSMainPanel(TBSMainMono _mono, SCUIShowType _showType) : base(_mono, _showType)
+        public UIPanelTBSMain(UIMonoTBSMain _mono, SCUIShowType _showType) : base(_mono, _showType)
         {
 
         }

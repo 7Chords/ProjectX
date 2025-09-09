@@ -6,5 +6,6 @@ namespace SCFrame
     public abstract class ACoreMgrBase : _ASCLifeObjBase
     {
         public abstract ECoreMgrType coreMgrType { get; }
+
     }
 }

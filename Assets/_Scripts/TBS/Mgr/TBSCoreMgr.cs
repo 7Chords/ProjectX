@@ -106,7 +106,7 @@ namespace GameCore.TBS
             SCMsgCenter.SendMsgAct(SCMsgConst.TBS_EFFECT_MGR_WORK);
             SCMsgCenter.SendMsgAct(SCMsgConst.TBS_COMP_MGR_WORK);
 
-            GameCoreMgr.instance.uiCoreMgr.AddNode(new TBSMainNode(SCUIShowType.Full));
+            GameCoreMgr.instance.uiCoreMgr.AddNode(new UINodeTBSMain(SCUIShowType.Full));
         }
 
         private void onTBSGameFinish()

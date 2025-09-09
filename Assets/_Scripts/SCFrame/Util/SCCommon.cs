@@ -1,7 +1,11 @@
 using UnityEngine;
+using UnityEditor;
 
 namespace SCFrame
 {
+    /// <summary>
+    /// 一些适用于全局的通用方法
+    /// </summary>
     public static class SCCommon
     {
 
@@ -40,5 +44,16 @@ namespace SCFrame
                 return;
             GameObject.Destroy(_obj);
         }
+
+        /// <summary>
+        /// 编辑器当前是否处于预制体编辑模式
+        /// </summary>
+        /// <returns></returns>
+        public static bool isInPrefabStage()
+        {
+            var stage = UnityEditor.SceneManagement.PrefabStageUtility.GetCurrentPrefabStage();
+            return stage != null;
+        }
+
     }
 }

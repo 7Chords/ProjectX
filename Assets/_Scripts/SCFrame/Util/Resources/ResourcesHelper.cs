@@ -7,6 +7,9 @@ using UnityEngine.ResourceManagement.AsyncOperations;
 
 namespace SCFrame
 {
+    /// <summary>
+    /// SCFrame资源工具类
+    /// </summary>
     public static class ResourcesHelper
     {
 
