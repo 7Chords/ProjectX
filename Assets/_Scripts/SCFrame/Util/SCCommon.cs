@@ -1,5 +1,6 @@
 using UnityEngine;
 using UnityEditor;
+using System.Globalization;
 
 namespace SCFrame
 {
@@ -49,11 +50,40 @@ namespace SCFrame
         /// 编辑器当前是否处于预制体编辑模式
         /// </summary>
         /// <returns></returns>
-        public static bool isInPrefabStage()
+        public static bool IsInPrefabStage()
         {
             var stage = UnityEditor.SceneManagement.PrefabStageUtility.GetCurrentPrefabStage();
             return stage != null;
         }
 
+        /// <summary>
+        /// 字符串解析成float
+        /// </summary>
+        /// <param name="_str"></param>
+        /// <returns></returns>
+        public static float ParseFloat(string _str)
+        {
+            if(float.TryParse(_str, NumberStyles.Float, CultureInfo.InvariantCulture, out float result))
+            {
+                return result;
+            }
+            Debug.LogError("string解析成float出错！！！");
+            return 0f;
+        }
+
+        /// <summary>
+        /// 字符串解析成int
+        /// </summary>
+        /// <param name="_str"></param>
+        /// <returns></returns>
+        public static int ParseInt(string _str)
+        {
+            if(int.TryParse(_str, NumberStyles.Float, CultureInfo.InvariantCulture, out int result))
+            {
+                return result;
+            }
+            Debug.LogError("string解析成int出错！！！");
+            return 0;
+        }
     }
 }

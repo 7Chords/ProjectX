@@ -33,7 +33,7 @@ public class TextSC : Text
         get
         {
             //Prefab模式，不处理
-            if (SCCommon.isInPrefabStage())
+            if (SCCommon.IsInPrefabStage())
             {
                 return base.text;
             }
@@ -111,7 +111,7 @@ public class TextSC : Text
         get
         {
             //Prefab模式，不处理 || 没有运行的时候，不翻译 || base.text不是需要自动翻译的字符串
-            if (SCCommon.isInPrefabStage() || !Application.isPlaying || string.IsNullOrEmpty(_m_sTranslatedText))
+            if (SCCommon.IsInPrefabStage() || !Application.isPlaying || string.IsNullOrEmpty(_m_sTranslatedText))
             {
                 return base.preferredWidth;
             }
@@ -128,7 +128,7 @@ public class TextSC : Text
         get
         {
             //Prefab模式，不处理 || 没有运行的时候，不翻译 || base.text不是需要自动翻译的字符串
-            if (SCCommon.isInPrefabStage() || !Application.isPlaying || string.IsNullOrEmpty(_m_sTranslatedText))
+            if (SCCommon.IsInPrefabStage() || !Application.isPlaying || string.IsNullOrEmpty(_m_sTranslatedText))
             {
                 return base.preferredHeight;
             }
@@ -142,7 +142,7 @@ public class TextSC : Text
         base.Awake();
 
         //Prefab模式，不处理
-        if (SCCommon.isInPrefabStage())
+        if (SCCommon.IsInPrefabStage())
         {
             return;
         }
