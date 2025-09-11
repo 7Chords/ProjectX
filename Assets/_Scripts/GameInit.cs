@@ -16,6 +16,8 @@ namespace GameCore
 
             SCMsgCenter.SendMsg(SCMsgConst.GAME_START);
             SCMsgCenter.SendMsgAct(SCMsgConst.TBS_GAME_START);
+
+
         }
 
 
