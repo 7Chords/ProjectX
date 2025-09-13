@@ -9,17 +9,17 @@ namespace SCFrame
     public abstract class SCRefDataCore
     {
         private string _m_assetPath;//资产路径
-        private string _m_excelName;//表名
+        private string _m_sheetName;//
 
-        public SCRefDataCore(string _assetPath, string _objName)
+        public SCRefDataCore(string _assetPath, string _sheetName)
         {
             _m_assetPath = _assetPath;
-            _m_excelName = _objName;
+            _m_sheetName = _sheetName;
         }
 
         /** 获取加载资源对象的路径 */
-        protected abstract string _assetPath { get; }
-        protected abstract string _objName { get; }
+        protected string _assetPath { get { return _m_assetPath; } }
+        protected string _sheetName { get { return _m_sheetName; } }
 
         private Dictionary<string, string> _m_keyValueMap = new Dictionary<string, string>();
         protected void parseFromTxt(string _string)
@@ -42,7 +42,7 @@ namespace SCFrame
                 string[] lineSplit = line.Split('\t');
                 if (lineSplit.Length < 2)
                 {
-                    Debug.LogError($"general表格式错误：表格{_m_excelName}，第{i}行：\n{line}");
+                    Debug.LogError($"general表格式错误：表格{_m_sheetName}，第{i}行：\n{line}");
                     continue;
                 }
 
@@ -80,12 +80,12 @@ namespace SCFrame
             string tempValue = getString(_name);
             if (string.IsNullOrEmpty(tempValue))
             {
-                Debug.LogError($"{_m_assetPath},{_m_excelName}的字段{_name}为空");
+                Debug.LogError($"{_m_assetPath},{_m_sheetName}的字段{_name}为空");
                 return 0;
             }
             if (!int.TryParse(tempValue, out int result))
             {
-                Debug.LogError($"表\"{_m_assetPath},{_m_excelName}\"\t数据填写错误: {_name},填的{tempValue}不是int");
+                Debug.LogError($"表\"{_m_assetPath},{_m_sheetName}\"\t数据填写错误: {_name},填的{tempValue}不是int");
             }
             return result;
         }
@@ -97,12 +97,12 @@ namespace SCFrame
             if (string.IsNullOrEmpty(tempValue))
             {
                 if (!_canNull)
-                    Debug.LogError($"{_m_assetPath},{_m_excelName}的字段{_name}为空");
+                    Debug.LogError($"{_m_assetPath},{_m_sheetName}的字段{_name}为空");
                 return 0;
             }
             if (!long.TryParse(tempValue, out long result))
             {
-                Debug.LogError($"表\"{_m_assetPath},{_m_excelName}\"\t数据填写错误: {_name},填的{tempValue}不是long");
+                Debug.LogError($"表\"{_m_assetPath},{_m_sheetName}\"\t数据填写错误: {_name},填的{tempValue}不是long");
             }
             return result;
         }
@@ -114,12 +114,12 @@ namespace SCFrame
             if (string.IsNullOrEmpty(tempValue))
             {
                 if (!_canNull)
-                    Debug.LogError($"{_m_assetPath},{_m_excelName}的字段{_name}为空");
+                    Debug.LogError($"{_m_assetPath},{_m_sheetName}的字段{_name}为空");
                 return false;
             }
             if (!bool.TryParse(tempValue, out bool result))
             {
-                Debug.LogError($"表\"{_m_assetPath},{_m_excelName}\"\t数据填写错误: {_name},填的{tempValue}不是bool");
+                Debug.LogError($"表\"{_m_assetPath},{_m_sheetName}\"\t数据填写错误: {_name},填的{tempValue}不是bool");
             }
             return result;
         }
@@ -131,12 +131,12 @@ namespace SCFrame
             if (string.IsNullOrEmpty(tempValue))
             {
                 if (!_canNull)
-                    Debug.LogError($"{_m_assetPath},{_m_excelName}的字段{_name}为空");
+                    Debug.LogError($"{_m_assetPath},{_m_sheetName}的字段{_name}为空");
                 return 0;
             }
             if (!float.TryParse(tempValue, NumberStyles.Float, CultureInfo.InvariantCulture, out float result))
             {
-                Debug.LogError($"表\"{_m_assetPath},{_m_excelName}\"\t数据填写错误: {_name},填的{tempValue}不是float");
+                Debug.LogError($"表\"{_m_assetPath},{_m_sheetName}\"\t数据填写错误: {_name},填的{tempValue}不是float");
             }
             return result;
         }
@@ -148,14 +148,14 @@ namespace SCFrame
             if (string.IsNullOrEmpty(tempValue))
             {
                 if (!_canNull)
-                    Debug.LogError($"{_m_assetPath},{_m_excelName}的字段{_name}为空");
+                    Debug.LogError($"{_m_assetPath},{_m_sheetName}的字段{_name}为空");
                 return v2;
             }
 
             string[] strs = tempValue.Split(new char[] { ';', ':' });
             if (strs.Length < 2)
             {
-                Debug.LogError($"表\"{_m_assetPath},{_m_excelName}\"\t数据填写错误: {_name},填的{tempValue}不是Vector2");
+                Debug.LogError($"表\"{_m_assetPath},{_m_sheetName}\"\t数据填写错误: {_name},填的{tempValue}不是Vector2");
                 return v2;
             }
             v2.Set(SCCommon.ParseFloat(strs[0]), SCCommon.ParseFloat(strs[1]));
@@ -169,14 +169,14 @@ namespace SCFrame
             if (string.IsNullOrEmpty(tempValue))
             {
                 if (!_canNull)
-                    Debug.LogError($"{_m_assetPath},{_m_excelName}的字段{_name}为空");
+                    Debug.LogError($"{_m_assetPath},{_m_sheetName}的字段{_name}为空");
                 return v3;
             }
 
             string[] strs = tempValue.Split(new char[] { ';', ':' });
             if (strs.Length < 3)
             {
-                Debug.LogError($"表\"{_m_assetPath},{_m_excelName}\"\t数据填写错误: {_name},填的{tempValue}不是Vector3");
+                Debug.LogError($"表\"{_m_assetPath},{_m_sheetName}\"\t数据填写错误: {_name},填的{tempValue}不是Vector3");
                 return v3;
             }
 
@@ -191,14 +191,14 @@ namespace SCFrame
             if (string.IsNullOrEmpty(tempValue))
             {
                 if (!_canNull)
-                    Debug.LogError($"{_m_assetPath},{_m_excelName}的字段{_name}为空");
+                    Debug.LogError($"{_m_assetPath},{_m_sheetName}的字段{_name}为空");
                 return rect;
             }
 
             string[] strs = tempValue.Split(new char[] { ';', ':' });
             if (strs.Length < 4)
             {
-                Debug.LogError($"表\"{_m_assetPath},{_m_excelName}\"\t数据填写错误: {_name},填的{tempValue}不是rect");
+                Debug.LogError($"表\"{_m_assetPath},{_m_sheetName}\"\t数据填写错误: {_name},填的{tempValue}不是rect");
                 return rect;
             }
 
@@ -214,7 +214,7 @@ namespace SCFrame
             if (string.IsNullOrEmpty(tempValue))
             {
                 if (!_canNull)
-                    Debug.LogError($"{_m_assetPath},{_m_excelName}的字段{_name}为空");
+                    Debug.LogError($"{_m_assetPath},{_m_sheetName}的字段{_name}为空");
                 return list;
             }
             string[] strs = tempValue.Split(new char[] { ';', ':' });
@@ -224,7 +224,7 @@ namespace SCFrame
                 object value = ParseValue(tempStr, typeof(T));
                 if (value == null)
                 {
-                    Debug.LogError($"表\"{_m_assetPath},{_m_excelName}\"\t数据填写错误: {_name},填的{tempStr}解析失败，完整数据：{value}");
+                    Debug.LogError($"表\"{_m_assetPath},{_m_sheetName}\"\t数据填写错误: {_name},填的{tempStr}解析失败，完整数据：{value}");
                 }
                 else
                 {
@@ -244,7 +244,7 @@ namespace SCFrame
             if (string.IsNullOrEmpty(tempValue))
             {
                 if (!_canNull)
-                    Debug.LogError($"{_m_assetPath},{_m_excelName}的字段{_name}为空");
+                    Debug.LogError($"{_m_assetPath},{_m_sheetName}的字段{_name}为空");
                 return vector2List;
             }
             string[] strs = tempValue.Split(new string[] { ";" }, StringSplitOptions.RemoveEmptyEntries);
@@ -253,7 +253,7 @@ namespace SCFrame
                 string[] valueStrs = strs[i].Split(new string[] { ":" }, StringSplitOptions.RemoveEmptyEntries);
                 if (valueStrs == null || valueStrs.Length != 2)
                 {
-                    Debug.LogError($"表\"{_m_assetPath},{_m_excelName}\"\t数据填写错误: {_name},解析失败，完整数据：{valueStrs}");
+                    Debug.LogError($"表\"{_m_assetPath},{_m_sheetName}\"\t数据填写错误: {_name},解析失败，完整数据：{valueStrs}");
                 }
                 else
                 {
@@ -273,7 +273,7 @@ namespace SCFrame
             if (string.IsNullOrEmpty(tempValue))
             {
                 if (!_canNull)
-                    Debug.LogError($"{_m_assetPath},{_m_excelName}的字段{_name}为空");
+                    Debug.LogError($"{_m_assetPath},{_m_sheetName}的字段{_name}为空");
                 return Vector2IntList;
             }
             string[] strs = tempValue.Split(new string[] { ";" }, StringSplitOptions.RemoveEmptyEntries);
@@ -282,7 +282,7 @@ namespace SCFrame
                 string[] valueStrs = strs[i].Split(new string[] { ":" }, StringSplitOptions.RemoveEmptyEntries);
                 if (valueStrs == null || valueStrs.Length != 2)
                 {
-                    Debug.LogError($"表\"{_m_assetPath},{_m_excelName}\"\t数据填写错误: {_name},解析失败，完整数据：{valueStrs}");
+                    Debug.LogError($"表\"{_m_assetPath},{_m_sheetName}\"\t数据填写错误: {_name},解析失败，完整数据：{valueStrs}");
                 }
                 else
                 {
@@ -302,7 +302,7 @@ namespace SCFrame
             if (string.IsNullOrEmpty(tempValue))
             {
                 if (!_canNull)
-                    Debug.LogError($"{_m_assetPath},{_m_excelName}的字段{_name}为空");
+                    Debug.LogError($"{_m_assetPath},{_m_sheetName}的字段{_name}为空");
                 return vector3List;
             }
             string[] strs = tempValue.Split(new string[] { ";" }, StringSplitOptions.RemoveEmptyEntries);
@@ -311,7 +311,7 @@ namespace SCFrame
                 string[] valueStrs = strs[i].Split(new string[] { ":" }, StringSplitOptions.RemoveEmptyEntries);
                 if (valueStrs == null || valueStrs.Length != 3)
                 {
-                    Debug.LogError($"表\"{_m_assetPath},{_m_excelName}\"\t数据填写错误: {_name},解析失败，完整数据：{valueStrs}");
+                    Debug.LogError($"表\"{_m_assetPath},{_m_sheetName}\"\t数据填写错误: {_name},解析失败，完整数据：{valueStrs}");
                 }
                 else
                 {

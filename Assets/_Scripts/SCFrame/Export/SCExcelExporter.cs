@@ -3,6 +3,7 @@ using NPOI.SS.UserModel;
 using NPOI.XSSF.UserModel;
 using System.IO;
 using UnityEditor;
+using UnityEngine;
 
 namespace SCFrame
 {
@@ -43,6 +44,10 @@ namespace SCFrame
                 }
             }
 
+            if(!hasImported)
+            {
+                Debug.LogError("没有找到可以导出的Excel！！！");
+            }
         }
 
         /// <summary>
@@ -53,8 +58,6 @@ namespace SCFrame
         {
             string excelPath = GAME_EXCEL_PATH + "/" + _excelName;
 
-
-
             IWorkbook workbook = CreatWrokbook(excelPath);
             ISheet sheet = null;
             IRow row = null;
@@ -62,7 +65,6 @@ namespace SCFrame
             string cellValue = "";
             for (int i = 0; i < workbook.NumberOfSheets; i++)
             {
-                
                 using (FileStream fs = File.Open(GAME_TXT_PATH + "/" + workbook.GetSheetName(i) + ".txt", FileMode.OpenOrCreate, FileAccess.Write))
                 {
                     using (StreamWriter sw = new StreamWriter(fs, System.Text.Encoding.UTF8))
@@ -92,7 +94,7 @@ namespace SCFrame
             }
         }
 
-        public static void ImportTable()
+        public static void ImportSheet()
         {
 
         }

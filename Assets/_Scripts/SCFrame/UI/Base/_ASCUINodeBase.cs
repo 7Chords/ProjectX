@@ -37,7 +37,7 @@ namespace SCFrame.UI
         {
             if (_m_hasEnterNode)
             {
-                Debug.Log(GetNodeName() + "已经Enter,无法再次Enter!!!");
+                Debug.LogError(GetNodeName() + "已经Enter,无法再次Enter!!!");
                 return false;
             }
             _m_hasEnterNode = true;
@@ -52,7 +52,7 @@ namespace SCFrame.UI
         {
             if (!_m_hasEnterNode)
             {
-                Debug.Log(GetNodeName() + "没有Enter,无法Hide!!!");
+                Debug.LogError(GetNodeName() + "没有Enter,无法Hide!!!");
                 return;
             }
             _m_hasHideNode = true;
@@ -65,12 +65,12 @@ namespace SCFrame.UI
         {
             if (!_m_hasEnterNode)
             {
-                Debug.Log(GetNodeName() + "没有Enter,无法Show!!!");
+                Debug.LogError(GetNodeName() + "没有Enter,无法Show!!!");
                 return;
             }
             if(!_m_hasHideNode)
             {
-                Debug.Log(GetNodeName() + "当前正在show,无法再次Show!!!");
+                Debug.LogError(GetNodeName() + "当前正在show,无法再次Show!!!");
                 return;
             }
 
@@ -85,7 +85,7 @@ namespace SCFrame.UI
         {
             if (!_m_hasEnterNode)
             {
-                Debug.Log(GetNodeName() + "没有Enter,无法Quit!!!");
+                Debug.LogError(GetNodeName() + "没有Enter,无法Quit!!!");
                 return;
             }
             _m_hasExitNode = true;
@@ -94,9 +94,26 @@ namespace SCFrame.UI
         public abstract void OnQuitNode();
 
 
+        public Transform GetRootTransform()
+        {
+            switch(_m_showType)
+            {
+                case SCUIShowType.FULL:
+                    return SCGame.instance.fullLayerRoot.transform;
+                case SCUIShowType.ADDITION:
+                    return SCGame.instance.fullLayerRoot.transform;
+                case SCUIShowType.TOP:
+                    return SCGame.instance.fullLayerRoot.transform;
+                default:
+                    Debug.LogError(GetNodeName() + "找不到可以挂载的Canvas节点！");
+                    return SCGame.instance.mainCanvas.transform;
+            }
+        }
+
         //获取节点的名字 全局唯一
         public abstract string GetNodeName();
 
         public abstract string GetResName();
+
     }
 }

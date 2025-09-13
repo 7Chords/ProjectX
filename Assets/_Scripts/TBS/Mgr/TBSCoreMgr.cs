@@ -10,7 +10,6 @@ namespace GameCore.TBS
         public override ECoreMgrType coreMgrType => ECoreMgrType.TBS;
 
         private List<TBSSubMgrBase> _m_subMgrList;//子管理器列表
-
         public override void OnInitialize()
         {
             //注册事件
@@ -106,7 +105,7 @@ namespace GameCore.TBS
             SCMsgCenter.SendMsgAct(SCMsgConst.TBS_EFFECT_MGR_WORK);
             SCMsgCenter.SendMsgAct(SCMsgConst.TBS_COMP_MGR_WORK);
 
-            GameCoreMgr.instance.uiCoreMgr.AddNode(new UINodeTBSMain(SCUIShowType.Full));
+            GameCoreMgr.instance.uiCoreMgr.AddNode(new UINodeTBSMain(SCUIShowType.FULL));
         }
 
         private void onTBSGameFinish()

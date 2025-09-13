@@ -30,6 +30,12 @@ namespace SCFrame.UI
         }
 
         #region 功能
+
+        /// <summary>
+        /// 添加一个节点
+        /// </summary>
+        /// <param name="_node"></param>
+        /// <param name="_needShow"></param>
         public void AddNode(_ASCUINodeBase _node,bool _needShow = true)
         {
             if (_m_nodeList == null)
@@ -60,6 +66,9 @@ namespace SCFrame.UI
                 _node.ShowNode();
         }
 
+        /// <summary>
+        /// 关闭当前的节点
+        /// </summary>
         public void CloseCurNode()
         {
             if (_m_nodeList == null || _m_nodeList.Count == 0)
@@ -92,6 +101,9 @@ namespace SCFrame.UI
             }
         }
 
+        /// <summary>
+        /// 通过ESC关闭当前的节点
+        /// </summary>
         public void CloseNodeByEsc()
         {
             if (_m_nodeList == null || _m_nodeList.Count == 0)
@@ -102,6 +114,9 @@ namespace SCFrame.UI
             CloseCurNode();
         }
 
+        /// <summary>
+        /// 通过鼠标右键关闭当前的节点
+        /// </summary>
         public void CloseNodeByMouseRight()
         {
             if (_m_nodeList == null || _m_nodeList.Count == 0)

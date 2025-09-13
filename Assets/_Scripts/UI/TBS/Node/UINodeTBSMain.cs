@@ -6,9 +6,6 @@ namespace GameCore.UI
 {
     public class UINodeTBSMain : _ASCUINodeBase
     {
-        public UINodeTBSMain(SCUIShowType _showType) : base(_showType)
-        {
-        }
 
         public override bool needHideWhenEnterNewSameTypeNode => true;
 
@@ -16,29 +13,25 @@ namespace GameCore.UI
 
         public override bool canQuitByMouseRight => false;
 
-        public override string GetNodeName()
+        public UINodeTBSMain(SCUIShowType _showType) : base(_showType)
         {
-            return nameof(UINodeTBSMain);
         }
-        public override string GetResName()
-        {
-            return "panel_tbs_main";
-        }
+
         private GameObject _m_panelGO;
         private UIPanelTBSMain _m_tbsMainPanel;
         private UIMonoTBSMain _m_tbsMainMono;
         public override void OnEnterNode()
         {
-            _m_panelGO = ResourcesHelper.LoadGameObject(GetResName(), SCGame.instance.mainCanvas.transform,true);
+            _m_panelGO = ResourcesHelper.LoadGameObject(GetResName(), GetRootTransform(),true);
             if(_m_panelGO == null)
             {
-                Debug.Log("未找到资源名为" + GetResName() + "的资源!!!");
+                Debug.LogError("未找到资源名为" + GetResName() + "的资源!!!");
                 return;
             }
             _m_tbsMainMono = _m_panelGO.GetComponent<UIMonoTBSMain>();
             if(_m_tbsMainMono == null)
             {
-                Debug.Log("资源名为" + GetResName() + "的资源上不存在对应的Mono!!!");
+                Debug.LogError("资源名为" + GetResName() + "的资源上不存在对应的Mono!!!");
                 return;
             }
 
@@ -68,5 +61,16 @@ namespace GameCore.UI
                 return;
             _m_tbsMainPanel.ShowPanel();
         }
+
+
+        public override string GetNodeName()
+        {
+            return nameof(UINodeTBSMain);
+        }
+        public override string GetResName()
+        {
+            return "panel_tbs_main";
+        }
+
     }
 }

@@ -22,8 +22,8 @@ namespace GameCore.RefData
             testFloat = getFloat("testFloat");
             testVec2 = getVector2("testVec2");
         }
-        protected override string _assetPath => "RefData/ExportTxt";
+        protected static string assetPath => "RefData/ExportTxt";
 
-        protected override string _objName => "game_general_core;";
+        protected static string sheetName => "game_general_core;";
     }
 }

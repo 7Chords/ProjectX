@@ -1,5 +1,6 @@
 namespace SCFrame
 {
+
     //根据业务增加枚举
     public enum ECoreMgrType
     {
@@ -24,5 +25,6 @@ namespace SCFrame
         ru_RU,//俄语
 
     }
+
 
 }

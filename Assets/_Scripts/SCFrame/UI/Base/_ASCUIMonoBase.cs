@@ -8,5 +8,6 @@ namespace SCFrame.UI
     [RequireComponent(typeof(SCEventListener))]
     public abstract class _ASCUIMonoBase : MonoBehaviour
     {
+        public GameObject uiMask;
     }
 }

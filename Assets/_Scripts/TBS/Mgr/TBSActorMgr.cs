@@ -28,6 +28,10 @@ namespace GameCore.TBS
         {
             _m_playerTeamInfo = SCModel.instance.tbsModel.battleInfo?.playerTeamInfo;
             _m_enemyTeamInfo = SCModel.instance.tbsModel.battleInfo?.enemyTeamInfo;
+
+
+
+
         }
         #endregion
     }

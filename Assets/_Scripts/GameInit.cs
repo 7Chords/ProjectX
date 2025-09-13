@@ -5,9 +5,16 @@ using UnityEngine;
 
 namespace GameCore
 {
+
+    /// <summary>
+    /// ÓÎÏ·³õÊ¼»¯Æ÷
+    /// </summary>
     public class GameInit : MonoBehaviour
     {
+        //test
+        public bool isNewGame = true;
 
+        public bool isTestMode = true;
         public void Start()
         {
             SCSystem.instance.Initialize();
@@ -17,7 +24,15 @@ namespace GameCore
             SCMsgCenter.SendMsg(SCMsgConst.GAME_START);
             SCMsgCenter.SendMsgAct(SCMsgConst.TBS_GAME_START);
 
-
+            if(isNewGame)
+            {
+                if (isTestMode)
+                    SCModel.instance.InitTempData();
+                else
+                    SCModel.instance.InitNewData();
+            }
+            else
+                SCModel.instance.LoadData();
         }
 
 

@@ -1,8 +1,9 @@
+using SCFrame;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-namespace SCFrame.TBS
+namespace GameCore.TBS
 {
     public abstract class TBSModuleBase : AModuleBase
     {

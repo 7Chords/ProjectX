@@ -1,5 +1,4 @@
 using SCFrame;
-using SCFrame.TBS;
 
 namespace GameCore.TBS
 {

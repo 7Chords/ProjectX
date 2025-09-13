@@ -1,6 +1,4 @@
-using System.Collections;
 using System.Collections.Generic;
-using UnityEngine;
 
 
 namespace GameCore.TBS
@@ -34,11 +32,40 @@ namespace GameCore.TBS
             set { _m_battleInfo = value; }
         }
 
-        public void InitData()
+
+        /// <summary>
+        /// 创新新游戏的时候初始化新的数据
+        /// </summary>
+        public void InitNewData()
+        {
+            curTurnType = ETBSTurnType.PLAYER;
+            curTurnCount = 1;
+            battleInfo = new TBSBattleInfo();
+            battleInfo.InitNewInfo();
+        }
+
+        /// <summary>
+        /// 创新新游戏的时候初始化新的数据
+        /// </summary>
+        public void InitTempData()
+        {
+            curTurnType = ETBSTurnType.PLAYER;
+            curTurnCount = 1;
+            battleInfo = new TBSBattleInfo();
+            battleInfo.InitTempInfo();
+        }
+
+        /// <summary>
+        /// 从存档中加载数据
+        /// </summary>
+        public void LoadData()
         {
 
         }
 
+        /// <summary>
+        /// 重制当前数据为新游戏的数据
+        /// </summary>
         public void ResetData()
         {
             curTurnType = ETBSTurnType.PLAYER;
