@@ -8,6 +8,7 @@ namespace SCFrame
     {
         public override void OnInitialize()
         {
+            SCRefDataMgr.instance.Initialize();
             SCMsgCenter.instance.Initialize();
             SCSaveSys.instance.Initialize();
             SCPoolMgr.instance.Initialize();

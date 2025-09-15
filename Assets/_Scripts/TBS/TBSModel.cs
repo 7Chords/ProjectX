@@ -44,16 +44,6 @@ namespace GameCore.TBS
             battleInfo.InitNewInfo();
         }
 
-        /// <summary>
-        /// 创新新游戏的时候初始化新的数据
-        /// </summary>
-        public void InitTempData()
-        {
-            curTurnType = ETBSTurnType.PLAYER;
-            curTurnCount = 1;
-            battleInfo = new TBSBattleInfo();
-            battleInfo.InitTempInfo();
-        }
 
         /// <summary>
         /// 从存档中加载数据

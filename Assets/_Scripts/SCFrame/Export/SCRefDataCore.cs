@@ -2,14 +2,23 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Globalization;
+using System.IO;
 using UnityEngine;
 
 namespace SCFrame
 {
+    /// <summary>
+    /// 单条配表类 用于只有key和value一一对应的类型
+    /// </summary>
+    /// <typeparam name="T"></typeparam>
     public abstract class SCRefDataCore
     {
         private string _m_assetPath;//资产路径
         private string _m_sheetName;//
+        public SCRefDataCore()
+        {
+
+        }
 
         public SCRefDataCore(string _assetPath, string _sheetName)
         {
@@ -22,6 +31,20 @@ namespace SCFrame
         protected string _sheetName { get { return _m_sheetName; } }
 
         private Dictionary<string, string> _m_keyValueMap = new Dictionary<string, string>();
+
+        public void readFromTxt()
+        {
+            if (string.IsNullOrEmpty(_m_assetPath) || string.IsNullOrEmpty(_m_sheetName))
+            {
+                Debug.LogError(_m_assetPath + "或" + _m_sheetName + "没有信息，导出失败！");
+                return;
+            }
+            using (StreamReader sr = new StreamReader("Assets/Resources/RefData/ExportTxt/" + _m_sheetName + ".txt"))
+            {
+                string str = sr.ReadToEnd();
+                parseFromTxt(str);
+            }
+        }
         protected void parseFromTxt(string _string)
         {
             if (string.IsNullOrEmpty(_string))
@@ -32,7 +55,7 @@ namespace SCFrame
 
             _m_keyValueMap.Clear();
             string[] lineArray = _string.Split('\n');
-            for (int i = 0; i < lineArray.Length; i++)
+            for (int i = 1; i < lineArray.Length; i++)
             {
                 string line = lineArray[i];
                 if (string.IsNullOrEmpty(line))
@@ -59,7 +82,35 @@ namespace SCFrame
                 return;
             }
         }
+        public void singleParseFormTxt(string _keys,string _values)
+        {
+            if (string.IsNullOrEmpty(_keys) || string.IsNullOrEmpty(_values))
+                return;
 
+            string[] keySplitArr = _keys.Split("\t");
+            string[] valSplitArr = _values.Split("\t");
+
+            if(keySplitArr.Length != valSplitArr.Length)
+            {
+                Debug.LogError(_sheetName + "要配置的变量数目和实际配置的变量数目不匹配！！！");
+                return;
+            }
+            _m_keyValueMap.Clear();
+            for (int i =0;i<keySplitArr.Length;i++)
+            {
+                _m_keyValueMap.Add(keySplitArr[i], valSplitArr[i]);
+            }
+            _parseFromString();
+            //try
+            //{
+            //    _parseFromString();
+            //}
+            //catch (Exception e)
+            //{
+            //    Debug.LogError($"SCRefDataCore:{e}");
+            //    return;
+            //}
+        }
         protected abstract void _parseFromString();
 
         #region getXXX
@@ -88,6 +139,23 @@ namespace SCFrame
                 Debug.LogError($"表\"{_m_assetPath},{_m_sheetName}\"\t数据填写错误: {_name},填的{tempValue}不是int");
             }
             return result;
+        }
+
+        protected object getEnum(string _name,Type _type)
+        {
+            string tempValue = getString(_name);
+            if (string.IsNullOrEmpty(tempValue))
+            {
+                Debug.LogError($"{_m_assetPath},{_m_sheetName}的字段{_name}为空");
+                return 0;
+            }
+
+            object obj = Enum.Parse(_type, tempValue);
+            if (obj == null)
+            {
+                Debug.LogError($"表\"{_m_assetPath},{_m_sheetName}\"\t数据填写错误: {_name},填的{tempValue}不是enum");
+            }
+            return obj;
         }
 
         protected long getLong(string _name, bool _canNull = true)
@@ -341,11 +409,10 @@ namespace SCFrame
                 {
                     _value = _value.Trim();
 
-                    // 枚举 暂不支持
+                    // 枚举 
                     if (_type.IsEnum)
                     {
-                        Debug.LogError("热更工程里不能直接解析枚举");
-                        return null;
+                        return Enum.Parse(_type, _value);
                     }
 
                     // 字符串

@@ -14,25 +14,20 @@ namespace GameCore
         //test
         public bool isNewGame = true;
 
-        public bool isTestMode = true;
         public void Start()
         {
             SCSystem.instance.Initialize();
             SCPlayer.instance.Initialize();
             SCModel.instance.Initialize();
 
-            SCMsgCenter.SendMsg(SCMsgConst.GAME_START);
-            SCMsgCenter.SendMsgAct(SCMsgConst.TBS_GAME_START);
-
-            if(isNewGame)
-            {
-                if (isTestMode)
-                    SCModel.instance.InitTempData();
-                else
-                    SCModel.instance.InitNewData();
-            }
+            if (isNewGame)
+                SCModel.instance.InitNewData();
             else
                 SCModel.instance.LoadData();
+
+
+            SCMsgCenter.SendMsg(SCMsgConst.GAME_START);
+            SCMsgCenter.SendMsgAct(SCMsgConst.TBS_GAME_START);
         }
 
 

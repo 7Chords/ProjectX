@@ -12,7 +12,7 @@ namespace SCFrame
     /// </summary>
     public static class SCExcelExporter
     {
-        public const string GAME_EXCEL_PATH = "Assets/Resources/RefData/Excels~";
+        public const string GAME_EXCEL_PATH = "Assets/Resources/RefData/Excels";
         public const string GAME_TXT_PATH = "Assets/Resources/RefData/ExportTxt";
         public const int TITLE_START_INDEX = 0;
 
@@ -72,7 +72,7 @@ namespace SCFrame
                         sheet = workbook.GetSheetAt(i);
                         if (sheet == null)
                             continue;
-                        for (int j = TITLE_START_INDEX + 1; j <= sheet.LastRowNum; j++)
+                        for (int j = TITLE_START_INDEX; j <= sheet.LastRowNum; j++)
                         {
                             row = sheet.GetRow(j);
                             if (row == null)
@@ -84,10 +84,10 @@ namespace SCFrame
                                     continue;
                                 cellValue = cell?.ToString() ?? "";
                                 sw.Write(cellValue);
-                                if (i < workbook.NumberOfSheets - 1)
-                                    sw.Write(" ");
+                                if (k < row.LastCellNum - 1)
+                                    sw.Write("\t");
                             }
-                            sw.WriteLine();
+                            sw.Write("\n");
                         }
                     }
                 }

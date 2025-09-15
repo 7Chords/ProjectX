@@ -1,0 +1,3 @@
+﻿key	value
+init_team_character_list	1001;1002;1003;1004
+init_player_team_name	鸢尾花骑士团

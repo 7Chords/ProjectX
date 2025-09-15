@@ -32,24 +32,5 @@ namespace GameCore.TBS
             basicCompTypeList.Add(ETBSCompType.SKILL);
 
         }
-
-
-
-        public void InitTempInfo()
-        {
-            firstMoveTurnType = ETBSTurnType.PLAYER;
-            playerTeamInfo = new TBSTeamInfo();
-            playerTeamInfo.InitNewInfo();
-            enemyTeamInfo = new TBSTeamInfo();
-            enemyTeamInfo.InitNewInfo();
-            effectInfoList = new List<TBSEffectInfo>();
-            basicCompTypeList = new List<ETBSCompType>();
-            //³õÊ¼ËÄ¼þÌ×
-            basicCompTypeList.Add(ETBSCompType.NORMAL_ATTACK);
-            basicCompTypeList.Add(ETBSCompType.DEFEND);
-            basicCompTypeList.Add(ETBSCompType.ITEM);
-            basicCompTypeList.Add(ETBSCompType.SKILL);
-
-        }
     }
 }

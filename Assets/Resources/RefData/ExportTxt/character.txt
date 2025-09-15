@@ -1,0 +1,4 @@
+﻿id	characterName	characterProfession	assetGroupName	assetObjName
+1001	斯特尔	1001	Model	Stele
+1002	洛林	1001	Model	Lorraine
+

@@ -1,3 +1,5 @@
+using GameCore.RefData;
+using SCFrame;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -12,20 +14,30 @@ namespace GameCore.TBS
 
         public void InitNewInfo()
         {
-            teamName = "PlayerTeam";
+            teamName = SCRefDataMgr.instance.gameInitRefObj?.init_player_team_name;
+            List<long> characterList = SCRefDataMgr.instance.gameInitRefObj?.init_team_character_list;
+            List<CharacterRefObj> characterRefObjList = SCRefDataMgr.instance.characterRefList.refDataList;
+            if (characterList == null || characterList.Count == 0)
+            {
+                Debug.LogError("init teamInfo时出错，init_team_character_list信息为空！！！");
+                return;
+            }
+            if (characterRefObjList == null || characterRefObjList.Count == 0)
+            {
+                Debug.LogError("init teamInfo时出错，characterRefList信息为空！！！");
+                return;
+            }
             actorInfoList = new List<TBSActorInfo>();
-            TBSActorInfo playerActorInfo = new TBSActorInfo();
-            playerActorInfo.InitNewInfo();
-            actorInfoList.Add(playerActorInfo);
-        }
-
-        public void InitTempInfo()
-        {
-            teamName = "PlayerTeam";
-            actorInfoList = new List<TBSActorInfo>();
-            TBSActorInfo playerActorInfo = new TBSActorInfo();
-            playerActorInfo.InitNewInfo();
-            actorInfoList.Add(playerActorInfo);
+            CharacterRefObj characterRefObj = null;
+            for (int i =0;i< characterList.Count;i++)
+            {
+                characterRefObj = characterRefObjList.Find(x => x.id == characterList[i]);
+                if (characterRefObj == null)
+                    continue;
+                TBSActorInfo playerActorInfo = new TBSActorInfo();
+                playerActorInfo.InitNewInfo(characterRefObj);
+                actorInfoList.Add(playerActorInfo);
+            }
         }
     }
 }

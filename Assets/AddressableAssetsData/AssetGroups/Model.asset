@@ -18,11 +18,11 @@ MonoBehaviour:
   m_GUID: 94e6981336d42d14698a29d7137b8067
   m_SerializeEntries:
   - m_GUID: 89202938a1e1b0945b338fd91f7b83ea
-    m_Address: Character_1
+    m_Address: Stele
     m_ReadOnly: 0
     m_SerializedLabels: []
   - m_GUID: 1100fcc3025fe9d42980abec91f0959d
-    m_Address: Character_2
+    m_Address: Lorraine
     m_ReadOnly: 0
     m_SerializedLabels: []
   - m_GUID: 16eb418ce7c76574182ba994e362f46d

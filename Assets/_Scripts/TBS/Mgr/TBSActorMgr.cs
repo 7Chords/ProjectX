@@ -1,4 +1,5 @@
 using SCFrame;
+using UnityEngine;
 
 namespace GameCore.TBS
 {
@@ -29,6 +30,10 @@ namespace GameCore.TBS
             _m_playerTeamInfo = SCModel.instance.tbsModel.battleInfo?.playerTeamInfo;
             _m_enemyTeamInfo = SCModel.instance.tbsModel.battleInfo?.enemyTeamInfo;
 
+            foreach(var actorInfo in _m_playerTeamInfo.actorInfoList)
+            {
+                ResourcesHelper.LoadGameObject(actorInfo.assetObjName, SCGame.instance.playerGO.transform.position, Quaternion.identity, true);
+            }
 
 
 

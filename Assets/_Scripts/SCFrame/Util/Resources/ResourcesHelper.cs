@@ -46,6 +46,26 @@ namespace SCFrame
         }
 
         /// <summary>
+        /// 加载游戏物体
+        /// </summary>
+        /// <param name="_assetName">资源名称</param>
+        /// <param name="_position">位置</param>
+        /// <param name="_quaternion">旋转</param>
+        /// <param name="_automaticRelease">物体销毁时，会自动去调用一次Addressables.Release</param>
+        /// <returns></returns>
+        public static GameObject LoadGameObject(string _assetName,Vector3 _position, Quaternion _quaternion , bool _automaticRelease = true)
+        {
+            GameObject go = null;
+            go = Addressables.InstantiateAsync(_assetName, _position, _quaternion).WaitForCompletion();
+            if (_automaticRelease)
+            {
+                go.transform.AddReleaseAddressableAsset(AutomaticReleaseAssetAction);
+            }
+            go.name = _assetName;
+            return go;
+        }
+
+        /// <summary>
         /// 自动释放资源事件，基于事件工具
         /// </summary>
         private static void AutomaticReleaseAssetAction(GameObject _obj, object[] _arg2)

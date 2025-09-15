@@ -3,7 +3,8 @@ namespace GameCore
     /// <summary>
     /// 游戏通用枚举
     /// </summary>
-    public enum ERoleType
+    
+    public enum EProfessionType
     {
         WARRIOR,//战士
         ARCHER,//射手
