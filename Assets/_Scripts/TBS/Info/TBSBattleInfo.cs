@@ -20,9 +20,9 @@ namespace GameCore.TBS
         {
             firstMoveTurnType = ETBSTurnType.PLAYER;
             playerTeamInfo = new TBSTeamInfo();
-            playerTeamInfo.InitNewInfo();
+            playerTeamInfo.InitNewPlayerTeamInfo();
             enemyTeamInfo = new TBSTeamInfo();
-            enemyTeamInfo.InitNewInfo();
+            enemyTeamInfo.InitNewEnemyTeamInfo();
             effectInfoList = new List<TBSEffectInfo>();
             basicCompTypeList = new List<ETBSCompType>();
             //³õÊ¼ËÄ¼þÌ×

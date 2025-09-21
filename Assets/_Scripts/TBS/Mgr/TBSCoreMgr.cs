@@ -9,14 +9,15 @@ namespace GameCore.TBS
     {
         public override ECoreMgrType coreMgrType => ECoreMgrType.TBS;
 
-        private List<TBSSubMgrBase> _m_subMgrList;//子管理器列表
+        //private List<TBSSubMgrBase> _m_subMgrList;//子管理器列表
+        private Dictionary<ETBSSubMgrType, TBSSubMgrBase> _m_subMgrDict;//子管理器字典
         public override void OnInitialize()
         {
             //注册事件
             SCMsgCenter.RegisterMsgAct(SCMsgConst.TBS_GAME_START,onTBSGameStart);
             SCMsgCenter.RegisterMsgAct(SCMsgConst.TBS_GAME_FINISH, onTBSGameFinish);
 
-            _m_subMgrList = new List<TBSSubMgrBase>();
+            _m_subMgrDict = new Dictionary<ETBSSubMgrType, TBSSubMgrBase>();
 
             initAllSubMgr();
         }
@@ -29,8 +30,8 @@ namespace GameCore.TBS
 
             discardAllSubMgr();
 
-            _m_subMgrList.Clear();
-            _m_subMgrList = null;
+            _m_subMgrDict.Clear();
+            _m_subMgrDict = null;
         }
         public override void OnResume() 
         {
@@ -58,16 +59,16 @@ namespace GameCore.TBS
             TBSCompMgr compMgr = new TBSCompMgr();
             compMgr.Initialize();
 
-            _m_subMgrList.Add(turnMgr);
-            _m_subMgrList.Add(effectMgr);
-            _m_subMgrList.Add(actorMgr);
-            _m_subMgrList.Add(compMgr);
+            _m_subMgrDict.Add(ETBSSubMgrType.TURN,turnMgr);
+            _m_subMgrDict.Add(ETBSSubMgrType.EFFECT, effectMgr);
+            _m_subMgrDict.Add(ETBSSubMgrType.ACTOR, actorMgr);
+            _m_subMgrDict.Add(ETBSSubMgrType.COMP, compMgr);
         }
 
         //销毁所有的子管理器
         private void discardAllSubMgr()
         {
-            foreach(var mgr in _m_subMgrList)
+            foreach(var mgr in _m_subMgrDict.Values)
             {
                 if (mgr == null)
                     continue;
@@ -78,7 +79,7 @@ namespace GameCore.TBS
         //恢复所有的子管理器
         private void resumeAllSubMgr()
         {
-            foreach (var mgr in _m_subMgrList)
+            foreach (var mgr in _m_subMgrDict.Values)
             {
                 if (mgr == null)
                     continue;
@@ -89,7 +90,7 @@ namespace GameCore.TBS
         //挂起所有的子管理器
         private void suspendAllSubMgr()
         {
-            foreach (var mgr in _m_subMgrList)
+            foreach (var mgr in _m_subMgrDict.Values)
             {
                 if (mgr == null)
                     continue;
@@ -97,9 +98,12 @@ namespace GameCore.TBS
             }
         }
 
-
+        #region 事件回调
         private void onTBSGameStart()
         {
+            //隐藏大世界玩家
+            SCCommon.SetGameObjectEnable(SCGame.instance.playerGO, false);
+
             SCMsgCenter.SendMsgAct(SCMsgConst.TBS_TURN_MGR_WORK);
             SCMsgCenter.SendMsgAct(SCMsgConst.TBS_ACTOR_MGR_WORK);
             SCMsgCenter.SendMsgAct(SCMsgConst.TBS_EFFECT_MGR_WORK);
@@ -114,7 +118,20 @@ namespace GameCore.TBS
             SCMsgCenter.SendMsgAct(SCMsgConst.TBS_ACTOR_MGR_REST);
             SCMsgCenter.SendMsgAct(SCMsgConst.TBS_EFFECT_MGR_REST);
             SCMsgCenter.SendMsgAct(SCMsgConst.TBS_COMP_MGR_REST);
-        }
 
+            //显示大世界玩家
+            SCCommon.SetGameObjectEnable(SCGame.instance.playerGO, false);
+        }
+        #endregion
+
+        
+        /// <summary>
+        /// 获得当前的回合持有方
+        /// </summary>
+        /// <returns></returns>
+        public ETBSTurnType getTurnType()
+        {
+            return (_m_subMgrDict[ETBSSubMgrType.TURN] as TBSTurnMgr).curTurnType;
+        }
     }
 }

@@ -16,13 +16,13 @@ namespace GameCore.TBS
             set { _m_curTurnType = value; }
         }
 
-        public int _m_curTurnCount;
+        //public int _m_curTurnCount;
 
-        public int curTurnCount
-        {
-            get { return _m_curTurnCount; }
-            set { _m_curTurnCount = value; }
-        }
+        //public int curTurnCount
+        //{
+        //    get { return _m_curTurnCount; }
+        //    set { _m_curTurnCount = value; }
+        //}
 
         private TBSBattleInfo _m_battleInfo;
 
@@ -39,7 +39,7 @@ namespace GameCore.TBS
         public void InitNewData()
         {
             curTurnType = ETBSTurnType.PLAYER;
-            curTurnCount = 1;
+            //curTurnCount = 1;
             battleInfo = new TBSBattleInfo();
             battleInfo.InitNewInfo();
         }
@@ -59,7 +59,7 @@ namespace GameCore.TBS
         public void ResetData()
         {
             curTurnType = ETBSTurnType.PLAYER;
-            curTurnCount = 1;
+            //curTurnCount = 1;
             battleInfo = null;
         }
     }

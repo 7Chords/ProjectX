@@ -1,3 +1,4 @@
+using GameCore;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -12,6 +13,7 @@ namespace SCFrame
             SCMsgCenter.instance.Initialize();
             SCSaveSys.instance.Initialize();
             SCPoolMgr.instance.Initialize();
+            GameCameraMgr.instance.Initialize();
         }
     }
 }

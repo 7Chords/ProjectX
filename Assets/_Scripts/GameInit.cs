@@ -1,3 +1,4 @@
+using GameCore.TBS;
 using GameCore.UI;
 using SCFrame;
 using SCFrame.UI;
@@ -33,11 +34,6 @@ namespace GameCore
 
         private void Update()
         {
-            //test
-            if(Input.GetKeyDown(KeyCode.T))
-            {
-                SCMsgCenter.SendMsg(SCMsgConst.TBS_GAME_START);
-            }
         }
 
     }

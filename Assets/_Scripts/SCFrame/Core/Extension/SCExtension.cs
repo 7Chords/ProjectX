@@ -191,5 +191,20 @@ namespace SCFrame
             return ReferenceEquals(_obj, null);
         }
         #endregion
+
+
+
+        #region 其他简易写法拓展
+
+        public static RectTransform GetRectTransform(this GameObject _go)
+        {
+            RectTransform rect =  _go.GetComponent<RectTransform>();
+            if (rect != null)
+                return rect;
+            Debug.LogError(_go + "物体上不存在RectTransform！！！");
+            return null;
+        }
+
+        #endregion
     }
 }

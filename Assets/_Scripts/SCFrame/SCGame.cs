@@ -1,3 +1,4 @@
+using Cinemachine;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -23,9 +24,7 @@ namespace SCFrame
         [Header("Camera")]
         public Camera gameCamera;
         public Camera uiCamera;
-
-        [Header("TBS")]
-        public Vector3 tbsActorPosOffset;
+        public CinemachineVirtualCamera virtualCamera;
 
 
     }

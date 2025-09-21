@@ -7,6 +7,8 @@ namespace GameCore.TBS
         public override ETBSSubMgrType tbsSubMgrType => ETBSSubMgrType.TURN;
 
         private ETBSTurnType _m_curTurnType;
+        public ETBSTurnType curTurnType => _m_curTurnType;
+
         private int _m_curTurnCount;
         public override void OnInitialize()
         {
@@ -27,15 +29,21 @@ namespace GameCore.TBS
         private void onTBSTurnWork()
         {
             _m_curTurnType = SCModel.instance.tbsModel.curTurnType;
-            _m_curTurnCount = SCModel.instance.tbsModel.curTurnCount;
+            _m_curTurnCount = 1;
         }
 
         private void onTBSTurnChg()
         {
             _m_curTurnType = _m_curTurnType == ETBSTurnType.PLAYER 
                 ? ETBSTurnType.ENEMY : ETBSTurnType.PLAYER;
+
+            if (_m_curTurnType == ETBSTurnType.ENEMY)
+                GameCoreMgr.instance.uiCoreMgr.HideCurNode();
+            else
+                GameCoreMgr.instance.uiCoreMgr.ShowCurNode();
         }
         #endregion
+
     }
 
 

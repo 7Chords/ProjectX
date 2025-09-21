@@ -14,13 +14,16 @@ namespace GameCore.RefData
         {
 
         }
-        public List<long> init_team_character_list;
+        public List<long> init_player_team_list;
         public string init_player_team_name;
-
+        public List<long> init_enemy_team_list;
+        public string init_enemy_team_name;
         protected override void _parseFromString()
         {
-            init_team_character_list = getList<long>("init_team_character_list");
+            init_player_team_list = getList<long>("init_player_team_list");
             init_player_team_name = getString("init_player_team_name");
+            init_enemy_team_list = getList<long>("init_enemy_team_list");
+            init_enemy_team_name = getString("init_enemy_team_name");
         }
 
         public static string assetPath => "RefData/ExportTxt";

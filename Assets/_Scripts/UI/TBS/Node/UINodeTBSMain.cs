@@ -59,6 +59,7 @@ namespace GameCore.UI
         {
             if (_m_tbsMainPanel == null)
                 return;
+            SCCommon.SetGameObjectEnable(_m_panelGO, true);
             _m_tbsMainPanel.ShowPanel();
         }
 

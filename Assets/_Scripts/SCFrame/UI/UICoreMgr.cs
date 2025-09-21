@@ -128,6 +128,25 @@ namespace SCFrame.UI
         }
 
 
+        public void HideCurNode()
+        {
+            if (_m_nodeList == null)
+                return;
+            _ASCUINodeBase topNode = _m_nodeList[_m_nodeList.Count - 1];
+            if (topNode == null)
+                return;
+            topNode.HideNode();
+        }
+
+        public void ShowCurNode()
+        {
+            if (_m_nodeList == null)
+                return;
+            _ASCUINodeBase topNode = _m_nodeList[_m_nodeList.Count - 1];
+            if (topNode == null)
+                return;
+            topNode.ShowNode();
+        }
         #endregion
     }
 }

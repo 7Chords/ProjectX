@@ -5,9 +5,12 @@ namespace SCFrame.UI
     /// <summary>
     /// UIMono≈‰÷√≥ÈœÛª˘¿‡
     /// </summary>
-    [RequireComponent(typeof(SCEventListener))]
+    [RequireComponent(typeof(CanvasGroup))]
     public abstract class _ASCUIMonoBase : MonoBehaviour
     {
         public GameObject uiMask;
+        public CanvasGroup canvasGroup;
+        public float fadeInDuration;
+        public float fadeOutDuration;
     }
 }
