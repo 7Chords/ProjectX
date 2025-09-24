@@ -4,7 +4,7 @@ using GameCore.Util;
 using SCFrame;
 using System;
 using UnityEngine;
-
+using static Cinemachine.CinemachineBlendDefinition;
 
 namespace GameCore
 {
@@ -37,16 +37,24 @@ namespace GameCore
             _m_followTran = _follow;
             _m_virtualCamera.Follow = _m_followTran;
 
-            Tween tween = DOTween.Sequence().AppendInterval(SCGame.instance.gameCamera.GetComponent<CinemachineBrain>().m_DefaultBlend.BlendTime).
-                OnComplete(() =>
-                {
-                    _onCameraFollowFinish?.Invoke();
-                }).OnStart(() =>
-                {
-                    _onCameraFollowStart?.Invoke();
-                });
-        
-            _m_tweenContainer?.RegDoTween(tween);
+            if (SCGame.instance.cinemachineBrain.m_DefaultBlend.m_Style == Style.Cut)
+            {
+                _onCameraFollowStart?.Invoke();
+                _onCameraFollowFinish?.Invoke();
+            }
+            else
+            {
+                Tween tween = DOTween.Sequence().AppendInterval(SCGame.instance.cinemachineBrain.m_DefaultBlend.BlendTime).
+                    OnComplete(() =>
+                    {
+                        _onCameraFollowFinish?.Invoke();
+                    }).OnStart(() =>
+                    {
+                        _onCameraFollowStart?.Invoke();
+                    });
+
+                _m_tweenContainer?.RegDoTween(tween);
+            }
 
 
         }
@@ -58,6 +66,11 @@ namespace GameCore
             _m_targetTran = _target;
             _m_virtualCamera.LookAt = _m_targetTran;
 
+        }
+
+        public void SetCameraTransitionType(Style _style)
+        {
+            SCGame.instance.cinemachineBrain.m_DefaultBlend.m_Style = _style;
         }
 
 

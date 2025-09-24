@@ -1,6 +1,15 @@
 public class SCMsgConst
 {
 
+
+
+    #region 玩家输入相关 10
+    public const int TBS_ATTACK_INPUT = 1000;
+    public const int TBS_DEFEND_INPUT = 1001;
+
+    #endregion
+
+
     #region 回合制战斗相关 20
     public const int TBS_GAME_START = 2000;
     public const int TBS_GAME_FINISH = 2001;

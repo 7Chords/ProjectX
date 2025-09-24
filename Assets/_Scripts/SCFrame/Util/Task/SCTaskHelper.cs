@@ -1,3 +1,5 @@
+using DG.Tweening;
+using GameCore.Util;
 using System;
 using System.Collections.Generic;
 using UnityEngine;
@@ -15,13 +17,16 @@ namespace SCFrame
         private Queue<Action> _m_nextLateUpdateActionQueue;
         private Queue<Action> _m_nextFixedUpdateActionQueue;
 
+        private TweenContainer _m_tweenContainer;
+
+
         protected override void Awake()
         {
             base.Awake();
             _m_nextUpdateActionQueue = new Queue<Action>();
             _m_nextLateUpdateActionQueue = new Queue<Action>();
             _m_nextFixedUpdateActionQueue = new Queue<Action>();
-
+            _m_tweenContainer = new TweenContainer();
         }
         private void OnDestroy()
         {
@@ -35,7 +40,8 @@ namespace SCFrame
             _m_nextLateUpdateActionQueue = null;
             _m_nextFixedUpdateActionQueue = null;
 
-
+            _m_tweenContainer?.KillAllDoTween();
+            _m_tweenContainer = null;
         }
 
         /// <summary>
@@ -105,17 +111,20 @@ namespace SCFrame
         private void Update()
         {
             _m_updateEvent?.Invoke();
+            if (_m_nextUpdateActionQueue == null) return;
             ExecuteQueuedActions(_m_nextUpdateActionQueue);
         }
         private void LateUpdate()
         {
             _m_lateUpdateEvent?.Invoke();
+            if (_m_nextLateUpdateActionQueue == null) return;
             ExecuteQueuedActions(_m_nextLateUpdateActionQueue);
 
         }
         private void FixedUpdate()
         {
             _m_fixedUpdateEvent?.Invoke();
+            if (_m_nextFixedUpdateActionQueue == null) return;
             ExecuteQueuedActions(_m_nextFixedUpdateActionQueue);
         }
 
@@ -155,6 +164,18 @@ namespace SCFrame
             }
         }
 
+        public void DoDelay(Action _action,float _delay)
+        {
+            if (_action == null)
+                return;
+
+            Tween tween = DOTween.Sequence().AppendInterval(_delay).OnComplete(() =>
+            {
+                _action.Invoke();
+            });
+            _m_tweenContainer?.RegDoTween(tween);
+
+        }
         /// <summary>
         /// 执行队列中的所有方法并清空队列
         /// </summary>

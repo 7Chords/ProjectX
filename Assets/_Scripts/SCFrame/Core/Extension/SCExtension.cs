@@ -2,6 +2,7 @@ using System;
 using System.Collections;
 using System.Reflection;
 using UnityEngine;
+using UnityEngine.UI;
 
 namespace SCFrame
 {
@@ -202,6 +203,15 @@ namespace SCFrame
             if (rect != null)
                 return rect;
             Debug.LogError(_go + "物体上不存在RectTransform！！！");
+            return null;
+        }
+
+        public static Image GetImage(this GameObject _go)
+        {
+            Image img = _go.GetComponent<Image>();
+            if (img != null)
+                return img;
+            Debug.LogError(_go + "物体上不存在Image！！！");
             return null;
         }
 

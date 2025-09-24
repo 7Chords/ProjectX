@@ -25,7 +25,7 @@ namespace SCFrame
         public Camera gameCamera;
         public Camera uiCamera;
         public CinemachineVirtualCamera virtualCamera;
-
+        public CinemachineBrain cinemachineBrain;
 
     }
 }

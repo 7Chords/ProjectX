@@ -1,4 +1,5 @@
 using GameCore;
+using GameCore.TBS;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -14,6 +15,12 @@ namespace SCFrame
             SCSaveSys.instance.Initialize();
             SCPoolMgr.instance.Initialize();
             GameCameraMgr.instance.Initialize();
+            TBSCursorMgr.instance.Initialize();
+        }
+
+        public override void OnDiscard()
+        {
+            //todo
         }
     }
 }

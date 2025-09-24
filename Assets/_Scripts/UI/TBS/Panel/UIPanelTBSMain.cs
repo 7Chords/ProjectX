@@ -64,6 +64,8 @@ namespace GameCore.UI
         private void _onBtnNormalAttackClickDown(PointerEventData _eventData, object[] _args)
         {
             Debug.Log("点击了普通攻击！");
+            SCMsgCenter.SendMsgAct(SCMsgConst.TBS_ATTACK_INPUT);
+
         }
         private void _onBtnSkillClickDown(PointerEventData data, object[] arg2)
         {
@@ -76,7 +78,7 @@ namespace GameCore.UI
         private void _onBtnDefenceClickDown(PointerEventData data, object[] arg2)
         {
             Debug.Log("点击了防御！");
-            SCMsgCenter.SendMsg(SCMsgConst.TBS_ACTOR_CHG, 1);
+            SCMsgCenter.SendMsgAct(SCMsgConst.TBS_DEFEND_INPUT);
         }
 
 
