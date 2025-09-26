@@ -45,7 +45,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1b350b557dc011740a805ff367d696b0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  cursorOffset: {x: 0, y: 0.5, z: 0}
+  cursorOffset: {x: 0, y: 1, z: 0}
   actorAnim: {fileID: 8991075209012479535}
   bottomSfxTran: {fileID: 0}
   centerSfxTran: {fileID: 0}

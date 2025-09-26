@@ -1,6 +1,7 @@
 using SCFrame;
 using UnityEngine;
-
+using System.Collections.Generic;
+using GameCore.TBS;
 
 namespace GameCore.RefData
 {
@@ -9,13 +10,11 @@ namespace GameCore.RefData
         public GameGeneralRefObj(string _assetPath, string _objName) : base(_assetPath, _objName)
         {
         }
-        public int test;
-        public string test22;
+        public List<ETBSCompType> generalCompList;
 
         protected override void _parseFromString()
         {
-            test = getInt("test");
-            test22 = getString("test22");
+            generalCompList = getList<ETBSCompType>("generalCompList");
         }
         public static string assetPath => "RefData/ExportTxt";
 

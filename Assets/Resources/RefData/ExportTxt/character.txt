@@ -1,4 +1,4 @@
-﻿id	characterName	characterProfession	assetGroupName	assetObjName
+﻿id	characterName	characterProfession	assetGroupName	assetObjName	extraCompList
 1001	斯特尔	1001	Model	Stele
 1002	洛林	1003	Model	Lorraine
 1003	考特	1001	Model	Kaut

@@ -129,9 +129,18 @@ namespace GameCore.TBS
         /// 获得当前的回合持有方
         /// </summary>
         /// <returns></returns>
-        public ETBSTurnType getTurnType()
+        public ETBSTurnType getCurTurnType()
         {
             return (_m_subMgrDict[ETBSSubMgrType.TURN] as TBSTurnMgr).curTurnType;
+        }
+
+        /// <summary>
+        /// 获得当前的行动角色
+        /// </summary>
+        /// <returns></returns>
+        public TBSActorBase getCurActor()
+        {
+            return (_m_subMgrDict[ETBSSubMgrType.ACTOR] as TBSActorMgr).GetCurActor();
         }
     }
 }

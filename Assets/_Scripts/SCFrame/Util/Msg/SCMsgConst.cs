@@ -6,6 +6,8 @@ public class SCMsgConst
     #region 玩家输入相关 10
     public const int TBS_ATTACK_INPUT = 1000;
     public const int TBS_DEFEND_INPUT = 1001;
+    public const int TBS_SKILL_INPUT = 1002;
+    public const int TBS_ITEM_INPUT = 1002;
 
     #endregion
 
@@ -28,6 +30,10 @@ public class SCMsgConst
     public const int TBS_COMP_MGR_REST = 2011;
 
     public const int TBS_GAME_RESULT = 2012;
+
+    public const int TBS_ACTOR_ATTACK = 2013;
+    public const int TBS_ACTOR_DEFENCE = 2014;
+
 
     #endregion
 

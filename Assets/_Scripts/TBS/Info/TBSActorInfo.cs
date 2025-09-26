@@ -1,5 +1,6 @@
 using GameCore.RefData;
 using SCFrame;
+using System.Collections.Generic;
 using UnityEngine;
 
 namespace GameCore.TBS
@@ -13,7 +14,7 @@ namespace GameCore.TBS
 
         public string assetGroupName;
         public string assetObjName;
-
+        public List<ETBSCompType> extraCompList; 
 
         public void InitNewInfo(CharacterRefObj _characterRefObj)
         {

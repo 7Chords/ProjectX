@@ -1,3 +1,4 @@
+using GameCore.TBS;
 using SCFrame;
 using System.Collections;
 using System.Collections.Generic;
@@ -21,7 +22,7 @@ namespace GameCore.RefData
         public long characterProfession;
         public string assetGroupName;
         public string assetObjName;
-
+        public List<ETBSCompType> extraCompList;
 
         protected override void _parseFromString()
         {
@@ -30,6 +31,7 @@ namespace GameCore.RefData
             characterProfession = getLong("characterProfession");
             assetGroupName = getString("assetGroupName");
             assetObjName = getString("assetObjName");
+            extraCompList = getList<ETBSCompType>("extraCompList");
         }
 
         public static string assetPath => "RefData/ExportTxt";

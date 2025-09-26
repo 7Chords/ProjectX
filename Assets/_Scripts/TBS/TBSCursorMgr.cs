@@ -22,14 +22,14 @@ namespace GameCore.TBS
             _m_tweenContainer = null;
         }
 
-        public void SetSelectionCursorPos(Transform _target)
+        public void SetSelectionCursorPos(Vector3 _pos)
         {
             if (_m_selectionCursor == null)
                 _m_selectionCursor = ResourcesHelper.LoadGameObject("selection_cursor",SCGame.instance.topLayerRoot.transform);
             SCCommon.SetGameObjectEnable(_m_selectionCursor,true);
             _m_selectionCursor.GetRectTransform().localPosition =
                 SCUICommon.WorldPointToUIPoint(_m_selectionCursor.GetRectTransform(),
-                _target.transform.position);
+                _pos);
 
             Tween tween = _m_selectionCursor.GetImage().DOFade(1, 0.5f).OnStart(() =>
             {

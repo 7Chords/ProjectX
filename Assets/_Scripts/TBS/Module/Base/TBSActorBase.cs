@@ -43,65 +43,21 @@ namespace GameCore.TBS
         {
         }
 
-        public void SetData()
-        {
-
-        }
-
         public virtual Vector3 getEnemyAttackStandPos()
         {
             return _m_actorMono.transform.position - _m_actorMono.enemyAttackStopOffset;
         }
 
-        //todo 临时测试动画 后续需构建伤害info
-        public virtual void Attack(TBSActorBase _target)
+        public virtual Vector3 getCursorPos()
         {
-            Vector3 originalPos = _m_actorMono.gameObject.transform.position;
-            Sequence seq = DOTween.Sequence();
-            Tween move2AttackTween = _m_actorMono.gameObject.transform.DOMove(_target.getEnemyAttackStandPos(), 1f)
-                .OnStart(
-                () =>
-                {
-                    GameCoreMgr.instance.uiCoreMgr.HideCurNode();
-                    TBSCursorMgr.instance.HideSelectionCursor();
-                    _m_actorMono.actorAnim.Play(RunAnimName);
-                })
-                .OnComplete(
-                () =>
-                {
-                    _m_actorMono.actorAnim.Play(AttackAnimName);
-                });
-
-
-            Tween rotateTween_1 = _m_actorMono.gameObject.transform.DOLocalRotate(new Vector3(0, 180, 0), 0.5f);
-
-            Tween move2OriginalTween = _m_actorMono.gameObject.transform.DOMove(originalPos, 1f)
-                .OnStart(
-                ()=>
-                {
-                    _m_actorMono.actorAnim.Play(RunAnimName);
-                })
-                .OnComplete(
-                () =>
-                {
-                    _m_actorMono.actorAnim.Play(IdleAnimName);
-                });
-            Tween rotateTween_2 = _m_actorMono.gameObject.transform.DOLocalRotate(Vector3.zero, 0.5f);
-
-            seq.Append(move2AttackTween);
-            //todo：根据动画时长具体调整
-            seq.Append(DOVirtual.DelayedCall(1f, () => { })
-               .OnComplete(() =>
-               {
-                   SCMsgCenter.SendMsg(SCMsgConst.TBS_ACTOR_CHG, 1);
-               }));
-            seq.Append(rotateTween_1);
-            seq.Append(move2OriginalTween);
-            seq.Append(rotateTween_2);
-
-
-            _m_tweenContainer?.RegDoTween(seq);
-
+            return _m_actorMono.transform.position + _m_actorMono.cursorOffset;
         }
+
+        public virtual Vector3 getPos()
+        {
+            return _m_actorMono.transform.position;
+        }
+
+        public virtual void Attack(TBSActorBase _target) { }
     }
 }

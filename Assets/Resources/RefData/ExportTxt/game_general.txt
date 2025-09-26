@@ -1,4 +1,4 @@
 ﻿key	value
-test	11
-test22	dwaff
+generalCompList	NORMAL_ATTACK;SKILL;ITEM;DEFEND
+	
 	

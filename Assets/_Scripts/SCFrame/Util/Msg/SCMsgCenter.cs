@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using UnityEngine;
 
 namespace SCFrame
 {
@@ -95,6 +96,7 @@ namespace SCFrame
 
         private void registerMsgAct(int _msg, Action _callback)
         {
+            
             List<Action> broadcast;
             if (!_m_broadcastActDict.TryGetValue(_msg, out broadcast))
             {
