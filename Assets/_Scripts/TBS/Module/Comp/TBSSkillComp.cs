@@ -1,3 +1,4 @@
+using GameCore.UI;
 using SCFrame;
 using System.Collections;
 using System.Collections.Generic;
@@ -19,7 +20,7 @@ namespace GameCore.TBS
 
         private void onTBSSkillInput()
         {
-
+            GameCoreMgr.instance.uiCoreMgr.AddNode(new UINodeTBSSkill(SCFrame.UI.SCUIShowType.FULL));
         }
     }
 }

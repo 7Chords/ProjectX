@@ -70,10 +70,13 @@ namespace GameCore.UI
         private void _onBtnSkillClickDown(PointerEventData data, object[] arg2)
         {
             Debug.Log("点击了技能！");
+            SCMsgCenter.SendMsgAct(SCMsgConst.TBS_SKILL_INPUT);
+
         }
         private void _onBtnItemClickDown(PointerEventData data, object[] arg2)
         {
             Debug.Log("点击了道具！");
+            SCMsgCenter.SendMsgAct(SCMsgConst.TBS_ITEM_INPUT);
         }
         private void _onBtnDefenceClickDown(PointerEventData data, object[] arg2)
         {
