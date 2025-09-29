@@ -140,6 +140,17 @@ namespace GameCore.TBS
 
         private void onTBSActorMgrRest()
         {
+            _m_playerTeamInfo = null;
+            _m_enemyTeamInfo = null;
+            _m_playerActorGOList.Clear();
+            _m_playerActorGOList = null;
+            _m_enemyActorGOList.Clear();
+            _m_enemyActorGOList = null;
+            _m_playerActorModuleList.Clear();
+            _m_playerActorModuleList = null;
+            _m_enemyActorModuleList.Clear();
+            _m_enemyActorModuleList = null;
+
             SCCommon.DestoryGameObject(_m_tbsStage);
             _m_gameMono = null;
         }

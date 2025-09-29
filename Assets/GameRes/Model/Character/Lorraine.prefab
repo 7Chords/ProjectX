@@ -2653,4 +2653,4 @@ MonoBehaviour:
   enemyAttackStopOffset: {x: 0, y: 0, z: 2}
   attackSourceTran: {fileID: 5225333171201662888}
   attackSpwanTime: 0.5
-  attackFlySpeed: 50
+  attackFlySpeed: 100

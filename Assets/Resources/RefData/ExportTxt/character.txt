@@ -1,7 +1,7 @@
 ﻿id	characterName	characterProfession	assetGroupName	assetObjName	extraCompList
-1001	斯特尔	1001	Model	Stele
-1002	洛林	1003	Model	Lorraine
-1003	考特	1001	Model	Kaut
-1004	红色史莱姆	1006	Model	RedSlime
-1005	尖刺史莱姆	1006	Model	SpikeSlime
-1006	石头巨人	1007	Model	RockGiant
+1001	斯特尔	1001	Model	Stele	NONE
+1002	洛林	1003	Model	Lorraine	NONE
+1003	考特	1001	Model	Kaut	NONE
+1004	红色史莱姆	1006	Model	RedSlime	NONE
+1005	尖刺史莱姆	1006	Model	SpikeSlime	NONE
+1006	石头巨人	1007	Model	RockGiant	NONE

@@ -10,31 +10,85 @@ namespace GameCore.TBS
         public override ETBSSubMgrType tbsSubMgrType => ETBSSubMgrType.COMP;
 
         private Dictionary<ETBSCompType, TBSCompBase> _m_tbsCompDict;
-        public override void OnDiscard()
-        {
-            SCMsgCenter.UnregisterMsgAct(SCMsgConst.TBS_DEFEND_INPUT, onTBSDefendInput);
-            SCMsgCenter.UnregisterMsgAct(SCMsgConst.TBS_ATTACK_INPUT, onTBSAttackInput);
-        }
 
         public override void OnInitialize()
         {
-            SCMsgCenter.RegisterMsgAct(SCMsgConst.TBS_DEFEND_INPUT, onTBSDefendInput);
-            SCMsgCenter.RegisterMsgAct(SCMsgConst.TBS_ATTACK_INPUT, onTBSAttackInput);
+            _m_tbsCompDict = new Dictionary<ETBSCompType, TBSCompBase>();
+            initAllCompModule();
         }
 
-        public override void OnResume() { }
-
-        public override void OnSuspend() { }
-
-
-        private void onTBSDefendInput()
+        public override void OnDiscard()
         {
-            SCMsgCenter.SendMsgAct(SCMsgConst.TBS_ACTOR_DEFENCE);
+            discardAllComp();
+            _m_tbsCompDict.Clear();
+            _m_tbsCompDict = null;
+        }
+        public override void OnResume()
+        {
+            resumeAllComp();
         }
 
-        private void onTBSAttackInput()
+
+        public override void OnSuspend() 
         {
-            SCMsgCenter.SendMsgAct(SCMsgConst.TBS_ACTOR_ATTACK);
+            suspendAllComp();
         }
+
+
+        private void initAllCompModule()
+        {
+            TBSAttackComp attackComp = new TBSAttackComp();
+            attackComp.Initialize();
+            _m_tbsCompDict.Add(ETBSCompType.NORMAL_ATTACK, attackComp);
+
+            TBSSkillComp skillComp = new TBSSkillComp();
+            skillComp.Initialize();
+            _m_tbsCompDict.Add(ETBSCompType.SKILL, skillComp);
+
+            TBSDefendComp defendComp = new TBSDefendComp();
+            defendComp.Initialize();
+            _m_tbsCompDict.Add(ETBSCompType.DEFEND, defendComp);
+
+            TBSItemComp itemComp = new TBSItemComp();
+            itemComp.Initialize();
+            _m_tbsCompDict.Add(ETBSCompType.ITEM, itemComp);
+        }
+
+        private void discardAllComp()
+        {
+            TBSCompBase compBase = null;
+            foreach(var pair in _m_tbsCompDict)
+            {
+                compBase = pair.Value;
+                if (compBase == null)
+                    continue;
+                compBase.Discard();
+            }
+        }
+
+        private void suspendAllComp()
+        {
+            TBSCompBase compBase = null;
+            foreach (var pair in _m_tbsCompDict)
+            {
+                compBase = pair.Value;
+                if (compBase == null)
+                    continue;
+                compBase.Suspend();
+            }
+        }
+
+        private void resumeAllComp()
+        {
+            TBSCompBase compBase = null;
+            foreach (var pair in _m_tbsCompDict)
+            {
+                compBase = pair.Value;
+                if (compBase == null)
+                    continue;
+                compBase.Resume();
+            }
+        }
+
     }
 }

@@ -8,22 +8,18 @@ namespace GameCore.TBS
     {
         public override void OnDiscard()
         {
-            throw new System.NotImplementedException();
         }
 
         public override void OnInitialize()
         {
-            throw new System.NotImplementedException();
         }
 
         public override void OnResume()
         {
-            throw new System.NotImplementedException();
         }
 
         public override void OnSuspend()
         {
-            throw new System.NotImplementedException();
         }
 
     }

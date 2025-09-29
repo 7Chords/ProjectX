@@ -58,7 +58,7 @@ namespace SCFrame
             for (int i = 1; i < lineArray.Length; i++)
             {
                 string line = lineArray[i];
-                if (string.IsNullOrEmpty(line))
+                if (string.IsNullOrEmpty(line) || line == "\t")
                 {
                     continue;
                 }
@@ -68,8 +68,15 @@ namespace SCFrame
                     Debug.LogError($"general表格式错误：表格{_m_sheetName}，第{i}行：\n{line}");
                     continue;
                 }
-
-                _m_keyValueMap.Add(lineSplit[0].Trim(), lineSplit[1].Trim());
+                try
+                {
+                    _m_keyValueMap.Add(lineSplit[0].Trim(), lineSplit[1].Trim());
+                }
+                catch(Exception ex)
+                {
+                    Debug.LogError($"general表格式的" + _m_sheetName + "表添加到字典出现问题，key：" + lineSplit[0] + ",value:" +lineSplit[1]+
+                        "----"+ex) ;
+                }
             }
 
             try
