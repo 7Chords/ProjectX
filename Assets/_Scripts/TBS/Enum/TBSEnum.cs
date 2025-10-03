@@ -39,6 +39,22 @@ namespace GameCore.TBS
         MAGIC,//魔法
         REAL,//真实
     }
+
+    public enum EDamageAmountType
+    {
+        NONE,
+        LITTLE,
+        MIDDLE,
+        LARGE,
+    }
+
+    public enum EDamageTargetType
+    {
+        NONE,
+        SINGLE,//单体
+        ALL,//所有
+    }
+
     //护甲等级
     public enum EArmorLevelType
     {

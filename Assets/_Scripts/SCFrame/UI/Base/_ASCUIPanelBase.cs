@@ -24,6 +24,10 @@ namespace SCFrame.UI
         {
             mono = _mono;
             showType = _showType;
+
+            //面板内部的子面板 不通过node初始化 所以在构造函数里面初始化
+            if (showType == SCUIShowType.INTERNAL)
+                Initialize();
         }
 
         public virtual GameObject GetGameObject()
@@ -37,19 +41,20 @@ namespace SCFrame.UI
         {
             _m_hasShowed = true;
             _m_hasHided = false;
+            if (showType == SCUIShowType.INTERNAL)
+                SCCommon.SetGameObjectEnable(GetGameObject(),true);
             OnShowPanel();
         }
 
         public abstract void OnShowPanel();
-        //public void ResetPanel()
-        //{
-        //    OnResetPanel();
-        //}
-        //public abstract void OnResetPanel();
+
+
         public void HidePanel()
         {
             _m_hasShowed = false;
             _m_hasHided = true;
+            if (showType == SCUIShowType.INTERNAL)
+                SCCommon.SetGameObjectEnable(GetGameObject(), false);
             OnHidePanel();
         }
 

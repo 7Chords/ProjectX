@@ -40,9 +40,24 @@ namespace SCFrame.UI
         {
             if (_m_nodeList == null)
                 return;
-
-            if (_node.EnterNode())
-                _m_nodeList.Add(_node);
+            _ASCUINodeBase node = _m_nodeList.Find(x => x.GetNodeName() == _node.GetNodeName());
+            if (node != null)
+            {
+                if (node.hasHideNode)
+                {
+                    //队列中原本就存在该node，重新展示并移动到尾部
+                    node.ShowNode();
+                    _m_nodeList.Remove(node);
+                    _m_nodeList.Add(node);
+                }
+                else
+                    return;
+            }
+            else
+            {
+                if (_node.EnterNode())
+                    _m_nodeList.Add(_node);
+            }
 
             //上一个同类型的节点
             _ASCUINodeBase lastSameTypeNode = null;
@@ -62,7 +77,7 @@ namespace SCFrame.UI
             }
 
 
-            if (_needShow)
+            if (node == null && _needShow)
                 _node.ShowNode();
         }
 
@@ -78,14 +93,13 @@ namespace SCFrame.UI
             if(topNode != null)
             {
                 topNode.HideNode();
-                topNode.QuitNode();
             }
-            _m_nodeList.RemoveAt(_m_nodeList.Count - 1 );
+            //_m_nodeList.RemoveAt(_m_nodeList.Count - 1 );
 
             //上一个同类型的节点
             _ASCUINodeBase lastSameTypeNode = null;
 
-            for(int i = _m_nodeList.Count - 1;i>-1;i--)
+            for(int i = _m_nodeList.Count - 2;i>-1;i--)
             {
                 lastSameTypeNode = _m_nodeList[i];
                 if (lastSameTypeNode == null)
@@ -95,6 +109,10 @@ namespace SCFrame.UI
                     if (lastSameTypeNode.needHideWhenEnterNewSameTypeNode)
                     {
                         lastSameTypeNode.ShowNode();
+                        //移动到尾部
+                        _m_nodeList.Remove(lastSameTypeNode);
+                        _m_nodeList.Add(lastSameTypeNode);
+
                         break;
                     }
                 }
@@ -146,6 +164,16 @@ namespace SCFrame.UI
             if (topNode == null)
                 return;
             topNode.ShowNode();
+        }
+
+        public _ASCUINodeBase GetNodeByName(string _nodeName)
+        {
+            foreach(var node in _m_nodeList)
+            {
+                if (node.GetNodeName() == _nodeName)
+                    return node;
+            }
+            return null;
         }
         #endregion
     }

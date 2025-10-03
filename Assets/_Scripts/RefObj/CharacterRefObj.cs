@@ -23,6 +23,7 @@ namespace GameCore.RefData
         public string assetGroupName;
         public string assetObjName;
         public List<ETBSCompType> extraCompList;
+        public List<long> init_skill_list;
 
         protected override void _parseFromString()
         {
@@ -32,6 +33,7 @@ namespace GameCore.RefData
             assetGroupName = getString("assetGroupName");
             assetObjName = getString("assetObjName");
             extraCompList = getList<ETBSCompType>("extraCompList");
+            init_skill_list = getList<long>("init_skill_list");
         }
 
         public static string assetPath => "RefData/ExportTxt";

@@ -1,4 +1,6 @@
+using GameCore.UI;
 using SCFrame;
+using SCFrame.UI;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -30,6 +32,9 @@ namespace GameCore.TBS
 
         private void onTBSAttackInput()
         {
+            _ASCUINodeBase node = GameCoreMgr.instance.uiCoreMgr.GetNodeByName(nameof(UINodeTBSMain));
+            if (node == null || node.hasHideNode)
+                return;
             SCMsgCenter.SendMsgAct(SCMsgConst.TBS_ACTOR_ATTACK);
         }
     }

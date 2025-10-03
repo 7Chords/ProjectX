@@ -16,13 +16,13 @@ namespace GameCore.TBS
             set { _m_curTurnType = value; }
         }
 
-        //public int _m_curTurnCount;
+        public int _m_curTurnCount;
 
-        //public int curTurnCount
-        //{
-        //    get { return _m_curTurnCount; }
-        //    set { _m_curTurnCount = value; }
-        //}
+        public int curTurnCount
+        {
+            get { return _m_curTurnCount; }
+            set { _m_curTurnCount = value; }
+        }
 
         private TBSBattleInfo _m_battleInfo;
 
@@ -30,6 +30,13 @@ namespace GameCore.TBS
         {
             get { return _m_battleInfo; }
             set { _m_battleInfo = value; }
+        }
+
+        public int _m_curActorIndex;
+        public int curActorIndex
+        {
+            get { return _m_curActorIndex; }
+            set { _m_curActorIndex = value; }
         }
 
 
@@ -61,6 +68,19 @@ namespace GameCore.TBS
             curTurnType = ETBSTurnType.PLAYER;
             //curTurnCount = 1;
             battleInfo = null;
+        }
+
+
+        /// <summary>
+        /// 获得当前的角色信息
+        /// </summary>
+        /// <returns></returns>
+        public TBSActorInfo getCurActorInfo()
+        {
+            if (curTurnType == ETBSTurnType.PLAYER)
+                return battleInfo.playerTeamInfo.actorInfoList[curActorIndex];
+            else
+                return battleInfo.enemyTeamInfo.actorInfoList[curActorIndex];
         }
     }
 }

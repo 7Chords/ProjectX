@@ -59,5 +59,7 @@ namespace GameCore.TBS
         }
 
         public virtual void Attack(TBSActorBase _target) { }
+
+        public virtual void ReleaseSkill(long skillId, TBSActorBase _target) { }
     }
 }

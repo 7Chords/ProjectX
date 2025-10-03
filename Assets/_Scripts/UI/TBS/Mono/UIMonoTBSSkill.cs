@@ -10,6 +10,11 @@ namespace GameCore.UI
     {
         [Header("技能Container")]
         public UIMonoCommonContainer monoContainer;
+
+        [Header("技能描述文本")]
+        public Text txtSkillDesc;
+
+        
     }
 
 }

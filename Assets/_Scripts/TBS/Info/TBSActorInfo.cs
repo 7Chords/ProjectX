@@ -14,7 +14,8 @@ namespace GameCore.TBS
 
         public string assetGroupName;
         public string assetObjName;
-        public List<ETBSCompType> extraCompList; 
+        public List<ETBSCompType> extraCompList;
+        public List<long> skillList;
 
         public void InitNewInfo(CharacterRefObj _characterRefObj)
         {
@@ -28,6 +29,12 @@ namespace GameCore.TBS
             assetGroupName = _characterRefObj.assetGroupName;
             assetObjName = _characterRefObj.assetObjName;
             professionType = professioRefObj.professionType;
+            skillList = _characterRefObj.init_skill_list;
+        }
+
+        public void LoadInfo()
+        {
+
         }
     }
 }

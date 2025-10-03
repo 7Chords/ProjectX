@@ -15,12 +15,18 @@ namespace SCFrame
 
         public SCRefDataList<ProfessionRefObj> professionRefList = new SCRefDataList<ProfessionRefObj>(ProfessionRefObj.assetPath, ProfessionRefObj.sheetName);
 
+        public SCRefDataList<TBSActorSkillRefObj> tbsActorSkillRefList = new SCRefDataList<TBSActorSkillRefObj>(TBSActorSkillRefObj.assetPath, TBSActorSkillRefObj.sheetName);
+
+        public SCRefDataList<TextLanguageRefObj> textLanguageRefList = new SCRefDataList<TextLanguageRefObj>(TextLanguageRefObj.assetPath, TextLanguageRefObj.sheetName);
+
         public override void OnInitialize()
         {
             gameGeneralRefObj.readFromTxt();
             characterRefList.readFromTxt();
             professionRefList.readFromTxt();
             gameInitRefObj.readFromTxt();
+            tbsActorSkillRefList.readFromTxt();
+            textLanguageRefList.readFromTxt();
         }
     }
 }

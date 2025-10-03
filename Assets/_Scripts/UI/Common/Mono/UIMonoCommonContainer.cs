@@ -11,8 +11,8 @@ namespace GameCore.UI
     /// </summary>
     public class UIMonoCommonContainer : _ASCUIMonoBase
     {
-        [Header("Item模板")]
-        public GameObject prefabItem;
+        [Header("Item模板资源obj名")]
+        public string prefabItemObjName;
         [Header("布局组件")]
         public LayoutGroup layoutGroup;
     }

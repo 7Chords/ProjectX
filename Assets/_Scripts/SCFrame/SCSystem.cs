@@ -1,8 +1,5 @@
 using GameCore;
 using GameCore.TBS;
-using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
 
 namespace SCFrame
 {
@@ -13,6 +10,8 @@ namespace SCFrame
             SCRefDataMgr.instance.Initialize();
             SCMsgCenter.instance.Initialize();
             SCSaveSys.instance.Initialize();
+            LanguageHelper.instance.Initialize();
+            SCInputListener.instance.Initialize();
             SCPoolMgr.instance.Initialize();
             GameCameraMgr.instance.Initialize();
             TBSCursorMgr.instance.Initialize();

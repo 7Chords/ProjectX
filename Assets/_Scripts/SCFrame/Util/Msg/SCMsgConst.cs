@@ -7,7 +7,9 @@ public class SCMsgConst
     public const int TBS_ATTACK_INPUT = 1000;
     public const int TBS_DEFEND_INPUT = 1001;
     public const int TBS_SKILL_INPUT = 1002;
-    public const int TBS_ITEM_INPUT = 1002;
+    public const int TBS_ITEM_INPUT = 1003;
+    public const int TBS_SWITCH_TO_UP_INPUT = 1004;
+    public const int TBS_SWITCH_TO_DOWN_INPUT = 1005;
 
     #endregion
 
@@ -33,7 +35,10 @@ public class SCMsgConst
 
     public const int TBS_ACTOR_ATTACK = 2013;
     public const int TBS_ACTOR_DEFENCE = 2014;
+    public const int TBS_ACTOR_SKILL = 2015;
 
+    public const int TBS_ACTOR_SKILL_HIGHTLIGHT_UP = 2016;//回合制战斗 - 选择技能高光上移
+    public const int TBS_ACTOR_SKILL_HIGHTLIGHT_DOWN = 2017;//回合制战斗 - 选择技能高光下移
 
     #endregion
 

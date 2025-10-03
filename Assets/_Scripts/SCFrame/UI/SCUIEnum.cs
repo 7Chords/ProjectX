@@ -11,7 +11,8 @@ namespace SCFrame.UI
         NONE,
         FULL,//全屏
         ADDITION,//叠加
-        TOP,
+        TOP,//顶部 提示栏等
+        INTERNAL,//面板内部的小面板
     }
 
 

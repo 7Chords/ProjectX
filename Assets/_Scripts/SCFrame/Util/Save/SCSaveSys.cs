@@ -9,9 +9,12 @@ namespace SCFrame
     /// </summary>
     public class SCSaveSys : Singleton<SCSaveSys>
     {
+        public SCSaveKeyInfo saveKeyInfo;
+        public ELanguageType languageType;
         public override void OnInitialize()
         {
-            
+            saveKeyInfo = new SCSaveKeyInfo();
+            languageType = ELanguageType.zh_CN;
         }
 
         public void Save()

@@ -30,10 +30,10 @@ namespace GameCore.UI
         public override void OnHidePanel()
         {
 
-            mono.btnNormalAttack.RemoveClickDown(_onBtnNormalAttackClickDown);
-            mono.btnSkill.RemoveClickDown(_onBtnSkillClickDown);
-            mono.btnItem.RemoveClickDown(_onBtnItemClickDown);
-            mono.btnDefence.RemoveClickDown(_onBtnDefenceClickDown);
+            mono.btnNormalAttack.RemoveClickDown(onBtnNormalAttackClickDown);
+            mono.btnSkill.RemoveClickDown(onBtnSkillClickDown);
+            mono.btnItem.RemoveClickDown(onBtnItemClickDown);
+            mono.btnDefence.RemoveClickDown(onBtnDefenceClickDown);
 
 
 
@@ -48,10 +48,10 @@ namespace GameCore.UI
 
         public override void OnShowPanel()
         {
-            mono.btnNormalAttack.AddClickDown(_onBtnNormalAttackClickDown);
-            mono.btnSkill.AddClickDown(_onBtnSkillClickDown);
-            mono.btnItem.AddClickDown(_onBtnItemClickDown);
-            mono.btnDefence.AddClickDown(_onBtnDefenceClickDown);
+            mono.btnNormalAttack.AddClickDown(onBtnNormalAttackClickDown);
+            mono.btnSkill.AddClickDown(onBtnSkillClickDown);
+            mono.btnItem.AddClickDown(onBtnItemClickDown);
+            mono.btnDefence.AddClickDown(onBtnDefenceClickDown);
 
             Tween tween = mono.canvasGroup.DOFade(1, mono.fadeInDuration).OnStart(() =>
             {
@@ -61,24 +61,24 @@ namespace GameCore.UI
         }
 
         //普通攻击按下回调
-        private void _onBtnNormalAttackClickDown(PointerEventData _eventData, object[] _args)
+        private void onBtnNormalAttackClickDown(PointerEventData _eventData, object[] _args)
         {
             Debug.Log("点击了普通攻击！");
             SCMsgCenter.SendMsgAct(SCMsgConst.TBS_ATTACK_INPUT);
 
         }
-        private void _onBtnSkillClickDown(PointerEventData data, object[] arg2)
+        private void onBtnSkillClickDown(PointerEventData data, object[] arg2)
         {
             Debug.Log("点击了技能！");
             SCMsgCenter.SendMsgAct(SCMsgConst.TBS_SKILL_INPUT);
 
         }
-        private void _onBtnItemClickDown(PointerEventData data, object[] arg2)
+        private void onBtnItemClickDown(PointerEventData data, object[] arg2)
         {
             Debug.Log("点击了道具！");
             SCMsgCenter.SendMsgAct(SCMsgConst.TBS_ITEM_INPUT);
         }
-        private void _onBtnDefenceClickDown(PointerEventData data, object[] arg2)
+        private void onBtnDefenceClickDown(PointerEventData data, object[] arg2)
         {
             Debug.Log("点击了防御！");
             SCMsgCenter.SendMsgAct(SCMsgConst.TBS_DEFEND_INPUT);

@@ -36,6 +36,11 @@ namespace GameCore.TBS
         {
             _m_curTurnType = _m_curTurnType == ETBSTurnType.PLAYER 
                 ? ETBSTurnType.ENEMY : ETBSTurnType.PLAYER;
+            _m_curTurnCount++;
+
+            SCModel.instance.tbsModel.curTurnType = _m_curTurnType;
+            SCModel.instance.tbsModel.curTurnCount = _m_curTurnCount;
+
 
             if (_m_curTurnType == ETBSTurnType.ENEMY)
                 GameCoreMgr.instance.uiCoreMgr.HideCurNode();

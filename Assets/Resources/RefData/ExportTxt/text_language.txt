@@ -1,0 +1,19 @@
+﻿id	translateKey	zh_CN	en_US
+10001	#2_tbs_skill_desc_1001	发动高速突刺，对{0}敌方目标造成{1}{2}{3}伤害	Launch a high-speed thrust, dealing {1}{2}{3} damage to {0} enemy target
+10002	#2_tbs_skill_desc_1002	凝聚法力，发射蓝焰光束，对{0}敌方单位造成{1}{2}{3}伤害	Gather magical power and launch a blue flame beam, dealing {1}{2}{3} damage to {0} enemy target
+10003	#2_tbs_skill_desc_1003	凝神会心，以瞬闪姿态对{0}敌方单位造成{1}{2}{3}伤害	Focus and respond with insight, dealing {1}{2}{3} damage to {0} enemy targets with a flash stance.
+10004	#1_magic	魔法	magic
+10005	#1_physical	物理	physical
+10006	#1_real	真实	real
+10007	#1_little	少量	little
+10008	#1_middle	较大量	middle
+10009	#1_large	大量	large
+10010	#1_single	单个	single
+10011	#1_all	所有	all
+10012	#1_light	轻型穿透的	light armor-piercing
+10013	#1_medium	中型穿透的	medium armor-piercing
+10014	#1_heavy	重型穿透的	heavy armor-piercing
+10015	#1_hero	英雄型穿透的	hero armor-piercing
+10016	#1_fire	火属性的	fire
+10017	#1_water	水属性的	water
+10018	#1_wood	木属性的	wood
