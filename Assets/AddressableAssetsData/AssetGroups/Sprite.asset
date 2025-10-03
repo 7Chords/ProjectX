@@ -29,6 +29,14 @@ MonoBehaviour:
     m_Address: spr_skill_1003
     m_ReadOnly: 0
     m_SerializedLabels: []
+  - m_GUID: 5997fb4280cc01f45a5cbb3d6c585521
+    m_Address: spr_head_lorraine
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  - m_GUID: 4907ddc334237dd4c9a20aa5a7254d54
+    m_Address: spr_head_stele
+    m_ReadOnly: 0
+    m_SerializedLabels: []
   m_ReadOnly: 0
   m_Settings: {fileID: 11400000, guid: d14fb1bbe98862146a7f5467a5bc79f8, type: 2}
   m_SchemaSet:

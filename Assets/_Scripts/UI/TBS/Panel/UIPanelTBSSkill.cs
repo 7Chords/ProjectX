@@ -4,6 +4,7 @@ using GameCore.TBS;
 using GameCore.Util;
 using SCFrame;
 using SCFrame.UI;
+using System;
 using UnityEngine;
 
 namespace GameCore.UI
@@ -24,7 +25,7 @@ namespace GameCore.UI
             //SCMsgCenter.RegisterMsg(SCMsgConst.TBS_ACTOR_SKILL_SELECT, onTBSActorSkillSelect);
             SCMsgCenter.RegisterMsgAct(SCMsgConst.TBS_ACTOR_SKILL_HIGHTLIGHT_UP, onTBSActorSkillHighLightUp);
             SCMsgCenter.RegisterMsgAct(SCMsgConst.TBS_ACTOR_SKILL_HIGHTLIGHT_DOWN, onTBSActorSkillHighLightDown);
-
+            SCMsgCenter.RegisterMsg(SCMsgConst.TBS_ACTOR_SKILL_MOUSE_HIGHLIGHT, onTBSActorSkillMouseHighLight);
 
             _m_tweenContainer = new TweenContainer();
             mono.canvasGroup.alpha = 0;
@@ -33,17 +34,19 @@ namespace GameCore.UI
                 _m_skillContainer = new UIPanelTBSSkillContainer(mono.monoContainer);
 
         }
+
         public override void OnDiscard()
         {
             //SCMsgCenter.UnregisterMsg(SCMsgConst.TBS_ACTOR_SKILL_SELECT, onTBSActorSkillSelect);
             SCMsgCenter.UnregisterMsgAct(SCMsgConst.TBS_ACTOR_SKILL_HIGHTLIGHT_UP, onTBSActorSkillHighLightUp);
             SCMsgCenter.UnregisterMsgAct(SCMsgConst.TBS_ACTOR_SKILL_HIGHTLIGHT_DOWN, onTBSActorSkillHighLightDown);
+            SCMsgCenter.UnregisterMsg(SCMsgConst.TBS_ACTOR_SKILL_MOUSE_HIGHLIGHT, onTBSActorSkillMouseHighLight);
 
             if (_m_skillContainer != null)
                 _m_skillContainer.Discard();
 
             _m_tweenContainer?.KillAllDoTween();
-
+            _m_tweenContainer = null;
         }
 
         public override void OnHidePanel()
@@ -130,6 +133,24 @@ namespace GameCore.UI
         private void onTBSActorSkillHighLightDown()
         {
             _m_curSelectSkillIdx = Mathf.Min(_m_curSelectSkillIdx + 1, _m_curActorSkillCount - 1);
+            _refreshPanel();
+        }
+        private void onTBSActorSkillMouseHighLight(object[] _objs)
+        {
+            if (_objs == null || _objs.Length == 0)
+                return;
+            long skillId = (long)_objs[0];
+            TBSActorInfo actorInfo = SCModel.instance.tbsModel.getCurActorInfo();
+            if (actorInfo == null)
+                return;
+            for(int i =0;i< actorInfo.skillList.Count;i++)
+            {
+                if (actorInfo.skillList[i] == skillId)
+                {
+                    _m_curSelectSkillIdx = i;
+                    break;
+                }
+            }
             _refreshPanel();
         }
     }

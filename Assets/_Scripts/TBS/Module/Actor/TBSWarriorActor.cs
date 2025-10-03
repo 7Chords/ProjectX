@@ -53,7 +53,7 @@ namespace GameCore.TBS
             seq.Append(DOVirtual.DelayedCall((_m_actorMono as TBSWarriorActorMono).attackAnimDuration, 
                 () =>
                 {
-                    SCMsgCenter.SendMsg(SCMsgConst.TBS_ACTOR_CHG, 1); 
+                    SCMsgCenter.SendMsgAct(SCMsgConst.TBS_ACTOR_ACTION_END); 
                 }));
             seq.Append(rotateTween_1);
             seq.Append(move2OriginalTween);

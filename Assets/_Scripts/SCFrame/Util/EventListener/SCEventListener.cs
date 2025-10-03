@@ -30,7 +30,9 @@ namespace SCFrame
         ON_TRIGGER_ENTER_2D = -10018,
         ON_TRIGGER_STAY_2D = -10019,
         ON_TRIGGER_EXIT_2D = -10020,
-        ON_RELEASE_ADDRESSABLE_ASSET = -10021
+        ON_RELEASE_ADDRESSABLE_ASSET = -10021,
+        //ON_HOVER_ENTER = -10022,
+        //ON_HOVER_EXIT = -10023,
     }
 
     public interface ISCMouseEvent : 

@@ -109,6 +109,8 @@ namespace GameCore.TBS
             SCMsgCenter.SendMsgAct(SCMsgConst.TBS_EFFECT_MGR_WORK);
             SCMsgCenter.SendMsgAct(SCMsgConst.TBS_COMP_MGR_WORK);
 
+
+            GameCoreMgr.instance.uiCoreMgr.AddNode(new UINodeTBSInfo(SCUIShowType.FULL));
             GameCoreMgr.instance.uiCoreMgr.AddNode(new UINodeTBSMain(SCUIShowType.FULL));
         }
 
@@ -123,24 +125,5 @@ namespace GameCore.TBS
             SCCommon.SetGameObjectEnable(SCGame.instance.playerGO, false);
         }
         #endregion
-
-        
-        /// <summary>
-        /// 获得当前的回合持有方
-        /// </summary>
-        /// <returns></returns>
-        //public ETBSTurnType getCurTurnType()
-        //{
-        //    return (_m_subMgrDict[ETBSSubMgrType.TURN] as TBSTurnMgr).curTurnType;
-        //}
-
-        /// <summary>
-        /// 获得当前的行动角色
-        /// </summary>
-        /// <returns></returns>
-        //public TBSActorBase getCurActor()
-        //{
-        //    return (_m_subMgrDict[ETBSSubMgrType.ACTOR] as TBSActorMgr).GetCurActor();
-        //}
     }
 }

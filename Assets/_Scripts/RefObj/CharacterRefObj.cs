@@ -20,20 +20,34 @@ namespace GameCore.RefData
         public long id;
         public string characterName;
         public long characterProfession;
-        public string assetGroupName;
-        public string assetObjName;
+        public string assetModelObjName;
+        public string assetHeadIconObjName;
+
         public List<ETBSCompType> extraCompList;
         public List<long> init_skill_list;
-
+        public int initHp;
+        public int initMp;
+        public int initAttack;
+        public int initDefend;
+        public float initMiss;
+        public EArmorLevelType initArmorLevel;
+        public EMagicResistanceLevelType initMgicResistanceLevel;
         protected override void _parseFromString()
         {
             id = getInt("id");
             characterName = getString("characterName");
             characterProfession = getLong("characterProfession");
-            assetGroupName = getString("assetGroupName");
-            assetObjName = getString("assetObjName");
+            assetModelObjName = getString("assetModelObjName");
+            assetHeadIconObjName = getString("assetHeadIconObjName");
             extraCompList = getList<ETBSCompType>("extraCompList");
             init_skill_list = getList<long>("init_skill_list");
+            initHp = getInt("initHp");
+            initMp = getInt("initMp");
+            initAttack = getInt("initAttack");
+            initDefend = getInt("initDefend");
+            initMiss = getFloat("initMiss");
+            initArmorLevel = (EArmorLevelType)getEnum("initArmorLevel", typeof(EArmorLevelType));
+            initMgicResistanceLevel = (EMagicResistanceLevelType)getEnum("initMgicResistanceLevel", typeof(EMagicResistanceLevelType));
         }
 
         public static string assetPath => "RefData/ExportTxt";

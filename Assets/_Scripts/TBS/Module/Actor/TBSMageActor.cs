@@ -37,7 +37,7 @@ namespace GameCore.TBS
                 () =>
                 {
                     SCCommon.DestoryGameObject(flyBall);
-                    SCMsgCenter.SendMsg(SCMsgConst.TBS_ACTOR_CHG, 1);
+                    SCMsgCenter.SendMsgAct(SCMsgConst.TBS_ACTOR_ACTION_END);
                 }));
         }
     }

@@ -19,7 +19,7 @@ public class SCMsgConst
     public const int TBS_GAME_FINISH = 2001;
 
     public const int TBS_TURN_CHG = 2002;//回合制战斗 - 回合轮转
-    public const int TBS_ACTOR_CHG = 2003;//回合制战斗 - 角色轮转
+    public const int TBS_ACTOR_ACTION_END = 2003;//回合制战斗 - 角色行动结束
 
     public const int TBS_TURN_MGR_WORK = 2004;
     public const int TBS_ACTOR_MGR_WORK = 2005;
@@ -39,6 +39,9 @@ public class SCMsgConst
 
     public const int TBS_ACTOR_SKILL_HIGHTLIGHT_UP = 2016;//回合制战斗 - 选择技能高光上移
     public const int TBS_ACTOR_SKILL_HIGHTLIGHT_DOWN = 2017;//回合制战斗 - 选择技能高光下移
+    public const int TBS_ACTOR_SKILL_MOUSE_HIGHLIGHT = 2018;//回合制战斗 - 鼠标选择技能高光
+
+    public const int TBS_ACTOR_CHG = 2019;//回合制战斗 - 角色轮转
 
     #endregion
 

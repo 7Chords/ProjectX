@@ -26,7 +26,7 @@ namespace GameCore.TBS
         {
             SCMsgCenter.RegisterMsgAct(SCMsgConst.TBS_ACTOR_MGR_WORK, onTBSActorMgrWork);
             SCMsgCenter.RegisterMsgAct(SCMsgConst.TBS_ACTOR_MGR_REST, onTBSActorMgrRest);
-            SCMsgCenter.RegisterMsg(SCMsgConst.TBS_ACTOR_CHG, onTBSActorChg);
+            SCMsgCenter.RegisterMsgAct(SCMsgConst.TBS_ACTOR_ACTION_END, onTBSActorActionEnd);
             SCMsgCenter.RegisterMsgAct(SCMsgConst.TBS_ACTOR_DEFENCE, onTBSActorDefence);
             SCMsgCenter.RegisterMsgAct(SCMsgConst.TBS_ACTOR_ATTACK, onTBSActorAttack);
             SCMsgCenter.RegisterMsg(SCMsgConst.TBS_ACTOR_SKILL, onTBSActorSkill);
@@ -37,7 +37,7 @@ namespace GameCore.TBS
         {
             SCMsgCenter.UnregisterMsgAct(SCMsgConst.TBS_ACTOR_MGR_WORK, onTBSActorMgrWork);
             SCMsgCenter.UnregisterMsgAct(SCMsgConst.TBS_ACTOR_MGR_REST, onTBSActorMgrRest);
-            SCMsgCenter.UnregisterMsg(SCMsgConst.TBS_ACTOR_CHG, onTBSActorChg);
+            SCMsgCenter.UnregisterMsgAct(SCMsgConst.TBS_ACTOR_ACTION_END, onTBSActorActionEnd);
             SCMsgCenter.UnregisterMsgAct(SCMsgConst.TBS_ACTOR_DEFENCE, onTBSActorDefence);
             SCMsgCenter.UnregisterMsgAct(SCMsgConst.TBS_ACTOR_ATTACK, onTBSActorAttack);
             SCMsgCenter.UnregisterMsg(SCMsgConst.TBS_ACTOR_SKILL, onTBSActorSkill);
@@ -85,7 +85,7 @@ namespace GameCore.TBS
                 actorInfo = _m_playerTeamInfo.actorInfoList[i];
                 if (actorInfo == null)
                     continue;
-                actorGO = ResourcesHelper.LoadGameObject(actorInfo.assetObjName,
+                actorGO = ResourcesHelper.LoadGameObject(actorInfo.assetModelObjName,
                     _m_gameMono.playerPosInfoList[i].pos.position,
                     Quaternion.identity, true);
 
@@ -102,7 +102,7 @@ namespace GameCore.TBS
                 actorInfo = _m_enemyTeamInfo.actorInfoList[i];
                 if (actorInfo == null)
                     continue;
-                actorGO = ResourcesHelper.LoadGameObject(actorInfo.assetObjName,
+                actorGO = ResourcesHelper.LoadGameObject(actorInfo.assetModelObjName,
                     _m_gameMono.enemyPosInfoList[i].pos.position,
                     Quaternion.Euler(new Vector3(0,180,0)), true);//面朝玩家
 
@@ -160,13 +160,9 @@ namespace GameCore.TBS
         }
 
 
-        private void onTBSActorChg(object[] _objs)
+        private void onTBSActorActionEnd()
         {
-            if (_objs == null || _objs.Length == 0)
-                return;
-            //todo
-            int chgStep = (int)_objs[0];
-            _m_curSelectActorIndex += chgStep;
+            _m_curSelectActorIndex++;
 
             //更换回合持有方了 代码时序保证先更换回合持有方 再更换角色操作
             if ((SCModel.instance.tbsModel.curTurnType == ETBSTurnType.ENEMY
@@ -192,7 +188,7 @@ namespace GameCore.TBS
                     });
                 GameCameraMgr.instance.SetCameraPositionOffsetWithFollow(_m_gameMono.playerPosInfoList[_m_curSelectActorIndex].cameraIdlePos);
             }
-            else if(SCModel.instance.tbsModel.curTurnType == ETBSTurnType.ENEMY)
+            else if (SCModel.instance.tbsModel.curTurnType == ETBSTurnType.ENEMY)
             {
 
             }

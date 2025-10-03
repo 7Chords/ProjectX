@@ -21,11 +21,16 @@ namespace GameCore.UI
         public override void OnInitialize()
         {
             mono.btnSkillClick.AddClickDown(onBtnSkillClickDown);
+            mono.btnSkillClick.AddMouseEnter(onBtnSkillMouseEnter);
+            mono.btnSkillClick.AddMouseExit(onBtnSkillMouseExit);
+
         }
 
         public override void OnDiscard()
         {
             mono.btnSkillClick.RemoveClickDown(onBtnSkillClickDown);
+            mono.btnSkillClick.RemoveMouseEnter(onBtnSkillMouseEnter);
+            mono.btnSkillClick.RemoveMouseExit(onBtnSkillMouseExit);
 
         }
 
@@ -68,6 +73,18 @@ namespace GameCore.UI
         {
             //SCMsgCenter.SendMsg(SCMsgConst.TBS_ACTOR_SKILL, _m_skillRefObj.id);
             GameCoreMgr.instance.uiCoreMgr.HideCurNode();
+        }
+
+        private void onBtnSkillMouseExit(PointerEventData _data, object[] _args)
+        {
+
+
+        }
+
+        private void onBtnSkillMouseEnter(PointerEventData _data, object[] _args)
+        {
+            SCMsgCenter.SendMsg(SCMsgConst.TBS_ACTOR_SKILL_MOUSE_HIGHLIGHT, _m_skillRefObj.id);
+
         }
     }
 }

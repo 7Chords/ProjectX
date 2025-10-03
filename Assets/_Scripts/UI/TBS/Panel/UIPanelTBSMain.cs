@@ -5,6 +5,7 @@ using System;
 using UnityEngine;
 using DG.Tweening;
 using GameCore.Util;
+using GameCore.TBS;
 
 namespace GameCore.UI
 {
@@ -17,7 +18,6 @@ namespace GameCore.UI
         }
         public override void OnInitialize()
         {
-
 
             _m_tweenContainer = new TweenContainer();
         }
@@ -58,6 +58,7 @@ namespace GameCore.UI
                 mono.canvasGroup.alpha = 0;
             });
             _m_tweenContainer?.RegDoTween(tween);
+            refreshPanelShow();
         }
 
         //普通攻击按下回调
@@ -84,6 +85,13 @@ namespace GameCore.UI
             SCMsgCenter.SendMsgAct(SCMsgConst.TBS_DEFEND_INPUT);
         }
 
+        private void refreshPanelShow()
+        {
+            TBSActorInfo actorInfo = SCModel.instance.tbsModel.getCurActorInfo();
+            if (actorInfo == null)
+                return;
+            mono.imgCharacterHead.sprite = ResourcesHelper.LoadAsset<Sprite>(actorInfo.assetHeadIconObjName);
+        }
 
     }
 }

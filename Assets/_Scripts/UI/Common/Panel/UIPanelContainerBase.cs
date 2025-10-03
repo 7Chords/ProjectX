@@ -9,16 +9,16 @@ namespace GameCore.UI
     /// <summary>
     /// Container»ùÀà½Å±¾
     /// </summary>
-    public abstract class UIPanelContainerBase<TMONO,TITEMPANEL,TITEMMONO> : _ASCUIPanelBase<TMONO> 
-        where TMONO:_ASCUIMonoBase 
-        where TITEMPANEL : _ASCUIPanelBase<TITEMMONO>
-        where TITEMMONO : _ASCUIMonoBase
+    public abstract class UIPanelContainerBase<T_MONO,T_ITEM_PANEL,T_ITEM_MONO> : _ASCUIPanelBase<T_MONO> 
+        where T_MONO:_ASCUIMonoBase 
+        where T_ITEM_PANEL : _ASCUIPanelBase<T_ITEM_MONO>
+        where T_ITEM_MONO : _ASCUIMonoBase
     {
-        public UIPanelContainerBase(TMONO _mono, SCUIShowType _showType = SCUIShowType.INTERNAL) : base(_mono, _showType)
+        public UIPanelContainerBase(T_MONO _mono, SCUIShowType _showType = SCUIShowType.INTERNAL) : base(_mono, _showType)
         {
         }
 
-        protected abstract TITEMPANEL creatItemPanel(TITEMMONO _mono);
+        protected abstract T_ITEM_PANEL creatItemPanel(T_ITEM_MONO _mono);
 
         protected abstract GameObject creatItemGO();
 

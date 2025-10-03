@@ -114,7 +114,15 @@ namespace SCFrame
         {
             RemoveEventListener(_com, ESCEventType.ON_END_DRAG, _action, _checkArgs, _args);
         }
+        public static void RemoveMouseEnter(this Component _com, Action<PointerEventData, object[]> _action, bool _checkArgs = false, params object[] _args)
+        {
+            RemoveEventListener(_com, ESCEventType.ON_MOUSE_ENTER, _action, _checkArgs, _args);
+        }
 
+        public static void RemoveMouseExit(this Component _com, Action<PointerEventData, object[]> _action, bool _checkArgs = false, params object[] _args)
+        {
+            RemoveEventListener(_com, ESCEventType.ON_MOUSE_EXIT, _action, _checkArgs, _args);
+        }
 
         #endregion
 
