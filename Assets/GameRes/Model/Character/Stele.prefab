@@ -1156,7 +1156,7 @@ Animator:
   m_GameObject: {fileID: 4627569865288318698}
   m_Enabled: 1
   m_Avatar: {fileID: 9000000, guid: a58d63122b09e9144938cd6a1ece4824, type: 3}
-  m_Controller: {fileID: 9100000, guid: b60dc9aa529b314489f628aa3b57c470, type: 2}
+  m_Controller: {fileID: 0}
   m_CullingMode: 1
   m_UpdateMode: 0
   m_ApplyRootMotion: 0
@@ -2435,7 +2435,13 @@ MonoBehaviour:
   centerSfxTran: {fileID: 0}
   topSfxTran: {fileID: 0}
   enemyAttackStopOffset: {x: 0, y: 0, z: 2}
+  attackAnimClipName: stele_attack_anim_clip
+  runAnimClipName: stele_run_anim_clip
+  getHitAnimClipName: stele_getHit_anim_clip
+  idleAnimClipName: stele_idle_anim_clip
+  defendAnimClipName: stele_defend_anim_clip
   attackAnimDuration: 1
+  defendPlayTime: 1
 --- !u!1 &7656945258342648692
 GameObject:
   m_ObjectHideFlags: 0

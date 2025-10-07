@@ -7,17 +7,13 @@ namespace GameCore.TBS
 {
     public class TBSActorInfo
     {
-
+        public long characterId;
         public string characterName;
-
         public EProfessionType professionType;
-
         public string assetModelObjName;
         public string assetHeadIconObjName;
-
         public List<ETBSCompType> extraCompList;
         public List<long> skillList;
-
         public int curHp;
         public int maxHp;
         public int curMp;
@@ -25,11 +21,18 @@ namespace GameCore.TBS
         public int attack;
         public int defend;
         public float missChance;
+        public float criticalChance;
         public EArmorLevelType armorLevel;
         public EMagicResistanceLevelType magicResistanceLevel;
 
         public void InitNewInfo(CharacterRefObj _characterRefObj)
         {
+            if(_characterRefObj == null)
+            {
+                Debug.LogError("TBSActorInfo传入空参数！！！");
+                return;
+            }
+            characterId = _characterRefObj.id;
             characterName = _characterRefObj.characterName;
             ProfessionRefObj professioRefObj = SCRefDataMgr.instance.professionRefList.refDataList.Find(x => x.id == _characterRefObj.characterProfession);
             if(professioRefObj == null)
@@ -46,6 +49,7 @@ namespace GameCore.TBS
             attack = _characterRefObj.initAttack;
             defend = _characterRefObj.initDefend;
             missChance = _characterRefObj.initMiss;
+            criticalChance = _characterRefObj.initCritical;
             armorLevel = _characterRefObj.initArmorLevel;
             magicResistanceLevel = _characterRefObj.initMgicResistanceLevel;
 

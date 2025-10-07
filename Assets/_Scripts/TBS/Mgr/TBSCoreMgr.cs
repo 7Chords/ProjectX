@@ -8,16 +8,15 @@ namespace GameCore.TBS
     public class TBSCoreMgr : ACoreMgrBase
     {
         public override ECoreMgrType coreMgrType => ECoreMgrType.TBS;
-
-        //private List<TBSSubMgrBase> _m_subMgrList;//子管理器列表
         private Dictionary<ETBSSubMgrType, TBSSubMgrBase> _m_subMgrDict;//子管理器字典
+
+        private bool _m_tbsGameHasStarted;
+        public bool tbsGameHasStarted => _m_tbsGameHasStarted;
         public override void OnInitialize()
         {
             //注册事件
             SCMsgCenter.RegisterMsgAct(SCMsgConst.TBS_GAME_START,onTBSGameStart);
             SCMsgCenter.RegisterMsgAct(SCMsgConst.TBS_GAME_FINISH, onTBSGameFinish);
-
-            _m_subMgrDict = new Dictionary<ETBSSubMgrType, TBSSubMgrBase>();
 
             initAllSubMgr();
         }
@@ -29,9 +28,6 @@ namespace GameCore.TBS
 
 
             discardAllSubMgr();
-
-            _m_subMgrDict.Clear();
-            _m_subMgrDict = null;
         }
         public override void OnResume() 
         {
@@ -46,6 +42,7 @@ namespace GameCore.TBS
         //初始化所有的子管理器
         private void initAllSubMgr()
         {
+            _m_subMgrDict = new Dictionary<ETBSSubMgrType, TBSSubMgrBase>();
             //回合轮转管理器
             TBSTurnMgr turnMgr = new TBSTurnMgr();
             turnMgr.Initialize();
@@ -74,6 +71,8 @@ namespace GameCore.TBS
                     continue;
                 mgr.Discard();
             }
+            _m_subMgrDict.Clear();
+            _m_subMgrDict = null;
         }
 
         //恢复所有的子管理器
@@ -112,6 +111,8 @@ namespace GameCore.TBS
 
             GameCoreMgr.instance.uiCoreMgr.AddNode(new UINodeTBSInfo(SCUIShowType.FULL));
             GameCoreMgr.instance.uiCoreMgr.AddNode(new UINodeTBSMain(SCUIShowType.FULL));
+
+            _m_tbsGameHasStarted = true;
         }
 
         private void onTBSGameFinish()
@@ -123,6 +124,8 @@ namespace GameCore.TBS
 
             //显示大世界玩家
             SCCommon.SetGameObjectEnable(SCGame.instance.playerGO, false);
+
+            _m_tbsGameHasStarted = false;
         }
         #endregion
     }

@@ -13,7 +13,6 @@ namespace GameCore.TBS
         {
         }
 
-
         
         public override void Attack(TBSActorBase _target)
         {
@@ -25,12 +24,12 @@ namespace GameCore.TBS
                 {
                     GameCoreMgr.instance.uiCoreMgr.HideCurNode();
                     TBSCursorMgr.instance.HideSelectionCursor();
-                    _m_actorMono.actorAnim.Play(RunAnimName);
+                    _m_animationCtl.PlaySingleAniamtion(_m_runAnimClip);
                 })
                 .OnComplete(
                 () =>
                 {
-                    _m_actorMono.actorAnim.Play(AttackAnimName);
+                    _m_animationCtl.PlaySingleAniamtion(_m_attackAnimClip);
                 });
 
 
@@ -40,12 +39,12 @@ namespace GameCore.TBS
                 .OnStart(
                 () =>
                 {
-                    _m_actorMono.actorAnim.Play(RunAnimName);
+                    _m_animationCtl.PlaySingleAniamtion(_m_runAnimClip);
                 })
                 .OnComplete(
                 () =>
                 {
-                    _m_actorMono.actorAnim.Play(IdleAnimName);
+                    _m_animationCtl.PlaySingleAniamtion(_m_idleAnimClip);
                 });
             Tween rotateTween_2 = _m_actorMono.gameObject.transform.DOLocalRotate(Vector3.zero, 0.5f);
 
@@ -62,6 +61,34 @@ namespace GameCore.TBS
 
             _m_tweenContainer?.RegDoTween(seq);
 
+        }
+
+        public override void Defend()
+        {
+            Sequence seq = DOTween.Sequence();
+            seq.Append(DOVirtual.DelayedCall((_m_actorMono as TBSWarriorActorMono).defendPlayTime,
+                () =>
+                {
+                    SCMsgCenter.SendMsgAct(SCMsgConst.TBS_ACTOR_ACTION_END);
+                })
+                .OnStart(() =>
+                {
+                    GameCoreMgr.instance.uiCoreMgr.HideCurNode();
+                    TBSCursorMgr.instance.HideSelectionCursor();
+                    _m_animationCtl.PlaySingleAniamtion(_m_defendAnimClip);
+
+                }));
+            _m_tweenContainer?.RegDoTween(seq);
+
+        }
+
+        public override void GetHit()
+        {
+            throw new System.NotImplementedException();
+        }
+
+        public override void ReleaseSkill(long skillId, TBSActorBase _target)
+        {
         }
     }
 }

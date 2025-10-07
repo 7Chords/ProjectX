@@ -55,6 +55,8 @@ namespace SCFrame
         {
             if (tbsCoreMgr != null)
                 tbsCoreMgr.Discard();
+            if (uiCoreMgr != null)
+                uiCoreMgr.Discard();
         }
 
         //恢复所有的子管理器
@@ -62,6 +64,8 @@ namespace SCFrame
         {
             if (tbsCoreMgr != null)
                 tbsCoreMgr.Resume();
+            if (uiCoreMgr != null)
+                uiCoreMgr.Resume();
         }
 
         //挂起所有的子管理器
@@ -69,6 +73,8 @@ namespace SCFrame
         {
             if (tbsCoreMgr != null)
                 tbsCoreMgr.Suspend();
+            if (uiCoreMgr != null)
+                uiCoreMgr.Suspend();
         }
 
         private void onGameStart(object[] _objs)

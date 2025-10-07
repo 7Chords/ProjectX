@@ -30,6 +30,7 @@ namespace GameCore.RefData
         public int initAttack;
         public int initDefend;
         public float initMiss;
+        public float initCritical;
         public EArmorLevelType initArmorLevel;
         public EMagicResistanceLevelType initMgicResistanceLevel;
         protected override void _parseFromString()
@@ -46,6 +47,7 @@ namespace GameCore.RefData
             initAttack = getInt("initAttack");
             initDefend = getInt("initDefend");
             initMiss = getFloat("initMiss");
+            initCritical = getFloat("initCritical");
             initArmorLevel = (EArmorLevelType)getEnum("initArmorLevel", typeof(EArmorLevelType));
             initMgicResistanceLevel = (EMagicResistanceLevelType)getEnum("initMgicResistanceLevel", typeof(EMagicResistanceLevelType));
         }

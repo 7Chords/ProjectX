@@ -52,6 +52,10 @@ namespace GameCore.TBS
             TBSItemComp itemComp = new TBSItemComp();
             itemComp.Initialize();
             _m_tbsCompDict.Add(ETBSCompType.ITEM, itemComp);
+
+            TBSNavigateComp navigateComp = new TBSNavigateComp();
+            navigateComp.Initialize();
+            _m_tbsCompDict.Add(ETBSCompType.NAVIGATE, navigateComp);
         }
 
         private void discardAllComp()

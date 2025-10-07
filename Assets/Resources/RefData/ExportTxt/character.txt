@@ -1,7 +1,7 @@
-﻿id	characterName	characterProfession	assetModelObjName	assetHeadIconObjName	extraCompList	init_skill_list	initHp	initMp	initAttack	initDefend	initMiss	initArmorLevel	initMgicResistanceLevel
-1001	斯特尔	1001	Stele	spr_head_stele	NONE	1001;1003	75	50	25	3	.05	LIGHT	LIGHT
-1002	洛林	1003	Lorraine	spr_head_lorraine	NONE	1002	50	80	15	2	.02	LIGHT	MEDIUM
-1003	考特	1001	Kaut	none	NONE	9999	99	99	99	99	99	NONE	NONE
-1004	红色史莱姆	1006	RedSlime	none	NONE	9999	99	99	99	99	99	NONE	NONE
-1005	尖刺史莱姆	1006	SpikeSlime	none	NONE	9999	99	99	99	99	99	NONE	NONE
-1006	石头巨人	1007	RockGiant	none	NONE	9999	99	99	99	99	99	NONE	NONE
+﻿id	characterName	characterProfession	assetModelObjName	assetHeadIconObjName	extraCompList	init_skill_list	initHp	initMp	initAttack	initDefend	initMiss	initCritical	initArmorLevel	initMgicResistanceLevel
+1001	斯特尔	1001	Stele	spr_head_stele	NONE	1001;1003	75	50	25	3	.05	.05	LIGHT	LIGHT
+1002	洛林	1003	Lorraine	spr_head_lorraine	NONE	1002	50	80	15	2	.02	.05	LIGHT	MEDIUM
+1003	考特	1001	Kaut	none	NONE	9999	99	99	99	99	99	0	NONE	NONE
+1004	红色史莱姆	1006	RedSlime	none	NONE	9999	99	99	99	99	99	0	NONE	NONE
+1005	尖刺史莱姆	1006	SpikeSlime	none	NONE	9999	99	99	99	99	99	0	NONE	NONE
+1006	石头巨人	1007	RockGiant	none	NONE	9999	99	99	99	99	99	0	NONE	NONE

@@ -10,7 +10,7 @@ namespace GameCore.TBS
         public List<TBSActorBase> srcActorList;
         public List<TBSActorBase> targetActorList;
         public List<int> srcUseHpList;
-        public List<int> srcUseSpList;
+        public List<int> srcUseMpList;
         public List<int> damageList;
         public EDamageType damageType;
         public EPhysicalLevelType physicsLevelType;

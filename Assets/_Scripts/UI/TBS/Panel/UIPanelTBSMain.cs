@@ -61,27 +61,20 @@ namespace GameCore.UI
             refreshPanelShow();
         }
 
-        //普通攻击按下回调
         private void onBtnNormalAttackClickDown(PointerEventData _eventData, object[] _args)
         {
-            Debug.Log("点击了普通攻击！");
             SCMsgCenter.SendMsgAct(SCMsgConst.TBS_ATTACK_INPUT);
-
         }
         private void onBtnSkillClickDown(PointerEventData data, object[] arg2)
         {
-            Debug.Log("点击了技能！");
             SCMsgCenter.SendMsgAct(SCMsgConst.TBS_SKILL_INPUT);
-
         }
         private void onBtnItemClickDown(PointerEventData data, object[] arg2)
         {
-            Debug.Log("点击了道具！");
             SCMsgCenter.SendMsgAct(SCMsgConst.TBS_ITEM_INPUT);
         }
         private void onBtnDefenceClickDown(PointerEventData data, object[] arg2)
         {
-            Debug.Log("点击了防御！");
             SCMsgCenter.SendMsgAct(SCMsgConst.TBS_DEFEND_INPUT);
         }
 

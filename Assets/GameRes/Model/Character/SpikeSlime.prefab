@@ -9,6 +9,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 7288653022643483441}
+  - component: {fileID: 5240899989801628092}
   m_Layer: 0
   m_Name: SpikeSlime
   m_TagString: Untagged
@@ -32,6 +33,31 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &5240899989801628092
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7288653022643483442}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5b9f60c6c0d5a9c46a3166fd5ae6662c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  cursorOffset: {x: 0, y: 0.5, z: 0}
+  actorAnim: {fileID: 7292497988741834756}
+  bottomSfxTran: {fileID: 0}
+  centerSfxTran: {fileID: 0}
+  topSfxTran: {fileID: 0}
+  enemyAttackStopOffset: {x: 0, y: 0, z: 1}
+  attackAnimClipName: 
+  runAnimClipName: 
+  getHitAnimClipName: 
+  idleAnimClipName: 
+  defendAnimClipName: 
+  attackAnimDuration: 0
+  defendPlayTime: 0
 --- !u!1001 &7288653022458302718
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -39,6 +65,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 7288653022643483441}
     m_Modifications:
+    - target: {fileID: 5162232971360506, guid: 24a0663f813d4beb91fc0c6b1e8fef36, type: 3}
+      propertyPath: m_Controller
+      value: 
+      objectReference: {fileID: 0}
     - target: {fileID: 6265206175713501824, guid: 24a0663f813d4beb91fc0c6b1e8fef36, type: 3}
       propertyPath: m_RootOrder
       value: 0
@@ -108,5 +138,10 @@ PrefabInstance:
 --- !u!4 &3734615059415495294 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 6265206175713501824, guid: 24a0663f813d4beb91fc0c6b1e8fef36, type: 3}
+  m_PrefabInstance: {fileID: 7288653022458302718}
+  m_PrefabAsset: {fileID: 0}
+--- !u!95 &7292497988741834756 stripped
+Animator:
+  m_CorrespondingSourceObject: {fileID: 5162232971360506, guid: 24a0663f813d4beb91fc0c6b1e8fef36, type: 3}
   m_PrefabInstance: {fileID: 7288653022458302718}
   m_PrefabAsset: {fileID: 0}

@@ -14,5 +14,12 @@ namespace GameCore.TBS
 
         [Header("普攻法球的飞行速度")]
         public float attackFlySpeed;
+
+        [Header("防御动画播放多久跳转下一个角色")]
+        public float defendPlayTime;
+
+        [Header("普攻法球的资质obj名")]
+        public string attackSpawnObjName;
+
     }
 }

@@ -72,7 +72,8 @@ namespace GameCore.UI
         private void onBtnSkillClickDown(PointerEventData _eventData, object[] _args)
         {
             //SCMsgCenter.SendMsg(SCMsgConst.TBS_ACTOR_SKILL, _m_skillRefObj.id);
-            GameCoreMgr.instance.uiCoreMgr.HideCurNode();
+            //GameCoreMgr.instance.uiCoreMgr.HideCurNode();
+            GameCoreMgr.instance.uiCoreMgr.AddNode(new UINodeTBSConfirm(SCUIShowType.FULL));
         }
 
         private void onBtnSkillMouseExit(PointerEventData _data, object[] _args)

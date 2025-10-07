@@ -11,10 +11,15 @@ namespace GameCore.RefData
         {
         }
         public List<ETBSCompType> generalCompList;
-
+        public float tbsTargetHighLightChgTime;
+        public float tbsActorSingleRotateTime;
+        public int tbsInputFrameInterval;
         protected override void _parseFromString()
         {
             generalCompList = getList<ETBSCompType>("generalCompList");
+            tbsTargetHighLightChgTime = getFloat("tbsTargetHighLightChgTime");
+            tbsActorSingleRotateTime = getFloat("tbsActorSingleRotateTime");
+            tbsInputFrameInterval = getInt("tbsInputFrameInterval");
         }
         public static string assetPath => "RefData/ExportTxt";
 

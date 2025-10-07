@@ -18,6 +18,9 @@ namespace GameCore.TBS
         public List<TBSPosInfo> playerPosInfoList;
         public List<TBSPosInfo> enemyPosInfoList;
 
+        public Transform playerLookEnemyCenterPos;
+        public Transform enemyLookPlayerCenterPos;
+
         //public Transform cameraLook
 
 

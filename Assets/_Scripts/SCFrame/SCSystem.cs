@@ -19,7 +19,14 @@ namespace SCFrame
 
         public override void OnDiscard()
         {
-            //todo
+            SCRefDataMgr.instance.Discard();
+            SCMsgCenter.instance.Discard();
+            SCSaveSys.instance.Discard();
+            LanguageHelper.instance.Discard();
+            SCInputListener.instance.Discard();
+            SCPoolMgr.instance.Discard();
+            TBSCursorMgr.instance.Discard();
+            GameCameraMgr.instance.Discard();
         }
     }
 }

@@ -22,6 +22,8 @@ namespace GameCore.TBS
         private TBSGameMono _m_gameMono;
 
         private int _m_curSelectActorIndex;
+
+        private int _m_targetIndex;
         public override void OnInitialize()
         {
             SCMsgCenter.RegisterMsgAct(SCMsgConst.TBS_ACTOR_MGR_WORK, onTBSActorMgrWork);
@@ -30,6 +32,8 @@ namespace GameCore.TBS
             SCMsgCenter.RegisterMsgAct(SCMsgConst.TBS_ACTOR_DEFENCE, onTBSActorDefence);
             SCMsgCenter.RegisterMsgAct(SCMsgConst.TBS_ACTOR_ATTACK, onTBSActorAttack);
             SCMsgCenter.RegisterMsg(SCMsgConst.TBS_ACTOR_SKILL, onTBSActorSkill);
+            SCMsgCenter.RegisterMsgAct(SCMsgConst.TBS_ACTOR_TARGET_HIGHLIGHT_LEFT, onTBSActorTargetHighlightLeft);
+            SCMsgCenter.RegisterMsgAct(SCMsgConst.TBS_ACTOR_TARGET_HIGHLIGHT_RIGHT, onTBSActorTargetHighlightRight);
 
 
         }
@@ -41,7 +45,26 @@ namespace GameCore.TBS
             SCMsgCenter.UnregisterMsgAct(SCMsgConst.TBS_ACTOR_DEFENCE, onTBSActorDefence);
             SCMsgCenter.UnregisterMsgAct(SCMsgConst.TBS_ACTOR_ATTACK, onTBSActorAttack);
             SCMsgCenter.UnregisterMsg(SCMsgConst.TBS_ACTOR_SKILL, onTBSActorSkill);
+            SCMsgCenter.UnregisterMsgAct(SCMsgConst.TBS_ACTOR_TARGET_HIGHLIGHT_LEFT, onTBSActorTargetHighlightLeft);
+            SCMsgCenter.UnregisterMsgAct(SCMsgConst.TBS_ACTOR_TARGET_HIGHLIGHT_RIGHT, onTBSActorTargetHighlightRight);
 
+            foreach (var actor in _m_playerActorModuleList)
+            {
+                if (actor == null)
+                    continue;
+                actor.Discard();
+            }
+            _m_playerActorModuleList.Clear();
+            _m_playerActorModuleList = null;
+
+            foreach (var actor in _m_enemyActorModuleList)
+            {
+                if (actor == null)
+                    continue;
+                actor.Discard();
+            }
+            _m_enemyActorModuleList.Clear();
+            _m_enemyActorModuleList = null;
         }
 
         public override void OnResume() { }
@@ -78,7 +101,7 @@ namespace GameCore.TBS
 
             TBSActorInfo actorInfo = null;
             GameObject actorGO = null;
-            TBSActorBase actorBase = null;
+            TBSActorBase actor = null;
             //生成玩家队伍角色
             for(int i =0;i<_m_playerTeamInfo.actorInfoList.Count;i++)
             {
@@ -90,10 +113,13 @@ namespace GameCore.TBS
                     Quaternion.identity, true);
 
                 _m_playerActorGOList.Add(actorGO);
-                actorBase = TBSEnumFactory.CreateTBSActorByProfession(actorInfo.professionType,
+                actor = TBSEnumFactory.CreateTBSActorByProfession(actorInfo.professionType,
                     actorGO.GetComponent<TBSActorMonoBase>());
-                actorBase.Initialize();
-                _m_playerActorModuleList.Add(actorBase);
+                if (actor == null)
+                    continue;
+                actor.Initialize();
+                actor.SetActorInfo(actorInfo);
+                _m_playerActorModuleList.Add(actor);
             }
 
             //生成敌人队伍角色
@@ -107,39 +133,23 @@ namespace GameCore.TBS
                     Quaternion.Euler(new Vector3(0,180,0)), true);//面朝玩家
 
                 _m_enemyActorGOList.Add(actorGO);
-                actorBase = TBSEnumFactory.CreateTBSActorByProfession(actorInfo.professionType,
+                actor = TBSEnumFactory.CreateTBSActorByProfession(actorInfo.professionType,
                     actorGO.GetComponent<TBSActorMonoBase>());
-                actorBase.Initialize();
-                _m_enemyActorModuleList.Add(actorBase);
+                if (actor == null)
+                    continue;
+                actor.Initialize();
+                actor.SetActorInfo(actorInfo);
+                _m_enemyActorModuleList.Add(actor);
 
             }
 
             _m_curSelectActorIndex = 0;
-            if (SCModel.instance.tbsModel.curTurnType == ETBSTurnType.PLAYER)
-            {
-                //设置相机
-                GameCameraMgr.instance.SetCameraTarget(_m_enemyActorGOList[0].transform);
-                GameCameraMgr.instance.SetCameraFollow(_m_playerActorGOList[_m_curSelectActorIndex].transform,
-                    () =>
-                    {
-                        GameCoreMgr.instance.uiCoreMgr.HideCurNode();
-                        TBSCursorMgr.instance.HideSelectionCursor();
-                    },
-                    () =>
-                    {
-                        GameCoreMgr.instance.uiCoreMgr.ShowCurNode();
-                        TBSCursorMgr.instance.SetSelectionCursorPos(_m_enemyActorModuleList[0].getCursorPos());
-                    });
-                GameCameraMgr.instance.SetCameraPositionOffsetWithFollow(_m_gameMono.playerPosInfoList[_m_curSelectActorIndex].cameraIdlePos);
-                
-            }
-            else
-            {
-                //todo
-            }
+
+            refreshCameraAndCursor(true);
 
             SCModel.instance.tbsModel.curActorIndex = _m_curSelectActorIndex;
 
+            
         }
 
         private void onTBSActorMgrRest()
@@ -175,35 +185,20 @@ namespace GameCore.TBS
 
             SCModel.instance.tbsModel.curActorIndex = _m_curSelectActorIndex;
 
-            if (SCModel.instance.tbsModel.curTurnType == ETBSTurnType.PLAYER)
-            {
-                //设置相机
-                GameCameraMgr.instance.SetCameraTarget(_m_enemyActorGOList[0].transform);
-                GameCameraMgr.instance.SetCameraFollow(_m_playerActorGOList[_m_curSelectActorIndex].transform,
-                    null,
-                    () =>
-                    {
-                        GameCoreMgr.instance.uiCoreMgr.ShowCurNode();
-                        TBSCursorMgr.instance.SetSelectionCursorPos(_m_enemyActorModuleList[0].getCursorPos());
-                    });
-                GameCameraMgr.instance.SetCameraPositionOffsetWithFollow(_m_gameMono.playerPosInfoList[_m_curSelectActorIndex].cameraIdlePos);
-            }
-            else if (SCModel.instance.tbsModel.curTurnType == ETBSTurnType.ENEMY)
-            {
+            refreshCameraAndCursor(true);
 
-            }
         }
 
 
 
         private void onTBSActorDefence()
         {
-
+            _m_playerActorModuleList[_m_curSelectActorIndex].Defend();
         }
 
         private void onTBSActorAttack()
         {
-            _m_playerActorModuleList[_m_curSelectActorIndex].Attack(_m_enemyActorModuleList[0]);
+            _m_playerActorModuleList[_m_curSelectActorIndex].Attack(_m_enemyActorModuleList[_m_targetIndex]);
         }
 
         private void onTBSActorSkill(object[] _args)
@@ -211,17 +206,69 @@ namespace GameCore.TBS
             if (_args == null || _args.Length == 0)
                 return;
             long skillId = (long)_args[0];
-            _m_playerActorModuleList[_m_curSelectActorIndex].Attack(_m_enemyActorModuleList[0]);
+            _m_playerActorModuleList[_m_curSelectActorIndex].Attack(_m_enemyActorModuleList[_m_targetIndex]);
+        }
+
+        private void onTBSActorTargetHighlightLeft()
+        {
+            _m_targetIndex--;
+            if (_m_targetIndex < 0)
+                _m_targetIndex = _m_enemyActorModuleList.Count - 1;
+            refreshCameraAndCursor(false);
+        }
+
+        private void onTBSActorTargetHighlightRight()
+        {
+            _m_targetIndex++;
+            if (_m_targetIndex > _m_enemyActorModuleList.Count - 1)
+                _m_targetIndex = 0;
+            refreshCameraAndCursor(false);
         }
         #endregion
 
+        private void refreshCameraAndCursor(bool _reSetFollow)
+        {
+            if (_m_enemyActorGOList == null || _m_enemyActorGOList.Count == 0 || _m_playerActorGOList.Count == 0 ||
+                _m_playerActorGOList.Count == 0 || _m_enemyActorModuleList == null || _m_enemyActorModuleList.Count == 0)
+                return;
 
-        //public TBSActorBase GetCurActor()
-        //{
-        //    if (SCModel.instance.tbsModel.curTurnType == ETBSTurnType.ENEMY)
-        //        return _m_enemyActorModuleList[_m_curSelectActorIndex];
-        //    else
-        //        return _m_playerActorModuleList[_m_curSelectActorIndex];
-        //}
+
+            void onStart()
+            {
+                GameCoreMgr.instance.uiCoreMgr.HideCurNode();
+                TBSCursorMgr.instance.HideSelectionCursor();
+            }
+
+            void onFinish()
+            {
+                GameCoreMgr.instance.uiCoreMgr.ShowCurNode();
+                TBSCursorMgr.instance.SetSelectionCursorPos(_m_enemyActorModuleList[_m_targetIndex].getCursorPos());
+            }
+
+            void setCameraOffset()
+            {
+                GameCameraMgr.instance.SetCameraPositionOffsetWithFollow(_m_gameMono.playerPosInfoList[_m_curSelectActorIndex].cameraIdlePos, () =>
+                {
+                    onStart();
+                }, () =>
+                {
+                    onFinish();
+                });
+            }
+
+            if (SCModel.instance.tbsModel.curTurnType == ETBSTurnType.PLAYER)
+            {
+                //设置相机
+                GameCameraMgr.instance.SetCameraTarget(_m_gameMono.playerLookEnemyCenterPos);
+                if(_reSetFollow)
+                    GameCameraMgr.instance.SetCameraFollow(_m_playerActorGOList[_m_curSelectActorIndex].transform);
+                setCameraOffset();
+
+            }
+            else
+            {
+                //todo
+            }
+        }
     }
 }

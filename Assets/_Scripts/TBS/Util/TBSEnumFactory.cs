@@ -24,8 +24,14 @@ namespace GameCore.TBS
                 case EProfessionType.MAGE:
                     res = new TBSMageActor(_mono);
                     break;
+                case EProfessionType.TROLL:
+                    res = new TBSTrollActor(_mono);
+                    break;
+                case EProfessionType.MONSTER:
+                    res = new TBSMonsterActor(_mono);
+                    break;
                 default:
-                    res = new TBSActorBase(_mono);
+                    res = null;
                     break;
             }
             return res;

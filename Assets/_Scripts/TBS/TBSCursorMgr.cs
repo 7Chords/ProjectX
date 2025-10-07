@@ -30,19 +30,26 @@ namespace GameCore.TBS
             _m_selectionCursor.GetRectTransform().localPosition =
                 SCUICommon.WorldPointToUIPoint(_m_selectionCursor.GetRectTransform(),
                 _pos);
-
-            Tween tween = _m_selectionCursor.GetImage().DOFade(1, 0.5f).OnStart(() =>
-            {
-                _m_selectionCursor.GetImage().color = new Color(1, 1, 1, 0);
-            });
-            _m_tweenContainer?.RegDoTween(tween);
+            float chgTime = SCRefDataMgr.instance.gameGeneralRefObj.tbsTargetHighLightChgTime;
+            Tween tween_scale = _m_selectionCursor.transform.DOScale(Vector3.one, chgTime);
+            Tween tween_alpha = _m_selectionCursor.GetImage().DOFade(1, chgTime);
+            _m_tweenContainer.RegDoTween(tween_scale);
+            _m_tweenContainer.RegDoTween(tween_alpha);
         }
 
         public void HideSelectionCursor()
         {
             if (_m_selectionCursor == null)
                 return;
-            SCCommon.SetGameObjectEnable(_m_selectionCursor, false);
+            float chgTime = SCRefDataMgr.instance.gameGeneralRefObj.tbsTargetHighLightChgTime;
+            Tween tween_scale = _m_selectionCursor.transform.DOScale(Vector3.one * 1.5f, chgTime);
+            Tween tween_alpha = _m_selectionCursor.GetImage().DOFade(0, chgTime).OnComplete(() =>
+            {
+                SCCommon.SetGameObjectEnable(_m_selectionCursor, false);
+            });
+            _m_tweenContainer.RegDoTween(tween_scale);
+            _m_tweenContainer.RegDoTween(tween_alpha);
+
         }
     }
 }

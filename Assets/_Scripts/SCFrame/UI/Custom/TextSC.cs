@@ -48,36 +48,33 @@ public class TextSC : Text
             if (string.IsNullOrEmpty(_m_sTranslatedText))
                 return base.text;
 
-            return "";
+            if (_m_eLanguage == SCSaveSys.instance.languageType)
+            {
+                //不需要更新翻译
+                return _m_sTranslatedText;
+            }
+            else
+            {
+                //需要更新翻译
 
-            //todo:
-            //if (_m_eLanguage == TextTranslate.instance.g_Lang)
-            //{
-            //    //不需要更新翻译
-            //    return _m_sTranslatedText;
-            //}
-            //else
-            //{
-            //    //需要更新翻译
+                //设置语言
+                _m_eLanguage = SCSaveSys.instance.languageType;
 
-            //    //设置语言
-            //    _m_eLanguage = TextTranslate.instance.g_Lang;
+                if (string.IsNullOrEmpty(base.text))
+                    return base.text;
 
-            //    if (string.IsNullOrEmpty(base.text))
-            //        return base.text;
+                //开始处理翻译, '#1'
+                if (base.text.Length >= 2 && base.text[0].Equals('#'))
+                {
+                    _m_sTranslatedText = LanguageHelper.instance.GetTextTranslate(base.text);
+                }
+                else
+                {
+                    _m_sTranslatedText = base.text;
+                }
 
-            //    //开始处理翻译, '#1'
-            //    if (base.text.Length >= 2 && base.text[0].Equals('#'))
-            //    {
-            //        _m_sTranslatedText = TextTranslate.instance.getLanguage(base.text);
-            //    }
-            //    else
-            //    {
-            //        _m_sTranslatedText = base.text;
-            //    }
-
-            //    return _m_sTranslatedText;
-            //}
+                return _m_sTranslatedText;
+            }
         }
         set
         {
@@ -157,25 +154,24 @@ public class TextSC : Text
             font = g_Font;
         }
 
-        //todo
-        //if (_m_eLanguage != TextTranslate.instance.g_Lang)
-        //{
-        //    //需要更新翻译
+        if (_m_eLanguage != SCSaveSys.instance.languageType)
+        {
+            //需要更新翻译
 
-        //    //设置语言
-        //    _m_eLanguage = TextTranslate.instance.g_Lang;
+            //设置语言
+            _m_eLanguage = SCSaveSys.instance.languageType;
 
-        //    if (string.IsNullOrEmpty(base.text))
-        //        return;
+            if (string.IsNullOrEmpty(base.text))
+                return;
 
-        //    //开始处理翻译
-        //    if (base.text.Length >= 2 && base.text[0].Equals('#'))
-        //    {
-        //        _m_sTranslatedText = TextTranslate.instance.getLanguage(base.text);
-        //        this.SetVerticesDirty();
-        //        this.SetLayoutDirty();
-        //    }
-        //}
+            //开始处理翻译
+            if (base.text.Length >= 2 && base.text[0].Equals('#'))
+            {
+                _m_sTranslatedText = LanguageHelper.instance.GetTextTranslate(base.text);
+                this.SetVerticesDirty();
+                this.SetLayoutDirty();
+            }
+        }
     }
 
     protected override void OnPopulateMesh(VertexHelper toFill)

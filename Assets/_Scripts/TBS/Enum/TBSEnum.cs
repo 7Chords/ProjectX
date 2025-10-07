@@ -27,7 +27,7 @@ namespace GameCore.TBS
         SKILL,//技能
         ITEM,//道具
         DEFEND,//防御
-               //NAVIGATE,//导航（光标）
+        NAVIGATE,//导航（光标）
         ANALYSE,//分析
         SWITCH_BOW,//切换弓的形态
     }

@@ -15,11 +15,14 @@ namespace GameCore
         //test
         public bool isNewGame = true;
 
-        public void Start()
+        private void Awake()
         {
             SCSystem.instance.Initialize();
             SCPlayer.instance.Initialize();
             SCModel.instance.Initialize();
+        }
+        public void Start()
+        {
 
             if (isNewGame)
                 SCModel.instance.InitNewData();
@@ -35,6 +38,14 @@ namespace GameCore
         private void Update()
         {
         }
+
+        private void OnDisable()
+        {
+            SCModel.instance.Discard();
+            SCPlayer.instance.Discard();
+            SCSystem.instance.Discard();
+        }
+
 
     }
 }

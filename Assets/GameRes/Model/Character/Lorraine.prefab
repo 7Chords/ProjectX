@@ -1379,7 +1379,7 @@ Animator:
   m_GameObject: {fileID: 8803214051831067346}
   m_Enabled: 1
   m_Avatar: {fileID: 9000000, guid: bed7a092d53e7c748bd65db98cebf9d6, type: 3}
-  m_Controller: {fileID: 9100000, guid: 2890c9060ce4f6b45b4082d87f47b27e, type: 2}
+  m_Controller: {fileID: 0}
   m_CullingMode: 1
   m_UpdateMode: 0
   m_ApplyRootMotion: 0
@@ -2651,6 +2651,13 @@ MonoBehaviour:
   centerSfxTran: {fileID: 0}
   topSfxTran: {fileID: 0}
   enemyAttackStopOffset: {x: 0, y: 0, z: 2}
+  attackAnimClipName: lorraine_attack_anim_clip
+  runAnimClipName: lorraine_run_anim_clip
+  getHitAnimClipName: lorraine_getHit_anim_clip
+  idleAnimClipName: lorraine_idle_anim_clip
+  defendAnimClipName: lorraine_defend_anim_clip
   attackSourceTran: {fileID: 5225333171201662888}
   attackSpwanTime: 0.5
   attackFlySpeed: 100
+  defendPlayTime: 1
+  attackSpawnObjName: FireBall

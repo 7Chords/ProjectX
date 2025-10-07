@@ -21,7 +21,15 @@ namespace SCFrame
         /// <returns></returns>
         public static T LoadAsset<T>(string _assetName) where T : UnityEngine.Object
         {
-            return Addressables.LoadAssetAsync<T>(_assetName).WaitForCompletion();
+            try
+            {
+                return Addressables.LoadAssetAsync<T>(_assetName).WaitForCompletion();
+            }
+            catch(Exception ex)
+            {
+                Debug.LogError("ResourcesHelper记载资源出错！！！" + ex);
+                return null;
+            }
         }
 
 
@@ -35,14 +43,22 @@ namespace SCFrame
         /// <returns></returns>
         public static GameObject LoadGameObject(string _assetName, Transform _parent = null, bool _automaticRelease = true)
         {
-            GameObject go = null;
-            go = Addressables.InstantiateAsync(_assetName, _parent).WaitForCompletion();
-            if (_automaticRelease)
+            try
             {
-                go.transform.AddReleaseAddressableAsset(AutomaticReleaseAssetAction);
+                GameObject go = null;
+                go = Addressables.InstantiateAsync(_assetName, _parent).WaitForCompletion();
+                if (_automaticRelease)
+                {
+                    go.transform.AddReleaseAddressableAsset(AutomaticReleaseAssetAction);
+                }
+                go.name = _assetName;
+                return go;
             }
-            go.name = _assetName;
-            return go;
+            catch(Exception ex)
+            {
+                Debug.LogError("ResourcesHelper记载游戏物体出错！！！" + ex);
+                return null;
+            }
         }
 
         /// <summary>
@@ -55,14 +71,22 @@ namespace SCFrame
         /// <returns></returns>
         public static GameObject LoadGameObject(string _assetName,Vector3 _position, Quaternion _quaternion , bool _automaticRelease = true)
         {
-            GameObject go = null;
-            go = Addressables.InstantiateAsync(_assetName, _position, _quaternion).WaitForCompletion();
-            if (_automaticRelease)
+            try
             {
-                go.transform.AddReleaseAddressableAsset(AutomaticReleaseAssetAction);
+                GameObject go = null;
+                go = Addressables.InstantiateAsync(_assetName, _position, _quaternion).WaitForCompletion();
+                if (_automaticRelease)
+                {
+                    go.transform.AddReleaseAddressableAsset(AutomaticReleaseAssetAction);
+                }
+                go.name = _assetName;
+                return go;
             }
-            go.name = _assetName;
-            return go;
+            catch(Exception ex)
+            {
+                Debug.LogError("ResourcesHelper记载游戏物体出错！！！" + ex);
+                return null;
+            }
         }
 
         /// <summary>
