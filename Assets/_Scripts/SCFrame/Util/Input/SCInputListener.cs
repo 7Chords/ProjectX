@@ -54,6 +54,8 @@ namespace SCFrame
                     SCMsgCenter.SendMsgAct(SCMsgConst.TBS_SWITCH_TO_LEFT_INPUT);
                 if (Input.GetKeyDown(SCSaveSys.instance.saveKeyInfo.tbsSwitchToRightKeyCode))
                     SCMsgCenter.SendMsgAct(SCMsgConst.TBS_SWITCH_TO_RIGHT_INPUT);
+                if (Input.GetKeyDown(SCSaveSys.instance.saveKeyInfo.tbsConfirmKeyCode))
+                    SCMsgCenter.SendMsgAct(SCMsgConst.TBS_CONFIRM_INPUT);
             }
         }
     }

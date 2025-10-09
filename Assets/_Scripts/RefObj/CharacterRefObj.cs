@@ -33,6 +33,11 @@ namespace GameCore.RefData
         public float initCritical;
         public EArmorLevelType initArmorLevel;
         public EMagicResistanceLevelType initMgicResistanceLevel;
+        public EMagicAttributeType magicAttribute;
+        public EDamageType attackDamageType;
+        public EPhysicalLevelType attackPhysicalLevel;
+        public EMagicAttributeType attackMagicAttribute;
+
         protected override void _parseFromString()
         {
             id = getInt("id");
@@ -50,6 +55,11 @@ namespace GameCore.RefData
             initCritical = getFloat("initCritical");
             initArmorLevel = (EArmorLevelType)getEnum("initArmorLevel", typeof(EArmorLevelType));
             initMgicResistanceLevel = (EMagicResistanceLevelType)getEnum("initMgicResistanceLevel", typeof(EMagicResistanceLevelType));
+            magicAttribute = (EMagicAttributeType)getEnum("magicAttribute", typeof(EMagicAttributeType));
+            attackDamageType = (EDamageType)getEnum("attackDamageType", typeof(EDamageType));
+            attackPhysicalLevel = (EPhysicalLevelType)getEnum("attackPhysicalLevel", typeof(EPhysicalLevelType));
+            attackMagicAttribute = (EMagicAttributeType)getEnum("attackMagicAttribute", typeof(EMagicAttributeType));
+
         }
 
         public static string assetPath => "RefData/ExportTxt";

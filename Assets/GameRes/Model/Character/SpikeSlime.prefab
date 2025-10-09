@@ -10,6 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 7288653022643483441}
   - component: {fileID: 5240899989801628092}
+  - component: {fileID: 1013555575444296757}
   m_Layer: 0
   m_Name: SpikeSlime
   m_TagString: Untagged
@@ -56,8 +57,22 @@ MonoBehaviour:
   getHitAnimClipName: 
   idleAnimClipName: 
   defendAnimClipName: 
+  animEventTrigger: {fileID: 0}
   attackAnimDuration: 0
   defendPlayTime: 0
+--- !u!135 &1013555575444296757
+SphereCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7288653022643483442}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Radius: 2
+  m_Center: {x: 0, y: 1, z: 0}
 --- !u!1001 &7288653022458302718
 PrefabInstance:
   m_ObjectHideFlags: 0

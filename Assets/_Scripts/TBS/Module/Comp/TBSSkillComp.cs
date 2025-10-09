@@ -12,11 +12,15 @@ namespace GameCore.TBS
         public override void OnInitialize()
         {
             SCMsgCenter.RegisterMsgAct(SCMsgConst.TBS_SKILL_INPUT, onTBSSkillInput);
+            SCMsgCenter.RegisterMsgAct(SCMsgConst.TBS_CONFIRM_INPUT, onTBSConfirmInput);
+
         }
 
         public override void OnDiscard()
         {
             SCMsgCenter.UnregisterMsgAct(SCMsgConst.TBS_SKILL_INPUT, onTBSSkillInput);
+            SCMsgCenter.UnregisterMsgAct(SCMsgConst.TBS_CONFIRM_INPUT, onTBSConfirmInput);
+
         }
 
         private void onTBSSkillInput()
@@ -25,6 +29,14 @@ namespace GameCore.TBS
             if (node == null || node.hasHideNode)
                 return;
             GameCoreMgr.instance.uiCoreMgr.AddNode(new UINodeTBSSkill(SCFrame.UI.SCUIShowType.FULL));
+        }
+
+        private void onTBSConfirmInput()
+        {
+            _ASCUINodeBase node = GameCoreMgr.instance.uiCoreMgr.GetNodeByName(nameof(UINodeTBSSkill));
+            if (node == null || node.hasHideNode)
+                return;
+            SCMsgCenter.SendMsgAct(SCMsgConst.TBS_ACTOR_SKILL_CONFIRM);
         }
     }
 }

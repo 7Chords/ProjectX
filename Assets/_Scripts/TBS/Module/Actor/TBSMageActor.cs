@@ -14,6 +14,7 @@ namespace GameCore.TBS
 
         public override void Attack(TBSActorBase _target)
         {
+            _m_attackEnemyActorList.Add(_target);
             TBSMageActorMono actorMono = _m_actorMono as TBSMageActorMono;
             Sequence seq = DOTween.Sequence();
             GameObject flyBall = null;
@@ -25,6 +26,7 @@ namespace GameCore.TBS
                     Vector3 dir = (_target.getPos() - flyBall.transform.position).normalized;
                     flyBall.transform.LookAt(dir);
                     flyBall.GetComponent<Rigidbody>().velocity = dir * actorMono.attackFlySpeed;
+                    flyBall.GetComponent<AttackFlyObj>().Initialize(_target.getGameObject(), dealAttack);
                 }).OnStart(
                 ()=>
                 {
@@ -36,11 +38,13 @@ namespace GameCore.TBS
             seq.Append(DOVirtual.DelayedCall(actorMono.attackSpwanTime + flyTime,
                 () =>
                 {
-                    SCCommon.DestoryGameObject(flyBall);
+                    _m_attackEnemyActorList.Remove(_target);
                     SCMsgCenter.SendMsgAct(SCMsgConst.TBS_ACTOR_ACTION_END);
                     _m_animationCtl.PlaySingleAniamtion(_m_idleAnimClip);
 
                 }));
+            _m_tweenContainer?.RegDoTween(seq);
+
         }
 
         public override void Defend()

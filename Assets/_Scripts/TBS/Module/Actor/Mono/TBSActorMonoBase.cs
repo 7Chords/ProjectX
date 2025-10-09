@@ -1,3 +1,4 @@
+using GameCore.Util;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -26,5 +27,6 @@ public class TBSActorMonoBase : MonoBehaviour
     public string idleAnimClipName;
     [Header("防御动画名")]
     public string defendAnimClipName;
-
+    [Header("动画事件触发器")]
+    public AnimationEventTrigger animEventTrigger;
 }

@@ -14,5 +14,7 @@ namespace SCFrame
         public KeyCode tbsSwitchToRightKeyCode = KeyCode.D;
         public KeyCode tbsSwitchToUpKeyCode = KeyCode.W;
         public KeyCode tbsSwitchToDownKeyCode = KeyCode.S;
+        public KeyCode tbsConfirmKeyCode = KeyCode.Space;
+
     }
 }

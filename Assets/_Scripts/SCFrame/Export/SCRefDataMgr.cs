@@ -19,6 +19,8 @@ namespace SCFrame
 
         public SCRefDataList<TextLanguageRefObj> textLanguageRefList = new SCRefDataList<TextLanguageRefObj>(TextLanguageRefObj.assetPath, TextLanguageRefObj.sheetName);
 
+        public TBSConfigRefObj tbsConfigRefObj = new TBSConfigRefObj(TBSConfigRefObj.assetPath, TBSConfigRefObj.sheetName);
+
         public override void OnInitialize()
         {
             gameGeneralRefObj.readFromTxt();
@@ -27,6 +29,7 @@ namespace SCFrame
             gameInitRefObj.readFromTxt();
             tbsActorSkillRefList.readFromTxt();
             textLanguageRefList.readFromTxt();
+            tbsConfigRefObj.readFromTxt();
         }
     }
 }

@@ -1,0 +1,41 @@
+﻿key	value
+tbsCrticalMultiplier	1.5
+tbsMagicWeakMultiplier	1.5
+tbsMagicNormalMultiplier	1
+tbsMagicResistMultiplier	.7
+tbsPhysicalPenetrateSameMultiplier	1
+tbsPhysicalPenetrateHigherOneMultiplier	1.5
+tbsPhysicalPenetrateHigherTwoMultiplier	1.7
+tbsPhysicalPenetrateHigherThreeMultiplier	2
+tbsPhysicalPenetrateLowerOneMultiplier	.7
+tbsPhysicalPenetrateLowerTwoMultiplier	.5
+tbsPhysicalPenetrateLowerThreeMultiplier	.3
+tbsMagicResistanceLightMultiplier	.95
+tbsMagicResistanceMediumMultiplier	.8
+tbsMagicResistanceHeavyMultiplier	.65
+tbsMagicResistanceHeroMultiplier	.5
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+cPenetrateLowerTwoMultiplier	.5
+tbsMagicPenetrateLowerThreeMultiplier	.3
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	

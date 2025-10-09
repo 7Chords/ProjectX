@@ -25,6 +25,7 @@ namespace GameCore.UI
         public override void OnDiscard()
         {
             _m_tweenContainer?.KillAllDoTween();
+            _m_tweenContainer = null;
         }
 
         public override void OnHidePanel()

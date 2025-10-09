@@ -1345,6 +1345,7 @@ GameObject:
   m_Component:
   - component: {fileID: 8800307033218394314}
   - component: {fileID: 8898066990867049978}
+  - component: {fileID: 8268381092690985683}
   m_Layer: 0
   m_Name: PolyArtWizardStandardMat
   m_TagString: Untagged
@@ -1389,6 +1390,18 @@ Animator:
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorControllerStateOnDisable: 0
+--- !u!114 &8268381092690985683
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8803214051831067346}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ed307d674eb382e4b8ef8b6f59162869, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &8803219014572356824
 GameObject:
   m_ObjectHideFlags: 0
@@ -2609,6 +2622,7 @@ GameObject:
   m_Component:
   - component: {fileID: 8804294570544746407}
   - component: {fileID: 1301961305825319518}
+  - component: {fileID: 2202950072308861922}
   m_Layer: 0
   m_Name: Lorraine
   m_TagString: Untagged
@@ -2656,8 +2670,23 @@ MonoBehaviour:
   getHitAnimClipName: lorraine_getHit_anim_clip
   idleAnimClipName: lorraine_idle_anim_clip
   defendAnimClipName: lorraine_defend_anim_clip
+  animEventTrigger: {fileID: 8268381092690985683}
   attackSourceTran: {fileID: 5225333171201662888}
   attackSpwanTime: 0.5
-  attackFlySpeed: 100
+  attackFlySpeed: 40
   defendPlayTime: 1
   attackSpawnObjName: FireBall
+--- !u!136 &2202950072308861922
+CapsuleCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8804294570544746406}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 1
+  m_Radius: 1.5
+  m_Height: 8
+  m_Direction: 1
+  m_Center: {x: 0, y: 3.5, z: 0}

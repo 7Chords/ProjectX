@@ -13,6 +13,7 @@ namespace GameCore.UI
     {
 
         private TBSActorSkillRefObj _m_skillRefObj;
+        private bool _m_isSelect;
         public UIPanelTBSSkillContainerItem(UIMonoTBSSkillContainerItem _mono, SCUIShowType _showType) : base(_mono, _showType)
         {
             
@@ -20,17 +21,18 @@ namespace GameCore.UI
 
         public override void OnInitialize()
         {
+            SCMsgCenter.RegisterMsgAct(SCMsgConst.TBS_ACTOR_SKILL_CONFIRM, onTBSActorSkillConfirm);
+
             mono.btnSkillClick.AddClickDown(onBtnSkillClickDown);
             mono.btnSkillClick.AddMouseEnter(onBtnSkillMouseEnter);
-            mono.btnSkillClick.AddMouseExit(onBtnSkillMouseExit);
-
         }
 
         public override void OnDiscard()
         {
+            SCMsgCenter.UnregisterMsgAct(SCMsgConst.TBS_ACTOR_SKILL_CONFIRM, onTBSActorSkillConfirm);
+
             mono.btnSkillClick.RemoveClickDown(onBtnSkillClickDown);
             mono.btnSkillClick.RemoveMouseEnter(onBtnSkillMouseEnter);
-            mono.btnSkillClick.RemoveMouseExit(onBtnSkillMouseExit);
 
         }
 
@@ -66,6 +68,7 @@ namespace GameCore.UI
         public void SetSelect(bool _isSelect)
         {
             mono.imgSkill.color = _isSelect ? mono.colorSkillSelect : mono.colorSkillUnSelect;
+            _m_isSelect = _isSelect;
         }
 
 
@@ -76,16 +79,16 @@ namespace GameCore.UI
             GameCoreMgr.instance.uiCoreMgr.AddNode(new UINodeTBSConfirm(SCUIShowType.FULL));
         }
 
-        private void onBtnSkillMouseExit(PointerEventData _data, object[] _args)
-        {
 
-
-        }
-
-        private void onBtnSkillMouseEnter(PointerEventData _data, object[] _args)
+        private void onBtnSkillMouseEnter(PointerEventData _eventData, object[] _args)
         {
             SCMsgCenter.SendMsg(SCMsgConst.TBS_ACTOR_SKILL_MOUSE_HIGHLIGHT, _m_skillRefObj.id);
 
+        }
+
+        private void onTBSActorSkillConfirm()
+        {
+            GameCoreMgr.instance.uiCoreMgr.AddNode(new UINodeTBSConfirm(SCUIShowType.FULL));
         }
     }
 }

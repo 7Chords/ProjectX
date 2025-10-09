@@ -4,6 +4,7 @@ using UnityEngine;
 using DG.Tweening;
 using System;
 using Random = UnityEngine.Random;
+using System.Collections.Generic;
 
 namespace GameCore.TBS
 {
@@ -21,7 +22,9 @@ namespace GameCore.TBS
         protected AnimationClip _m_defendAnimClip;
 
         protected TBSActorInfo _m_actorInfo;
+        public TBSActorInfo actorInfo => _m_actorInfo;
 
+        protected List<TBSActorBase> _m_attackEnemyActorList;
         public TBSActorBase(TBSActorMonoBase _mono)
         {
             _m_actorMono = _mono;
@@ -35,8 +38,10 @@ namespace GameCore.TBS
             _m_animationCtl = new SCAnimationCtl();
             _m_animationCtl.SetAnimator(_m_actorMono.actorAnim);
             _m_animationCtl.Initialize();
+            _m_attackEnemyActorList = new List<TBSActorBase>();
+
             //这些是基础动画 至于每个角色的技能动画名配在对应的技能RefObj里面
-            if(!string.IsNullOrEmpty(_m_actorMono.idleAnimClipName))
+            if (!string.IsNullOrEmpty(_m_actorMono.idleAnimClipName))
                 _m_idleAnimClip = ResourcesHelper.LoadAsset<AnimationClip>(_m_actorMono.idleAnimClipName);
             if (!string.IsNullOrEmpty(_m_actorMono.runAnimClipName))
                 _m_runAnimClip = ResourcesHelper.LoadAsset<AnimationClip>(_m_actorMono.runAnimClipName);
@@ -49,6 +54,7 @@ namespace GameCore.TBS
 
             if (_m_idleAnimClip != null)
                 _m_animationCtl.PlaySingleAniamtion(_m_idleAnimClip);
+
         }
         public override void OnDiscard()
         {
@@ -85,6 +91,10 @@ namespace GameCore.TBS
             return _m_actorMono.transform.position;
         }
 
+        public GameObject getGameObject()
+        {
+            return _m_actorMono.gameObject;
+        }
         public virtual void LookTarget(Vector3 _target,Action _onStart,Action _onFinish)
         {
             if (_target == _m_actorMono.gameObject.transform.rotation.eulerAngles)
@@ -153,7 +163,7 @@ namespace GameCore.TBS
 
         public virtual bool MissJudge()
         {
-            float randomNum = Random.Range(0, 1);
+            float randomNum = Random.Range(0f, 1f);
             if (randomNum < _m_actorInfo.missChance)
                 return true;
             return false;
@@ -161,10 +171,26 @@ namespace GameCore.TBS
 
         public virtual bool CriticalJudge()
         {
-            float randomNum = Random.Range(0, 1);
+            float randomNum = Random.Range(0f, 1f);
             if (randomNum < _m_actorInfo.criticalChance)
                 return true;
             return false;
+        }
+
+        protected virtual void dealAttack()
+        {
+            TBSGameAttackInfo attackInfo = TBSAttackHandler.CreateTBSAttackInfo();
+            attackInfo.srcActorList = new List<TBSActorBase>();
+            attackInfo.srcActorList.Add(this);
+            attackInfo.targetActorList = _m_attackEnemyActorList;
+
+            attackInfo.baseDamage = actorInfo.attack;
+            attackInfo.damageType = actorInfo.attackDamageType;
+            attackInfo.physicsLevelType = actorInfo.attackPhysicalLevel;
+            attackInfo.magicAttributeType = actorInfo.attackMagicAttribute;
+            attackInfo.damageCauseType = EDamageCauseType.ATTACK;
+            //处理器处理攻击信息
+            TBSAttackHandler.DealAttack(attackInfo);
         }
 
     }

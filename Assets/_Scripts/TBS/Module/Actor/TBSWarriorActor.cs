@@ -16,6 +16,11 @@ namespace GameCore.TBS
         
         public override void Attack(TBSActorBase _target)
         {
+            _m_actorMono.animEventTrigger.AddAnimationEvent("dealAttack", dealAttack);
+
+            //todo
+            _m_attackEnemyActorList.Add(_target);
+
             Vector3 originalPos = _m_actorMono.gameObject.transform.position;
             Sequence seq = DOTween.Sequence();
             Tween move2AttackTween = _m_actorMono.gameObject.transform.DOMove(_target.getEnemyAttackStandPos(), 1f)
@@ -49,9 +54,12 @@ namespace GameCore.TBS
             Tween rotateTween_2 = _m_actorMono.gameObject.transform.DOLocalRotate(Vector3.zero, 0.5f);
 
             seq.Append(move2AttackTween);
+
             seq.Append(DOVirtual.DelayedCall((_m_actorMono as TBSWarriorActorMono).attackAnimDuration, 
                 () =>
                 {
+                    _m_attackEnemyActorList.Remove(_target);
+                    _m_actorMono.animEventTrigger.RemoveAnimationEvent("dealAttack");
                     SCMsgCenter.SendMsgAct(SCMsgConst.TBS_ACTOR_ACTION_END); 
                 }));
             seq.Append(rotateTween_1);

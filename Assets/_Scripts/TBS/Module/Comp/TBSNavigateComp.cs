@@ -41,16 +41,20 @@ namespace GameCore.TBS
 
         private void onTBSSwitchToLeftInput()
         {
-            _ASCUINodeBase node = GameCoreMgr.instance.uiCoreMgr.GetNodeByName(nameof(UINodeTBSMain));
-            if (node == null || node.hasHideNode)
+            _ASCUINodeBase mainNode = GameCoreMgr.instance.uiCoreMgr.GetNodeByName(nameof(UINodeTBSMain));
+            _ASCUINodeBase confirmNode = GameCoreMgr.instance.uiCoreMgr.GetNodeByName(nameof(UINodeTBSConfirm));
+
+            if ((mainNode == null || mainNode.hasHideNode) && (confirmNode == null || confirmNode.hasHideNode))
                 return;
             SCMsgCenter.SendMsgAct(SCMsgConst.TBS_ACTOR_TARGET_HIGHLIGHT_LEFT);
         }
 
         private void onTBSSwitchToRightInput()
         {
-            _ASCUINodeBase node = GameCoreMgr.instance.uiCoreMgr.GetNodeByName(nameof(UINodeTBSMain));
-            if (node == null || node.hasHideNode)
+            _ASCUINodeBase mainNode = GameCoreMgr.instance.uiCoreMgr.GetNodeByName(nameof(UINodeTBSMain));
+            _ASCUINodeBase confirmNode = GameCoreMgr.instance.uiCoreMgr.GetNodeByName(nameof(UINodeTBSConfirm));
+
+            if ((mainNode == null || mainNode.hasHideNode) && (confirmNode == null || confirmNode.hasHideNode))
                 return;
             SCMsgCenter.SendMsgAct(SCMsgConst.TBS_ACTOR_TARGET_HIGHLIGHT_RIGHT);
         }

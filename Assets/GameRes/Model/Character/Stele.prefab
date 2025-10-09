@@ -1122,6 +1122,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4627569865287819914}
   - component: {fileID: 4627569865280884054}
+  - component: {fileID: 2746491463881782451}
   m_Layer: 0
   m_Name: DogPolyart
   m_TagString: Untagged
@@ -1166,6 +1167,18 @@ Animator:
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorControllerStateOnDisable: 0
+--- !u!114 &2746491463881782451
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4627569865288318698}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ed307d674eb382e4b8ef8b6f59162869, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &4627569865288318700
 GameObject:
   m_ObjectHideFlags: 0
@@ -2394,6 +2407,7 @@ GameObject:
   m_Component:
   - component: {fileID: 6671934514393013419}
   - component: {fileID: 1634726553950741811}
+  - component: {fileID: 8821873457962801809}
   m_Layer: 0
   m_Name: Stele
   m_TagString: Untagged
@@ -2440,8 +2454,23 @@ MonoBehaviour:
   getHitAnimClipName: stele_getHit_anim_clip
   idleAnimClipName: stele_idle_anim_clip
   defendAnimClipName: stele_defend_anim_clip
+  animEventTrigger: {fileID: 2746491463881782451}
   attackAnimDuration: 1
   defendPlayTime: 1
+--- !u!136 &8821873457962801809
+CapsuleCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6671934514393013416}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 1
+  m_Radius: 1.5
+  m_Height: 8
+  m_Direction: 1
+  m_Center: {x: 0, y: 3.5, z: 0}
 --- !u!1 &7656945258342648692
 GameObject:
   m_ObjectHideFlags: 0
