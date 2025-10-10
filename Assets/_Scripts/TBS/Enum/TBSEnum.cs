@@ -48,7 +48,7 @@ namespace GameCore.TBS
         LARGE,
     }
 
-    public enum EDamageTargetType
+    public enum ETargetType
     {
         NONE,
         SINGLE,//µ¥Με

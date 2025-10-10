@@ -46,15 +46,15 @@ namespace GameCore.Util
             }
         }
 
-        public static string CreateLocalStrByDamageTargetEnum(EDamageTargetType _damageTargetType)
+        public static string CreateLocalStrByDamageTargetEnum(ETargetType _damageTargetType)
         {
             string translateKey = "#1_";
             switch (_damageTargetType)
             {
-                case EDamageTargetType.SINGLE:
+                case ETargetType.SINGLE:
                     translateKey += "single";
                     return LanguageHelper.instance.GetTextTranslate(translateKey);
-                case EDamageTargetType.ALL:
+                case ETargetType.ALL:
                     translateKey += "all";
                     return LanguageHelper.instance.GetTextTranslate(translateKey);
                 default:

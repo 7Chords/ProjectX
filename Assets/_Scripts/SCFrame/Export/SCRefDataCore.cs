@@ -32,6 +32,8 @@ namespace SCFrame
 
         private Dictionary<string, string> _m_keyValueMap = new Dictionary<string, string>();
 
+        private const string EXCEL_EMPTY_FLAG = "*";
+
         public void readFromTxt()
         {
             if (string.IsNullOrEmpty(_m_assetPath) || string.IsNullOrEmpty(_m_sheetName))
@@ -292,6 +294,10 @@ namespace SCFrame
                     Debug.LogError($"{_m_assetPath},{_m_sheetName}的字段{_name}为空");
                 return list;
             }
+            //空列表标识
+            if (tempValue == EXCEL_EMPTY_FLAG)
+                return list;
+
             string[] strs = tempValue.Split(new char[] { ';', ':' });
             for (var i = 0; i < strs.Length; i++)
             {

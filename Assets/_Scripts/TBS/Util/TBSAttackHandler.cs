@@ -58,7 +58,7 @@ namespace GameCore.TBS
                         else if(_attackInfo.damageType == EDamageType.MAGIC)
                         {
                             tmpDamage *= getMagicResistanceRate(actor.actorInfo.magicResistanceLevel);
-                            tmpDamage *= getMagicWeakRate(_attackInfo.magicAttributeType, actor.actorInfo.magicAttribute);
+                            //tmpDamage *= getMagicWeakRate(_attackInfo.magicAttributeType, actor.actorInfo.magicAttribute);
                         }
                         else if(_attackInfo.damageType == EDamageType.REAL)
                         {

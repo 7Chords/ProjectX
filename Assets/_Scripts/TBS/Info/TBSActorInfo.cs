@@ -24,7 +24,6 @@ namespace GameCore.TBS
         public float criticalChance;
         public EArmorLevelType armorLevel;
         public EMagicResistanceLevelType magicResistanceLevel;
-        public EMagicAttributeType magicAttribute;
         public EDamageType attackDamageType;
         public EPhysicalLevelType attackPhysicalLevel;
         public EMagicAttributeType attackMagicAttribute;
@@ -56,7 +55,6 @@ namespace GameCore.TBS
             criticalChance = _characterRefObj.initCritical;
             armorLevel = _characterRefObj.initArmorLevel;
             magicResistanceLevel = _characterRefObj.initMgicResistanceLevel;
-            magicAttribute = _characterRefObj.magicAttribute;
             attackDamageType = _characterRefObj.attackDamageType;
             attackPhysicalLevel = _characterRefObj.attackPhysicalLevel;
             attackMagicAttribute = _characterRefObj.attackMagicAttribute;

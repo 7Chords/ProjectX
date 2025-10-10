@@ -20,7 +20,7 @@ namespace GameCore.RefData
         public int skillNeedMp;
         public int skillNeedHp;
         public string skillDesc;
-        public EDamageTargetType damageTargetType;
+        public ETargetType damageTargetType;
         public EDamageType damageType;
         public EDamageAmountType damageAmountType;
         public EPhysicalLevelType physicsLevelType;
@@ -33,7 +33,7 @@ namespace GameCore.RefData
             skillNeedMp = getInt("skillNeedMp");
             skillNeedHp = getInt("skillNeedHp");
             skillDesc = getString("skillDesc");
-            damageTargetType = (EDamageTargetType)getEnum("damageTargetType", typeof(EDamageTargetType));
+            damageTargetType = (ETargetType)getEnum("damageTargetType", typeof(ETargetType));
             damageType = (EDamageType)getEnum("damageType", typeof(EDamageType));
             damageAmountType = (EDamageAmountType)getEnum("damageAmountType", typeof(EDamageAmountType));
             physicsLevelType = (EPhysicalLevelType)getEnum("physicsLevelType", typeof(EPhysicalLevelType));

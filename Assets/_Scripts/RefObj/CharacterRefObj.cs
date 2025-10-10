@@ -33,10 +33,17 @@ namespace GameCore.RefData
         public float initCritical;
         public EArmorLevelType initArmorLevel;
         public EMagicResistanceLevelType initMgicResistanceLevel;
-        public EMagicAttributeType magicAttribute;
         public EDamageType attackDamageType;
         public EPhysicalLevelType attackPhysicalLevel;
         public EMagicAttributeType attackMagicAttribute;
+        public List<EMagicAttributeType> weakAttributeList;
+        public List<EMagicAttributeType> normalAttributeList;
+        public List<EMagicAttributeType> resistentAttributeList;
+        public List<EMagicAttributeType> invilidAttributeList;
+        public List<EMagicAttributeType> bounceAttributeList;
+        public List<EMagicAttributeType> suckAttributeList;
+
+
 
         protected override void _parseFromString()
         {
@@ -55,10 +62,15 @@ namespace GameCore.RefData
             initCritical = getFloat("initCritical");
             initArmorLevel = (EArmorLevelType)getEnum("initArmorLevel", typeof(EArmorLevelType));
             initMgicResistanceLevel = (EMagicResistanceLevelType)getEnum("initMgicResistanceLevel", typeof(EMagicResistanceLevelType));
-            magicAttribute = (EMagicAttributeType)getEnum("magicAttribute", typeof(EMagicAttributeType));
             attackDamageType = (EDamageType)getEnum("attackDamageType", typeof(EDamageType));
             attackPhysicalLevel = (EPhysicalLevelType)getEnum("attackPhysicalLevel", typeof(EPhysicalLevelType));
             attackMagicAttribute = (EMagicAttributeType)getEnum("attackMagicAttribute", typeof(EMagicAttributeType));
+            weakAttributeList = getList<EMagicAttributeType>("weakAttributeList");
+            normalAttributeList = getList<EMagicAttributeType>("normalAttributeList");
+            resistentAttributeList = getList<EMagicAttributeType>("resistentAttributeList");
+            invilidAttributeList = getList<EMagicAttributeType>("invilidAttributeList");
+            bounceAttributeList = getList<EMagicAttributeType>("bounceAttributeList");
+            suckAttributeList = getList<EMagicAttributeType>("suckAttributeList");
 
         }
 
