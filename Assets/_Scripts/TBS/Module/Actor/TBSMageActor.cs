@@ -1,4 +1,5 @@
 using DG.Tweening;
+using GameCore.UI;
 using SCFrame;
 using System.Collections;
 using System.Collections.Generic;
@@ -30,7 +31,8 @@ namespace GameCore.TBS
                 }).OnStart(
                 ()=>
                 {
-                    GameCoreMgr.instance.uiCoreMgr.HideCurNode();
+                    GameCoreMgr.instance.uiCoreMgr.HideNode(nameof(UINodeTBSMain));
+                    GameCoreMgr.instance.uiCoreMgr.HideNode(nameof(UINodeTBSEnemyHud));
                     TBSCursorMgr.instance.HideSelectionCursor();
                     _m_animationCtl.PlaySingleAniamtion(_m_attackAnimClip);
                 }));
@@ -57,7 +59,8 @@ namespace GameCore.TBS
                 })
                 .OnStart(() =>
                 {
-                    GameCoreMgr.instance.uiCoreMgr.HideCurNode();
+                    GameCoreMgr.instance.uiCoreMgr.HideNode(nameof(UINodeTBSMain));
+                    GameCoreMgr.instance.uiCoreMgr.HideNode(nameof(UINodeTBSEnemyHud));
                     TBSCursorMgr.instance.HideSelectionCursor();
                     _m_animationCtl.PlaySingleAniamtion(_m_defendAnimClip);
 

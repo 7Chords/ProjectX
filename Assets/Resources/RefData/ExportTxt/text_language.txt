@@ -17,7 +17,8 @@
 10016	#1_fire	火属性的	fire
 10017	#1_water	水属性的	water
 10018	#1_wood	木属性的	wood
-10019	#1_{0}/{1}	{0}/{1}	{0}/{1}
+10019	#2_{0}/{1}	{0}/{1}	{0}/{1}
 10020	#1_tbs_select_target	请选择目标	select targets
 10021	#1_confirm	确定	confirm
 10022	#1_return	返回	return
+10023	#2_lv_name	LV{0} {1}	LV{0} {1}

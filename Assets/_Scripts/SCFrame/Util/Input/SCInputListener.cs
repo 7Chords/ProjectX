@@ -24,7 +24,7 @@ namespace SCFrame
 
         private void update()
         {
-            if(GameCoreMgr.instance.tbsCoreMgr.tbsGameHasStarted)
+            if (GameCoreMgr.instance.tbsCoreMgr.tbsGameHasStarted)
             {
                 if (_m_tbsFrameChecker < _m_tbsFrameInterval)
                 {
@@ -57,6 +57,7 @@ namespace SCFrame
                 if (Input.GetKeyDown(SCSaveSys.instance.saveKeyInfo.tbsConfirmKeyCode))
                     SCMsgCenter.SendMsgAct(SCMsgConst.TBS_CONFIRM_INPUT);
             }
+
         }
     }
 }

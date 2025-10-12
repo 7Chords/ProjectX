@@ -85,5 +85,11 @@ namespace SCFrame
             Debug.LogError("string½âÎö³Éint³ö´í£¡£¡£¡");
             return 0;
         }
+
+
+        public static string GetCharacterNameWithLv(int _level,string _characterName)
+        {
+            return LanguageHelper.instance.GetTextTranslate("#2_lv_name", _level, _characterName);
+        }
     }
 }

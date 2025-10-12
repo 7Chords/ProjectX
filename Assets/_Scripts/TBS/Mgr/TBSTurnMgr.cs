@@ -1,3 +1,4 @@
+using GameCore.UI;
 using SCFrame;
 
 namespace GameCore.TBS
@@ -43,9 +44,9 @@ namespace GameCore.TBS
 
 
             if (_m_curTurnType == ETBSTurnType.ENEMY)
-                GameCoreMgr.instance.uiCoreMgr.HideCurNode();
+                GameCoreMgr.instance.uiCoreMgr.HideNode(nameof(UINodeTBSMain));
             else
-                GameCoreMgr.instance.uiCoreMgr.ShowCurNode();
+                GameCoreMgr.instance.uiCoreMgr.ShowNode(nameof(UINodeTBSMain));
         }
         #endregion
 

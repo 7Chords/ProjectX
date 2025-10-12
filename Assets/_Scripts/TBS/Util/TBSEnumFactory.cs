@@ -1,3 +1,5 @@
+using GameCore.RefData;
+using SCFrame;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -31,10 +33,12 @@ namespace GameCore.TBS
                     res = new TBSMonsterActor(_mono);
                     break;
                 default:
+                    Debug.LogError("TBSEnumFactory CreateTBSActorByProfession 无效的枚举类型！！！");
                     res = null;
                     break;
             }
             return res;
         }
+
     }
 }

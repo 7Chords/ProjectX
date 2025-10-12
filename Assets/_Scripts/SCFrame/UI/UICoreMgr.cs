@@ -84,7 +84,7 @@ namespace SCFrame.UI
         /// <summary>
         /// 关闭当前的节点
         /// </summary>
-        public void CloseCurNode()
+        public void CloseTopNode()
         {
             if (_m_nodeList == null || _m_nodeList.Count == 0)
                 return;
@@ -127,7 +127,7 @@ namespace SCFrame.UI
             _ASCUINodeBase topNode = _m_nodeList[_m_nodeList.Count - 1];
             if (!topNode.canQuitByEsc)
                 return;
-            CloseCurNode();
+            CloseTopNode();
         }
 
         /// <summary>
@@ -140,11 +140,11 @@ namespace SCFrame.UI
             _ASCUINodeBase topNode = _m_nodeList[_m_nodeList.Count - 1];
             if (!topNode.canQuitByMouseRight)
                 return;
-            CloseCurNode();
+            CloseTopNode();
         }
 
 
-        public void HideCurNode()
+        public void HideTopNode()
         {
             if (_m_nodeList == null)
                 return;
@@ -154,7 +154,7 @@ namespace SCFrame.UI
             topNode.HideNode();
         }
 
-        public void ShowCurNode()
+        public void ShowTopNode()
         {
             if (_m_nodeList == null)
                 return;
@@ -162,6 +162,30 @@ namespace SCFrame.UI
             if (topNode == null)
                 return;
             topNode.ShowNode();
+        }
+
+        public void HideNode(string _nodeName)
+        {
+            for(int i = _m_nodeList.Count - 1; i>-1; i--)
+            {
+                if(_m_nodeList[i].GetNodeName()==_nodeName)
+                {
+                    _m_nodeList[i].HideNode();
+                    return;
+                }
+            }
+        }
+
+        public void ShowNode(string _nodeName)
+        {
+            for (int i = _m_nodeList.Count - 1; i > -1; i--)
+            {
+                if (_m_nodeList[i].GetNodeName() == _nodeName)
+                {
+                    _m_nodeList[i].ShowNode();
+                    return;
+                }
+            }
         }
 
         public _ASCUINodeBase GetNodeByName(string _nodeName)
@@ -173,6 +197,8 @@ namespace SCFrame.UI
             }
             return null;
         }
+
+
         #endregion
     }
 }

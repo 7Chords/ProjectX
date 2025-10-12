@@ -5,6 +5,12 @@ using UnityEngine;
 
 namespace GameCore.TBS
 {
+
+    /// <summary>
+    /// TBS攻击和技能处理器
+    /// 物理没有弱点设计
+    /// 法术有弱点 抵抗等设计
+    /// </summary>
     public static class TBSAttackHandler
     {
 
@@ -57,8 +63,26 @@ namespace GameCore.TBS
                         }
                         else if(_attackInfo.damageType == EDamageType.MAGIC)
                         {
-                            tmpDamage *= getMagicResistanceRate(actor.actorInfo.magicResistanceLevel);
-                            //tmpDamage *= getMagicWeakRate(_attackInfo.magicAttributeType, actor.actorInfo.magicAttribute);
+                            if(magicInvalidJudge(_attackInfo.magicAttributeType, actor.actorInfo))
+                            {
+                                actor.GetAttackInvalid();
+                                return;
+                            }
+                            else if(magicBounceJudge(_attackInfo.magicAttributeType, actor.actorInfo))
+                            {
+                                actor.GetAttackBounce();
+                                return;
+                            }
+                            else if (magicSuckJudge(_attackInfo.magicAttributeType, actor.actorInfo))
+                            {
+                                actor.GetAttackSuck();
+                                return;
+                            }
+                            else
+                            {
+                                tmpDamage *= getMagicResistanceRate(actor.actorInfo.magicResistanceLevel);
+                                tmpDamage *= getMagicWeakRate(_attackInfo.magicAttributeType, actor.actorInfo);
+                            }
                         }
                         else if(_attackInfo.damageType == EDamageType.REAL)
                         {
@@ -226,6 +250,69 @@ namespace GameCore.TBS
                 default:
                     return 0;
             }
+        }
+
+
+
+        /// <summary>
+        /// 获得魔法克制倍率
+        /// </summary>
+        /// <param name="_srcAttribute"></param>
+        /// <param name="_tarAttribute"></param>
+        /// <returns></returns>
+        private static float getMagicWeakRate(EMagicAttributeType _srcAttribute, TBSActorInfo _attackInfo)
+        {
+            TBSConfigRefObj tbsConfigRefObj = SCRefDataMgr.instance.tbsConfigRefObj;
+            if (tbsConfigRefObj == null)
+                return 0;
+            if (_attackInfo.weakAttributeList.Contains(_srcAttribute))
+                return tbsConfigRefObj.tbsMagicWeakMultiplier;
+            if (_attackInfo.resistentAttributeList.Contains(_srcAttribute))
+                return tbsConfigRefObj.tbsMagicResistMultiplier;
+            if (_attackInfo.normalAttributeList.Contains(_srcAttribute))
+                return tbsConfigRefObj.tbsMagicNormalMultiplier;
+            return 0;
+
+        }
+
+
+
+        /// <summary>
+        /// 魔法是否无效的判断
+        /// </summary>
+        /// <returns></returns>
+        private static bool magicInvalidJudge(EMagicAttributeType _srcAttribute, TBSActorInfo _attackInfo)
+        {
+            if (_attackInfo == null)
+                return false;
+            if (_attackInfo.invilidAttributeList.Contains(_srcAttribute))
+                return true;
+            return false;
+
+        }
+        /// <summary>
+        /// 魔法是否反弹的判断
+        /// </summary>
+        /// <returns></returns>
+        private static bool magicBounceJudge(EMagicAttributeType _srcAttribute, TBSActorInfo _attackInfo)
+        {
+            if (_attackInfo == null)
+                return false;
+            if (_attackInfo.bounceAttributeList.Contains(_srcAttribute))
+                return true;
+            return false;
+        }
+        /// <summary>
+        /// 魔法是否吸血的判断
+        /// </summary>
+        /// <returns></returns>
+        private static bool magicSuckJudge(EMagicAttributeType _srcAttribute, TBSActorInfo _attackInfo)
+        {
+            if (_attackInfo == null)
+                return false;
+            if (_attackInfo.suckAttributeList.Contains(_srcAttribute))
+                return true;
+            return false;
         }
     }
 }

@@ -10,5 +10,8 @@ namespace GameCore.UI
     {
         [Header("敌人hudItem资源obj名")]
         public string enemyHudItemObjName;
+
+        [Header("敌人huditem与敌人位置的ui坐标偏移")]
+        public Vector3 enemyHudItemOffset;
     }
 }

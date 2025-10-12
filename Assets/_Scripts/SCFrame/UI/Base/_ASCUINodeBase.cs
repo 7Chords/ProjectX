@@ -17,7 +17,7 @@ namespace SCFrame.UI
         public bool hasEnterNode { get => _m_hasEnterNode; }
         public bool hasHideNode { get => _m_hasHideNode; }
         public bool hasExitNode { get => _m_hasExitNode; }
-        public bool showType { get => _m_hasExitNode; }
+        public SCUIShowType showType { get => _m_showType; }
 
         //进入同类型（normal/addition）节点时是否隐藏当前节点
         public abstract bool needHideWhenEnterNewSameTypeNode { get; }
@@ -101,9 +101,9 @@ namespace SCFrame.UI
                 case SCUIShowType.FULL:
                     return SCGame.instance.fullLayerRoot.transform;
                 case SCUIShowType.ADDITION:
-                    return SCGame.instance.fullLayerRoot.transform;
+                    return SCGame.instance.additionLayerRoot.transform;
                 case SCUIShowType.TOP:
-                    return SCGame.instance.fullLayerRoot.transform;
+                    return SCGame.instance.topLayerRoot.transform;
                 default:
                     Debug.LogError(GetNodeName() + "找不到可以挂载的Canvas节点！");
                     return SCGame.instance.mainCanvas.transform;

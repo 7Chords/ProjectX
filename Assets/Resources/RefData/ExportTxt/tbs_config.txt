@@ -14,28 +14,16 @@ tbsMagicResistanceLightMultiplier	.95
 tbsMagicResistanceMediumMultiplier	.8
 tbsMagicResistanceHeavyMultiplier	.65
 tbsMagicResistanceHeroMultiplier	.5
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-cPenetrateLowerTwoMultiplier	.5
-tbsMagicPenetrateLowerThreeMultiplier	.3
-	
-	
-	
-	
-	
-	
-	
-	
+tbsRomanNumberOneSpriteObjName	spr_roman_one
+tbsRomanNumberTwoSpriteObjName	spr_roman_two
+tbsRomanNumberThreeSpriteObjName	spr_roman_three
+tbsAttributeNormalSpriteObjName	spr_attribute_normal
+tbsAttributeWeakSpriteObjName	spr_attribute_weak
+tbsAttributeResistanceSpriteObjName	spr_attribute_resistance
+tbsAttributeInvalidSpriteObjName	spr_attribute_invalid
+tbsAttributeBounceSpriteObjName	spr_attribute_bounce
+tbsAttributeSuckSpriteObjName	spr_attribute_suck
+tbsAttributeUnknownSpriteObjName	spr_attribute_unknown
+tbsResistanceHeroSpriteObjName	spr_resistance_hero
 	
 	

@@ -37,6 +37,46 @@ MonoBehaviour:
     m_Address: spr_head_stele
     m_ReadOnly: 0
     m_SerializedLabels: []
+  - m_GUID: f03f0e1644ce40c4b9c7a0ffaf959dc9
+    m_Address: spr_attribute_bounce
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  - m_GUID: 58194c9d0ed131e49bc8220168f75b00
+    m_Address: spr_attribute_invalid
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  - m_GUID: 9ac55b6727905534782c9608f6f1134f
+    m_Address: spr_attribute_normal
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  - m_GUID: 770e20cf9e7f36f469ac92bd655dba6d
+    m_Address: spr_attribute_resistance
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  - m_GUID: cb5aba835971dad489b1a266f74221d9
+    m_Address: spr_attribute_suck
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  - m_GUID: 394efc3b91616d1419d2af1adff94c9d
+    m_Address: spr_attribute_unknown
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  - m_GUID: c228967290d02f046bcb052663f10c4b
+    m_Address: spr_attribute_weak
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  - m_GUID: e59445ff25c942b469a0618249f1c2da
+    m_Address: spr_roman_one
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  - m_GUID: f9a4e1ef65234d040bf52413eaa37faa
+    m_Address: spr_roman_three
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  - m_GUID: 8f48c1815795b844f988004391a8b1d6
+    m_Address: spr_roman_two
+    m_ReadOnly: 0
+    m_SerializedLabels: []
   m_ReadOnly: 0
   m_Settings: {fileID: 11400000, guid: d14fb1bbe98862146a7f5467a5bc79f8, type: 2}
   m_SchemaSet:

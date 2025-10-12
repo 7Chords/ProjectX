@@ -24,7 +24,17 @@ namespace GameCore.RefData
         public float tbsMagicResistanceMediumMultiplier;
         public float tbsMagicResistanceHeavyMultiplier;
         public float tbsMagicResistanceHeroMultiplier;
-
+        public string tbsRomanNumberOneSpriteObjName;
+        public string tbsRomanNumberTwoSpriteObjName;
+        public string tbsRomanNumberThreeSpriteObjName;
+        public string tbsAttributeNormalSpriteObjName;
+        public string tbsAttributeWeakSpriteObjName;
+        public string tbsAttributeResistanceSpriteObjName;
+        public string tbsAttributeInvalidSpriteObjName;
+        public string tbsAttributeBounceSpriteObjName;
+        public string tbsAttributeSuckSpriteObjName;
+        public string tbsAttributeUnknownSpriteObjName;
+        public string tbsResistanceHeroSpriteObjName;
 
         protected override void _parseFromString()
         {
@@ -43,7 +53,17 @@ namespace GameCore.RefData
             tbsMagicResistanceMediumMultiplier = getFloat("tbsMagicResistanceMediumMultiplier");
             tbsMagicResistanceHeavyMultiplier = getFloat("tbsMagicResistanceHeavyMultiplier");
             tbsMagicResistanceHeroMultiplier = getFloat("tbsMagicResistanceHeroMultiplier");
-
+            tbsRomanNumberOneSpriteObjName = getString("tbsRomanNumberOneSpriteObjName");
+            tbsRomanNumberTwoSpriteObjName = getString("tbsRomanNumberTwoSpriteObjName");
+            tbsRomanNumberThreeSpriteObjName = getString("tbsRomanNumberThreeSpriteObjName");
+            tbsAttributeNormalSpriteObjName = getString("tbsAttributeNormalSpriteObjName");
+            tbsAttributeWeakSpriteObjName = getString("tbsAttributeWeakSpriteObjName");
+            tbsAttributeResistanceSpriteObjName = getString("tbsAttributeResistanceSpriteObjName");
+            tbsAttributeInvalidSpriteObjName = getString("tbsAttributeInvalidSpriteObjName");
+            tbsAttributeBounceSpriteObjName = getString("tbsAttributeBounceSpriteObjName");
+            tbsAttributeSuckSpriteObjName = getString("tbsAttributeSuckSpriteObjName");
+            tbsAttributeUnknownSpriteObjName = getString("tbsAttributeUnknownSpriteObjName");
+            tbsResistanceHeroSpriteObjName = getString("tbsResistanceHeroSpriteObjName");
         }
 
         public static string assetPath => "RefData/ExportTxt";

@@ -177,6 +177,21 @@ namespace GameCore.TBS
             return false;
         }
 
+        public virtual void GetAttackInvalid()
+        {
+
+        }
+        public virtual void GetAttackBounce()
+        {
+
+        }
+
+        public virtual void GetAttackSuck()
+        {
+
+        }
+
+
         protected virtual void dealAttack()
         {
             TBSGameAttackInfo attackInfo = TBSAttackHandler.CreateTBSAttackInfo();

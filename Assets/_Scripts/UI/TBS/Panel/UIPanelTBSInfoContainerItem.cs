@@ -42,8 +42,8 @@ namespace GameCore.UI
             if (_m_actorInfo == null)
                 return;
             mono.imgCharacterHead.sprite = ResourcesHelper.LoadAsset<Sprite>(_m_actorInfo.assetHeadIconObjName);
-            mono.txtHp.text = LanguageHelper.instance.GetTextTranslate("#1_{0}/{1}", _m_actorInfo.curHp, _m_actorInfo.maxHp);
-            mono.txtMp.text = LanguageHelper.instance.GetTextTranslate("#1_{0}/{1}", _m_actorInfo.curMp, _m_actorInfo.maxMp);
+            mono.txtHp.text = LanguageHelper.instance.GetTextTranslate("#2_{0}/{1}", _m_actorInfo.curHp, _m_actorInfo.maxHp);
+            mono.txtMp.text = LanguageHelper.instance.GetTextTranslate("#2_{0}/{1}", _m_actorInfo.curMp, _m_actorInfo.maxMp);
             mono.imgHpBar.fillAmount = (float)_m_actorInfo.curHp / _m_actorInfo.maxHp;
             mono.imgMpBar.fillAmount = (float)_m_actorInfo.curMp / _m_actorInfo.maxMp;
 

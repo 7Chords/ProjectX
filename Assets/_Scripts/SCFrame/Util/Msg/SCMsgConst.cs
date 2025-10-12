@@ -48,6 +48,8 @@ public class SCMsgConst
     public const int TBS_ACTOR_TARGET_HIGHLIGHT_RIGHT = 2021;//回合制战斗 - 选择目标高光右移
     public const int TBS_ACTOR_TARGET_MOUSE_HIGHLIGHT = 2022;//回合制战斗 - 鼠标选择高光
     public const int TBS_ACTOR_SKILL_CONFIRM = 2023;//回合制战斗 - 技能确认
+    public const int TBS_SELECT_SINGLE_ENEMY_TARGET_CHG = 2024;//回合制战斗 - 选择单个敌方目标 改变
+
 
     #endregion
 

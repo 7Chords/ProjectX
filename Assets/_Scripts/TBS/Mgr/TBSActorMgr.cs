@@ -1,3 +1,4 @@
+using GameCore.UI;
 using SCFrame;
 using System.Collections.Generic;
 using UnityEngine;
@@ -145,10 +146,9 @@ namespace GameCore.TBS
 
             _m_curSelectActorIndex = 0;
 
-            refreshCameraAndCursor(true);
+            refreshCameraAndCursor(true,true);
 
             SCModel.instance.tbsModel.curActorIndex = _m_curSelectActorIndex;
-
             
         }
 
@@ -214,7 +214,9 @@ namespace GameCore.TBS
             _m_targetIndex--;
             if (_m_targetIndex < 0)
                 _m_targetIndex = _m_enemyActorModuleList.Count - 1;
-            refreshCameraAndCursor(false);
+            SCMsgCenter.SendMsg(SCMsgConst.TBS_SELECT_SINGLE_ENEMY_TARGET_CHG, _m_targetIndex);
+            //refreshCameraAndCursor(false);
+            TBSCursorMgr.instance.SetSelectionCursorPos(_m_enemyActorModuleList[_m_targetIndex].getCursorPos());
         }
 
         private void onTBSActorTargetHighlightRight()
@@ -222,11 +224,13 @@ namespace GameCore.TBS
             _m_targetIndex++;
             if (_m_targetIndex > _m_enemyActorModuleList.Count - 1)
                 _m_targetIndex = 0;
-            refreshCameraAndCursor(false);
+            SCMsgCenter.SendMsg(SCMsgConst.TBS_SELECT_SINGLE_ENEMY_TARGET_CHG, _m_targetIndex);
+            TBSCursorMgr.instance.SetSelectionCursorPos(_m_enemyActorModuleList[_m_targetIndex].getCursorPos());
+            //refreshCameraAndCursor(false);
         }
         #endregion
 
-        private void refreshCameraAndCursor(bool _reSetFollow)
+        private void refreshCameraAndCursor(bool _reSetFollow,bool _isFirst = false)
         {
             if (_m_enemyActorGOList == null || _m_enemyActorGOList.Count == 0 || _m_playerActorGOList.Count == 0 ||
                 _m_playerActorGOList.Count == 0 || _m_enemyActorModuleList == null || _m_enemyActorModuleList.Count == 0)
@@ -235,13 +239,21 @@ namespace GameCore.TBS
 
             void onStart()
             {
-                GameCoreMgr.instance.uiCoreMgr.HideCurNode();
+                GameCoreMgr.instance.uiCoreMgr.HideNode(nameof(UINodeTBSMain));
+                if (!_isFirst)
+                    GameCoreMgr.instance.uiCoreMgr.HideNode(nameof(UINodeTBSEnemyHud));
                 TBSCursorMgr.instance.HideSelectionCursor();
             }
 
             void onFinish()
             {
-                GameCoreMgr.instance.uiCoreMgr.ShowCurNode();
+                //第一次要等相机到达正确位置了才加载敌人hud
+                if (_isFirst)
+                    GameCoreMgr.instance.uiCoreMgr.AddNode(new UINodeTBSEnemyHud(SCFrame.UI.SCUIShowType.ADDITION, _m_enemyActorModuleList));
+                else
+                    GameCoreMgr.instance.uiCoreMgr.ShowNode(nameof(UINodeTBSEnemyHud));
+
+                GameCoreMgr.instance.uiCoreMgr.ShowNode(nameof(UINodeTBSMain));
                 TBSCursorMgr.instance.SetSelectionCursorPos(_m_enemyActorModuleList[_m_targetIndex].getCursorPos());
             }
 

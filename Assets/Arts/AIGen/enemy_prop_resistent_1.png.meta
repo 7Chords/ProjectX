@@ -113,7 +113,7 @@ TextureImporter:
         width: 85
         height: 85
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -134,7 +134,7 @@ TextureImporter:
         width: 85
         height: 85
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -155,7 +155,7 @@ TextureImporter:
         width: 85
         height: 85
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -176,7 +176,7 @@ TextureImporter:
         width: 85
         height: 85
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -197,7 +197,7 @@ TextureImporter:
         width: 85
         height: 85
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -218,7 +218,7 @@ TextureImporter:
         width: 85
         height: 85
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -226,6 +226,27 @@ TextureImporter:
       bones: []
       spriteID: 536d3a42d43da8a42850b2ff09576522
       internalID: -1070437146
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: enemy_prop_resistent_1_0
+      rect:
+        serializedVersion: 2
+        x: 207
+        y: 165
+        width: 85
+        height: 85
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 90c1e926196b5394da9de3fdd0ab7901
+      internalID: 103384040
       vertices: []
       indices: 
       edges: []
@@ -244,6 +265,7 @@ TextureImporter:
       "ChatGPT_Image_2025\u5E7410\u670810\u65E5_20_50_27-removebg-preview_9": 1654876898
       "ChatGPT_Image_2025\u5E7410\u670810\u65E5_20_50_27-removebg-preview_3": -1240592771
       "ChatGPT_Image_2025\u5E7410\u670810\u65E5_20_50_27-removebg-preview_6": -199154541
+      enemy_prop_resistent_1_0: 103384040
       "ChatGPT_Image_2025\u5E7410\u670810\u65E5_20_50_27-removebg-preview_8": -567467763
       "ChatGPT_Image_2025\u5E7410\u670810\u65E5_20_50_27-removebg-preview_4": -364604756
       "ChatGPT_Image_2025\u5E7410\u670810\u65E5_20_50_27-removebg-preview_10": -1070437146

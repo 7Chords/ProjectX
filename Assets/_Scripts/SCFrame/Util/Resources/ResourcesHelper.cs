@@ -56,7 +56,7 @@ namespace SCFrame
             }
             catch(Exception ex)
             {
-                Debug.LogError("ResourcesHelper记载游戏物体出错！！！" + ex);
+                Debug.LogError("ResourcesHelper 加载游戏物体出错！！！" + ex);
                 return null;
             }
         }

@@ -1,14 +1,13 @@
+using GameCore.TBS;
 using SCFrame;
 using SCFrame.UI;
+using System.Collections.Generic;
 using UnityEngine;
 
 namespace GameCore.UI
 {
     public class UINodeTBSEnemyHud : _ASCUINodeBase
     {
-        public UINodeTBSEnemyHud(SCUIShowType _showType) : base(_showType)
-        {
-        }
 
         public override bool needHideWhenEnterNewSameTypeNode => false;
 
@@ -19,6 +18,11 @@ namespace GameCore.UI
         private GameObject _m_panelGO;
         private UIPanelTBSEnemyHud _m_tbsEnemyHudPanel;
         private UIMonoTBSEnemyHud _m_tbsEnemyHudMono;
+        private List<TBSActorBase> _m_actorList;
+        public UINodeTBSEnemyHud(SCUIShowType _showType, List<TBSActorBase> _actorList) : base(_showType)
+        {
+            _m_actorList = _actorList;
+        }
         public override void OnEnterNode()
         {
             _m_panelGO = ResourcesHelper.LoadGameObject(GetResName(), GetRootTransform(), true);
@@ -36,6 +40,7 @@ namespace GameCore.UI
 
             _m_tbsEnemyHudPanel = new UIPanelTBSEnemyHud(_m_tbsEnemyHudMono, _m_showType);
             _m_tbsEnemyHudPanel.Initialize();
+            _m_tbsEnemyHudPanel.SetInfo(_m_actorList);
         }
 
         public override void OnHideNode()

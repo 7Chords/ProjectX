@@ -18,7 +18,7 @@ namespace GameCore.UI
         public Text txtHp;
 
         [Header("物理抗性图标")]
-        public Image imgPhysicalResistent;
+        public Image imgPhysicalArmor;
 
         [Header("法术抗性图标")]
         public Image imgMagicResistent;

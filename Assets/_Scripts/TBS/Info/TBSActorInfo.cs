@@ -9,6 +9,7 @@ namespace GameCore.TBS
     {
         public long characterId;
         public string characterName;
+        public int characterLv;
         public EProfessionType professionType;
         public string assetModelObjName;
         public string assetHeadIconObjName;
@@ -27,7 +28,12 @@ namespace GameCore.TBS
         public EDamageType attackDamageType;
         public EPhysicalLevelType attackPhysicalLevel;
         public EMagicAttributeType attackMagicAttribute;
-
+        public List<EMagicAttributeType> weakAttributeList;
+        public List<EMagicAttributeType> normalAttributeList;
+        public List<EMagicAttributeType> resistentAttributeList;
+        public List<EMagicAttributeType> invilidAttributeList;
+        public List<EMagicAttributeType> bounceAttributeList;
+        public List<EMagicAttributeType> suckAttributeList;
         public void InitNewInfo(CharacterRefObj _characterRefObj)
         {
             if(_characterRefObj == null)
@@ -37,6 +43,7 @@ namespace GameCore.TBS
             }
             characterId = _characterRefObj.id;
             characterName = _characterRefObj.characterName;
+            characterLv = 1;
             ProfessionRefObj professioRefObj = SCRefDataMgr.instance.professionRefList.refDataList.Find(x => x.id == _characterRefObj.characterProfession);
             if(professioRefObj == null)
             {
@@ -58,6 +65,13 @@ namespace GameCore.TBS
             attackDamageType = _characterRefObj.attackDamageType;
             attackPhysicalLevel = _characterRefObj.attackPhysicalLevel;
             attackMagicAttribute = _characterRefObj.attackMagicAttribute;
+            weakAttributeList = _characterRefObj.weakAttributeList;
+            normalAttributeList = _characterRefObj.normalAttributeList;
+            resistentAttributeList = _characterRefObj.resistentAttributeList;
+            invilidAttributeList = _characterRefObj.invilidAttributeList;
+            bounceAttributeList = _characterRefObj.bounceAttributeList;
+            suckAttributeList = _characterRefObj.suckAttributeList;
+
 
             curHp = maxHp;
             curMp = maxMp;

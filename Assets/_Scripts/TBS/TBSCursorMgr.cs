@@ -28,7 +28,7 @@ namespace GameCore.TBS
                 _m_selectionCursor = ResourcesHelper.LoadGameObject("selection_cursor",SCGame.instance.topLayerRoot.transform);
             SCCommon.SetGameObjectEnable(_m_selectionCursor,true);
             _m_selectionCursor.GetRectTransform().localPosition =
-                SCUICommon.WorldPointToUIPoint(_m_selectionCursor.GetRectTransform(),
+                SCUICommon.WorldPointToUIPoint(SCGame.instance.topLayerRoot.GetRectTransform(),
                 _pos);
             float chgTime = SCRefDataMgr.instance.gameGeneralRefObj.tbsTargetHighLightChgTime;
             Tween tween_scale = _m_selectionCursor.transform.DOScale(Vector3.one, chgTime);
