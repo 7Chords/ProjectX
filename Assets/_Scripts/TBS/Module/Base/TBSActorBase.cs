@@ -129,6 +129,9 @@ namespace GameCore.TBS
                 return;
             }
             _m_actorInfo.curHp = Mathf.Max(_m_actorInfo.curHp - _damage, 0);
+
+            //uiÆ®×Ö
+            GameCommon.ShowDamageFloatText(_damage, getGameObject().transform.position);
         }
 
         public virtual void TakeMagic(int _magicAmount)

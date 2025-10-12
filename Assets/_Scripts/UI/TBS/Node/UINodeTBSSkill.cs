@@ -71,7 +71,8 @@ namespace GameCore.UI
 
         public override string GetResName()
         {
-            return "panel_tbs_skill";
+            return GameCommon.GetUIResObjPath(GameConst.TBS_SKILL_PANEL);
+
         }
     }
 }

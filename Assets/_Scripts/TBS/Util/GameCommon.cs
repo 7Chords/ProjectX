@@ -1,11 +1,24 @@
 using GameCore.RefData;
+using GameCore.TBS;
 using SCFrame;
+using System.Collections.Generic;
 using UnityEngine;
 
-namespace GameCore.TBS
+namespace GameCore
 {
-    public static class TBSCommon
+    /// <summary>
+    /// 游戏逻辑的一些通用功能
+    /// </summary>
+    public static class GameCommon
     {
+
+        public static string GetUIResObjPath(string _uiName)
+        {
+            List<UIResPathRefObj> uiResRefList = SCRefDataMgr.instance.uiResPathRefList.refDataList;
+            if (uiResRefList == null || uiResRefList.Count == 0)
+                return null;
+            return uiResRefList.Find(x => x.uiName == _uiName)?.uiResObjName??null;
+        }
 
         public static Sprite GetSpriteByPhysicalArmor(EArmorLevelType _armorLevelType)
         {
@@ -80,6 +93,25 @@ namespace GameCore.TBS
                 Debug.Log("TBSCommon GetSpriteByMagicAttributeWeak 该魔法属性找不到关系！！！");
                 return null;
             }
+        }
+
+        /// <summary>
+        /// 展示伤害飘字
+        /// </summary>
+        public static void ShowDamageFloatText(int _damage,Vector3 _worldPos)
+        {
+            GameObject damageGO = ResourcesHelper.LoadGameObject(
+                GetUIResObjPath(GameConst.TBS_DAMAGE_NUM_PREFAB), 
+                SCGame.instance.topLayerRoot.transform);
+            damageGO.GetRectTransform().localPosition = SCUICommon.WorldPointToUIPoint(
+                SCGame.instance.topLayerRoot.GetRectTransform(),
+                _worldPos);
+            damageGO.GetComponent<DamageFloatText>().Initialize(_damage);
+        }
+
+        public static string GetCharacterNameWithLv(int _level, string _characterName)
+        {
+            return LanguageHelper.instance.GetTextTranslate("#2_lv_name", _level, _characterName);
         }
     }
 }

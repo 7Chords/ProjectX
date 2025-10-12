@@ -59,6 +59,9 @@ namespace GameCore.UI
                 mono.canvasGroup.alpha = 1;
             });
             _m_tweenContainer?.RegDoTween(tween);
+
+            GameCoreMgr.instance.uiCoreMgr.ShowNode(nameof(UINodeTBSEnemyHud));
+            TBSCursorMgr.instance.ShowSelectionCursor();
         }
 
 
@@ -73,6 +76,9 @@ namespace GameCore.UI
             _m_curSelectSkillIdx = 0;
 
             _refreshPanel();
+
+            GameCoreMgr.instance.uiCoreMgr.HideNode(nameof(UINodeTBSEnemyHud));
+            TBSCursorMgr.instance.HideSelectionCursor();
         }
 
 

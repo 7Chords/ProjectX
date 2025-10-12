@@ -71,7 +71,7 @@ namespace GameCore.UI
 
         public override string GetResName()
         {
-            return "panel_tbs_confirm";
+            return GameCommon.GetUIResObjPath(GameConst.TBS_CONFIM_PANEL);
         }
     }
 }

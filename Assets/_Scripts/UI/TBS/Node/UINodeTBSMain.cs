@@ -70,7 +70,7 @@ namespace GameCore.UI
         }
         public override string GetResName()
         {
-            return "panel_tbs_main";
+            return GameCommon.GetUIResObjPath(GameConst.TBS_MAIN_PANEL);
         }
 
     }

@@ -74,7 +74,7 @@ namespace GameCore.UI
 
         public override string GetResName()
         {
-            return "panel_tbs_enemy_hud";
+            return GameCommon.GetUIResObjPath(GameConst.TBS_ENEMY_HUD_PANEL);
         }
     }
 }

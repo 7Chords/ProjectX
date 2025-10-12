@@ -215,8 +215,8 @@ namespace GameCore.TBS
             if (_m_targetIndex < 0)
                 _m_targetIndex = _m_enemyActorModuleList.Count - 1;
             SCMsgCenter.SendMsg(SCMsgConst.TBS_SELECT_SINGLE_ENEMY_TARGET_CHG, _m_targetIndex);
-            //refreshCameraAndCursor(false);
-            TBSCursorMgr.instance.SetSelectionCursorPos(_m_enemyActorModuleList[_m_targetIndex].getCursorPos());
+            TBSCursorMgr.instance.MoveCursor2Pos(_m_enemyActorModuleList[_m_targetIndex].getCursorPos());
+
         }
 
         private void onTBSActorTargetHighlightRight()
@@ -225,30 +225,29 @@ namespace GameCore.TBS
             if (_m_targetIndex > _m_enemyActorModuleList.Count - 1)
                 _m_targetIndex = 0;
             SCMsgCenter.SendMsg(SCMsgConst.TBS_SELECT_SINGLE_ENEMY_TARGET_CHG, _m_targetIndex);
-            TBSCursorMgr.instance.SetSelectionCursorPos(_m_enemyActorModuleList[_m_targetIndex].getCursorPos());
-            //refreshCameraAndCursor(false);
+            TBSCursorMgr.instance.MoveCursor2Pos(_m_enemyActorModuleList[_m_targetIndex].getCursorPos());
         }
         #endregion
 
-        private void refreshCameraAndCursor(bool _reSetFollow,bool _isFirst = false)
+        private void refreshCameraAndCursor(bool _reSetFollow,bool _addEnemyHud = false)
         {
             if (_m_enemyActorGOList == null || _m_enemyActorGOList.Count == 0 || _m_playerActorGOList.Count == 0 ||
                 _m_playerActorGOList.Count == 0 || _m_enemyActorModuleList == null || _m_enemyActorModuleList.Count == 0)
                 return;
 
 
-            void onStart()
+            void hideUIAndCursor()
             {
                 GameCoreMgr.instance.uiCoreMgr.HideNode(nameof(UINodeTBSMain));
-                if (!_isFirst)
+                if (!_addEnemyHud)
                     GameCoreMgr.instance.uiCoreMgr.HideNode(nameof(UINodeTBSEnemyHud));
                 TBSCursorMgr.instance.HideSelectionCursor();
             }
 
-            void onFinish()
+            void showUIAndCursor()
             {
                 //第一次要等相机到达正确位置了才加载敌人hud
-                if (_isFirst)
+                if (_addEnemyHud)
                     GameCoreMgr.instance.uiCoreMgr.AddNode(new UINodeTBSEnemyHud(SCFrame.UI.SCUIShowType.ADDITION, _m_enemyActorModuleList));
                 else
                     GameCoreMgr.instance.uiCoreMgr.ShowNode(nameof(UINodeTBSEnemyHud));
@@ -259,13 +258,7 @@ namespace GameCore.TBS
 
             void setCameraOffset()
             {
-                GameCameraMgr.instance.SetCameraPositionOffsetWithFollow(_m_gameMono.playerPosInfoList[_m_curSelectActorIndex].cameraIdlePos, () =>
-                {
-                    onStart();
-                }, () =>
-                {
-                    onFinish();
-                });
+                GameCameraMgr.instance.SetCameraPositionOffsetWithFollow(_m_gameMono.playerPosInfoList[_m_curSelectActorIndex].cameraIdlePos, hideUIAndCursor, showUIAndCursor);
             }
 
             if (SCModel.instance.tbsModel.curTurnType == ETBSTurnType.PLAYER)
