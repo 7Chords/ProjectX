@@ -11,38 +11,72 @@ namespace GameCore.TBS
     /// </summary>
     public class DamageFloatText : MonoBehaviour
     {
+        [Header("伤害文本")]
         public Text damageText;
+        [Header("克制关系文本")]
+        public Text attributeText;
+        [Header("画布组件")]
         public CanvasGroup canvasGroup;
+        [Header("变大持续时间")]
         public float biggerDuration;
+        [Header("上浮持续时间")]
         public float floatDuration;
+        [Header("淡出持续时间")]
         public float fadeOutDuration;
+        [Header("上浮高度")]
+        public float floatHeight;
+        [Header("静止持续时间")]
+        public float stopDuration;
+        [Header("振动强度")]
+        public float shakeStrength;
+        [Header("振动持续时间")]
+        public float shakeDuration;
 
         private TweenContainer _m_tweenContainer;
-        public void Initialize(int _damage)
+        private Vector3 _originalPosition;
+
+        public void Initialize(int _damage, string _extraStr = "")
         {
             _m_tweenContainer = new TweenContainer();
-            damageText.text = _damage.ToString();
-            Tween biggerTween = gameObject.GetRectTransform().DOScale(1, biggerDuration).OnStart(() =>
-            {
-                gameObject.GetRectTransform().localScale = Vector3.zero;
-            });
+            _originalPosition = gameObject.GetRectTransform().localPosition;
 
-            Sequence seq = DOTween.Sequence();
+            damageText.text = "-" + _damage.ToString();
+
+            //初始状态
+            gameObject.GetRectTransform().localScale = Vector3.zero;
+            canvasGroup.alpha = 1f;
+
+            //创建放大动画
+            Tween biggerTween = gameObject.GetRectTransform().DOScale(Vector3.one, biggerDuration);
+
+            //创建抖动动画
+            Tween shakeTween = gameObject.GetRectTransform().DOShakePosition(shakeDuration, shakeStrength);
+
+            //创建上浮动画
             Tween floatTween = gameObject.GetRectTransform().DOLocalMoveY(
-                gameObject.GetRectTransform().localPosition.y + 200f
-                , floatDuration);
+                _originalPosition.y + floatHeight, floatDuration);
 
+            //创建淡出动画
             Tween fadeOutTween = canvasGroup.DOFade(0, fadeOutDuration).OnComplete(() =>
             {
                 SCCommon.DestoryGameObject(gameObject);
             });
 
-            seq.Append(floatTween);
-            seq.Append(fadeOutTween);
+            //组合动画序列
+            Sequence mainSequence = DOTween.Sequence();
 
-            _m_tweenContainer.RegDoTween(biggerTween);
-            _m_tweenContainer.RegDoTween(seq);
+            //第一阶段：同时执行放大和抖动
+            mainSequence.Append(biggerTween);
+            mainSequence.Join(shakeTween); // 与放大动画同时执行
 
+            //第二阶段：静止一段时间
+            mainSequence.AppendInterval(stopDuration);
+
+            //第三阶段：同时执行上浮和淡出
+            mainSequence.Append(floatTween);
+            mainSequence.Join(fadeOutTween); // 与上浮动画同时执行
+
+            _m_tweenContainer.RegDoTween(mainSequence);
         }
 
         private void OnDestroy()
@@ -50,8 +84,5 @@ namespace GameCore.TBS
             _m_tweenContainer?.KillAllDoTween();
             _m_tweenContainer = null;
         }
-
-
-
     }
 }

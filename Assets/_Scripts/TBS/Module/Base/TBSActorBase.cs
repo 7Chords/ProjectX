@@ -86,6 +86,10 @@ namespace GameCore.TBS
             return _m_actorMono.transform.position + _m_actorMono.cursorOffset;
         }
 
+        public virtual Vector3 getDamageTextPos()
+        {
+            return _m_actorMono.transform.position + _m_actorMono.damageTextOffset;
+        }
         public virtual Vector3 getPos()
         {
             return _m_actorMono.transform.position;
@@ -121,7 +125,7 @@ namespace GameCore.TBS
 
         public abstract void GetHit();
 
-        public virtual void TakeDamage(int _damage)
+        public virtual void TakeDamage(int _damage, bool _needShopFloatText = true , string _extraStr ="")
         {
             if (_damage <= 0)
             {
@@ -131,7 +135,10 @@ namespace GameCore.TBS
             _m_actorInfo.curHp = Mathf.Max(_m_actorInfo.curHp - _damage, 0);
 
             //uiÆ®×Ö
-            GameCommon.ShowDamageFloatText(_damage, getGameObject().transform.position);
+            if(_needShopFloatText)
+                GameCommon.ShowDamageFloatText(_damage, getDamageTextPos(), _extraStr);
+
+            SCMsgCenter.SendMsg(SCMsgConst.TBS_ACTOR_INFO_CHG, actorInfo.characterId);
         }
 
         public virtual void TakeMagic(int _magicAmount)
@@ -142,6 +149,7 @@ namespace GameCore.TBS
                 return;
             }
             _m_actorInfo.curMp = Mathf.Max(_m_actorInfo.curHp - _magicAmount, 0);
+            SCMsgCenter.SendMsg(SCMsgConst.TBS_ACTOR_INFO_CHG, actorInfo.characterId);
         }
 
         public virtual void HealHp(int _healAmount)
@@ -170,6 +178,11 @@ namespace GameCore.TBS
             if (randomNum < _m_actorInfo.missChance)
                 return true;
             return false;
+        }
+
+        public virtual void Miss()
+        {
+
         }
 
         public virtual bool CriticalJudge()

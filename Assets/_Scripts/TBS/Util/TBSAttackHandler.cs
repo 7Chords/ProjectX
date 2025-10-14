@@ -30,7 +30,7 @@ namespace GameCore.TBS
             for (int i =0;i<_attackInfo.srcActorList.Count;i++)
             {
                 if (_attackInfo.srcUseHpList != null && _attackInfo.srcUseHpList.Count > i)
-                    _attackInfo.srcActorList[i].TakeDamage(_attackInfo.srcUseHpList[i]);
+                    _attackInfo.srcActorList[i].TakeDamage(_attackInfo.srcUseHpList[i],false);
                 if (_attackInfo.srcUseMpList != null && _attackInfo.srcUseMpList.Count > i)
                     _attackInfo.srcActorList[i].TakeMagic(_attackInfo.srcUseMpList[i]);
             }
@@ -46,18 +46,19 @@ namespace GameCore.TBS
                 //ÉÁ±Ü --> ´©Í¸ -->±©»÷
                 //ÉÁ±Ü --> µÖ¿¹ -->¿ËÖÆ
                 float tmpDamage = 0;
+                string extraStr = "";
                 foreach(var actor in _attackInfo.targetActorList)
                 {
                     if (actor.MissJudge())
                     {
-
+                        actor.Miss();
                     }
                     else
                     {
                         tmpDamage = _attackInfo.baseDamage;
                         if(_attackInfo.damageType == EDamageType.PHYSICAL)
                         {
-                            tmpDamage  *= getPhysicalPenetrateRate(_attackInfo.physicsLevelType, actor.actorInfo.armorLevel);
+                            tmpDamage  *= getPhysicalPenetrateRate(_attackInfo.physicsLevelType, actor.actorInfo.armorLevel, out extraStr);
                             if (_attackInfo.srcActorList[0].CriticalJudge())
                                 tmpDamage *= tbsConfigRefObj.tbsCrticalMultiplier;
                         }
@@ -101,11 +102,14 @@ namespace GameCore.TBS
         /// <param name="_physicalLevelType"></param>
         /// <param name="_armorLevelType"></param>
         /// <returns></returns>
-        private static float getPhysicalPenetrateRate(EPhysicalLevelType _physicalLevelType,EArmorLevelType _armorLevelType)
+        private static float getPhysicalPenetrateRate(EPhysicalLevelType _physicalLevelType,EArmorLevelType _armorLevelType,out string _extraStr)
         {
             TBSConfigRefObj tbsConfigRefObj = SCRefDataMgr.instance.tbsConfigRefObj;
             if (tbsConfigRefObj == null)
+            {
+                _extraStr = "";
                 return 0;
+            }
 
             switch(_physicalLevelType)
             {
@@ -113,60 +117,130 @@ namespace GameCore.TBS
                     switch(_armorLevelType)
                     {
                         case EArmorLevelType.LIGHT:
-                            return tbsConfigRefObj.tbsPhysicalPenetrateSameMultiplier;
+                            {
+                                _extraStr = "";
+                                return tbsConfigRefObj.tbsPhysicalPenetrateSameMultiplier;
+                            }
                         case EArmorLevelType.MEDIUM:
-                            return tbsConfigRefObj.tbsPhysicalPenetrateLowerOneMultiplier;
+                            {
+                                _extraStr = "";
+                                return tbsConfigRefObj.tbsPhysicalPenetrateLowerOneMultiplier;
+                            }
                         case EArmorLevelType.HEAVY:
-                            return tbsConfigRefObj.tbsPhysicalPenetrateLowerTwoMultiplier;
+                            {
+                                _extraStr = "";
+
+                                return tbsConfigRefObj.tbsPhysicalPenetrateLowerTwoMultiplier;
+                            }
                         case EArmorLevelType.HERO:
-                            return tbsConfigRefObj.tbsPhysicalPenetrateLowerThreeMultiplier;
+                            {
+                                _extraStr = "";
+                                return tbsConfigRefObj.tbsPhysicalPenetrateLowerThreeMultiplier;
+                            }
                         default:
-                            return 0;
+                            {
+                                _extraStr = "";
+
+                                return 0;
+                            }
                     }
                 case EPhysicalLevelType.MEDIUM:
                     switch (_armorLevelType)
                     {
                         case EArmorLevelType.LIGHT:
-                            return tbsConfigRefObj.tbsPhysicalPenetrateHigherOneMultiplier;
+                            {
+                                _extraStr = "";
+
+                                return tbsConfigRefObj.tbsPhysicalPenetrateHigherOneMultiplier;
+                            }
                         case EArmorLevelType.MEDIUM:
-                            return tbsConfigRefObj.tbsPhysicalPenetrateSameMultiplier;
+                            {
+                                _extraStr = "";
+
+                                return tbsConfigRefObj.tbsPhysicalPenetrateSameMultiplier;
+
+                            }
                         case EArmorLevelType.HEAVY:
-                            return tbsConfigRefObj.tbsPhysicalPenetrateLowerOneMultiplier;
+                            {
+                                _extraStr = "";
+
+                                return tbsConfigRefObj.tbsPhysicalPenetrateLowerOneMultiplier;
+                            }
                         case EArmorLevelType.HERO:
-                            return tbsConfigRefObj.tbsPhysicalPenetrateLowerTwoMultiplier;
+                            {
+                                _extraStr = "";
+                                return tbsConfigRefObj.tbsPhysicalPenetrateLowerTwoMultiplier;
+                            }
                         default:
-                            return 0;
+                            {
+                                _extraStr = "";
+                                return 0;
+                            }
                     }
                 case EPhysicalLevelType.HEAVY:
                     switch (_armorLevelType)
                     {
                         case EArmorLevelType.LIGHT:
-                            return tbsConfigRefObj.tbsPhysicalPenetrateHigherTwoMultiplier;
+                            {
+                                _extraStr = "";
+                                return tbsConfigRefObj.tbsPhysicalPenetrateHigherTwoMultiplier;
+                            }
                         case EArmorLevelType.MEDIUM:
-                            return tbsConfigRefObj.tbsPhysicalPenetrateHigherOneMultiplier;
+                            {
+                                _extraStr = "";
+
+                                return tbsConfigRefObj.tbsPhysicalPenetrateHigherOneMultiplier;
+                            }
                         case EArmorLevelType.HEAVY:
-                            return tbsConfigRefObj.tbsPhysicalPenetrateSameMultiplier;
+                            {
+                                _extraStr = "";
+                                return tbsConfigRefObj.tbsPhysicalPenetrateSameMultiplier;
+                            }
                         case EArmorLevelType.HERO:
-                            return tbsConfigRefObj.tbsPhysicalPenetrateLowerOneMultiplier;
+                            {
+                                _extraStr = "";
+                                return tbsConfigRefObj.tbsPhysicalPenetrateLowerOneMultiplier;
+                            }
                         default:
-                            return 0;
+                            {
+                                _extraStr = "";
+                                return 0;
+                            }
                     }
                 case EPhysicalLevelType.HERO:
                     switch (_armorLevelType)
                     {
                         case EArmorLevelType.LIGHT:
-                            return tbsConfigRefObj.tbsPhysicalPenetrateHigherThreeMultiplier;
+                            {
+                                _extraStr = "";
+                                return tbsConfigRefObj.tbsPhysicalPenetrateHigherThreeMultiplier;
+                            }
                         case EArmorLevelType.MEDIUM:
-                            return tbsConfigRefObj.tbsPhysicalPenetrateHigherTwoMultiplier;
+                            {
+                                _extraStr = "";
+                                return tbsConfigRefObj.tbsPhysicalPenetrateHigherTwoMultiplier;
+                            }
                         case EArmorLevelType.HEAVY:
-                            return tbsConfigRefObj.tbsPhysicalPenetrateHigherOneMultiplier;
+                            {
+                                _extraStr = "";
+                                return tbsConfigRefObj.tbsPhysicalPenetrateHigherOneMultiplier;
+                            }
                         case EArmorLevelType.HERO:
-                            return tbsConfigRefObj.tbsPhysicalPenetrateSameMultiplier;
+                            {
+                                _extraStr = "";
+                                return tbsConfigRefObj.tbsPhysicalPenetrateSameMultiplier;
+                            }
                         default:
-                            return 0;
+                            {
+                                _extraStr = "";
+                                return 0;
+                            }
                     }
                 default:
-                    return 0;
+                    {
+                        _extraStr = "";
+                        return 0;
+                    }
             }
         }
 

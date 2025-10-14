@@ -22,3 +22,12 @@
 10021	#1_confirm	确定	confirm
 10022	#1_return	返回	return
 10023	#2_lv_name	LV{0} {1}	LV{0} {1}
+10024	#1_penetrate_lv_one	穿透	penetrate
+10025	#1_penetrate_lv_two	穿透+	penetrate+
+10026	#1_penetrate_lv_three	穿透++	penetrate++
+10027	#1_penetrate_lv_four	穿透+++	penetrate+++
+10028	#1_weak	弱点	weak
+10029	#1_resist	抵抗	resist
+10030	#1_invalid	无效	invalid
+10031	#1_bounce	反弹	parry
+10032	#1_suck	吸收	absorb

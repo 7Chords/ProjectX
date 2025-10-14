@@ -98,7 +98,7 @@ namespace GameCore
         /// <summary>
         /// Õ¹Ê¾ÉËº¦Æ®×Ö
         /// </summary>
-        public static void ShowDamageFloatText(int _damage,Vector3 _worldPos)
+        public static void ShowDamageFloatText(int _damage,Vector3 _worldPos,string _extraStr)
         {
             GameObject damageGO = ResourcesHelper.LoadGameObject(
                 GetUIResObjPath(GameConst.TBS_DAMAGE_NUM_PREFAB), 
@@ -106,7 +106,7 @@ namespace GameCore
             damageGO.GetRectTransform().localPosition = SCUICommon.WorldPointToUIPoint(
                 SCGame.instance.topLayerRoot.GetRectTransform(),
                 _worldPos);
-            damageGO.GetComponent<DamageFloatText>().Initialize(_damage);
+            damageGO.GetComponent<DamageFloatText>().Initialize(_damage, _extraStr);
         }
 
         public static string GetCharacterNameWithLv(int _level, string _characterName)

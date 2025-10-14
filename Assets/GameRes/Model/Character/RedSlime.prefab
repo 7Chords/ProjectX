@@ -46,6 +46,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5b9f60c6c0d5a9c46a3166fd5ae6662c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  damageTextOffset: {x: 0, y: 2.5, z: 0}
   cursorOffset: {x: 0, y: 0.5, z: 0}
   actorAnim: {fileID: 8991075209012479535}
   bottomSfxTran: {fileID: 0}

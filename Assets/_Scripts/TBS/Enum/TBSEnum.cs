@@ -58,29 +58,29 @@ namespace GameCore.TBS
     //护甲等级
     public enum EArmorLevelType
     {
-        NONE,
-        LIGHT,//轻
-        MEDIUM,//中
-        HEAVY,//重
-        HERO,//英雄
+        NONE = 0,
+        LIGHT = 1,//轻
+        MEDIUM = 2,//中
+        HEAVY = 3,//重
+        HERO = 4,//英雄
     }
     //法术抗性
     public enum EMagicResistanceLevelType
     {
-        NONE,
-        LIGHT,//轻
-        MEDIUM,//中
-        HEAVY,//重
-        HERO,//英雄
+        NONE = 0,
+        LIGHT = 1,//轻
+        MEDIUM = 2,//中
+        HEAVY = 3,//重
+        HERO = 4,//英雄
     }
     //物理伤害等级
     public enum EPhysicalLevelType
     {
-        NONE,
-        LIGHT,//轻
-        MEDIUM,//中
-        HEAVY,//重
-        HERO,//英雄
+        NONE = 0,
+        LIGHT = 1,//轻
+        MEDIUM = 2,//中
+        HEAVY = 3,//重
+        HERO = 4,//英雄
     }
     //法术类型
     public enum EMagicAttributeType

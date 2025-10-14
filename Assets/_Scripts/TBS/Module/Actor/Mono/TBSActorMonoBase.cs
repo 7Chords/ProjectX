@@ -5,6 +5,8 @@ using UnityEngine;
 
 public class TBSActorMonoBase : MonoBehaviour
 {
+    [Header("伤害飘字相对于pos的偏移")]
+    public Vector3 damageTextOffset;
     [Header("光标相对于pos的偏移")]
     public Vector3 cursorOffset;
     [Header("角色动画器")]

@@ -50,7 +50,7 @@ public class SCMsgConst
     public const int TBS_ACTOR_SKILL_CONFIRM = 2023;//回合制战斗 - 技能确认
     public const int TBS_SELECT_SINGLE_ENEMY_TARGET_CHG = 2024;//回合制战斗 - 选择单个敌方目标 改变
 
-
+    public const int TBS_ACTOR_INFO_CHG = 2025;//回合制战斗 - 敌人目标信息改变（血量/属性...)
     #endregion
 
     #region 系统相关 99
