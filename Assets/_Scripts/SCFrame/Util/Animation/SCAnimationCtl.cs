@@ -68,7 +68,7 @@ namespace SCFrame
         public override void OnDiscard()
         {
             // 清理这个对象的所有协程
-            SCTaskHelper.instance.StopAllCoroutines(this);
+            SCTaskHelper.instance.KillAllCoroutines(this);
             _m_graph.Destroy();
         }
 
@@ -98,9 +98,9 @@ namespace SCFrame
         {
             if (!string.IsNullOrEmpty(_m_transitionCoroutineId))
             {
-                SCTaskHelper.instance.StopCoroutine(_m_transitionCoroutineId);
+                SCTaskHelper.instance.KillCoroutine(_m_transitionCoroutineId);
             }
-            _m_transitionCoroutineId = SCTaskHelper.instance.StartCoroutine(this,TransitionAniamtion(fixedTime));
+            _m_transitionCoroutineId = SCTaskHelper.instance.CreateCoroutine(this,TransitionAniamtion(fixedTime));
         }
 
         // 动画过渡

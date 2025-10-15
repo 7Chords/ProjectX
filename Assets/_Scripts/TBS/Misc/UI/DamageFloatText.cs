@@ -13,6 +13,8 @@ namespace GameCore.TBS
     {
         [Header("伤害文本")]
         public Text damageText;
+        [Header("额外效果文本")]
+        public Text extraText;
         [Header("克制关系文本")]
         public Text attributeText;
         [Header("画布组件")]
@@ -41,7 +43,7 @@ namespace GameCore.TBS
             _originalPosition = gameObject.GetRectTransform().localPosition;
 
             damageText.text = "-" + _damage.ToString();
-
+            extraText.text = _extraStr;
             //初始状态
             gameObject.GetRectTransform().localScale = Vector3.zero;
             canvasGroup.alpha = 1f;

@@ -69,10 +69,11 @@ namespace SCFrame
             string cellValue = "";
             for (int i = 0; i < workbook.NumberOfSheets; i++)
             {
-                using (FileStream fs = File.Open(GAME_TXT_PATH + "/" + workbook.GetSheetName(i) + ".txt", FileMode.OpenOrCreate, FileAccess.Write))
+                using (FileStream fs = File.Open(GAME_TXT_PATH + "/" + workbook.GetSheetName(i) + ".txt", FileMode.Create, FileAccess.Write))
                 {
                     using (StreamWriter sw = new StreamWriter(fs, System.Text.Encoding.UTF8))
                     {
+                        
                         sheet = workbook.GetSheetAt(i);
                         if (sheet == null)
                             continue;

@@ -234,7 +234,7 @@ namespace SCFrame
         /// <param name="_enumerator">协程迭代器</param>
         /// <param name="_coroutineName">协程名称（可选）</param>
         /// <returns>协程ID</returns>
-        public string StartCoroutine(object _owner, IEnumerator _enumerator, string _coroutineName = null)
+        public string CreateCoroutine(object _owner, IEnumerator _enumerator, string _coroutineName = null)
         {
             if (_owner == null || _enumerator == null)
             {
@@ -265,7 +265,7 @@ namespace SCFrame
         /// 停止指定协程
         /// </summary>
         /// <param name="_coroutineId">协程ID</param>
-        public new void StopCoroutine(string _coroutineId)
+        public void KillCoroutine(string _coroutineId)
         {
             if (string.IsNullOrEmpty(_coroutineId) || !_m_coroutineDict.ContainsKey(_coroutineId))
                 return;
@@ -280,7 +280,7 @@ namespace SCFrame
         /// 停止指定拥有者的所有协程
         /// </summary>
         /// <param name="_owner">协程拥有者</param>
-        public void StopAllCoroutines(object _owner)
+        public void KillAllCoroutines(object _owner)
         {
             if (_owner == null || !_m_ownerCoroutineMap.ContainsKey(_owner))
                 return;

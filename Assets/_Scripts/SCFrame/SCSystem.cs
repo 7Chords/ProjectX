@@ -1,5 +1,6 @@
 using GameCore;
 using GameCore.TBS;
+using GameCore.Util;
 
 namespace SCFrame
 {
@@ -15,6 +16,7 @@ namespace SCFrame
             SCPoolMgr.instance.Initialize();
             GameCameraMgr.instance.Initialize();
             TBSCursorMgr.instance.Initialize();
+            ParticleMgr.instance.Initialize();
         }
 
         public override void OnDiscard()
@@ -27,6 +29,8 @@ namespace SCFrame
             SCPoolMgr.instance.Discard();
             TBSCursorMgr.instance.Discard();
             GameCameraMgr.instance.Discard();
+            ParticleMgr.instance.Discard();
+
         }
     }
 }

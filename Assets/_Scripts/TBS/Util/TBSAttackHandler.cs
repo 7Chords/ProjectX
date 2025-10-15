@@ -82,14 +82,14 @@ namespace GameCore.TBS
                             else
                             {
                                 tmpDamage *= getMagicResistanceRate(actor.actorInfo.magicResistanceLevel);
-                                tmpDamage *= getMagicWeakRate(_attackInfo.magicAttributeType, actor.actorInfo);
+                                tmpDamage *= getMagicWeakRate(_attackInfo.magicAttributeType, actor.actorInfo,out extraStr);
                             }
                         }
                         else if(_attackInfo.damageType == EDamageType.REAL)
                         {
                             //真实伤害无处理
                         }
-                        actor.TakeDamage(Mathf.RoundToInt(tmpDamage));
+                        actor.TakeDamage(Mathf.RoundToInt(tmpDamage),true, extraStr);
                         Debug.Log("===TBS===" + actor.actorInfo.characterName + "受到了" + Mathf.RoundToInt(tmpDamage) + "点伤害");
                     }
                 }
@@ -110,131 +110,43 @@ namespace GameCore.TBS
                 _extraStr = "";
                 return 0;
             }
-
-            switch(_physicalLevelType)
+            int gap = (int)_physicalLevelType - (int)_armorLevelType;
+            switch (gap)
             {
-                case EPhysicalLevelType.LIGHT:
-                    switch(_armorLevelType)
+                case -1:
                     {
-                        case EArmorLevelType.LIGHT:
-                            {
-                                _extraStr = "";
-                                return tbsConfigRefObj.tbsPhysicalPenetrateSameMultiplier;
-                            }
-                        case EArmorLevelType.MEDIUM:
-                            {
-                                _extraStr = "";
-                                return tbsConfigRefObj.tbsPhysicalPenetrateLowerOneMultiplier;
-                            }
-                        case EArmorLevelType.HEAVY:
-                            {
-                                _extraStr = "";
-
-                                return tbsConfigRefObj.tbsPhysicalPenetrateLowerTwoMultiplier;
-                            }
-                        case EArmorLevelType.HERO:
-                            {
-                                _extraStr = "";
-                                return tbsConfigRefObj.tbsPhysicalPenetrateLowerThreeMultiplier;
-                            }
-                        default:
-                            {
-                                _extraStr = "";
-
-                                return 0;
-                            }
+                        _extraStr = "";
+                        return tbsConfigRefObj.tbsPhysicalPenetrateLowerOneMultiplier;
                     }
-                case EPhysicalLevelType.MEDIUM:
-                    switch (_armorLevelType)
+                case -2:
                     {
-                        case EArmorLevelType.LIGHT:
-                            {
-                                _extraStr = "";
-
-                                return tbsConfigRefObj.tbsPhysicalPenetrateHigherOneMultiplier;
-                            }
-                        case EArmorLevelType.MEDIUM:
-                            {
-                                _extraStr = "";
-
-                                return tbsConfigRefObj.tbsPhysicalPenetrateSameMultiplier;
-
-                            }
-                        case EArmorLevelType.HEAVY:
-                            {
-                                _extraStr = "";
-
-                                return tbsConfigRefObj.tbsPhysicalPenetrateLowerOneMultiplier;
-                            }
-                        case EArmorLevelType.HERO:
-                            {
-                                _extraStr = "";
-                                return tbsConfigRefObj.tbsPhysicalPenetrateLowerTwoMultiplier;
-                            }
-                        default:
-                            {
-                                _extraStr = "";
-                                return 0;
-                            }
+                        _extraStr = "";
+                        return tbsConfigRefObj.tbsPhysicalPenetrateLowerTwoMultiplier;
                     }
-                case EPhysicalLevelType.HEAVY:
-                    switch (_armorLevelType)
+                case -3:
                     {
-                        case EArmorLevelType.LIGHT:
-                            {
-                                _extraStr = "";
-                                return tbsConfigRefObj.tbsPhysicalPenetrateHigherTwoMultiplier;
-                            }
-                        case EArmorLevelType.MEDIUM:
-                            {
-                                _extraStr = "";
-
-                                return tbsConfigRefObj.tbsPhysicalPenetrateHigherOneMultiplier;
-                            }
-                        case EArmorLevelType.HEAVY:
-                            {
-                                _extraStr = "";
-                                return tbsConfigRefObj.tbsPhysicalPenetrateSameMultiplier;
-                            }
-                        case EArmorLevelType.HERO:
-                            {
-                                _extraStr = "";
-                                return tbsConfigRefObj.tbsPhysicalPenetrateLowerOneMultiplier;
-                            }
-                        default:
-                            {
-                                _extraStr = "";
-                                return 0;
-                            }
+                        _extraStr = "";
+                        return tbsConfigRefObj.tbsPhysicalPenetrateLowerThreeMultiplier;
                     }
-                case EPhysicalLevelType.HERO:
-                    switch (_armorLevelType)
+                case 0:
                     {
-                        case EArmorLevelType.LIGHT:
-                            {
-                                _extraStr = "";
-                                return tbsConfigRefObj.tbsPhysicalPenetrateHigherThreeMultiplier;
-                            }
-                        case EArmorLevelType.MEDIUM:
-                            {
-                                _extraStr = "";
-                                return tbsConfigRefObj.tbsPhysicalPenetrateHigherTwoMultiplier;
-                            }
-                        case EArmorLevelType.HEAVY:
-                            {
-                                _extraStr = "";
-                                return tbsConfigRefObj.tbsPhysicalPenetrateHigherOneMultiplier;
-                            }
-                        case EArmorLevelType.HERO:
-                            {
-                                _extraStr = "";
-                                return tbsConfigRefObj.tbsPhysicalPenetrateSameMultiplier;
-                            }
-                        default:
-                            {
-                                _extraStr = "";
-                                return 0;
-                            }
+                        _extraStr = "";
+                        return tbsConfigRefObj.tbsPhysicalPenetrateSameMultiplier;
+                    }
+                case 1:
+                    {
+                        _extraStr = LanguageHelper.instance.GetTextTranslate("#1_penetrate_lv_one");
+                        return tbsConfigRefObj.tbsPhysicalPenetrateHigherOneMultiplier;
+                    }
+                case 2:
+                    {
+                        _extraStr = LanguageHelper.instance.GetTextTranslate("#1_penetrate_lv_two");
+                        return tbsConfigRefObj.tbsPhysicalPenetrateHigherOneMultiplier;
+                    }
+                case 3:
+                    {
+                        _extraStr = LanguageHelper.instance.GetTextTranslate("#1_penetrate_lv_three");
+                        return tbsConfigRefObj.tbsPhysicalPenetrateHigherOneMultiplier;
                     }
                 default:
                     {
@@ -242,6 +154,7 @@ namespace GameCore.TBS
                         return 0;
                     }
             }
+
         }
 
 
@@ -272,79 +185,38 @@ namespace GameCore.TBS
 
         }
 
+
+
         /// <summary>
         /// 获得魔法克制倍率
         /// </summary>
         /// <param name="_srcAttribute"></param>
         /// <param name="_tarAttribute"></param>
         /// <returns></returns>
-        private static float getMagicWeakRate(EMagicAttributeType _srcAttribute,EMagicAttributeType _tarAttribute)
+        private static float getMagicWeakRate(EMagicAttributeType _srcAttribute, TBSActorInfo _attackInfo,out string _extraStr)
         {
             TBSConfigRefObj tbsConfigRefObj = SCRefDataMgr.instance.tbsConfigRefObj;
             if (tbsConfigRefObj == null)
-                return 0;
-            switch (_srcAttribute)
             {
-                case EMagicAttributeType.FIRE:
-                    switch(_tarAttribute)
-                    {
-                        case EMagicAttributeType.FIRE:
-                            return tbsConfigRefObj.tbsMagicNormalMultiplier;
-                        case EMagicAttributeType.WATER:
-                            return tbsConfigRefObj.tbsMagicResistMultiplier;
-                        case EMagicAttributeType.WOOD:
-                            return tbsConfigRefObj.tbsMagicWeakMultiplier;
-                        default:
-                            return 0;
-                    }
-                case EMagicAttributeType.WATER:
-                    switch (_tarAttribute)
-                    {
-                        case EMagicAttributeType.FIRE:
-                            return tbsConfigRefObj.tbsMagicWeakMultiplier;
-                        case EMagicAttributeType.WATER:
-                            return tbsConfigRefObj.tbsMagicNormalMultiplier;
-                        case EMagicAttributeType.WOOD:
-                            return tbsConfigRefObj.tbsMagicResistMultiplier;
-                        default:
-                            return 0;
-                    }
-                case EMagicAttributeType.WOOD:
-                    switch (_tarAttribute)
-                    {
-                        case EMagicAttributeType.FIRE:
-                            return tbsConfigRefObj.tbsMagicResistMultiplier;
-                        case EMagicAttributeType.WATER:
-                            return tbsConfigRefObj.tbsMagicWeakMultiplier;
-                        case EMagicAttributeType.WOOD:
-                            return tbsConfigRefObj.tbsMagicNormalMultiplier;
-                        default:
-                            return 0;
-                    }
-                default:
-                    return 0;
-            }
-        }
-
-
-
-        /// <summary>
-        /// 获得魔法克制倍率
-        /// </summary>
-        /// <param name="_srcAttribute"></param>
-        /// <param name="_tarAttribute"></param>
-        /// <returns></returns>
-        private static float getMagicWeakRate(EMagicAttributeType _srcAttribute, TBSActorInfo _attackInfo)
-        {
-            TBSConfigRefObj tbsConfigRefObj = SCRefDataMgr.instance.tbsConfigRefObj;
-            if (tbsConfigRefObj == null)
+                _extraStr = "";
                 return 0;
+            }
             if (_attackInfo.weakAttributeList.Contains(_srcAttribute))
+            {
+                _extraStr = LanguageHelper.instance.GetTextTranslate("#1_weak");
                 return tbsConfigRefObj.tbsMagicWeakMultiplier;
+            }
             if (_attackInfo.resistentAttributeList.Contains(_srcAttribute))
+            {
+                _extraStr = LanguageHelper.instance.GetTextTranslate("#1_resist");
                 return tbsConfigRefObj.tbsMagicResistMultiplier;
+            }
             if (_attackInfo.normalAttributeList.Contains(_srcAttribute))
+            {
+                _extraStr = "";
                 return tbsConfigRefObj.tbsMagicNormalMultiplier;
+            }
+            _extraStr = "";
             return 0;
 
         }

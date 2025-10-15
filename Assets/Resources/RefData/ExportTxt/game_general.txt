@@ -28,6 +28,3 @@ tbsInputFrameInterval	3
 	
 	
 	
-	
-
-

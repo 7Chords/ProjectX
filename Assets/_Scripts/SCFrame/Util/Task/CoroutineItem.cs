@@ -50,7 +50,7 @@ namespace SCFrame
                 {
                     // 协程自然结束
                     isRunning = false;
-                    SCTaskHelper.instance?.StopCoroutine(coroutineId);
+                    SCTaskHelper.instance?.KillCoroutine(coroutineId);
                     break;
                 }
             }
