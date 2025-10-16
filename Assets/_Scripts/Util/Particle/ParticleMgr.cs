@@ -30,13 +30,13 @@ namespace GameCore.Util
 
         private GameObject _m_particleRootGO;
 
-        private Dictionary<string, GameObject> _m_particlePrefabCache;
+        //private Dictionary<string, GameObject> _m_particlePrefabCache;
 
 
         public override void OnInitialize()
         {
             _m_particleRootGO = new GameObject("PARTICLE_ROOT");
-            _m_particlePrefabCache = new Dictionary<string, GameObject>();
+            //_m_particlePrefabCache = new Dictionary<string, GameObject>();
             _m_activeParticleEffectList = new List<ParticleInfo>();
         }
 
@@ -313,20 +313,10 @@ namespace GameCore.Util
         /// </summary>
         private GameObject GetParticlePrefab(string _effectName)
         {
-            if (_m_particlePrefabCache.TryGetValue(_effectName, out GameObject prefab))
-            {
-                return prefab;
-            }
-            prefab = ResourcesHelper.LoadGameObject(_effectName,null,true);
+            GameObject prefab = ResourcesHelper.LoadGameObject(_effectName,null,true);
 
-            if (prefab != null)
-            {
-                _m_particlePrefabCache[_effectName] = prefab;
-            }
-            else
-            {
+            if (prefab == null)
                 Debug.LogWarning($"粒子资源加载失败，特效名：{_effectName}");
-            }
 
             return prefab;
         }
@@ -435,7 +425,6 @@ namespace GameCore.Util
         /// </summary>
         public void ClearCache()
         {
-            _m_particlePrefabCache.Clear();
             Resources.UnloadUnusedAssets();
         }
 

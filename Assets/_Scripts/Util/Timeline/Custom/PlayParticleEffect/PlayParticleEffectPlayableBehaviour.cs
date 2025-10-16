@@ -22,82 +22,52 @@ public class PlayParticleEffectPlayableBehaviour : PlayableBehaviour
     public float destroyDelay;
     public bool followTarget;
     public GameObject directorGameObject;
+    public float simulateSpeed;
 
-    private GameObject spawnedEffect;
-    private bool isPlaying;
-    private Playable currentPlayable;
+    private GameObject _m_spawnedEffect;
+    private bool _m_isPlaying;
+    private Playable _m_currentPlayable;//当前播放的playable
 
 
     // Called when the state of the playable is set to Play
-    public override void OnBehaviourPlay(Playable playable, FrameData info)
+    public override void OnBehaviourPlay(Playable _playable, FrameData _info)
     {
-        if (isPlaying) return;
+        if (_m_isPlaying) return;
 
-        currentPlayable = playable;
-        isPlaying = true;
+        _m_currentPlayable = _playable;
+        _m_isPlaying = true;
 
-        if (!string.IsNullOrEmpty(effectName))
+        SpawnEffect();
+    }
+
+    public override void OnBehaviourPause(Playable _playable, FrameData _info)
+    {
+        if (!_m_isPlaying) return;
+
+        _m_isPlaying = false;
+
+        if(!Application.isPlaying && _m_spawnedEffect != null)
         {
-            SpawnEffect();
+            GameObject.DestroyImmediate(_m_spawnedEffect);
         }
     }
 
-    // Called when the state of the playable is set to Paused
-    public override void OnBehaviourPause(Playable playable, FrameData info)
+    public override void ProcessFrame(Playable _playable, FrameData _info, object _playerData)
     {
-        if (!isPlaying) return;
-
-        isPlaying = false;
-
-        // 如果设置了自动销毁且特效还在，则销毁特效
-        if (autoDestroy && spawnedEffect != null)
-        {
-            if (destroyDelay > 0)
-            {
-                // 延迟销毁
-                if (Application.isPlaying)
-                {
-                    GameObject.Destroy(spawnedEffect, destroyDelay);
-                }
-                else
-                {
-                    GameObject.DestroyImmediate(spawnedEffect);
-                }
-            }
-            else
-            {
-                if (Application.isPlaying)
-                {
-                    GameObject.Destroy(spawnedEffect);
-                }
-                else
-                {
-                    GameObject.DestroyImmediate(spawnedEffect);
-                }
-            }
-            spawnedEffect = null;
-        }
-    }
-
-    // Called each frame while the state is set to Play
-    public override void PrepareFrame(Playable playable, FrameData info)
-    {
-        if (spawnedEffect != null && followTarget && targetTransform != null)
-        {
-            UpdateEffectPosition();
-        }
+        // 确保在编辑模式下也能正确处理帧
+        updateEffectState(_playable);
     }
 
     private void SpawnEffect()
     {
         // 计算生成位置
-        Vector3 spawnPosition = CalculateSpawnPosition();
-        Quaternion spawnRotation = CalculateSpawnRotation();
+        Vector3 spawnPosition = calculateSpawnPosition();
+        Quaternion spawnRotation = calculateSpawnRotation();
 
 
-        if(Application.isPlaying)
+        if (Application.isPlaying && !string.IsNullOrEmpty(effectName))
         {
-            spawnedEffect = ParticleMgr.instance.PlayEffect(
+            ParticleSystem particleSystem = ParticleMgr.instance.PlayEffect(
                 effectName,
                 spawnPosition,
                 spawnRotation,
@@ -105,20 +75,42 @@ public class PlayParticleEffectPlayableBehaviour : PlayableBehaviour
                 autoDestroy,
                 destroyDelay,
                 scale
-            ).gameObject;
+            );
+            _m_spawnedEffect = particleSystem.gameObject;
+            var mainModule = particleSystem.GetComponent<ParticleSystem>().main;
+            mainModule.simulationSpeed = simulateSpeed;
+
+            ParticleSystem[] systems = particleSystem.GetComponentsInChildren<ParticleSystem>();
+            foreach(var sys in systems)
+            {
+                var main = sys.main;
+                main.simulationSpeed = simulateSpeed;
+            }
+
         }
         else
         {
-            spawnedEffect = GameObject.Instantiate(effectPrefab);
-            spawnedEffect.transform.SetParent(targetTransform);
-            spawnedEffect.transform.position = spawnPosition;
-            spawnedEffect.transform.rotation = spawnRotation;
-            spawnedEffect.transform.localScale = scale;
+            _m_spawnedEffect = GameObject.Instantiate(effectPrefab);
+            _m_spawnedEffect.transform.SetParent(targetTransform);
+            _m_spawnedEffect.transform.position = spawnPosition;
+            _m_spawnedEffect.transform.rotation = spawnRotation;
+            _m_spawnedEffect.transform.localScale = scale;
+            ParticleSystem particleSystem = _m_spawnedEffect.GetComponent<ParticleSystem>();
+            var mainModule = particleSystem.main;
+            mainModule.simulationSpeed = simulateSpeed;
 
+            ParticleSystem[] systems = particleSystem.GetComponentsInChildren<ParticleSystem>();
+            foreach (var sys in systems)
+            {
+                var main = sys.main;
+                main.simulationSpeed = simulateSpeed;
+            }
+
+            particleSystem.Play();
         }
     }
 
-    private Vector3 CalculateSpawnPosition()
+    private Vector3 calculateSpawnPosition()
     {
         Vector3 basePosition;
 
@@ -145,7 +137,7 @@ public class PlayParticleEffectPlayableBehaviour : PlayableBehaviour
         return basePosition;
     }
 
-    private Quaternion CalculateSpawnRotation()
+    private Quaternion calculateSpawnRotation()
     {
         Quaternion baseRotation = Quaternion.identity;
 
@@ -161,32 +153,39 @@ public class PlayParticleEffectPlayableBehaviour : PlayableBehaviour
         return baseRotation;
     }
 
-    private void UpdateEffectPosition()
+    private void updateEffectState(Playable playable)
     {
-        if (spawnedEffect == null || targetTransform == null) return;
-
-        Vector3 newPosition = CalculateSpawnPosition();
-        Quaternion newRotation = CalculateSpawnRotation();
-
-        spawnedEffect.transform.position = newPosition;
-        spawnedEffect.transform.rotation = newRotation;
-    }
-
-
-    // 手动销毁特效（在需要提前销毁时使用）
-    public void DestroyEffect()
-    {
-        if (spawnedEffect != null)
+        if (_m_spawnedEffect != null)
         {
-            if (Application.isPlaying)
+            float currentTime = (float)playable.GetTime();
+
+            if (!Application.isPlaying)
             {
-                GameObject.Destroy(spawnedEffect);
+                // 编辑模式下手动模拟粒子系统
+                _m_spawnedEffect.GetComponent<ParticleSystem>().Simulate(currentTime, true, false);
             }
             else
             {
-                GameObject.DestroyImmediate(spawnedEffect);
+                // 运行模式下正常播放
+                if (!_m_spawnedEffect.GetComponent<ParticleSystem>().isPlaying)
+                    _m_spawnedEffect.GetComponent<ParticleSystem>().Play();
             }
-            spawnedEffect = null;
+        }
+    }
+
+    public void destroyEffect()
+    {
+        if (_m_spawnedEffect != null)
+        {
+            if (Application.isPlaying)
+            {
+                GameObject.Destroy(_m_spawnedEffect);
+            }
+            else
+            {
+                GameObject.DestroyImmediate(_m_spawnedEffect);
+            }
+            _m_spawnedEffect = null;
         }
     }
 }
