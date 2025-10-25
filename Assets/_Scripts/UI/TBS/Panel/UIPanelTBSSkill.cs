@@ -26,6 +26,8 @@ namespace GameCore.UI
             SCMsgCenter.RegisterMsgAct(SCMsgConst.TBS_ACTOR_SKILL_HIGHTLIGHT_UP, onTBSActorSkillHighLightUp);
             SCMsgCenter.RegisterMsgAct(SCMsgConst.TBS_ACTOR_SKILL_HIGHTLIGHT_DOWN, onTBSActorSkillHighLightDown);
             SCMsgCenter.RegisterMsg(SCMsgConst.TBS_ACTOR_SKILL_MOUSE_HIGHLIGHT, onTBSActorSkillMouseHighLight);
+            SCMsgCenter.RegisterMsgAct(SCMsgConst.TBS_ACTOR_SKILL_RELEASE, onTBSActorSkillRelease);
+
 
             _m_tweenContainer = new TweenContainer();
             mono.canvasGroup.alpha = 0;
@@ -41,6 +43,7 @@ namespace GameCore.UI
             SCMsgCenter.UnregisterMsgAct(SCMsgConst.TBS_ACTOR_SKILL_HIGHTLIGHT_UP, onTBSActorSkillHighLightUp);
             SCMsgCenter.UnregisterMsgAct(SCMsgConst.TBS_ACTOR_SKILL_HIGHTLIGHT_DOWN, onTBSActorSkillHighLightDown);
             SCMsgCenter.UnregisterMsg(SCMsgConst.TBS_ACTOR_SKILL_MOUSE_HIGHLIGHT, onTBSActorSkillMouseHighLight);
+            SCMsgCenter.UnregisterMsgAct(SCMsgConst.TBS_ACTOR_SKILL_RELEASE, onTBSActorSkillRelease);
 
             if (_m_skillContainer != null)
                 _m_skillContainer.Discard();
@@ -158,6 +161,17 @@ namespace GameCore.UI
                 }
             }
             _refreshPanel();
+        }
+
+        //技能释放回调
+        private void onTBSActorSkillRelease()
+        {
+
+            TBSActorInfo actorInfo = SCModel.instance.tbsModel.getCurActorInfo();
+            if (actorInfo == null)
+                return;
+            long curSkillId = actorInfo.skillList[_m_curSelectSkillIdx];
+            SCMsgCenter.SendMsg(SCMsgConst.TBS_ACTOR_SKILL, curSkillId);
         }
     }
 }

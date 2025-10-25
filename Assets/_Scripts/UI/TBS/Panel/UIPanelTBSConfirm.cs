@@ -1,6 +1,7 @@
 using DG.Tweening;
 using GameCore.Util;
 using SCFrame.UI;
+using SCFrame;
 
 namespace GameCore.UI
 {
@@ -14,6 +15,7 @@ namespace GameCore.UI
         public override void OnInitialize()
         {
             _m_tweenContainer = new TweenContainer();
+
         }
         public override void OnDiscard()
         {
@@ -23,6 +25,7 @@ namespace GameCore.UI
 
         public override void OnHidePanel()
         {
+
             Tween tween = mono.canvasGroup.DOFade(0, mono.fadeOutDuration).OnStart(() =>
             {
                 mono.canvasGroup.alpha = 1;
@@ -39,5 +42,6 @@ namespace GameCore.UI
             });
             _m_tweenContainer?.RegDoTween(tween);
         }
+
     }
 }

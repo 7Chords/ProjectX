@@ -206,7 +206,7 @@ namespace GameCore.TBS
             if (_args == null || _args.Length == 0)
                 return;
             long skillId = (long)_args[0];
-            _m_playerActorModuleList[_m_curSelectActorIndex].Attack(_m_enemyActorModuleList[_m_targetIndex]);
+            _m_playerActorModuleList[_m_curSelectActorIndex].ReleaseSkill(skillId, _m_enemyActorModuleList[_m_targetIndex]);
         }
 
         private void onTBSActorTargetHighlightLeft()

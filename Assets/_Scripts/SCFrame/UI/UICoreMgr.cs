@@ -146,9 +146,7 @@ namespace SCFrame.UI
 
         public void HideTopNode()
         {
-            if (_m_nodeList == null)
-                return;
-            _ASCUINodeBase topNode = _m_nodeList[_m_nodeList.Count - 1];
+            _ASCUINodeBase topNode = GetTopNode();
             if (topNode == null)
                 return;
             topNode.HideNode();
@@ -156,9 +154,7 @@ namespace SCFrame.UI
 
         public void ShowTopNode()
         {
-            if (_m_nodeList == null)
-                return;
-            _ASCUINodeBase topNode = _m_nodeList[_m_nodeList.Count - 1];
+            _ASCUINodeBase topNode = GetTopNode();
             if (topNode == null)
                 return;
             topNode.ShowNode();
@@ -198,7 +194,13 @@ namespace SCFrame.UI
             return null;
         }
 
-
+        public _ASCUINodeBase GetTopNode()
+        {
+            if (_m_nodeList == null)
+                return null;
+            _ASCUINodeBase topNode = _m_nodeList[_m_nodeList.Count - 1];
+            return topNode;
+        }
         #endregion
     }
 }

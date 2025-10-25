@@ -33,10 +33,21 @@ namespace GameCore.TBS
 
         private void onTBSConfirmInput()
         {
-            _ASCUINodeBase node = GameCoreMgr.instance.uiCoreMgr.GetNodeByName(nameof(UINodeTBSSkill));
-            if (node == null || node.hasHideNode)
+            _ASCUINodeBase topNode = GameCoreMgr.instance.uiCoreMgr.GetTopNode();
+            if (topNode == null || topNode.hasHideNode)
                 return;
-            SCMsgCenter.SendMsgAct(SCMsgConst.TBS_ACTOR_SKILL_CONFIRM);
+            switch(topNode.GetNodeName())
+            {
+                case nameof(UINodeTBSSkill):
+                    SCMsgCenter.SendMsgAct(SCMsgConst.TBS_ACTOR_SKILL_CONFIRM);
+                    break;
+                case nameof(UINodeTBSConfirm):
+                    SCMsgCenter.SendMsgAct(SCMsgConst.TBS_ACTOR_SKILL_RELEASE);
+                    break;
+                default:
+                    break;
+
+            }
         }
     }
 }
