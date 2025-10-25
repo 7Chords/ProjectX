@@ -1,9 +1,11 @@
 using DG.Tweening;
+using GameCore.RefData;
 using GameCore.UI;
 using SCFrame;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Playables;
 
 namespace GameCore.TBS
 {
@@ -101,6 +103,80 @@ namespace GameCore.TBS
 
         public override void ReleaseSkill(long skillId, TBSActorBase _target)
         {
+
+            TBSActorSkillRefObj skillRefObj = SCRefDataMgr.instance.tbsActorSkillRefList.refDataList.Find(x => x.id == skillId);
+            if (skillRefObj == null)
+                return;
+            PlayableAsset skillAsset = ResourcesHelper.LoadAsset<PlayableAsset>(skillRefObj.skillPlayableAssetName);
+            if (skillAsset == null)
+                return;
+
+            if(!skillRefObj.needMove)
+            {
+                _m_actorMono.skillDirector.Play(skillAsset);
+            }
+            else
+            {
+                switch(skillRefObj.skillName)
+                {
+                    case "—∏Ω›π•ª˜":
+                        {
+                            Vector3 originalPos = _m_actorMono.gameObject.transform.position;
+                            Sequence seq = DOTween.Sequence();
+                            Tween move2AttackTween = _m_actorMono.gameObject.transform.DOMove(_target.getEnemyAttackStandPos(), 1f)
+                                .OnStart(
+                                () =>
+                                {
+                                    GameCoreMgr.instance.uiCoreMgr.RemoveNode(nameof(UINodeTBSConfirm));
+                                    GameCoreMgr.instance.uiCoreMgr.HideNode(nameof(UINodeTBSMain));
+                                    GameCoreMgr.instance.uiCoreMgr.HideNode(nameof(UINodeTBSEnemyHud));
+                                    TBSCursorMgr.instance.HideSelectionCursor(); 
+                                    _m_animationCtl.PlaySingleAniamtion(_m_runAnimClip);
+                                })
+                                .OnComplete(
+                                () =>
+                                {
+                                    _m_actorMono.skillDirector.Play(skillAsset);
+                                });
+
+
+                            Tween rotateTween_1 = _m_actorMono.gameObject.transform.DOLocalRotate(new Vector3(0, 180, 0), 0.5f);
+
+                            Tween move2OriginalTween = _m_actorMono.gameObject.transform.DOMove(originalPos, 1f)
+                                .OnStart(
+                                () =>
+                                {
+                                    _m_animationCtl.PlaySingleAniamtion(_m_runAnimClip);
+                                })
+                                .OnComplete(
+                                () =>
+                                {
+                                    _m_animationCtl.PlaySingleAniamtion(_m_idleAnimClip);
+                                });
+                            Tween rotateTween_2 = _m_actorMono.gameObject.transform.DOLocalRotate(Vector3.zero, 0.5f);
+
+                            seq.Append(move2AttackTween);
+
+                            seq.Append(DOVirtual.DelayedCall((_m_actorMono as TBSWarriorActorMono).attackAnimDuration,
+                                () =>
+                                {
+                                    SCMsgCenter.SendMsgAct(SCMsgConst.TBS_ACTOR_ACTION_END);
+                                }));
+                            seq.Append(rotateTween_1);
+                            seq.Append(move2OriginalTween);
+                            seq.Append(rotateTween_2);
+
+
+                            _m_tweenContainer?.RegDoTween(seq);
+                        }
+                        break;
+                    case "À≤…¡Õª¥Ã":
+                        break;
+                }
+            }
+
+
+
         }
     }
 }

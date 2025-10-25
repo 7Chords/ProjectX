@@ -2457,6 +2457,7 @@ MonoBehaviour:
   idleAnimClipName: stele_idle_anim_clip
   defendAnimClipName: stele_defend_anim_clip
   animEventTrigger: {fileID: 2746491463881782451}
+  skillDirector: {fileID: 3096810732747084782}
   attackAnimDuration: 1
   defendPlayTime: 1
 --- !u!136 &8821873457962801809
@@ -2483,7 +2484,7 @@ PlayableDirector:
   m_Enabled: 1
   serializedVersion: 3
   m_PlayableAsset: {fileID: 11400000, guid: bd93afddb738c564495c9f9f5894ba9c, type: 2}
-  m_InitialState: 1
+  m_InitialState: 0
   m_WrapMode: 2
   m_DirectorUpdateMode: 1
   m_InitialTime: 0

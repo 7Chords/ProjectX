@@ -184,6 +184,16 @@ namespace SCFrame.UI
             }
         }
 
+        public void RemoveNode(string _nodeName)
+        {
+            _ASCUINodeBase node = GetNodeByName(_nodeName);
+            if (node == null)
+                return;
+            node.HideNode();
+            node.QuitNode();
+            _m_nodeList.Remove(node);
+        }
+
         public _ASCUINodeBase GetNodeByName(string _nodeName)
         {
             foreach(var node in _m_nodeList)

@@ -1,4 +1,4 @@
-﻿id	skillName	skillIconObjName	skillNeedMp	skillNeedHp	skillDesc	damageTargetType	damageType	damageAmountType	physicsLevelType	magicAttributeType
-1001	迅捷攻击	spr_skill_1001	5	0	#2_tbs_skill_desc_1001	SINGLE	PHYSICAL	LITTLE	LIGHT	NONE
-1002	蓝焰吐息	spr_skill_1002	10	0	#2_tbs_skill_desc_1002	SINGLE	MAGIC	LITTLE	NONE	WATER
-1003	瞬闪突刺	spr_skill_1003	15	0	#2_tbs_skill_desc_1003	ALL	PHYSICAL	LITTLE	LIGHT	NONE
+﻿id	skillName	skillIconObjName	skillNeedMp	skillNeedHp	skillDesc	damageTargetType	damageType	damageAmountType	physicsLevelType	magicAttributeType	skillPlayableAssetName	needMove
+1001	迅捷攻击	spr_skill_1001	5	0	#2_tbs_skill_desc_1001	SINGLE	PHYSICAL	LITTLE	LIGHT	NONE	tl_stele_skill_1001	TRUE
+1002	蓝焰吐息	spr_skill_1002	10	0	#2_tbs_skill_desc_1002	SINGLE	MAGIC	LITTLE	NONE	WATER	tl_stele_skill_1002	FALSE
+1003	瞬闪突刺	spr_skill_1003	15	0	#2_tbs_skill_desc_1003	ALL	PHYSICAL	LITTLE	LIGHT	NONE	tl_stele_skill_1003	FALSE

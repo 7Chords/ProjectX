@@ -25,6 +25,8 @@ namespace GameCore.RefData
         public EDamageAmountType damageAmountType;
         public EPhysicalLevelType physicsLevelType;
         public EMagicAttributeType magicAttributeType;
+        public string skillPlayableAssetName;
+        public bool needMove;
         protected override void _parseFromString()
         {
             id = getLong("id");
@@ -38,6 +40,8 @@ namespace GameCore.RefData
             damageAmountType = (EDamageAmountType)getEnum("damageAmountType", typeof(EDamageAmountType));
             physicsLevelType = (EPhysicalLevelType)getEnum("physicsLevelType", typeof(EPhysicalLevelType));
             magicAttributeType = (EMagicAttributeType)getEnum("magicAttributeType", typeof(EMagicAttributeType));
+            skillPlayableAssetName = getString("skillPlayableAssetName");
+            needMove = getBool("needMove");
         }
 
         public static string assetPath => "RefData/ExportTxt";
