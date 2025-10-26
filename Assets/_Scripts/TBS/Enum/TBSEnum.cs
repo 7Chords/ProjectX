@@ -101,4 +101,29 @@ namespace GameCore.TBS
         BUFF,
     }
 
+
+    public enum EBuffType
+    {
+        ATTACK_DOWN,
+        ATTACK_UP,
+        DEFEND_DOWN,
+        DEFEND_UP,
+        MISS_DOWN,
+        MISS_UP,
+        CRITICAL_DOWN,
+        CRITICAL_UP,
+        PHYSICAL_LEVLE_DOWN,
+        PHYSICAL_LEVEL_UP,
+        ARMOR_LEVEL_UP,
+        ARMOR_LEVEL_DOWN,
+        MAGIC_RESISTANCE_LEVEL_UP,
+        MAGIC_RESISTANCE_LEVEL_DOWN,
+    }
+
+    public enum EBuffStackType
+    {
+        ONE,
+        TWO,
+        THREE,
+    }
 }

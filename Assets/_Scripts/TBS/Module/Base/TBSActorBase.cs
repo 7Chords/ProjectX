@@ -224,5 +224,9 @@ namespace GameCore.TBS
             TBSAttackHandler.DealAttack(attackInfo);
         }
 
+        protected virtual void dealSkill()
+        {
+
+        }
     }
 }

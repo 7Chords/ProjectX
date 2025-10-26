@@ -22,6 +22,9 @@ namespace SCFrame
         public TBSConfigRefObj tbsConfigRefObj = new TBSConfigRefObj(TBSConfigRefObj.assetPath, TBSConfigRefObj.sheetName);
 
         public SCRefDataList<UIResPathRefObj> uiResPathRefList = new SCRefDataList<UIResPathRefObj>(UIResPathRefObj.assetPath, UIResPathRefObj.sheetName);
+
+        public SCRefDataList<TBSBuffRefObj> tbsBuffRefList = new SCRefDataList<TBSBuffRefObj>(TBSBuffRefObj.assetPath, TBSBuffRefObj.sheetName);
+
         public override void OnInitialize()
         {
             gameGeneralRefObj.readFromTxt();
@@ -32,6 +35,7 @@ namespace SCFrame
             textLanguageRefList.readFromTxt();
             tbsConfigRefObj.readFromTxt();
             uiResPathRefList.readFromTxt();
+            tbsBuffRefList.readFromTxt();
         }
     }
 }

@@ -96,6 +96,8 @@ namespace GameCore.TBS
             }
         }
 
+        //public static void DealSkill()
+
         /// <summary>
         /// 获得物理穿透倍率
         /// </summary>

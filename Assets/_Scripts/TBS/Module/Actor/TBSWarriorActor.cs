@@ -123,19 +123,21 @@ namespace GameCore.TBS
                         {
                             Vector3 originalPos = _m_actorMono.gameObject.transform.position;
                             Sequence seq = DOTween.Sequence();
-                            Tween move2AttackTween = _m_actorMono.gameObject.transform.DOMove(_target.getEnemyAttackStandPos(), 1f)
+                            Tween move2AttackTween = _m_actorMono.gameObject.transform.DOMove(_target.getEnemyAttackStandPos(), 0.5f)
                                 .OnStart(
                                 () =>
                                 {
                                     GameCoreMgr.instance.uiCoreMgr.RemoveNode(nameof(UINodeTBSConfirm));
                                     GameCoreMgr.instance.uiCoreMgr.HideNode(nameof(UINodeTBSMain));
                                     GameCoreMgr.instance.uiCoreMgr.HideNode(nameof(UINodeTBSEnemyHud));
-                                    TBSCursorMgr.instance.HideSelectionCursor(); 
+                                    TBSCursorMgr.instance.HideSelectionCursor();
+                                    _m_animationCtl.speed = 2f;
                                     _m_animationCtl.PlaySingleAniamtion(_m_runAnimClip);
                                 })
                                 .OnComplete(
                                 () =>
                                 {
+                                    _m_animationCtl.speed = 1f;
                                     _m_actorMono.skillDirector.Play(skillAsset);
                                 });
 
@@ -157,7 +159,7 @@ namespace GameCore.TBS
 
                             seq.Append(move2AttackTween);
 
-                            seq.Append(DOVirtual.DelayedCall((_m_actorMono as TBSWarriorActorMono).attackAnimDuration,
+                            seq.Append(DOVirtual.DelayedCall((float)skillAsset.duration,
                                 () =>
                                 {
                                     SCMsgCenter.SendMsgAct(SCMsgConst.TBS_ACTOR_ACTION_END);
