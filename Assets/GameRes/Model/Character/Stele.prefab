@@ -2409,6 +2409,8 @@ GameObject:
   - component: {fileID: 1634726553950741811}
   - component: {fileID: 8821873457962801809}
   - component: {fileID: 3096810732747084782}
+  - component: {fileID: 7823512981348651069}
+  - component: {fileID: 6684072143555460981}
   m_Layer: 0
   m_Name: Stele
   m_TagString: Untagged
@@ -2458,6 +2460,7 @@ MonoBehaviour:
   defendAnimClipName: stele_defend_anim_clip
   animEventTrigger: {fileID: 2746491463881782451}
   skillDirector: {fileID: 3096810732747084782}
+  skillSignalReceiver: {fileID: 7823512981348651069}
   attackAnimDuration: 1
   defendPlayTime: 1
 --- !u!136 &8821873457962801809
@@ -2493,9 +2496,53 @@ PlayableDirector:
     value: {fileID: 4627569865280884054}
   - key: {fileID: 3719293832218398522, guid: bd93afddb738c564495c9f9f5894ba9c, type: 2}
     value: {fileID: 6671934514393013419}
+  - key: {fileID: 2774030899252504993, guid: bd93afddb738c564495c9f9f5894ba9c, type: 2}
+    value: {fileID: 7823512981348651069}
   m_ExposedReferences:
     m_References:
     - e8934cf1ca20d244ab76568cf021bfa6: {fileID: 6671934514393013419}
+--- !u!114 &7823512981348651069
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6671934514393013416}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e52de21a22b6dd44c9cc19f810c65059, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Events:
+    m_Signals:
+    - {fileID: 11400000, guid: b815e3275168e4c42a74dbcc7bd18812, type: 2}
+    m_Events:
+    - m_PersistentCalls:
+        m_Calls:
+        - m_Target: {fileID: 6684072143555460981}
+          m_TargetAssemblyTypeName: GameCore.Util.SignalEventTrigger, Assembly-CSharp
+          m_MethodName: SignalEvent
+          m_Mode: 5
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_IntArgument: 0
+            m_FloatArgument: 0
+            m_StringArgument: CommonDealSkill
+            m_BoolArgument: 0
+          m_CallState: 2
+--- !u!114 &6684072143555460981
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6671934514393013416}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d14edc435c1a08f4499155f2a551dcaf, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &7656945258342648692
 GameObject:
   m_ObjectHideFlags: 0

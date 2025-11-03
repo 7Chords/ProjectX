@@ -26,7 +26,7 @@ namespace GameCore.TBS
 
             Vector3 originalPos = _m_actorMono.gameObject.transform.position;
             Sequence seq = DOTween.Sequence();
-            Tween move2AttackTween = _m_actorMono.gameObject.transform.DOMove(_target.getEnemyAttackStandPos(), 1f)
+            Tween move2AttackTween = _m_actorMono.gameObject.transform.DOMove(_target.GetEnemyAttackStandPos(), 1f)
                 .OnStart(
                 () =>
                 {
@@ -65,7 +65,7 @@ namespace GameCore.TBS
                 {
                     _m_attackEnemyActorList.Remove(_target);
                     _m_actorMono.animEventTrigger.RemoveAnimationEvent("dealAttack");
-                    SCMsgCenter.SendMsgAct(SCMsgConst.TBS_ACTOR_ACTION_END); 
+                    SCMsgCenter.SendMsg(SCMsgConst.TBS_ACTOR_ACTION_END, actorInfo.characterId);
                 }));
             seq.Append(rotateTween_1);
             seq.Append(move2OriginalTween);
@@ -82,7 +82,7 @@ namespace GameCore.TBS
             seq.Append(DOVirtual.DelayedCall((_m_actorMono as TBSWarriorActorMono).defendPlayTime,
                 () =>
                 {
-                    SCMsgCenter.SendMsgAct(SCMsgConst.TBS_ACTOR_ACTION_END);
+                    SCMsgCenter.SendMsg(SCMsgConst.TBS_ACTOR_ACTION_END, actorInfo.characterId);
                 })
                 .OnStart(() =>
                 {
@@ -121,9 +121,10 @@ namespace GameCore.TBS
                 {
                     case "—∏Ω›π•ª˜":
                         {
+                            _m_actorMono.signalEventTrigger.AddSignalEvent("CommonDealSkill", dealSkill);
                             Vector3 originalPos = _m_actorMono.gameObject.transform.position;
                             Sequence seq = DOTween.Sequence();
-                            Tween move2AttackTween = _m_actorMono.gameObject.transform.DOMove(_target.getEnemyAttackStandPos(), 0.5f)
+                            Tween move2AttackTween = _m_actorMono.gameObject.transform.DOMove(_target.GetEnemyAttackStandPos(), 0.5f)
                                 .OnStart(
                                 () =>
                                 {
@@ -162,7 +163,8 @@ namespace GameCore.TBS
                             seq.Append(DOVirtual.DelayedCall((float)skillAsset.duration,
                                 () =>
                                 {
-                                    SCMsgCenter.SendMsgAct(SCMsgConst.TBS_ACTOR_ACTION_END);
+                                    SCMsgCenter.SendMsg(SCMsgConst.TBS_ACTOR_ACTION_END, actorInfo.characterId);
+                                    _m_actorMono.signalEventTrigger.RemoveSignalEvent("CommonDealSkill");
                                 }));
                             seq.Append(rotateTween_1);
                             seq.Append(move2OriginalTween);
@@ -170,6 +172,7 @@ namespace GameCore.TBS
 
 
                             _m_tweenContainer?.RegDoTween(seq);
+
                         }
                         break;
                     case "À≤…¡Õª¥Ã":

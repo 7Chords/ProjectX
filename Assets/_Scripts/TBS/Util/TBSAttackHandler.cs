@@ -18,6 +18,12 @@ namespace GameCore.TBS
         {
             return new TBSGameAttackInfo();
         }
+
+        public static TBSGameSkillInfo CreateTBSSkillInfo()
+        {
+            return new TBSGameSkillInfo();
+        }
+
         public static void DealAttack(TBSGameAttackInfo _attackInfo)
         {
             if (_attackInfo == null)
@@ -96,7 +102,87 @@ namespace GameCore.TBS
             }
         }
 
-        //public static void DealSkill()
+        /// <summary>
+        /// 处理技能 相对于普攻 多一个量级伤害
+        /// </summary>
+        /// <param name="_skillInfo"></param>
+        public static void DealSkill(TBSGameSkillInfo _skillInfo)
+        {
+            if (_skillInfo == null)
+                return;
+            if (_skillInfo.srcActorList == null)
+                return;
+            TBSConfigRefObj tbsConfigRefObj = SCRefDataMgr.instance.tbsConfigRefObj;
+            if (tbsConfigRefObj == null)
+                return;
+            for (int i = 0; i < _skillInfo.srcActorList.Count; i++)
+            {
+                if (_skillInfo.srcUseHpList != null && _skillInfo.srcUseHpList.Count > i)
+                    _skillInfo.srcActorList[i].TakeDamage(_skillInfo.srcUseHpList[i], false);
+                if (_skillInfo.srcUseMpList != null && _skillInfo.srcUseMpList.Count > i)
+                    _skillInfo.srcActorList[i].TakeMagic(_skillInfo.srcUseMpList[i]);
+            }
+            //List<int> damageList = new List<int>();
+            //如果是多人合击技能 不计算闪避
+            //todo：目前没有多人合击设计 略过
+            if (_skillInfo.srcActorList.Count > 1)
+            {
+
+            }
+            else
+            {
+                //闪避 --> 穿透 -->暴击
+                //闪避 --> 抵抗 -->克制
+                float tmpDamage = 0;
+                string extraStr = "";
+                foreach (var actor in _skillInfo.targetActorList)
+                {
+                    if (actor.MissJudge())
+                    {
+                        actor.Miss();
+                    }
+                    else
+                    {
+                        tmpDamage = _skillInfo.baseDamage;
+                        if (_skillInfo.damageType == EDamageType.PHYSICAL)
+                        {
+                            tmpDamage *= getPhysicalPenetrateRate(_skillInfo.physicsLevelType, actor.actorInfo.armorLevel, out extraStr);
+                            if (_skillInfo.srcActorList[0].CriticalJudge())
+                                tmpDamage *= tbsConfigRefObj.tbsCrticalMultiplier;
+                        }
+                        else if (_skillInfo.damageType == EDamageType.MAGIC)
+                        {
+                            if (magicInvalidJudge(_skillInfo.magicAttributeType, actor.actorInfo))
+                            {
+                                actor.GetAttackInvalid();
+                                return;
+                            }
+                            else if (magicBounceJudge(_skillInfo.magicAttributeType, actor.actorInfo))
+                            {
+                                actor.GetAttackBounce();
+                                return;
+                            }
+                            else if (magicSuckJudge(_skillInfo.magicAttributeType, actor.actorInfo))
+                            {
+                                actor.GetAttackSuck();
+                                return;
+                            }
+                            else
+                            {
+                                tmpDamage *= getMagicResistanceRate(actor.actorInfo.magicResistanceLevel);
+                                tmpDamage *= getMagicWeakRate(_skillInfo.magicAttributeType, actor.actorInfo, out extraStr);
+                            }
+                        }
+                        else if (_skillInfo.damageType == EDamageType.REAL)
+                        {
+                            //真实伤害无处理
+                        }
+                        actor.TakeDamage(Mathf.RoundToInt(tmpDamage), true, extraStr);
+                        Debug.Log("===TBS===" + actor.actorInfo.characterName + "受到了" + Mathf.RoundToInt(tmpDamage) + "点伤害");
+                    }
+                }
+            }
+        }
 
         /// <summary>
         /// 获得物理穿透倍率

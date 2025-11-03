@@ -19,15 +19,15 @@ namespace GameCore.TBS
             TBSMageActorMono actorMono = _m_actorMono as TBSMageActorMono;
             Sequence seq = DOTween.Sequence();
             GameObject flyBall = null;
-            float flyTime = Vector3.Distance(_target.getPos(), actorMono.attackSourceTran.position) / actorMono.attackFlySpeed;
+            float flyTime = Vector3.Distance(_target.GetPos(), actorMono.attackSourceTran.position) / actorMono.attackFlySpeed;
             seq.Append(DOVirtual.DelayedCall(actorMono.attackSpwanTime,
                 () =>
                 {
                     flyBall = ResourcesHelper.LoadGameObject(actorMono.attackSpawnObjName, actorMono.attackSourceTran.position, Quaternion.identity);
-                    Vector3 dir = (_target.getPos() - flyBall.transform.position).normalized;
+                    Vector3 dir = (_target.GetPos() - flyBall.transform.position).normalized;
                     flyBall.transform.LookAt(dir);
                     flyBall.GetComponent<Rigidbody>().velocity = dir * actorMono.attackFlySpeed;
-                    flyBall.GetComponent<AttackFlyObj>().Initialize(_target.getGameObject(), dealAttack);
+                    flyBall.GetComponent<AttackFlyObj>().Initialize(_target.GetGameObject(), dealAttack);
                 }).OnStart(
                 ()=>
                 {
@@ -41,7 +41,7 @@ namespace GameCore.TBS
                 () =>
                 {
                     _m_attackEnemyActorList.Remove(_target);
-                    SCMsgCenter.SendMsgAct(SCMsgConst.TBS_ACTOR_ACTION_END);
+                    SCMsgCenter.SendMsg(SCMsgConst.TBS_ACTOR_ACTION_END,actorInfo.characterId);
                     _m_animationCtl.PlaySingleAniamtion(_m_idleAnimClip);
 
                 }));
@@ -55,7 +55,7 @@ namespace GameCore.TBS
             seq.Append(DOVirtual.DelayedCall((_m_actorMono as TBSMageActorMono).defendPlayTime,
                 () =>
                 {
-                    SCMsgCenter.SendMsgAct(SCMsgConst.TBS_ACTOR_ACTION_END);
+                    SCMsgCenter.SendMsg(SCMsgConst.TBS_ACTOR_ACTION_END, actorInfo.characterId);
                 })
                 .OnStart(() =>
                 {

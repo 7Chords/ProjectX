@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Playables;
+using UnityEngine.Timeline;
 
 public class TBSActorMonoBase : MonoBehaviour
 {
@@ -34,4 +35,6 @@ public class TBSActorMonoBase : MonoBehaviour
     public AnimationEventTrigger animEventTrigger;
     [Header("技能播放器")]
     public PlayableDirector skillDirector;
+    [Header("技能事件接受器")]
+    public SignalEventTrigger signalEventTrigger;
 }

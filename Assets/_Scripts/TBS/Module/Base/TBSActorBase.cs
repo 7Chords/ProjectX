@@ -5,6 +5,7 @@ using DG.Tweening;
 using System;
 using Random = UnityEngine.Random;
 using System.Collections.Generic;
+using GameCore.RefData;
 
 namespace GameCore.TBS
 {
@@ -25,6 +26,8 @@ namespace GameCore.TBS
         public TBSActorInfo actorInfo => _m_actorInfo;
 
         protected List<TBSActorBase> _m_attackEnemyActorList;
+
+        protected TBSActorSkillRefObj _m_actorSkillRefObj;
         public TBSActorBase(TBSActorMonoBase _mono)
         {
             _m_actorMono = _mono;
@@ -55,9 +58,15 @@ namespace GameCore.TBS
             if (_m_idleAnimClip != null)
                 _m_animationCtl.PlaySingleAniamtion(_m_idleAnimClip);
 
+
+            SCMsgCenter.RegisterMsg(SCMsgConst.TBS_ACTOR_ACTION_END, onTBSActorActionEnd);
+
         }
         public override void OnDiscard()
         {
+
+            SCMsgCenter.UnregisterMsg(SCMsgConst.TBS_ACTOR_ACTION_END, onTBSActorActionEnd);
+
             _m_tweenContainer?.KillAllDoTween();
             _m_tweenContainer = null;
             _m_animationCtl?.Discard();
@@ -76,26 +85,26 @@ namespace GameCore.TBS
             _m_actorInfo = _actorInfo;
         }
 
-        public virtual Vector3 getEnemyAttackStandPos()
+        public virtual Vector3 GetEnemyAttackStandPos()
         {
             return _m_actorMono.transform.position - _m_actorMono.enemyAttackStopOffset;
         }
 
-        public virtual Vector3 getCursorPos()
+        public virtual Vector3 GetCursorPos()
         {
             return _m_actorMono.transform.position + _m_actorMono.cursorOffset;
         }
 
-        public virtual Vector3 getDamageTextPos()
+        public virtual Vector3 GetDamageTextPos()
         {
             return _m_actorMono.transform.position + _m_actorMono.damageTextOffset;
         }
-        public virtual Vector3 getPos()
+        public virtual Vector3 GetPos()
         {
             return _m_actorMono.transform.position;
         }
 
-        public GameObject getGameObject()
+        public GameObject GetGameObject()
         {
             return _m_actorMono.gameObject;
         }
@@ -136,7 +145,7 @@ namespace GameCore.TBS
 
             //ui飘字
             if(_needShopFloatText)
-                GameCommon.ShowDamageFloatText(_damage, getDamageTextPos(), _extraStr);
+                GameCommon.ShowDamageFloatText(_damage, GetDamageTextPos(), _extraStr);
 
             SCMsgCenter.SendMsg(SCMsgConst.TBS_ACTOR_INFO_CHG, actorInfo.characterId);
         }
@@ -226,6 +235,35 @@ namespace GameCore.TBS
 
         protected virtual void dealSkill()
         {
+            if (_m_actorSkillRefObj == null)
+                return;
+            TBSGameSkillInfo skillInfo = TBSAttackHandler.CreateTBSSkillInfo();
+            skillInfo.srcActorList = new List<TBSActorBase>();
+            skillInfo.srcActorList.Add(this);
+            skillInfo.targetActorList = _m_attackEnemyActorList;
+
+            skillInfo.baseDamage = actorInfo.attack;
+            skillInfo.damageAmountType = _m_actorSkillRefObj.damageAmountType;
+            skillInfo.damageType = _m_actorSkillRefObj.damageType;
+            skillInfo.physicsLevelType = _m_actorSkillRefObj.physicsLevelType;
+            skillInfo.magicAttributeType = _m_actorSkillRefObj.magicAttributeType;
+            skillInfo.damageCauseType = EDamageCauseType.SKILL;
+            //处理器处理技能信息
+            TBSAttackHandler.DealSkill(skillInfo);
+        }
+
+
+        protected virtual void onTBSActorActionEnd(object[] _objs)
+        {
+            if (_objs == null || _objs.Length == 0)
+                return;
+            long characterId = (long)_objs[0];
+            //恢复为idle
+            if(characterId != actorInfo.characterId)
+            {
+                if (_m_idleAnimClip != null)
+                    _m_animationCtl.PlaySingleAniamtion(_m_idleAnimClip);
+            }
 
         }
     }

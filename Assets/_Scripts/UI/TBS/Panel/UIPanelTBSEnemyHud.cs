@@ -51,7 +51,7 @@ namespace GameCore.UI
             for(int i =0;i< _m_enemyActorList.Count;i++)
             {
                 tmpGO = ResourcesHelper.LoadGameObject(mono.enemyHudItemObjName, GetGameObject().transform);
-                tmpGO.GetRectTransform().localPosition = SCUICommon.WorldPointToUIPoint(GetGameObject().GetRectTransform(), _m_enemyActorList[i].getGameObject().transform.position);
+                tmpGO.GetRectTransform().localPosition = SCUICommon.WorldPointToUIPoint(GetGameObject().GetRectTransform(), _m_enemyActorList[i].GetGameObject().transform.position);
                 tmpGO.GetRectTransform().localPosition += mono.enemyHudItemOffset;
                 tmpItem = new UIPanelTBSEnemyHudItem(tmpGO.GetComponent<UIMonoTBSEnemyHudItem>(), SCUIShowType.INTERNAL);
                 tmpItem.SetInfo(_m_enemyActorList[i].actorInfo);

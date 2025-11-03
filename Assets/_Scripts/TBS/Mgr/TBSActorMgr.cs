@@ -29,7 +29,7 @@ namespace GameCore.TBS
         {
             SCMsgCenter.RegisterMsgAct(SCMsgConst.TBS_ACTOR_MGR_WORK, onTBSActorMgrWork);
             SCMsgCenter.RegisterMsgAct(SCMsgConst.TBS_ACTOR_MGR_REST, onTBSActorMgrRest);
-            SCMsgCenter.RegisterMsgAct(SCMsgConst.TBS_ACTOR_ACTION_END, onTBSActorActionEnd);
+            SCMsgCenter.RegisterMsg(SCMsgConst.TBS_ACTOR_ACTION_END, onTBSActorActionEnd);
             SCMsgCenter.RegisterMsgAct(SCMsgConst.TBS_ACTOR_DEFENCE, onTBSActorDefence);
             SCMsgCenter.RegisterMsgAct(SCMsgConst.TBS_ACTOR_ATTACK, onTBSActorAttack);
             SCMsgCenter.RegisterMsg(SCMsgConst.TBS_ACTOR_SKILL, onTBSActorSkill);
@@ -42,7 +42,7 @@ namespace GameCore.TBS
         {
             SCMsgCenter.UnregisterMsgAct(SCMsgConst.TBS_ACTOR_MGR_WORK, onTBSActorMgrWork);
             SCMsgCenter.UnregisterMsgAct(SCMsgConst.TBS_ACTOR_MGR_REST, onTBSActorMgrRest);
-            SCMsgCenter.UnregisterMsgAct(SCMsgConst.TBS_ACTOR_ACTION_END, onTBSActorActionEnd);
+            SCMsgCenter.UnregisterMsg(SCMsgConst.TBS_ACTOR_ACTION_END, onTBSActorActionEnd);
             SCMsgCenter.UnregisterMsgAct(SCMsgConst.TBS_ACTOR_DEFENCE, onTBSActorDefence);
             SCMsgCenter.UnregisterMsgAct(SCMsgConst.TBS_ACTOR_ATTACK, onTBSActorAttack);
             SCMsgCenter.UnregisterMsg(SCMsgConst.TBS_ACTOR_SKILL, onTBSActorSkill);
@@ -170,7 +170,7 @@ namespace GameCore.TBS
         }
 
 
-        private void onTBSActorActionEnd()
+        private void onTBSActorActionEnd(object[] _objs)
         {
             _m_curSelectActorIndex++;
 
@@ -215,7 +215,7 @@ namespace GameCore.TBS
             if (_m_targetIndex < 0)
                 _m_targetIndex = _m_enemyActorModuleList.Count - 1;
             SCMsgCenter.SendMsg(SCMsgConst.TBS_SELECT_SINGLE_ENEMY_TARGET_CHG, _m_targetIndex);
-            TBSCursorMgr.instance.MoveCursor2Pos(_m_enemyActorModuleList[_m_targetIndex].getCursorPos());
+            TBSCursorMgr.instance.MoveCursor2Pos(_m_enemyActorModuleList[_m_targetIndex].GetCursorPos());
 
         }
 
@@ -225,7 +225,7 @@ namespace GameCore.TBS
             if (_m_targetIndex > _m_enemyActorModuleList.Count - 1)
                 _m_targetIndex = 0;
             SCMsgCenter.SendMsg(SCMsgConst.TBS_SELECT_SINGLE_ENEMY_TARGET_CHG, _m_targetIndex);
-            TBSCursorMgr.instance.MoveCursor2Pos(_m_enemyActorModuleList[_m_targetIndex].getCursorPos());
+            TBSCursorMgr.instance.MoveCursor2Pos(_m_enemyActorModuleList[_m_targetIndex].GetCursorPos());
         }
         #endregion
 
@@ -253,7 +253,7 @@ namespace GameCore.TBS
                     GameCoreMgr.instance.uiCoreMgr.ShowNode(nameof(UINodeTBSEnemyHud));
 
                 GameCoreMgr.instance.uiCoreMgr.ShowNode(nameof(UINodeTBSMain));
-                TBSCursorMgr.instance.SetSelectionCursorPos(_m_enemyActorModuleList[_m_targetIndex].getCursorPos());
+                TBSCursorMgr.instance.SetSelectionCursorPos(_m_enemyActorModuleList[_m_targetIndex].GetCursorPos());
             }
 
             void setCameraOffset()
