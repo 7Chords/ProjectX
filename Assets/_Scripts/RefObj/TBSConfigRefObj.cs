@@ -35,6 +35,10 @@ namespace GameCore.RefData
         public string tbsAttributeSuckSpriteObjName;
         public string tbsAttributeUnknownSpriteObjName;
         public string tbsResistanceHeroSpriteObjName;
+        public float tbsLittleAmountMultiplier;
+        public float tbsMiddleAmountMultiplier;
+        public float tbsLargeAmountMultiplier;
+        public float tbsSuperAmountMultiplier;
 
         protected override void _parseFromString()
         {
@@ -64,6 +68,11 @@ namespace GameCore.RefData
             tbsAttributeSuckSpriteObjName = getString("tbsAttributeSuckSpriteObjName");
             tbsAttributeUnknownSpriteObjName = getString("tbsAttributeUnknownSpriteObjName");
             tbsResistanceHeroSpriteObjName = getString("tbsResistanceHeroSpriteObjName");
+            tbsLittleAmountMultiplier = getFloat("tbsLittleAmountMultiplier");
+            tbsMiddleAmountMultiplier = getFloat("tbsMiddleAmountMultiplier");
+            tbsLargeAmountMultiplier = getFloat("tbsLargeAmountMultiplier");
+            tbsSuperAmountMultiplier = getFloat("tbsSuperAmountMultiplier");
+
         }
 
         public static string assetPath => "RefData/ExportTxt";

@@ -2623,6 +2623,7 @@ GameObject:
   - component: {fileID: 8804294570544746407}
   - component: {fileID: 1301961305825319518}
   - component: {fileID: 2202950072308861922}
+  - component: {fileID: 3518964339634075314}
   m_Layer: 0
   m_Name: Lorraine
   m_TagString: Untagged
@@ -2659,6 +2660,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3f4ff6a74fe506f4c9bb89bf0ae3cb84, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  damageTextOffset: {x: 0, y: 0, z: 0}
   cursorOffset: {x: 0, y: 0, z: 0}
   actorAnim: {fileID: 8898066990867049978}
   bottomSfxTran: {fileID: 0}
@@ -2671,6 +2673,8 @@ MonoBehaviour:
   idleAnimClipName: lorraine_idle_anim_clip
   defendAnimClipName: lorraine_defend_anim_clip
   animEventTrigger: {fileID: 8268381092690985683}
+  skillDirector: {fileID: 0}
+  signalEventTrigger: {fileID: 3518964339634075314}
   attackSourceTran: {fileID: 5225333171201662888}
   attackSpwanTime: 0.5
   attackFlySpeed: 40
@@ -2690,3 +2694,15 @@ CapsuleCollider:
   m_Height: 8
   m_Direction: 1
   m_Center: {x: 0, y: 3.5, z: 0}
+--- !u!114 &3518964339634075314
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8804294570544746406}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d14edc435c1a08f4499155f2a551dcaf, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 

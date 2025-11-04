@@ -25,5 +25,7 @@ tbsAttributeBounceSpriteObjName	spr_attribute_bounce
 tbsAttributeSuckSpriteObjName	spr_attribute_suck
 tbsAttributeUnknownSpriteObjName	spr_attribute_unknown
 tbsResistanceHeroSpriteObjName	spr_resistance_hero
-	
-	
+tbsLittleAmountMultiplier	1.2
+tbsMiddleAmountMultiplier	1.5
+tbsLargeAmountMultiplier	1.8
+tbsSuperAmountMultiplier	2.2

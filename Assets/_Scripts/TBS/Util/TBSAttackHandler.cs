@@ -143,7 +143,7 @@ namespace GameCore.TBS
                     }
                     else
                     {
-                        tmpDamage = _skillInfo.baseDamage;
+                        tmpDamage = _skillInfo.baseDamage * getDamageAmountRate(_skillInfo.damageAmountType);
                         if (_skillInfo.damageType == EDamageType.PHYSICAL)
                         {
                             tmpDamage *= getPhysicalPenetrateRate(_skillInfo.physicsLevelType, actor.actorInfo.armorLevel, out extraStr);
@@ -309,8 +309,6 @@ namespace GameCore.TBS
 
         }
 
-
-
         /// <summary>
         /// 魔法是否无效的判断
         /// </summary>
@@ -347,6 +345,25 @@ namespace GameCore.TBS
             if (_attackInfo.suckAttributeList.Contains(_srcAttribute))
                 return true;
             return false;
+        }
+
+        private static float getDamageAmountRate(EDamageAmountType _damageAmountType)
+        {
+            TBSConfigRefObj configRefObj = SCRefDataMgr.instance.tbsConfigRefObj;
+            switch (_damageAmountType)
+            {
+                case EDamageAmountType.NONE:
+                    return 1;
+                case EDamageAmountType.LITTLE:
+                    return configRefObj.tbsLittleAmountMultiplier;
+                case EDamageAmountType.MIDDLE:
+                    return configRefObj.tbsMiddleAmountMultiplier;
+                case EDamageAmountType.LARGE:
+                    return configRefObj.tbsLargeAmountMultiplier;
+                case EDamageAmountType.SUPER:
+                    return configRefObj.tbsSuperAmountMultiplier;
+            }
+            return 1f;
         }
     }
 }

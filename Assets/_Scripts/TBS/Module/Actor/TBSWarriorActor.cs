@@ -63,7 +63,7 @@ namespace GameCore.TBS
             seq.Append(DOVirtual.DelayedCall((_m_actorMono as TBSWarriorActorMono).attackAnimDuration, 
                 () =>
                 {
-                    _m_attackEnemyActorList.Remove(_target);
+                    _m_attackEnemyActorList.Clear();
                     _m_actorMono.animEventTrigger.RemoveAnimationEvent("dealAttack");
                     SCMsgCenter.SendMsg(SCMsgConst.TBS_ACTOR_ACTION_END, actorInfo.characterId);
                 }));
@@ -103,6 +103,7 @@ namespace GameCore.TBS
 
         public override void ReleaseSkill(long skillId, TBSActorBase _target)
         {
+            _m_attackEnemyActorList.Add(_target);
 
             TBSActorSkillRefObj skillRefObj = SCRefDataMgr.instance.tbsActorSkillRefList.refDataList.Find(x => x.id == skillId);
             if (skillRefObj == null)
@@ -110,14 +111,14 @@ namespace GameCore.TBS
             PlayableAsset skillAsset = ResourcesHelper.LoadAsset<PlayableAsset>(skillRefObj.skillPlayableAssetName);
             if (skillAsset == null)
                 return;
-
-            if(!skillRefObj.needMove)
+            _m_actorSkillRefObj = skillRefObj;
+            if (!_m_actorSkillRefObj.needMove)
             {
                 _m_actorMono.skillDirector.Play(skillAsset);
             }
             else
             {
-                switch(skillRefObj.skillName)
+                switch(_m_actorSkillRefObj.skillName)
                 {
                     case "Ñ¸½Ý¹¥»÷":
                         {
@@ -165,6 +166,8 @@ namespace GameCore.TBS
                                 {
                                     SCMsgCenter.SendMsg(SCMsgConst.TBS_ACTOR_ACTION_END, actorInfo.characterId);
                                     _m_actorMono.signalEventTrigger.RemoveSignalEvent("CommonDealSkill");
+                                    _m_attackEnemyActorList.Clear();
+
                                 }));
                             seq.Append(rotateTween_1);
                             seq.Append(move2OriginalTween);

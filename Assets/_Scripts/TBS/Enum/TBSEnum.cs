@@ -46,6 +46,7 @@ namespace GameCore.TBS
         LITTLE,
         MIDDLE,
         LARGE,
+        SUPER,
     }
 
     public enum ETargetType
