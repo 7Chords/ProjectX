@@ -6,6 +6,7 @@ using System;
 using Random = UnityEngine.Random;
 using System.Collections.Generic;
 using GameCore.RefData;
+using GameCore.UI;
 
 namespace GameCore.TBS
 {
@@ -21,6 +22,7 @@ namespace GameCore.TBS
         protected AnimationClip _m_attackAnimClip;
         protected AnimationClip _m_getHitAnimClip;
         protected AnimationClip _m_defendAnimClip;
+        protected AnimationClip _m_dieAnimClip;
 
         protected TBSActorInfo _m_actorInfo;
         public TBSActorInfo actorInfo => _m_actorInfo;
@@ -54,6 +56,8 @@ namespace GameCore.TBS
                 _m_getHitAnimClip = ResourcesHelper.LoadAsset<AnimationClip>(_m_actorMono.getHitAnimClipName);
             if (!string.IsNullOrEmpty(_m_actorMono.defendAnimClipName))
                 _m_defendAnimClip = ResourcesHelper.LoadAsset<AnimationClip>(_m_actorMono.defendAnimClipName);
+            if (!string.IsNullOrEmpty(_m_actorMono.dieAnimClipName))
+                _m_dieAnimClip = ResourcesHelper.LoadAsset<AnimationClip>(_m_actorMono.dieAnimClipName);
 
             if (_m_idleAnimClip != null)
                 _m_animationCtl.PlaySingleAniamtion(_m_idleAnimClip);
@@ -130,9 +134,34 @@ namespace GameCore.TBS
 
         public abstract void ReleaseSkill(long skillId, TBSActorBase _target);
 
-        public abstract void Defend();
+        public virtual void Defend()
+        {
+            Sequence seq = DOTween.Sequence();
+            seq.Append(DOVirtual.DelayedCall(_m_actorMono.defendPlayTime,
+                () =>
+                {
+                    SCMsgCenter.SendMsg(SCMsgConst.TBS_ACTOR_ACTION_END, actorInfo.characterId);
+                })
+                .OnStart(() =>
+                {
+                    GameCoreMgr.instance.uiCoreMgr.HideNode(nameof(UINodeTBSMain));
+                    GameCoreMgr.instance.uiCoreMgr.HideNode(nameof(UINodeTBSEnemyHud));
+                    TBSCursorMgr.instance.HideSelectionCursor();
+                    _m_animationCtl.PlaySingleAniamtion(_m_defendAnimClip);
 
-        public abstract void GetHit();
+                }));
+            _m_tweenContainer?.RegDoTween(seq);
+        }
+
+        public virtual void GetHit()
+        {
+            _m_animationCtl.PlaySingleAniamtion(_m_getHitAnimClip);
+        }
+
+        public virtual void Die()
+        {
+            _m_animationCtl.PlaySingleAniamtion(_m_dieAnimClip);
+        }
 
         public virtual void TakeDamage(int _damage, bool _needShopFloatText = true , string _extraStr ="")
         {

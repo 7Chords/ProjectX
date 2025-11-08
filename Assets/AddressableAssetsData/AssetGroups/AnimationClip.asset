@@ -57,6 +57,34 @@ MonoBehaviour:
     m_Address: lorraine_run_anim_clip
     m_ReadOnly: 0
     m_SerializedLabels: []
+  - m_GUID: 77648b80cea96544c93f1f2dff2e617e
+    m_Address: redSlime_attack_anim_clip
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  - m_GUID: da2ea43d5a6296641b9b08733e00444b
+    m_Address: redSlime_die_anim_clip
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  - m_GUID: e3490b8f1ddf9764388f4558f6012553
+    m_Address: redSlime_getHit_anim_clip
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  - m_GUID: 1c7fd1a7c03f37244aef43e75cc2fc8c
+    m_Address: redSlime_idle_anim_clip
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  - m_GUID: 56391dc1d4be5d342afc07e086588f2b
+    m_Address: redSlime_run_anim_clip
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  - m_GUID: 0f9066a0e57d3b444a3fd9ed72891bad
+    m_Address: redSlime_defend_anim_clip
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  - m_GUID: 5d190d8211c88a64281f7b90c69f3eb3
+    m_Address: stele_die_anim_clip
+    m_ReadOnly: 0
+    m_SerializedLabels: []
   m_ReadOnly: 0
   m_Settings: {fileID: 11400000, guid: d14fb1bbe98862146a7f5467a5bc79f8, type: 2}
   m_SchemaSet:

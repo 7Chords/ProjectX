@@ -15,15 +15,6 @@ namespace GameCore.TBS
         {
         }
 
-        public override void Defend()
-        {
-        }
-
-        public override void GetHit()
-        {
-            throw new System.NotImplementedException();
-        }
-
         public override void ReleaseSkill(long skillId, TBSActorBase _target)
         {
         }

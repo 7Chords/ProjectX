@@ -76,30 +76,6 @@ namespace GameCore.TBS
 
         }
 
-        public override void Defend()
-        {
-            Sequence seq = DOTween.Sequence();
-            seq.Append(DOVirtual.DelayedCall((_m_actorMono as TBSWarriorActorMono).defendPlayTime,
-                () =>
-                {
-                    SCMsgCenter.SendMsg(SCMsgConst.TBS_ACTOR_ACTION_END, actorInfo.characterId);
-                })
-                .OnStart(() =>
-                {
-                    GameCoreMgr.instance.uiCoreMgr.HideNode(nameof(UINodeTBSMain));
-                    GameCoreMgr.instance.uiCoreMgr.HideNode(nameof(UINodeTBSEnemyHud));
-                    TBSCursorMgr.instance.HideSelectionCursor();
-                    _m_animationCtl.PlaySingleAniamtion(_m_defendAnimClip);
-
-                }));
-            _m_tweenContainer?.RegDoTween(seq);
-
-        }
-
-        public override void GetHit()
-        {
-            throw new System.NotImplementedException();
-        }
 
         public override void ReleaseSkill(long skillId, TBSActorBase _target)
         {

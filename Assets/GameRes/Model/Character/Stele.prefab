@@ -2458,6 +2458,7 @@ MonoBehaviour:
   getHitAnimClipName: stele_getHit_anim_clip
   idleAnimClipName: stele_idle_anim_clip
   defendAnimClipName: stele_defend_anim_clip
+  dieAnimClipName: stele_die_anim_clip
   animEventTrigger: {fileID: 2746491463881782451}
   skillDirector: {fileID: 3096810732747084782}
   signalEventTrigger: {fileID: 6684072143555460981}

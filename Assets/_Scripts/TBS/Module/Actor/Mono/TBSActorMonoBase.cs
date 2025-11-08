@@ -31,10 +31,14 @@ public class TBSActorMonoBase : MonoBehaviour
     public string idleAnimClipName;
     [Header("防御动画名")]
     public string defendAnimClipName;
+    [Header("死亡动画名")]
+    public string dieAnimClipName;
     [Header("动画事件触发器")]
     public AnimationEventTrigger animEventTrigger;
     [Header("技能播放器")]
     public PlayableDirector skillDirector;
     [Header("技能事件接受器")]
     public SignalEventTrigger signalEventTrigger;
+    [Header("防御动画播放多久跳转下一个角色")]
+    public float defendPlayTime;
 }

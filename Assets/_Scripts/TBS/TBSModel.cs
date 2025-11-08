@@ -1,3 +1,4 @@
+using SCFrame;
 using System.Collections.Generic;
 
 
@@ -13,7 +14,11 @@ namespace GameCore.TBS
         public ETBSTurnType curTurnType
         {
             get { return _m_curTurnType; }
-            set { _m_curTurnType = value; }
+            set 
+            { 
+                _m_curTurnType = value;
+                SCMsgCenter.SendMsgAct(SCMsgConst.TBS_TURN_CHG);
+            }
         }
 
         public int _m_curTurnCount;

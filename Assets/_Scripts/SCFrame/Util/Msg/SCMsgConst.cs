@@ -53,6 +53,8 @@ public class SCMsgConst
     public const int TBS_ACTOR_INFO_CHG = 2025;//回合制战斗 - 敌人目标信息改变（血量/属性...)
     public const int TBS_ACTOR_SKILL_RELEASE = 2026;//回合制战斗 - 技能释放
 
+    public const int TBS_TRAM_ACTION_END = 2027;//回合制战斗 - 队伍行动结束
+
     #endregion
 
     #region 系统相关 99

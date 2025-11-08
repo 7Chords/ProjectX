@@ -5,7 +5,7 @@ using UnityEngine;
 
 namespace GameCore.TBS
 {
-    public class TBSActorMgr : TBSSubMgrBase
+    public partial class TBSActorMgr : TBSSubMgrBase
     {
         public override ETBSSubMgrType tbsSubMgrType => ETBSSubMgrType.ACTOR;
 
@@ -181,12 +181,16 @@ namespace GameCore.TBS
                 && _m_curSelectActorIndex >= _m_enemyActorGOList.Count))
             {
                 _m_curSelectActorIndex = 0;
+                //发送队伍行动结束的信息
+                SCMsgCenter.SendMsgAct(SCMsgConst.TBS_TRAM_ACTION_END);
             }
 
             SCModel.instance.tbsModel.curActorIndex = _m_curSelectActorIndex;
 
             refreshCameraAndCursor(true);
 
+            if(SCModel.instance.tbsModel.curTurnType == ETBSTurnType.ENEMY)
+                (_m_enemyActorModuleList[_m_curSelectActorIndex] as ITBSEnemyActor).DealEnemyAction(_m_playerActorModuleList[0]);
         }
 
 
@@ -256,9 +260,14 @@ namespace GameCore.TBS
                 TBSCursorMgr.instance.SetSelectionCursorPos(_m_enemyActorModuleList[_m_targetIndex].GetCursorPos());
             }
 
-            void setCameraOffset()
+            void setCameraOffset_Player()
             {
                 GameCameraMgr.instance.SetCameraPositionOffsetWithFollow(_m_gameMono.playerPosInfoList[_m_curSelectActorIndex].cameraIdlePos, hideUIAndCursor, showUIAndCursor);
+            }
+
+            void setCameraOffset_Enemy()
+            {
+                GameCameraMgr.instance.SetCameraPositionOffsetWithFollow(_m_gameMono.enemyPosInfoList[_m_curSelectActorIndex].cameraIdlePos);
             }
 
             if (SCModel.instance.tbsModel.curTurnType == ETBSTurnType.PLAYER)
@@ -267,12 +276,15 @@ namespace GameCore.TBS
                 GameCameraMgr.instance.SetCameraTarget(_m_gameMono.playerLookEnemyCenterPos);
                 if(_reSetFollow)
                     GameCameraMgr.instance.SetCameraFollow(_m_playerActorGOList[_m_curSelectActorIndex].transform);
-                setCameraOffset();
+                setCameraOffset_Player();
 
             }
             else
             {
-                //todo
+                //设置相机
+                GameCameraMgr.instance.SetCameraTarget(_m_gameMono.enemyLookPlayerCenterPos);
+                GameCameraMgr.instance.SetCameraFollow(_m_enemyActorGOList[_m_curSelectActorIndex].transform);
+                setCameraOffset_Enemy();
             }
         }
     }

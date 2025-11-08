@@ -14,12 +14,12 @@ namespace GameCore.TBS
         public override void OnInitialize()
         {
             SCMsgCenter.RegisterMsgAct(SCMsgConst.TBS_TURN_MGR_WORK,onTBSTurnWork);
-            SCMsgCenter.RegisterMsgAct(SCMsgConst.TBS_TURN_CHG, onTBSTurnChg);
+            SCMsgCenter.RegisterMsgAct(SCMsgConst.TBS_TRAM_ACTION_END, onTBSTeamActionEnd);
         }
         public override void OnDiscard()
         {
             SCMsgCenter.UnregisterMsgAct(SCMsgConst.TBS_TURN_MGR_WORK, onTBSTurnWork);
-            SCMsgCenter.UnregisterMsgAct(SCMsgConst.TBS_TURN_CHG, onTBSTurnChg);
+            SCMsgCenter.UnregisterMsgAct(SCMsgConst.TBS_TRAM_ACTION_END, onTBSTeamActionEnd);
         }
         public override void OnResume() { }
 
@@ -33,7 +33,7 @@ namespace GameCore.TBS
             _m_curTurnCount = 1;
         }
 
-        private void onTBSTurnChg()
+        private void onTBSTeamActionEnd()
         {
             _m_curTurnType = _m_curTurnType == ETBSTurnType.PLAYER 
                 ? ETBSTurnType.ENEMY : ETBSTurnType.PLAYER;
