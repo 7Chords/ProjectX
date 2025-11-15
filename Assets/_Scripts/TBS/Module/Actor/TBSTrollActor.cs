@@ -39,7 +39,7 @@ namespace GameCore.TBS
                 });
 
 
-            Tween rotateTween_1 = _m_actorMono.gameObject.transform.DOLocalRotate(new Vector3(0, 180, 0), 0.5f);
+            Tween rotateTween_1 = _m_actorMono.gameObject.transform.DOLocalRotate(Vector3.zero, 0.5f);
 
             Tween move2OriginalTween = _m_actorMono.gameObject.transform.DOMove(originalPos, 1f)
                 .OnStart(
@@ -52,7 +52,10 @@ namespace GameCore.TBS
                 {
                     _m_animationCtl.PlaySingleAniamtion(_m_idleAnimClip);
                 });
-            Tween rotateTween_2 = _m_actorMono.gameObject.transform.DOLocalRotate(Vector3.zero, 0.5f);
+            Tween rotateTween_2 = _m_actorMono.gameObject.transform.DOLocalRotate(new Vector3(0,180,0), 0.5f);
+
+
+
 
             seq.Append(move2AttackTween);
 

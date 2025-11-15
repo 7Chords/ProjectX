@@ -57,6 +57,10 @@ MonoBehaviour:
     m_Address: prefab_damage_num
     m_ReadOnly: 0
     m_SerializedLabels: []
+  - m_GUID: 8e8b81611edef064e9a402a75f1aa24c
+    m_Address: panel_tbs_turn_chg
+    m_ReadOnly: 0
+    m_SerializedLabels: []
   m_ReadOnly: 0
   m_Settings: {fileID: 11400000, guid: d14fb1bbe98862146a7f5467a5bc79f8, type: 2}
   m_SchemaSet:

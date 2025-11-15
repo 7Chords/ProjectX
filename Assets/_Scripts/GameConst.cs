@@ -17,6 +17,7 @@ namespace GameCore
         public const string TBS_ENEMY_HUD_PANEL = "tbs_enemy_hud_panel";
         public const string TBS_ENEMY_HUD_ITEM_PREFAB = "tbs_enemy_hud_item_prefab";
         public const string TBS_DAMAGE_NUM_PREFAB = "tbs_damage_num_prefab";
+        public const string TBS_TURN_CHG_PANEL = "tbs_turn_chg_panel";
 
         #endregion
 

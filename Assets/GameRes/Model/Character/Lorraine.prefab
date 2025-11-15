@@ -2666,19 +2666,20 @@ MonoBehaviour:
   bottomSfxTran: {fileID: 0}
   centerSfxTran: {fileID: 0}
   topSfxTran: {fileID: 0}
-  enemyAttackStopOffset: {x: 0, y: 0, z: 2}
+  enemyAttackStopOffset: {x: 0, y: 0, z: -3}
   attackAnimClipName: lorraine_attack_anim_clip
   runAnimClipName: lorraine_run_anim_clip
   getHitAnimClipName: lorraine_getHit_anim_clip
   idleAnimClipName: lorraine_idle_anim_clip
   defendAnimClipName: lorraine_defend_anim_clip
+  dieAnimClipName: 
   animEventTrigger: {fileID: 8268381092690985683}
   skillDirector: {fileID: 0}
   signalEventTrigger: {fileID: 3518964339634075314}
+  defendPlayTime: 1
   attackSourceTran: {fileID: 5225333171201662888}
   attackSpwanTime: 0.5
   attackFlySpeed: 40
-  defendPlayTime: 1
   attackSpawnObjName: FireBall
 --- !u!136 &2202950072308861922
 CapsuleCollider:

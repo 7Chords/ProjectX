@@ -155,12 +155,14 @@ namespace GameCore.TBS
 
         public virtual void GetHit()
         {
-            _m_animationCtl.PlaySingleAniamtion(_m_getHitAnimClip);
+            if(_m_getHitAnimClip != null)
+                _m_animationCtl.PlaySingleAniamtion(_m_getHitAnimClip);
         }
 
         public virtual void Die()
         {
-            _m_animationCtl.PlaySingleAniamtion(_m_dieAnimClip);
+            if(_m_dieAnimClip != null)
+                _m_animationCtl.PlaySingleAniamtion(_m_dieAnimClip);
         }
 
         public virtual void TakeDamage(int _damage, bool _needShopFloatText = true , string _extraStr ="")
@@ -177,6 +179,8 @@ namespace GameCore.TBS
                 GameCommon.ShowDamageFloatText(_damage, GetDamageTextPos(), _extraStr);
 
             SCMsgCenter.SendMsg(SCMsgConst.TBS_ACTOR_INFO_CHG, actorInfo.characterId);
+
+            GetHit();
         }
 
         public virtual void TakeMagic(int _magicAmount)

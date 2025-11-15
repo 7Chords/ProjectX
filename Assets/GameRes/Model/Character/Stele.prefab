@@ -2452,7 +2452,7 @@ MonoBehaviour:
   bottomSfxTran: {fileID: 0}
   centerSfxTran: {fileID: 0}
   topSfxTran: {fileID: 0}
-  enemyAttackStopOffset: {x: 0, y: 0, z: 2}
+  enemyAttackStopOffset: {x: 0, y: 0, z: -3}
   attackAnimClipName: stele_attack_anim_clip
   runAnimClipName: stele_run_anim_clip
   getHitAnimClipName: stele_getHit_anim_clip
@@ -2462,8 +2462,8 @@ MonoBehaviour:
   animEventTrigger: {fileID: 2746491463881782451}
   skillDirector: {fileID: 3096810732747084782}
   signalEventTrigger: {fileID: 6684072143555460981}
-  attackAnimDuration: 1
   defendPlayTime: 1
+  attackAnimDuration: 1
 --- !u!136 &8821873457962801809
 CapsuleCollider:
   m_ObjectHideFlags: 0
