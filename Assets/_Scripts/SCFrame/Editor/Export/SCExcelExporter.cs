@@ -1,6 +1,7 @@
 using NPOI.HSSF.UserModel;
 using NPOI.SS.UserModel;
 using NPOI.XSSF.UserModel;
+using System;
 using System.IO;
 using UnityEditor;
 using UnityEngine;
@@ -122,6 +123,48 @@ namespace SCFrame
             }
         }
 
+        /// <summary>
+        /// 复制Txt到StreamingAssets下 因为unity导出运行时读不到resources下的txt
+        /// </summary>
+        [MenuItem("Excel导出/复制txt到StreamingAssets下")]
+        private static void CopyTxtToStreamingAssets()
+        {
+            try
+            {
+                string sourcePath = GAME_TXT_PATH;
+                string targetPath = Path.Combine(Application.streamingAssetsPath, "ExportTxt");
 
+                // 确保目标目录存在
+                if (!Directory.Exists(targetPath))
+                {
+                    Directory.CreateDirectory(targetPath);
+                }
+
+                DirectoryInfo direction = new DirectoryInfo(sourcePath);
+                FileInfo[] files = direction.GetFiles("*.txt", SearchOption.AllDirectories);
+                int copiedCount = 0;
+
+                for (int i = 0; i < files.Length; i++)
+                {
+                    try
+                    {
+                        string targetFile = Path.Combine(targetPath, files[i].Name);
+                        File.Copy(files[i].FullName, targetFile, true);
+                        copiedCount++;
+                    }
+                    catch (Exception ex)
+                    {
+                        Debug.LogError($"复制文件 {files[i].Name} 时出错: {ex.Message}");
+                    }
+                }
+
+                Debug.Log($"复制完成! 共复制 {copiedCount} 个txt文件");
+                AssetDatabase.Refresh();
+            }
+            catch (Exception ex)
+            {
+                Debug.LogError($"复制过程中发生错误: {ex.Message}");
+            }
+        }
     }
 }

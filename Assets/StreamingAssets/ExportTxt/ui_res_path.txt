@@ -1,0 +1,11 @@
+﻿id	uiName	uiResObjName
+1001	tbs_main_panel	panel_tbs_main
+1002	selection_cursor	selection_cursor
+1003	tbs_skill_panel	panel_tbs_skill
+1004	tbs_skill_item_prefab	prefab_tbs_skill_item
+1005	tbs_info_item_prefab	prefab_tbs_info_item
+1006	tbs_info_panel	panel_tbs_info
+1007	tbs_confim_panel	panel_tbs_confirm
+1008	tbs_enemy_hud_panel	panel_tbs_enemy_hud
+1009	tbs_enemy_hud_item_prefab	prefab_enemy_hud_item
+1010	tbs_damage_num_prefab	prefab_damage_num

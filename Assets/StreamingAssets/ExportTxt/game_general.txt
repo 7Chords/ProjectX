@@ -1,0 +1,30 @@
+﻿key	value
+generalCompList	NORMAL_ATTACK;SKILL;ITEM;DEFEND
+tbsTargetHighLightChgTime	.15
+tbsActorSingleRotateTime	.25
+tbsInputFrameInterval	3
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	

@@ -23,6 +23,7 @@ namespace GameCore.UI
         [Header("角色头像")]
         public Image imgCharacterHead;
 
-
+        [Header("血条渐变时间")]
+        public float barFadeDuration;
     }
 }

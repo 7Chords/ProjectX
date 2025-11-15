@@ -50,11 +50,11 @@ namespace SCFrame
         /// 编辑器当前是否处于预制体编辑模式
         /// </summary>
         /// <returns></returns>
-        public static bool IsInPrefabStage()
-        {
-            var stage = UnityEditor.SceneManagement.PrefabStageUtility.GetCurrentPrefabStage();
-            return stage != null;
-        }
+        //public static bool IsInPrefabStage()
+        //{
+        //    var stage = UnityEditor.SceneManagement.PrefabStageUtility.GetCurrentPrefabStage();
+        //    return stage != null;
+        //}
 
         /// <summary>
         /// 字符串解析成float

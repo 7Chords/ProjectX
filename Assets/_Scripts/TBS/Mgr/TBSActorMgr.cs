@@ -176,9 +176,9 @@ namespace GameCore.TBS
 
             //更换回合持有方了 代码时序保证先更换回合持有方 再更换角色操作
             if ((SCModel.instance.tbsModel.curTurnType == ETBSTurnType.ENEMY
-                &&  _m_curSelectActorIndex >= _m_playerActorGOList.Count)
+                &&  _m_curSelectActorIndex >= _m_enemyActorGOList.Count)
                 || (SCModel.instance.tbsModel.curTurnType == ETBSTurnType.PLAYER
-                && _m_curSelectActorIndex >= _m_enemyActorGOList.Count))
+                && _m_curSelectActorIndex >= _m_playerActorGOList.Count))
             {
                 _m_curSelectActorIndex = 0;
                 //发送队伍行动结束的信息

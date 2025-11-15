@@ -349,6 +349,7 @@ MonoBehaviour:
   txtHp: {fileID: 4025844191683274222}
   txtMp: {fileID: 1270573428451835102}
   imgCharacterHead: {fileID: 1045036889625168693}
+  barFadeDuration: 0.25
 --- !u!1 &2070285053096514775
 GameObject:
   m_ObjectHideFlags: 0
