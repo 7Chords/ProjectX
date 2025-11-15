@@ -1,5 +1,7 @@
 using DG.Tweening;
+using GameCore.TBS;
 using GameCore.Util;
+using SCFrame;
 using SCFrame.UI;
 using UnityEngine;
 
@@ -30,7 +32,17 @@ namespace GameCore.UI
             {
                 mono.canvasGroup.alpha = 0;
             });
+
+            Tween tween_2 = DOVirtual.DelayedCall(mono.showDuration, () =>
+            {
+                GameCoreMgr.instance.uiCoreMgr.CloseTopNode();
+                SCMsgCenter.SendMsgAct(SCMsgConst.TBS_TURN_CHG_SHOW_END);
+            });
             _m_tweenContainer?.RegDoTween(tween);
+            _m_tweenContainer?.RegDoTween(tween_2);
+
+
+            refreshPanelShow();
         }
         public override void OnHidePanel()
         {
@@ -39,6 +51,15 @@ namespace GameCore.UI
                 mono.canvasGroup.alpha = 1;
             });
             _m_tweenContainer?.RegDoTween(tween);
+        }
+
+        private void refreshPanelShow()
+        {
+            ETBSTurnType turnType =  SCModel.instance.tbsModel.curTurnType;
+            mono.txtTurnChg.text = LanguageHelper.instance.GetTextTranslate(
+                turnType == ETBSTurnType.PLAYER
+                ? "#1_tbs_player_turn"
+                : "#1_tbs_enemy_turn");
         }
     }
 }

@@ -30,3 +30,5 @@
 10029	#1_invalid	无效	invalid
 10030	#1_bounce	反弹	parry
 10031	#1_suck	吸收	absorb
+10032	#1_tbs_player_turn	玩家回合	Player Turn
+10033	#1_tbs_enemy_turn	敌方回合	Enemy Turn

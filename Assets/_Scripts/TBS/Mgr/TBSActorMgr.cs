@@ -1,5 +1,6 @@
 using GameCore.UI;
 using SCFrame;
+using SCFrame.UI;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -35,7 +36,7 @@ namespace GameCore.TBS
             SCMsgCenter.RegisterMsg(SCMsgConst.TBS_ACTOR_SKILL, onTBSActorSkill);
             SCMsgCenter.RegisterMsgAct(SCMsgConst.TBS_ACTOR_TARGET_HIGHLIGHT_LEFT, onTBSActorTargetHighlightLeft);
             SCMsgCenter.RegisterMsgAct(SCMsgConst.TBS_ACTOR_TARGET_HIGHLIGHT_RIGHT, onTBSActorTargetHighlightRight);
-
+            SCMsgCenter.RegisterMsgAct(SCMsgConst.TBS_TURN_CHG_SHOW_END, onTBSTurnChgShowEnd);
 
         }
         public override void OnDiscard()
@@ -48,6 +49,7 @@ namespace GameCore.TBS
             SCMsgCenter.UnregisterMsg(SCMsgConst.TBS_ACTOR_SKILL, onTBSActorSkill);
             SCMsgCenter.UnregisterMsgAct(SCMsgConst.TBS_ACTOR_TARGET_HIGHLIGHT_LEFT, onTBSActorTargetHighlightLeft);
             SCMsgCenter.UnregisterMsgAct(SCMsgConst.TBS_ACTOR_TARGET_HIGHLIGHT_RIGHT, onTBSActorTargetHighlightRight);
+            SCMsgCenter.UnregisterMsgAct(SCMsgConst.TBS_TURN_CHG_SHOW_END, onTBSTurnChgShowEnd);
 
             foreach (var actor in _m_playerActorModuleList)
             {
@@ -187,10 +189,19 @@ namespace GameCore.TBS
 
             SCModel.instance.tbsModel.curActorIndex = _m_curSelectActorIndex;
 
-            refreshCameraAndCursor(true);
 
-            if(SCModel.instance.tbsModel.curTurnType == ETBSTurnType.ENEMY)
-                (_m_enemyActorModuleList[_m_curSelectActorIndex] as ITBSEnemyActor).DealEnemyAction(_m_playerActorModuleList[0]);
+            //不是牵扯到回合持有者切换的处理
+            if(_m_curSelectActorIndex != 0)
+            {
+                refreshCameraAndCursor(true);
+
+                if (SCModel.instance.tbsModel.curTurnType == ETBSTurnType.ENEMY)
+                    (_m_enemyActorModuleList[_m_curSelectActorIndex] as ITBSEnemyActor).DealEnemyAction(_m_playerActorModuleList[0]);
+            }
+            else
+            {
+                GameCoreMgr.instance.uiCoreMgr.AddNode(new UINodeTBSTurnChg(SCUIShowType.ADDITION));
+            }
         }
 
 
@@ -231,6 +242,14 @@ namespace GameCore.TBS
             SCMsgCenter.SendMsg(SCMsgConst.TBS_SELECT_SINGLE_ENEMY_TARGET_CHG, _m_targetIndex);
             TBSCursorMgr.instance.MoveCursor2Pos(_m_enemyActorModuleList[_m_targetIndex].GetCursorPos());
         }
+
+        private void onTBSTurnChgShowEnd()
+        {
+            refreshCameraAndCursor(true);
+
+            if (SCModel.instance.tbsModel.curTurnType == ETBSTurnType.ENEMY)
+                (_m_enemyActorModuleList[_m_curSelectActorIndex] as ITBSEnemyActor).DealEnemyAction(_m_playerActorModuleList[0]);
+        }
         #endregion
 
         private void refreshCameraAndCursor(bool _reSetFollow,bool _addEnemyHud = false)
@@ -252,7 +271,7 @@ namespace GameCore.TBS
             {
                 //第一次要等相机到达正确位置了才加载敌人hud
                 if (_addEnemyHud)
-                    GameCoreMgr.instance.uiCoreMgr.AddNode(new UINodeTBSEnemyHud(SCFrame.UI.SCUIShowType.ADDITION, _m_enemyActorModuleList));
+                    GameCoreMgr.instance.uiCoreMgr.AddNode(new UINodeTBSEnemyHud(SCUIShowType.ADDITION, _m_enemyActorModuleList));
                 else
                     GameCoreMgr.instance.uiCoreMgr.ShowNode(nameof(UINodeTBSEnemyHud));
 
