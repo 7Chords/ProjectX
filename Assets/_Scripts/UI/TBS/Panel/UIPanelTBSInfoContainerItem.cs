@@ -61,7 +61,7 @@ namespace GameCore.UI
             else
             {
                 _m_tweenContainer.RegDoTween(mono.imgHpBar.DOFillAmount((float)_m_actorInfo.curHp / _m_actorInfo.maxHp, mono.barFadeDuration));
-                _m_tweenContainer.RegDoTween(mono.imgHpBar.DOFillAmount((float)_m_actorInfo.curHp / _m_actorInfo.maxHp, mono.barFadeDuration));
+                _m_tweenContainer.RegDoTween(mono.imgMpBar.DOFillAmount((float)_m_actorInfo.curMp / _m_actorInfo.maxMp, mono.barFadeDuration));
             }
 
         }

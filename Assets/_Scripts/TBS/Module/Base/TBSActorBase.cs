@@ -190,7 +190,7 @@ namespace GameCore.TBS
                 Debug.LogError("魔法消耗量小于等于0，请检查！！！");
                 return;
             }
-            _m_actorInfo.curMp = Mathf.Max(_m_actorInfo.curHp - _magicAmount, 0);
+            _m_actorInfo.curMp = Mathf.Max(_m_actorInfo.curMp - _magicAmount, 0);
             SCMsgCenter.SendMsg(SCMsgConst.TBS_ACTOR_INFO_CHG, actorInfo.characterId);
         }
 
@@ -202,6 +202,7 @@ namespace GameCore.TBS
                 return;
             }
             _m_actorInfo.curHp = Mathf.Min(_m_actorInfo.curHp + _healAmount, _m_actorInfo.maxHp);
+            SCMsgCenter.SendMsg(SCMsgConst.TBS_ACTOR_INFO_CHG, actorInfo.characterId);
         }
 
         public virtual void HealMp(int _healAmount)
@@ -212,6 +213,7 @@ namespace GameCore.TBS
                 return;
             }
             _m_actorInfo.curMp = Mathf.Min(_m_actorInfo.curMp + _healAmount, _m_actorInfo.maxMp);
+            SCMsgCenter.SendMsg(SCMsgConst.TBS_ACTOR_INFO_CHG, actorInfo.characterId);
         }
 
         public virtual bool MissJudge()
@@ -257,6 +259,13 @@ namespace GameCore.TBS
             attackInfo.srcActorList.Add(this);
             attackInfo.targetActorList = _m_attackEnemyActorList;
 
+            //普通攻击不消耗血和蓝
+            //attackInfo.srcUseHpList = new List<int>();
+            //attackInfo.srcUseHpList.Add(_m_actorSkillRefObj.skillNeedHp);
+
+            //attackInfo.srcUseMpList = new List<int>();
+            //attackInfo.srcUseMpList.Add(_m_actorSkillRefObj.skillNeedMp);
+
             attackInfo.baseDamage = actorInfo.attack;
             attackInfo.damageType = actorInfo.attackDamageType;
             attackInfo.physicsLevelType = actorInfo.attackPhysicalLevel;
@@ -274,6 +283,12 @@ namespace GameCore.TBS
             skillInfo.srcActorList = new List<TBSActorBase>();
             skillInfo.srcActorList.Add(this);
             skillInfo.targetActorList = _m_attackEnemyActorList;
+
+            skillInfo.srcUseHpList = new List<int>();
+            skillInfo.srcUseHpList.Add(_m_actorSkillRefObj.skillNeedHp);
+
+            skillInfo.srcUseMpList = new List<int>();
+            skillInfo.srcUseMpList.Add(_m_actorSkillRefObj.skillNeedMp);
 
             skillInfo.baseDamage = actorInfo.attack;
             skillInfo.damageAmountType = _m_actorSkillRefObj.damageAmountType;
