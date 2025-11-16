@@ -3,6 +3,7 @@ using DG.Tweening;
 using GameCore.Util;
 using SCFrame;
 using System;
+using System.Collections;
 using UnityEngine;
 using static Cinemachine.CinemachineBlendDefinition;
 
@@ -24,6 +25,8 @@ namespace GameCore
         {
             _m_tweenContainer?.KillAllDoTween();
             _m_tweenContainer = null;
+
+            SCTaskHelper.instance.KillAllCoroutines(this);
         }
 
         /// <summary>
@@ -114,5 +117,34 @@ namespace GameCore
             SCGame.instance.cinemachineBrain.m_DefaultBlend.m_Style = _style;
         }
 
+        /// <summary>
+        /// 相机震动
+        /// </summary>
+        /// <param name="_shakeDuration"></param>
+        /// <param name="_shakeStrength"></param>
+        public void ShakeCamera(float _shakeDuration,float _shakeStrength)
+        {
+            SCGame.instance.cinemachineImpulseSource.m_ImpulseDefinition.m_ImpulseDuration = _shakeDuration;
+            SCGame.instance.cinemachineImpulseSource.GenerateImpulse(_shakeStrength);
+            //Tween shakeTween = SCGame.instance.virtualCamera.transform.DOShakePosition(_shakeDuration, _shakeStrength);
+            //_m_tweenContainer?.RegDoTween(shakeTween);
+        }
+
+        /// <summary>
+        /// 冻结相机 顿帧
+        /// </summary>
+        /// <param name="_freezeDuration"></param>
+        public void FreezeCamera(float _freezeDuration)
+        {
+            SCTaskHelper.instance.CreateCoroutine(this, freezeGameTime(_freezeDuration));
+        }
+
+        private IEnumerator freezeGameTime(float pauseDuration)
+        {
+            float pauseTime = pauseDuration;
+            Time.timeScale = 0;
+            yield return new WaitForSecondsRealtime(pauseTime);
+            Time.timeScale = 1;
+        }
     }
 }

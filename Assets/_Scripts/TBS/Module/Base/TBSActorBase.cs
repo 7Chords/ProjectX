@@ -155,7 +155,13 @@ namespace GameCore.TBS
 
         public virtual void GetHit()
         {
-            if(_m_getHitAnimClip != null)
+            GameGeneralRefObj generalRefObj = SCRefDataMgr.instance.gameGeneralRefObj;
+            if (generalRefObj == null)
+                return;
+            GameCameraMgr.instance.ShakeCamera(generalRefObj.tbsGetHitCamShakeDuration, generalRefObj.tbsGetHitCamShakeStrength);
+            GameCameraMgr.instance.FreezeCamera(generalRefObj.tbsGetHitCamFreezeDuration);
+
+            if (_m_getHitAnimClip != null)
                 _m_animationCtl.PlaySingleAniamtion(_m_getHitAnimClip);
         }
 

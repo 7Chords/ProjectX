@@ -3,9 +3,9 @@ generalCompList	NORMAL_ATTACK;SKILL;ITEM;DEFEND
 tbsTargetHighLightChgTime	.15
 tbsActorSingleRotateTime	.25
 tbsInputFrameInterval	3
-	
-	
-	
+tbsGetHitCamShakeDuration	.25
+tbsGetHitCamShakeStrength	.5
+tbsGetHitCamFreezeDuration	.1
 	
 	
 	
