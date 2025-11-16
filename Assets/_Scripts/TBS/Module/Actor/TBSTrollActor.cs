@@ -29,7 +29,7 @@ namespace GameCore.TBS
                     //GameCoreMgr.instance.uiCoreMgr.HideNode(nameof(UINodeTBSMain));
                     //GameCoreMgr.instance.uiCoreMgr.HideNode(nameof(UINodeTBSEnemyHud));
 
-                    TBSCursorMgr.instance.HideSelectionCursor();
+                    //TBSCursorMgr.instance.HideSelectionCursor();
                     _m_animationCtl.PlaySingleAniamtion(_m_runAnimClip);
                 })
                 .OnComplete(

@@ -200,6 +200,7 @@ namespace GameCore.TBS
             }
             else
             {
+                GameCameraMgr.instance.SetCameraFollow(null);
                 GameCoreMgr.instance.uiCoreMgr.AddNode(new UINodeTBSTurnChg(SCUIShowType.ADDITION));
             }
         }

@@ -43,10 +43,10 @@ namespace GameCore.TBS
             SCModel.instance.tbsModel.curTurnCount = _m_curTurnCount;
 
 
-            if (_m_curTurnType == ETBSTurnType.ENEMY)
-                GameCoreMgr.instance.uiCoreMgr.HideNode(nameof(UINodeTBSMain));
-            else
-                GameCoreMgr.instance.uiCoreMgr.ShowNode(nameof(UINodeTBSMain));
+            //if (_m_curTurnType == ETBSTurnType.ENEMY)
+            //    GameCoreMgr.instance.uiCoreMgr.HideNode(nameof(UINodeTBSMain));
+            //else
+            //    GameCoreMgr.instance.uiCoreMgr.ShowNode(nameof(UINodeTBSMain));
         }
         #endregion
 
