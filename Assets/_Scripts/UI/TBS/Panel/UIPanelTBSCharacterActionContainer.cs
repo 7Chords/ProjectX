@@ -1,3 +1,5 @@
+using GameCore.TBS;
+using SCFrame;
 using SCFrame.UI;
 using System.Collections;
 using System.Collections.Generic;
@@ -7,38 +9,89 @@ namespace GameCore.UI
 {
     public class UIPanelTBSCharacterActionContainer : UIPanelContainerBase<UIMonoTBSCharacterActionContainer, UIPanelTBSCharacterActionItem, UIMonoTBSCharacterActionItem>
     {
+
+        private List<UIPanelTBSCharacterActionItem> _m_infoItemList;//item列表
         public UIPanelTBSCharacterActionContainer(UIMonoTBSCharacterActionContainer _mono, SCUIShowType _showType = SCUIShowType.INTERNAL) : base(_mono, _showType)
         {
         }
 
         public override void OnDiscard()
         {
-            throw new System.NotImplementedException();
+            if (_m_infoItemList != null)
+            {
+                foreach (var item in _m_infoItemList)
+                    item.Discard();
+            }
+            _m_infoItemList.Clear();
+            _m_infoItemList = null;
         }
 
         public override void OnHidePanel()
         {
-            throw new System.NotImplementedException();
+            if (_m_infoItemList != null)
+            {
+                foreach (var item in _m_infoItemList)
+                    item.HidePanel();
+            }
         }
 
         public override void OnInitialize()
         {
-            throw new System.NotImplementedException();
+            _m_infoItemList = new List<UIPanelTBSCharacterActionItem>();
+
         }
 
         public override void OnShowPanel()
         {
-            throw new System.NotImplementedException();
         }
 
         protected override GameObject creatItemGO()
         {
-            throw new System.NotImplementedException();
+            return ResourcesHelper.LoadGameObject(mono.prefabItemObjName);
         }
 
         protected override UIPanelTBSCharacterActionItem creatItemPanel(UIMonoTBSCharacterActionItem _mono)
         {
-            throw new System.NotImplementedException();
+            return new UIPanelTBSCharacterActionItem(_mono, SCUIShowType.INTERNAL);
+        }
+
+        public void SetInfoList(List<TBSActorInfo> _actorInfoList)
+        {
+            if (_actorInfoList == null)
+                return;
+            if (_m_infoItemList == null)
+                return;
+
+            int i = 0, count = 0;
+            UIPanelTBSCharacterActionItem item = null;
+            for (i = 0; i < _actorInfoList.Count; i++)
+            {
+                if (i < _m_infoItemList.Count)
+                {
+                    item = _m_infoItemList[i];
+                }
+                else
+                {
+                    GameObject itemGO = creatItemGO();
+                    item = creatItemPanel(itemGO.GetComponent<UIMonoTBSCharacterActionItem>());
+                    itemGO.transform.SetParent(mono.layoutGroup.transform);
+                    _m_infoItemList.Add(item);
+                }
+                if (item == null)
+                    continue;
+                item.SetInfo(_actorInfoList[i]);
+                item.ShowPanel();
+
+                count++;
+            }
+            //隐藏多余的
+            for (i = count; i < _m_infoItemList.Count; i++)
+            {
+                item = _m_infoItemList[i];
+                if (item == null)
+                    continue;
+                item.HidePanel();
+            }
         }
     }
 }

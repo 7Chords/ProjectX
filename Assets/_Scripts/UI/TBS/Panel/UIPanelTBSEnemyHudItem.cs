@@ -57,7 +57,7 @@ namespace GameCore.UI
         {
             if (mono == null)
                 return;
-            mono.txtNameWithLv.text = GameCommon.GetCharacterNameWithLv(_m_actorInfo.characterLv, _m_actorInfo.characterName);
+            mono.txtNameWithLv.text = GameCommon.GetCharacterNameWithLv(_m_actorInfo.characterLv, _m_actorInfo.characterRefObj.characterName);
             mono.imgHpBar.fillAmount = (float)_m_actorInfo.curHp / _m_actorInfo.maxHp;
             mono.txtHp.text = LanguageHelper.instance.GetTextTranslate("#2_{0}/{1}", _m_actorInfo.curHp, _m_actorInfo.maxHp);
             mono.imgPhysicalArmor.sprite = GameCommon.GetSpriteByPhysicalArmor(_m_actorInfo.armorLevel);
@@ -77,7 +77,7 @@ namespace GameCore.UI
                 return;
             }
             long characterId = (long)_objs[0];
-            if (_m_actorInfo.characterId == characterId)
+            if (_m_actorInfo.characterRefObj.id == characterId)
                 refreshShow();
         }
     }

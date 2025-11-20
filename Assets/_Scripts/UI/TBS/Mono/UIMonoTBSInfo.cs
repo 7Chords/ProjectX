@@ -10,5 +10,8 @@ namespace GameCore.UI
     {
         [Header("信息Container")]
         public UIMonoCommonContainer monoContainer;
+
+        [Header("角色切换头像Container")]
+        public UIMonoTBSCharacterActionContainer monoCharacterActionContainer;
     }
 }

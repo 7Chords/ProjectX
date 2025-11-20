@@ -41,7 +41,7 @@ namespace GameCore.TBS
                 () =>
                 {
                     _m_attackEnemyActorList.Remove(_target);
-                    SCMsgCenter.SendMsg(SCMsgConst.TBS_ACTOR_ACTION_END,actorInfo.characterId);
+                    SCMsgCenter.SendMsg(SCMsgConst.TBS_ACTOR_ACTION_END,actorInfo.characterRefObj.id);
                     _m_animationCtl.PlaySingleAniamtion(_m_idleAnimClip);
 
                 }));

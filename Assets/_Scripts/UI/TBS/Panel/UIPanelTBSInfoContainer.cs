@@ -58,7 +58,7 @@ namespace GameCore.UI
         }
 
 
-        public void SetListInfo(List<TBSActorInfo> _actorInfoList)
+        public void SetInfoList(List<TBSActorInfo> _actorInfoList)
         {
             if (_actorInfoList == null)
                 return;

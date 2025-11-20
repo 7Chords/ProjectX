@@ -140,7 +140,7 @@ namespace GameCore.TBS
             seq.Append(DOVirtual.DelayedCall(_m_actorMono.defendPlayTime,
                 () =>
                 {
-                    SCMsgCenter.SendMsg(SCMsgConst.TBS_ACTOR_ACTION_END, actorInfo.characterId);
+                    SCMsgCenter.SendMsg(SCMsgConst.TBS_ACTOR_ACTION_END, actorInfo.characterRefObj.id);
                 })
                 .OnStart(() =>
                 {
@@ -184,7 +184,7 @@ namespace GameCore.TBS
             if(_needShopFloatText)
                 GameCommon.ShowDamageFloatText(_damage, GetDamageTextPos(), _extraStr);
 
-            SCMsgCenter.SendMsg(SCMsgConst.TBS_ACTOR_INFO_CHG, actorInfo.characterId);
+            SCMsgCenter.SendMsg(SCMsgConst.TBS_ACTOR_INFO_CHG, actorInfo.characterRefObj.id);
 
             GetHit();
         }
@@ -197,7 +197,7 @@ namespace GameCore.TBS
                 return;
             }
             _m_actorInfo.curMp = Mathf.Max(_m_actorInfo.curMp - _magicAmount, 0);
-            SCMsgCenter.SendMsg(SCMsgConst.TBS_ACTOR_INFO_CHG, actorInfo.characterId);
+            SCMsgCenter.SendMsg(SCMsgConst.TBS_ACTOR_INFO_CHG, actorInfo.characterRefObj.id);
         }
 
         public virtual void HealHp(int _healAmount)
@@ -208,7 +208,7 @@ namespace GameCore.TBS
                 return;
             }
             _m_actorInfo.curHp = Mathf.Min(_m_actorInfo.curHp + _healAmount, _m_actorInfo.maxHp);
-            SCMsgCenter.SendMsg(SCMsgConst.TBS_ACTOR_INFO_CHG, actorInfo.characterId);
+            SCMsgCenter.SendMsg(SCMsgConst.TBS_ACTOR_INFO_CHG, actorInfo.characterRefObj.id);
         }
 
         public virtual void HealMp(int _healAmount)
@@ -219,7 +219,7 @@ namespace GameCore.TBS
                 return;
             }
             _m_actorInfo.curMp = Mathf.Min(_m_actorInfo.curMp + _healAmount, _m_actorInfo.maxMp);
-            SCMsgCenter.SendMsg(SCMsgConst.TBS_ACTOR_INFO_CHG, actorInfo.characterId);
+            SCMsgCenter.SendMsg(SCMsgConst.TBS_ACTOR_INFO_CHG, actorInfo.characterRefObj.id);
         }
 
         public virtual bool MissJudge()
@@ -313,7 +313,7 @@ namespace GameCore.TBS
                 return;
             long characterId = (long)_objs[0];
             //»Ö¸´Îªidle
-            if(characterId != actorInfo.characterId)
+            if(characterId != actorInfo.characterRefObj.id)
             {
                 if (_m_idleAnimClip != null)
                     _m_animationCtl.PlaySingleAniamtion(_m_idleAnimClip);

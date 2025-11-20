@@ -351,6 +351,7 @@ MonoBehaviour:
   fadeInDuration: 0.5
   fadeOutDuration: 0.5
   monoContainer: {fileID: 7696952664092079764}
+  monoCharacterActionContainer: {fileID: 7875283193258270732}
 --- !u!1 &6704093898152279046
 GameObject:
   m_ObjectHideFlags: 0

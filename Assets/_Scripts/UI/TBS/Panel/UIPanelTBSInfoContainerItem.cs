@@ -50,7 +50,7 @@ namespace GameCore.UI
         {
             if (_m_actorInfo == null)
                 return;
-            mono.imgCharacterHead.sprite = ResourcesHelper.LoadAsset<Sprite>(_m_actorInfo.assetHeadIconObjName);
+            mono.imgCharacterHead.sprite = ResourcesHelper.LoadAsset<Sprite>(_m_actorInfo.characterRefObj.assetHeadIconObjName);
             mono.txtHp.text = LanguageHelper.instance.GetTextTranslate("#2_{0}/{1}", _m_actorInfo.curHp, _m_actorInfo.maxHp);
             mono.txtMp.text = LanguageHelper.instance.GetTextTranslate("#2_{0}/{1}", _m_actorInfo.curMp, _m_actorInfo.maxMp);
             if (!_needBarFade)
@@ -77,7 +77,7 @@ namespace GameCore.UI
                     return;
                 }
                 long characterId = (long)_objs[0];
-                if (_m_actorInfo.characterId == characterId)
+                if (_m_actorInfo.characterRefObj.id == characterId)
                     refreshPanelShow(true);
             }
         }

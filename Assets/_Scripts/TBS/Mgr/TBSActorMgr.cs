@@ -111,7 +111,7 @@ namespace GameCore.TBS
                 actorInfo = _m_playerTeamInfo.actorInfoList[i];
                 if (actorInfo == null)
                     continue;
-                actorGO = ResourcesHelper.LoadGameObject(actorInfo.assetModelObjName,
+                actorGO = ResourcesHelper.LoadGameObject(actorInfo.characterRefObj.assetModelObjName,
                     _m_gameMono.playerPosInfoList[i].pos.position,
                     Quaternion.identity, true);
 
@@ -131,7 +131,7 @@ namespace GameCore.TBS
                 actorInfo = _m_enemyTeamInfo.actorInfoList[i];
                 if (actorInfo == null)
                     continue;
-                actorGO = ResourcesHelper.LoadGameObject(actorInfo.assetModelObjName,
+                actorGO = ResourcesHelper.LoadGameObject(actorInfo.characterRefObj.assetModelObjName,
                     _m_gameMono.enemyPosInfoList[i].pos.position,
                     Quaternion.Euler(new Vector3(0,180,0)), true);//Ãæ³¯Íæ¼Ò
 

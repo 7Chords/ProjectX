@@ -11,6 +11,7 @@ namespace GameCore.UI
     {
         private TweenContainer _m_tweenContainer;
         private UIPanelTBSInfoContainer _m_infoContainer;
+        private UIPanelTBSCharacterActionContainer _m_characterActionContainer;
         public UIPanelTBSInfo(UIMonoTBSInfo _mono, SCUIShowType _showType) : base(_mono, _showType)
         {
         }
@@ -22,11 +23,17 @@ namespace GameCore.UI
             _m_tweenContainer = new TweenContainer();
             if (mono.monoContainer != null)
                 _m_infoContainer = new UIPanelTBSInfoContainer(mono.monoContainer);
+
+            if (mono.monoCharacterActionContainer != null)
+                _m_characterActionContainer = new UIPanelTBSCharacterActionContainer(mono.monoCharacterActionContainer);
         }
         public override void OnDiscard()
         {
             if (_m_infoContainer != null)
                 _m_infoContainer.Discard();
+
+            if (_m_characterActionContainer != null)
+                _m_characterActionContainer.Discard();
 
             _m_tweenContainer?.KillAllDoTween();
             _m_tweenContainer = null;
@@ -61,8 +68,10 @@ namespace GameCore.UI
             List<TBSActorInfo> actorInfoList = SCModel.instance.tbsModel.battleInfo.playerTeamInfo.actorInfoList;
             if (actorInfoList == null || actorInfoList.Count == 0)
                 return;
-            _m_infoContainer.SetListInfo(actorInfoList);
+            _m_infoContainer.SetInfoList(actorInfoList);
             _m_infoContainer.ShowPanel();
+
+
         }
     }
 }
