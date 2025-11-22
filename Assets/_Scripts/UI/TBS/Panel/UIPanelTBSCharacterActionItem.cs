@@ -1,5 +1,7 @@
 using GameCore.TBS;
+using SCFrame;
 using SCFrame.UI;
+using UnityEngine;
 
 namespace GameCore.UI
 {
@@ -29,6 +31,24 @@ namespace GameCore.UI
             if (_actorInfo == null)
                 return;
             _m_actorInfo = _actorInfo;
+            _refreshWndShow();
+        }
+
+        private void _refreshWndShow()
+        {
+            if (_m_actorInfo == null)
+                return;
+            mono.imgHead.sprite = ResourcesHelper.LoadAsset<Sprite>(_m_actorInfo.characterRefObj.assetHeadIconObjName);
+
+            TBSActorInfo curActionActorInfo = SCModel.instance.tbsModel.getCurActorInfo();
+            if (curActionActorInfo == null)
+                return;
+
+            bool isCurActorAction = curActionActorInfo.characterRefObj.id == _m_actorInfo.characterRefObj.id;
+            mono.imgHeadBg.color = isCurActorAction ? mono.colorIsAction : mono.colorIsNotAction;
+            SCCommon.SetGameObjectEnable(mono.goIsActionShowList, isCurActorAction);
+            SCCommon.SetGameObjectEnable(mono.goIsActionHideList, !isCurActorAction);
+
         }
     }
 }

@@ -189,9 +189,8 @@ namespace GameCore.TBS
 
             SCModel.instance.tbsModel.curActorIndex = _m_curSelectActorIndex;
 
-
             //不是牵扯到回合持有者切换的处理
-            if(_m_curSelectActorIndex != 0)
+            if (_m_curSelectActorIndex != 0)
             {
                 refreshCameraAndCursor(true);
 

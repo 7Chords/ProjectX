@@ -41,7 +41,11 @@ namespace GameCore.TBS
         public int curActorIndex
         {
             get { return _m_curActorIndex; }
-            set { _m_curActorIndex = value; }
+            set 
+            { 
+                _m_curActorIndex = value;
+                SCMsgCenter.SendMsgAct(SCMsgConst.TBS_ACTOR_CHG);
+            }
         }
 
 

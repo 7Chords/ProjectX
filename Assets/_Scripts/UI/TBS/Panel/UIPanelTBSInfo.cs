@@ -41,6 +41,12 @@ namespace GameCore.UI
 
         public override void OnHidePanel()
         {
+            if(_m_infoContainer != null)
+                _m_infoContainer?.HidePanel();
+
+            if (_m_characterActionContainer != null)
+                _m_characterActionContainer.HidePanel();
+
             Tween tween = mono.canvasGroup.DOFade(0, mono.fadeOutDuration).OnStart(() =>
             {
                 mono.canvasGroup.alpha = 1;
@@ -55,15 +61,16 @@ namespace GameCore.UI
                 mono.canvasGroup.alpha = 0;
             });
             _m_tweenContainer?.RegDoTween(tween);
-            _refreshPanel();
+            refreshPanel();
         }
 
-        private void _refreshPanel()
+        private void refreshPanel()
         {
-            _refreshInfoContainer();
+            refreshInfoContainer();
+            refreshCharacterActionContainer();
         }
 
-        private void _refreshInfoContainer()
+        private void refreshInfoContainer()
         {
             List<TBSActorInfo> actorInfoList = SCModel.instance.tbsModel.battleInfo.playerTeamInfo.actorInfoList;
             if (actorInfoList == null || actorInfoList.Count == 0)
@@ -71,7 +78,16 @@ namespace GameCore.UI
             _m_infoContainer.SetInfoList(actorInfoList);
             _m_infoContainer.ShowPanel();
 
-
         }
+
+        private void refreshCharacterActionContainer()
+        {
+            List<TBSActorInfo> actorInfoList = SCModel.instance.tbsModel.battleInfo.playerTeamInfo.actorInfoList;
+            if (actorInfoList == null || actorInfoList.Count == 0)
+                return;
+            _m_characterActionContainer.SetInfoList(actorInfoList);
+            _m_characterActionContainer.ShowPanel();
+        }
+
     }
 }

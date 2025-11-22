@@ -1,6 +1,7 @@
 using UnityEngine;
 using UnityEditor;
 using System.Globalization;
+using System.Collections.Generic;
 
 namespace SCFrame
 {
@@ -20,6 +21,34 @@ namespace SCFrame
             if (_obj == null)
                 return;
             _obj.SetActive(_isEnable);
+        }
+
+        /// <summary>
+        /// 设置游戏物体是否被激活
+        /// </summary>
+        /// <param name="_objs"></param>
+        /// <param name="_isEnable"></param>
+        public static void SetGameObjectEnable(GameObject[] _objs, bool _isEnable)
+        {
+            if (_objs == null || _objs.Length == 0)
+                return;
+
+            foreach(var go in _objs)
+                go.SetActive(_isEnable);
+        }
+
+        /// <summary>
+        /// 设置游戏物体是否被激活
+        /// </summary>
+        /// <param name="_objs"></param>
+        /// <param name="_isEnable"></param>
+        public static void SetGameObjectEnable(List<GameObject> _objs, bool _isEnable)
+        {
+            if (_objs == null || _objs.Count == 0)
+                return;
+
+            foreach (var go in _objs)
+                go.SetActive(_isEnable);
         }
 
         /// <summary>

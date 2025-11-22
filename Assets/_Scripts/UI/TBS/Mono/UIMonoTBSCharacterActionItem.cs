@@ -1,4 +1,5 @@
 using SCFrame.UI;
+using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -13,9 +14,15 @@ namespace GameCore.UI
         public Image imgHead;
 
         [Header("是行动角色的颜色")]
-        public Image colorIsAction;
+        public Color colorIsAction;
 
         [Header("不是行动角色的颜色")]
-        public Image colorIsNotAction;
+        public Color colorIsNotAction;
+
+        [Header("是行动角色显示的物体")]
+        public List<GameObject> goIsActionShowList;
+
+        [Header("是行动角色隐藏的物体")]
+        public List<GameObject> goIsActionHideList;
     }
 }

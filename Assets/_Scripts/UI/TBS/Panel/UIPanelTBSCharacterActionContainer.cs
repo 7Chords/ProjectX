@@ -11,6 +11,8 @@ namespace GameCore.UI
     {
 
         private List<UIPanelTBSCharacterActionItem> _m_infoItemList;//item¡–±Ì
+
+        private List<TBSActorInfo> _m_actorInfoList;
         public UIPanelTBSCharacterActionContainer(UIMonoTBSCharacterActionContainer _mono, SCUIShowType _showType = SCUIShowType.INTERNAL) : base(_mono, _showType)
         {
         }
@@ -28,6 +30,8 @@ namespace GameCore.UI
 
         public override void OnHidePanel()
         {
+            SCMsgCenter.UnregisterMsgAct(SCMsgConst.TBS_ACTOR_CHG, onTBSActorChg);
+
             if (_m_infoItemList != null)
             {
                 foreach (var item in _m_infoItemList)
@@ -43,6 +47,8 @@ namespace GameCore.UI
 
         public override void OnShowPanel()
         {
+            SCMsgCenter.RegisterMsgAct(SCMsgConst.TBS_ACTOR_CHG, onTBSActorChg);
+
         }
 
         protected override GameObject creatItemGO()
@@ -62,9 +68,11 @@ namespace GameCore.UI
             if (_m_infoItemList == null)
                 return;
 
+            _m_actorInfoList = _actorInfoList;
+
             int i = 0, count = 0;
             UIPanelTBSCharacterActionItem item = null;
-            for (i = 0; i < _actorInfoList.Count; i++)
+            for (i = 0; i < _m_actorInfoList.Count; i++)
             {
                 if (i < _m_infoItemList.Count)
                 {
@@ -79,7 +87,7 @@ namespace GameCore.UI
                 }
                 if (item == null)
                     continue;
-                item.SetInfo(_actorInfoList[i]);
+                item.SetInfo(_m_actorInfoList[i]);
                 item.ShowPanel();
 
                 count++;
@@ -92,6 +100,13 @@ namespace GameCore.UI
                     continue;
                 item.HidePanel();
             }
+        }
+
+        private void onTBSActorChg()
+        {
+            if (_m_actorInfoList == null || _m_actorInfoList.Count == 0)
+                return;
+            SetInfoList(_m_actorInfoList);
         }
     }
 }
