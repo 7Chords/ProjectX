@@ -167,7 +167,9 @@ namespace GameCore.TBS
 
         public virtual void Die()
         {
-            if(_m_dieAnimClip != null)
+            _m_actorInfo.hasDead = true;
+
+            if (_m_dieAnimClip != null)
                 _m_animationCtl.PlaySingleAniamtion(_m_dieAnimClip);
         }
 
@@ -183,10 +185,11 @@ namespace GameCore.TBS
             //uiÆ®×Ö
             if(_needShopFloatText)
                 GameCommon.ShowDamageFloatText(_damage, GetDamageTextPos(), _extraStr);
-
             SCMsgCenter.SendMsg(SCMsgConst.TBS_ACTOR_INFO_CHG, actorInfo.characterRefObj.id);
-
-            GetHit();
+            if (_m_actorInfo.curHp == 0)
+                Die();
+            else
+                GetHit();
         }
 
         public virtual void TakeMagic(int _magicAmount)
@@ -310,6 +313,8 @@ namespace GameCore.TBS
         protected virtual void onTBSActorActionEnd(object[] _objs)
         {
             if (_objs == null || _objs.Length == 0)
+                return;
+            if (actorInfo.hasDead)
                 return;
             long characterId = (long)_objs[0];
             //»Ö¸´Îªidle

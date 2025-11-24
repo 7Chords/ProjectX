@@ -77,6 +77,10 @@ MonoBehaviour:
     m_Address: spr_roman_two
     m_ReadOnly: 0
     m_SerializedLabels: []
+  - m_GUID: ff472c557d713f8419d82756fa8c3952
+    m_Address: spr_head_redSlime
+    m_ReadOnly: 0
+    m_SerializedLabels: []
   m_ReadOnly: 0
   m_Settings: {fileID: 11400000, guid: d14fb1bbe98862146a7f5467a5bc79f8, type: 2}
   m_SchemaSet:

@@ -32,6 +32,8 @@ namespace GameCore.TBS
         public List<EMagicAttributeType> suckAttributeList;
 
         public CharacterRefObj characterRefObj;
+
+        public bool hasDead;// «∑ÒÀ¿Õˆ
         public void InitNewInfo(CharacterRefObj _characterRefObj)
         {
             if(_characterRefObj == null)
@@ -71,6 +73,8 @@ namespace GameCore.TBS
 
             curHp = maxHp;
             curMp = maxMp;
+            hasDead = false;
+
         }
 
         public void LoadInfo()

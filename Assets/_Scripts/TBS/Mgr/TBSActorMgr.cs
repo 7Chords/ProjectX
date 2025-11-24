@@ -174,17 +174,50 @@ namespace GameCore.TBS
 
         private void onTBSActorActionEnd(object[] _objs)
         {
-            _m_curSelectActorIndex++;
+
+            void jumpToNextActorIdx()
+            {
+                //跳到下一个行动角色索引
+                if (SCModel.instance.tbsModel.curTurnType == ETBSTurnType.ENEMY)
+                {
+                    do
+                    {
+                        _m_curSelectActorIndex++;
+                        if (_m_curSelectActorIndex >= _m_enemyActorGOList.Count)
+                        {
+                            break;
+                        }
+                    }
+                    while (_m_enemyActorModuleList[_m_curSelectActorIndex].actorInfo.hasDead);
+                }
+                else if (SCModel.instance.tbsModel.curTurnType == ETBSTurnType.PLAYER)
+                {
+                    do
+                    {
+                        _m_curSelectActorIndex++;
+                        if (_m_curSelectActorIndex >= _m_playerActorGOList.Count)
+                        {
+                            break;
+                        }
+                    }
+                    while (_m_playerActorModuleList[_m_curSelectActorIndex].actorInfo.hasDead);
+                }
+            }
+
+
+            jumpToNextActorIdx();
 
             //更换回合持有方了 代码时序保证先更换回合持有方 再更换角色操作
             if ((SCModel.instance.tbsModel.curTurnType == ETBSTurnType.ENEMY
-                &&  _m_curSelectActorIndex >= _m_enemyActorGOList.Count)
+                && _m_curSelectActorIndex >= _m_enemyActorGOList.Count)
                 || (SCModel.instance.tbsModel.curTurnType == ETBSTurnType.PLAYER
                 && _m_curSelectActorIndex >= _m_playerActorGOList.Count))
             {
-                _m_curSelectActorIndex = 0;
+                _m_curSelectActorIndex = -1;
                 //发送队伍行动结束的信息
                 SCMsgCenter.SendMsgAct(SCMsgConst.TBS_TRAM_ACTION_END);
+
+                jumpToNextActorIdx();
             }
 
             SCModel.instance.tbsModel.curActorIndex = _m_curSelectActorIndex;
