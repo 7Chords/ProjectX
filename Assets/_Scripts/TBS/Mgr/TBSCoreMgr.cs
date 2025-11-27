@@ -17,6 +17,7 @@ namespace GameCore.TBS
             //×¢²áÊÂ¼þ
             SCMsgCenter.RegisterMsgAct(SCMsgConst.TBS_GAME_START,onTBSGameStart);
             SCMsgCenter.RegisterMsgAct(SCMsgConst.TBS_GAME_FINISH, onTBSGameFinish);
+            
 
             initAllSubMgr();
         }

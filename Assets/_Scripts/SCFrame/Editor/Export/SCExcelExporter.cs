@@ -87,10 +87,12 @@ namespace SCFrame
                             {
                                 cell = row.GetCell(k);
                                 if (cell == null)
-                                    continue;
+                                    break;
+                                if (string.IsNullOrEmpty(cell.ToString()))
+                                    break;
                                 cellValue = cell?.ToString() ?? "";
                                 sw.Write(cellValue);
-                                if (k < row.LastCellNum - 1)
+                                if (k < row.LastCellNum - 1 && !string.IsNullOrEmpty(row.GetCell(k + 1)?.ToString()))
                                     sw.Write("\t");
                             }
                             sw.Write("\n");

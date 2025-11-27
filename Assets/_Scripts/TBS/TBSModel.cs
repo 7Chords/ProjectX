@@ -91,5 +91,27 @@ namespace GameCore.TBS
             else
                 return battleInfo.enemyTeamInfo.actorInfoList[curActorIndex];
         }
+
+        public bool checkAllActorsDead(bool _isPlayer)
+        {
+            if(_isPlayer)
+            {
+                foreach(var actor in battleInfo.playerTeamInfo.actorInfoList)
+                {
+                    if (!actor.hasDead)
+                        return false;
+                }
+                return true;
+            }
+            else
+            {
+                foreach (var actor in battleInfo.enemyTeamInfo.actorInfoList)
+                {
+                    if (!actor.hasDead)
+                        return false;
+                }
+                return true;
+            }
+        }
     }
 }

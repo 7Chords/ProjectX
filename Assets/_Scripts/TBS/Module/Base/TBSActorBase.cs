@@ -171,6 +171,8 @@ namespace GameCore.TBS
 
             if (_m_dieAnimClip != null)
                 _m_animationCtl.PlaySingleAniamtion(_m_dieAnimClip);
+
+            SCMsgCenter.SendMsg(SCMsgConst.TBS_ACTOR_DIE, actorInfo.characterRefObj.id);
         }
 
         public virtual void TakeDamage(int _damage, bool _needShopFloatText = true , string _extraStr ="")

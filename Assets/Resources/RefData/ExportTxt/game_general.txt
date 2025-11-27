@@ -6,25 +6,25 @@ tbsInputFrameInterval	3
 tbsGetHitCamShakeDuration	.25
 tbsGetHitCamShakeStrength	.5
 tbsGetHitCamFreezeDuration	.1
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

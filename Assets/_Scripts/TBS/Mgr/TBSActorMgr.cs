@@ -37,6 +37,8 @@ namespace GameCore.TBS
             SCMsgCenter.RegisterMsgAct(SCMsgConst.TBS_ACTOR_TARGET_HIGHLIGHT_LEFT, onTBSActorTargetHighlightLeft);
             SCMsgCenter.RegisterMsgAct(SCMsgConst.TBS_ACTOR_TARGET_HIGHLIGHT_RIGHT, onTBSActorTargetHighlightRight);
             SCMsgCenter.RegisterMsgAct(SCMsgConst.TBS_TURN_CHG_SHOW_END, onTBSTurnChgShowEnd);
+            SCMsgCenter.RegisterMsg(SCMsgConst.TBS_ACTOR_DIE, onTBSActorDie);
+
 
         }
         public override void OnDiscard()
@@ -50,6 +52,7 @@ namespace GameCore.TBS
             SCMsgCenter.UnregisterMsgAct(SCMsgConst.TBS_ACTOR_TARGET_HIGHLIGHT_LEFT, onTBSActorTargetHighlightLeft);
             SCMsgCenter.UnregisterMsgAct(SCMsgConst.TBS_ACTOR_TARGET_HIGHLIGHT_RIGHT, onTBSActorTargetHighlightRight);
             SCMsgCenter.UnregisterMsgAct(SCMsgConst.TBS_TURN_CHG_SHOW_END, onTBSTurnChgShowEnd);
+            SCMsgCenter.UnregisterMsg(SCMsgConst.TBS_ACTOR_DIE, onTBSActorDie);
 
             foreach (var actor in _m_playerActorModuleList)
             {
@@ -282,6 +285,17 @@ namespace GameCore.TBS
 
             if (SCModel.instance.tbsModel.curTurnType == ETBSTurnType.ENEMY)
                 (_m_enemyActorModuleList[_m_curSelectActorIndex] as ITBSEnemyActor).DealEnemyAction(_m_playerActorModuleList[0]);
+        }
+
+        private void onTBSActorDie(object[] _objs)
+        {
+            if (_objs == null || _objs.Length == 0)
+                return;
+            if (SCModel.instance.tbsModel.checkAllActorsDead(true))
+                GameCoreMgr.instance.uiCoreMgr.AddNode(new UINodeTBSLose(SCUIShowType.ADDITION));
+            else
+                GameCoreMgr.instance.uiCoreMgr.AddNode(new UINodeTBSWin(SCUIShowType.ADDITION));
+
         }
         #endregion
 
