@@ -65,6 +65,14 @@ MonoBehaviour:
     m_Address: prefab_tbs_cha_action_item
     m_ReadOnly: 0
     m_SerializedLabels: []
+  - m_GUID: 61528abf0c0e893448f182c1570bd4ed
+    m_Address: panel_tbs_win
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  - m_GUID: 351acaa8aad5d9c4690f0acc62231140
+    m_Address: panel_tbs_lose
+    m_ReadOnly: 0
+    m_SerializedLabels: []
   m_ReadOnly: 0
   m_Settings: {fileID: 11400000, guid: d14fb1bbe98862146a7f5467a5bc79f8, type: 2}
   m_SchemaSet:

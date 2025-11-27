@@ -1,8 +1,8 @@
-﻿id	translateKey	zh_CN	en_US
-10001	#2_tbs_skill_desc_1001	发动高速突刺，对{0}敌方目标造成{1}{2}{3}伤害	Launch a high-speed thrust, dealing {1}{2}{3} damage to {0} enemy target
-10002	#2_tbs_skill_desc_1002	凝聚法力，发射蓝焰光束，对{0}敌方单位造成{1}{2}{3}伤害	Gather magical power and launch a blue flame beam, dealing {1}{2}{3} damage to {0} enemy target
-10003	#2_tbs_skill_desc_1003	凝神会心，以瞬闪姿态对{0}敌方单位造成{1}{2}{3}伤害	Focus and respond with insight, dealing {1}{2}{3} damage to {0} enemy targets with a flash stance.
-10004	#1_magic	魔法	magic
+﻿id	translateKey	zh_CN	en_US	#1不带参数								
+10001	#2_tbs_skill_desc_1001	发动高速突刺，对{0}敌方目标造成{1}{2}{3}伤害	Launch a high-speed thrust, dealing {1}{2}{3} damage to {0} enemy target	#2带参数								
+10002	#2_tbs_skill_desc_1002	凝聚法力，发射蓝焰光束，对{0}敌方单位造成{1}{2}{3}伤害	Gather magical power and launch a blue flame beam, dealing {1}{2}{3} damage to {0} enemy target									
+10003	#2_tbs_skill_desc_1003	凝神会心，以瞬闪姿态对{0}敌方单位造成{1}{2}{3}伤害	Focus and respond with insight, dealing {1}{2}{3} damage to {0} enemy targets with a flash stance.									
+10004	#1_magic	魔法	magic									
 10005	#1_physical	物理	physical
 10006	#1_real	真实	real
 10007	#1_little	少量	little
@@ -32,3 +32,5 @@
 10031	#1_suck	吸收	absorb
 10032	#1_tbs_player_turn	玩家回合	Player Turn
 10033	#1_tbs_enemy_turn	敌方回合	Enemy Turn
+10034	#1_tbs_win	-胜利-	-Player Win-
+10035	#1_tbs_lose	-失败-	-Player Lose-

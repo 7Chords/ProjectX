@@ -10,3 +10,5 @@
 1009	tbs_enemy_hud_item_prefab	prefab_enemy_hud_item
 1010	tbs_damage_num_prefab	prefab_damage_num
 1011	tbs_turn_chg_panel	panel_tbs_turn_chg
+1012	tbs_win_panel	panel_tbs_win
+1013	tbs_lose_panel	panel_tbs_lose
