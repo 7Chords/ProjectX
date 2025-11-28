@@ -293,7 +293,7 @@ namespace GameCore.TBS
                 return;
             if (SCModel.instance.tbsModel.checkAllActorsDead(true))
                 GameCoreMgr.instance.uiCoreMgr.AddNode(new UINodeTBSLose(SCUIShowType.ADDITION));
-            else
+            else if(SCModel.instance.tbsModel.checkAllActorsDead(false))
                 GameCoreMgr.instance.uiCoreMgr.AddNode(new UINodeTBSWin(SCUIShowType.ADDITION));
 
         }

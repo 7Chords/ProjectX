@@ -1,5 +1,5 @@
 ﻿key	value
 init_player_team_list	1001;1002
 init_player_team_name	鸢尾花骑士团
-init_enemy_team_list	1004
+init_enemy_team_list	1004;1005
 init_enemy_team_name	不怀好意的魔物团

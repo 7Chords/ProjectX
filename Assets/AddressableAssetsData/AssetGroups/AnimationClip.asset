@@ -85,6 +85,30 @@ MonoBehaviour:
     m_Address: stele_die_anim_clip
     m_ReadOnly: 0
     m_SerializedLabels: []
+  - m_GUID: 7e6da7a2432b09d4398fa5b5ab440b5a
+    m_Address: spikeSlime_attack_anim_clip
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  - m_GUID: 42efe981c83a9fa4083f66887d253ed0
+    m_Address: spikeSlime_defend_anim_clip
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  - m_GUID: f87d594e48e46e6448b6e0f3114bca5d
+    m_Address: spikeSlime_die_anim_clip
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  - m_GUID: c0c3297474f02724cb36a7d42907dcbe
+    m_Address: spikeSlime_getHit_anim_clip
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  - m_GUID: 117eca3507654004193942a15b1e238d
+    m_Address: spikeSlime_idle_anim_clip
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  - m_GUID: 2915a46618e93f64893fc867c7a33b89
+    m_Address: spikeSlime_run_anim_clip
+    m_ReadOnly: 0
+    m_SerializedLabels: []
   m_ReadOnly: 0
   m_Settings: {fileID: 11400000, guid: d14fb1bbe98862146a7f5467a5bc79f8, type: 2}
   m_SchemaSet:
