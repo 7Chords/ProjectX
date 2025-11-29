@@ -32,7 +32,6 @@ namespace SCFrame
         {
         }
 
-        //todo
         protected virtual void Awake()
         {
             _g_instance = this as T;

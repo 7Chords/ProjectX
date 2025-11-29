@@ -1,3 +1,4 @@
+using GameCore.Util;
 using UnityEngine;
 
 namespace SCFrame.UI
@@ -22,6 +23,8 @@ namespace SCFrame.UI
         public string showUIName;
         [Header("关闭UI动画名")]
         public string hideUIName;
+        [Header("动画事件触发器")]
+        public AnimationEventTrigger animEventTrigger;
 
     }
 }

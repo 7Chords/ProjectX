@@ -821,8 +821,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   uiMask: {fileID: 8740124325657585425}
   canvasGroup: {fileID: 728462604453333250}
-  fadeInDuration: 0.25
-  fadeOutDuration: 0.25
+  fadeInDuration: 0.1
+  fadeOutDuration: 0.1
+  uiAnimator: {fileID: 0}
+  showUIName: 
+  hideUIName: 
   btnSkill: {fileID: 9179361259669204950}
   btnNormalAttack: {fileID: 2524496859480846490}
   btnItem: {fileID: 6780722100675838738}

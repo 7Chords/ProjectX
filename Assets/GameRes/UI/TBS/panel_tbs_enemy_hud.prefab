@@ -104,8 +104,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   uiMask: {fileID: 0}
   canvasGroup: {fileID: 7237284657088888819}
-  fadeInDuration: 0.5
-  fadeOutDuration: 0.5
+  fadeInDuration: 0.1
+  fadeOutDuration: 0.1
   uiAnimator: {fileID: 0}
   showUIName: 
   hideUIName: 

@@ -187,8 +187,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   uiMask: {fileID: 670809034775736311}
   canvasGroup: {fileID: 4576036744290830902}
-  fadeInDuration: 0.5
-  fadeOutDuration: 0.5
+  fadeInDuration: 0.1
+  fadeOutDuration: 0.1
+  uiAnimator: {fileID: 0}
+  showUIName: 
+  hideUIName: 
 --- !u!1 &497349796815360866
 GameObject:
   m_ObjectHideFlags: 0

@@ -21,7 +21,7 @@ namespace SCFrame.UI
         protected T mono;
         protected SCUIShowType showType;
 
-        private TweenContainer _m_fadeCanvasContainer;
+        protected TweenContainer fadeCanvasContainer;
         private _ASCUIPanelBase() { }
 
         public _ASCUIPanelBase(T _mono, SCUIShowType _showType)
@@ -44,14 +44,14 @@ namespace SCFrame.UI
 
         public override void BeforeInitialize()
         {
-            _m_fadeCanvasContainer = new TweenContainer();
+            fadeCanvasContainer = new TweenContainer();
             SCCommon.SetGameObjectEnable(GetGameObject(), false);
         }
 
         public override void AfterDiscard()
         {
-            _m_fadeCanvasContainer?.KillAllDoTween();
-            _m_fadeCanvasContainer = null;
+            fadeCanvasContainer?.KillAllDoTween();
+            fadeCanvasContainer = null;
             SCCommon.DestoryGameObject(GetGameObject());
         }
 
@@ -71,7 +71,7 @@ namespace SCFrame.UI
         protected virtual void ShowPanelAnim(Action _onBeforeShow)
         {
             mono.canvasGroup.alpha = 0f;
-            _m_fadeCanvasContainer.RegDoTween(mono.canvasGroup.DOFade(1, mono.fadeInDuration)
+            fadeCanvasContainer.RegDoTween(mono.canvasGroup.DOFade(1, mono.fadeInDuration)
                 .OnStart(() =>
                 {
                     _onBeforeShow?.Invoke();
@@ -102,7 +102,7 @@ namespace SCFrame.UI
         protected virtual void HidePanelAnim(Action _onHideOver)
         {
             mono.canvasGroup.alpha = 1f;
-            _m_fadeCanvasContainer.RegDoTween(mono.canvasGroup.DOFade(0, mono.fadeOutDuration)
+            fadeCanvasContainer.RegDoTween(mono.canvasGroup.DOFade(0, mono.fadeOutDuration)
                 .OnComplete(()=> 
                 {
                     _onHideOver?.Invoke();

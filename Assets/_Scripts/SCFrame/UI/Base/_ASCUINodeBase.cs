@@ -6,7 +6,6 @@ namespace SCFrame.UI
 {
     /// <summary>
     /// UI节点抽象基类 - 单纯是逻辑层的东西 view表现都在panel里
-    /// todo：删除所有子类的显隐控制
     /// </summary>
     public abstract class _ASCUINodeBase
     {

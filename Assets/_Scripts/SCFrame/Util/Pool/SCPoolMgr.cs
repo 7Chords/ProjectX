@@ -32,7 +32,6 @@ namespace SCFrame
 
         public override void OnDiscard()
         {
-            //todo:GameObjectPoolData/ObjectPoolData init and discard
             if (_m_gameObjectPoolDic !=null)
             {
                 _m_gameObjectPoolDic.Clear();
