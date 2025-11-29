@@ -1,7 +1,7 @@
 using DG.Tweening;
 using System.Collections.Generic;
 
-namespace GameCore.Util
+namespace SCFrame
 {
     public class TweenContainer
     {

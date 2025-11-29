@@ -16,5 +16,12 @@ namespace SCFrame.UI
         public float fadeInDuration;
         [Header("淡出时间")]
         public float fadeOutDuration;
+        [Header("UI动画机")]
+        public Animator uiAnimator;
+        [Header("打开UI动画名")]
+        public string showUIName;
+        [Header("关闭UI动画名")]
+        public string hideUIName;
+
     }
 }
