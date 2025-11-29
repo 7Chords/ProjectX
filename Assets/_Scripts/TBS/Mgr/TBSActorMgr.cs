@@ -299,7 +299,7 @@ namespace GameCore.TBS
         }
         #endregion
 
-        private void refreshCameraAndCursor(bool _reSetFollow,bool _addEnemyHud = false)
+        private void refreshCameraAndCursor(bool _reSetFollow,bool _firstSet = false)
         {
             if (_m_enemyActorGOList == null || _m_enemyActorGOList.Count == 0 || _m_playerActorGOList.Count == 0 ||
                 _m_playerActorGOList.Count == 0 || _m_enemyActorModuleList == null || _m_enemyActorModuleList.Count == 0)
@@ -308,21 +308,24 @@ namespace GameCore.TBS
 
             void hideUIAndCursor()
             {
-                GameCoreMgr.instance.uiCoreMgr.HideNode(nameof(UINodeTBSMain));
-                if (!_addEnemyHud)
+                if (!_firstSet)
+                {
+                    GameCoreMgr.instance.uiCoreMgr.HideNode(nameof(UINodeTBSMain));
                     GameCoreMgr.instance.uiCoreMgr.HideNode(nameof(UINodeTBSEnemyHud));
+                }
                 TBSCursorMgr.instance.HideSelectionCursor();
             }
 
             void showUIAndCursor()
             {
                 //第一次要等相机到达正确位置了才加载敌人hud
-                if (_addEnemyHud)
+                if (_firstSet)
                     GameCoreMgr.instance.uiCoreMgr.AddNode(new UINodeTBSEnemyHud(SCUIShowType.ADDITION, _m_enemyActorModuleList));
                 else
+                {
                     GameCoreMgr.instance.uiCoreMgr.ShowNode(nameof(UINodeTBSEnemyHud));
-
-                GameCoreMgr.instance.uiCoreMgr.ShowNode(nameof(UINodeTBSMain));
+                    GameCoreMgr.instance.uiCoreMgr.ShowNode(nameof(UINodeTBSMain));
+                }
                 TBSCursorMgr.instance.SetSelectionCursorPos(_m_enemyActorModuleList[_m_targetIndex].GetCursorPos());
             }
 

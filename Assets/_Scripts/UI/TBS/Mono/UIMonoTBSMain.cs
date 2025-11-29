@@ -4,7 +4,7 @@ using UnityEngine.UI;
 
 namespace GameCore.UI
 {
-    public class UIMonoTBSMain : _ASCUIMonoBase
+    public class UIMonoTBSMain : _ASCUIAnimMonoBase
     {
         [Header("¼¼ÄÜ°´Å¥")]
         public Button btnSkill;

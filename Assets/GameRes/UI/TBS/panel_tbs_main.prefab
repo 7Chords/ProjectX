@@ -52,6 +52,7 @@ GameObject:
   - component: {fileID: 6687485641770289959}
   - component: {fileID: 1609621233509473996}
   - component: {fileID: 9179361259669204950}
+  - component: {fileID: 5731161462192629788}
   m_Layer: 5
   m_Name: btn_skill
   m_TagString: Untagged
@@ -162,6 +163,18 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls: []
+--- !u!225 &5731161462192629788
+CanvasGroup:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 869143897024512590}
+  m_Enabled: 1
+  m_Alpha: 1
+  m_Interactable: 1
+  m_BlocksRaycasts: 1
+  m_IgnoreParentGroups: 0
 --- !u!1 &1926285510681760395
 GameObject:
   m_ObjectHideFlags: 0
@@ -420,6 +433,7 @@ GameObject:
   - component: {fileID: 6987300685146940513}
   - component: {fileID: 7788480913856332154}
   - component: {fileID: 2125278715523980185}
+  - component: {fileID: 729557531075983168}
   m_Layer: 5
   m_Name: img_headBg
   m_TagString: Untagged
@@ -486,6 +500,18 @@ MonoBehaviour:
   m_FillOrigin: 0
   m_UseSpriteMesh: 0
   m_PixelsPerUnitMultiplier: 1
+--- !u!225 &729557531075983168
+CanvasGroup:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2802627340099994499}
+  m_Enabled: 1
+  m_Alpha: 1
+  m_Interactable: 1
+  m_BlocksRaycasts: 1
+  m_IgnoreParentGroups: 0
 --- !u!1 &2910836034798083478
 GameObject:
   m_ObjectHideFlags: 0
@@ -739,6 +765,8 @@ GameObject:
   - component: {fileID: 5775233201935055557}
   - component: {fileID: 7795071791265922108}
   - component: {fileID: 728462604453333250}
+  - component: {fileID: 1662049051957719764}
+  - component: {fileID: 898977492453252322}
   m_Layer: 5
   m_Name: panel_tbs_main
   m_TagString: Untagged
@@ -823,9 +851,10 @@ MonoBehaviour:
   canvasGroup: {fileID: 728462604453333250}
   fadeInDuration: 0.1
   fadeOutDuration: 0.1
-  uiAnimator: {fileID: 0}
-  showUIName: 
-  hideUIName: 
+  uiAnimator: {fileID: 1662049051957719764}
+  showUIName: show_tbs_main
+  hideUIName: hide_tbs_main
+  animEventTrigger: {fileID: 898977492453252322}
   btnSkill: {fileID: 9179361259669204950}
   btnNormalAttack: {fileID: 2524496859480846490}
   btnItem: {fileID: 6780722100675838738}
@@ -843,6 +872,38 @@ CanvasGroup:
   m_Interactable: 1
   m_BlocksRaycasts: 1
   m_IgnoreParentGroups: 0
+--- !u!95 &1662049051957719764
+Animator:
+  serializedVersion: 4
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5775233201935055559}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 02ceefe4c7e7801489d149349ff97302, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorControllerStateOnDisable: 0
+--- !u!114 &898977492453252322
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5775233201935055559}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ed307d674eb382e4b8ef8b6f59162869, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &6085071334019199074
 GameObject:
   m_ObjectHideFlags: 0
@@ -855,6 +916,7 @@ GameObject:
   - component: {fileID: 7409266808455352112}
   - component: {fileID: 9051794380626747272}
   - component: {fileID: 2524496859480846490}
+  - component: {fileID: 2159164368007420327}
   m_Layer: 5
   m_Name: btn_normalAttack
   m_TagString: Untagged
@@ -965,6 +1027,18 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls: []
+--- !u!225 &2159164368007420327
+CanvasGroup:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6085071334019199074}
+  m_Enabled: 1
+  m_Alpha: 1
+  m_Interactable: 1
+  m_BlocksRaycasts: 1
+  m_IgnoreParentGroups: 0
 --- !u!1 &7651448972508496564
 GameObject:
   m_ObjectHideFlags: 0
@@ -977,6 +1051,7 @@ GameObject:
   - component: {fileID: 2936507462720411252}
   - component: {fileID: 3189948029578438199}
   - component: {fileID: 6780722100675838738}
+  - component: {fileID: 1499349989457839566}
   m_Layer: 5
   m_Name: btn_item
   m_TagString: Untagged
@@ -1087,6 +1162,18 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls: []
+--- !u!225 &1499349989457839566
+CanvasGroup:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7651448972508496564}
+  m_Enabled: 1
+  m_Alpha: 1
+  m_Interactable: 1
+  m_BlocksRaycasts: 1
+  m_IgnoreParentGroups: 0
 --- !u!1 &8740124325657585425
 GameObject:
   m_ObjectHideFlags: 0
@@ -1172,6 +1259,7 @@ GameObject:
   - component: {fileID: 8927916860199313758}
   - component: {fileID: 2041655891540150538}
   - component: {fileID: 1284143785655602893}
+  - component: {fileID: 7816466206699074158}
   m_Layer: 5
   m_Name: btn_defence
   m_TagString: Untagged
@@ -1282,3 +1370,15 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls: []
+--- !u!225 &7816466206699074158
+CanvasGroup:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8968008875409593403}
+  m_Enabled: 1
+  m_Alpha: 1
+  m_Interactable: 1
+  m_BlocksRaycasts: 1
+  m_IgnoreParentGroups: 0

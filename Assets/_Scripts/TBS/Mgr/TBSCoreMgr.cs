@@ -111,8 +111,7 @@ namespace GameCore.TBS
 
 
             GameCoreMgr.instance.uiCoreMgr.AddNode(new UINodeTBSInfo(SCUIShowType.FULL));
-            GameCoreMgr.instance.uiCoreMgr.AddNode(new UINodeTBSMain(SCUIShowType.FULL));
-
+            GameCoreMgr.instance.uiCoreMgr.AddNode(new UINodeTBSMain(SCUIShowType.FULL),true);
             _m_tbsGameHasStarted = true;
         }
 

@@ -1,8 +1,5 @@
 using DG.Tweening;
 using System;
-using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
 
 namespace SCFrame.UI
 {
@@ -34,11 +31,11 @@ namespace SCFrame.UI
             if (mono.uiAnimator != null && !string.IsNullOrEmpty(mono.showUIName))
             {
 
-                mono.uiAnimator.Play(mono.showUIName, 0, 0f); //在0层播放动画并从0秒处开始（即第一帧）
-                mono.uiAnimator.Update(0f); //立即强制更新一帧，确保状态应用
-
                 fadeCanvas(() =>
                 {
+
+                    mono.uiAnimator.Play(mono.showUIName, 0, 0f); //在0层播放动画并从0秒处开始（即第一帧）
+                    mono.uiAnimator.Update(0f); //立即强制更新一帧，确保状态应用
                     mono.uiAnimator.Play(mono.showUIName);
                 });
             }

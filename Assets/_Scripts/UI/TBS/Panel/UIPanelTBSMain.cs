@@ -9,7 +9,7 @@ using GameCore.TBS;
 
 namespace GameCore.UI
 {
-    public class UIPanelTBSMain : _ASCUIPanelBase<UIMonoTBSMain>
+    public class UIPanelTBSMain : _ASCUIAnimPanelBase<UIMonoTBSMain>
     {
         //private TweenContainer _m_tweenContainer;
         public UIPanelTBSMain(UIMonoTBSMain _mono, SCUIShowType _showType) : base(_mono, _showType)
