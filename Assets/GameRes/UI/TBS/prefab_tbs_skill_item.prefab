@@ -231,9 +231,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   uiMask: {fileID: 0}
-  canvasGroup: {fileID: 0}
-  fadeInDuration: 0
-  fadeOutDuration: 0
+  canvasGroup: {fileID: 3681001500137373050}
+  fadeInDuration: 0.25
+  fadeOutDuration: 0.25
+  uiAnimator: {fileID: 0}
+  showUIName: 
+  hideUIName: 
   imgSkill: {fileID: 7149666582805277851}
   imgSkillIcon: {fileID: 9219016526575588616}
   txtSkillName: {fileID: 3137645830998389639}

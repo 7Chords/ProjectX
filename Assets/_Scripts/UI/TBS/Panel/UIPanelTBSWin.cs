@@ -12,19 +12,17 @@ namespace GameCore.UI
 
         }
 
-        public override void OnDiscard()
+        public override void AfterInitialize()
         {
+        }
 
+        public override void BeforeDiscard()
+        {
         }
 
         public override void OnHidePanel()
         {
 
-
-        }
-
-        public override void OnInitialize()
-        {
 
         }
 

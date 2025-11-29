@@ -341,9 +341,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   uiMask: {fileID: 0}
-  canvasGroup: {fileID: 0}
-  fadeInDuration: 0
-  fadeOutDuration: 0
+  canvasGroup: {fileID: 2147680262881576307}
+  fadeInDuration: 0.25
+  fadeOutDuration: 0.25
+  uiAnimator: {fileID: 0}
+  showUIName: 
+  hideUIName: 
   imgHpBar: {fileID: 1148626751369028093}
   imgMpBar: {fileID: 650524373665003849}
   txtHp: {fileID: 4025844191683274222}

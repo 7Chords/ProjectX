@@ -11,35 +11,37 @@ namespace GameCore.UI
     {
 
         private TBSActorInfo _m_actorInfo;
-        private TweenContainer _m_tweenContainer;
+        //private TweenContainer _m_tweenContainer;
         public UIPanelTBSEnemyHudItem(UIMonoTBSEnemyHudItem _mono, SCUIShowType _showType) : base(_mono, _showType)
         {
         }
-        public override void OnInitialize()
-        {
-            SCMsgCenter.RegisterMsg(SCMsgConst.TBS_ACTOR_INFO_CHG, onTBSEnemyActorInfoChg);
-        }
-        public override void OnDiscard()
+
+        public override void BeforeDiscard()
         {
             SCMsgCenter.UnregisterMsg(SCMsgConst.TBS_ACTOR_INFO_CHG, onTBSEnemyActorInfoChg);
         }
 
+        public override void AfterInitialize()
+        {
+            SCMsgCenter.RegisterMsg(SCMsgConst.TBS_ACTOR_INFO_CHG, onTBSEnemyActorInfoChg);
+        }
+
         public override void OnHidePanel()
         {
-            Tween tween = mono.canvasGroup.DOFade(0, mono.fadeOutDuration).OnStart(() =>
-            {
-                mono.canvasGroup.alpha = 1;
-            });
-            _m_tweenContainer?.RegDoTween(tween);
+            //Tween tween = mono.canvasGroup.DOFade(0, mono.fadeOutDuration).OnStart(() =>
+            //{
+            //    mono.canvasGroup.alpha = 1;
+            //});
+            //_m_tweenContainer?.RegDoTween(tween);
         }
 
         public override void OnShowPanel()
         {
-            Tween tween = mono.canvasGroup.DOFade(1, mono.fadeInDuration).OnStart(() =>
-            {
-                mono.canvasGroup.alpha = 0;
-            });
-            _m_tweenContainer?.RegDoTween(tween);
+            //Tween tween = mono.canvasGroup.DOFade(1, mono.fadeInDuration).OnStart(() =>
+            //{
+            //    mono.canvasGroup.alpha = 0;
+            //});
+            //_m_tweenContainer?.RegDoTween(tween);
         }
 
         public void SetInfo(TBSActorInfo _info)

@@ -15,7 +15,7 @@ namespace SCFrame.UI
         {
         }
 
-        protected override void ShowPanelAnim()
+        protected override void ShowPanelAnim(Action _onBeforeShow)
         {
 
         }

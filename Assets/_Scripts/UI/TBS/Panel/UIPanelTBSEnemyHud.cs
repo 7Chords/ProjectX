@@ -16,15 +16,15 @@ namespace GameCore.UI
         public UIPanelTBSEnemyHud(UIMonoTBSEnemyHud _mono, SCUIShowType _showType) : base(_mono, _showType)
         {
         }
-        public override void OnInitialize()
+
+
+        public override void AfterInitialize()
         {
             _m_enemyHudItemList = new List<UIPanelTBSEnemyHudItem>();
         }
-
-        public override void OnDiscard()
+        public override void BeforeDiscard()
         {
         }
-
         public override void OnHidePanel()
         {
             SCMsgCenter.UnregisterMsg(SCMsgConst.TBS_SELECT_SINGLE_ENEMY_TARGET_CHG, onTBSSelectEnemyTargetChg);

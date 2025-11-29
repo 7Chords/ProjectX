@@ -22,8 +22,7 @@ namespace GameCore.UI
             return ResourcesHelper.LoadGameObject(mono.prefabItemObjName);
         }
 
-
-        public override void OnDiscard()
+        public override void BeforeDiscard()
         {
             if (_m_skillItemList != null)
             {
@@ -34,6 +33,10 @@ namespace GameCore.UI
             _m_skillItemList = null;
         }
 
+        public override void AfterInitialize()
+        {
+            _m_skillItemList = new List<UIPanelTBSSkillContainerItem>();
+        }
         public override void OnHidePanel()
         {
             if (_m_skillItemList != null)
@@ -41,11 +44,6 @@ namespace GameCore.UI
                 foreach (var item in _m_skillItemList)
                     item.HidePanel();
             }
-        }
-
-        public override void OnInitialize()
-        {
-            _m_skillItemList = new List<UIPanelTBSSkillContainerItem>();
         }
 
         public override void OnShowPanel()

@@ -9,37 +9,31 @@ namespace GameCore.UI
 {
     public class UIPanelTBSTurnChg : _ASCUIPanelBase<UIMonoTBSTurnChg>
     {
+        private TweenContainer _m_tweenContainer;
         public UIPanelTBSTurnChg(UIMonoTBSTurnChg _mono, SCUIShowType _showType) : base(_mono, _showType)
         {
         }
 
-
-        private TweenContainer _m_tweenContainer;
-
-        public override void OnInitialize()
+        public override void AfterInitialize()
         {
             _m_tweenContainer = new TweenContainer();
-            mono.canvasGroup.alpha = 0;
         }
-        public override void OnDiscard()
+        public override void BeforeDiscard()
         {
             _m_tweenContainer?.KillAllDoTween();
             _m_tweenContainer = null;
         }
+
+
         public override void OnShowPanel()
         {
-            Tween tween = mono.canvasGroup.DOFade(1, mono.fadeInDuration).OnStart(() =>
-            {
-                mono.canvasGroup.alpha = 0;
-            });
 
-            Tween tween_2 = DOVirtual.DelayedCall(mono.showDuration, () =>
+            Tween tween = DOVirtual.DelayedCall(mono.showDuration, () =>
             {
                 GameCoreMgr.instance.uiCoreMgr.CloseTopNode();
                 SCMsgCenter.SendMsgAct(SCMsgConst.TBS_TURN_CHG_SHOW_END);
             });
             _m_tweenContainer?.RegDoTween(tween);
-            _m_tweenContainer?.RegDoTween(tween_2);
 
 
             refreshPanelShow();

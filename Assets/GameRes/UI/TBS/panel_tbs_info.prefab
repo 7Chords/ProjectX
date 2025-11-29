@@ -146,6 +146,9 @@ MonoBehaviour:
   canvasGroup: {fileID: 3094293689493141004}
   fadeInDuration: 0
   fadeOutDuration: 0
+  uiAnimator: {fileID: 0}
+  showUIName: 
+  hideUIName: 
   prefabItemObjName: prefab_tbs_cha_action_item
   layoutGroup: {fileID: 2131998736888628046}
   switchCharacterMoveDuration: 0.5
@@ -350,6 +353,9 @@ MonoBehaviour:
   canvasGroup: {fileID: 4897600378362493830}
   fadeInDuration: 0.5
   fadeOutDuration: 0.5
+  uiAnimator: {fileID: 0}
+  showUIName: 
+  hideUIName: 
   monoContainer: {fileID: 7696952664092079764}
   monoCharacterActionContainer: {fileID: 7875283193258270732}
 --- !u!1 &6704093898152279046
@@ -517,8 +523,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   uiMask: {fileID: 0}
   canvasGroup: {fileID: 3899433403036807089}
-  fadeInDuration: 0
-  fadeOutDuration: 0
+  fadeInDuration: 0.25
+  fadeOutDuration: 0.25
+  uiAnimator: {fileID: 0}
+  showUIName: 
+  hideUIName: 
   prefabItemObjName: prefab_tbs_info_item
   layoutGroup: {fileID: 6704093898387301322}
 --- !u!1 &8368143249586953685

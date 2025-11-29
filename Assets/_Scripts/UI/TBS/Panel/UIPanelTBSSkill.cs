@@ -4,14 +4,13 @@ using GameCore.TBS;
 using GameCore.Util;
 using SCFrame;
 using SCFrame.UI;
-using System;
 using UnityEngine;
 
 namespace GameCore.UI
 {
     public class UIPanelTBSSkill : _ASCUIPanelBase<UIMonoTBSSkill>
     {
-        private TweenContainer _m_tweenContainer;
+        //private TweenContainer _m_tweenContainer;
 
         private UIPanelTBSSkillContainer _m_skillContainer;//¼¼ÄÜcontainer
 
@@ -20,24 +19,8 @@ namespace GameCore.UI
         public UIPanelTBSSkill(UIMonoTBSSkill _mono, SCUIShowType _showType) : base(_mono, _showType)
         {
         }
-        public override void OnInitialize()
-        {
-            //SCMsgCenter.RegisterMsg(SCMsgConst.TBS_ACTOR_SKILL_SELECT, onTBSActorSkillSelect);
-            SCMsgCenter.RegisterMsgAct(SCMsgConst.TBS_ACTOR_SKILL_HIGHTLIGHT_UP, onTBSActorSkillHighLightUp);
-            SCMsgCenter.RegisterMsgAct(SCMsgConst.TBS_ACTOR_SKILL_HIGHTLIGHT_DOWN, onTBSActorSkillHighLightDown);
-            SCMsgCenter.RegisterMsg(SCMsgConst.TBS_ACTOR_SKILL_MOUSE_HIGHLIGHT, onTBSActorSkillMouseHighLight);
-            SCMsgCenter.RegisterMsgAct(SCMsgConst.TBS_ACTOR_SKILL_RELEASE, onTBSActorSkillRelease);
 
-
-            _m_tweenContainer = new TweenContainer();
-            mono.canvasGroup.alpha = 0;
-
-            if (mono.monoContainer != null)
-                _m_skillContainer = new UIPanelTBSSkillContainer(mono.monoContainer);
-
-        }
-
-        public override void OnDiscard()
+        public override void BeforeDiscard()
         {
             //SCMsgCenter.UnregisterMsg(SCMsgConst.TBS_ACTOR_SKILL_SELECT, onTBSActorSkillSelect);
             SCMsgCenter.UnregisterMsgAct(SCMsgConst.TBS_ACTOR_SKILL_HIGHTLIGHT_UP, onTBSActorSkillHighLightUp);
@@ -48,20 +31,26 @@ namespace GameCore.UI
             if (_m_skillContainer != null)
                 _m_skillContainer.Discard();
 
-            _m_tweenContainer?.KillAllDoTween();
-            _m_tweenContainer = null;
         }
+
+        public override void AfterInitialize()
+        {
+            //SCMsgCenter.RegisterMsg(SCMsgConst.TBS_ACTOR_SKILL_SELECT, onTBSActorSkillSelect);
+            SCMsgCenter.RegisterMsgAct(SCMsgConst.TBS_ACTOR_SKILL_HIGHTLIGHT_UP, onTBSActorSkillHighLightUp);
+            SCMsgCenter.RegisterMsgAct(SCMsgConst.TBS_ACTOR_SKILL_HIGHTLIGHT_DOWN, onTBSActorSkillHighLightDown);
+            SCMsgCenter.RegisterMsg(SCMsgConst.TBS_ACTOR_SKILL_MOUSE_HIGHLIGHT, onTBSActorSkillMouseHighLight);
+            SCMsgCenter.RegisterMsgAct(SCMsgConst.TBS_ACTOR_SKILL_RELEASE, onTBSActorSkillRelease);
+
+            if (mono.monoContainer != null)
+                _m_skillContainer = new UIPanelTBSSkillContainer(mono.monoContainer);
+        }
+
 
         public override void OnHidePanel()
         {
 
             if (_m_skillContainer != null)
                 _m_skillContainer.HidePanel();
-            Tween tween = mono.canvasGroup.DOFade(0, mono.fadeOutDuration).OnStart(() =>
-            {
-                mono.canvasGroup.alpha = 1;
-            });
-            _m_tweenContainer?.RegDoTween(tween);
 
             GameCoreMgr.instance.uiCoreMgr.ShowNode(nameof(UINodeTBSEnemyHud));
             TBSCursorMgr.instance.ShowSelectionCursor();
@@ -70,11 +59,6 @@ namespace GameCore.UI
 
         public override void OnShowPanel()
         {
-            Tween tween = mono.canvasGroup.DOFade(1, mono.fadeInDuration).OnStart(() =>
-            {
-                mono.canvasGroup.alpha = 0;
-            });
-            _m_tweenContainer?.RegDoTween(tween);
 
             _m_curSelectSkillIdx = 0;
 

@@ -1,10 +1,7 @@
 using DG.Tweening;
 using GameCore.TBS;
-using GameCore.Util;
 using SCFrame;
 using SCFrame.UI;
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 namespace GameCore.UI
@@ -18,23 +15,20 @@ namespace GameCore.UI
         public UIPanelTBSInfoContainerItem(UIMonoTBSInfoContainerItem _mono, SCUIShowType _showType) : base(_mono, _showType)
         {
         }
-
-        public override void OnDiscard()
+        public override void BeforeDiscard()
         {
             _m_tweenContainer?.KillAllDoTween();
             _m_tweenContainer = null;
         }
 
+        public override void AfterInitialize()
+        {
+            _m_tweenContainer = new TweenContainer();
+        }
         public override void OnHidePanel()
         {
             SCMsgCenter.UnregisterMsg(SCMsgConst.TBS_ACTOR_INFO_CHG, onTBSEnemyActorInfoChg);
         }
-
-        public override void OnInitialize()
-        {
-            _m_tweenContainer = new TweenContainer();
-        }
-
         public override void OnShowPanel()
         {
             SCMsgCenter.RegisterMsg(SCMsgConst.TBS_ACTOR_INFO_CHG, onTBSEnemyActorInfoChg);

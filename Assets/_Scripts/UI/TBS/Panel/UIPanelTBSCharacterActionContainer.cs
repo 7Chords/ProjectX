@@ -17,7 +17,7 @@ namespace GameCore.UI
         {
         }
 
-        public override void OnDiscard()
+        public override void BeforeDiscard()
         {
             if (_m_infoItemList != null)
             {
@@ -26,6 +26,11 @@ namespace GameCore.UI
             }
             _m_infoItemList.Clear();
             _m_infoItemList = null;
+        }
+
+        public override void AfterInitialize()
+        {
+            _m_infoItemList = new List<UIPanelTBSCharacterActionItem>();
         }
 
         public override void OnHidePanel()
@@ -39,11 +44,6 @@ namespace GameCore.UI
             }
         }
 
-        public override void OnInitialize()
-        {
-            _m_infoItemList = new List<UIPanelTBSCharacterActionItem>();
-
-        }
 
         public override void OnShowPanel()
         {
@@ -108,5 +108,6 @@ namespace GameCore.UI
                 return;
             SetInfoList(_m_actorInfoList);
         }
+
     }
 }

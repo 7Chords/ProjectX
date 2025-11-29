@@ -582,9 +582,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   uiMask: {fileID: 0}
-  canvasGroup: {fileID: 0}
-  fadeInDuration: 0
-  fadeOutDuration: 0
+  canvasGroup: {fileID: 1535623672893042009}
+  fadeInDuration: 0.25
+  fadeOutDuration: 0.25
+  uiAnimator: {fileID: 0}
+  showUIName: 
+  hideUIName: 
   prefabItemObjName: prefab_tbs_skill_item
   layoutGroup: {fileID: 5147790957115156384}
 --- !u!1 &7018204929861300906
@@ -703,6 +706,9 @@ MonoBehaviour:
   canvasGroup: {fileID: 4892066286202476451}
   fadeInDuration: 0.5
   fadeOutDuration: 0.5
+  uiAnimator: {fileID: 0}
+  showUIName: 
+  hideUIName: 
   monoContainer: {fileID: 5932536059468738673}
   txtSkillDesc: {fileID: 2130693142920179708}
 --- !u!1 &7018204930048499664

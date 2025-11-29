@@ -10,14 +10,14 @@ namespace SCFrame.UI
     /// </summary>
     public abstract class _ASCUILifeObjBase : _ASCLifeObjBase
     {
-        public override void OnDiscard()
+        public sealed override void OnDiscard()
         {
             BeforeDiscard();
             AfterDiscard();
         }
         public abstract void BeforeDiscard();
         public abstract void AfterDiscard();
-        public override void OnInitialize()
+        public sealed override void OnInitialize()
         {
             BeforeInitialize();
             AfterInitialize();

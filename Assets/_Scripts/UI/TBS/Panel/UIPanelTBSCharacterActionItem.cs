@@ -11,14 +11,15 @@ namespace GameCore.UI
         public UIPanelTBSCharacterActionItem(UIMonoTBSCharacterActionItem _mono, SCUIShowType _showType) : base(_mono, _showType)
         {
         }
+        public override void BeforeDiscard()
+        {
 
-        public override void OnInitialize()
-        {
-        }
-        public override void OnDiscard()
-        {
         }
 
+        public override void AfterInitialize()
+        {
+
+        }
         public override void OnShowPanel()
         {
         }

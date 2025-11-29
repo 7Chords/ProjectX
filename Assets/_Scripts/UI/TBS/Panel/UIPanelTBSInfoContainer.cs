@@ -26,7 +26,13 @@ namespace GameCore.UI
         {
             return new UIPanelTBSInfoContainerItem(_mono, SCUIShowType.INTERNAL);
         }
-        public override void OnDiscard()
+
+
+        public override void AfterInitialize()
+        {
+            _m_infoItemList = new List<UIPanelTBSInfoContainerItem>();
+        }
+        public override void BeforeDiscard()
         {
             if (_m_infoItemList != null)
             {
@@ -46,11 +52,6 @@ namespace GameCore.UI
             }
         }
 
-        public override void OnInitialize()
-        {
-            _m_infoItemList = new List<UIPanelTBSInfoContainerItem>();
-
-        }
 
         public override void OnShowPanel()
         {
@@ -97,5 +98,7 @@ namespace GameCore.UI
             }
 
         }
+
+
     }
 }

@@ -19,23 +19,21 @@ namespace GameCore.UI
             
         }
 
-        public override void OnInitialize()
+        public override void BeforeDiscard()
+        {
+            SCMsgCenter.UnregisterMsgAct(SCMsgConst.TBS_ACTOR_SKILL_CONFIRM, onTBSActorSkillConfirm);
+
+            mono.btnSkillClick.RemoveClickDown(onBtnSkillClickDown);
+            mono.btnSkillClick.RemoveMouseEnter(onBtnSkillMouseEnter);
+        }
+
+        public override void AfterInitialize()
         {
             SCMsgCenter.RegisterMsgAct(SCMsgConst.TBS_ACTOR_SKILL_CONFIRM, onTBSActorSkillConfirm);
 
             mono.btnSkillClick.AddClickDown(onBtnSkillClickDown);
             mono.btnSkillClick.AddMouseEnter(onBtnSkillMouseEnter);
         }
-
-        public override void OnDiscard()
-        {
-            SCMsgCenter.UnregisterMsgAct(SCMsgConst.TBS_ACTOR_SKILL_CONFIRM, onTBSActorSkillConfirm);
-
-            mono.btnSkillClick.RemoveClickDown(onBtnSkillClickDown);
-            mono.btnSkillClick.RemoveMouseEnter(onBtnSkillMouseEnter);
-
-        }
-
         public override void OnShowPanel()
         {
         }

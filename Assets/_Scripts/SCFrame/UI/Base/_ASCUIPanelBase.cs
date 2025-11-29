@@ -1,3 +1,4 @@
+using DG.Tweening;
 using GameCore.Util;
 using System;
 using UnityEngine;
@@ -8,7 +9,7 @@ namespace SCFrame.UI
     /// UI面板抽象基类
     /// </summary>
     /// <typeparam name="T"></typeparam>
-    public abstract class _ASCUIPanelBase<T> : _ASCLifeObjBase,ISCUIPanelBase where T:_ASCUIMonoBase
+    public abstract class _ASCUIPanelBase<T> : _ASCUILifeObjBase, ISCUIPanelBase where T:_ASCUIMonoBase
     {
         private bool _m_hasShowed;
         private bool _m_hasHided;
@@ -20,7 +21,7 @@ namespace SCFrame.UI
         protected T mono;
         protected SCUIShowType showType;
 
-        protected TweenContainer fadeCanvasContainer;
+        private TweenContainer _m_fadeCanvasContainer;
         private _ASCUIPanelBase() { }
 
         public _ASCUIPanelBase(T _mono, SCUIShowType _showType)
@@ -40,14 +41,17 @@ namespace SCFrame.UI
             return null;
         }
 
-        public override void OnInitialize()
+
+        public override void BeforeInitialize()
         {
-            fadeCanvasContainer = new TweenContainer();
+            _m_fadeCanvasContainer = new TweenContainer();
+            SCCommon.SetGameObjectEnable(GetGameObject(), false);
         }
-        public override void OnDiscard()
+
+        public override void AfterDiscard()
         {
-            fadeCanvasContainer?.KillAllDoTween();
-            fadeCanvasContainer = null;
+            _m_fadeCanvasContainer?.KillAllDoTween();
+            _m_fadeCanvasContainer = null;
             SCCommon.DestoryGameObject(GetGameObject());
         }
 
@@ -59,13 +63,26 @@ namespace SCFrame.UI
             _m_hasHided = false;
             if (showType == SCUIShowType.INTERNAL)
                 SCCommon.SetGameObjectEnable(GetGameObject(),true);
-            ShowPanelAnim();
+            ShowPanelAnim(OnBeforeShow);
             OnShowPanel();
         }
 
-        protected virtual void ShowPanelAnim()
+        protected virtual void ShowPanelAnim(Action _onBeforeShow)
         {
+            mono.canvasGroup.alpha = 0f;
+            _m_fadeCanvasContainer.RegDoTween(mono.canvasGroup.DOFade(1, mono.fadeInDuration)
+                .OnStart(() =>
+                {
+                    _onBeforeShow?.Invoke();
+                }));
         }
+        protected virtual void OnBeforeShow()
+        {
+            SCCommon.SetGameObjectEnable(GetGameObject(), true);
+        }
+
+
+
 
         public abstract void OnShowPanel();
 
@@ -82,20 +99,19 @@ namespace SCFrame.UI
 
         protected virtual void HidePanelAnim(Action _onHideOver)
         {
-            _onHideOver?.Invoke();
+            mono.canvasGroup.alpha = 1f;
+            _m_fadeCanvasContainer.RegDoTween(mono.canvasGroup.DOFade(0, mono.fadeOutDuration)
+                .OnComplete(()=> 
+                {
+                    _onHideOver?.Invoke();
+                }));
         }
 
         protected virtual void OnHideOver()
         {
-
+            SCCommon.SetGameObjectEnable(GetGameObject(), false);
         }
         public abstract void OnHidePanel();
-
-
-
-        //对于ui面板 隐藏和显示替代了挂起恢复的功能
-        public sealed override void OnResume() { }
-        public sealed override void OnSuspend() { }
 
     }
 }
