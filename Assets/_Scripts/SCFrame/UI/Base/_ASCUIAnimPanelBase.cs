@@ -10,7 +10,7 @@ namespace SCFrame.UI
     /// 带Animator实现的可配置开启和关闭动画的UI面板抽象基类
     /// </summary>
     /// <typeparam name="T"></typeparam>
-    public abstract class _ASCUIAnimPanelBase<T> : _ASCUIPanelBase<T> where T : _ASCUIMonoBase
+    public abstract class _ASCUIAnimPanelBase<T> : _ASCUIPanelBase<T> where T : _ASCUIAnimMonoBase
     {
         protected _ASCUIAnimPanelBase(T _mono, SCUIShowType _showType) : base(_mono, _showType)
         {
