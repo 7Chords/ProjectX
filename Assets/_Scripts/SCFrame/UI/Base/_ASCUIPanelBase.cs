@@ -63,7 +63,8 @@ namespace SCFrame.UI
             _m_hasHided = false;
             if (showType == SCUIShowType.INTERNAL)
                 SCCommon.SetGameObjectEnable(GetGameObject(),true);
-            ShowPanelAnim(OnBeforeShow);
+            else
+                ShowPanelAnim(OnBeforeShow);
             OnShowPanel();
         }
 
@@ -91,10 +92,11 @@ namespace SCFrame.UI
         {
             _m_hasShowed = false;
             _m_hasHided = true;
+            OnHidePanel();
             if (showType == SCUIShowType.INTERNAL)
                 SCCommon.SetGameObjectEnable(GetGameObject(), false);
-            OnHidePanel();
-            HidePanelAnim(OnHideOver);
+            else
+                HidePanelAnim(OnHideOver);
         }
 
         protected virtual void HidePanelAnim(Action _onHideOver)

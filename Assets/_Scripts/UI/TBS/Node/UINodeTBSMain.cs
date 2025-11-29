@@ -44,7 +44,6 @@ namespace GameCore.UI
             if (_m_tbsMainPanel == null)
                 return;
             _m_tbsMainPanel.HidePanel();
-            SCCommon.SetGameObjectEnable(_m_panelGO,false);
         }
 
         public override void OnQuitNode()
@@ -52,14 +51,12 @@ namespace GameCore.UI
             if (_m_tbsMainPanel == null)
                 return;
             _m_tbsMainPanel.Discard();
-            SCCommon.DestoryGameObject(_m_panelGO);
         }
 
         public override void OnShowNode()
         {
             if (_m_tbsMainPanel == null)
                 return;
-            SCCommon.SetGameObjectEnable(_m_panelGO, true);
             _m_tbsMainPanel.ShowPanel();
         }
 
