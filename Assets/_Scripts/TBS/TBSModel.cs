@@ -9,7 +9,7 @@ namespace GameCore.TBS
     /// </summary>
     public class TBSModel
     {
-        public ETBSTurnType _m_curTurnType;
+        private ETBSTurnType _m_curTurnType;
 
         public ETBSTurnType curTurnType
         {
@@ -21,7 +21,7 @@ namespace GameCore.TBS
             }
         }
 
-        public int _m_curTurnCount;
+        private int _m_curTurnCount;
 
         public int curTurnCount
         {
@@ -37,7 +37,7 @@ namespace GameCore.TBS
             set { _m_battleInfo = value; }
         }
 
-        public int _m_curActorIndex;
+        private int _m_curActorIndex;
         public int curActorIndex
         {
             get { return _m_curActorIndex; }
@@ -48,6 +48,51 @@ namespace GameCore.TBS
             }
         }
 
+        private int _m_curSelectSingleTargetIdx;
+
+        public int curSelectSingleTargetIdx
+        {
+            get { return _m_curSelectSingleTargetIdx; }
+            set
+            {
+                _m_curSelectSingleTargetIdx = value;
+                SCMsgCenter.SendMsgAct(SCMsgConst.TBS_SELECT_SINGLE_ENEMY_TARGET_CHG);
+            }
+        }
+
+        private ETargetType _m_selectTargetType;
+        public ETargetType selectTargetType
+        {
+            get { return _m_selectTargetType; }
+            set
+            {
+                _m_selectTargetType = value;
+                SCMsgCenter.SendMsgAct(SCMsgConst.TBS_SELECT_ENEMY_ALL_OR_SINGLE_STATE_SWITCH);
+            }
+        }
+
+
+        private List<TBSActorBase> _m_playerActorModuleList;
+        
+        public List<TBSActorBase> playerActorModuleList
+        {
+            get { return _m_playerActorModuleList; }
+            set
+            {
+                _m_playerActorModuleList = value;
+            }
+        }
+
+        private List<TBSActorBase> _m_enemyActorModuleList;
+
+        public List<TBSActorBase> enemyActorModuleList
+        {
+            get { return _m_enemyActorModuleList; }
+            set
+            {
+                _m_enemyActorModuleList = value;
+            }
+        }
 
         /// <summary>
         /// 创新新游戏的时候初始化新的数据
@@ -55,9 +100,15 @@ namespace GameCore.TBS
         public void InitNewData()
         {
             curTurnType = ETBSTurnType.PLAYER;
-            //curTurnCount = 1;
+            curTurnCount = 1;
             battleInfo = new TBSBattleInfo();
             battleInfo.InitNewInfo();
+            curActorIndex = 0;
+            curSelectSingleTargetIdx = 0;
+            selectTargetType = battleInfo.playerTeamInfo.actorInfoList[0].targetType;
+            playerActorModuleList = new List<TBSActorBase>();
+            enemyActorModuleList = new List<TBSActorBase>();
+
         }
 
 
@@ -81,7 +132,7 @@ namespace GameCore.TBS
 
 
         /// <summary>
-        /// 获得当前的角色信息
+        /// 获得当前行动的角色信息
         /// </summary>
         /// <returns></returns>
         public TBSActorInfo getCurActorInfo()
@@ -90,6 +141,13 @@ namespace GameCore.TBS
                 return battleInfo.playerTeamInfo.actorInfoList[curActorIndex];
             else
                 return battleInfo.enemyTeamInfo.actorInfoList[curActorIndex];
+        }
+
+        public TBSActorBase getCurSingleSelectTargetActor()
+        {
+            if (enemyActorModuleList == null || _m_curSelectSingleTargetIdx < 0 || _m_curSelectSingleTargetIdx >= enemyActorModuleList.Count)
+                return null;
+            return enemyActorModuleList[_m_curSelectSingleTargetIdx];
         }
 
         public bool checkAllActorsDead(bool _isPlayer)

@@ -31,6 +31,7 @@ namespace GameCore.RefData
         public int initDefend;
         public float initMiss;
         public float initCritical;
+        public ETargetType attackTargetType;
         public EArmorLevelType initArmorLevel;
         public EMagicResistanceLevelType initMgicResistanceLevel;
         public EDamageType attackDamageType;
@@ -60,6 +61,7 @@ namespace GameCore.RefData
             initDefend = getInt("initDefend");
             initMiss = getFloat("initMiss");
             initCritical = getFloat("initCritical");
+            attackTargetType = (ETargetType)getEnum("attackTargetType", typeof(ETargetType));
             initArmorLevel = (EArmorLevelType)getEnum("initArmorLevel", typeof(EArmorLevelType));
             initMgicResistanceLevel = (EMagicResistanceLevelType)getEnum("initMgicResistanceLevel", typeof(EMagicResistanceLevelType));
             attackDamageType = (EDamageType)getEnum("attackDamageType", typeof(EDamageType));

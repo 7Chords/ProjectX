@@ -52,7 +52,7 @@ MonoBehaviour:
   bottomSfxTran: {fileID: 0}
   centerSfxTran: {fileID: 0}
   topSfxTran: {fileID: 0}
-  enemyAttackStopOffset: {x: 0, y: 0, z: 1}
+  enemyAttackStopOffset: {x: 0, y: 0, z: 2}
   attackAnimClipName: spikeSlime_attack_anim_clip
   runAnimClipName: spikeSlime_run_anim_clip
   getHitAnimClipName: spikeSlime_getHit_anim_clip

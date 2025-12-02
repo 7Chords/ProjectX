@@ -10,7 +10,6 @@ namespace GameCore.UI
 {
     public class UIPanelTBSInfo : _ASCUIPanelBase<UIMonoTBSInfo>
     {
-        //private TweenContainer _m_tweenContainer;
         private UIPanelTBSInfoContainer _m_infoContainer;
         private UIPanelTBSCharacterActionContainer _m_characterActionContainer;
         private List<TBSActorInfo> _m_allActorInfoList;
@@ -24,16 +23,10 @@ namespace GameCore.UI
 
             if (_m_characterActionContainer != null)
                 _m_characterActionContainer.Discard();
-
-            //_m_tweenContainer?.KillAllDoTween();
-            //_m_tweenContainer = null;
         }
 
         public override void AfterInitialize()
         {
-            //mono.canvasGroup.alpha = 0;
-            //_m_tweenContainer = new TweenContainer();
-
 
             if (mono.monoContainer != null)
                 _m_infoContainer = new UIPanelTBSInfoContainer(mono.monoContainer);
@@ -49,20 +42,10 @@ namespace GameCore.UI
             if (_m_characterActionContainer != null)
                 _m_characterActionContainer.HidePanel();
 
-            //Tween tween = mono.canvasGroup.DOFade(0, mono.fadeOutDuration).OnStart(() =>
-            //{
-            //    mono.canvasGroup.alpha = 1;
-            //});
-            //_m_tweenContainer?.RegDoTween(tween);
         }
 
         public override void OnShowPanel()
         {
-            //Tween tween = mono.canvasGroup.DOFade(1, mono.fadeInDuration).OnStart(() =>
-            //{
-            //    mono.canvasGroup.alpha = 0;
-            //});
-            //_m_tweenContainer?.RegDoTween(tween);
 
             if(_m_allActorInfoList == null)
                 _m_allActorInfoList = new List<TBSActorInfo>();

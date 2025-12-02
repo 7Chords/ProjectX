@@ -4,14 +4,13 @@ using GameCore.TBS;
 using GameCore.Util;
 using SCFrame;
 using SCFrame.UI;
+using System.Collections.Generic;
 using UnityEngine;
 
 namespace GameCore.UI
 {
     public class UIPanelTBSSkill : _ASCUIPanelBase<UIMonoTBSSkill>
     {
-        //private TweenContainer _m_tweenContainer;
-
         private UIPanelTBSSkillContainer _m_skillContainer;//技能container
 
         private int _m_curSelectSkillIdx;
@@ -22,7 +21,6 @@ namespace GameCore.UI
 
         public override void BeforeDiscard()
         {
-            //SCMsgCenter.UnregisterMsg(SCMsgConst.TBS_ACTOR_SKILL_SELECT, onTBSActorSkillSelect);
             SCMsgCenter.UnregisterMsgAct(SCMsgConst.TBS_ACTOR_SKILL_HIGHTLIGHT_UP, onTBSActorSkillHighLightUp);
             SCMsgCenter.UnregisterMsgAct(SCMsgConst.TBS_ACTOR_SKILL_HIGHTLIGHT_DOWN, onTBSActorSkillHighLightDown);
             SCMsgCenter.UnregisterMsg(SCMsgConst.TBS_ACTOR_SKILL_MOUSE_HIGHLIGHT, onTBSActorSkillMouseHighLight);
@@ -35,7 +33,6 @@ namespace GameCore.UI
 
         public override void AfterInitialize()
         {
-            //SCMsgCenter.RegisterMsg(SCMsgConst.TBS_ACTOR_SKILL_SELECT, onTBSActorSkillSelect);
             SCMsgCenter.RegisterMsgAct(SCMsgConst.TBS_ACTOR_SKILL_HIGHTLIGHT_UP, onTBSActorSkillHighLightUp);
             SCMsgCenter.RegisterMsgAct(SCMsgConst.TBS_ACTOR_SKILL_HIGHTLIGHT_DOWN, onTBSActorSkillHighLightDown);
             SCMsgCenter.RegisterMsg(SCMsgConst.TBS_ACTOR_SKILL_MOUSE_HIGHLIGHT, onTBSActorSkillMouseHighLight);
@@ -51,9 +48,6 @@ namespace GameCore.UI
 
             if (_m_skillContainer != null)
                 _m_skillContainer.HidePanel();
-
-            GameCoreMgr.instance.uiCoreMgr.ShowNode(nameof(UINodeTBSEnemyHud));
-            TBSCursorMgr.instance.ShowSelectionCursor();
         }
 
 
@@ -64,7 +58,10 @@ namespace GameCore.UI
 
             _refreshPanel();
 
+            //隐藏敌人hud
             GameCoreMgr.instance.uiCoreMgr.HideNode(nameof(UINodeTBSEnemyHud));
+
+            //隐藏光标
             TBSCursorMgr.instance.HideSelectionCursor();
         }
 

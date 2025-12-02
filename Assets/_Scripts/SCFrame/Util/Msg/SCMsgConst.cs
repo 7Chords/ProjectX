@@ -56,12 +56,14 @@ public class SCMsgConst
     public const int TBS_TRAM_ACTION_END = 2027;//回合制战斗 - 队伍行动结束
     public const int TBS_TURN_CHG_SHOW_END = 2028;//回合制战斗 - 回合切换面板显示结束
     public const int TBS_ACTOR_DIE = 2029;//回合制战斗 - 角色死亡
+    public const int TBS_SELECT_ENEMY_ALL_OR_SINGLE_STATE_SWITCH = 2030;//回合制战斗 - 选择敌方目标 单体/全体切换
     #endregion
+
 
     #region 系统相关 99
     public const int GAME_START = 9901;
     public const int GAME_END = 9902;
-
+    public const int UI_NODE_CHG = 9903;//ui节点变化事件
 
     #endregion
 }

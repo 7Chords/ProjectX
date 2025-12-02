@@ -24,5 +24,11 @@ namespace GameCore.UI
 
         [Header("是行动角色隐藏的物体")]
         public List<GameObject> goIsActionHideList;
+
+        [Header("是行动角色时的缩放")]
+        public float scaleIsAction;
+
+        [Header("不是行动角色时的缩放")]
+        public float scaleIsNotAction;
     }
 }

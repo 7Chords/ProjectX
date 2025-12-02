@@ -6,6 +6,7 @@ using UnityEngine;
 using DG.Tweening;
 using GameCore.Util;
 using GameCore.TBS;
+using System.Collections.Generic;
 
 namespace GameCore.UI
 {
@@ -31,14 +32,6 @@ namespace GameCore.UI
             mono.btnSkill.RemoveClickDown(onBtnSkillClickDown);
             mono.btnItem.RemoveClickDown(onBtnItemClickDown);
             mono.btnDefence.RemoveClickDown(onBtnDefenceClickDown);
-
-
-
-            //Tween tween = mono.canvasGroup.DOFade(0, mono.fadeOutDuration).OnStart(() =>
-            //{
-            //    mono.canvasGroup.alpha = 1;
-            //});
-            //_m_tweenContainer?.RegDoTween(tween);
         }
 
 
@@ -50,11 +43,27 @@ namespace GameCore.UI
             mono.btnItem.AddClickDown(onBtnItemClickDown);
             mono.btnDefence.AddClickDown(onBtnDefenceClickDown);
 
-            //Tween tween = mono.canvasGroup.DOFade(1, mono.fadeInDuration).OnStart(() =>
-            //{
-            //    mono.canvasGroup.alpha = 0;
-            //});
-            //_m_tweenContainer?.RegDoTween(tween);
+            //todo:优化
+
+            SCModel.instance.tbsModel.selectTargetType = SCModel.instance.tbsModel.getCurActorInfo().targetType;
+
+            //重新展示敌人hud
+            GameCoreMgr.instance.uiCoreMgr.ShowNode(nameof(UINodeTBSEnemyHud));
+
+            //重新设置光标
+            List<Vector3> worldPosList = new List<Vector3>();
+            if (SCModel.instance.tbsModel.selectTargetType == ETargetType.SINGLE)
+                worldPosList.Add(SCModel.instance.tbsModel.getCurSingleSelectTargetActor().GetCursorPos());
+            else if (SCModel.instance.tbsModel.selectTargetType == ETargetType.ALL)
+            {
+                foreach (var module in SCModel.instance.tbsModel.enemyActorModuleList)
+                {
+                    worldPosList.Add(module.GetCursorPos());
+                }
+            }
+            TBSCursorMgr.instance.SetSelectionCursor(worldPosList);
+
+
             refreshPanelShow();
         }
 

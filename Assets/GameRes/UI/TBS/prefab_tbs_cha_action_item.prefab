@@ -341,9 +341,6 @@ MonoBehaviour:
   canvasGroup: {fileID: 6641930607539649998}
   fadeInDuration: 0.25
   fadeOutDuration: 0.25
-  uiAnimator: {fileID: 0}
-  showUIName: 
-  hideUIName: 
   imgHeadBg: {fileID: 557653212112396323}
   imgHead: {fileID: 6101296340774942441}
   colorIsAction: {r: 1, g: 1, b: 0, a: 1}
@@ -351,6 +348,8 @@ MonoBehaviour:
   goIsActionShowList:
   - {fileID: 6490908674561937530}
   goIsActionHideList: []
+  scaleIsAction: 1.25
+  scaleIsNotAction: 1
 --- !u!225 &6641930607539649998
 CanvasGroup:
   m_ObjectHideFlags: 0

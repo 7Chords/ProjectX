@@ -105,6 +105,7 @@ namespace GameCore.TBS
 
     public enum EBuffType
     {
+        NONE,
         ATTACK_DOWN,
         ATTACK_UP,
         DEFEND_DOWN,
@@ -123,8 +124,10 @@ namespace GameCore.TBS
 
     public enum EBuffStackType
     {
+        NONE,
         ONE,
         TWO,
         THREE,
     }
+
 }

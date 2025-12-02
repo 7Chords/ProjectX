@@ -1,4 +1,5 @@
 using GameCore.RefData;
+using GameCore.TBS;
 using SCFrame;
 using SCFrame.UI;
 using System;
@@ -67,6 +68,8 @@ namespace GameCore.UI
         {
             mono.imgSkill.color = _isSelect ? mono.colorSkillSelect : mono.colorSkillUnSelect;
             _m_isSelect = _isSelect;
+
+            
         }
 
 
@@ -74,7 +77,28 @@ namespace GameCore.UI
         {
             //SCMsgCenter.SendMsg(SCMsgConst.TBS_ACTOR_SKILL, _m_skillRefObj.id);
             //GameCoreMgr.instance.uiCoreMgr.HideCurNode();
+
+            if (!_m_isSelect)
+                return;
+            SCModel.instance.tbsModel.selectTargetType = _m_skillRefObj.damageTargetType;
             GameCoreMgr.instance.uiCoreMgr.AddNode(new UINodeTBSConfirm(SCUIShowType.FULL));
+
+            //重新展示敌人hud
+            GameCoreMgr.instance.uiCoreMgr.ShowNode(nameof(UINodeTBSEnemyHud));
+
+            //重新设置光标
+            List<Vector3> worldPosList = new List<Vector3>();
+            if (SCModel.instance.tbsModel.selectTargetType == ETargetType.SINGLE)
+                worldPosList.Add(SCModel.instance.tbsModel.getCurSingleSelectTargetActor().GetCursorPos());
+            else if (SCModel.instance.tbsModel.selectTargetType == ETargetType.ALL)
+            {
+                foreach (var module in SCModel.instance.tbsModel.enemyActorModuleList)
+                {
+                    worldPosList.Add(module.GetCursorPos());
+                }
+            }
+            TBSCursorMgr.instance.SetSelectionCursor(worldPosList);
+
         }
 
 
@@ -86,7 +110,27 @@ namespace GameCore.UI
 
         private void onTBSActorSkillConfirm()
         {
+            if (!_m_isSelect)
+                return;
+            SCModel.instance.tbsModel.selectTargetType = _m_skillRefObj.damageTargetType;
+
             GameCoreMgr.instance.uiCoreMgr.AddNode(new UINodeTBSConfirm(SCUIShowType.FULL));
+
+            //重新展示敌人hud
+            GameCoreMgr.instance.uiCoreMgr.ShowNode(nameof(UINodeTBSEnemyHud));
+
+            //重新设置光标
+            List<Vector3> worldPosList = new List<Vector3>();
+            if (SCModel.instance.tbsModel.selectTargetType == ETargetType.SINGLE)
+                worldPosList.Add(SCModel.instance.tbsModel.getCurSingleSelectTargetActor().GetCursorPos());
+            else if (SCModel.instance.tbsModel.selectTargetType == ETargetType.ALL)
+            {
+                foreach (var module in SCModel.instance.tbsModel.enemyActorModuleList)
+                {
+                    worldPosList.Add(module.GetCursorPos());
+                }
+            }
+            TBSCursorMgr.instance.SetSelectionCursor(worldPosList);
         }
     }
 }

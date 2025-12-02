@@ -49,6 +49,10 @@ namespace GameCore.UI
             mono.imgHeadBg.color = isCurActorAction ? mono.colorIsAction : mono.colorIsNotAction;
             SCCommon.SetGameObjectEnable(mono.goIsActionShowList, isCurActorAction);
             SCCommon.SetGameObjectEnable(mono.goIsActionHideList, !isCurActorAction);
+            GetGameObject().transform.localScale = isCurActorAction 
+                ? Vector3.one * mono.scaleIsAction 
+                : Vector3.one * mono.scaleIsNotAction;
+
 
         }
     }
