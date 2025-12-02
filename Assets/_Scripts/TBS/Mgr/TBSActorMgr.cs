@@ -312,7 +312,7 @@ namespace GameCore.TBS
 
         private void onTBSSelectEnemyAllOrSingleStateSwitch()
         {
-            //TBSCursorMgr.instance.ChangeCursorShowMode(SCModel.instance.tbsModel.selectTargetType);
+            TBSCursorMgr.instance.ChangeCursorShowMode(SCModel.instance.tbsModel.selectTargetType);
         }
         #endregion
 

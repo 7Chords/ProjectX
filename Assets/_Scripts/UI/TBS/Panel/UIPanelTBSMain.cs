@@ -43,26 +43,8 @@ namespace GameCore.UI
             mono.btnItem.AddClickDown(onBtnItemClickDown);
             mono.btnDefence.AddClickDown(onBtnDefenceClickDown);
 
-            //todo:优化
-
+            //todo
             SCModel.instance.tbsModel.selectTargetType = SCModel.instance.tbsModel.getCurActorInfo().targetType;
-
-            //重新展示敌人hud
-            GameCoreMgr.instance.uiCoreMgr.ShowNode(nameof(UINodeTBSEnemyHud));
-
-            //重新设置光标
-            List<Vector3> worldPosList = new List<Vector3>();
-            if (SCModel.instance.tbsModel.selectTargetType == ETargetType.SINGLE)
-                worldPosList.Add(SCModel.instance.tbsModel.getCurSingleSelectTargetActor().GetCursorPos());
-            else if (SCModel.instance.tbsModel.selectTargetType == ETargetType.ALL)
-            {
-                foreach (var module in SCModel.instance.tbsModel.enemyActorModuleList)
-                {
-                    worldPosList.Add(module.GetCursorPos());
-                }
-            }
-            TBSCursorMgr.instance.SetSelectionCursor(worldPosList);
-
 
             refreshPanelShow();
         }

@@ -75,17 +75,11 @@ namespace GameCore.UI
 
         private void onBtnSkillClickDown(PointerEventData _eventData, object[] _args)
         {
-            //SCMsgCenter.SendMsg(SCMsgConst.TBS_ACTOR_SKILL, _m_skillRefObj.id);
-            //GameCoreMgr.instance.uiCoreMgr.HideCurNode();
 
             if (!_m_isSelect)
                 return;
-            SCModel.instance.tbsModel.selectTargetType = _m_skillRefObj.damageTargetType;
             GameCoreMgr.instance.uiCoreMgr.AddNode(new UINodeTBSConfirm(SCUIShowType.FULL));
-
-            //重新展示敌人hud
-            GameCoreMgr.instance.uiCoreMgr.ShowNode(nameof(UINodeTBSEnemyHud));
-
+            SCModel.instance.tbsModel.selectTargetType = _m_skillRefObj.damageTargetType;
             //重新设置光标
             List<Vector3> worldPosList = new List<Vector3>();
             if (SCModel.instance.tbsModel.selectTargetType == ETargetType.SINGLE)
@@ -112,13 +106,10 @@ namespace GameCore.UI
         {
             if (!_m_isSelect)
                 return;
-            SCModel.instance.tbsModel.selectTargetType = _m_skillRefObj.damageTargetType;
 
             GameCoreMgr.instance.uiCoreMgr.AddNode(new UINodeTBSConfirm(SCUIShowType.FULL));
 
-            //重新展示敌人hud
-            GameCoreMgr.instance.uiCoreMgr.ShowNode(nameof(UINodeTBSEnemyHud));
-
+            SCModel.instance.tbsModel.selectTargetType = _m_skillRefObj.damageTargetType;
             //重新设置光标
             List<Vector3> worldPosList = new List<Vector3>();
             if (SCModel.instance.tbsModel.selectTargetType == ETargetType.SINGLE)

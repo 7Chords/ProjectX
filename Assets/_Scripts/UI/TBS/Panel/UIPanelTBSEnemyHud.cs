@@ -30,12 +30,16 @@ namespace GameCore.UI
         public override void OnHidePanel()
         {
             SCMsgCenter.UnregisterMsgAct(SCMsgConst.TBS_SELECT_SINGLE_ENEMY_TARGET_CHG, onTBSSelectSingleEnemyTargetChg);
+            SCMsgCenter.UnregisterMsgAct(SCMsgConst.TBS_SELECT_ENEMY_ALL_OR_SINGLE_STATE_SWITCH, onTBSSelectEnemyAllOrSingleStateSwitch);
+
         }
 
         public override void OnShowPanel()
         {
             SCMsgCenter.RegisterMsgAct(SCMsgConst.TBS_SELECT_SINGLE_ENEMY_TARGET_CHG, onTBSSelectSingleEnemyTargetChg);
-            refreshItemListShow();
+            SCMsgCenter.RegisterMsgAct(SCMsgConst.TBS_SELECT_ENEMY_ALL_OR_SINGLE_STATE_SWITCH, onTBSSelectEnemyAllOrSingleStateSwitch);
+
+            //refreshItemListShow();
         }
 
         private void spawnItems()
@@ -130,6 +134,11 @@ namespace GameCore.UI
 
             _m_curSelectActorIdxList.Clear();
             _m_curSelectActorIdxList.Add(SCModel.instance.tbsModel.curSelectSingleTargetIdx);
+            refreshItemListShow();
+        }
+
+        private void onTBSSelectEnemyAllOrSingleStateSwitch()
+        {
             refreshItemListShow();
         }
     }

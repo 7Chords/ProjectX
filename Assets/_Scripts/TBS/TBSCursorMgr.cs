@@ -211,9 +211,15 @@ namespace GameCore.TBS
             if (_m_singleSelectionCursor == null || _m_allSelectionCursorList == null)
                 return;
             if (_targetType == ETargetType.SINGLE)
+            {
                 HideSelectionCursor_All();
+                ShowSelectionCursor_Single();
+            }
             else
+            {
                 HideSelectionCursor_Single();
+                ShowSelectionCursor_All();
+            }
         }
     }
 }
