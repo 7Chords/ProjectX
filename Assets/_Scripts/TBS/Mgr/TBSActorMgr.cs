@@ -127,6 +127,7 @@ namespace GameCore.TBS
                     continue;
                 actor.Initialize();
                 actor.SetActorInfo(actorInfo);
+                actor.SetPosInfo(_m_gameMono.playerPosInfoList[i]);
                 _m_playerActorModuleList.Add(actor);
             }
 
@@ -147,6 +148,7 @@ namespace GameCore.TBS
                     continue;
                 actor.Initialize();
                 actor.SetActorInfo(actorInfo);
+                actor.SetPosInfo(_m_gameMono.enemyPosInfoList[i]);
                 _m_enemyActorModuleList.Add(actor);
 
             }

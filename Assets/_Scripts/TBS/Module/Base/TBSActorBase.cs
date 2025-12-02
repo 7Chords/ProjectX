@@ -27,6 +27,10 @@ namespace GameCore.TBS
         protected TBSActorInfo _m_actorInfo;
         public TBSActorInfo actorInfo => _m_actorInfo;
 
+        protected TBSPosInfo _m_posInfo;
+
+        public TBSPosInfo posInfo => _m_posInfo;
+
         protected List<TBSActorBase> _m_attackEnemyActorList;
 
         protected TBSActorSkillRefObj _m_actorSkillRefObj;
@@ -89,6 +93,11 @@ namespace GameCore.TBS
             _m_actorInfo = _actorInfo;
         }
 
+        public virtual void SetPosInfo(TBSPosInfo _posInfo)
+        {
+            _m_posInfo = _posInfo;
+        }
+
         public virtual Vector3 GetEnemyAttackStandPos()
         {
             return _m_actorMono.transform.position - _m_actorMono.enemyAttackStopOffset;
@@ -96,7 +105,9 @@ namespace GameCore.TBS
 
         public virtual Vector3 GetCursorPos()
         {
-            return _m_actorMono.transform.position + _m_actorMono.cursorOffset;
+            if (posInfo == null)
+                return Vector3.zero;
+            return posInfo.pos.position + _m_actorMono.cursorOffset;
         }
 
         public virtual Vector3 GetDamageTextPos()
