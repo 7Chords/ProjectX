@@ -1,5 +1,6 @@
 using SCFrame;
 using System.Collections.Generic;
+using Radnom = UnityEngine.Random;
 
 
 namespace GameCore.TBS
@@ -105,7 +106,7 @@ namespace GameCore.TBS
             battleInfo.InitNewInfo();
             curActorIndex = 0;
             curSelectSingleTargetIdx = 0;
-            selectTargetType = battleInfo.playerTeamInfo.actorInfoList[0].targetType;
+            selectTargetType = battleInfo.playerTeamInfo.actorInfoList[0].attackTargetType;
             playerActorModuleList = new List<TBSActorBase>();
             enemyActorModuleList = new List<TBSActorBase>();
 
@@ -135,7 +136,7 @@ namespace GameCore.TBS
         /// 获得当前行动的角色信息
         /// </summary>
         /// <returns></returns>
-        public TBSActorInfo getCurActorInfo()
+        public TBSActorInfo GetCurActorInfo()
         {
             if (curTurnType == ETBSTurnType.PLAYER)
                 return battleInfo.playerTeamInfo.actorInfoList[curActorIndex];
@@ -143,14 +144,14 @@ namespace GameCore.TBS
                 return battleInfo.enemyTeamInfo.actorInfoList[curActorIndex];
         }
 
-        public TBSActorBase getCurSingleSelectTargetActor()
+        public TBSActorBase GetCurSingleSelectTargetActor()
         {
             if (enemyActorModuleList == null || _m_curSelectSingleTargetIdx < 0 || _m_curSelectSingleTargetIdx >= enemyActorModuleList.Count)
                 return null;
             return enemyActorModuleList[_m_curSelectSingleTargetIdx];
         }
 
-        public bool checkAllActorsDead(bool _isPlayer)
+        public bool CheckAllActorsDead(bool _isPlayer)
         {
             if(_isPlayer)
             {
@@ -169,6 +170,27 @@ namespace GameCore.TBS
                         return false;
                 }
                 return true;
+            }
+        }
+
+        /// <summary>
+        /// 取得一个随机的未死亡的actor
+        /// </summary>
+        /// <param name="_isPlayerActor"></param>
+        /// <returns></returns>
+        public TBSActorBase GetRandomAliveActor(bool _isPlayerActor)
+        {
+            if(_isPlayerActor)
+            {
+                if (playerActorModuleList == null)
+                    return null;
+                return playerActorModuleList[Radnom.Range(0, playerActorModuleList.Count)];
+            }
+            else
+            {
+                if (enemyActorModuleList == null)
+                    return null;
+                return enemyActorModuleList[Radnom.Range(0, enemyActorModuleList.Count)];
             }
         }
     }

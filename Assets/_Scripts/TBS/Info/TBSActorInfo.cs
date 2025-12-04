@@ -19,7 +19,7 @@ namespace GameCore.TBS
         public int defend;
         public float missChance;
         public float criticalChance;
-        public ETargetType targetType;
+        public ETargetType attackTargetType;
         public EArmorLevelType armorLevel;
         public EMagicResistanceLevelType magicResistanceLevel;
         public EDamageType attackDamageType;
@@ -59,7 +59,7 @@ namespace GameCore.TBS
             defend = _characterRefObj.initDefend;
             missChance = _characterRefObj.initMiss;
             criticalChance = _characterRefObj.initCritical;
-            targetType = _characterRefObj.attackTargetType;
+            attackTargetType = _characterRefObj.attackTargetType;
             armorLevel = _characterRefObj.initArmorLevel;
             magicResistanceLevel = _characterRefObj.initMgicResistanceLevel;
             attackDamageType = _characterRefObj.attackDamageType;

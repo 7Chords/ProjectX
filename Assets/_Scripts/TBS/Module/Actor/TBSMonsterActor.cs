@@ -11,7 +11,12 @@ namespace GameCore.TBS
         {
         }
 
-        public override void Attack(TBSActorBase _target)
+        public override void Attack_All(List<TBSActorBase> _targetList)
+        {
+
+        }
+
+        public override void Attack_Single(TBSActorBase _target)
         {
         }
 

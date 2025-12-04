@@ -6,7 +6,7 @@ namespace GameCore.TBS
 {
     public interface ITBSEnemyActor
     {
-        public void DealEnemyAction(TBSActorBase _target);
+        public void DealEnemyAction();
     }
 }
 

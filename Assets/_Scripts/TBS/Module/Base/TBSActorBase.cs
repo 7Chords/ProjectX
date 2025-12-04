@@ -141,7 +141,19 @@ namespace GameCore.TBS
             _m_tweenContainer.RegDoTween(tween);
         }
 
-        public abstract void Attack(TBSActorBase _target);
+        public virtual void Attack(ETargetType _targetType,List<TBSActorBase> _targetList)
+        {
+            if (_targetList == null || _targetType == ETargetType.NONE)
+                return;
+            if (_targetType == ETargetType.SINGLE)
+                Attack_Single(_targetList[0]);
+            else if (_targetType == ETargetType.ALL)
+                Attack_All(_targetList);
+        }
+
+        public abstract void Attack_Single(TBSActorBase _target);
+        public abstract void Attack_All(List<TBSActorBase> _targetList);
+
 
         public abstract void ReleaseSkill(long skillId, TBSActorBase _target);
 

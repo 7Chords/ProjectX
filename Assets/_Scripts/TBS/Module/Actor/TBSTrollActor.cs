@@ -13,7 +13,11 @@ namespace GameCore.TBS
         {
         }
 
-        public override void Attack(TBSActorBase _target)
+        public override void Attack_All(List<TBSActorBase> _targetList)
+        {
+        }
+
+        public override void Attack_Single(TBSActorBase _target)
         {
             _m_actorMono.animEventTrigger.AddAnimationEvent("dealAttack", dealAttack);
 
@@ -74,9 +78,11 @@ namespace GameCore.TBS
             _m_tweenContainer?.RegDoTween(seq);
         }
 
-        public void DealEnemyAction(TBSActorBase _target)
+        public void DealEnemyAction()
         {
-            Attack(_target);
+            //todo:完善逻辑 做区分
+            TBSActorBase targetActor = SCModel.instance.tbsModel.GetRandomAliveActor(true);
+            Attack_Single(targetActor);
         }
 
         public override void ReleaseSkill(long skillId, TBSActorBase _target)

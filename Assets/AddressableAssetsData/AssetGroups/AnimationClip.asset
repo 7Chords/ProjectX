@@ -109,6 +109,10 @@ MonoBehaviour:
     m_Address: spikeSlime_run_anim_clip
     m_ReadOnly: 0
     m_SerializedLabels: []
+  - m_GUID: 5bc7382d572d5d34ead950f5a596fab4
+    m_Address: lorraine_die_anim_clip
+    m_ReadOnly: 0
+    m_SerializedLabels: []
   m_ReadOnly: 0
   m_Settings: {fileID: 11400000, guid: d14fb1bbe98862146a7f5467a5bc79f8, type: 2}
   m_SchemaSet:

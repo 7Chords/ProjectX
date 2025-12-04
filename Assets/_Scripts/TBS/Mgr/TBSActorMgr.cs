@@ -156,7 +156,7 @@ namespace GameCore.TBS
             _m_curSelectActorIndex = 0;
 
             SCModel.instance.tbsModel.curActorIndex = _m_curSelectActorIndex;
-            SCModel.instance.tbsModel.selectTargetType = _m_playerTeamInfo.actorInfoList[0].targetType;
+            SCModel.instance.tbsModel.selectTargetType = _m_playerTeamInfo.actorInfoList[0].attackTargetType;
             SCModel.instance.tbsModel.playerActorModuleList = _m_playerActorModuleList;
             SCModel.instance.tbsModel.enemyActorModuleList = _m_enemyActorModuleList;
 
@@ -238,9 +238,9 @@ namespace GameCore.TBS
             {
 
                 if (SCModel.instance.tbsModel.curTurnType == ETBSTurnType.ENEMY)
-                    (_m_enemyActorModuleList[_m_curSelectActorIndex] as ITBSEnemyActor).DealEnemyAction(_m_playerActorModuleList[0]);
+                    (_m_enemyActorModuleList[_m_curSelectActorIndex] as ITBSEnemyActor).DealEnemyAction();
                 else
-                    SCModel.instance.tbsModel.selectTargetType = _m_playerActorModuleList[_m_curSelectActorIndex].actorInfo.targetType;
+                    SCModel.instance.tbsModel.selectTargetType = _m_playerActorModuleList[_m_curSelectActorIndex].actorInfo.attackTargetType;
 
                 refreshCameraAndCursor(true);
             }
@@ -260,7 +260,8 @@ namespace GameCore.TBS
 
         private void onTBSActorAttack()
         {
-            _m_playerActorModuleList[_m_curSelectActorIndex].Attack(_m_enemyActorModuleList[_m_singleTargetIndex]);
+            _m_playerActorModuleList[_m_curSelectActorIndex].Attack(_m_enemyActorModuleList[_m_curSelectActorIndex].actorInfo.attackTargetType
+                ,_m_enemyActorModuleList);
         }
 
         private void onTBSActorSkill(object[] _args)
@@ -293,9 +294,9 @@ namespace GameCore.TBS
         private void onTBSTurnChgShowEnd()
         {
             if (SCModel.instance.tbsModel.curTurnType == ETBSTurnType.ENEMY)
-                (_m_enemyActorModuleList[_m_curSelectActorIndex] as ITBSEnemyActor).DealEnemyAction(_m_playerActorModuleList[0]);
+                (_m_enemyActorModuleList[_m_curSelectActorIndex] as ITBSEnemyActor).DealEnemyAction();
             else
-                SCModel.instance.tbsModel.selectTargetType = _m_playerActorModuleList[_m_curSelectActorIndex].actorInfo.targetType;
+                SCModel.instance.tbsModel.selectTargetType = _m_playerActorModuleList[_m_curSelectActorIndex].actorInfo.attackTargetType;
 
 
             refreshCameraAndCursor(true);
@@ -305,9 +306,9 @@ namespace GameCore.TBS
         {
             if (_objs == null || _objs.Length == 0)
                 return;
-            if (SCModel.instance.tbsModel.checkAllActorsDead(true))
+            if (SCModel.instance.tbsModel.CheckAllActorsDead(true))
                 GameCoreMgr.instance.uiCoreMgr.AddNode(new UINodeTBSLose(SCUIShowType.ADDITION));
-            else if(SCModel.instance.tbsModel.checkAllActorsDead(false))
+            else if(SCModel.instance.tbsModel.CheckAllActorsDead(false))
                 GameCoreMgr.instance.uiCoreMgr.AddNode(new UINodeTBSWin(SCUIShowType.ADDITION));
 
         }

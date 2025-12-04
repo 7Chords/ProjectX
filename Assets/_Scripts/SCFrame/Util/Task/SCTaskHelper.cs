@@ -10,7 +10,7 @@ namespace SCFrame
     /// <summary>
     /// SCFrame任务帮助器 为非Mono提供Unity生命周期 跳帧执行方法 携程控制方法等
     /// </summary>
-    public class SCTaskHelper : SingletonMono<SCTaskHelper>
+    public class SCTaskHelper : SingletonPersistent<SCTaskHelper>
     {
         private Action _m_updateEvent;
         private Action _m_lateUpdateEvent;

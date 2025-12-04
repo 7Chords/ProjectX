@@ -41,7 +41,7 @@ namespace GameCore.UI
                 return;
             mono.imgHead.sprite = ResourcesHelper.LoadAsset<Sprite>(_m_actorInfo.characterRefObj.assetHeadIconObjName);
 
-            TBSActorInfo curActionActorInfo = SCModel.instance.tbsModel.getCurActorInfo();
+            TBSActorInfo curActionActorInfo = SCModel.instance.tbsModel.GetCurActorInfo();
             if (curActionActorInfo == null)
                 return;
 

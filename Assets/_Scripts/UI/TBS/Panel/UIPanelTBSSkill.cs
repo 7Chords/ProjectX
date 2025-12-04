@@ -55,7 +55,7 @@ namespace GameCore.UI
             //重新设置光标
             List<Vector3> worldPosList = new List<Vector3>();
             if (SCModel.instance.tbsModel.selectTargetType == ETargetType.SINGLE)
-                worldPosList.Add(SCModel.instance.tbsModel.getCurSingleSelectTargetActor().GetCursorPos());
+                worldPosList.Add(SCModel.instance.tbsModel.GetCurSingleSelectTargetActor().GetCursorPos());
             else if (SCModel.instance.tbsModel.selectTargetType == ETargetType.ALL)
             {
                 foreach (var module in SCModel.instance.tbsModel.enemyActorModuleList)
@@ -90,7 +90,7 @@ namespace GameCore.UI
 
         private void _refreshSkillContainer()
         {
-            TBSActorInfo actorInfo = SCModel.instance.tbsModel.getCurActorInfo();
+            TBSActorInfo actorInfo = SCModel.instance.tbsModel.GetCurActorInfo();
             if (actorInfo == null)
                 return;
             _m_curActorSkillCount = actorInfo.skillList.Count;
@@ -100,7 +100,7 @@ namespace GameCore.UI
 
         private void _refreshCurSkillDesc()
         {
-            TBSActorInfo actorInfo = SCModel.instance.tbsModel.getCurActorInfo();
+            TBSActorInfo actorInfo = SCModel.instance.tbsModel.GetCurActorInfo();
             if (actorInfo == null)
                 return;
             long curSkillId = actorInfo.skillList[_m_curSelectSkillIdx];
@@ -146,7 +146,7 @@ namespace GameCore.UI
             if (_objs == null || _objs.Length == 0)
                 return;
             long skillId = (long)_objs[0];
-            TBSActorInfo actorInfo = SCModel.instance.tbsModel.getCurActorInfo();
+            TBSActorInfo actorInfo = SCModel.instance.tbsModel.GetCurActorInfo();
             if (actorInfo == null)
                 return;
             for(int i =0;i< actorInfo.skillList.Count;i++)
@@ -164,7 +164,7 @@ namespace GameCore.UI
         private void onTBSActorSkillRelease()
         {
 
-            TBSActorInfo actorInfo = SCModel.instance.tbsModel.getCurActorInfo();
+            TBSActorInfo actorInfo = SCModel.instance.tbsModel.GetCurActorInfo();
             if (actorInfo == null)
                 return;
             long curSkillId = actorInfo.skillList[_m_curSelectSkillIdx];

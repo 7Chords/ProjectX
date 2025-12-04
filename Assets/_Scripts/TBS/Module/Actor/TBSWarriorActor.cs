@@ -2,7 +2,6 @@ using DG.Tweening;
 using GameCore.RefData;
 using GameCore.UI;
 using SCFrame;
-using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Playables;
@@ -16,8 +15,11 @@ namespace GameCore.TBS
         {
         }
 
-        
-        public override void Attack(TBSActorBase _target)
+        public override void Attack_All(List<TBSActorBase> _targetList)
+        {
+            
+        }
+        public override void Attack_Single(TBSActorBase _target)
         {
             _m_actorMono.animEventTrigger.AddAnimationEvent("dealAttack", dealAttack);
 

@@ -1,7 +1,5 @@
 using System;
-using System.Collections;
 using System.Collections.Generic;
-using Unity.VisualScripting;
 using UnityEngine;
 
 namespace SCFrame
@@ -177,7 +175,7 @@ namespace SCFrame
         public void ClearGameObject(string _prefabName)
         {
             GameObject go = poolRootObj.transform.Find(_prefabName).gameObject;
-            if (go.IsUnityNull() == false)
+            if (go != null)
             {
                 Destroy(go);
                 _m_gameObjectPoolDic.Remove(_prefabName);

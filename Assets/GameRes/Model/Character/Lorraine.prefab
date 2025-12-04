@@ -2672,7 +2672,7 @@ MonoBehaviour:
   getHitAnimClipName: lorraine_getHit_anim_clip
   idleAnimClipName: lorraine_idle_anim_clip
   defendAnimClipName: lorraine_defend_anim_clip
-  dieAnimClipName: 
+  dieAnimClipName: lorraine_die_anim_clip
   animEventTrigger: {fileID: 8268381092690985683}
   skillDirector: {fileID: 0}
   signalEventTrigger: {fileID: 3518964339634075314}

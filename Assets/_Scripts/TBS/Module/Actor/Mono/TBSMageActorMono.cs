@@ -15,7 +15,7 @@ namespace GameCore.TBS
         [Header("普攻法球的飞行速度")]
         public float attackFlySpeed;
 
-        [Header("普攻法球的资质obj名")]
+        [Header("普攻法球的资源obj名")]
         public string attackSpawnObjName;
 
     }

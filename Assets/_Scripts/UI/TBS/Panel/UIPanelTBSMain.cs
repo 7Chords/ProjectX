@@ -44,7 +44,7 @@ namespace GameCore.UI
             mono.btnDefence.AddClickDown(onBtnDefenceClickDown);
 
             //todo
-            SCModel.instance.tbsModel.selectTargetType = SCModel.instance.tbsModel.getCurActorInfo().targetType;
+            SCModel.instance.tbsModel.selectTargetType = SCModel.instance.tbsModel.GetCurActorInfo().attackTargetType;
 
             refreshPanelShow();
         }
@@ -68,7 +68,7 @@ namespace GameCore.UI
 
         private void refreshPanelShow()
         {
-            TBSActorInfo actorInfo = SCModel.instance.tbsModel.getCurActorInfo();
+            TBSActorInfo actorInfo = SCModel.instance.tbsModel.GetCurActorInfo();
             if (actorInfo == null)
                 return;
             mono.imgCharacterHead.sprite = ResourcesHelper.LoadAsset<Sprite>(actorInfo.characterRefObj.assetHeadIconObjName);
