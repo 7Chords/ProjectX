@@ -95,6 +95,17 @@ namespace GameCore.TBS
             }
         }
 
+
+        private TBSGameMono _m_gameMono;//回合制战斗全局mono
+
+        public TBSGameMono gameMono
+        {
+            get { return _m_gameMono; }
+            set
+            {
+                _m_gameMono = value;
+            }
+        }
         /// <summary>
         /// 创新新游戏的时候初始化新的数据
         /// </summary>

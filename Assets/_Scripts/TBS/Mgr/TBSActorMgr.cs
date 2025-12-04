@@ -21,7 +21,7 @@ namespace GameCore.TBS
 
 
         private GameObject _m_tbsStage;//回合制战斗舞台
-        private TBSGameMono _m_gameMono;
+        private TBSGameMono _m_gameMono;//回合制战斗全局mono
 
         private int _m_curSelectActorIndex;
 
@@ -159,7 +159,7 @@ namespace GameCore.TBS
             SCModel.instance.tbsModel.selectTargetType = _m_playerTeamInfo.actorInfoList[0].attackTargetType;
             SCModel.instance.tbsModel.playerActorModuleList = _m_playerActorModuleList;
             SCModel.instance.tbsModel.enemyActorModuleList = _m_enemyActorModuleList;
-
+            SCModel.instance.tbsModel.gameMono = _m_gameMono;
 
             refreshCameraAndCursor(true,true);
 
@@ -260,8 +260,21 @@ namespace GameCore.TBS
 
         private void onTBSActorAttack()
         {
-            _m_playerActorModuleList[_m_curSelectActorIndex].Attack(_m_enemyActorModuleList[_m_curSelectActorIndex].actorInfo.attackTargetType
-                ,_m_enemyActorModuleList);
+            List<TBSActorBase> targetList = new List<TBSActorBase>();
+            if(_m_playerActorModuleList[_m_curSelectActorIndex].actorInfo.attackTargetType == ETargetType.ALL)
+            {
+                targetList = _m_enemyActorModuleList;
+                GameCameraMgr.instance.SetCameraTarget(_m_gameMono.playerLookEnemyCenterPos);
+                _m_playerActorModuleList[_m_curSelectActorIndex].Attack(_m_enemyActorModuleList[_m_curSelectActorIndex].actorInfo.attackTargetType
+                    ,targetList);
+            }
+            else if(_m_playerActorModuleList[_m_curSelectActorIndex].actorInfo.attackTargetType == ETargetType.SINGLE)
+            {
+                targetList.Add(_m_enemyActorModuleList[_m_singleTargetIndex]);
+                GameCameraMgr.instance.SetCameraTarget(_m_enemyActorModuleList[_m_singleTargetIndex].GetAsCameraTargetTran());
+                _m_playerActorModuleList[_m_curSelectActorIndex].Attack(_m_enemyActorModuleList[_m_curSelectActorIndex].actorInfo.attackTargetType
+                    ,targetList);
+            }
         }
 
         private void onTBSActorSkill(object[] _args)
@@ -319,6 +332,11 @@ namespace GameCore.TBS
         }
         #endregion
 
+        /// <summary>
+        /// 刷新光标和相机 只用于玩家
+        /// </summary>
+        /// <param name="_reSetFollow"></param>
+        /// <param name="_firstSet"></param>
         private void refreshCameraAndCursor(bool _reSetFollow,bool _firstSet = false)
         {
             if (_m_enemyActorGOList == null || _m_enemyActorGOList.Count == 0 || _m_playerActorGOList.Count == 0 ||
@@ -367,10 +385,10 @@ namespace GameCore.TBS
                 GameCameraMgr.instance.SetCameraPositionOffsetWithFollow(_m_gameMono.playerPosInfoList[_m_curSelectActorIndex].cameraIdlePos, hideUIAndCursor, showUIAndCursor);
             }
 
-            void setCameraOffset_Enemy()
-            {
-                GameCameraMgr.instance.SetCameraPositionOffsetWithFollow(_m_gameMono.enemyPosInfoList[_m_curSelectActorIndex].cameraIdlePos);
-            }
+            //void setCameraOffset_Enemy()
+            //{
+            //    GameCameraMgr.instance.SetCameraPositionOffsetWithFollow(_m_gameMono.enemyPosInfoList[_m_curSelectActorIndex].cameraIdlePos);
+            //}
 
             if (SCModel.instance.tbsModel.curTurnType == ETBSTurnType.PLAYER)
             {
@@ -383,10 +401,10 @@ namespace GameCore.TBS
             }
             else if (SCModel.instance.tbsModel.curTurnType == ETBSTurnType.ENEMY)
             {
-                //设置相机
-                GameCameraMgr.instance.SetCameraTarget(_m_gameMono.enemyLookPlayerCenterPos);
-                GameCameraMgr.instance.SetCameraFollow(_m_enemyActorGOList[_m_curSelectActorIndex].transform);
-                setCameraOffset_Enemy();
+                ////设置相机
+                //GameCameraMgr.instance.SetCameraTarget(_m_gameMono.enemyLookPlayerCenterPos);
+                //GameCameraMgr.instance.SetCameraFollow(_m_enemyActorGOList[_m_curSelectActorIndex].transform);
+                //setCameraOffset_Enemy();
             }
         }
     }

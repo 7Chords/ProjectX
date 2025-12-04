@@ -123,6 +123,11 @@ namespace GameCore.TBS
         {
             return _m_actorMono.gameObject;
         }
+
+        public Transform GetAsCameraTargetTran()
+        {
+            return _m_actorMono.asCameraTargetTran;
+        }
         public virtual void LookTarget(Vector3 _target,Action _onStart,Action _onFinish)
         {
             if (_target == _m_actorMono.gameObject.transform.rotation.eulerAngles)

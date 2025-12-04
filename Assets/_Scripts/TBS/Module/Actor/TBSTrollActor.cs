@@ -80,9 +80,25 @@ namespace GameCore.TBS
 
         public void DealEnemyAction()
         {
-            //todo:完善逻辑 做区分
+
+
+
+            //todo:完善逻辑 做普攻技能区分
+
             TBSActorBase targetActor = SCModel.instance.tbsModel.GetRandomAliveActor(true);
-            Attack_Single(targetActor);
+            GameCameraMgr.instance.SetCameraFollow(GetGameObject().transform);
+            GameCameraMgr.instance.SetCameraPositionOffsetWithFollow(posInfo.cameraIdlePos);
+            //设置相机
+            if (actorInfo.attackTargetType == ETargetType.ALL)
+            {
+                GameCameraMgr.instance.SetCameraTarget(SCModel.instance.tbsModel.gameMono.enemyLookPlayerCenterPos);
+                Attack_All(SCModel.instance.tbsModel.playerActorModuleList);
+            }
+            else if (actorInfo.attackTargetType == ETargetType.SINGLE)
+            {
+                GameCameraMgr.instance.SetCameraTarget(targetActor.GetAsCameraTargetTran());
+                Attack_Single(targetActor);
+            }
         }
 
         public override void ReleaseSkill(long skillId, TBSActorBase _target)
