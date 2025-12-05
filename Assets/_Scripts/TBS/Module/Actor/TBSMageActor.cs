@@ -19,9 +19,20 @@ namespace GameCore.TBS
 
         public override void Attack_Single(TBSActorBase _target)
         {
+
+            GameCoreMgr.instance.uiCoreMgr.HideNode(nameof(UINodeTBSMain));
+            GameCoreMgr.instance.uiCoreMgr.HideNode(nameof(UINodeTBSEnemyHud));
+            TBSCursorMgr.instance.HideSelectionCursor();
+
             _m_attackEnemyActorList.Add(_target);
             TBSMageActorMono actorMono = _m_actorMono as TBSMageActorMono;
             Sequence seq = DOTween.Sequence();
+
+            Tween lookAtTargetTween = _m_actorMono.gameObject.transform.DOLookAt(new Vector3(_target.GetGameObject().transform.position.x,
+                GetGameObject().transform.position.y, _target.GetGameObject().transform.position.z), 0.25f);
+
+            seq.Append(lookAtTargetTween);
+
             GameObject flyBall = null;
             float flyTime = Vector3.Distance(_target.GetPos(), actorMono.attackSourceTran.position) / actorMono.attackFlySpeed;
             seq.Append(DOVirtual.DelayedCall(actorMono.attackSpwanTime,
@@ -35,9 +46,6 @@ namespace GameCore.TBS
                 }).OnStart(
                 ()=>
                 {
-                    GameCoreMgr.instance.uiCoreMgr.HideNode(nameof(UINodeTBSMain));
-                    GameCoreMgr.instance.uiCoreMgr.HideNode(nameof(UINodeTBSEnemyHud));
-                    TBSCursorMgr.instance.HideSelectionCursor();
                     _m_animationCtl.PlaySingleAniamtion(_m_attackAnimClip);
                 }));
 

@@ -26,6 +26,8 @@ namespace GameCore.TBS
 
             Vector3 originalPos = _m_actorMono.gameObject.transform.position;
             Sequence seq = DOTween.Sequence();
+            Tween lookAtTargetTween = _m_actorMono.gameObject.transform.DOLookAt(new Vector3(_target.GetGameObject().transform.position.x,
+                GetGameObject().transform.position.y, _target.GetGameObject().transform.position.z), 0.25f);
             Tween move2AttackTween = _m_actorMono.gameObject.transform.DOMove(_target.GetEnemyAttackStandPos(), 1f)
                 .OnStart(
                 () =>
@@ -60,7 +62,7 @@ namespace GameCore.TBS
 
 
 
-
+            seq.Append(lookAtTargetTween);
             seq.Append(move2AttackTween);
 
             seq.Append(DOVirtual.DelayedCall((_m_actorMono as TBSTrollActorMono).attackAnimDuration,
