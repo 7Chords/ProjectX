@@ -30,5 +30,12 @@ namespace GameCore.UI
 
         [Header("不是行动角色时的缩放")]
         public float scaleIsNotAction;
+
+        [Header("角色死亡显示的物体")]
+        public List<GameObject> goActorDeadShowList;
+
+        [Header("角色死亡隐藏的物体")]
+        public List<GameObject> goActorDeadHideList;
+
     }
 }

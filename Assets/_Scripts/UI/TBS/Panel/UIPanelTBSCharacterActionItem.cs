@@ -22,9 +22,11 @@ namespace GameCore.UI
         }
         public override void OnShowPanel()
         {
+            SCMsgCenter.RegisterMsg(SCMsgConst.TBS_ACTOR_DIE, onTBSActorDie);
         }
         public override void OnHidePanel()
         {
+            SCMsgCenter.UnregisterMsg(SCMsgConst.TBS_ACTOR_DIE, onTBSActorDie);
         }
 
         public void SetInfo(TBSActorInfo _actorInfo)
@@ -40,7 +42,12 @@ namespace GameCore.UI
             if (_m_actorInfo == null)
                 return;
             mono.imgHead.sprite = ResourcesHelper.LoadAsset<Sprite>(_m_actorInfo.characterRefObj.assetHeadIconObjName);
+            refreshIsActionShow();
+            refreshHasDeadShow();
+        }
 
+        private void refreshIsActionShow()
+        {
             TBSActorInfo curActionActorInfo = SCModel.instance.tbsModel.GetCurActorInfo();
             if (curActionActorInfo == null)
                 return;
@@ -49,10 +56,26 @@ namespace GameCore.UI
             mono.imgHeadBg.color = isCurActorAction ? mono.colorIsAction : mono.colorIsNotAction;
             SCCommon.SetGameObjectEnable(mono.goIsActionShowList, isCurActorAction);
             SCCommon.SetGameObjectEnable(mono.goIsActionHideList, !isCurActorAction);
-            GetGameObject().transform.localScale = isCurActorAction 
-                ? Vector3.one * mono.scaleIsAction 
+            GetGameObject().transform.localScale = isCurActorAction
+                ? Vector3.one * mono.scaleIsAction
                 : Vector3.one * mono.scaleIsNotAction;
+        }
 
+        private void refreshHasDeadShow()
+        {
+            bool hasDead = _m_actorInfo.hasDead;
+            SCCommon.SetGameObjectEnable(mono.goActorDeadShowList, hasDead);
+            SCCommon.SetGameObjectEnable(mono.goActorDeadHideList, !hasDead);
+        }
+
+        private void onTBSActorDie(object[] _objs)
+        {
+            if (_objs == null || _objs.Length == 0)
+                return;
+            long characterId = (long)_objs[0];
+
+            if (characterId == _m_actorInfo.characterRefObj.id)
+                refreshHasDeadShow();
 
         }
     }
