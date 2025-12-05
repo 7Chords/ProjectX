@@ -80,14 +80,13 @@ namespace GameCore.TBS
 
         public void DealEnemyAction()
         {
-
-
-
             //todo:完善逻辑 做普攻技能区分
-
-            TBSActorBase targetActor = SCModel.instance.tbsModel.GetRandomAliveActor(true);
             GameCameraMgr.instance.SetCameraFollow(GetGameObject().transform);
             GameCameraMgr.instance.SetCameraPositionOffsetWithFollow(posInfo.cameraIdlePos);
+
+            TBSActorBase targetActor = SCModel.instance.tbsModel.GetRandomAliveActor(true);
+            if (targetActor == null)
+                return;
             //设置相机
             if (actorInfo.attackTargetType == ETargetType.ALL)
             {

@@ -70,7 +70,7 @@ RectTransform:
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
+  m_ConstrainProportionsScale: 1
   m_Children:
   - {fileID: 7862089524751056046}
   m_Father: {fileID: 9018949674158261567}
@@ -860,6 +860,9 @@ MonoBehaviour:
   btnItem: {fileID: 6780722100675838738}
   btnDefence: {fileID: 1284143785655602893}
   imgCharacterHead: {fileID: 5497206237711806236}
+  scaleClickBtn: 1.5
+  durationBtnScaleChg: 0.1
+  scaleBtnDefault: 1
 --- !u!225 &728462604453333250
 CanvasGroup:
   m_ObjectHideFlags: 0
@@ -934,7 +937,7 @@ RectTransform:
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
+  m_ConstrainProportionsScale: 1
   m_Children:
   - {fileID: 1576809578881524979}
   m_Father: {fileID: 9018949674158261567}

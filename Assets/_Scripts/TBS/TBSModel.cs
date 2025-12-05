@@ -10,6 +10,20 @@ namespace GameCore.TBS
     /// </summary>
     public class TBSModel
     {
+        private bool _m_gameStarted;
+
+        public bool gameStarted
+        {
+            get { return _m_gameStarted; }
+            set
+            {
+                _m_gameStarted = value;
+            }
+        }
+
+
+
+
         private ETBSTurnType _m_curTurnType;
 
         public ETBSTurnType curTurnType
@@ -133,7 +147,7 @@ namespace GameCore.TBS
         }
 
         /// <summary>
-        /// 重制当前数据为新游戏的数据
+        /// 重制当前数据
         /// </summary>
         public void ResetData()
         {
@@ -191,17 +205,33 @@ namespace GameCore.TBS
         /// <returns></returns>
         public TBSActorBase GetRandomAliveActor(bool _isPlayerActor)
         {
+            if (!gameStarted)
+                return null;
             if(_isPlayerActor)
             {
                 if (playerActorModuleList == null)
                     return null;
-                return playerActorModuleList[Radnom.Range(0, playerActorModuleList.Count)];
+                int randomIdx = Radnom.Range(0, playerActorModuleList.Count);
+
+                while(playerActorModuleList[randomIdx].actorInfo.hasDead)
+                {
+                    randomIdx = Radnom.Range(0, playerActorModuleList.Count);
+                }
+                return playerActorModuleList[randomIdx];
             }
             else
             {
                 if (enemyActorModuleList == null)
                     return null;
-                return enemyActorModuleList[Radnom.Range(0, enemyActorModuleList.Count)];
+
+                int randomIdx = Radnom.Range(0, enemyActorModuleList.Count);
+
+                while (enemyActorModuleList[randomIdx].actorInfo.hasDead)
+                {
+                    randomIdx = Radnom.Range(0, enemyActorModuleList.Count);
+                }
+
+                return enemyActorModuleList[randomIdx];
             }
         }
     }

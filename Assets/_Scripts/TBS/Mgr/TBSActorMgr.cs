@@ -320,9 +320,9 @@ namespace GameCore.TBS
             if (_objs == null || _objs.Length == 0)
                 return;
             if (SCModel.instance.tbsModel.CheckAllActorsDead(true))
-                GameCoreMgr.instance.uiCoreMgr.AddNode(new UINodeTBSLose(SCUIShowType.ADDITION));
+                SCMsgCenter.SendMsgAct(SCMsgConst.TBS_ALL_PLAYER_ACTOR_DIE);
             else if(SCModel.instance.tbsModel.CheckAllActorsDead(false))
-                GameCoreMgr.instance.uiCoreMgr.AddNode(new UINodeTBSWin(SCUIShowType.ADDITION));
+                SCMsgCenter.SendMsgAct(SCMsgConst.TBS_ALL_ENEMY_ACTOR_DIE);
 
         }
 

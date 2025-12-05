@@ -17,7 +17,8 @@ namespace GameCore.TBS
             //注册事件
             SCMsgCenter.RegisterMsgAct(SCMsgConst.TBS_GAME_START,onTBSGameStart);
             SCMsgCenter.RegisterMsgAct(SCMsgConst.TBS_GAME_FINISH, onTBSGameFinish);
-            
+            SCMsgCenter.RegisterMsgAct(SCMsgConst.TBS_ALL_PLAYER_ACTOR_DIE, onTBSAllPlayerActorDie);
+            SCMsgCenter.RegisterMsgAct(SCMsgConst.TBS_ALL_ENEMY_ACTOR_DIE, onTBSAllEnemyActorDie);
 
             initAllSubMgr();
         }
@@ -26,6 +27,8 @@ namespace GameCore.TBS
             //反注册事件
             SCMsgCenter.UnregisterMsgAct(SCMsgConst.TBS_GAME_START, onTBSGameStart);
             SCMsgCenter.UnregisterMsgAct(SCMsgConst.TBS_GAME_FINISH, onTBSGameFinish);
+            SCMsgCenter.UnregisterMsgAct(SCMsgConst.TBS_ALL_PLAYER_ACTOR_DIE, onTBSAllPlayerActorDie);
+            SCMsgCenter.UnregisterMsgAct(SCMsgConst.TBS_ALL_ENEMY_ACTOR_DIE, onTBSAllEnemyActorDie);
 
 
             discardAllSubMgr();
@@ -113,6 +116,7 @@ namespace GameCore.TBS
             GameCoreMgr.instance.uiCoreMgr.AddNode(new UINodeTBSInfo(SCUIShowType.FULL));
             GameCoreMgr.instance.uiCoreMgr.AddNode(new UINodeTBSMain(SCUIShowType.FULL),true);
             _m_tbsGameHasStarted = true;
+            SCModel.instance.tbsModel.gameStarted = true;
         }
 
         private void onTBSGameFinish()
@@ -126,6 +130,20 @@ namespace GameCore.TBS
             SCCommon.SetGameObjectEnable(SCGame.instance.playerGO, false);
 
             _m_tbsGameHasStarted = false;
+        }
+
+        private void onTBSAllPlayerActorDie()
+        {
+            _m_tbsGameHasStarted = false;
+            SCModel.instance.tbsModel.gameStarted = false;
+            GameCoreMgr.instance.uiCoreMgr.AddNode(new UINodeTBSLose(SCUIShowType.ADDITION));
+        }
+
+        private void onTBSAllEnemyActorDie()
+        {
+            _m_tbsGameHasStarted = false;
+            SCModel.instance.tbsModel.gameStarted = false;
+            GameCoreMgr.instance.uiCoreMgr.AddNode(new UINodeTBSWin(SCUIShowType.ADDITION));
         }
         #endregion
     }

@@ -16,5 +16,11 @@ namespace GameCore.UI
         public Button btnDefence;
         [Header("角色头像")]
         public Image imgCharacterHead;
+        [Header("按钮被点击后的缩放大小")]
+        public float scaleClickBtn;
+        [Header("按钮被点击后的缩放时长")]
+        public float durationBtnScaleChg;
+        [Header("按钮默认的缩放")]
+        public float scaleBtnDefault;
     }
 }

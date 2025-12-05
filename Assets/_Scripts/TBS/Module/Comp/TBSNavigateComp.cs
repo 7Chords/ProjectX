@@ -8,6 +8,9 @@ using UnityEngine;
 
 namespace GameCore.TBS
 {
+    /// <summary>
+    /// µ¼º½×é¼þ
+    /// </summary>
     public class TBSNavigateComp : TBSCompBase
     {
         public override void OnInitialize()
