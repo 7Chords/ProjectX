@@ -35,7 +35,7 @@ namespace GameCore
         /// <param name="_tran"></param>
         /// <param name="_onStart"></param>
         /// <param name="_onFinish"></param>
-        public void SetCameraPositionOffsetWithFollow(Transform _tran,Action _onStart = null,Action _onFinish = null)
+        public void SetCameraPositionOffsetWithFollow(Transform _tran,bool _isPlayer,Action _onStart = null,Action _onFinish = null)
         {
             if (_m_virtualCamera == null)
                 return;
@@ -53,8 +53,15 @@ namespace GameCore
                 return;
             }
 
+            Vector3 targetOffset = Vector3.zero;
             //计算目标偏移量
-            Vector3 targetOffset = _tran.position - _m_followTran.position;
+            if (_isPlayer)
+                targetOffset = _tran.position - _m_followTran.position;
+            else
+            {
+                targetOffset = _m_followTran.position - _tran.position;
+                targetOffset += new Vector3(0, -targetOffset.y * 2, 0);
+            }
 
             //使用 DOTween平滑过渡
             Tween tween = DOTween.To(

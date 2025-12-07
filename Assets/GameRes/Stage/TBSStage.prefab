@@ -178,31 +178,23 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   playerPosInfoList:
-  - posId: 1
-    pos: {fileID: 3565230427228505023}
-    cameraIdlePos: {fileID: 942644459510927212}
-  - posId: 2
-    pos: {fileID: 4367942188006261667}
-    cameraIdlePos: {fileID: 6876485423731761014}
-  - posId: 3
-    pos: {fileID: 2369502367911469638}
-    cameraIdlePos: {fileID: 6604400509042881646}
-  - posId: 4
-    pos: {fileID: 3345935343073441087}
-    cameraIdlePos: {fileID: 1105671444016658971}
+  - posType: 0
+    posTran: {fileID: 3565230427228505023}
+  - posType: 1
+    posTran: {fileID: 4367942188006261667}
+  - posType: 2
+    posTran: {fileID: 2369502367911469638}
+  - posType: 3
+    posTran: {fileID: 3345935343073441087}
   enemyPosInfoList:
-  - posId: 1
-    pos: {fileID: 7337040807229657587}
-    cameraIdlePos: {fileID: 1542922833133998233}
-  - posId: 2
-    pos: {fileID: 5449443524653436024}
-    cameraIdlePos: {fileID: 561641493174772648}
-  - posId: 3
-    pos: {fileID: 3516550470824543704}
-    cameraIdlePos: {fileID: 4508509024013754942}
-  - posId: 4
-    pos: {fileID: 8073063414686496796}
-    cameraIdlePos: {fileID: 33213918426485411}
+  - posType: 0
+    posTran: {fileID: 7337040807229657587}
+  - posType: 1
+    posTran: {fileID: 5449443524653436024}
+  - posType: 2
+    posTran: {fileID: 3516550470824543704}
+  - posType: 3
+    posTran: {fileID: 8073063414686496796}
   playerLookEnemyCenterPos: {fileID: 1497510058196982827}
   enemyLookPlayerCenterPos: {fileID: 1337185153636961254}
 --- !u!1 &700837706236822396

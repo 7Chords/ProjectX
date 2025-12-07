@@ -130,4 +130,13 @@ namespace GameCore.TBS
         THREE,
     }
 
+    public enum ETBSPos
+    {
+        CENTER_LEFT,
+        CENTER_RIGHT,
+        SIDE_LEFT,
+        SIDE_RIGHT,
+    }
+
+
 }

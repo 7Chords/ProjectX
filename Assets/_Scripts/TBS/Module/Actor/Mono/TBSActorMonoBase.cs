@@ -1,14 +1,22 @@
 using GameCore.Util;
-using System.Collections;
+using System;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Playables;
-using UnityEngine.Timeline;
 
 namespace GameCore.TBS
 {
+    [Serializable]
+    public class ActorCameraInfo
+    {
+        public ETBSPos posType;
+        public Transform cameraTran;
+    }
+
     public class TBSActorMonoBase : MonoBehaviour
     {
+        [Header("模型GO")]
+        public GameObject goModel;
         [Header("伤害飘字相对于pos的偏移")]
         public Vector3 damageTextOffset;
         [Header("光标相对于pos的偏移")]
@@ -45,5 +53,8 @@ namespace GameCore.TBS
         public SignalEventTrigger signalEventTrigger;
         [Header("防御动画播放多久跳转下一个角色")]
         public float defendPlayTime;
+        [Header("玩家常驻相机位置(四个)")]
+        public List<ActorCameraInfo> actorCameraInfoList;
+        
     }
 }

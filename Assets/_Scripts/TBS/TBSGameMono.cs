@@ -8,9 +8,8 @@ namespace GameCore.TBS
     [Serializable]
     public class TBSPosInfo 
     {
-        public int posId;
-        public Transform pos;
-        public Transform cameraIdlePos;
+        public ETBSPos posType;
+        public Transform posTran;
     }
 
     public class TBSGameMono : MonoBehaviour

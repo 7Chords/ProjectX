@@ -28,21 +28,21 @@ namespace GameCore.TBS
             TBSMageActorMono actorMono = _m_actorMono as TBSMageActorMono;
             Sequence seq = DOTween.Sequence();
 
-            Tween lookAtTargetTween = _m_actorMono.gameObject.transform.DOLookAt(new Vector3(_target.GetGameObject().transform.position.x,
-                GetGameObject().transform.position.y, _target.GetGameObject().transform.position.z), 0.25f);
+            Tween lookAtTargetTween = _m_actorMono.goModel.transform.DOLookAt(new Vector3(_target.GetActorGameObject().transform.position.x,
+                GetActorGameObject().transform.position.y, _target.GetActorGameObject().transform.position.z), 0.25f);
 
             seq.Append(lookAtTargetTween);
 
             GameObject flyBall = null;
-            float flyTime = Vector3.Distance(_target.GetPos(), actorMono.attackSourceTran.position) / actorMono.attackFlySpeed;
+            float flyTime = Vector3.Distance(_target.GetModelPos(), actorMono.attackSourceTran.position) / actorMono.attackFlySpeed;
             seq.Append(DOVirtual.DelayedCall(actorMono.attackSpwanTime,
                 () =>
                 {
                     flyBall = ResourcesHelper.LoadGameObject(actorMono.attackSpawnObjName, actorMono.attackSourceTran.position, Quaternion.identity);
-                    Vector3 dir = (_target.GetPos() - flyBall.transform.position).normalized;
+                    Vector3 dir = (_target.GetModelPos() - flyBall.transform.position).normalized;
                     flyBall.transform.LookAt(dir);
                     flyBall.GetComponent<Rigidbody>().velocity = dir * actorMono.attackFlySpeed;
-                    flyBall.GetComponent<AttackFlyObj>().Initialize(_target.GetGameObject(), dealAttack);
+                    flyBall.GetComponent<AttackFlyObj>().Initialize(_target.GetActorGameObject(), dealAttack);
                 }).OnStart(
                 ()=>
                 {

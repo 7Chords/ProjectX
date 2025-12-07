@@ -234,5 +234,19 @@ namespace GameCore.TBS
                 return enemyActorModuleList[randomIdx];
             }
         }
+
+        public List<TBSActorInfo> GetAllActorInfo()
+        {
+            List<TBSActorInfo> resInfoList = new List<TBSActorInfo>();
+            for (int i = 0; i < battleInfo.playerTeamInfo.actorInfoList.Count; i++)
+            {
+                resInfoList.Add(battleInfo.playerTeamInfo.actorInfoList[i]);
+            }
+            for (int i = 0; i < battleInfo.enemyTeamInfo.actorInfoList.Count; i++)
+            {
+                resInfoList.Add(battleInfo.enemyTeamInfo.actorInfoList[i]);
+            }
+            return resInfoList;
+        }
     }
 }

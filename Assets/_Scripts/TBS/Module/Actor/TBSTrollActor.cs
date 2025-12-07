@@ -24,11 +24,11 @@ namespace GameCore.TBS
             //todo
             _m_attackEnemyActorList.Add(_target);
 
-            Vector3 originalPos = _m_actorMono.gameObject.transform.position;
+            Vector3 originalPos = _m_actorMono.goModel.transform.position;
             Sequence seq = DOTween.Sequence();
-            Tween lookAtTargetTween = _m_actorMono.gameObject.transform.DOLookAt(new Vector3(_target.GetGameObject().transform.position.x,
-                GetGameObject().transform.position.y, _target.GetGameObject().transform.position.z), 0.25f);
-            Tween move2AttackTween = _m_actorMono.gameObject.transform.DOMove(_target.GetEnemyAttackStandPos(), 1f)
+            Tween lookAtTargetTween = _m_actorMono.goModel.transform.DOLookAt(new Vector3(_target.GetActorGameObject().transform.position.x,
+                GetActorGameObject().transform.position.y, _target.GetActorGameObject().transform.position.z), 0.25f);
+            Tween move2AttackTween = _m_actorMono.goModel.transform.DOMove(_target.GetEnemyAttackStandPos(), 1f)
                 .OnStart(
                 () =>
                 {
@@ -45,9 +45,9 @@ namespace GameCore.TBS
                 });
 
 
-            Tween rotateTween_1 = _m_actorMono.gameObject.transform.DOLocalRotate(Vector3.zero, 0.5f);
+            Tween rotateTween_1 = _m_actorMono.goModel.transform.DOLocalRotate(new Vector3(0, 180, 0), 0.5f);
 
-            Tween move2OriginalTween = _m_actorMono.gameObject.transform.DOMove(originalPos, 1f)
+            Tween move2OriginalTween = _m_actorMono.goModel.transform.DOMove(originalPos, 1f)
                 .OnStart(
                 () =>
                 {
@@ -58,7 +58,7 @@ namespace GameCore.TBS
                 {
                     _m_animationCtl.PlaySingleAniamtion(_m_idleAnimClip);
                 });
-            Tween rotateTween_2 = _m_actorMono.gameObject.transform.DOLocalRotate(new Vector3(0,180,0), 0.5f);
+            Tween rotateTween_2 = _m_actorMono.goModel.transform.DOLocalRotate(Vector3.zero, 0.5f);
 
 
 
@@ -83,13 +83,17 @@ namespace GameCore.TBS
         public void DealEnemyAction()
         {
             //todo:完善逻辑 做普攻技能区分
-            GameCameraMgr.instance.SetCameraFollow(GetGameObject().transform);
-            GameCameraMgr.instance.SetCameraPositionOffsetWithFollow(posInfo.cameraIdlePos);
+
+            //设置相机
+            GameCameraMgr.instance.SetCameraFollow(GetModelGameObject().transform);
+
+            //todo(cam)
+            GameCameraMgr.instance.SetCameraPositionOffsetWithFollow(GetActorCameraTran(),false);
 
             TBSActorBase targetActor = SCModel.instance.tbsModel.GetRandomAliveActor(true);
             if (targetActor == null)
                 return;
-            //设置相机
+
             if (actorInfo.attackTargetType == ETargetType.ALL)
             {
                 GameCameraMgr.instance.SetCameraTarget(SCModel.instance.tbsModel.gameMono.enemyLookPlayerCenterPos);
@@ -100,6 +104,16 @@ namespace GameCore.TBS
                 GameCameraMgr.instance.SetCameraTarget(targetActor.GetAsCameraTargetTran());
                 Attack_Single(targetActor);
             }
+
+
+            ////todo(cam)
+            //GameCameraMgr.instance.SetCameraPositionOffsetWithFollow(GetActorCameraTran());
+            ////设置相机
+            //GameCameraMgr.instance.SetCameraFollow(GetGameObject().transform);
+
+            ////todo(cam)
+            //GameCameraMgr.instance.SetCameraPositionOffsetWithFollow(GetActorCameraTran());
+
         }
 
         public override void ReleaseSkill(long skillId, TBSActorBase _target)

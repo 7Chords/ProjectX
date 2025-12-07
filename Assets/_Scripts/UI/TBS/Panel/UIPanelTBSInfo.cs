@@ -46,21 +46,7 @@ namespace GameCore.UI
 
         public override void OnShowPanel()
         {
-
-            if(_m_allActorInfoList == null)
-                _m_allActorInfoList = new List<TBSActorInfo>();
-            _m_allActorInfoList.Clear();
-
-            List<TBSActorInfo> playerActorInfoList = SCModel.instance.tbsModel.battleInfo.playerTeamInfo.actorInfoList;
-            List<TBSActorInfo> enemyActorInfoList = SCModel.instance.tbsModel.battleInfo.enemyTeamInfo.actorInfoList;
-            for(int i =0;i<playerActorInfoList.Count;i++)
-            {
-                _m_allActorInfoList.Add(playerActorInfoList[i]);
-            }
-            for (int i = 0; i < enemyActorInfoList.Count; i++)
-            {
-                _m_allActorInfoList.Add(enemyActorInfoList[i]);
-            }
+            _m_allActorInfoList = SCModel.instance.tbsModel.GetAllActorInfo();
 
             refreshPanel();
         }

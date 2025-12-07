@@ -117,7 +117,7 @@ namespace GameCore.TBS
                 if (actorInfo == null)
                     continue;
                 actorGO = ResourcesHelper.LoadGameObject(actorInfo.characterRefObj.assetModelObjName,
-                    _m_gameMono.playerPosInfoList[i].pos.position,
+                    _m_gameMono.playerPosInfoList[i].posTran.position,
                     Quaternion.identity, true);
 
                 _m_playerActorGOList.Add(actorGO);
@@ -138,7 +138,7 @@ namespace GameCore.TBS
                 if (actorInfo == null)
                     continue;
                 actorGO = ResourcesHelper.LoadGameObject(actorInfo.characterRefObj.assetModelObjName,
-                    _m_gameMono.enemyPosInfoList[i].pos.position,
+                    _m_gameMono.enemyPosInfoList[i].posTran.position,
                     Quaternion.Euler(new Vector3(0,180,0)), true);//面朝玩家
 
                 _m_enemyActorGOList.Add(actorGO);
@@ -382,7 +382,8 @@ namespace GameCore.TBS
 
             void setCameraOffset_Player()
             {
-                GameCameraMgr.instance.SetCameraPositionOffsetWithFollow(_m_gameMono.playerPosInfoList[_m_curSelectActorIndex].cameraIdlePos, hideUIAndCursor, showUIAndCursor);
+                //todo(cam)
+                GameCameraMgr.instance.SetCameraPositionOffsetWithFollow(_m_playerActorModuleList[_m_curSelectActorIndex].GetActorCameraTran(),true, hideUIAndCursor, showUIAndCursor);
             }
 
             //void setCameraOffset_Enemy()
@@ -395,7 +396,7 @@ namespace GameCore.TBS
                 //设置相机
                 GameCameraMgr.instance.SetCameraTarget(_m_gameMono.playerLookEnemyCenterPos);
                 if(_reSetFollow)
-                    GameCameraMgr.instance.SetCameraFollow(_m_playerActorGOList[_m_curSelectActorIndex].transform);
+                    GameCameraMgr.instance.SetCameraFollow(_m_playerActorModuleList[_m_curSelectActorIndex].GetModelGameObject().transform);
                 setCameraOffset_Player();
 
             }

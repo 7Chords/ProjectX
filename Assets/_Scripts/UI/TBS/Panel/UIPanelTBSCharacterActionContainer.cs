@@ -36,6 +36,7 @@ namespace GameCore.UI
         public override void OnHidePanel()
         {
             SCMsgCenter.UnregisterMsgAct(SCMsgConst.TBS_ACTOR_CHG, onTBSActorChg);
+            SCMsgCenter.UnregisterMsg(SCMsgConst.TBS_ACTOR_DIE, onTBSActorDie);
 
             if (_m_infoItemList != null)
             {
@@ -48,6 +49,7 @@ namespace GameCore.UI
         public override void OnShowPanel()
         {
             SCMsgCenter.RegisterMsgAct(SCMsgConst.TBS_ACTOR_CHG, onTBSActorChg);
+            SCMsgCenter.RegisterMsg(SCMsgConst.TBS_ACTOR_DIE, onTBSActorDie);
 
         }
 
@@ -69,11 +71,20 @@ namespace GameCore.UI
                 return;
 
             _m_actorInfoList = _actorInfoList;
+            refreshShow();
+        }
 
+
+        private void refreshShow()
+        {
+            if (_m_actorInfoList == null)
+                return;
             int i = 0, count = 0;
             UIPanelTBSCharacterActionItem item = null;
             for (i = 0; i < _m_actorInfoList.Count; i++)
             {
+                //if (_m_actorInfoList[i] == null || _m_actorInfoList[i].hasDead)
+                //    continue;
                 if (i < _m_infoItemList.Count)
                 {
                     item = _m_infoItemList[i];
@@ -101,7 +112,6 @@ namespace GameCore.UI
                 item.HidePanel();
             }
         }
-
         private void onTBSActorChg()
         {
             if (_m_actorInfoList == null || _m_actorInfoList.Count == 0)
@@ -109,5 +119,22 @@ namespace GameCore.UI
             SetInfoList(_m_actorInfoList);
         }
 
+        private void onTBSActorDie(object[] _objs)
+        {
+            if (_objs == null || _objs.Length == 0)
+                return;
+            List<TBSActorInfo> ready2RemoveInfoList = new List<TBSActorInfo>();
+            int tmpCount = _m_actorInfoList.Count;
+            for(int i =0;i< tmpCount; i++)
+            {
+                if (_m_actorInfoList[i].hasDead && _m_actorInfoList[i].isEnemy)
+                    ready2RemoveInfoList.Add(_m_actorInfoList[i]);
+            }
+            for(int i =0;i<ready2RemoveInfoList.Count;i++)
+            {
+                _m_actorInfoList.Remove(ready2RemoveInfoList[i]);
+            }
+            refreshShow();
+        }
     }
 }

@@ -35,7 +35,8 @@ namespace GameCore.TBS
         public CharacterRefObj characterRefObj;
 
         public bool hasDead;// «∑ÒÀ¿Õˆ
-        public void InitNewInfo(CharacterRefObj _characterRefObj)
+        public bool isEnemy;
+        public void InitNewInfo(CharacterRefObj _characterRefObj,bool _isEnemy)
         {
             if(_characterRefObj == null)
             {
@@ -76,6 +77,7 @@ namespace GameCore.TBS
             curHp = maxHp;
             curMp = maxMp;
             hasDead = false;
+            isEnemy = _isEnemy;
 
         }
 

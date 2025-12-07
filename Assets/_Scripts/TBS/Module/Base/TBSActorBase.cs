@@ -107,27 +107,39 @@ namespace GameCore.TBS
         {
             if (posInfo == null)
                 return Vector3.zero;
-            return posInfo.pos.position + _m_actorMono.cursorOffset;
+            return posInfo.posTran.position + _m_actorMono.cursorOffset;
         }
 
         public virtual Vector3 GetDamageTextPos()
         {
-            return _m_actorMono.transform.position + _m_actorMono.damageTextOffset;
+            return _m_actorMono.goModel.transform.position + _m_actorMono.damageTextOffset;
         }
-        public virtual Vector3 GetPos()
+        public virtual Vector3 GetModelPos()
         {
-            return _m_actorMono.transform.position;
+            return _m_actorMono.goModel.transform.position;
         }
 
-        public GameObject GetGameObject()
+        public GameObject GetActorGameObject()
         {
             return _m_actorMono.gameObject;
+        }
+
+        public GameObject GetModelGameObject()
+        {
+            return _m_actorMono.goModel;
         }
 
         public Transform GetAsCameraTargetTran()
         {
             return _m_actorMono.asCameraTargetTran;
         }
+
+        public Transform GetActorCameraTran()
+        {
+            return _m_actorMono.actorCameraInfoList.Find(x => x.posType == posInfo.posType).cameraTran;
+        }
+
+
         public virtual void LookTarget(Vector3 _target,Action _onStart,Action _onFinish)
         {
             if (_target == _m_actorMono.gameObject.transform.rotation.eulerAngles)

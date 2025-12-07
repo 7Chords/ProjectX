@@ -35,7 +35,7 @@ namespace GameCore.TBS
                 if (characterRefObj == null)
                     continue;
                 TBSActorInfo playerActorInfo = new TBSActorInfo();
-                playerActorInfo.InitNewInfo(characterRefObj);
+                playerActorInfo.InitNewInfo(characterRefObj,false);
                 actorInfoList.Add(playerActorInfo);
             }
         }
@@ -63,7 +63,7 @@ namespace GameCore.TBS
                 if (characterRefObj == null)
                     continue;
                 TBSActorInfo enemyActorInfo = new TBSActorInfo();
-                enemyActorInfo.InitNewInfo(characterRefObj);
+                enemyActorInfo.InitNewInfo(characterRefObj,true);
                 actorInfoList.Add(enemyActorInfo);
             }
         }
