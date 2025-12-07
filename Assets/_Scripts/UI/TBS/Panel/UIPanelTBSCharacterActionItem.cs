@@ -52,7 +52,7 @@ namespace GameCore.UI
             if (curActionActorInfo == null)
                 return;
 
-            bool isCurActorAction = curActionActorInfo.characterRefObj.id == _m_actorInfo.characterRefObj.id;
+            bool isCurActorAction = curActionActorInfo.runningId == _m_actorInfo.runningId;
             mono.imgHeadBg.color = isCurActorAction ? mono.colorIsAction : mono.colorIsNotAction;
             SCCommon.SetGameObjectEnable(mono.goIsActionShowList, isCurActorAction);
             SCCommon.SetGameObjectEnable(mono.goIsActionHideList, !isCurActorAction);
@@ -72,9 +72,9 @@ namespace GameCore.UI
         {
             if (_objs == null || _objs.Length == 0)
                 return;
-            long characterId = (long)_objs[0];
+            long runningId = (long)_objs[0];
 
-            if (characterId == _m_actorInfo.characterRefObj.id)
+            if (runningId == _m_actorInfo.runningId)
                 refreshHasDeadShow();
 
         }

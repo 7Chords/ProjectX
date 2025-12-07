@@ -80,18 +80,6 @@ namespace GameCore.UI
                 return;
             SCModel.instance.tbsModel.selectTargetType = _m_skillRefObj.damageTargetType;
             GameCoreMgr.instance.uiCoreMgr.AddNode(new UINodeTBSConfirm(SCUIShowType.FULL));
-            //重新设置光标
-            List<Vector3> worldPosList = new List<Vector3>();
-            if (SCModel.instance.tbsModel.selectTargetType == ETargetType.SINGLE)
-                worldPosList.Add(SCModel.instance.tbsModel.GetCurSingleSelectTargetActor().GetCursorPos());
-            else if (SCModel.instance.tbsModel.selectTargetType == ETargetType.ALL)
-            {
-                foreach (var module in SCModel.instance.tbsModel.enemyActorModuleList)
-                {
-                    worldPosList.Add(module.GetCursorPos());
-                }
-            }
-            TBSCursorMgr.instance.SetSelectionCursor(worldPosList);
 
         }
 
@@ -108,22 +96,7 @@ namespace GameCore.UI
                 return;
 
             SCModel.instance.tbsModel.selectTargetType = _m_skillRefObj.damageTargetType;
-
-
-
             GameCoreMgr.instance.uiCoreMgr.AddNode(new UINodeTBSConfirm(SCUIShowType.FULL));
-            //重新设置光标
-            //List<Vector3> worldPosList = new List<Vector3>();
-            //if (SCModel.instance.tbsModel.selectTargetType == ETargetType.SINGLE)
-            //    worldPosList.Add(SCModel.instance.tbsModel.GetCurSingleSelectTargetActor().GetCursorPos());
-            //else if (SCModel.instance.tbsModel.selectTargetType == ETargetType.ALL)
-            //{
-            //    foreach (var module in SCModel.instance.tbsModel.enemyActorModuleList)
-            //    {
-            //        worldPosList.Add(module.GetCursorPos());
-            //    }
-            //}
-            //TBSCursorMgr.instance.SetSelectionCursor(worldPosList);
         }
     }
 }

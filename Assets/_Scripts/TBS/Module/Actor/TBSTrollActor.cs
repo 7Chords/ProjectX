@@ -70,7 +70,7 @@ namespace GameCore.TBS
                 {
                     _m_attackEnemyActorList.Clear();
                     _m_actorMono.animEventTrigger.RemoveAnimationEvent("dealAttack");
-                    SCMsgCenter.SendMsg(SCMsgConst.TBS_ACTOR_ACTION_END, actorInfo.characterRefObj.id);
+                    SCMsgCenter.SendMsg(SCMsgConst.TBS_ACTOR_ACTION_END, actorInfo.runningId);
                 }));
             seq.Append(rotateTween_1);
             seq.Append(move2OriginalTween);

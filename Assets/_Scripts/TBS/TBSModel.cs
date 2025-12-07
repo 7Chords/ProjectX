@@ -120,6 +120,9 @@ namespace GameCore.TBS
                 _m_gameMono = value;
             }
         }
+
+        private long _m_canUseRunningId;
+
         /// <summary>
         /// 创新新游戏的时候初始化新的数据
         /// </summary>
@@ -134,7 +137,7 @@ namespace GameCore.TBS
             selectTargetType = battleInfo.playerTeamInfo.actorInfoList[0].attackTargetType;
             playerActorModuleList = new List<TBSActorBase>();
             enemyActorModuleList = new List<TBSActorBase>();
-
+            _m_canUseRunningId = 0;
         }
 
 
@@ -152,8 +155,10 @@ namespace GameCore.TBS
         public void ResetData()
         {
             curTurnType = ETBSTurnType.PLAYER;
-            //curTurnCount = 1;
+            curTurnCount = 0;
             battleInfo = null;
+            _m_canUseRunningId = 0;
+
         }
 
 
@@ -247,6 +252,17 @@ namespace GameCore.TBS
                 resInfoList.Add(battleInfo.enemyTeamInfo.actorInfoList[i]);
             }
             return resInfoList;
+        }
+
+
+        /// <summary>
+        /// 取走可分配的运行时ActorId
+        /// </summary>
+        /// <returns></returns>
+        public long TakeRunningId()
+        {
+            _m_canUseRunningId++;
+            return _m_canUseRunningId;
         }
     }
 }

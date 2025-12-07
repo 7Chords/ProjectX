@@ -78,8 +78,8 @@ namespace GameCore.UI
                 Debug.LogError("onTBSEnemyActorInfoChg 调用时actorinfo为null！！！");
                 return;
             }
-            long characterId = (long)_objs[0];
-            if (_m_actorInfo.characterRefObj.id == characterId)
+            long runningId = (long)_objs[0];
+            if (_m_actorInfo.runningId == runningId)
                 refreshShow();
         }
     }

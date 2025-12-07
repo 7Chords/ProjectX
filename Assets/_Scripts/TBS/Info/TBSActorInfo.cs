@@ -34,6 +34,7 @@ namespace GameCore.TBS
 
         public CharacterRefObj characterRefObj;
 
+        public long runningId;//游戏运行分配的id 唯一标识一个actor
         public bool hasDead;//是否死亡
         public bool isEnemy;
         public void InitNewInfo(CharacterRefObj _characterRefObj,bool _isEnemy)
@@ -76,6 +77,8 @@ namespace GameCore.TBS
 
             curHp = maxHp;
             curMp = maxMp;
+
+            runningId = SCModel.instance.tbsModel.TakeRunningId();
             hasDead = false;
             isEnemy = _isEnemy;
 

@@ -180,7 +180,7 @@ namespace GameCore.TBS
             seq.Append(DOVirtual.DelayedCall(_m_actorMono.defendPlayTime,
                 () =>
                 {
-                    SCMsgCenter.SendMsg(SCMsgConst.TBS_ACTOR_ACTION_END, actorInfo.characterRefObj.id);
+                    SCMsgCenter.SendMsg(SCMsgConst.TBS_ACTOR_ACTION_END, actorInfo.runningId);
                 })
                 .OnStart(() =>
                 {
@@ -212,7 +212,7 @@ namespace GameCore.TBS
             if (_m_dieAnimClip != null)
                 _m_animationCtl.PlaySingleAniamtion(_m_dieAnimClip);
 
-            SCMsgCenter.SendMsg(SCMsgConst.TBS_ACTOR_DIE, actorInfo.characterRefObj.id);
+            SCMsgCenter.SendMsg(SCMsgConst.TBS_ACTOR_DIE, actorInfo.runningId);
         }
 
         public virtual void TakeDamage(int _damage, bool _needShopFloatText = true , string _extraStr ="")
@@ -227,7 +227,7 @@ namespace GameCore.TBS
             //uiÆ®×Ö
             if(_needShopFloatText)
                 GameCommon.ShowDamageFloatText(_damage, GetDamageTextPos(), _extraStr);
-            SCMsgCenter.SendMsg(SCMsgConst.TBS_ACTOR_INFO_CHG, actorInfo.characterRefObj.id);
+            SCMsgCenter.SendMsg(SCMsgConst.TBS_ACTOR_INFO_CHG, actorInfo.runningId);
             if (_m_actorInfo.curHp == 0)
                 Die();
             else
@@ -242,7 +242,7 @@ namespace GameCore.TBS
                 return;
             }
             _m_actorInfo.curMp = Mathf.Max(_m_actorInfo.curMp - _magicAmount, 0);
-            SCMsgCenter.SendMsg(SCMsgConst.TBS_ACTOR_INFO_CHG, actorInfo.characterRefObj.id);
+            SCMsgCenter.SendMsg(SCMsgConst.TBS_ACTOR_INFO_CHG, actorInfo.runningId);
         }
 
         public virtual void HealHp(int _healAmount)
@@ -253,7 +253,7 @@ namespace GameCore.TBS
                 return;
             }
             _m_actorInfo.curHp = Mathf.Min(_m_actorInfo.curHp + _healAmount, _m_actorInfo.maxHp);
-            SCMsgCenter.SendMsg(SCMsgConst.TBS_ACTOR_INFO_CHG, actorInfo.characterRefObj.id);
+            SCMsgCenter.SendMsg(SCMsgConst.TBS_ACTOR_INFO_CHG, actorInfo.runningId);
         }
 
         public virtual void HealMp(int _healAmount)
@@ -264,7 +264,7 @@ namespace GameCore.TBS
                 return;
             }
             _m_actorInfo.curMp = Mathf.Min(_m_actorInfo.curMp + _healAmount, _m_actorInfo.maxMp);
-            SCMsgCenter.SendMsg(SCMsgConst.TBS_ACTOR_INFO_CHG, actorInfo.characterRefObj.id);
+            SCMsgCenter.SendMsg(SCMsgConst.TBS_ACTOR_INFO_CHG, actorInfo.runningId);
         }
 
         public virtual bool MissJudge()
@@ -358,9 +358,10 @@ namespace GameCore.TBS
                 return;
             if (actorInfo.hasDead)
                 return;
-            long characterId = (long)_objs[0];
+            long runningId = (long)_objs[0];
+            //todo
             //»Ö¸´Îªidle
-            if(characterId != actorInfo.characterRefObj.id)
+            if(runningId != actorInfo.runningId)
             {
                 if (_m_idleAnimClip != null)
                     _m_animationCtl.PlaySingleAniamtion(_m_idleAnimClip);
