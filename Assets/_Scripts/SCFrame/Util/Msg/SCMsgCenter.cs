@@ -12,8 +12,8 @@ namespace SCFrame
         private Dictionary<int, List<MsgRecAction>> _m_broadcastDict;
         private Dictionary<int, List<Action>> _m_broadcastActDict;
 
-        private List<MsgRecAction> _m_cacheBroadcastList;
-        private List<Action> _m_cacheBroadcastActList;
+        //private List<MsgRecAction> _m_cacheBroadcastList;
+        //private List<Action> _m_cacheBroadcastActList;
 
         public override void OnInitialize()
         {
@@ -45,15 +45,15 @@ namespace SCFrame
             List<Action> srcList;
             if (_m_broadcastActDict.TryGetValue(_msg, out srcList) && srcList.Count > 0)
             {
-                if (_m_cacheBroadcastActList == null)
-                    _m_cacheBroadcastActList = new List<Action>();
-                else
-                    _m_cacheBroadcastActList.Clear();
+                //if (_m_cacheBroadcastActList == null)
+                //    _m_cacheBroadcastActList = new List<Action>();
+                //else
+                //    _m_cacheBroadcastActList.Clear();
 
-                _m_cacheBroadcastActList.AddRange(srcList);
-                for (int i = 0; i < _m_cacheBroadcastActList.Count; ++i)
+                //_m_cacheBroadcastActList.AddRange(srcList);
+                for (int i = 0; i < srcList.Count; ++i)
                 {
-                    _m_cacheBroadcastActList[i]();
+                    srcList[i]();
                 }
             }
         }
@@ -71,15 +71,15 @@ namespace SCFrame
             List<MsgRecAction> srcList;
             if (_m_broadcastDict.TryGetValue(_msg, out srcList) && srcList.Count > 0)
             {
-                if (_m_cacheBroadcastList == null)
-                    _m_cacheBroadcastList = new List<MsgRecAction>();
-                else
-                    _m_cacheBroadcastList.Clear();
+                //if (_m_cacheBroadcastList == null)
+                //    _m_cacheBroadcastList = new List<MsgRecAction>();
+                //else
+                //    _m_cacheBroadcastList.Clear();
 
-                _m_cacheBroadcastList.AddRange(srcList);
-                for (int i = 0; i < _m_cacheBroadcastList.Count; ++i)
+                //_m_cacheBroadcastList.AddRange(srcList);
+                for (int i = 0; i < srcList.Count; ++i)
                 {
-                    _m_cacheBroadcastList[i](_obj);
+                    srcList[i](_obj);
                 }
             }
         }
