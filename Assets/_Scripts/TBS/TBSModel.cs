@@ -169,9 +169,9 @@ namespace GameCore.TBS
         public TBSActorInfo GetCurActorInfo()
         {
             if (curTurnType == ETBSTurnType.PLAYER)
-                return battleInfo.playerTeamInfo.actorInfoList[curActorIndex];
+                return playerActorModuleList[curActorIndex].actorInfo;
             else
-                return battleInfo.enemyTeamInfo.actorInfoList[curActorIndex];
+                return enemyActorModuleList[curActorIndex].actorInfo;
         }
 
         public TBSActorBase GetCurSingleSelectTargetActor()
@@ -185,18 +185,18 @@ namespace GameCore.TBS
         {
             if(_isPlayer)
             {
-                foreach(var actor in battleInfo.playerTeamInfo.actorInfoList)
+                foreach(var actor in playerActorModuleList)
                 {
-                    if (!actor.hasDead)
+                    if (!actor.actorInfo.hasDead)
                         return false;
                 }
                 return true;
             }
             else
             {
-                foreach (var actor in battleInfo.enemyTeamInfo.actorInfoList)
+                foreach (var actor in enemyActorModuleList)
                 {
-                    if (!actor.hasDead)
+                    if (!actor.actorInfo.hasDead)
                         return false;
                 }
                 return true;
@@ -243,18 +243,36 @@ namespace GameCore.TBS
         public List<TBSActorInfo> GetAllActorInfo()
         {
             List<TBSActorInfo> resInfoList = new List<TBSActorInfo>();
-            for (int i = 0; i < battleInfo.playerTeamInfo.actorInfoList.Count; i++)
+            for (int i = 0; i < playerActorModuleList.Count; i++)
             {
-                resInfoList.Add(battleInfo.playerTeamInfo.actorInfoList[i]);
+                resInfoList.Add(playerActorModuleList[i].actorInfo);
             }
-            for (int i = 0; i < battleInfo.enemyTeamInfo.actorInfoList.Count; i++)
+            for (int i = 0; i < enemyActorModuleList.Count; i++)
             {
-                resInfoList.Add(battleInfo.enemyTeamInfo.actorInfoList[i]);
+                resInfoList.Add(enemyActorModuleList[i].actorInfo);
             }
             return resInfoList;
         }
 
-
+        /// <summary>
+        /// 根据运行id获得对应的actor
+        /// </summary>
+        /// <param name="_runningId"></param>
+        /// <returns></returns>
+        public TBSActorBase GetActorByRunningId(long _runningId)
+        {
+            foreach(var actor in playerActorModuleList)
+            {
+                if (actor.actorInfo.runningId == _runningId)
+                    return actor;
+            }
+            foreach(var actor in enemyActorModuleList)
+            {
+                if (actor.actorInfo.runningId == _runningId)
+                    return actor;
+            }
+            return null;
+        }
         /// <summary>
         /// 取走可分配的运行时ActorId
         /// </summary>

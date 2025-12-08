@@ -506,7 +506,7 @@ PrefabInstance:
     - target: {fileID: 8035681660144644490, guid: a4ec793513574cd49719c4055b630e2b, type: 3}
       propertyPath: m_Controller
       value: 
-      objectReference: {fileID: 0}
+      objectReference: {fileID: 9100000, guid: 9bbcf96c9a254c5ba654027c656d7b39, type: 2}
     - target: {fileID: 8274070620073230594, guid: a4ec793513574cd49719c4055b630e2b, type: 3}
       propertyPath: m_LocalEulerAnglesHint.x
       value: 79.03938

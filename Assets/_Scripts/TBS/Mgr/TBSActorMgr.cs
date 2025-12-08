@@ -319,6 +319,18 @@ namespace GameCore.TBS
         {
             if (_objs == null || _objs.Length == 0)
                 return;
+            //如果是敌人死亡 要从infolist里面移除掉 玩家的话可以复活 所以不用
+            long runningId = (long)_objs[0];
+            TBSActorBase actor = SCModel.instance.tbsModel.GetActorByRunningId(runningId);
+            if (actor == null)
+                return;
+            if (actor.actorInfo.isEnemy)
+                _m_enemyActorModuleList.Remove(actor);
+            SCModel.instance.tbsModel.enemyActorModuleList = _m_enemyActorModuleList;
+            GameObject actorGO = actor.GetActorGameObject();
+            _m_enemyActorGOList.Remove(actorGO);
+;
+
             if (SCModel.instance.tbsModel.CheckAllActorsDead(true))
                 SCMsgCenter.SendMsgAct(SCMsgConst.TBS_ALL_PLAYER_ACTOR_DIE);
             else if(SCModel.instance.tbsModel.CheckAllActorsDead(false))

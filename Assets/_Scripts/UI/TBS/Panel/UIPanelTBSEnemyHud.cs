@@ -23,15 +23,17 @@ namespace GameCore.UI
         {
             _m_enemyHudItemList = new List<UIPanelTBSEnemyHudItem>();
             _m_curSelectActorIdxList = new List<int>();
+
+            SCMsgCenter.RegisterMsg(SCMsgConst.TBS_ACTOR_DIE, onTBSActorDie);
         }
         public override void BeforeDiscard()
         {
+            SCMsgCenter.UnregisterMsg(SCMsgConst.TBS_ACTOR_DIE, onTBSActorDie);
         }
         public override void OnHidePanel()
         {
             SCMsgCenter.UnregisterMsgAct(SCMsgConst.TBS_SELECT_SINGLE_ENEMY_TARGET_CHG, onTBSSelectSingleEnemyTargetChg);
             SCMsgCenter.UnregisterMsgAct(SCMsgConst.TBS_SELECT_ENEMY_ALL_OR_SINGLE_STATE_SWITCH, onTBSSelectEnemyAllOrSingleStateSwitch);
-
         }
 
         public override void OnShowPanel()
@@ -78,9 +80,9 @@ namespace GameCore.UI
             else
             {
                 int idx = -1;
-                foreach (var actorInfo in SCModel.instance.tbsModel.battleInfo.playerTeamInfo.actorInfoList)
+                foreach(var actor in SCModel.instance.tbsModel.enemyActorModuleList)
                 {
-                    if (actorInfo.hasDead)
+                    if (actor.actorInfo.hasDead)
                         continue;
                     idx++;
                     _m_curSelectActorIdxList.Add(idx);
@@ -140,6 +142,31 @@ namespace GameCore.UI
         private void onTBSSelectEnemyAllOrSingleStateSwitch()
         {
             refreshItemListShow();
+        }
+
+        private void onTBSActorDie(object[] _objs)
+        {
+            if (_objs == null || _objs.Length == 0)
+                return;
+            long runningId = (long)_objs[0];
+            TBSActorInfo actorInfo = null;
+            UIPanelTBSEnemyHudItem tmpItem = null;
+            foreach(var item in _m_enemyHudItemList)
+            {
+                if (item.actorInfo.runningId == runningId)
+                {
+                    tmpItem = item;
+                    actorInfo = item.actorInfo;
+                }
+            }
+            if (actorInfo == null)
+                return;
+            if (!actorInfo.isEnemy)
+                return;
+
+            _m_enemyActorList = SCModel.instance.tbsModel.enemyActorModuleList;
+            SCCommon.DestoryGameObject(tmpItem.GetGameObject());
+            _m_enemyHudItemList.Remove(tmpItem);
         }
     }
 }

@@ -36,7 +36,9 @@ namespace GameCore.UI
         }
         public override void OnHidePanel()
         {
-            if(_m_infoContainer != null)
+            SCMsgCenter.UnregisterMsgAct(SCMsgConst.TBS_TURN_CHG_SHOW_END, onTBSTurnChgShowEnd);
+
+            if (_m_infoContainer != null)
                 _m_infoContainer?.HidePanel();
 
             if (_m_characterActionContainer != null)
@@ -46,6 +48,8 @@ namespace GameCore.UI
 
         public override void OnShowPanel()
         {
+            SCMsgCenter.RegisterMsgAct(SCMsgConst.TBS_TURN_CHG_SHOW_END, onTBSTurnChgShowEnd);
+
             _m_allActorInfoList = SCModel.instance.tbsModel.GetAllActorInfo();
 
             refreshPanel();
@@ -55,6 +59,7 @@ namespace GameCore.UI
         {
             refreshInfoContainer();
             refreshCharacterActionContainer();
+            refreshTurnCountText();
         }
 
         private void refreshInfoContainer()
@@ -82,5 +87,13 @@ namespace GameCore.UI
             _m_characterActionContainer.ShowPanel();
         }
 
+        private void refreshTurnCountText()
+        {
+            mono.txtTurnCount.text = SCModel.instance.tbsModel.curTurnCount.ToString();
+        }
+        private void onTBSTurnChgShowEnd()
+        {
+            refreshTurnCountText();
+        }
     }
 }

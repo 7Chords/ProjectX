@@ -210,7 +210,15 @@ namespace GameCore.TBS
             _m_actorInfo.hasDead = true;
 
             if (_m_dieAnimClip != null)
+            {
+                //如果是敌人的话 播放完死亡动画要销毁
+                if (actorInfo.isEnemy)
+                {
+                    _m_actorMono.animEventTrigger.RemoveAnimationEvent("showDieOver");
+                    _m_actorMono.animEventTrigger.AddAnimationEvent("showDieOver", showDieOver);
+                }
                 _m_animationCtl.PlaySingleAniamtion(_m_dieAnimClip);
+            }
 
             SCMsgCenter.SendMsg(SCMsgConst.TBS_ACTOR_DIE, actorInfo.runningId);
         }
@@ -367,6 +375,11 @@ namespace GameCore.TBS
                     _m_animationCtl.PlaySingleAniamtion(_m_idleAnimClip);
             }
 
+        }
+
+        protected virtual void showDieOver()
+        {
+            SCCommon.DestoryGameObject(GetActorGameObject());
         }
     }
 }

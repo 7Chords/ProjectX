@@ -11,7 +11,7 @@ namespace GameCore.UI
     {
 
         private TBSActorInfo _m_actorInfo;
-        //private TweenContainer _m_tweenContainer;
+        public TBSActorInfo actorInfo => _m_actorInfo;
         public UIPanelTBSEnemyHudItem(UIMonoTBSEnemyHudItem _mono, SCUIShowType _showType) : base(_mono, _showType)
         {
         }
@@ -28,20 +28,10 @@ namespace GameCore.UI
 
         public override void OnHidePanel()
         {
-            //Tween tween = mono.canvasGroup.DOFade(0, mono.fadeOutDuration).OnStart(() =>
-            //{
-            //    mono.canvasGroup.alpha = 1;
-            //});
-            //_m_tweenContainer?.RegDoTween(tween);
         }
 
         public override void OnShowPanel()
         {
-            //Tween tween = mono.canvasGroup.DOFade(1, mono.fadeInDuration).OnStart(() =>
-            //{
-            //    mono.canvasGroup.alpha = 0;
-            //});
-            //_m_tweenContainer?.RegDoTween(tween);
         }
 
         public void SetInfo(TBSActorInfo _info)
