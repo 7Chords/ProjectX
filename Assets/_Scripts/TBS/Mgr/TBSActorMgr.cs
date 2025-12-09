@@ -265,14 +265,14 @@ namespace GameCore.TBS
             {
                 targetList = _m_enemyActorModuleList;
                 GameCameraMgr.instance.SetCameraTarget(_m_gameMono.playerLookEnemyCenterPos);
-                _m_playerActorModuleList[_m_curSelectActorIndex].Attack(_m_enemyActorModuleList[_m_curSelectActorIndex].actorInfo.attackTargetType
+                _m_playerActorModuleList[_m_curSelectActorIndex].Attack(_m_playerActorModuleList[_m_curSelectActorIndex].actorInfo.attackTargetType
                     ,targetList);
             }
             else if(_m_playerActorModuleList[_m_curSelectActorIndex].actorInfo.attackTargetType == ETargetType.SINGLE)
             {
                 targetList.Add(_m_enemyActorModuleList[_m_singleTargetIndex]);
                 GameCameraMgr.instance.SetCameraTarget(_m_enemyActorModuleList[_m_singleTargetIndex].GetAsCameraTargetTran());
-                _m_playerActorModuleList[_m_curSelectActorIndex].Attack(_m_enemyActorModuleList[_m_curSelectActorIndex].actorInfo.attackTargetType
+                _m_playerActorModuleList[_m_curSelectActorIndex].Attack(_m_playerActorModuleList[_m_curSelectActorIndex].actorInfo.attackTargetType
                     ,targetList);
             }
         }
@@ -324,12 +324,29 @@ namespace GameCore.TBS
             TBSActorBase actor = SCModel.instance.tbsModel.GetActorByRunningId(runningId);
             if (actor == null)
                 return;
+            int actorIdx = -1;
             if (actor.actorInfo.isEnemy)
+            {
+                actorIdx = _m_enemyActorModuleList.IndexOf(actor);
                 _m_enemyActorModuleList.Remove(actor);
-            SCModel.instance.tbsModel.enemyActorModuleList = _m_enemyActorModuleList;
-            GameObject actorGO = actor.GetActorGameObject();
-            _m_enemyActorGOList.Remove(actorGO);
-;
+                SCModel.instance.tbsModel.enemyActorModuleList = _m_enemyActorModuleList;
+                GameObject actorGO = actor.GetActorGameObject();
+                _m_enemyActorGOList.Remove(actorGO);
+
+                SCMsgCenter.SendMsg(SCMsgConst.TBS_ENEMY_ACTOR_REMOVE_FROM_LIST, runningId);
+
+                //处理光标的越界问题
+                if (actorIdx == _m_singleTargetIndex)
+                {
+                    if (_m_singleTargetIndex >= _m_enemyActorModuleList.Count)
+                    {
+                        if (_m_singleTargetIndex - 1 >= 0)
+                            _m_singleTargetIndex--;
+                        SCModel.instance.tbsModel.curSelectSingleTargetIdx = _m_singleTargetIndex;
+                    }
+                }
+            }
+
 
             if (SCModel.instance.tbsModel.CheckAllActorsDead(true))
                 SCMsgCenter.SendMsgAct(SCMsgConst.TBS_ALL_PLAYER_ACTOR_DIE);

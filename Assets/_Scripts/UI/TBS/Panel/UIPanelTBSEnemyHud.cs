@@ -21,14 +21,14 @@ namespace GameCore.UI
 
         public override void AfterInitialize()
         {
+            SCMsgCenter.RegisterMsg(SCMsgConst.TBS_ENEMY_ACTOR_REMOVE_FROM_LIST, onEnemyActorRemoveFromList);
+
             _m_enemyHudItemList = new List<UIPanelTBSEnemyHudItem>();
             _m_curSelectActorIdxList = new List<int>();
-
-            SCMsgCenter.RegisterMsg(SCMsgConst.TBS_ACTOR_DIE, onTBSActorDie);
         }
         public override void BeforeDiscard()
         {
-            SCMsgCenter.UnregisterMsg(SCMsgConst.TBS_ACTOR_DIE, onTBSActorDie);
+            SCMsgCenter.UnregisterMsg(SCMsgConst.TBS_ENEMY_ACTOR_REMOVE_FROM_LIST, onEnemyActorRemoveFromList);
         }
         public override void OnHidePanel()
         {
@@ -144,7 +144,7 @@ namespace GameCore.UI
             refreshItemListShow();
         }
 
-        private void onTBSActorDie(object[] _objs)
+        private void onEnemyActorRemoveFromList(object[] _objs)
         {
             if (_objs == null || _objs.Length == 0)
                 return;

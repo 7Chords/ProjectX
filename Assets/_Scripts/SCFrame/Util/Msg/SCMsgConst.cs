@@ -59,6 +59,7 @@ public class SCMsgConst
     public const int TBS_SELECT_ENEMY_ALL_OR_SINGLE_STATE_SWITCH = 2030;//回合制战斗 - 选择敌方目标 单体/全体切换
     public const int TBS_ALL_PLAYER_ACTOR_DIE = 2031;//回合制战斗 - 所有我方角色死亡
     public const int TBS_ALL_ENEMY_ACTOR_DIE = 2032;//回合制战斗 - 所有敌方角色死亡
+    public const int TBS_ENEMY_ACTOR_REMOVE_FROM_LIST = 2033;//回合制战斗 - 敌方角色从队列中移除
     #endregion
 
 
