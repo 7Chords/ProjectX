@@ -24,7 +24,7 @@ namespace GameCore.RefData
             effectType = (EBattleItemEffectType)getEnum("effectType", typeof(EBattleItemEffectType));
             isPlayerTarget = getBool("isPlayerTarget");
             basicChgEffectList = getList<BasicChgEffectObj>("basicChgEffectList");
-            buffEffectList = getList<BuffEffectObj>("basicChgEffectList");
+            buffEffectList = getList<BuffEffectObj>("buffEffectList");
 
         }
         public static string assetPath => "RefData/ExportTxt";

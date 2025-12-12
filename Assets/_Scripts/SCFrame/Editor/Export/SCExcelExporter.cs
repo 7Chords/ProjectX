@@ -2,6 +2,7 @@ using NPOI.HSSF.UserModel;
 using NPOI.SS.UserModel;
 using NPOI.XSSF.UserModel;
 using System;
+using System.Collections.Generic;
 using System.IO;
 using UnityEditor;
 using UnityEngine;
@@ -74,22 +75,38 @@ namespace SCFrame
                 {
                     using (StreamWriter sw = new StreamWriter(fs, System.Text.Encoding.UTF8))
                     {
-                        
+
                         sheet = workbook.GetSheetAt(i);
                         if (sheet == null)
                             continue;
+                        List<int> memoIdxList = new List<int>();
                         for (int j = TITLE_START_INDEX; j <= sheet.LastRowNum; j++)
                         {
+
                             row = sheet.GetRow(j);
                             if (row == null)
                                 continue;
                             for (int k = 0; k <= row.LastCellNum; k++)
                             {
+                                if (memoIdxList.Contains(k))
+                                {
+                                    if(k == row.LastCellNum)
+                                    {
+                                        sw.Write("\n");
+                                    }
+                                    continue;
+                                }
                                 cell = row.GetCell(k);
                                 if (cell == null)
                                     break;
                                 if (string.IsNullOrEmpty(cell.ToString()))
                                     break;
+                                //标题列中元素的带# 表示该列是备注列
+                                if (j == TITLE_START_INDEX && cell.ToString().StartsWith("#"))
+                                {
+                                    memoIdxList.Add(k);
+                                    continue;
+                                }
                                 cellValue = cell?.ToString() ?? "";
                                 sw.Write(cellValue);
                                 if (k < row.LastCellNum - 1 && !string.IsNullOrEmpty(row.GetCell(k + 1)?.ToString()))

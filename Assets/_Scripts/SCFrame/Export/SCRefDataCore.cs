@@ -300,7 +300,7 @@ namespace SCFrame
             if (tempValue == EXCEL_EMPTY_FLAG)
                 return list;
 
-            string[] strs = tempValue.Split(new char[] { ';', ':' });
+            string[] strs = tempValue.Split(new char[] { ';' });
             for (var i = 0; i < strs.Length; i++)
             {
                 string tempStr = strs[i];

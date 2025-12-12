@@ -112,7 +112,7 @@ namespace SCFrame
         /// <returns></returns>
         public static int ParseInt(string _str)
         {
-            if(int.TryParse(_str, NumberStyles.Float, CultureInfo.InvariantCulture, out int result))
+            if(int.TryParse(_str, NumberStyles.Integer, CultureInfo.InvariantCulture, out int result))
             {
                 return result;
             }
@@ -140,7 +140,7 @@ namespace SCFrame
         /// <returns></returns>
         public static long ParseLong(string _str)
         {
-            if (long.TryParse(_str, NumberStyles.Float, CultureInfo.InvariantCulture, out long result))
+            if (long.TryParse(_str, NumberStyles.Number, CultureInfo.InvariantCulture, out long result))
             {
                 return result;
             }

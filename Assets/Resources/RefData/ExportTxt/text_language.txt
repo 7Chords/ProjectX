@@ -35,3 +35,9 @@
 10034	#1_tbs_win	-胜利-	-Player Win-
 10035	#1_tbs_lose	-失败-	-Player Lose-
 10036	#1_miss	闪避	miss
+10037	#1_character_name_1001	斯特尔	Stele
+10038	#1_character_name_1002	洛林	Lorraine
+10039	#1_character_name_1003	考特	Kaut
+10040	#1_character_name_1004	红色史莱姆	RedSlime
+10041	#1_character_name_1005	尖刺史莱姆	SpikeSlime
+10042	#1_character_name_1006	石头巨人	RockGiant
