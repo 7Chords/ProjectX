@@ -1,0 +1,3 @@
+﻿id	itemName	itemType	itemUseType	itemDesc	itemEffectRefObjId
+1001	小型生命药水	BATTLE	BATTLE_USE	小型生命药水的描述	1001
+1002	振奋药水	BATTLE	BATTLE_USE	振奋药水的描述	1002

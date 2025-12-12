@@ -1,6 +1,8 @@
 using GameCore.RefData;
 using GameCore.TBS;
+using GameCore.Util;
 using SCFrame;
+using System;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -106,12 +108,61 @@ namespace GameCore
             damageGO.GetRectTransform().localPosition = SCUICommon.WorldPointToUIPoint(
                 SCGame.instance.topLayerRoot.GetRectTransform(),
                 _worldPos);
-            damageGO.GetComponent<DamageFloatText>().Initialize(_damage, _extraStr);
+            damageGO.GetComponent<DamageFloatText>().Initialize(_damage, _extraStr,true);
+        }
+        /// <summary>
+        /// 展示治疗量飘字
+        /// </summary>
+        public static void ShowHealFloatText(int _healAmount, Vector3 _worldPos, string _extraStr)
+        {
+            GameObject damageGO = ResourcesHelper.LoadGameObject(
+                GetUIResObjPath(GameConst.TBS_DAMAGE_NUM_PREFAB),
+                SCGame.instance.topLayerRoot.transform);
+            damageGO.GetRectTransform().localPosition = SCUICommon.WorldPointToUIPoint(
+                SCGame.instance.topLayerRoot.GetRectTransform(),
+                _worldPos);
+            damageGO.GetComponent<DamageFloatText>().Initialize(_healAmount, _extraStr,false);
         }
 
+        /// <summary>
+        /// 展示攻击状态飘字
+        /// </summary>
+        /// <param name="_attackState"></param>
+        /// <param name="_worldPos"></param>
+        public static void ShowAttackStateText(ETBSAttackState _attackState,Vector3 _worldPos)
+        {
+            GameObject attackStateGO = ResourcesHelper.LoadGameObject(
+                GetUIResObjPath(GameConst.TBS_ATTACK_STATE_PREFAB),
+                SCGame.instance.topLayerRoot.transform);
+            attackStateGO.GetRectTransform().localPosition = SCUICommon.WorldPointToUIPoint(
+                SCGame.instance.topLayerRoot.GetRectTransform(),
+                _worldPos);
+            attackStateGO.GetComponent<AttackStateText>().Initialize(Enum2StrFactory.CreateLocalStrByAttackStateEnum(_attackState));
+        }
         public static string GetCharacterNameWithLv(int _level, string _characterName)
         {
             return LanguageHelper.instance.GetTextTranslate("#2_lv_name", _level, _characterName);
+        }
+
+
+        public static _AEffectObjBase ParseEffectObj(string _str,Type _type)
+        {
+            if (string.IsNullOrEmpty(_str))
+                return null;
+            _AEffectObjBase effectObj = null;
+            if(_type == typeof(BasicChgEffectObj))
+            {
+                effectObj = new BasicChgEffectObj();
+                effectObj.Deserialize(_str);
+            }
+            else if(_type == typeof(BuffEffectObj))
+            {
+                effectObj = new BuffEffectObj();
+                effectObj.Deserialize(_str);
+            }
+
+            return effectObj;
+
         }
     }
 }

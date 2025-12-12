@@ -1,22 +1,14 @@
 using DG.Tweening;
-using GameCore.Util;
 using SCFrame;
 using UnityEngine;
 using UnityEngine.UI;
 
 namespace GameCore.TBS
 {
-    /// <summary>
-    /// TBS伤害飘字
-    /// </summary>
-    public class DamageFloatText : MonoBehaviour
+    public class AttackStateText : MonoBehaviour
     {
-        [Header("伤害文本")]
-        public Text damageText;
-        [Header("额外效果文本")]
-        public Text extraText;
-        [Header("克制关系文本")]
-        public Text attributeText;
+        [Header("状态文本")]
+        public Text stateText;
         [Header("画布组件")]
         public CanvasGroup canvasGroup;
         [Header("变大持续时间")]
@@ -33,30 +25,17 @@ namespace GameCore.TBS
         public float shakeStrength;
         [Header("振动持续时间")]
         public float shakeDuration;
-        [Header("是伤害文本的颜色")]
-        public Color colorIsDamage;
-        [Header("是治疗文本的颜色")]
-        public Color colorIsHeal;
 
         private TweenContainer _m_tweenContainer;
         private Vector3 _originalPosition;
 
-        public void Initialize(int _damage, string _extraStr = "",bool _isDamageText = true)
+        public void Initialize(string _content)
         {
             _m_tweenContainer = new TweenContainer();
             _originalPosition = gameObject.GetRectTransform().localPosition;
 
-            if(_isDamageText)
-            {
-                damageText.text = "-" + _damage.ToString();
-                damageText.color = colorIsDamage;
-            }
-            else
-            {
-                damageText.text = "+" + _damage.ToString();
-                damageText.color = colorIsHeal;
-            }
-            extraText.text = _extraStr;
+            stateText.text = _content;
+
             //初始状态
             gameObject.GetRectTransform().localScale = Vector3.zero;
             canvasGroup.alpha = 1f;
@@ -64,8 +43,13 @@ namespace GameCore.TBS
             //创建放大动画
             Tween biggerTween = gameObject.GetRectTransform().DOScale(Vector3.one, biggerDuration);
 
+
+
             //创建抖动动画
-            Tween shakeTween = gameObject.GetRectTransform().DOShakePosition(shakeDuration, shakeStrength);
+            Tween shakeTween = null;
+            if(shakeDuration > 0 && shakeStrength > 0)
+                shakeTween = gameObject.GetRectTransform().DOShakePosition(shakeDuration, shakeStrength);
+
 
             //创建上浮动画
             Tween floatTween = gameObject.GetRectTransform().DOLocalMoveY(
@@ -82,7 +66,9 @@ namespace GameCore.TBS
 
             //第一阶段：同时执行放大和抖动
             mainSequence.Append(biggerTween);
-            mainSequence.Join(shakeTween); // 与放大动画同时执行
+
+            if(shakeTween!=null)
+                mainSequence.Join(shakeTween); // 与放大动画同时执行
 
             //第二阶段：静止一段时间
             mainSequence.AppendInterval(stopDuration);

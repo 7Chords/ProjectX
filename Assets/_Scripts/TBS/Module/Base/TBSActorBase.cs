@@ -223,7 +223,7 @@ namespace GameCore.TBS
             SCMsgCenter.SendMsg(SCMsgConst.TBS_ACTOR_DIE, actorInfo.runningId);
         }
 
-        public virtual void TakeDamage(int _damage, bool _needShopFloatText = true , string _extraStr ="")
+        public virtual void TakeDamage(int _damage, bool _needShowFloatText = true , string _extraStr ="")
         {
             if (_damage <= 0)
             {
@@ -233,7 +233,7 @@ namespace GameCore.TBS
             _m_actorInfo.curHp = Mathf.Max(_m_actorInfo.curHp - _damage, 0);
 
             //uiÆ®×Ö
-            if(_needShopFloatText)
+            if(_needShowFloatText)
                 GameCommon.ShowDamageFloatText(_damage, GetDamageTextPos(), _extraStr);
             SCMsgCenter.SendMsg(SCMsgConst.TBS_ACTOR_INFO_CHG, actorInfo.runningId);
             if (_m_actorInfo.curHp == 0)
@@ -261,6 +261,7 @@ namespace GameCore.TBS
                 return;
             }
             _m_actorInfo.curHp = Mathf.Min(_m_actorInfo.curHp + _healAmount, _m_actorInfo.maxHp);
+            GameCommon.ShowHealFloatText(_healAmount, GetDamageTextPos(),"");
             SCMsgCenter.SendMsg(SCMsgConst.TBS_ACTOR_INFO_CHG, actorInfo.runningId);
         }
 
@@ -285,7 +286,7 @@ namespace GameCore.TBS
 
         public virtual void Miss()
         {
-
+            GameCommon.ShowAttackStateText(ETBSAttackState.MISS,GetDamageTextPos());
         }
 
         public virtual bool CriticalJudge()
@@ -298,16 +299,16 @@ namespace GameCore.TBS
 
         public virtual void GetAttackInvalid()
         {
-
+            GameCommon.ShowAttackStateText(ETBSAttackState.INVALID, GetDamageTextPos());
         }
         public virtual void GetAttackBounce()
         {
-
+            GameCommon.ShowAttackStateText(ETBSAttackState.BOUNCE, GetDamageTextPos());
         }
 
         public virtual void GetAttackSuck()
         {
-
+            GameCommon.ShowAttackStateText(ETBSAttackState.SUCK, GetDamageTextPos());
         }
 
 

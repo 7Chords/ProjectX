@@ -2,6 +2,7 @@ using UnityEngine;
 using UnityEditor;
 using System.Globalization;
 using System.Collections.Generic;
+using System;
 
 namespace SCFrame
 {
@@ -119,5 +120,32 @@ namespace SCFrame
             return 0;
         }
 
+
+        public static object ParseEnum(string _str,Type _enumType)
+        {
+            if (string.IsNullOrEmpty(_str))
+            {
+                Debug.LogError("_str是无效的！！！");
+                return 0;
+            }
+
+            object obj = Enum.Parse(_enumType, _str);
+            return obj;
+        }
+
+        /// <summary>
+        /// 字符串解析成long
+        /// </summary>
+        /// <param name="_str"></param>
+        /// <returns></returns>
+        public static long ParseLong(string _str)
+        {
+            if (long.TryParse(_str, NumberStyles.Float, CultureInfo.InvariantCulture, out long result))
+            {
+                return result;
+            }
+            Debug.LogError("string解析成long出错！！！");
+            return 0L;
+        }
     }
 }

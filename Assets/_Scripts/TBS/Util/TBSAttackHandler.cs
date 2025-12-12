@@ -83,6 +83,7 @@ namespace GameCore.TBS
                             else if (magicSuckJudge(_attackInfo.magicAttributeType, actor.actorInfo))
                             {
                                 actor.GetAttackSuck();
+                                actor.HealHp(Mathf.RoundToInt(tmpDamage));
                                 return;
                             }
                             else

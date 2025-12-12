@@ -34,3 +34,4 @@
 10033	#1_tbs_enemy_turn	敌方回合	Enemy Turn
 10034	#1_tbs_win	-胜利-	-Player Win-
 10035	#1_tbs_lose	-失败-	-Player Lose-
+10036	#1_miss	闪避	miss

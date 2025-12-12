@@ -12,3 +12,4 @@
 1011	tbs_turn_chg_panel	panel_tbs_turn_chg
 1012	tbs_win_panel	panel_tbs_win
 1013	tbs_lose_panel	panel_tbs_lose
+1014	tbs_attack_state_prefab	prefab_attack_state

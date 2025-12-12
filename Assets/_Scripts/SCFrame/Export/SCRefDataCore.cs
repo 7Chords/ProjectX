@@ -1,3 +1,5 @@
+using GameCore;
+using GameCore.RefData;
 using System;
 using System.Collections;
 using System.Collections.Generic;
@@ -460,6 +462,10 @@ namespace SCFrame
                     else if (_type == typeof(long))
                     {
                         return long.Parse(_value);
+                    }
+                    else if (_type.IsSubclassOf(typeof(_AEffectObjBase)))
+                    {
+                        return GameCommon.ParseEffectObj(_value, _type);
                     }
                 }
             }

@@ -102,5 +102,29 @@ namespace GameCore.Util
                     return "invalid enum";
             }
         }
+
+        public static string CreateLocalStrByAttackStateEnum(ETBSAttackState _attackState)
+        {
+            string translateKey = "#1_";
+            switch (_attackState)
+            {
+                case ETBSAttackState.BOUNCE:
+                    translateKey += "bounce";
+                    return LanguageHelper.instance.GetTextTranslate(translateKey);
+                case ETBSAttackState.INVALID:
+                    translateKey += "invalid";
+                    return LanguageHelper.instance.GetTextTranslate(translateKey);
+                case ETBSAttackState.MISS:
+                    translateKey += "miss";
+                    return LanguageHelper.instance.GetTextTranslate(translateKey);
+                case ETBSAttackState.SUCK:
+                    translateKey += "suck";
+                    return LanguageHelper.instance.GetTextTranslate(translateKey);
+                case ETBSAttackState.NORMAL:
+                    return "";
+                default:
+                    return "invalid enum";
+            }
+        }
     }
 }

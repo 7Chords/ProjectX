@@ -43,7 +43,6 @@ namespace GameCore.RefData
             skillPlayableAssetName = getString("skillPlayableAssetName");
             needMove = getBool("needMove");
         }
-
         public static string assetPath => "RefData/ExportTxt";
         public static string sheetName => "tbs_actor_skill";
     }

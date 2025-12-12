@@ -138,5 +138,15 @@ namespace GameCore.TBS
         SIDE_RIGHT,
     }
 
+    public enum ETBSAttackState
+    {
+        NONE,
+        NORMAL,
+        INVALID,
+        MISS,
+        SUCK,
+        BOUNCE,
+    }
+
 
 }

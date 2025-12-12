@@ -20,6 +20,7 @@ namespace GameCore
         public const string TBS_TURN_CHG_PANEL = "tbs_turn_chg_panel";
         public const string TBS_WIN_PANEL = "tbs_win_panel";
         public const string TBS_LOSE_PANEL = "tbs_lose_panel";
+        public const string TBS_ATTACK_STATE_PREFAB = "tbs_attack_state_prefab";
         #endregion
 
     }
