@@ -97,7 +97,8 @@ namespace GameCore.TBS
                             //真实伤害无处理
                         }
                         actor.TakeDamage(Mathf.RoundToInt(tmpDamage),true, extraStr);
-                        Debug.Log("===TBS===" + actor.actorInfo.characterRefObj.characterName + "受到了" + Mathf.RoundToInt(tmpDamage) + "点伤害");
+                        Debug.Log("===TBS===" + LanguageHelper.instance.GetTextTranslate(actor.actorInfo.characterRefObj.characterName) 
+                            + "受到了" + Mathf.RoundToInt(tmpDamage) + "点伤害");
                     }
                 }
             }

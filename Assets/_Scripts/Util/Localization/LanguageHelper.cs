@@ -1,6 +1,5 @@
+using GameCore;
 using GameCore.RefData;
-using System;
-using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -27,7 +26,7 @@ namespace SCFrame
                 return "translate is not find in dict!!!";
             }
             string localStr = "";
-            switch (SCSaveSys.instance.languageType)
+            switch (SCSettingMgr.instance.languageType)
             {
                 case ELanguageType.zh_CN:
                     localStr = refObj.zh_CN;

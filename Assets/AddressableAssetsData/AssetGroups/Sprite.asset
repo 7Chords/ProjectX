@@ -85,6 +85,14 @@ MonoBehaviour:
     m_Address: spr_head_spikeSlime
     m_ReadOnly: 0
     m_SerializedLabels: []
+  - m_GUID: 14f92f6e506380c47a6764ef0249ef52
+    m_Address: sp_item_1001
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  - m_GUID: a2f70925cf50279429fbc49d2c431e8f
+    m_Address: sp_item_1002
+    m_ReadOnly: 0
+    m_SerializedLabels: []
   m_ReadOnly: 0
   m_Settings: {fileID: 11400000, guid: d14fb1bbe98862146a7f5467a5bc79f8, type: 2}
   m_SchemaSet:

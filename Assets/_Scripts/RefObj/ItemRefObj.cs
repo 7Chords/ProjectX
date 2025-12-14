@@ -16,6 +16,7 @@ namespace GameCore.RefData
         }
         public long id;
         public string itemName;
+        public string itemIconObjName;
         public EItemType itemType;
         public EItemUseType itemUseType;
         public string itemDesc;
@@ -25,6 +26,7 @@ namespace GameCore.RefData
         {
             id = getLong("id");
             itemName = getString("itemName");
+            itemIconObjName = getString("itemIconObjName");
             itemType = (EItemType)getEnum("itemType", typeof(EItemType));
             itemUseType = (EItemUseType)getEnum("itemUseType", typeof(EItemUseType));
             itemDesc = getString("itemDesc");
