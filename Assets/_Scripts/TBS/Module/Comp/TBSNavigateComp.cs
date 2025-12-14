@@ -49,7 +49,7 @@ namespace GameCore.TBS
 
             if ((mainNode == null || mainNode.hasHideNode) && (confirmNode == null || confirmNode.hasHideNode))
                 return;
-            SCMsgCenter.SendMsgAct(SCMsgConst.TBS_ACTOR_TARGET_HIGHLIGHT_LEFT);
+            SCMsgCenter.SendMsg(SCMsgConst.TBS_ACTOR_TARGET_HIGHLIGHT_LEFT);
         }
 
         private void onTBSSwitchToRightInput()
@@ -59,7 +59,7 @@ namespace GameCore.TBS
 
             if ((mainNode == null || mainNode.hasHideNode) && (confirmNode == null || confirmNode.hasHideNode))
                 return;
-            SCMsgCenter.SendMsgAct(SCMsgConst.TBS_ACTOR_TARGET_HIGHLIGHT_RIGHT);
+            SCMsgCenter.SendMsg(SCMsgConst.TBS_ACTOR_TARGET_HIGHLIGHT_RIGHT);
         }
 
         private void onTBSSwitchToUpInput()
@@ -67,7 +67,7 @@ namespace GameCore.TBS
             _ASCUINodeBase node = GameCoreMgr.instance.uiCoreMgr.GetNodeByName(nameof(UINodeTBSSkill));
             if (node == null || node.hasHideNode)
                 return;
-            SCMsgCenter.SendMsgAct(SCMsgConst.TBS_ACTOR_SKILL_HIGHTLIGHT_UP);
+            SCMsgCenter.SendMsg(SCMsgConst.TBS_ACTOR_SKILL_HIGHTLIGHT_UP);
         }
 
         private void onTBSSwitchToDownInput()
@@ -75,7 +75,7 @@ namespace GameCore.TBS
             _ASCUINodeBase node = GameCoreMgr.instance.uiCoreMgr.GetNodeByName(nameof(UINodeTBSSkill));
             if (node == null || node.hasHideNode)
                 return;
-            SCMsgCenter.SendMsgAct(SCMsgConst.TBS_ACTOR_SKILL_HIGHTLIGHT_DOWN);
+            SCMsgCenter.SendMsg(SCMsgConst.TBS_ACTOR_SKILL_HIGHTLIGHT_DOWN);
         }
     }
 }

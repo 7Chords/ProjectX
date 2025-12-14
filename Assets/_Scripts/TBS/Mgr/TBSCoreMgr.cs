@@ -107,10 +107,10 @@ namespace GameCore.TBS
             //隐藏大世界玩家
             SCCommon.SetGameObjectEnable(SCGame.instance.playerGO, false);
 
-            SCMsgCenter.SendMsgAct(SCMsgConst.TBS_TURN_MGR_WORK);
-            SCMsgCenter.SendMsgAct(SCMsgConst.TBS_ACTOR_MGR_WORK);
-            SCMsgCenter.SendMsgAct(SCMsgConst.TBS_EFFECT_MGR_WORK);
-            SCMsgCenter.SendMsgAct(SCMsgConst.TBS_COMP_MGR_WORK);
+            SCMsgCenter.SendMsg(SCMsgConst.TBS_TURN_MGR_WORK);
+            SCMsgCenter.SendMsg(SCMsgConst.TBS_ACTOR_MGR_WORK);
+            SCMsgCenter.SendMsg(SCMsgConst.TBS_EFFECT_MGR_WORK);
+            SCMsgCenter.SendMsg(SCMsgConst.TBS_COMP_MGR_WORK);
 
 
             GameCoreMgr.instance.uiCoreMgr.AddNode(new UINodeTBSInfo(SCUIShowType.FULL));
@@ -121,10 +121,10 @@ namespace GameCore.TBS
 
         private void onTBSGameFinish()
         {
-            SCMsgCenter.SendMsgAct(SCMsgConst.TBS_TURN_MGR_REST);
-            SCMsgCenter.SendMsgAct(SCMsgConst.TBS_ACTOR_MGR_REST);
-            SCMsgCenter.SendMsgAct(SCMsgConst.TBS_EFFECT_MGR_REST);
-            SCMsgCenter.SendMsgAct(SCMsgConst.TBS_COMP_MGR_REST);
+            SCMsgCenter.SendMsg(SCMsgConst.TBS_TURN_MGR_REST);
+            SCMsgCenter.SendMsg(SCMsgConst.TBS_ACTOR_MGR_REST);
+            SCMsgCenter.SendMsg(SCMsgConst.TBS_EFFECT_MGR_REST);
+            SCMsgCenter.SendMsg(SCMsgConst.TBS_COMP_MGR_REST);
 
             //显示大世界玩家
             SCCommon.SetGameObjectEnable(SCGame.instance.playerGO, false);

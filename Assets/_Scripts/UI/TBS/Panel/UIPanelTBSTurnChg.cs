@@ -31,7 +31,7 @@ namespace GameCore.UI
             Tween tween = DOVirtual.DelayedCall(mono.showDuration, () =>
             {
                 GameCoreMgr.instance.uiCoreMgr.CloseTopNode();
-                SCMsgCenter.SendMsgAct(SCMsgConst.TBS_TURN_CHG_SHOW_END);
+                SCMsgCenter.SendMsg(SCMsgConst.TBS_TURN_CHG_SHOW_END);
             });
             _m_tweenContainer?.RegDoTween(tween);
 

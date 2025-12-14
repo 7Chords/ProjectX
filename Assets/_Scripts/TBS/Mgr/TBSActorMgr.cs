@@ -226,7 +226,7 @@ namespace GameCore.TBS
             {
                 _m_curSelectActorIndex = -1;
                 //发送队伍行动结束的信息
-                SCMsgCenter.SendMsgAct(SCMsgConst.TBS_TRAM_ACTION_END);
+                SCMsgCenter.SendMsg(SCMsgConst.TBS_TRAM_ACTION_END);
 
                 jumpToNextActorIdx();
             }
@@ -349,9 +349,9 @@ namespace GameCore.TBS
 
 
             if (SCModel.instance.tbsModel.CheckAllActorsDead(true))
-                SCMsgCenter.SendMsgAct(SCMsgConst.TBS_ALL_PLAYER_ACTOR_DIE);
+                SCMsgCenter.SendMsg(SCMsgConst.TBS_ALL_PLAYER_ACTOR_DIE);
             else if(SCModel.instance.tbsModel.CheckAllActorsDead(false))
-                SCMsgCenter.SendMsgAct(SCMsgConst.TBS_ALL_ENEMY_ACTOR_DIE);
+                SCMsgCenter.SendMsg(SCMsgConst.TBS_ALL_ENEMY_ACTOR_DIE);
 
         }
 

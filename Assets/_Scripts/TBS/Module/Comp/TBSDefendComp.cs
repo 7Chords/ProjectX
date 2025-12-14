@@ -35,7 +35,7 @@ namespace GameCore.TBS
             _ASCUINodeBase node = GameCoreMgr.instance.uiCoreMgr.GetNodeByName(nameof(UINodeTBSMain));
             if (node == null || node.hasHideNode)
                 return;
-            SCMsgCenter.SendMsgAct(SCMsgConst.TBS_ACTOR_DEFENCE);
+            SCMsgCenter.SendMsg(SCMsgConst.TBS_ACTOR_DEFENCE);
         }
     }
 

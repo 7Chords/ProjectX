@@ -68,19 +68,19 @@ namespace GameCore.UI
 
         private void onBtnNormalAttackClickDown(PointerEventData _eventData, object[] _args)
         {
-            SCMsgCenter.SendMsgAct(SCMsgConst.TBS_ATTACK_INPUT);
+            SCMsgCenter.SendMsg(SCMsgConst.TBS_ATTACK_INPUT);
         }
         private void onBtnSkillClickDown(PointerEventData data, object[] arg2)
         {
-            SCMsgCenter.SendMsgAct(SCMsgConst.TBS_SKILL_INPUT);
+            SCMsgCenter.SendMsg(SCMsgConst.TBS_SKILL_INPUT);
         }
         private void onBtnItemClickDown(PointerEventData data, object[] arg2)
         {
-            SCMsgCenter.SendMsgAct(SCMsgConst.TBS_ITEM_INPUT);
+            SCMsgCenter.SendMsg(SCMsgConst.TBS_ITEM_INPUT);
         }
         private void onBtnDefenceClickDown(PointerEventData data, object[] arg2)
         {
-            SCMsgCenter.SendMsgAct(SCMsgConst.TBS_DEFEND_INPUT);
+            SCMsgCenter.SendMsg(SCMsgConst.TBS_DEFEND_INPUT);
         }
         private void onTBSAttackInput()
         {

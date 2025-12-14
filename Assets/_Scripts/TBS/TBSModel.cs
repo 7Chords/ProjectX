@@ -32,7 +32,7 @@ namespace GameCore.TBS
             set 
             { 
                 _m_curTurnType = value;
-                SCMsgCenter.SendMsgAct(SCMsgConst.TBS_TURN_CHG);
+                SCMsgCenter.SendMsg(SCMsgConst.TBS_TURN_CHG);
             }
         }
 
@@ -59,7 +59,7 @@ namespace GameCore.TBS
             set 
             { 
                 _m_curActorIndex = value;
-                SCMsgCenter.SendMsgAct(SCMsgConst.TBS_ACTOR_CHG);
+                SCMsgCenter.SendMsg(SCMsgConst.TBS_ACTOR_CHG);
             }
         }
 
@@ -71,7 +71,7 @@ namespace GameCore.TBS
             set
             {
                 _m_curSelectSingleTargetIdx = value;
-                SCMsgCenter.SendMsgAct(SCMsgConst.TBS_SELECT_SINGLE_ENEMY_TARGET_CHG);
+                SCMsgCenter.SendMsg(SCMsgConst.TBS_SELECT_SINGLE_ENEMY_TARGET_CHG);
             }
         }
 
@@ -82,7 +82,7 @@ namespace GameCore.TBS
             set
             {
                 _m_selectTargetType = value;
-                SCMsgCenter.SendMsgAct(SCMsgConst.TBS_SELECT_ENEMY_ALL_OR_SINGLE_STATE_SWITCH);
+                SCMsgCenter.SendMsg(SCMsgConst.TBS_SELECT_ENEMY_ALL_OR_SINGLE_STATE_SWITCH);
             }
         }
 

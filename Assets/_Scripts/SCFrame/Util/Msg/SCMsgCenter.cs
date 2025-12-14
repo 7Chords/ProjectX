@@ -36,27 +36,27 @@ namespace SCFrame
             }
         }
 
-        public static void SendMsgAct(int _msg)
-        {
-            instance.sendMsgAct(_msg);
-        }
-        private void sendMsgAct(int _msg)
-        {
-            List<Action> srcList;
-            if (_m_broadcastActDict.TryGetValue(_msg, out srcList) && srcList.Count > 0)
-            {
-                //if (_m_cacheBroadcastActList == null)
-                //    _m_cacheBroadcastActList = new List<Action>();
-                //else
-                //    _m_cacheBroadcastActList.Clear();
+        //public static void SendMsgAct(int _msg)
+        //{
+        //    instance.sendMsgAct(_msg);
+        //}
+        //private void sendMsgAct(int _msg)
+        //{
+        //    List<Action> srcList;
+        //    if (_m_broadcastActDict.TryGetValue(_msg, out srcList) && srcList.Count > 0)
+        //    {
+        //        //if (_m_cacheBroadcastActList == null)
+        //        //    _m_cacheBroadcastActList = new List<Action>();
+        //        //else
+        //        //    _m_cacheBroadcastActList.Clear();
 
-                //_m_cacheBroadcastActList.AddRange(srcList);
-                for (int i = 0; i < srcList.Count; ++i)
-                {
-                    srcList[i]();
-                }
-            }
-        }
+        //        //_m_cacheBroadcastActList.AddRange(srcList);
+        //        for (int i = 0; i < srcList.Count; ++i)
+        //        {
+        //            srcList[i]();
+        //        }
+        //    }
+        //}
 
 
 
@@ -68,14 +68,14 @@ namespace SCFrame
 
         private void sendMsg(int _msg, params object[] _obj)
         {
-            //List<Action> srcActList;
-            //if (_m_broadcastActDict.TryGetValue(_msg, out srcActList) && srcActList.Count > 0)
-            //{
-            //    for (int i = 0; i < srcActList.Count; ++i)
-            //    {
-            //        srcActList[i]();
-            //    }
-            //}
+            List<Action> srcActList;
+            if (_m_broadcastActDict.TryGetValue(_msg, out srcActList) && srcActList.Count > 0)
+            {
+                for (int i = 0; i < srcActList.Count; ++i)
+                {
+                    srcActList[i]();
+                }
+            }
 
             List<MsgRecAction> srcList;
 

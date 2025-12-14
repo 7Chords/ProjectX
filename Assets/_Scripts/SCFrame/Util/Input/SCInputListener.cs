@@ -39,23 +39,23 @@ namespace SCFrame
                 if (Input.GetMouseButtonDown(1))
                     GameCoreMgr.instance.uiCoreMgr.CloseNodeByMouseRight();
                 if (Input.GetKeyDown(SCSaveSys.instance.saveKeyInfo.tbsSkillKeyCode))
-                    SCMsgCenter.SendMsgAct(SCMsgConst.TBS_SKILL_INPUT);
+                    SCMsgCenter.SendMsg(SCMsgConst.TBS_SKILL_INPUT);
                 if (Input.GetKeyDown(SCSaveSys.instance.saveKeyInfo.tbsAttackKeyCode))
-                    SCMsgCenter.SendMsgAct(SCMsgConst.TBS_ATTACK_INPUT);
+                    SCMsgCenter.SendMsg(SCMsgConst.TBS_ATTACK_INPUT);
                 if (Input.GetKeyDown(SCSaveSys.instance.saveKeyInfo.tbsDefendKeyCode))
-                    SCMsgCenter.SendMsgAct(SCMsgConst.TBS_DEFEND_INPUT);
+                    SCMsgCenter.SendMsg(SCMsgConst.TBS_DEFEND_INPUT);
                 if (Input.GetKeyDown(SCSaveSys.instance.saveKeyInfo.tbsItemKeyCode))
-                    SCMsgCenter.SendMsgAct(SCMsgConst.TBS_ITEM_INPUT);
+                    SCMsgCenter.SendMsg(SCMsgConst.TBS_ITEM_INPUT);
                 if (Input.GetKeyDown(SCSaveSys.instance.saveKeyInfo.tbsSwitchToUpKeyCode))
-                    SCMsgCenter.SendMsgAct(SCMsgConst.TBS_SWITCH_TO_UP_INPUT);
+                    SCMsgCenter.SendMsg(SCMsgConst.TBS_SWITCH_TO_UP_INPUT);
                 if (Input.GetKeyDown(SCSaveSys.instance.saveKeyInfo.tbsSwitchToDownKeyCode))
-                    SCMsgCenter.SendMsgAct(SCMsgConst.TBS_SWITCH_TO_DOWN_INPUT);
+                    SCMsgCenter.SendMsg(SCMsgConst.TBS_SWITCH_TO_DOWN_INPUT);
                 if (Input.GetKeyDown(SCSaveSys.instance.saveKeyInfo.tbsSwitchToLeftKeyCode))
-                    SCMsgCenter.SendMsgAct(SCMsgConst.TBS_SWITCH_TO_LEFT_INPUT);
+                    SCMsgCenter.SendMsg(SCMsgConst.TBS_SWITCH_TO_LEFT_INPUT);
                 if (Input.GetKeyDown(SCSaveSys.instance.saveKeyInfo.tbsSwitchToRightKeyCode))
-                    SCMsgCenter.SendMsgAct(SCMsgConst.TBS_SWITCH_TO_RIGHT_INPUT);
+                    SCMsgCenter.SendMsg(SCMsgConst.TBS_SWITCH_TO_RIGHT_INPUT);
                 if (Input.GetKeyDown(SCSaveSys.instance.saveKeyInfo.tbsConfirmKeyCode))
-                    SCMsgCenter.SendMsgAct(SCMsgConst.TBS_CONFIRM_INPUT);
+                    SCMsgCenter.SendMsg(SCMsgConst.TBS_CONFIRM_INPUT);
             }
 
         }

@@ -39,10 +39,10 @@ namespace GameCore.TBS
             switch(topNode.GetNodeName())
             {
                 case nameof(UINodeTBSSkill):
-                    SCMsgCenter.SendMsgAct(SCMsgConst.TBS_ACTOR_SKILL_CONFIRM);
+                    SCMsgCenter.SendMsg(SCMsgConst.TBS_ACTOR_SKILL_CONFIRM);
                     break;
                 case nameof(UINodeTBSConfirm):
-                    SCMsgCenter.SendMsgAct(SCMsgConst.TBS_ACTOR_SKILL_RELEASE);
+                    SCMsgCenter.SendMsg(SCMsgConst.TBS_ACTOR_SKILL_RELEASE);
                     break;
                 default:
                     break;
