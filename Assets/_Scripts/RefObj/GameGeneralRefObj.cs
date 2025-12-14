@@ -17,6 +17,13 @@ namespace GameCore.RefData
         public float tbsGetHitCamShakeDuration;
         public float tbsGetHitCamShakeStrength;
         public float tbsGetHitCamFreezeDuration;
+
+        //一些actor攻击的tween时间参数
+        public float tbsMeleeLookAtTargetDuration;
+        public float tbsMeleeMoveToTargetDuration;
+        public float tbsMeleeRotateDuration;
+        public float tbsMeleeMoveToOriginalDuration;
+
         protected override void _parseFromString()
         {
             generalCompList = getList<ETBSCompType>("generalCompList");
@@ -26,6 +33,11 @@ namespace GameCore.RefData
             tbsGetHitCamShakeDuration = getFloat("tbsGetHitCamShakeDuration");
             tbsGetHitCamShakeStrength = getFloat("tbsGetHitCamShakeStrength");
             tbsGetHitCamFreezeDuration = getFloat("tbsGetHitCamFreezeDuration");
+            tbsMeleeLookAtTargetDuration = getFloat("tbsMeleeLookAtTargetDuration");
+            tbsMeleeMoveToTargetDuration = getFloat("tbsMeleeMoveToTargetDuration");
+            tbsMeleeRotateDuration = getFloat("tbsMeleeRotateDuration");
+            tbsMeleeMoveToOriginalDuration = getFloat("tbsMeleeMoveToOriginalDuration");
+
 
         }
         public static string assetPath => "RefData/ExportTxt";

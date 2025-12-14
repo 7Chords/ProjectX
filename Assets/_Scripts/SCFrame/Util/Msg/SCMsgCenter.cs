@@ -68,15 +68,19 @@ namespace SCFrame
 
         private void sendMsg(int _msg, params object[] _obj)
         {
+            //List<Action> srcActList;
+            //if (_m_broadcastActDict.TryGetValue(_msg, out srcActList) && srcActList.Count > 0)
+            //{
+            //    for (int i = 0; i < srcActList.Count; ++i)
+            //    {
+            //        srcActList[i]();
+            //    }
+            //}
+
             List<MsgRecAction> srcList;
+
             if (_m_broadcastDict.TryGetValue(_msg, out srcList) && srcList.Count > 0)
             {
-                //if (_m_cacheBroadcastList == null)
-                //    _m_cacheBroadcastList = new List<MsgRecAction>();
-                //else
-                //    _m_cacheBroadcastList.Clear();
-
-                //_m_cacheBroadcastList.AddRange(srcList);
                 for (int i = 0; i < srcList.Count; ++i)
                 {
                     srcList[i](_obj);

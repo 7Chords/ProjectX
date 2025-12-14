@@ -72,7 +72,7 @@ namespace GameCore.UI
 
             _m_curSelectSkillIdx = 0;
 
-            _refreshPanel();
+            refreshPanel();
 
             //隐藏敌人hud
             GameCoreMgr.instance.uiCoreMgr.HideNode(nameof(UINodeTBSEnemyHud));
@@ -82,13 +82,13 @@ namespace GameCore.UI
         }
 
 
-        private void _refreshPanel()
+        private void refreshPanel()
         {
-            _refreshSkillContainer();
-            _refreshCurSkillDesc();
+            refreshSkillContainer();
+            refreshCurSkillDesc();
         }
 
-        private void _refreshSkillContainer()
+        private void refreshSkillContainer()
         {
             TBSActorInfo actorInfo = SCModel.instance.tbsModel.GetCurActorInfo();
             if (actorInfo == null)
@@ -98,7 +98,7 @@ namespace GameCore.UI
             _m_skillContainer.ShowPanel();
         }
 
-        private void _refreshCurSkillDesc()
+        private void refreshCurSkillDesc()
         {
             TBSActorInfo actorInfo = SCModel.instance.tbsModel.GetCurActorInfo();
             if (actorInfo == null)
@@ -133,13 +133,13 @@ namespace GameCore.UI
         private void onTBSActorSkillHighLightUp()
         {
             _m_curSelectSkillIdx = Mathf.Max(_m_curSelectSkillIdx - 1, 0);
-            _refreshPanel();
+            refreshPanel();
         }
 
         private void onTBSActorSkillHighLightDown()
         {
             _m_curSelectSkillIdx = Mathf.Min(_m_curSelectSkillIdx + 1, _m_curActorSkillCount - 1);
-            _refreshPanel();
+            refreshPanel();
         }
         private void onTBSActorSkillMouseHighLight(object[] _objs)
         {
@@ -157,7 +157,7 @@ namespace GameCore.UI
                     break;
                 }
             }
-            _refreshPanel();
+            refreshPanel();
         }
 
         //技能释放回调

@@ -264,12 +264,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7f857d5c89f38ab4e8404fbdc28bcc6e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  uiMask: {fileID: 0}
-  canvasGroup: {fileID: 0}
-  fadeInDuration: 0
-  fadeOutDuration: 0
+  uiMask: {fileID: 1914200201005334041}
+  canvasGroup: {fileID: 4392967921294345429}
+  fadeInDuration: 0.1
+  fadeOutDuration: 0.1
   monoContainer: {fileID: 3262421765992260359}
-  txtItemDesc: {fileID: 0}
+  txtItemDesc: {fileID: 7098613427931905162}
 --- !u!1 &2701068100962896502
 GameObject:
   m_ObjectHideFlags: 0

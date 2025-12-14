@@ -139,9 +139,10 @@ namespace GameCore
                 _worldPos);
             attackStateGO.GetComponent<AttackStateText>().Initialize(Enum2StrFactory.CreateLocalStrByAttackStateEnum(_attackState));
         }
-        public static string GetCharacterNameWithLv(int _level, string _characterName)
+        public static string GetCharacterNameWithLv(int _level, string _characterNameKey)
         {
-            return LanguageHelper.instance.GetTextTranslate("#2_lv_name", _level, _characterName);
+            string characterName = LanguageHelper.instance.GetTextTranslate(_characterNameKey);
+            return LanguageHelper.instance.GetTextTranslate("#2_lv_name", _level, characterName);
         }
 
 

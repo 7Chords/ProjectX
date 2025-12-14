@@ -1,4 +1,5 @@
 using DG.Tweening;
+using GameCore.RefData;
 using GameCore.UI;
 using SCFrame;
 using System.Collections;
@@ -25,11 +26,14 @@ namespace GameCore.TBS
             TBSCursorMgr.instance.HideSelectionCursor();
 
             _m_attackEnemyActorList.Add(_target);
+
+            GameGeneralRefObj generalRefObj = SCRefDataMgr.instance.gameGeneralRefObj;
+
             TBSMageActorMono actorMono = _m_actorMono as TBSMageActorMono;
             Sequence seq = DOTween.Sequence();
 
             Tween lookAtTargetTween = _m_actorMono.goModel.transform.DOLookAt(new Vector3(_target.GetActorGameObject().transform.position.x,
-                GetActorGameObject().transform.position.y, _target.GetActorGameObject().transform.position.z), 0.25f);
+                GetActorGameObject().transform.position.y, _target.GetActorGameObject().transform.position.z), generalRefObj.tbsMeleeLookAtTargetDuration);
 
             seq.Append(lookAtTargetTween);
 

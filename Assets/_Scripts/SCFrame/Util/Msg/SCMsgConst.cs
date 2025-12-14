@@ -60,6 +60,10 @@ public class SCMsgConst
     public const int TBS_ALL_PLAYER_ACTOR_DIE = 2031;//回合制战斗 - 所有我方角色死亡
     public const int TBS_ALL_ENEMY_ACTOR_DIE = 2032;//回合制战斗 - 所有敌方角色死亡
     public const int TBS_ENEMY_ACTOR_REMOVE_FROM_LIST = 2033;//回合制战斗 - 敌方角色从队列中移除
+
+    public const int TBS_ACTOR_ITEM_HIGHTLIGHT_UP = 2034;//回合制战斗 - 选择道具高光上移
+    public const int TBS_ACTOR_ITEM_HIGHTLIGHT_DOWN = 2035;//回合制战斗 - 选择道具高光下移
+    public const int TBS_ACTOR_ITEM_MOUSE_HIGHLIGHT = 2036;//回合制战斗 - 鼠标选择道具高光
     #endregion
 
 

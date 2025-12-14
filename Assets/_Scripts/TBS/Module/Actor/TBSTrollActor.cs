@@ -1,4 +1,5 @@
 using DG.Tweening;
+using GameCore.RefData;
 using SCFrame;
 using System.Collections;
 using System.Collections.Generic;
@@ -24,18 +25,16 @@ namespace GameCore.TBS
             //todo
             _m_attackEnemyActorList.Add(_target);
 
+            GameGeneralRefObj generalRefObj = SCRefDataMgr.instance.gameGeneralRefObj;
+
             Vector3 originalPos = _m_actorMono.goModel.transform.position;
             Sequence seq = DOTween.Sequence();
             Tween lookAtTargetTween = _m_actorMono.goModel.transform.DOLookAt(new Vector3(_target.GetActorGameObject().transform.position.x,
-                GetActorGameObject().transform.position.y, _target.GetActorGameObject().transform.position.z), 0.25f);
-            Tween move2AttackTween = _m_actorMono.goModel.transform.DOMove(_target.GetEnemyAttackStandPos(), 1f)
+                GetActorGameObject().transform.position.y, _target.GetActorGameObject().transform.position.z), generalRefObj.tbsMeleeLookAtTargetDuration);
+            Tween move2AttackTween = _m_actorMono.goModel.transform.DOMove(_target.GetEnemyAttackStandPos(), generalRefObj.tbsMeleeMoveToTargetDuration)
                 .OnStart(
                 () =>
                 {
-                    //GameCoreMgr.instance.uiCoreMgr.HideNode(nameof(UINodeTBSMain));
-                    //GameCoreMgr.instance.uiCoreMgr.HideNode(nameof(UINodeTBSEnemyHud));
-
-                    //TBSCursorMgr.instance.HideSelectionCursor();
                     _m_animationCtl.PlaySingleAniamtion(_m_runAnimClip);
                 })
                 .OnComplete(
@@ -45,9 +44,9 @@ namespace GameCore.TBS
                 });
 
 
-            Tween rotateTween_1 = _m_actorMono.goModel.transform.DOLocalRotate(new Vector3(0, 180, 0), 0.5f);
+            Tween rotateTween_1 = _m_actorMono.goModel.transform.DOLocalRotate(new Vector3(0, 180, 0), generalRefObj.tbsMeleeRotateDuration);
 
-            Tween move2OriginalTween = _m_actorMono.goModel.transform.DOMove(originalPos, 1f)
+            Tween move2OriginalTween = _m_actorMono.goModel.transform.DOMove(originalPos, generalRefObj.tbsMeleeMoveToOriginalDuration)
                 .OnStart(
                 () =>
                 {
@@ -58,7 +57,7 @@ namespace GameCore.TBS
                 {
                     _m_animationCtl.PlaySingleAniamtion(_m_idleAnimClip);
                 });
-            Tween rotateTween_2 = _m_actorMono.goModel.transform.DOLocalRotate(Vector3.zero, 0.5f);
+            Tween rotateTween_2 = _m_actorMono.goModel.transform.DOLocalRotate(Vector3.zero, generalRefObj.tbsMeleeRotateDuration);
 
 
 
