@@ -86,11 +86,11 @@ MonoBehaviour:
     m_ReadOnly: 0
     m_SerializedLabels: []
   - m_GUID: 14f92f6e506380c47a6764ef0249ef52
-    m_Address: sp_item_1001
+    m_Address: spr_item_1001
     m_ReadOnly: 0
     m_SerializedLabels: []
   - m_GUID: a2f70925cf50279429fbc49d2c431e8f
-    m_Address: sp_item_1002
+    m_Address: spr_item_1002
     m_ReadOnly: 0
     m_SerializedLabels: []
   m_ReadOnly: 0

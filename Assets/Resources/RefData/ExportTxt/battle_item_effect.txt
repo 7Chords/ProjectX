@@ -1,3 +1,9 @@
 ﻿id	effectType	isPlayerTarget	basicChgEffectList	buffEffectList
 1001	BASIC_CHG	TRUE	HP:25	*
-1002	BUFF	TRUE	*	1002:3
+1002	BUFF	TRUE	*	1002:1:3
+
+
+
+
+
+

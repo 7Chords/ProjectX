@@ -261,6 +261,16 @@ namespace GameCore
                     }
                     break;
                 case EBattleItemEffectType.BUFF:
+                    {
+                        //List<BuffEffectObj> buffEffectList = effectRefObj.buffEffectList;
+                        //object[] translateParams = new object[buffEffectList.Count * 2];
+                        //for (int i = 0; i < buffEffectList.Count; i++)
+                        //{
+                        //    translateParams[i * 2] = Enum2StrFactory.CreateLoaclStrByBasicAttributeEnum(buffEffectList[i].basicAttribute);
+                        //    translateParams[i * 2 + 1] = buffEffectList[i].changeValue;
+                        //}
+                        //resStr = LanguageHelper.instance.GetTextTranslate(_translateKey, translateParams);
+                    }
                     break;
             }
             return resStr;

@@ -8,13 +8,11 @@ namespace GameCore.RefData
     public class TBSGameBuffInfo
     {
         public TBSBuffRefObj buffRefObj;
-        public EBuffStackType buffStackType;
         public int remainTurnCount;
 
-        public TBSGameBuffInfo(TBSBuffRefObj buffRefObj, EBuffStackType buffStackType, int remainTurnCount)
+        public TBSGameBuffInfo(TBSBuffRefObj buffRefObj, int remainTurnCount)
         {
             this.buffRefObj = buffRefObj;
-            this.buffStackType = buffStackType;
             this.remainTurnCount = remainTurnCount;
         }
     }

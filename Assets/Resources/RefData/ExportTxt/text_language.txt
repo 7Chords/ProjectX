@@ -55,3 +55,4 @@
 10054	#1_magic_resistence_level	法术抗性等级	magic resistence level
 10055	#1_physical_level	物理穿透等级	physical level
 10056	#1_magic_attribute	法术属性	magic attribute
+10057	#1_*{0}	*{0}	*{0}
