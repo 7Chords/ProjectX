@@ -126,5 +126,45 @@ namespace GameCore.Util
                     return "invalid enum";
             }
         }
+
+        public static string CreateLoaclStrByBasicAttributeEnum(EBasicAttribute _basicAttributeType)
+        {
+            string translateKey = "#1_";
+            switch (_basicAttributeType)
+            {
+                case EBasicAttribute.HP:
+                    translateKey += "hp";
+                    return LanguageHelper.instance.GetTextTranslate(translateKey);
+                case EBasicAttribute.MP:
+                    translateKey += "mp";
+                    return LanguageHelper.instance.GetTextTranslate(translateKey);
+                case EBasicAttribute.ATTACK:
+                    translateKey += "attack_value";
+                    return LanguageHelper.instance.GetTextTranslate(translateKey);
+                case EBasicAttribute.DEFEND:
+                    translateKey += "defend_value";
+                    return LanguageHelper.instance.GetTextTranslate(translateKey);
+                case EBasicAttribute.MISS:
+                    translateKey += "miss_chance";
+                    return LanguageHelper.instance.GetTextTranslate(translateKey);
+                case EBasicAttribute.CRITICAL_CHANCE:
+                    translateKey += "critical_chance";
+                    return LanguageHelper.instance.GetTextTranslate(translateKey);
+                case EBasicAttribute.ARMOR:
+                    translateKey += "armor_level";
+                    return LanguageHelper.instance.GetTextTranslate(translateKey);
+                case EBasicAttribute.MAGIC_RESISTENCE:
+                    translateKey += "magic_resistence_level";
+                    return LanguageHelper.instance.GetTextTranslate(translateKey);
+                case EBasicAttribute.PHYSICAL_LEVEL:
+                    translateKey += "physical_level";
+                    return LanguageHelper.instance.GetTextTranslate(translateKey);
+                case EBasicAttribute.MAGIC_ATTRIBUTE:
+                    translateKey += "magic_attribute";
+                    return LanguageHelper.instance.GetTextTranslate(translateKey);
+                default:
+                    return "invalid enum";
+            }
+        }
     }
 }

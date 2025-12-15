@@ -51,5 +51,37 @@ namespace SCFrame
             }
 
         }
+
+        //public string GetTextTranslate(string _translateKey,List<object> _objs)
+        //{
+        //    if (!_m_textLanguageRefDict.TryGetValue(_translateKey, out TextLanguageRefObj refObj))
+        //    {
+        //        return "translate is not find in dict!!!";
+        //    }
+        //    string localStr = "";
+        //    switch (SCSettingMgr.instance.languageType)
+        //    {
+        //        case ELanguageType.zh_CN:
+        //            localStr = refObj.zh_CN;
+        //            break;
+        //        case ELanguageType.en_US:
+        //            localStr = refObj.en_US;
+        //            break;
+        //        default:
+        //            return "text with language does not config!!!";
+        //    }
+
+        //    try
+        //    {
+        //        // 使用 string.Format 来替换 {0}、{1} 等占位符
+        //        return string.Format(localStr, _objs.ToArray());
+        //    }
+        //    catch
+        //    {
+        //        // 如果格式化失败，返回原始字符串
+        //        Debug.LogWarning($"Format failed for translation key: {_translateKey}");
+        //        return localStr;
+        //    }
+        //}
     }
 }

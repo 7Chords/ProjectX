@@ -55,7 +55,7 @@ namespace GameCore.UI
 
 
 
-        public void SetListInfo(List<long> _skillList, int _selectIndex)
+        public void SetListInfo(List<ItemData> _skillList, int _selectIndex)
         {
             if (_skillList == null)
                 return;

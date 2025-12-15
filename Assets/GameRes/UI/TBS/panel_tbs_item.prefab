@@ -361,7 +361,7 @@ MonoBehaviour:
   canvasGroup: {fileID: 7664362176359218735}
   fadeInDuration: 0.25
   fadeOutDuration: 0.25
-  prefabItemObjName: prefab_tbs_skill_item
+  prefabItemObjName: prefab_tbs_item_item
   layoutGroup: {fileID: 4062890951888991446}
 --- !u!1 &2797791385006042471
 GameObject:

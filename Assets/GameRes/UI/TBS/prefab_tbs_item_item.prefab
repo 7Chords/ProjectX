@@ -230,6 +230,17 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0361d535739cd234b97437e3aba2ee15, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  uiMask: {fileID: 0}
+  canvasGroup: {fileID: 3681001500137373050}
+  fadeInDuration: 0
+  fadeOutDuration: 0
+  imgItem: {fileID: 7149666582805277851}
+  imgItemIcon: {fileID: 9219016526575588616}
+  txtItemName: {fileID: 3137645830998389639}
+  txtItemRemain: {fileID: 2732335216494503268}
+  colorItemSelect: {r: 1, g: 0, b: 0.9, a: 1}
+  colorItemUnSelect: {r: 1, g: 1, b: 1, a: 1}
+  btnItemClick: {fileID: 5832121385639292088}
 --- !u!1 &5748494171365238120
 GameObject:
   m_ObjectHideFlags: 0

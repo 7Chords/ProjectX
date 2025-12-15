@@ -145,7 +145,12 @@ namespace GameCore
             return LanguageHelper.instance.GetTextTranslate("#2_lv_name", _level, characterName);
         }
 
-
+        /// <summary>
+        /// 解析配表效果obj
+        /// </summary>
+        /// <param name="_str"></param>
+        /// <param name="_type"></param>
+        /// <returns></returns>
         public static _AEffectObjBase ParseEffectObj(string _str,Type _type)
         {
             if (string.IsNullOrEmpty(_str))
@@ -164,6 +169,101 @@ namespace GameCore
 
             return effectObj;
 
+        }
+
+        /// <summary>
+        /// 获得技能描述翻译
+        /// </summary>
+        /// <param name="_skillId"></param>
+        /// <returns></returns>
+        public static string GetSkillDescTranslate(long _skillId)
+        {
+            string resStr = "";
+            TBSActorSkillRefObj skillRefObj = SCRefDataMgr.instance.tbsActorSkillRefList.refDataList.Find(x => x.id == _skillId);
+            if(skillRefObj == null)
+            {
+                SCDebugHelper.LogError("找不到id为" + _skillId + "的技能");
+                return resStr;
+            }
+            //根据不同的伤害类型这里要做描述特殊处理
+            string damageDescStr = "";
+            switch (skillRefObj.damageType)
+            {
+                case EDamageType.MAGIC:
+                    damageDescStr = Enum2StrFactory.CreateLocalStrByMagicAttributeEnum(skillRefObj.magicAttributeType);
+                    break;
+                case EDamageType.PHYSICAL:
+                    damageDescStr = Enum2StrFactory.CreateLocalStrByPhysicalLevelEnum(skillRefObj.physicsLevelType);
+                    break;
+                default:
+                    break;
+            }
+
+            resStr = LanguageHelper.instance.GetTextTranslate(
+                skillRefObj.skillDesc,
+                Enum2StrFactory.CreateLocalStrByDamageTargetEnum(skillRefObj.damageTargetType),
+                Enum2StrFactory.CreateLocalStrByDamageAmountEnum(skillRefObj.damageAmountType),
+                damageDescStr,
+                Enum2StrFactory.CreateLocalStrByDamageEnum(skillRefObj.damageType));
+
+            return resStr;
+        }
+        public static string GetItemDescTranslate(long _itemId)
+        {
+            string resStr = "";
+            ItemRefObj itemRefObj = SCRefDataMgr.instance.itemRefList.refDataList.Find(x => x.id == _itemId);
+            if (itemRefObj == null)
+            {
+                SCDebugHelper.LogError("找不到id为" + _itemId + "的道具");
+                return resStr;
+            }
+            switch (itemRefObj.itemType)
+            {
+                case EItemType.NONE:
+                    break;
+                case EItemType.QUEST:
+                    break;
+                case EItemType.GROW:
+                    break;
+                case EItemType.BATTLE:
+                    {
+                        resStr = getBattleItemEffectDesc(itemRefObj.itemEffectRefObjId, itemRefObj.itemDesc);
+                    }
+                    break;
+            }
+            return resStr;
+        }
+
+
+        private static string getBattleItemEffectDesc(long _effectRefObjId,string _translateKey)
+        {
+            string resStr = "";
+            BattleItemEffectRefObj effectRefObj = SCRefDataMgr.instance.battleItemEffectRefList.refDataList.Find(x => x.id == _effectRefObjId);
+            if(effectRefObj == null)
+            {
+                SCDebugHelper.LogError("找不到id为" + _effectRefObjId + "的道具效果obj");
+                return resStr;
+            }
+            switch (effectRefObj.effectType)
+            {
+                case EBattleItemEffectType.NONE:
+                    break;
+                case EBattleItemEffectType.BASIC_CHG:
+                    {
+                        List<BasicChgEffectObj> basicChgEffectList = effectRefObj.basicChgEffectList;
+                        object[] translateParams = new object[basicChgEffectList.Count * 2];
+                        for(int i =0;i<basicChgEffectList.Count;i++)
+                        {
+                            translateParams[i * 2] = Enum2StrFactory.CreateLoaclStrByBasicAttributeEnum(basicChgEffectList[i].basicAttribute);
+                            translateParams[i * 2 + 1] = basicChgEffectList[i].changeValue;
+                        }
+                        resStr = LanguageHelper.instance.GetTextTranslate(_translateKey, translateParams);
+                    }
+                    break;
+                case EBattleItemEffectType.BUFF:
+                    break;
+            }
+            return resStr;
         }
     }
 }

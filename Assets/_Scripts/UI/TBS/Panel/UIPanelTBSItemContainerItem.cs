@@ -31,7 +31,7 @@ namespace GameCore.UI
 
         }
 
-        public void SetInfo(long _itemId)
+        public void SetInfo(ItemData _itemData)
         {
 
         }

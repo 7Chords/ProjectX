@@ -1,3 +1,4 @@
+using GameCore.RefData;
 using GameCore.TBS;
 using SCFrame;
 using SCFrame.UI;
@@ -10,9 +11,8 @@ namespace GameCore.UI
     public class UIPanelTBSItem : _ASCUIPanelBase<UIMonoTBSItem>
     {
         private UIPanelTBSItemContainer _m_itemContainer;//µÀ¾ßcontainer
-
+        private List<ItemData> _m_itemDataList;
         private int _m_curSelectItemIdx;
-        private int _m_curActorSkillCount;
         public UIPanelTBSItem(UIMonoTBSItem _mono, SCUIShowType _showType) : base(_mono, _showType)
         {
         }
@@ -61,6 +61,8 @@ namespace GameCore.UI
 
         public override void OnShowPanel()
         {
+            _m_itemDataList = SCDataMgr.instance.itemDataList;
+
             _m_curSelectItemIdx = 0;
 
             refreshPanel();
@@ -80,12 +82,21 @@ namespace GameCore.UI
 
         private void refreshItemContainer()
         {
- 
+            if (_m_itemDataList == null)
+                return;
+            _m_itemContainer.SetListInfo(_m_itemDataList, _m_curSelectItemIdx);
+            _m_itemContainer.ShowPanel();
         }
 
         private void refreshCurItemDesc()
         {
-
+            if (_m_itemDataList == null || _m_curSelectItemIdx < 0 || _m_curSelectItemIdx>= _m_itemDataList.Count)
+                return;
+            ItemData itemData = _m_itemDataList[_m_curSelectItemIdx];
+            ItemRefObj itemRefObj = SCRefDataMgr.instance.itemRefList.refDataList.Find(x => x.id == itemData.itemId);
+            if (itemRefObj == null)
+                return;
+            mono.txtItemDesc.text = GameCommon.GetItemDescTranslate(itemRefObj.id);
         }
 
         private void onTBSActorItemHighLightUp()
@@ -96,7 +107,7 @@ namespace GameCore.UI
 
         private void onTBSActorItemHighLightDown()
         {
-            _m_curSelectItemIdx = Mathf.Min(_m_curSelectItemIdx + 1, _m_curActorSkillCount - 1);
+            _m_curSelectItemIdx = Mathf.Min(_m_curSelectItemIdx + 1, _m_itemDataList.Count - 1);
             refreshPanel();
         }
 

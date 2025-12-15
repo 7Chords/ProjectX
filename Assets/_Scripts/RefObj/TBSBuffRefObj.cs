@@ -17,16 +17,18 @@ namespace GameCore.RefData
         }
         public long id;
         public EBuffType buffType;
+        public EBasicAttribute affectAttribute;
         public string buffName;
-        public bool isGood;
+        public bool isPositive;
         public string buffDesc;
         public string buffIconObjName;
         protected override void _parseFromString()
         {
             id = getLong("id");
             buffType = (EBuffType)getEnum("buffType", typeof(EBuffType));
+            affectAttribute = (EBasicAttribute)getEnum("affectAttribute", typeof(EBasicAttribute));
             buffName = getString("buffName");
-            isGood = getBool("isGood");
+            isPositive = getBool("isPositive");
             buffDesc = getString("buffDesc");
             buffIconObjName = getString("buffIconObjName");
         }

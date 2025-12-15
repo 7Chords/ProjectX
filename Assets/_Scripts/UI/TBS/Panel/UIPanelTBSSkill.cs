@@ -104,29 +104,8 @@ namespace GameCore.UI
             if (actorInfo == null)
                 return;
             long curSkillId = actorInfo.skillList[_m_curSelectSkillIdx];
-            TBSActorSkillRefObj skillRefObj = SCRefDataMgr.instance.tbsActorSkillRefList.refDataList.Find(x => x.id == curSkillId);
 
-
-            //根据不同的伤害类型这里要做描述特殊处理
-            string damageDescStr = "";
-            switch (skillRefObj.damageType)
-            {
-                case EDamageType.MAGIC:
-                    damageDescStr = Enum2StrFactory.CreateLocalStrByMagicAttributeEnum(skillRefObj.magicAttributeType);
-                    break;
-                case EDamageType.PHYSICAL:
-                    damageDescStr = Enum2StrFactory.CreateLocalStrByPhysicalLevelEnum(skillRefObj.physicsLevelType);
-                    break;
-                default:
-                    break;
-            }
-
-            mono.txtSkillDesc.text = LanguageHelper.instance.GetTextTranslate(
-                skillRefObj.skillDesc,
-                Enum2StrFactory.CreateLocalStrByDamageTargetEnum(skillRefObj.damageTargetType),
-                Enum2StrFactory.CreateLocalStrByDamageAmountEnum(skillRefObj.damageAmountType),
-                damageDescStr,
-                Enum2StrFactory.CreateLocalStrByDamageEnum(skillRefObj.damageType));
+            mono.txtSkillDesc.text = GameCommon.GetSkillDescTranslate(curSkillId);
         }
 
 

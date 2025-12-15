@@ -8,7 +8,7 @@
 10007	#1_little	少量	little
 10008	#1_middle	较大量	middle
 10009	#1_large	大量	large
-10010	#1_single	单个	single
+10010	#1_single	一名	single
 10011	#1_all	所有	all
 10012	#1_light	轻型穿透的	light armor-piercing
 10013	#1_medium	中型穿透的	medium armor-piercing
@@ -41,5 +41,17 @@
 10040	#1_character_name_1004	红色史莱姆	RedSlime
 10041	#1_character_name_1005	尖刺史莱姆	SpikeSlime
 10042	#1_character_name_1006	石头巨人	RockGiant
-10043	#2_tbs_item_desc_1001	回复一名己方角色{0}点生命值	Restore {0} health to an allied character
-10044	#2_tbs_item_desc_1002	提升一名己方角色的攻击力，持续{0}回合	Increase an ally's attack power for {0} turns
+10043	#2_tbs_item_desc_basic_up	回复一名己方角色{1}点{0}	Restore {0} {1} to an allied character
+10044	#2_tbs_item_desc_buff_up	提升一名己方角色的{0}，持续{1}回合	Increase an ally's {0} for {1} turns
+10045	#1_item_name_1001	小型生命药水	small health battle
+10046	#1_item_name_1002	振奋苹果	apple
+10047	#1_hp	生命值	hp
+10048	#1_mp	魔力值	mp
+10049	#1_attack_value	攻击力	attack value
+10050	#1_defend_value	防御力	defend value
+10051	#1_miss_chance	闪避率	miss chance
+10052	#1_critical_chance	暴击率	critical chance
+10053	#1_armor_level	护甲等级	armor level
+10054	#1_magic_resistence_level	法术抗性等级	magic resistence level
+10055	#1_physical_level	物理穿透等级	physical level
+10056	#1_magic_attribute	法术属性	magic attribute
