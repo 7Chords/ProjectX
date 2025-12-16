@@ -29,9 +29,9 @@ namespace GameCore.UI
 
         public override void BeforeDiscard()
         {
-            SCMsgCenter.UnregisterMsgAct(SCMsgConst.TBS_ACTOR_SKILL_HIGHTLIGHT_UP, onTBSActorItemHighLightUp);
-            SCMsgCenter.UnregisterMsgAct(SCMsgConst.TBS_ACTOR_SKILL_HIGHTLIGHT_DOWN, onTBSActorItemHighLightDown);
-            SCMsgCenter.UnregisterMsg(SCMsgConst.TBS_ACTOR_SKILL_MOUSE_HIGHLIGHT, onTBSActorItemMouseHighLight);
+            SCMsgCenter.UnregisterMsgAct(SCMsgConst.TBS_ACTOR_ITEM_HIGHTLIGHT_UP, onTBSActorItemHighLightUp);
+            SCMsgCenter.UnregisterMsgAct(SCMsgConst.TBS_ACTOR_ITEM_HIGHTLIGHT_DOWN, onTBSActorItemHighLightDown);
+            SCMsgCenter.UnregisterMsg(SCMsgConst.TBS_ACTOR_ITEM_MOUSE_HIGHLIGHT, onTBSActorItemMouseHighLight);
 
             if (_m_itemContainer != null)
                 _m_itemContainer.Discard();
@@ -113,7 +113,18 @@ namespace GameCore.UI
 
         private void onTBSActorItemMouseHighLight(object[] _objs)
         {
-
+            if (_objs == null || _objs.Length == 0)
+                return;
+            long itemId = (long)_objs[0];
+            for (int i = 0; i < _m_itemDataList.Count; i++)
+            {
+                if (_m_itemDataList[i].itemId == itemId)
+                {
+                    _m_curSelectItemIdx = i;
+                    break;
+                }
+            }
+            refreshPanel();
         }
     }
 }

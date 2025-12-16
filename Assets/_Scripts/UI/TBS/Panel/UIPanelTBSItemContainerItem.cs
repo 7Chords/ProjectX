@@ -1,7 +1,9 @@
 using GameCore.RefData;
 using SCFrame;
 using SCFrame.UI;
+using System;
 using UnityEngine;
+using UnityEngine.EventSystems;
 
 namespace GameCore.UI
 {
@@ -19,11 +21,14 @@ namespace GameCore.UI
         public override void AfterInitialize()
         {
 
+            mono.btnItemClick.AddMouseEnter(onBtnItemMouseEnter);
         }
+
 
         public override void BeforeDiscard()
         {
 
+            mono.btnItemClick.RemoveMouseEnter(onBtnItemMouseEnter);
         }
 
         public override void OnHidePanel()
@@ -58,6 +63,11 @@ namespace GameCore.UI
         {
             mono.imgItem.color = _isSelect ? mono.colorItemSelect : mono.colorItemUnSelect;
             _m_isSelect = _isSelect;
+        }
+
+        private void onBtnItemMouseEnter(PointerEventData _eventData, object[] _args)
+        {
+            SCMsgCenter.SendMsg(SCMsgConst.TBS_ACTOR_ITEM_MOUSE_HIGHLIGHT, _m_itemRefObj.id);
         }
     }
 }

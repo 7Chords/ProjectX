@@ -64,18 +64,40 @@ namespace GameCore.TBS
 
         private void onTBSSwitchToUpInput()
         {
-            _ASCUINodeBase node = GameCoreMgr.instance.uiCoreMgr.GetNodeByName(nameof(UINodeTBSSkill));
-            if (node == null || node.hasHideNode)
+            _ASCUINodeBase topNode = GameCoreMgr.instance.uiCoreMgr.GetTopNode();
+            if (topNode == null || topNode.hasHideNode)
                 return;
-            SCMsgCenter.SendMsg(SCMsgConst.TBS_ACTOR_SKILL_HIGHTLIGHT_UP);
+            switch (topNode.GetNodeName())
+            {
+                case nameof(UINodeTBSSkill):
+                    SCMsgCenter.SendMsg(SCMsgConst.TBS_ACTOR_SKILL_HIGHTLIGHT_UP);
+                    break;
+                case nameof(UINodeTBSItem):
+                    SCMsgCenter.SendMsg(SCMsgConst.TBS_ACTOR_ITEM_HIGHTLIGHT_UP);
+                    break;
+                default:
+                    break;
+            }
         }
 
         private void onTBSSwitchToDownInput()
         {
-            _ASCUINodeBase node = GameCoreMgr.instance.uiCoreMgr.GetNodeByName(nameof(UINodeTBSSkill));
-            if (node == null || node.hasHideNode)
+
+
+            _ASCUINodeBase topNode = GameCoreMgr.instance.uiCoreMgr.GetTopNode();
+            if (topNode == null || topNode.hasHideNode)
                 return;
-            SCMsgCenter.SendMsg(SCMsgConst.TBS_ACTOR_SKILL_HIGHTLIGHT_DOWN);
+            switch (topNode.GetNodeName())
+            {
+                case nameof(UINodeTBSSkill):
+                    SCMsgCenter.SendMsg(SCMsgConst.TBS_ACTOR_SKILL_HIGHTLIGHT_DOWN);
+                    break;
+                case nameof(UINodeTBSItem):
+                    SCMsgCenter.SendMsg(SCMsgConst.TBS_ACTOR_ITEM_HIGHTLIGHT_DOWN);
+                    break;
+                default:
+                    break;
+            }
         }
     }
 }
