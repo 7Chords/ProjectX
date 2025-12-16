@@ -16,7 +16,7 @@ namespace GameCore.RefData
         {
         }
         public long id;
-        public EBuffType buffType;
+        public EBuffEffectType buffType;
         public EBasicAttribute affectAttribute;
         public string buffName;
         public bool isPositive;
@@ -25,7 +25,7 @@ namespace GameCore.RefData
         protected override void _parseFromString()
         {
             id = getLong("id");
-            buffType = (EBuffType)getEnum("buffType", typeof(EBuffType));
+            buffType = (EBuffEffectType)getEnum("buffType", typeof(EBuffEffectType));
             affectAttribute = (EBasicAttribute)getEnum("affectAttribute", typeof(EBasicAttribute));
             buffName = getString("buffName");
             isPositive = getBool("isPositive");

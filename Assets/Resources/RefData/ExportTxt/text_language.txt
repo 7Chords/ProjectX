@@ -42,7 +42,7 @@
 10041	#1_character_name_1005	尖刺史莱姆	SpikeSlime
 10042	#1_character_name_1006	石头巨人	RockGiant
 10043	#2_tbs_item_desc_basic_up	回复一名己方角色{1}点{0}	Restore {0} {1} to an allied character
-10044	#2_tbs_item_desc_buff_up	提升一名己方角色的{0}，持续{1}回合	Increase an ally's {0} for {1} turns
+10044	#2_tbs_item_desc_buff_up	提升{0}{1}角色的{2}，持续{3}回合	Increase {0} {1} {2} for {3} turns
 10045	#1_item_name_1001	小型生命药水	small health battle
 10046	#1_item_name_1002	振奋苹果	apple
 10047	#1_hp	生命值	hp
@@ -56,3 +56,5 @@
 10055	#1_physical_level	物理穿透等级	physical level
 10056	#1_magic_attribute	法术属性	magic attribute
 10057	#1_*{0}	*{0}	*{0}
+10058	#1_hostile	敌方的	hostile
+10059	#1_allied	己方的	allied

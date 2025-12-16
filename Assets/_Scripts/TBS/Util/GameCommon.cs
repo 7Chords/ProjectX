@@ -262,14 +262,30 @@ namespace GameCore
                     break;
                 case EBattleItemEffectType.BUFF:
                     {
-                        //List<BuffEffectObj> buffEffectList = effectRefObj.buffEffectList;
-                        //object[] translateParams = new object[buffEffectList.Count * 2];
-                        //for (int i = 0; i < buffEffectList.Count; i++)
-                        //{
-                        //    translateParams[i * 2] = Enum2StrFactory.CreateLoaclStrByBasicAttributeEnum(buffEffectList[i].basicAttribute);
-                        //    translateParams[i * 2 + 1] = buffEffectList[i].changeValue;
-                        //}
-                        //resStr = LanguageHelper.instance.GetTextTranslate(_translateKey, translateParams);
+                        List<BuffEffectObj> buffEffectList = effectRefObj.buffEffectList;
+                        List<object> translateParamList = new List<object>();
+                        TBSBuffRefObj buffRefObj;
+                        for (int i = 0; i < buffEffectList.Count; i++)
+                        {
+                            translateParamList.Add(Enum2StrFactory.CreateLocalStrByDamageTargetEnum(effectRefObj.targetType));
+                            translateParamList.Add(LanguageHelper.instance.GetTextTranslate(effectRefObj.isPlayerTarget ? "#1_allied" : "#1_hostile"));
+                            buffRefObj = SCRefDataMgr.instance.tbsBuffRefList.refDataList.Find(x => x.id == buffEffectList[i].buffRefObjId);
+
+                            switch (buffRefObj.buffType)
+                            {
+                                case EBuffEffectType.NONE:
+                                    break;
+                                case EBuffEffectType.ATTRIBUTE_CHG:
+                                    translateParamList.Add(Enum2StrFactory.CreateLoaclStrByBasicAttributeEnum(buffRefObj.affectAttribute));
+                                    translateParamList.Add(buffEffectList[i].continueTurn);
+                                    break;
+                                case EBuffEffectType.DAMAGE:
+                                    break;
+                                case EBuffEffectType.SPECIAL:
+                                    break;
+                            }
+                        }
+                        resStr = LanguageHelper.instance.GetTextTranslate(_translateKey, translateParamList.ToArray());
                     }
                     break;
             }
