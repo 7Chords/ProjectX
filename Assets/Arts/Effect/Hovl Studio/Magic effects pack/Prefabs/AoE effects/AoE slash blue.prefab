@@ -9914,8 +9914,8 @@ ParticleSystem:
     startLifetime:
       serializedVersion: 2
       minMaxState: 3
-      scalar: 0.15
-      minScalar: 0.1
+      scalar: 1
+      minScalar: 0.8
       maxCurve:
         serializedVersion: 2
         m_Curve:
@@ -9967,8 +9967,8 @@ ParticleSystem:
     startSpeed:
       serializedVersion: 2
       minMaxState: 3
-      scalar: 30
-      minScalar: 50
+      scalar: 50
+      minScalar: 80
       maxCurve:
         serializedVersion: 2
         m_Curve:
@@ -10083,8 +10083,8 @@ ParticleSystem:
     startSize:
       serializedVersion: 2
       minMaxState: 3
-      scalar: 2
-      minScalar: 2.5
+      scalar: 5
+      minScalar: 6
       maxCurve:
         serializedVersion: 2
         m_Curve:
@@ -10603,7 +10603,7 @@ ParticleSystem:
           m_PostInfinity: 2
           m_RotationOrder: 4
     arc:
-      value: 360
+      value: 180
       mode: 3
       spread: 0
       speed:
@@ -10775,7 +10775,7 @@ ParticleSystem:
       countCurve:
         serializedVersion: 2
         minMaxState: 0
-        scalar: 7
+        scalar: 10
         minScalar: 30
         maxCurve:
           serializedVersion: 2
@@ -11163,7 +11163,7 @@ ParticleSystem:
         serializedVersion: 2
         key0: {r: 1, g: 1, b: 1, a: 0}
         key1: {r: 1, g: 1, b: 1, a: 1}
-        key2: {r: 0, g: 0, b: 0, a: 0.22813678}
+        key2: {r: 0, g: 0, b: 0, a: 0.8784314}
         key3: {r: 0, g: 0, b: 0, a: 0}
         key4: {r: 0, g: 0, b: 0, a: 0}
         key5: {r: 0, g: 0, b: 0, a: 0}
@@ -11179,7 +11179,7 @@ ParticleSystem:
         ctime7: 0
         atime0: 0
         atime1: 12957
-        atime2: 30984
+        atime2: 52621
         atime3: 65535
         atime4: 0
         atime5: 0
@@ -12481,7 +12481,7 @@ ParticleSystem:
     inWorldSpace: 0
     multiplyDragByParticleSize: 0
     multiplyDragByParticleVelocity: 0
-    dampen: 0.1
+    dampen: 0.05
     drag:
       serializedVersion: 2
       minMaxState: 0
@@ -14721,7 +14721,7 @@ ParticleSystem:
   ringBufferMode: 0
   ringBufferLoopRange: {x: 0, y: 1}
   emitterVelocityMode: 1
-  looping: 1
+  looping: 0
   prewarm: 0
   playOnAwake: 1
   useUnscaledTime: 0

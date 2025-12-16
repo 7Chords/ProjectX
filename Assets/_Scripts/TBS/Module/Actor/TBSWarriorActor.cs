@@ -99,7 +99,25 @@ namespace GameCore.TBS
             _m_actorSkillRefObj = skillRefObj;
             if (!_m_actorSkillRefObj.needMove)
             {
+                GameCoreMgr.instance.uiCoreMgr.RemoveNode(nameof(UINodeTBSConfirm));
+                GameCoreMgr.instance.uiCoreMgr.HideNode(nameof(UINodeTBSMain));
+                GameCoreMgr.instance.uiCoreMgr.HideNode(nameof(UINodeTBSEnemyHud));
+                TBSCursorMgr.instance.HideSelectionCursor();
+                _m_actorMono.signalEventTrigger.AddSignalEvent("CommonDealSkill", dealSkill);
                 _m_actorMono.skillDirector.Play(skillAsset);
+
+
+                Sequence seq = DOTween.Sequence();
+                seq.Append(DOVirtual.DelayedCall((float)skillAsset.duration,
+                    () =>
+                    {
+                        SCMsgCenter.SendMsg(SCMsgConst.TBS_ACTOR_ACTION_END, actorInfo.runningId);
+                        _m_actorMono.signalEventTrigger.RemoveSignalEvent("CommonDealSkill");
+                        _m_attackEnemyActorList.Clear();
+
+                    }));
+
+                _m_tweenContainer?.RegDoTween(seq);
             }
             else
             {
@@ -163,7 +181,29 @@ namespace GameCore.TBS
 
                         }
                         break;
-                    case "Ë²ÉÁÍ»´Ì":
+                    case "ËÄ·½½£Ó°":
+                        {
+                            GameCoreMgr.instance.uiCoreMgr.RemoveNode(nameof(UINodeTBSConfirm));
+                            GameCoreMgr.instance.uiCoreMgr.HideNode(nameof(UINodeTBSMain));
+                            GameCoreMgr.instance.uiCoreMgr.HideNode(nameof(UINodeTBSEnemyHud));
+                            TBSCursorMgr.instance.HideSelectionCursor();
+                            _m_actorMono.signalEventTrigger.AddSignalEvent("CommonDealSkill", dealSkill);
+                            _m_actorMono.skillDirector.Play(skillAsset);
+
+
+                            Sequence seq = DOTween.Sequence();
+                            seq.Append(DOVirtual.DelayedCall((float)skillAsset.duration,
+                                () =>
+                                {
+                                    SCMsgCenter.SendMsg(SCMsgConst.TBS_ACTOR_ACTION_END, actorInfo.runningId);
+                                    _m_actorMono.signalEventTrigger.RemoveSignalEvent("CommonDealSkill");
+                                    _m_attackEnemyActorList.Clear();
+
+                                }));
+
+                            _m_tweenContainer?.RegDoTween(seq);
+
+                        }
                         break;
                 }
             }

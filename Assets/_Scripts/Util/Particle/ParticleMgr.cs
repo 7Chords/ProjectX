@@ -98,6 +98,7 @@ namespace GameCore.Util
             if (_autoDestroy)
             {
                 float delay = _destroyDelay >= 0 ? _destroyDelay : GetParticleDuration(particleSystem);
+                SCDebugHelper.Log("delay:" + delay);
                 SCTaskHelper.instance.CreateCoroutine(prefab, AutoDestroyEffect(info, delay));
             }
 
@@ -364,10 +365,10 @@ namespace GameCore.Util
             yield return new WaitForSeconds(_delay);
 
             // 等待粒子完全消失
-            if (_info.particleSystem != null)
-            {
-                yield return new WaitWhile(() => _info.particleSystem.IsAlive());
-            }
+            //if (_info.particleSystem != null)
+            //{
+            //    yield return new WaitWhile(() => _info.particleSystem.IsAlive());
+            //}
 
             // 从列表中移除并销毁对象
             if (_m_activeParticleEffectList.Contains(_info))

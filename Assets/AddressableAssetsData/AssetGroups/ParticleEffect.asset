@@ -21,6 +21,10 @@ MonoBehaviour:
     m_Address: slash_snow
     m_ReadOnly: 0
     m_SerializedLabels: []
+  - m_GUID: 035ce8c9cfc34104991ce416daf8aebe
+    m_Address: aoe_slash_blue
+    m_ReadOnly: 0
+    m_SerializedLabels: []
   m_ReadOnly: 0
   m_Settings: {fileID: 11400000, guid: d14fb1bbe98862146a7f5467a5bc79f8, type: 2}
   m_SchemaSet:
