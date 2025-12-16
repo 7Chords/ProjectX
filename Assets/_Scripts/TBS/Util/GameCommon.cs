@@ -139,6 +139,16 @@ namespace GameCore
                 _worldPos);
             attackStateGO.GetComponent<AttackStateText>().Initialize(Enum2StrFactory.CreateLocalStrByAttackStateEnum(_attackState));
         }
+
+        public static void ShowCommonTip(string _content)
+        {
+            GameObject tipGO = ResourcesHelper.LoadGameObject(
+                GetUIResObjPath(GameConst.COMMON_TIP_PREFAB),
+                SCGame.instance.topLayerRoot.transform);
+            tipGO.GetRectTransform().localPosition = SCGame.instance.tranTipPoint.localPosition;
+            tipGO.GetComponent<TipFloatText>().Initialize(_content);
+        }
+
         public static string GetCharacterNameWithLv(int _level, string _characterNameKey)
         {
             string characterName = LanguageHelper.instance.GetTextTranslate(_characterNameKey);

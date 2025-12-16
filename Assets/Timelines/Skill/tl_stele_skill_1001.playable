@@ -155,7 +155,7 @@ MonoBehaviour:
   relativeToTarget: 0
   scale: {x: 2, y: 2, z: 2}
   autoDestroy: 1
-  destroyDelay: 0
+  destroyDelay: 0.5
   followTarget: 0
   simulateSpeed: 0.8
 --- !u!114 &-1254790726744159128

@@ -34,7 +34,7 @@ namespace GameCore.TBS
             GameGeneralRefObj generalRefObj = SCRefDataMgr.instance.gameGeneralRefObj;
 
             Vector3 originalPos = _m_actorMono.goModel.transform.position;
-
+             
             Sequence seq = DOTween.Sequence();
             Tween lookAtTargetTween = _m_actorMono.goModel.transform.DOLookAt(new Vector3(_target.GetActorGameObject().transform.position.x,
                 GetActorGameObject().transform.position.y, _target.GetActorGameObject().transform.position.z), generalRefObj.tbsMeleeLookAtTargetDuration);
@@ -86,11 +86,18 @@ namespace GameCore.TBS
         }
 
 
-        public override void ReleaseSkill(long skillId, TBSActorBase _target)
+        public override void ReleaseSkill(long _skillId, TBSActorBase _target)
         {
+
+            if (!checkSkillCanRelease(_skillId))
+            {
+                GameCommon.ShowCommonTip("MP²»×ã£¡");
+                return;
+            }
+
             _m_attackEnemyActorList.Add(_target);
 
-            TBSActorSkillRefObj skillRefObj = SCRefDataMgr.instance.tbsActorSkillRefList.refDataList.Find(x => x.id == skillId);
+            TBSActorSkillRefObj skillRefObj = SCRefDataMgr.instance.tbsActorSkillRefList.refDataList.Find(x => x.id == _skillId);
             if (skillRefObj == null)
                 return;
             PlayableAsset skillAsset = ResourcesHelper.LoadAsset<PlayableAsset>(skillRefObj.skillPlayableAssetName);
@@ -127,7 +134,13 @@ namespace GameCore.TBS
                         {
                             _m_actorMono.signalEventTrigger.AddSignalEvent("CommonDealSkill", dealSkill);
                             Vector3 originalPos = _m_actorMono.gameObject.transform.position;
+
+                            GameGeneralRefObj generalRefObj = SCRefDataMgr.instance.gameGeneralRefObj;
                             Sequence seq = DOTween.Sequence();
+                            Tween lookAtTargetTween = _m_actorMono.goModel.transform.DOLookAt(new Vector3(_target.GetActorGameObject().transform.position.x,
+                                GetActorGameObject().transform.position.y, _target.GetActorGameObject().transform.position.z), generalRefObj.tbsMeleeLookAtTargetDuration);
+
+
                             Tween move2AttackTween = _m_actorMono.gameObject.transform.DOMove(_target.GetEnemyAttackStandPos(), 0.5f)
                                 .OnStart(
                                 () =>
@@ -161,6 +174,9 @@ namespace GameCore.TBS
                                     _m_animationCtl.PlaySingleAniamtion(_m_idleAnimClip);
                                 });
                             Tween rotateTween_2 = _m_actorMono.gameObject.transform.DOLocalRotate(Vector3.zero, 0.5f);
+
+
+                            seq.Append(lookAtTargetTween);
 
                             seq.Append(move2AttackTween);
 

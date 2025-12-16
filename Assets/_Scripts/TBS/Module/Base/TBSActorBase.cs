@@ -172,7 +172,7 @@ namespace GameCore.TBS
         public abstract void Attack_All(List<TBSActorBase> _targetList);
 
 
-        public abstract void ReleaseSkill(long skillId, TBSActorBase _target);
+        public abstract void ReleaseSkill(long _skillId, TBSActorBase _target);
 
         public virtual void Defend()
         {
@@ -246,7 +246,7 @@ namespace GameCore.TBS
         {
             if (_magicAmount <= 0)
             {
-                Debug.LogError("魔法消耗量小于等于0，请检查！！！");
+                SCDebugHelper.LogError("魔法消耗量小于等于0，请检查！！！");
                 return;
             }
             _m_actorInfo.curMp = Mathf.Max(_m_actorInfo.curMp - _magicAmount, 0);
@@ -360,6 +360,14 @@ namespace GameCore.TBS
             TBSAttackHandler.DealSkill(skillInfo);
         }
 
+        protected bool checkSkillCanRelease(long _skillId)
+        {
+            TBSActorSkillRefObj skillRefObj = SCRefDataMgr.instance.tbsActorSkillRefList.refDataList.Find(x => x.id == _skillId);
+            if (skillRefObj == null)
+                return false;
+            return actorInfo.curHp >= skillRefObj.skillNeedHp &&
+                actorInfo.curMp >= skillRefObj.skillNeedMp;
+        }
 
         protected virtual void onTBSActorActionEnd(object[] _objs)
         {
