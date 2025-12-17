@@ -66,9 +66,11 @@ namespace GameCore.TBS
         }
 
 
-        public override void ReleaseSkill(long _skillId, TBSActorBase _target)
+        public override void ReleaseSkill(long _skillId, List<TBSActorBase> _targetList)
         {
             if (!checkSkillCanRelease(_skillId))
+                return;
+            if (_targetList == null || _targetList.Count == 0)
                 return;
         }
     }

@@ -76,10 +76,18 @@ namespace GameCore.UI
 
         private void refreshPanel()
         {
+            refreshHasItemShow();
             refreshItemContainer();
             refreshCurItemDesc();
         }
 
+        private void refreshHasItemShow()
+        {
+            bool hasItem = _m_itemDataList != null && _m_itemDataList.Count > 0;
+            SCCommon.SetGameObjectEnable(mono.goHasItemShowList, hasItem);
+            SCCommon.SetGameObjectEnable(mono.goNoItemShowList, !hasItem);
+
+        }
         private void refreshItemContainer()
         {
             if (_m_itemDataList == null)

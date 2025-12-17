@@ -115,7 +115,7 @@ namespace GameCore.TBS
 
         }
 
-        public override void ReleaseSkill(long skillId, TBSActorBase _target)
+        public override void ReleaseSkill(long skillId, List<TBSActorBase> _targetList)
         {
         }
     }

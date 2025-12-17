@@ -86,7 +86,7 @@ namespace GameCore.TBS
         }
 
 
-        public override void ReleaseSkill(long _skillId, TBSActorBase _target)
+        public override void ReleaseSkill(long _skillId, List<TBSActorBase> _targetList)
         {
 
             if (!checkSkillCanRelease(_skillId))
@@ -95,7 +95,10 @@ namespace GameCore.TBS
                 return;
             }
 
-            _m_attackEnemyActorList.Add(_target);
+            if (_targetList == null || _targetList.Count == 0)
+                return;
+
+            _m_attackEnemyActorList.AddRange(_targetList);
 
             TBSActorSkillRefObj skillRefObj = SCRefDataMgr.instance.tbsActorSkillRefList.refDataList.Find(x => x.id == _skillId);
             if (skillRefObj == null)
@@ -104,12 +107,15 @@ namespace GameCore.TBS
             if (skillAsset == null)
                 return;
             _m_actorSkillRefObj = skillRefObj;
+
             if (!_m_actorSkillRefObj.needMove)
             {
                 GameCoreMgr.instance.uiCoreMgr.RemoveNode(nameof(UINodeTBSConfirm));
                 GameCoreMgr.instance.uiCoreMgr.HideNode(nameof(UINodeTBSMain));
                 GameCoreMgr.instance.uiCoreMgr.HideNode(nameof(UINodeTBSEnemyHud));
                 TBSCursorMgr.instance.HideSelectionCursor();
+  
+
                 _m_actorMono.signalEventTrigger.AddSignalEvent("CommonDealSkill", dealSkill);
                 _m_actorMono.skillDirector.Play(skillAsset);
 
@@ -132,16 +138,22 @@ namespace GameCore.TBS
                 {
                     case "迅捷攻击":
                         {
+                            //该技能是单体攻击 所以取目标第一个 这边或许可以支持配置为多个敌人的处理 不过需要商榷todo
+
+                            TBSActorBase target = _targetList[0];
+                            if (target == null)
+                                return;
+
                             _m_actorMono.signalEventTrigger.AddSignalEvent("CommonDealSkill", dealSkill);
                             Vector3 originalPos = _m_actorMono.gameObject.transform.position;
 
                             GameGeneralRefObj generalRefObj = SCRefDataMgr.instance.gameGeneralRefObj;
                             Sequence seq = DOTween.Sequence();
-                            Tween lookAtTargetTween = _m_actorMono.goModel.transform.DOLookAt(new Vector3(_target.GetActorGameObject().transform.position.x,
-                                GetActorGameObject().transform.position.y, _target.GetActorGameObject().transform.position.z), generalRefObj.tbsMeleeLookAtTargetDuration);
+                            Tween lookAtTargetTween = _m_actorMono.goModel.transform.DOLookAt(new Vector3(target.GetActorGameObject().transform.position.x,
+                                GetActorGameObject().transform.position.y, target.GetActorGameObject().transform.position.z), generalRefObj.tbsMeleeLookAtTargetDuration);
 
 
-                            Tween move2AttackTween = _m_actorMono.gameObject.transform.DOMove(_target.GetEnemyAttackStandPos(), 0.5f)
+                            Tween move2AttackTween = _m_actorMono.gameObject.transform.DOMove(target.GetEnemyAttackStandPos(), 0.5f)
                                 .OnStart(
                                 () =>
                                 {
@@ -199,25 +211,25 @@ namespace GameCore.TBS
                         break;
                     case "四方剑影":
                         {
-                            GameCoreMgr.instance.uiCoreMgr.RemoveNode(nameof(UINodeTBSConfirm));
-                            GameCoreMgr.instance.uiCoreMgr.HideNode(nameof(UINodeTBSMain));
-                            GameCoreMgr.instance.uiCoreMgr.HideNode(nameof(UINodeTBSEnemyHud));
-                            TBSCursorMgr.instance.HideSelectionCursor();
-                            _m_actorMono.signalEventTrigger.AddSignalEvent("CommonDealSkill", dealSkill);
-                            _m_actorMono.skillDirector.Play(skillAsset);
+                            //GameCoreMgr.instance.uiCoreMgr.RemoveNode(nameof(UINodeTBSConfirm));
+                            //GameCoreMgr.instance.uiCoreMgr.HideNode(nameof(UINodeTBSMain));
+                            //GameCoreMgr.instance.uiCoreMgr.HideNode(nameof(UINodeTBSEnemyHud));
+                            //TBSCursorMgr.instance.HideSelectionCursor();
+                            //_m_actorMono.signalEventTrigger.AddSignalEvent("CommonDealSkill", dealSkill);
+                            //_m_actorMono.skillDirector.Play(skillAsset);
 
 
-                            Sequence seq = DOTween.Sequence();
-                            seq.Append(DOVirtual.DelayedCall((float)skillAsset.duration,
-                                () =>
-                                {
-                                    SCMsgCenter.SendMsg(SCMsgConst.TBS_ACTOR_ACTION_END, actorInfo.runningId);
-                                    _m_actorMono.signalEventTrigger.RemoveSignalEvent("CommonDealSkill");
-                                    _m_attackEnemyActorList.Clear();
+                            //Sequence seq = DOTween.Sequence();
+                            //seq.Append(DOVirtual.DelayedCall((float)skillAsset.duration,
+                            //    () =>
+                            //    {
+                            //        SCMsgCenter.SendMsg(SCMsgConst.TBS_ACTOR_ACTION_END, actorInfo.runningId);
+                            //        _m_actorMono.signalEventTrigger.RemoveSignalEvent("CommonDealSkill");
+                            //        _m_attackEnemyActorList.Clear();
 
-                                }));
+                            //    }));
 
-                            _m_tweenContainer?.RegDoTween(seq);
+                            //_m_tweenContainer?.RegDoTween(seq);
 
                         }
                         break;

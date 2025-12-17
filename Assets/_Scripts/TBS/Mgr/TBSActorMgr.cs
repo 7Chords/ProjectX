@@ -1,3 +1,4 @@
+using GameCore.RefData;
 using GameCore.UI;
 using SCFrame;
 using SCFrame.UI;
@@ -282,7 +283,23 @@ namespace GameCore.TBS
             if (_args == null || _args.Length == 0)
                 return;
             long skillId = (long)_args[0];
-            _m_playerActorModuleList[_m_curSelectActorIndex].ReleaseSkill(skillId, _m_enemyActorModuleList[_m_singleTargetIndex]);
+
+            TBSActorSkillRefObj skillRefObj = SCRefDataMgr.instance.tbsActorSkillRefList.refDataList.Find(x => x.id == skillId);
+            if (skillRefObj == null)
+                return;
+
+            List<TBSActorBase> targetList = new List<TBSActorBase>();
+            if (skillRefObj.damageTargetType == ETargetType.ALL)
+            {
+                targetList = _m_enemyActorModuleList;
+                _m_playerActorModuleList[_m_curSelectActorIndex].ReleaseSkill(skillId, targetList);
+
+            }
+            else if (skillRefObj.damageTargetType == ETargetType.SINGLE)
+            {
+                targetList.Add(_m_enemyActorModuleList[_m_singleTargetIndex]);
+                _m_playerActorModuleList[_m_curSelectActorIndex].ReleaseSkill(skillId, targetList);
+            }
         }
 
         private void onTBSActorTargetHighlightLeft()
