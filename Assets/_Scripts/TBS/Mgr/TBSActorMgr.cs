@@ -292,12 +292,14 @@ namespace GameCore.TBS
             if (skillRefObj.damageTargetType == ETargetType.ALL)
             {
                 targetList = _m_enemyActorModuleList;
+                GameCameraMgr.instance.SetCameraTarget(_m_gameMono.playerLookEnemyCenterPos);
                 _m_playerActorModuleList[_m_curSelectActorIndex].ReleaseSkill(skillId, targetList);
 
             }
             else if (skillRefObj.damageTargetType == ETargetType.SINGLE)
             {
                 targetList.Add(_m_enemyActorModuleList[_m_singleTargetIndex]);
+                GameCameraMgr.instance.SetCameraTarget(_m_enemyActorModuleList[_m_singleTargetIndex].GetAsCameraTargetTran());
                 _m_playerActorModuleList[_m_curSelectActorIndex].ReleaseSkill(skillId, targetList);
             }
         }

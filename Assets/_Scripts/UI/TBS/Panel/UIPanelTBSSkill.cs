@@ -10,7 +10,7 @@ using UnityEngine;
 namespace GameCore.UI
 {
     public class UIPanelTBSSkill : _ASCUIPanelBase<UIMonoTBSSkill>
-    {
+    { 
         private UIPanelTBSSkillContainer _m_skillContainer;//¼¼ÄÜcontainer
 
         private int _m_curSelectSkillIdx;

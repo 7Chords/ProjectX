@@ -33,7 +33,7 @@ namespace GameCore.TBS
 
         private void onTBSConfirmInput()
         {
-            _ASCUINodeBase topNode = GameCoreMgr.instance.uiCoreMgr.GetTopNode();
+            _ASCUINodeBase topNode = GameCoreMgr.instance.uiCoreMgr.GetTopNode(SCUIShowType.FULL);
             if (topNode == null || topNode.hasHideNode)
                 return;
             switch(topNode.GetNodeName())

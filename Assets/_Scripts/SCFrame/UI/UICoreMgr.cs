@@ -162,11 +162,18 @@ namespace SCFrame.UI
 
         public void HideNode(string _nodeName)
         {
-            for(int i = _m_nodeList.Count - 1; i>-1; i--)
+            _ASCUINodeBase node = null;
+
+            for (int i = _m_nodeList.Count - 1; i>-1; i--)
             {
-                if(_m_nodeList[i].GetNodeName()==_nodeName)
+                node = _m_nodeList[i];
+                if (node == null)
+                    continue;
+                if (node.GetNodeName()==_nodeName)
                 {
-                    _m_nodeList[i].HideNode();
+                    node.HideNode();
+                    _m_nodeList.Remove(node);
+                    _m_nodeList.Insert(0, node);
                     return;
                 }
             }
@@ -174,14 +181,30 @@ namespace SCFrame.UI
 
         public void ShowNode(string _nodeName)
         {
+            _ASCUINodeBase node = null;
             for (int i = _m_nodeList.Count - 1; i > -1; i--)
             {
-                if (_m_nodeList[i].GetNodeName() == _nodeName)
+                node = _m_nodeList[i];
+                if (node == null)
+                    continue;
+
+                if (node.GetNodeName() == _nodeName)
                 {
-                    _m_nodeList[i].ShowNode();
+                    node.ShowNode();
+                    _m_nodeList.Remove(node);
+                    _m_nodeList.Add(node);
                     return;
                 }
             }
+
+            //for (int i = _m_nodeList.Count - 1; i > -1; i--)
+            //{
+            //    if (_m_nodeList[i].GetNodeName() == _nodeName)
+            //    {
+            //        _m_nodeList[i].ShowNode();
+            //        return;
+            //    }
+            //}
         }
 
         public void RemoveNode(string _nodeName)
@@ -211,6 +234,20 @@ namespace SCFrame.UI
             _ASCUINodeBase topNode = _m_nodeList[_m_nodeList.Count - 1];
             return topNode;
         }
+
+        public _ASCUINodeBase GetTopNode(SCUIShowType _showType)
+        {
+            if (_m_nodeList == null)
+                return null;
+            for(int i = _m_nodeList.Count - 1; i >= 0;i--)
+            {
+                if (_m_nodeList[i].showType == _showType)
+                    return _m_nodeList[i];
+            }
+            return null;
+
+        }
+
         #endregion
     }
 }
