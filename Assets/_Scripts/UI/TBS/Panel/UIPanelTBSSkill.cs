@@ -50,7 +50,7 @@ namespace GameCore.UI
                 _m_skillContainer.HidePanel();
 
 
-            GameCoreMgr.instance.uiCoreMgr.ShowNode(nameof(UINodeTBSEnemyHud));
+            GameCoreMgr.instance.uiCoreMgr.ShowNodeButNoMove2Top(nameof(UINodeTBSEnemyHud));
 
             //重新设置光标
             List<Vector3> worldPosList = new List<Vector3>();

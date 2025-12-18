@@ -59,3 +59,4 @@
 10058	#1_hostile	敌方的	hostile
 10059	#1_allied	己方的	allied
 10060	#1_cursor_move	光标移动	move cursor
+10061	#1_select_skill	选择技能	select skill

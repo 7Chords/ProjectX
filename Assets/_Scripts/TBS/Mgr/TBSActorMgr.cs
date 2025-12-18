@@ -407,7 +407,7 @@ namespace GameCore.TBS
                     GameCoreMgr.instance.uiCoreMgr.AddNode(new UINodeTBSEnemyHud(SCUIShowType.ADDITION, _m_enemyActorModuleList));
                 else
                 {
-                    GameCoreMgr.instance.uiCoreMgr.ShowNode(nameof(UINodeTBSEnemyHud));
+                    GameCoreMgr.instance.uiCoreMgr.ShowNodeButNoMove2Top(nameof(UINodeTBSEnemyHud));
                     GameCoreMgr.instance.uiCoreMgr.ShowNode(nameof(UINodeTBSMain));
                 }
 

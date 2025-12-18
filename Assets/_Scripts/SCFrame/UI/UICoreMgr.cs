@@ -207,6 +207,18 @@ namespace SCFrame.UI
             //}
         }
 
+
+        public void ShowNodeButNoMove2Top(string _nodeName)
+        {
+            for (int i = _m_nodeList.Count - 1; i > -1; i--)
+            {
+                if (_m_nodeList[i].GetNodeName() == _nodeName)
+                {
+                    _m_nodeList[i].ShowNode();
+                    return;
+                }
+            }
+        }
         public void RemoveNode(string _nodeName)
         {
             _ASCUINodeBase node = GetNodeByName(_nodeName);
