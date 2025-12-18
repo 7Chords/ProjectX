@@ -41,7 +41,7 @@ namespace GameCore.UI
 
         public override void OnHidePanel()
         {
-
+            _m_isSelect = false;
         }
 
         public void SetInfo(long _skillId)

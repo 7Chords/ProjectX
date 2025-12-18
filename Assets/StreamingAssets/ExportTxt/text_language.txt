@@ -1,14 +1,14 @@
 ﻿id	translateKey	zh_CN	en_US
 10001	#2_tbs_skill_desc_1001	发动高速突刺，对{0}敌方目标造成{1}{2}{3}伤害	Launch a high-speed thrust, dealing {1}{2}{3} damage to {0} enemy target
 10002	#2_tbs_skill_desc_1002	凝聚法力，发射蓝焰光束，对{0}敌方单位造成{1}{2}{3}伤害	Gather magical power and launch a blue flame beam, dealing {1}{2}{3} damage to {0} enemy target
-10003	#2_tbs_skill_desc_1003	凝神会心，以瞬闪姿态对{0}敌方单位造成{1}{2}{3}伤害	Focus and respond with insight, dealing {1}{2}{3} damage to {0} enemy targets with a flash stance.
+10003	#2_tbs_skill_desc_1003	凝神会心，向四方释放剑气，对{0}敌方单位造成{1}{2}{3}伤害	Focus and concentrate, unleashing sword energy in all directions, dealing {1}{2}{3} damage to {0} enemy units
 10004	#1_magic	魔法	magic
 10005	#1_physical	物理	physical
 10006	#1_real	真实	real
 10007	#1_little	少量	little
 10008	#1_middle	较大量	middle
 10009	#1_large	大量	large
-10010	#1_single	单个	single
+10010	#1_single	一名	single
 10011	#1_all	所有	all
 10012	#1_light	轻型穿透的	light armor-piercing
 10013	#1_medium	中型穿透的	medium armor-piercing
@@ -30,3 +30,33 @@
 10029	#1_invalid	无效	invalid
 10030	#1_bounce	反弹	parry
 10031	#1_suck	吸收	absorb
+10032	#1_tbs_player_turn	玩家回合	Player Turn
+10033	#1_tbs_enemy_turn	敌方回合	Enemy Turn
+10034	#1_tbs_win	-胜利-	-Player Win-
+10035	#1_tbs_lose	-失败-	-Player Lose-
+10036	#1_miss	闪避	miss
+10037	#1_character_name_1001	斯特尔	Stele
+10038	#1_character_name_1002	洛林	Lorraine
+10039	#1_character_name_1003	考特	Kaut
+10040	#1_character_name_1004	红色史莱姆	RedSlime
+10041	#1_character_name_1005	尖刺史莱姆	SpikeSlime
+10042	#1_character_name_1006	石头巨人	RockGiant
+10043	#2_tbs_item_desc_basic_up	回复一名己方角色{1}点{0}	Restore {0} {1} to an allied character
+10044	#2_tbs_item_desc_buff_up	提升{0}{1}角色的{2}，持续{3}回合	Increase {0} {1} {2} for {3} turns
+10045	#1_item_name_1001	小型生命药水	small health battle
+10046	#1_item_name_1002	振奋苹果	apple
+10047	#1_hp	生命值	hp
+10048	#1_mp	魔力值	mp
+10049	#1_attack_value	攻击力	attack value
+10050	#1_defend_value	防御力	defend value
+10051	#1_miss_chance	闪避率	miss chance
+10052	#1_critical_chance	暴击率	critical chance
+10053	#1_armor_level	护甲等级	armor level
+10054	#1_magic_resistence_level	法术抗性等级	magic resistence level
+10055	#1_physical_level	物理穿透等级	physical level
+10056	#1_magic_attribute	法术属性	magic attribute
+10057	#1_*{0}	*{0}	*{0}
+10058	#1_hostile	敌方的	hostile
+10059	#1_allied	己方的	allied
+10060	#1_cursor_move	光标移动	move cursor
+10061	#1_select_skill	选择技能	select skill
