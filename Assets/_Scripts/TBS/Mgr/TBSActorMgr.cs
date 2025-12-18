@@ -394,11 +394,8 @@ namespace GameCore.TBS
 
             void hideUIAndCursor()
             {
-                if (!_firstSet)
-                {
-                    GameCoreMgr.instance.uiCoreMgr.HideNode(nameof(UINodeTBSMain));
-                    GameCoreMgr.instance.uiCoreMgr.HideNode(nameof(UINodeTBSEnemyHud));
-                }
+                //ui不用隐藏了 因为这个方法触发时的情况main和enemyhud已经隐藏了
+
                 TBSCursorMgr.instance.HideSelectionCursor();
 
             }

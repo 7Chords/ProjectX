@@ -98,7 +98,6 @@ namespace GameCore.Util
             if (_autoDestroy)
             {
                 float delay = _destroyDelay >= 0 ? _destroyDelay : GetParticleDuration(particleSystem);
-                SCDebugHelper.Log("delay:" + delay);
                 SCTaskHelper.instance.CreateCoroutine(prefab, AutoDestroyEffect(info, delay));
             }
 
