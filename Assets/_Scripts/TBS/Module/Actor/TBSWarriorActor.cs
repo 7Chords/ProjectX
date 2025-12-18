@@ -152,7 +152,7 @@ namespace GameCore.TBS
                                 GetActorGameObject().transform.position.y, target.GetActorGameObject().transform.position.z), generalRefObj.tbsMeleeLookAtTargetDuration);
 
 
-                            Tween move2AttackTween = _m_actorMono.gameObject.transform.DOMove(target.GetEnemyAttackStandPos(), 0.5f)
+                            Tween move2AttackTween = _m_actorMono.goModel.transform.DOMove(target.GetEnemyAttackStandPos(), 0.5f)
                                 .OnStart(
                                 () =>
                                 {
@@ -170,9 +170,9 @@ namespace GameCore.TBS
                                 });
 
 
-                            Tween rotateTween_1 = _m_actorMono.gameObject.transform.DOLocalRotate(new Vector3(0, 180, 0), 0.5f);
+                            Tween rotateTween_1 = _m_actorMono.goModel.transform.DOLocalRotate(new Vector3(0, 180, 0), 0.5f);
 
-                            Tween move2OriginalTween = _m_actorMono.gameObject.transform.DOMove(originalPos, 1f)
+                            Tween move2OriginalTween = _m_actorMono.goModel.transform.DOMove(originalPos, 1f)
                                 .OnStart(
                                 () =>
                                 {
@@ -183,7 +183,7 @@ namespace GameCore.TBS
                                 {
                                     _m_animationCtl.PlaySingleAniamtion(_m_idleAnimClip);
                                 });
-                            Tween rotateTween_2 = _m_actorMono.gameObject.transform.DOLocalRotate(Vector3.zero, 0.5f);
+                            Tween rotateTween_2 = _m_actorMono.goModel.transform.DOLocalRotate(Vector3.zero, 0.5f);
 
 
                             seq.Append(lookAtTargetTween);
