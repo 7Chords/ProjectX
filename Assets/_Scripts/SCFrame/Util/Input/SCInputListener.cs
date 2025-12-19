@@ -11,6 +11,9 @@ namespace SCFrame
         private int _m_tbsFrameChecker;
 
         private int _m_tbsFrameInterval;
+
+        private Ray _m_mouseRay;
+        private RaycastHit _m_raycastHit;
         public override void OnInitialize()
         {
             SCTaskHelper.instance.AddUpdateListener(update);
@@ -57,6 +60,36 @@ namespace SCFrame
                     SCMsgCenter.SendMsg(SCMsgConst.TBS_SWITCH_TO_RIGHT_INPUT);
                 if (Input.GetKeyDown(SCSettingMgr.instance.saveKeyInfo.tbsConfirmKeyCode))
                     SCMsgCenter.SendMsg(SCMsgConst.TBS_CONFIRM_INPUT);
+
+                if(Input.GetMouseButtonDown(0))
+                {
+                    _m_mouseRay = SCGame.instance.gameCamera.ScreenPointToRay(Input.mousePosition);
+
+                    //tips
+                    //LayerMask.NameToLayer()返回的是层索引（int 类型，如 0、8、9
+                    //但Physics.Raycast的layerMask参数需要的是层掩码（LayerMask），直接传入层索引会导致掩码计算错误，射线无法过滤到目标层。
+                    //我的actor物体上的碰撞体是trigger 所以要设置检测类型
+                    if (Physics.Raycast(_m_mouseRay,
+                        out _m_raycastHit,
+                        GameConst.MOUSE_RAY_MAX_DISTANCE,
+                        1 << LayerMask.NameToLayer(GameConst.LAYER_CHARACTER),QueryTriggerInteraction.Collide))
+                    {
+                        if (_m_raycastHit.collider == null)
+                            return;
+                        switch (_m_raycastHit.collider.gameObject.tag)
+                        {
+                            case GameConst.TAG_ENEMY:
+                                {
+                                    //SCMsgCenter.SendMsg(SCMsgConst.TBS_CONFIRM_INPUT);
+                                    SCMsgCenter.SendMsg(SCMsgConst.TBS_MOUSE_CLICK_ENEMY_INPUT, _m_raycastHit.collider.gameObject);
+                                }
+                                break;
+                            default:
+                                break;
+                        }
+
+                    }
+                }
             }
 
         }

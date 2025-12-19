@@ -26,5 +26,16 @@ namespace GameCore
         public const string COMMON_TIP_PREFAB = "common_tip_prefab";
         #endregion
 
+
+        #region Layer
+        public const string LAYER_CHARACTER = "Character";
+
+        #endregion
+
+        #region Tag
+        public const string TAG_ENEMY = "Enemy";
+        #endregion
+
+        public const float MOUSE_RAY_MAX_DISTANCE = 99;
     }
 }

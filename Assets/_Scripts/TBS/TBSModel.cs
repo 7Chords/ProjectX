@@ -1,5 +1,6 @@
 using SCFrame;
 using System.Collections.Generic;
+using UnityEngine;
 using Radnom = UnityEngine.Random;
 
 
@@ -109,6 +110,27 @@ namespace GameCore.TBS
             }
         }
 
+        private List<GameObject> _m_enemyActorGOList;
+
+        public List<GameObject> enemyActorGOList
+        {
+            get { return _m_enemyActorGOList; }
+            set
+            {
+                _m_enemyActorGOList = value;
+            }
+        }
+
+        private List<GameObject> _m_playerActorGOList;
+
+        public List<GameObject> playerActorGOList
+        {
+            get { return _m_playerActorGOList; }
+            set
+            {
+                _m_playerActorGOList = value;
+            }
+        }
 
         private TBSGameMono _m_gameMono;//回合制战斗全局mono
 
@@ -128,15 +150,17 @@ namespace GameCore.TBS
         /// </summary>
         public void InitNewData()
         {
-            curTurnType = ETBSTurnType.PLAYER;
-            curTurnCount = 1;
-            battleInfo = new TBSBattleInfo();
-            battleInfo.InitNewInfo();
-            curActorIndex = 0;
-            curSelectSingleTargetIdx = 0;
-            selectTargetType = battleInfo.playerTeamInfo.actorInfoList[0].attackTargetType;
-            playerActorModuleList = new List<TBSActorBase>();
-            enemyActorModuleList = new List<TBSActorBase>();
+            _m_curTurnType = ETBSTurnType.PLAYER;
+            _m_curTurnCount = 1;
+            _m_battleInfo = new TBSBattleInfo();
+            _m_battleInfo.InitNewInfo();
+            _m_curActorIndex = 0;
+            _m_curSelectSingleTargetIdx = 0;
+            _m_selectTargetType = battleInfo.playerTeamInfo.actorInfoList[0].attackTargetType;
+            _m_playerActorModuleList = new List<TBSActorBase>();
+            _m_enemyActorModuleList = new List<TBSActorBase>();
+            _m_enemyActorGOList = new List<GameObject>();
+            _m_playerActorGOList = new List<GameObject>();
             _m_canUseRunningId = 0;
         }
 
@@ -154,9 +178,9 @@ namespace GameCore.TBS
         /// </summary>
         public void ResetData()
         {
-            curTurnType = ETBSTurnType.PLAYER;
-            curTurnCount = 0;
-            battleInfo = null;
+            _m_curTurnType = ETBSTurnType.PLAYER;
+            _m_curTurnCount = 0;
+            _m_battleInfo = null;
             _m_canUseRunningId = 0;
 
         }
@@ -281,6 +305,34 @@ namespace GameCore.TBS
         {
             _m_canUseRunningId++;
             return _m_canUseRunningId;
+        }
+
+
+        public int GetActorGOIndex(GameObject _go, bool _isPlayerActorGO)
+        {
+            if (_go == null)
+            {
+                SCDebugHelper.LogError("传入参数为空！！！");
+                return -1;
+            }
+            if(_isPlayerActorGO)
+            {
+                for(int i =0;i<_m_playerActorGOList.Count;i++)
+                {
+                    if (_m_playerActorGOList[i] == _go)
+                        return i;
+                }    
+            }
+            else
+            {
+                for (int i = 0; i < _m_enemyActorGOList.Count; i++)
+                {
+                    if (_m_enemyActorGOList[i] == _go)
+                        return i;
+                }
+            }
+            SCDebugHelper.LogError("找不到这个物体所在的索引！！！");
+            return -1;
         }
     }
 }

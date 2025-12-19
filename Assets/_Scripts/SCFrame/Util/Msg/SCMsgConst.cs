@@ -1,8 +1,5 @@
 public class SCMsgConst
 {
-
-
-
     #region 玩家输入相关 10
     public const int TBS_ATTACK_INPUT = 1000;
     public const int TBS_DEFEND_INPUT = 1001;
@@ -13,6 +10,8 @@ public class SCMsgConst
     public const int TBS_SWITCH_TO_LEFT_INPUT = 1006;
     public const int TBS_SWITCH_TO_RIGHT_INPUT = 1007;
     public const int TBS_CONFIRM_INPUT = 1008;
+
+    public const int TBS_MOUSE_CLICK_ENEMY_INPUT = 1009;
     #endregion
 
 
@@ -44,8 +43,8 @@ public class SCMsgConst
     public const int TBS_ACTOR_SKILL_MOUSE_HIGHLIGHT = 2018;//回合制战斗 - 鼠标选择技能高光
 
     public const int TBS_ACTOR_CHG = 2019;//回合制战斗 - 角色轮转
-    public const int TBS_ACTOR_TARGET_HIGHLIGHT_LEFT = 2020;//回合制战斗 - 选择目标高光左移
-    public const int TBS_ACTOR_TARGET_HIGHLIGHT_RIGHT = 2021;//回合制战斗 - 选择目标高光右移
+    //public const int TBS_ACTOR_TARGET_HIGHLIGHT_LEFT = 2020;//回合制战斗 - 选择目标高光左移
+    //public const int TBS_ACTOR_TARGET_HIGHLIGHT_RIGHT = 2021;//回合制战斗 - 选择目标高光右移
     public const int TBS_ACTOR_TARGET_MOUSE_HIGHLIGHT = 2022;//回合制战斗 - 鼠标选择高光
     public const int TBS_ACTOR_SKILL_CONFIRM = 2023;//回合制战斗 - 技能确认
     public const int TBS_SELECT_SINGLE_ENEMY_TARGET_CHG = 2024;//回合制战斗 - 选择单个敌方目标 改变

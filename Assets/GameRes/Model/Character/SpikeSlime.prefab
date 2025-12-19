@@ -203,9 +203,9 @@ GameObject:
   - component: {fileID: 7288653022643483441}
   - component: {fileID: 5240899989801628092}
   - component: {fileID: 1013555575444296757}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: SpikeSlime
-  m_TagString: Untagged
+  m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0

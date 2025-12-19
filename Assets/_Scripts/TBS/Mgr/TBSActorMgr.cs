@@ -36,8 +36,7 @@ namespace GameCore.TBS
             SCMsgCenter.RegisterMsgAct(SCMsgConst.TBS_ACTOR_DEFENCE, onTBSActorDefence);
             SCMsgCenter.RegisterMsgAct(SCMsgConst.TBS_ACTOR_ATTACK, onTBSActorAttack);
             SCMsgCenter.RegisterMsg(SCMsgConst.TBS_ACTOR_SKILL, onTBSActorSkill);
-            SCMsgCenter.RegisterMsgAct(SCMsgConst.TBS_ACTOR_TARGET_HIGHLIGHT_LEFT, onTBSActorTargetHighlightLeft);
-            SCMsgCenter.RegisterMsgAct(SCMsgConst.TBS_ACTOR_TARGET_HIGHLIGHT_RIGHT, onTBSActorTargetHighlightRight);
+            SCMsgCenter.RegisterMsgAct(SCMsgConst.TBS_SELECT_SINGLE_ENEMY_TARGET_CHG, onTBSSelectSingleEnemyTargetChg);
             SCMsgCenter.RegisterMsgAct(SCMsgConst.TBS_TURN_CHG_SHOW_END, onTBSTurnChgShowEnd);
             SCMsgCenter.RegisterMsg(SCMsgConst.TBS_ACTOR_DIE, onTBSActorDie);
             SCMsgCenter.RegisterMsgAct(SCMsgConst.TBS_SELECT_ENEMY_ALL_OR_SINGLE_STATE_SWITCH, onTBSSelectEnemyAllOrSingleStateSwitch);
@@ -51,8 +50,7 @@ namespace GameCore.TBS
             SCMsgCenter.UnregisterMsgAct(SCMsgConst.TBS_ACTOR_DEFENCE, onTBSActorDefence);
             SCMsgCenter.UnregisterMsgAct(SCMsgConst.TBS_ACTOR_ATTACK, onTBSActorAttack);
             SCMsgCenter.UnregisterMsg(SCMsgConst.TBS_ACTOR_SKILL, onTBSActorSkill);
-            SCMsgCenter.UnregisterMsgAct(SCMsgConst.TBS_ACTOR_TARGET_HIGHLIGHT_LEFT, onTBSActorTargetHighlightLeft);
-            SCMsgCenter.UnregisterMsgAct(SCMsgConst.TBS_ACTOR_TARGET_HIGHLIGHT_RIGHT, onTBSActorTargetHighlightRight);
+            SCMsgCenter.UnregisterMsgAct(SCMsgConst.TBS_SELECT_SINGLE_ENEMY_TARGET_CHG, onTBSSelectSingleEnemyTargetChg);
             SCMsgCenter.UnregisterMsgAct(SCMsgConst.TBS_TURN_CHG_SHOW_END, onTBSTurnChgShowEnd);
             SCMsgCenter.UnregisterMsg(SCMsgConst.TBS_ACTOR_DIE, onTBSActorDie);
             SCMsgCenter.UnregisterMsgAct(SCMsgConst.TBS_SELECT_ENEMY_ALL_OR_SINGLE_STATE_SWITCH, onTBSSelectEnemyAllOrSingleStateSwitch);
@@ -160,6 +158,8 @@ namespace GameCore.TBS
             SCModel.instance.tbsModel.selectTargetType = _m_playerTeamInfo.actorInfoList[0].attackTargetType;
             SCModel.instance.tbsModel.playerActorModuleList = _m_playerActorModuleList;
             SCModel.instance.tbsModel.enemyActorModuleList = _m_enemyActorModuleList;
+            SCModel.instance.tbsModel.playerActorGOList = _m_playerActorGOList;
+            SCModel.instance.tbsModel.enemyActorGOList = _m_enemyActorGOList;
             SCModel.instance.tbsModel.gameMono = _m_gameMono;
 
             refreshCameraAndCursor(true,true);
@@ -303,24 +303,11 @@ namespace GameCore.TBS
                 _m_playerActorModuleList[_m_curSelectActorIndex].ReleaseSkill(skillId, targetList);
             }
         }
-
-        private void onTBSActorTargetHighlightLeft()
+        private void onTBSSelectSingleEnemyTargetChg()
         {
-            _m_singleTargetIndex--;
-            if (_m_singleTargetIndex < 0)
-                _m_singleTargetIndex = _m_enemyActorModuleList.Count - 1;
-            SCModel.instance.tbsModel.curSelectSingleTargetIdx = _m_singleTargetIndex;
+            _m_singleTargetIndex = SCModel.instance.tbsModel.curSelectSingleTargetIdx;
             TBSCursorMgr.instance.MoveSingleCursor2Pos(_m_enemyActorModuleList[_m_singleTargetIndex].GetCursorPos());
 
-        }
-
-        private void onTBSActorTargetHighlightRight()
-        {
-            _m_singleTargetIndex++;
-            if (_m_singleTargetIndex > _m_enemyActorModuleList.Count - 1)
-                _m_singleTargetIndex = 0;
-            SCModel.instance.tbsModel.curSelectSingleTargetIdx = _m_singleTargetIndex;
-            TBSCursorMgr.instance.MoveSingleCursor2Pos(_m_enemyActorModuleList[_m_singleTargetIndex].GetCursorPos());
         }
 
         private void onTBSTurnChgShowEnd()
@@ -348,9 +335,10 @@ namespace GameCore.TBS
             {
                 actorIdx = _m_enemyActorModuleList.IndexOf(actor);
                 _m_enemyActorModuleList.Remove(actor);
-                SCModel.instance.tbsModel.enemyActorModuleList = _m_enemyActorModuleList;
                 GameObject actorGO = actor.GetActorGameObject();
                 _m_enemyActorGOList.Remove(actorGO);
+                SCModel.instance.tbsModel.enemyActorModuleList = _m_enemyActorModuleList;
+                SCModel.instance.tbsModel.enemyActorGOList = _m_enemyActorGOList;
 
                 SCMsgCenter.SendMsg(SCMsgConst.TBS_ENEMY_ACTOR_REMOVE_FROM_LIST, runningId);
 
