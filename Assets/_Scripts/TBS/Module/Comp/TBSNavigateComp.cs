@@ -115,7 +115,13 @@ namespace GameCore.TBS
             if (_objs == null || _objs.Length == 0)
                 return;
             if (SCModel.instance.tbsModel.selectTargetType == ETargetType.ALL)
+            {
+                _ASCUINodeBase topFullNode = GameCoreMgr.instance.uiCoreMgr.GetTopNode(SCUIShowType.FULL);
+                if (topFullNode.GetNodeName() == nameof(UINodeTBSConfirm))
+                    SCMsgCenter.SendMsg(SCMsgConst.TBS_CONFIRM_INPUT);
+
                 return;
+            }
 
 
             GameObject enemyGO = _objs[0] as GameObject;
