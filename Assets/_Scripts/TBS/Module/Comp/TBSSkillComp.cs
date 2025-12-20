@@ -42,7 +42,10 @@ namespace GameCore.TBS
                     SCMsgCenter.SendMsg(SCMsgConst.TBS_ACTOR_SKILL_CONFIRM);
                     break;
                 case nameof(UINodeTBSConfirm):
-                    SCMsgCenter.SendMsg(SCMsgConst.TBS_ACTOR_SKILL_RELEASE);
+                    SCMsgCenter.SendMsg(SCMsgConst.TBS_ACTOR_CONFIRM_RELEASE);
+                    break;
+                case nameof(UINodeTBSItem):
+                    SCMsgCenter.SendMsg(SCMsgConst.TBS_ACTOR_ITEM_CONFIRM);
                     break;
                 default:
                     break;

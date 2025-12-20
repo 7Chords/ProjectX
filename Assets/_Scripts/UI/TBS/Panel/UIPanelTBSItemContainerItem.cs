@@ -20,14 +20,16 @@ namespace GameCore.UI
 
         public override void AfterInitialize()
         {
-
+            SCMsgCenter.RegisterMsgAct(SCMsgConst.TBS_ACTOR_ITEM_CONFIRM, onTBSActorItemConfirm);
+            mono.btnItemClick.AddClickDown(onBtnItemClickDown);
             mono.btnItemClick.AddMouseEnter(onBtnItemMouseEnter);
         }
 
 
         public override void BeforeDiscard()
         {
-
+            SCMsgCenter.UnregisterMsgAct(SCMsgConst.TBS_ACTOR_ITEM_CONFIRM, onTBSActorItemConfirm);
+            mono.btnItemClick.RemoveClickDown(onBtnItemClickDown);
             mono.btnItemClick.RemoveMouseEnter(onBtnItemMouseEnter);
         }
 
@@ -65,9 +67,25 @@ namespace GameCore.UI
             _m_isSelect = _isSelect;
         }
 
+        private void onBtnItemClickDown(PointerEventData _eventData, object[] _args)
+        {
+            if (!_m_isSelect)
+                return;
+            GameCoreMgr.instance.uiCoreMgr.AddNode(new UINodeTBSConfirm(SCUIShowType.FULL,SCUIConfirmType.ITEM));
+
+        }
         private void onBtnItemMouseEnter(PointerEventData _eventData, object[] _args)
         {
             SCMsgCenter.SendMsg(SCMsgConst.TBS_ACTOR_ITEM_MOUSE_HIGHLIGHT, _m_itemRefObj.id);
+        }
+
+        private void onTBSActorItemConfirm()
+        {
+            if (!_m_isSelect)
+                return;
+
+            //SCModel.instance.tbsModel.selectTargetType = _m_skillRefObj.damageTargetType;
+            GameCoreMgr.instance.uiCoreMgr.AddNode(new UINodeTBSConfirm(SCUIShowType.FULL, SCUIConfirmType.ITEM));
         }
     }
 }

@@ -172,8 +172,12 @@ namespace GameCore.TBS
         public abstract void Attack_All(List<TBSActorBase> _targetList);
 
 
-        public abstract void ReleaseSkill(long _skillId, List<TBSActorBase> _target);
+        public abstract void ReleaseSkill(long _skillId, List<TBSActorBase> _targetList);
 
+        public virtual void UseItem(long _itemId, List<TBSActorBase> _targetList)
+        {
+            
+        }
         public virtual void Defend()
         {
             Sequence seq = DOTween.Sequence();

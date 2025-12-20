@@ -1,3 +1,4 @@
+using GameCore.TBS;
 using SCFrame;
 using System.Collections;
 using System.Collections.Generic;
@@ -19,6 +20,7 @@ namespace GameCore.RefData
         public string itemIconObjName;
         public EItemType itemType;
         public EItemUseType itemUseType;
+        public ETargetType itemTargetType;
         public string itemDesc;
         public long itemEffectRefObjId;
 
@@ -29,6 +31,7 @@ namespace GameCore.RefData
             itemIconObjName = getString("itemIconObjName");
             itemType = (EItemType)getEnum("itemType", typeof(EItemType));
             itemUseType = (EItemUseType)getEnum("itemUseType", typeof(EItemUseType));
+            itemTargetType = (ETargetType)getEnum("itemTargetType", typeof(ETargetType));
             itemDesc = getString("itemDesc");
             itemEffectRefObjId = getLong("itemEffectRefObjId");
         }

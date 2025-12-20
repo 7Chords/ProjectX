@@ -8,8 +8,9 @@ namespace GameCore.UI
 {
     public class UINodeTBSConfirm : _ASCUINodeBase
     {
-        public UINodeTBSConfirm(SCUIShowType _showType) : base(_showType)
+        public UINodeTBSConfirm(SCUIShowType _showType,SCUIConfirmType _confirmType) : base(_showType)
         {
+            _m_confirmType = _confirmType;
         }
 
         public override bool needHideWhenEnterNewSameTypeNode => true;
@@ -21,6 +22,8 @@ namespace GameCore.UI
         private GameObject _m_panelGO;
         private UIPanelTBSConfirm _m_tbsConfirmPanel;
         private UIMonoTBSConfirm _m_tbsConfirmMono;
+
+        private SCUIConfirmType _m_confirmType;
         public override void OnEnterNode()
         {
             _m_panelGO = ResourcesHelper.LoadGameObject(GetResName(), GetRootTransform(), true);
@@ -38,6 +41,7 @@ namespace GameCore.UI
 
             _m_tbsConfirmPanel = new UIPanelTBSConfirm(_m_tbsConfirmMono, _m_showType);
             _m_tbsConfirmPanel.Initialize();
+            
         }
 
         public override void OnHideNode()
@@ -59,6 +63,7 @@ namespace GameCore.UI
             if (_m_tbsConfirmPanel == null)
                 return;
             _m_tbsConfirmPanel.ShowPanel();
+            _m_tbsConfirmPanel.SetInfo(_m_confirmType);
         }
 
         public override string GetNodeName()

@@ -50,7 +50,7 @@ public class SCMsgConst
     public const int TBS_SELECT_SINGLE_ENEMY_TARGET_CHG = 2024;//回合制战斗 - 选择单个敌方目标 改变
 
     public const int TBS_ACTOR_INFO_CHG = 2025;//回合制战斗 - 敌人目标信息改变（血量/属性...)
-    public const int TBS_ACTOR_SKILL_RELEASE = 2026;//回合制战斗 - 技能释放
+    public const int TBS_ACTOR_CONFIRM_RELEASE = 2026;//回合制战斗 - 确认释放（技能/道具）
 
     public const int TBS_TRAM_ACTION_END = 2027;//回合制战斗 - 队伍行动结束
     public const int TBS_TURN_CHG_SHOW_END = 2028;//回合制战斗 - 回合切换面板显示结束
@@ -63,6 +63,9 @@ public class SCMsgConst
     public const int TBS_ACTOR_ITEM_HIGHTLIGHT_UP = 2034;//回合制战斗 - 选择道具高光上移
     public const int TBS_ACTOR_ITEM_HIGHTLIGHT_DOWN = 2035;//回合制战斗 - 选择道具高光下移
     public const int TBS_ACTOR_ITEM_MOUSE_HIGHLIGHT = 2036;//回合制战斗 - 鼠标选择道具高光
+    public const int TBS_ACTOR_ITEM_CONFIRM = 2037;//回合制战斗 - 道具确认
+    public const int TBS_ACTOR_ITEM = 2038;
+
     #endregion
 
 

@@ -15,6 +15,12 @@ namespace SCFrame.UI
         INTERNAL,//面板内部的小面板
     }
 
-
+    //确认面板类型
+    public enum SCUIConfirmType
+    {
+        NONE,
+        SKILL,
+        ITEM
+    }
 
 }

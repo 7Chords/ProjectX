@@ -110,12 +110,14 @@ namespace GameCore.UI
         private void onTBSActorItemHighLightUp()
         {
             _m_curSelectItemIdx = Mathf.Max(_m_curSelectItemIdx - 1, 0);
+            SCModel.instance.tbsModel.curSelectItemIdx = _m_curSelectItemIdx;
             refreshPanel();
         }
 
         private void onTBSActorItemHighLightDown()
         {
             _m_curSelectItemIdx = Mathf.Min(_m_curSelectItemIdx + 1, _m_itemDataList.Count - 1);
+            SCModel.instance.tbsModel.curSelectItemIdx = _m_curSelectItemIdx;
             refreshPanel();
         }
 
@@ -129,6 +131,8 @@ namespace GameCore.UI
                 if (_m_itemDataList[i].itemId == itemId)
                 {
                     _m_curSelectItemIdx = i;
+                    SCModel.instance.tbsModel.curSelectItemIdx = _m_curSelectItemIdx;
+
                     break;
                 }
             }

@@ -11,8 +11,7 @@ namespace GameCore.TBS
     /// </summary>
     public class TBSModel
     {
-        private bool _m_gameStarted;
-
+        private bool _m_gameStarted;//游戏是否开始
         public bool gameStarted
         {
             get { return _m_gameStarted; }
@@ -23,9 +22,7 @@ namespace GameCore.TBS
         }
 
 
-
-
-        private ETBSTurnType _m_curTurnType;
+        private ETBSTurnType _m_curTurnType;//当前的回合类型(玩家/敌人)
 
         public ETBSTurnType curTurnType
         {
@@ -37,7 +34,7 @@ namespace GameCore.TBS
             }
         }
 
-        private int _m_curTurnCount;
+        private int _m_curTurnCount;//当前的回合数
 
         public int curTurnCount
         {
@@ -45,7 +42,7 @@ namespace GameCore.TBS
             set { _m_curTurnCount = value; }
         }
 
-        private TBSBattleInfo _m_battleInfo;
+        private TBSBattleInfo _m_battleInfo;//战斗信息
 
         public TBSBattleInfo battleInfo
         {
@@ -53,7 +50,7 @@ namespace GameCore.TBS
             set { _m_battleInfo = value; }
         }
 
-        private int _m_curActorIndex;
+        private int _m_curActorIndex;//当前行动的Actor索引
         public int curActorIndex
         {
             get { return _m_curActorIndex; }
@@ -64,7 +61,7 @@ namespace GameCore.TBS
             }
         }
 
-        private int _m_curSelectSingleTargetIdx;
+        private int _m_curSelectSingleTargetIdx;//当前单体选择目标的索引
 
         public int curSelectSingleTargetIdx
         {
@@ -76,7 +73,7 @@ namespace GameCore.TBS
             }
         }
 
-        private ETargetType _m_selectTargetType;
+        private ETargetType _m_selectTargetType;//当前的选择目标类型（单体/全体）
         public ETargetType selectTargetType
         {
             get { return _m_selectTargetType; }
@@ -145,6 +142,29 @@ namespace GameCore.TBS
 
         private long _m_canUseRunningId;
 
+
+        private int _m_curSelectSkillIdx;
+
+        public int curSelectSkillIdx
+        {
+            get { return _m_curSelectSkillIdx; }
+            set
+            {
+                _m_curSelectSkillIdx = value;
+            }
+        }
+
+        private int _m_curSelectItemIdx;
+
+        public int curSelectItemIdx
+        {
+            get { return _m_curSelectItemIdx; }
+            set
+            {
+                _m_curSelectItemIdx = value;
+            }
+        }
+
         /// <summary>
         /// 创新新游戏的时候初始化新的数据
         /// </summary>
@@ -198,6 +218,10 @@ namespace GameCore.TBS
                 return enemyActorModuleList[curActorIndex].actorInfo;
         }
 
+        /// <summary>
+        /// 获得当前的单个选择目标的Actor
+        /// </summary>
+        /// <returns></returns>
         public TBSActorBase GetCurSingleSelectTargetActor()
         {
             if (enemyActorModuleList == null || _m_curSelectSingleTargetIdx < 0 || _m_curSelectSingleTargetIdx >= enemyActorModuleList.Count)
@@ -297,6 +321,7 @@ namespace GameCore.TBS
             }
             return null;
         }
+
         /// <summary>
         /// 取走可分配的运行时ActorId
         /// </summary>
@@ -307,7 +332,12 @@ namespace GameCore.TBS
             return _m_canUseRunningId;
         }
 
-
+        /// <summary>
+        /// 获得某个Actor的GO索引
+        /// </summary>
+        /// <param name="_go"></param>
+        /// <param name="_isPlayerActorGO"></param>
+        /// <returns></returns>
         public int GetActorGOIndex(GameObject _go, bool _isPlayerActorGO)
         {
             if (_go == null)
