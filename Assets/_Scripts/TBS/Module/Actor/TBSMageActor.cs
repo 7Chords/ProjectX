@@ -63,6 +63,9 @@ namespace GameCore.TBS
                     _m_animationCtl.PlaySingleAniamtion(_m_idleAnimClip);
 
                 }));
+
+            seq.Append(_m_actorMono.goModel.transform.DOLocalRotate(Vector3.zero, generalRefObj.tbsMeleeRotateDuration));
+
             _m_tweenContainer?.RegDoTween(seq);
 
         }
@@ -89,6 +92,8 @@ namespace GameCore.TBS
                 return;
             _m_actorSkillRefObj = skillRefObj;
 
+            GameGeneralRefObj generalRefObj = SCRefDataMgr.instance.gameGeneralRefObj;
+
             switch (_m_actorSkillRefObj.skillName)
             {
                 case "À¶ÑæÍÂÏ¢":
@@ -108,6 +113,11 @@ namespace GameCore.TBS
 
 
                         Sequence seq = DOTween.Sequence();
+
+                        Tween lookAtTargetTween = _m_actorMono.goModel.transform.DOLookAt(new Vector3(_targetList[0].GetActorGameObject().transform.position.x,
+                            GetActorGameObject().transform.position.y, _targetList[0].GetActorGameObject().transform.position.z), generalRefObj.tbsMeleeLookAtTargetDuration);
+
+                        seq.Append(lookAtTargetTween);
                         seq.Append(DOVirtual.DelayedCall((float)skillAsset.duration,
                             () =>
                             {
@@ -116,6 +126,7 @@ namespace GameCore.TBS
                                 _m_attackEnemyActorList.Clear();
 
                             }));
+                        seq.Append(_m_actorMono.goModel.transform.DOLocalRotate(Vector3.zero, generalRefObj.tbsMeleeRotateDuration));
 
                         _m_tweenContainer?.RegDoTween(seq);
                     }
