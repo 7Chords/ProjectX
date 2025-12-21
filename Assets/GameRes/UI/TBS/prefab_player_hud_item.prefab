@@ -90,7 +90,7 @@ GameObject:
   - component: {fileID: 623561578290871239}
   - component: {fileID: 7314896505288512689}
   m_Layer: 5
-  m_Name: img_health_bar
+  m_Name: img_mp_bar
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -394,7 +394,7 @@ GameObject:
   - component: {fileID: 5057773228112892047}
   - component: {fileID: 462692230460987459}
   m_Layer: 5
-  m_Name: txt_hp
+  m_Name: txt_mp
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -721,17 +721,19 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   uiMask: {fileID: 0}
-  canvasGroup: {fileID: 0}
-  fadeInDuration: 0
-  fadeOutDuration: 0
-  txtNameWithLv: {fileID: 0}
-  imgHpBar: {fileID: 0}
-  txtHp: {fileID: 0}
-  imgPhysicalArmor: {fileID: 0}
-  imgMagicResistent: {fileID: 0}
-  imgFireResistent: {fileID: 0}
-  imgWaterResistent: {fileID: 0}
-  imgWoodResistent: {fileID: 0}
+  canvasGroup: {fileID: 3390954269443040806}
+  fadeInDuration: 0.1
+  fadeOutDuration: 0.1
+  txtNameWithLv: {fileID: 4459899144718484471}
+  imgHpBar: {fileID: 4459899144553102931}
+  txtHp: {fileID: 2598286693152295278}
+  imgMpBar: {fileID: 7314896505288512689}
+  txtMp: {fileID: 462692230460987459}
+  imgPhysicalArmor: {fileID: 423916144690759671}
+  imgMagicResistent: {fileID: 4882870696655907339}
+  imgFireResistent: {fileID: 8432178071202944613}
+  imgWaterResistent: {fileID: 4789278745121244856}
+  imgWoodResistent: {fileID: 7955547157759677431}
 --- !u!1 &4459899144056232130
 GameObject:
   m_ObjectHideFlags: 0
@@ -890,7 +892,7 @@ GameObject:
   - component: {fileID: 4459899144553102930}
   - component: {fileID: 4459899144553102931}
   m_Layer: 5
-  m_Name: img_health_bar
+  m_Name: img_hp_bar
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

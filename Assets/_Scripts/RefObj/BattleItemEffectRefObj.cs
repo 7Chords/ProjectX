@@ -16,16 +16,12 @@ namespace GameCore.RefData
 
         public long id;
         public EBattleItemEffectType effectType;
-        public bool isPlayerTarget;
-        public ETargetType targetType;
         public List<BasicChgEffectObj> basicChgEffectList;
         public List<BuffEffectObj> buffEffectList;
         protected override void _parseFromString()
         {
             id = getLong("id");
             effectType = (EBattleItemEffectType)getEnum("effectType", typeof(EBattleItemEffectType));
-            isPlayerTarget = getBool("isPlayerTarget");
-            targetType = (ETargetType)getEnum("targetType", typeof(ETargetType));
             basicChgEffectList = getList<BasicChgEffectObj>("basicChgEffectList");
             buffEffectList = getList<BuffEffectObj>("buffEffectList");
 

@@ -60,6 +60,12 @@ namespace GameCore.Editor
             }
 
 
+            if (GUILayout.Button("打印UI节点"))
+            {
+                GameCoreMgr.instance.uiCoreMgr.PrintNodeList();
+            }
+
+
             EditorGUILayout.HelpBox("这些作弊功能只在游戏运行时有效", MessageType.Info);
         }
     }

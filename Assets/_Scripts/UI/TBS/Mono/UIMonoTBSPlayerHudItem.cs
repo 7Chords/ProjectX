@@ -10,25 +10,22 @@ namespace GameCore.UI
     {
         [Header("角色名字带等级文本")]
         public Text txtNameWithLv;
-
         [Header("血量bar")]
         public Image imgHpBar;
-
         [Header("血量文本")]
         public Text txtHp;
-
+        [Header("魔法量bar")]
+        public Image imgMpBar;
+        [Header("魔法量文本")]
+        public Text txtMp;
         [Header("物理抗性图标")]
         public Image imgPhysicalArmor;
-
         [Header("法术抗性图标")]
         public Image imgMagicResistent;
-
         [Header("火元素抗性图标")]
         public Image imgFireResistent;
-
         [Header("水元素抗性图标")]
         public Image imgWaterResistent;
-
         [Header("木元素抗性图标")]
         public Image imgWoodResistent;
 

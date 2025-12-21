@@ -65,6 +65,7 @@ public class SCMsgConst
     public const int TBS_ACTOR_ITEM_MOUSE_HIGHLIGHT = 2036;//回合制战斗 - 鼠标选择道具高光
     public const int TBS_ACTOR_ITEM_CONFIRM = 2037;//回合制战斗 - 道具确认
     public const int TBS_ACTOR_ITEM = 2038;
+    public const int TBS_SELECT_SINGLE_PLAYER_TARGET_CHG = 2039;//回合制战斗 - 选择单个玩家角色目标 改变
 
     #endregion
 

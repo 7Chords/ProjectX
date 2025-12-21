@@ -10,9 +10,10 @@ namespace GameCore.UI
 {
     public class UINodeTBSConfirm : _ASCUINodeBase
     {
-        public UINodeTBSConfirm(SCUIShowType _showType,SCUIConfirmType _confirmType) : base(_showType)
+        public UINodeTBSConfirm(SCUIShowType _showType,SCUIConfirmType _confirmType, bool isPlayerTargetConfirm) : base(_showType)
         {
             _m_confirmType = _confirmType;
+            _m_isPlayerTargetConfirm = isPlayerTargetConfirm;
         }
 
         public override bool needHideWhenEnterNewSameTypeNode => true;
@@ -26,6 +27,11 @@ namespace GameCore.UI
         private UIMonoTBSConfirm _m_tbsConfirmMono;
 
         private SCUIConfirmType _m_confirmType;
+        private bool _m_isPlayerTargetConfirm;
+
+        public bool isPlayerTargetConfirm=> _m_isPlayerTargetConfirm;
+
+
         public override void OnEnterNode()
         {
             _m_panelGO = ResourcesHelper.LoadGameObject(GetResName(), GetRootTransform(), true);
@@ -77,13 +83,15 @@ namespace GameCore.UI
                             SCDebugHelper.LogError("skillRefObj为空!!!");
                             return;
                         }
-                        //这里做相机操作的话只需要判断是敌人还是玩家
-                        if (skillRefObj.isPlayerTarget)
+                        //这里做相机操作的话只需要判断是敌人还是玩家 如果是玩家 需要等相机运动到合适的位置
+                        if (isPlayerTargetConfirm)
                         {
-                            TBSCursorMgr.instance.HideSelectionCursor();
-                            GameCoreMgr.instance.uiCoreMgr.HideNode(nameof(UINodeTBSEnemyHud));
                             GameCameraMgr.instance.SetCameraPositionOffsetWithFollow(
-                                SCModel.instance.tbsModel.gameMono.playerLookEnemyCenterPos, true, null, _m_tbsConfirmPanel.ShowPanel);
+                                SCModel.instance.tbsModel.gameMono.playerLookEnemyCenterPos, true, hideUIAndCursor, () =>
+                                {
+                                    showUIAndCursro(true, skillRefObj.damageTargetType);
+                                    _m_tbsConfirmPanel.ShowPanel();
+                                });
                             GameCameraMgr.instance.SetCameraTarget(SCModel.instance.tbsModel.gameMono.enemyLookPlayerCenterPos);
                         }
                         else
@@ -95,10 +103,40 @@ namespace GameCore.UI
                 case SCUIConfirmType.ITEM:
                     break;
             }
+        }
 
+        private void hideUIAndCursor()
+        {
+            //todo:skill面板关闭时打开了光标 所以这里要再关掉
+            //因为对于需要相机运动的情况 要先运动完再打开
+            TBSCursorMgr.instance.HideSelectionCursor();
+            GameCoreMgr.instance.uiCoreMgr.HideNode(nameof(UINodeTBSEnemyHud));
+        }
+        private void showUIAndCursro(bool _isPlayerTarget,ETargetType _targetType)
+        {
+            if(_isPlayerTarget)
+            {
+                switch(_targetType)
+                {
+                    case ETargetType.NONE:
+                        break;
+                    case ETargetType.SINGLE:
+                        {
+                            //todo：对于目标为玩家 光标默认在使用者身上
+                            List<Vector3> posList = new List<Vector3>();
+                            posList.Add(SCModel.instance.tbsModel.GetCurActor().GetCursorPos());
+                            TBSCursorMgr.instance.SetSelectionCursor(posList);
+                            GameCoreMgr.instance.uiCoreMgr.AddNode(new UINodeTBSPlayerHud(SCUIShowType.ADDITION, SCModel.instance.tbsModel.playerActorModuleList));
+                        }
+                        break;
+                    case ETargetType.ALL:
+                        {
 
-            //_m_tbsConfirmPanel.ShowPanel();
-            //_m_tbsConfirmPanel.SetInfo(_m_confirmType);
+                        }
+                        break;
+                }
+            }
+
         }
 
         public override string GetNodeName()

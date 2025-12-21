@@ -14,7 +14,8 @@ namespace GameCore.TBS
     public class TBSNavigateComp : TBSCompBase
     {
 
-        private int _m_singleTargetIndex;
+        private int _m_singleEnemyTargetIndex;
+        private int _m_singlePlayerTargetIndex;
         public override void OnInitialize()
         {
             SCMsgCenter.RegisterMsgAct(SCMsgConst.TBS_SWITCH_TO_LEFT_INPUT, onTBSSwitchToLeftInput);
@@ -22,6 +23,9 @@ namespace GameCore.TBS
             SCMsgCenter.RegisterMsgAct(SCMsgConst.TBS_SWITCH_TO_DOWN_INPUT, onTBSSwitchToDownInput);
             SCMsgCenter.RegisterMsgAct(SCMsgConst.TBS_SWITCH_TO_UP_INPUT, onTBSSwitchToUpInput);
             SCMsgCenter.RegisterMsg(SCMsgConst.TBS_MOUSE_CLICK_ENEMY_INPUT, onTBSMouseClickEnemyInput);
+
+            _m_singleEnemyTargetIndex = 0;
+            _m_singlePlayerTargetIndex = 0;
         }
 
 
@@ -47,29 +51,54 @@ namespace GameCore.TBS
 
         private void onTBSSwitchToLeftInput()
         {
-            _ASCUINodeBase mainNode = GameCoreMgr.instance.uiCoreMgr.GetNodeByName(nameof(UINodeTBSMain));
-            _ASCUINodeBase confirmNode = GameCoreMgr.instance.uiCoreMgr.GetNodeByName(nameof(UINodeTBSConfirm));
-
-            if ((mainNode == null || mainNode.hasHideNode) && (confirmNode == null || confirmNode.hasHideNode))
-                return;
-
-            _m_singleTargetIndex--;
-            if (_m_singleTargetIndex < 0)
-                _m_singleTargetIndex = SCModel.instance.tbsModel.enemyActorModuleList.Count - 1;
-            SCModel.instance.tbsModel.curSelectSingleTargetIdx = _m_singleTargetIndex;
+            _ASCUINodeBase topFullNode = GameCoreMgr.instance.uiCoreMgr.GetTopNode(SCUIShowType.FULL);
+            if(topFullNode.GetNodeName() == nameof(UINodeTBSMain))
+            {
+                _m_singleEnemyTargetIndex--;
+                if (_m_singleEnemyTargetIndex < 0)
+                    _m_singleEnemyTargetIndex = SCModel.instance.tbsModel.enemyActorModuleList.Count - 1;
+                SCModel.instance.tbsModel.curSelectSingleEnemyTargetIdx = _m_singleEnemyTargetIndex;
+            }
+            else if(topFullNode.GetNodeName() == nameof(UINodeTBSConfirm) && !(topFullNode as UINodeTBSConfirm).isPlayerTargetConfirm)
+            {
+                _m_singleEnemyTargetIndex--;
+                if (_m_singleEnemyTargetIndex < 0)
+                    _m_singleEnemyTargetIndex = SCModel.instance.tbsModel.enemyActorModuleList.Count - 1;
+                SCModel.instance.tbsModel.curSelectSingleEnemyTargetIdx = _m_singleEnemyTargetIndex;
+            }
+            else if(topFullNode.GetNodeName() == nameof(UINodeTBSConfirm) && (topFullNode as UINodeTBSConfirm).isPlayerTargetConfirm)
+            {
+                _m_singlePlayerTargetIndex--;
+                if (_m_singlePlayerTargetIndex < 0)
+                    _m_singlePlayerTargetIndex = SCModel.instance.tbsModel.playerActorModuleList.Count - 1;//todo:玩家角色死后不会移除
+                SCModel.instance.tbsModel.curSelectSinglePlayerTargetIdx = _m_singlePlayerTargetIndex;
+            }
         }
 
         private void onTBSSwitchToRightInput()
         {
-            _ASCUINodeBase mainNode = GameCoreMgr.instance.uiCoreMgr.GetNodeByName(nameof(UINodeTBSMain));
-            _ASCUINodeBase confirmNode = GameCoreMgr.instance.uiCoreMgr.GetNodeByName(nameof(UINodeTBSConfirm));
-
-            if ((mainNode == null || mainNode.hasHideNode) && (confirmNode == null || confirmNode.hasHideNode))
-                return;
-            _m_singleTargetIndex++;
-            if (_m_singleTargetIndex > SCModel.instance.tbsModel.enemyActorModuleList.Count - 1)
-                _m_singleTargetIndex = 0;
-            SCModel.instance.tbsModel.curSelectSingleTargetIdx = _m_singleTargetIndex;
+            _ASCUINodeBase topFullNode = GameCoreMgr.instance.uiCoreMgr.GetTopNode(SCUIShowType.FULL);
+            if (topFullNode.GetNodeName() == nameof(UINodeTBSMain))
+            {
+                _m_singleEnemyTargetIndex++;
+                if (_m_singleEnemyTargetIndex > SCModel.instance.tbsModel.enemyActorModuleList.Count - 1)
+                    _m_singleEnemyTargetIndex = 0;
+                SCModel.instance.tbsModel.curSelectSingleEnemyTargetIdx = _m_singleEnemyTargetIndex;
+            }
+            else if (topFullNode.GetNodeName() == nameof(UINodeTBSConfirm) && !(topFullNode as UINodeTBSConfirm).isPlayerTargetConfirm)
+            {
+                _m_singleEnemyTargetIndex++;
+                if (_m_singleEnemyTargetIndex > SCModel.instance.tbsModel.enemyActorModuleList.Count - 1)
+                    _m_singleEnemyTargetIndex = 0;
+                SCModel.instance.tbsModel.curSelectSingleEnemyTargetIdx = _m_singleEnemyTargetIndex;
+            }
+            else if (topFullNode.GetNodeName() == nameof(UINodeTBSConfirm) && (topFullNode as UINodeTBSConfirm).isPlayerTargetConfirm)
+            {
+                _m_singlePlayerTargetIndex++;
+                if (_m_singlePlayerTargetIndex > SCModel.instance.tbsModel.playerActorModuleList.Count - 1)//todo:玩家角色死后不会移除
+                    _m_singlePlayerTargetIndex = 0;
+                SCModel.instance.tbsModel.curSelectSinglePlayerTargetIdx = _m_singlePlayerTargetIndex;
+            }
         }
 
         private void onTBSSwitchToUpInput()
@@ -130,7 +159,7 @@ namespace GameCore.TBS
             int goIndex = SCModel.instance.tbsModel.GetActorGOIndex(enemyGO, false);
 
             //重复点击选择同一个角色 在处于确认状态的情况下表示“确认”
-            if (goIndex == _m_singleTargetIndex)
+            if (goIndex == _m_singleEnemyTargetIndex)
             {
                 _ASCUINodeBase topFullNode = GameCoreMgr.instance.uiCoreMgr.GetTopNode(SCUIShowType.FULL);
                 if(topFullNode.GetNodeName() == nameof(UINodeTBSConfirm))
@@ -138,8 +167,8 @@ namespace GameCore.TBS
             }
             else
             {
-                _m_singleTargetIndex = goIndex;
-                SCModel.instance.tbsModel.curSelectSingleTargetIdx = _m_singleTargetIndex;
+                _m_singleEnemyTargetIndex = goIndex;
+                SCModel.instance.tbsModel.curSelectSingleEnemyTargetIdx = _m_singleEnemyTargetIndex;
             }
         }
     }

@@ -237,7 +237,7 @@ namespace GameCore
                     break;
                 case EItemType.BATTLE:
                     {
-                        resStr = getBattleItemEffectDesc(itemRefObj.itemEffectRefObjId, itemRefObj.itemDesc);
+                        resStr = getBattleItemEffectDesc(itemRefObj,itemRefObj.itemEffectRefObjId, itemRefObj.itemDesc);
                     }
                     break;
             }
@@ -245,7 +245,7 @@ namespace GameCore
         }
 
 
-        private static string getBattleItemEffectDesc(long _effectRefObjId,string _translateKey)
+        private static string getBattleItemEffectDesc(ItemRefObj _itemRefObj,long _effectRefObjId,string _translateKey)
         {
             string resStr = "";
             BattleItemEffectRefObj effectRefObj = SCRefDataMgr.instance.battleItemEffectRefList.refDataList.Find(x => x.id == _effectRefObjId);
@@ -277,8 +277,8 @@ namespace GameCore
                         TBSBuffRefObj buffRefObj;
                         for (int i = 0; i < buffEffectList.Count; i++)
                         {
-                            translateParamList.Add(Enum2StrFactory.CreateLocalStrByDamageTargetEnum(effectRefObj.targetType));
-                            translateParamList.Add(LanguageHelper.instance.GetTextTranslate(effectRefObj.isPlayerTarget ? "#1_allied" : "#1_hostile"));
+                            translateParamList.Add(Enum2StrFactory.CreateLocalStrByDamageTargetEnum(_itemRefObj.itemTargetType));
+                            translateParamList.Add(LanguageHelper.instance.GetTextTranslate(_itemRefObj.isPlayerTarget ? "#1_allied" : "#1_hostile"));
                             buffRefObj = SCRefDataMgr.instance.tbsBuffRefList.refDataList.Find(x => x.id == buffEffectList[i].buffRefObjId);
 
                             switch (buffRefObj.buffType)

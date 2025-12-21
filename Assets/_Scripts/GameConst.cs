@@ -24,6 +24,8 @@ namespace GameCore
         public const string TBS_ITEM_PANEL = "tbs_item_panel";
         public const string TBS_ITEM_ITEM_PREFAB = "tbs_item_item_prefab";
         public const string COMMON_TIP_PREFAB = "common_tip_prefab";
+        public const string TBS_PLAYER_HUD_PANEL = "tbs_player_hud_panel";
+        public const string TBS_PLAYER_HUD_ITEM_PREFAB = "tbs_player_hud_item_prefab";
         #endregion
 
 

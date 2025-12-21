@@ -1,4 +1,5 @@
 using System.Collections.Generic;
+using System.Text;
 
 namespace SCFrame.UI
 {
@@ -261,5 +262,16 @@ namespace SCFrame.UI
         }
 
         #endregion
+
+
+        public void PrintNodeList()
+        {
+            StringBuilder sb = new StringBuilder();
+            for (int i = 0; i < _m_nodeList.Count; i++)
+            {
+                sb.Append(_m_nodeList[i].GetNodeName() + "---");
+            }
+            SCDebugHelper.Log(sb.ToString());
+        }
     }
 }

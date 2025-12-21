@@ -71,7 +71,7 @@ namespace GameCore.UI
         {
             if (!_m_isSelect)
                 return;
-            GameCoreMgr.instance.uiCoreMgr.AddNode(new UINodeTBSConfirm(SCUIShowType.FULL,SCUIConfirmType.ITEM));
+            GameCoreMgr.instance.uiCoreMgr.AddNode(new UINodeTBSConfirm(SCUIShowType.FULL,SCUIConfirmType.ITEM, _m_itemRefObj.isPlayerTarget));
 
         }
         private void onBtnItemMouseEnter(PointerEventData _eventData, object[] _args)
@@ -85,7 +85,7 @@ namespace GameCore.UI
                 return;
 
             //SCModel.instance.tbsModel.selectTargetType = _m_skillRefObj.damageTargetType;
-            GameCoreMgr.instance.uiCoreMgr.AddNode(new UINodeTBSConfirm(SCUIShowType.FULL, SCUIConfirmType.ITEM));
+            GameCoreMgr.instance.uiCoreMgr.AddNode(new UINodeTBSConfirm(SCUIShowType.FULL, SCUIConfirmType.ITEM,_m_itemRefObj.isPlayerTarget));
         }
     }
 }

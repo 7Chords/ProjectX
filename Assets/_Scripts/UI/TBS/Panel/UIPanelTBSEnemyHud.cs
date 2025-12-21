@@ -76,7 +76,7 @@ namespace GameCore.UI
             _m_curSelectActorIdxList.Clear();
 
             if (SCModel.instance.tbsModel.selectTargetType == ETargetType.SINGLE)
-                _m_curSelectActorIdxList.Add(SCModel.instance.tbsModel.curSelectSingleTargetIdx);
+                _m_curSelectActorIdxList.Add(SCModel.instance.tbsModel.curSelectSingleEnemyTargetIdx);
             else
             {
                 int idx = -1;
@@ -134,8 +134,6 @@ namespace GameCore.UI
             if (SCModel.instance.tbsModel.selectTargetType == ETargetType.ALL)
                 return;
 
-            _m_curSelectActorIdxList.Clear();
-            _m_curSelectActorIdxList.Add(SCModel.instance.tbsModel.curSelectSingleTargetIdx);
             refreshItemListShow();
         }
 

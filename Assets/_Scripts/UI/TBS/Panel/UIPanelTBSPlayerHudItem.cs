@@ -18,12 +18,12 @@ namespace GameCore.UI
 
         public override void BeforeDiscard()
         {
-            SCMsgCenter.UnregisterMsg(SCMsgConst.TBS_ACTOR_INFO_CHG, onTBSEnemyActorInfoChg);
+            SCMsgCenter.UnregisterMsg(SCMsgConst.TBS_ACTOR_INFO_CHG, onTBSPlayerActorInfoChg);
         }
 
         public override void AfterInitialize()
         {
-            SCMsgCenter.RegisterMsg(SCMsgConst.TBS_ACTOR_INFO_CHG, onTBSEnemyActorInfoChg);
+            SCMsgCenter.RegisterMsg(SCMsgConst.TBS_ACTOR_INFO_CHG, onTBSPlayerActorInfoChg);
         }
 
         public override void OnHidePanel()
@@ -38,7 +38,7 @@ namespace GameCore.UI
         {
             if(_info == null)
             {
-                Debug.LogError("UIPanelTBSEnemyHudItem setinfo 传参是空！！！");
+                SCDebugHelper.LogError("UIPanelTBSPlayerHudItem setinfo 传参是空！！！");
                 return;
             }
             _m_actorInfo = _info;
@@ -52,6 +52,8 @@ namespace GameCore.UI
             mono.txtNameWithLv.text = GameCommon.GetCharacterNameWithLv(_m_actorInfo.characterLv, _m_actorInfo.characterRefObj.characterName);
             mono.imgHpBar.fillAmount = (float)_m_actorInfo.curHp / _m_actorInfo.maxHp;
             mono.txtHp.text = LanguageHelper.instance.GetTextTranslate("#2_{0}/{1}", _m_actorInfo.curHp, _m_actorInfo.maxHp);
+            mono.imgMpBar.fillAmount = (float)_m_actorInfo.curMp / _m_actorInfo.maxMp;
+            mono.txtMp.text = LanguageHelper.instance.GetTextTranslate("#2_{0}/{1}", _m_actorInfo.curMp, _m_actorInfo.maxMp);
             mono.imgPhysicalArmor.sprite = GameCommon.GetSpriteByPhysicalArmor(_m_actorInfo.armorLevel);
             mono.imgMagicResistent.sprite = GameCommon.GetSpriteByMagicResistance(_m_actorInfo.magicResistanceLevel);
             mono.imgFireResistent.sprite = GameCommon.GetSpriteByMagicAttributeWeak(EMagicAttributeType.FIRE, _m_actorInfo);
@@ -59,7 +61,7 @@ namespace GameCore.UI
             mono.imgWoodResistent.sprite = GameCommon.GetSpriteByMagicAttributeWeak(EMagicAttributeType.WOOD, _m_actorInfo);
         }
 
-        private void onTBSEnemyActorInfoChg(object[] _objs)
+        private void onTBSPlayerActorInfoChg(object[] _objs)
         {
             if (_objs == null || _objs.Length == 0)
                 return;

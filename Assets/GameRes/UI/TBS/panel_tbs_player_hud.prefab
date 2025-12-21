@@ -103,8 +103,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   uiMask: {fileID: 0}
-  canvasGroup: {fileID: 0}
-  fadeInDuration: 0
-  fadeOutDuration: 0
-  playerHudItemObjName: 
-  playerHudItemOffset: {x: 0, y: 0, z: 0}
+  canvasGroup: {fileID: 7237284657088888819}
+  fadeInDuration: 0.1
+  fadeOutDuration: 0.1
+  playerHudItemObjName: prefab_player_hud_item
+  playerHudItemOffset: {x: 0, y: -100, z: 0}

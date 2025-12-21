@@ -62,15 +62,27 @@ namespace GameCore.TBS
             }
         }
 
-        private int _m_curSelectSingleTargetIdx;//当前单体选择目标的索引
+        private int _m_curSelectSingleEnemyTargetIdx;//当前单体选择敌人目标的索引
 
-        public int curSelectSingleTargetIdx
+        public int curSelectSingleEnemyTargetIdx
         {
-            get { return _m_curSelectSingleTargetIdx; }
+            get { return _m_curSelectSingleEnemyTargetIdx; }
             set
             {
-                _m_curSelectSingleTargetIdx = value;
+                _m_curSelectSingleEnemyTargetIdx = value;
                 SCMsgCenter.SendMsg(SCMsgConst.TBS_SELECT_SINGLE_ENEMY_TARGET_CHG);
+            }
+        }
+
+        private int _m_curSelectSinglePlayerTargetIdx;//当前单体选择玩家角色目标的索引
+
+        public int curSelectSinglePlayerTargetIdx
+        {
+            get { return _m_curSelectSinglePlayerTargetIdx; }
+            set
+            {
+                _m_curSelectSinglePlayerTargetIdx = value;
+                SCMsgCenter.SendMsg(SCMsgConst.TBS_SELECT_SINGLE_PLAYER_TARGET_CHG);
             }
         }
 
@@ -176,7 +188,7 @@ namespace GameCore.TBS
             _m_battleInfo = new TBSBattleInfo();
             _m_battleInfo.InitNewInfo();
             _m_curActorIndex = 0;
-            _m_curSelectSingleTargetIdx = 0;
+            _m_curSelectSingleEnemyTargetIdx = 0;
             _m_selectTargetType = battleInfo.playerTeamInfo.actorInfoList[0].attackTargetType;
             _m_playerActorModuleList = new List<TBSActorBase>();
             _m_enemyActorModuleList = new List<TBSActorBase>();
@@ -220,14 +232,26 @@ namespace GameCore.TBS
         }
 
         /// <summary>
+        /// 获得当前行动的角色Actor
+        /// </summary>
+        /// <returns></returns>
+        public TBSActorBase GetCurActor()
+        {
+            if (curTurnType == ETBSTurnType.PLAYER)
+                return playerActorModuleList[curActorIndex];
+            else
+                return enemyActorModuleList[curActorIndex];
+        }
+
+        /// <summary>
         /// 获得当前的单个选择目标的Actor
         /// </summary>
         /// <returns></returns>
         public TBSActorBase GetCurSingleSelectTargetActor()
         {
-            if (enemyActorModuleList == null || _m_curSelectSingleTargetIdx < 0 || _m_curSelectSingleTargetIdx >= enemyActorModuleList.Count)
+            if (enemyActorModuleList == null || _m_curSelectSingleEnemyTargetIdx < 0 || _m_curSelectSingleEnemyTargetIdx >= enemyActorModuleList.Count)
                 return null;
-            return enemyActorModuleList[_m_curSelectSingleTargetIdx];
+            return enemyActorModuleList[_m_curSelectSingleEnemyTargetIdx];
         }
 
         public bool CheckAllActorsDead(bool _isPlayer)
