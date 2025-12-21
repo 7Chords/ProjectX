@@ -1,3 +1,4 @@
+using GameCore.RefData;
 using SCFrame;
 using System.Collections.Generic;
 using UnityEngine;
@@ -363,6 +364,44 @@ namespace GameCore.TBS
             }
             SCDebugHelper.LogError("找不到这个物体所在的索引！！！");
             return -1;
+        }
+
+        /// <summary>
+        /// 获得当前选择的技能的refObj
+        /// </summary>
+        /// <returns></returns>
+        public TBSActorSkillRefObj GetCurSkillRefObj()
+        {
+            TBSActorInfo actorInfo = SCModel.instance.tbsModel.GetCurActorInfo();
+            if (actorInfo == null)
+                return null;
+            long curSkillId = actorInfo.skillList[SCModel.instance.tbsModel.curSelectSkillIdx];
+            TBSActorSkillRefObj refObj = SCRefDataMgr.instance.tbsActorSkillRefList.refDataList.Find(x => x.id == curSkillId);
+            if (refObj == null)
+            {
+                SCDebugHelper.LogError("找不到id为" + curSkillId + "的技能配表数据！！！");
+                return null;
+            }
+            return refObj;
+        }
+
+        /// <summary>
+        /// 获得当前选择的道具的refObj
+        /// </summary>
+        /// <returns></returns>
+        public ItemRefObj GetCurItemRefObj()
+        {
+            TBSActorInfo actorInfo = SCModel.instance.tbsModel.GetCurActorInfo();
+            if (actorInfo == null)
+                return null;
+            long curItemId = SCDataMgr.instance.itemDataList[SCModel.instance.tbsModel.curSelectItemIdx].itemId;
+            ItemRefObj refObj = SCRefDataMgr.instance.itemRefList.refDataList.Find(x => x.id == curItemId);
+            if(refObj == null)
+            {
+                SCDebugHelper.LogError("找不到id为" + curItemId + "的道具配表数据！！！");
+                return null;
+            }
+            return refObj;
         }
     }
 }

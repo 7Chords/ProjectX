@@ -314,7 +314,7 @@ namespace GameCore.TBS
             ItemRefObj itemRefObj = SCRefDataMgr.instance.itemRefList.refDataList.Find(x => x.id == itemId);
             if (itemRefObj == null)
                 return;
-
+            //List<TBSActorBase> targetList = new List<TBSActorBase>();
 
         }
         private void onTBSSelectSingleEnemyTargetChg()

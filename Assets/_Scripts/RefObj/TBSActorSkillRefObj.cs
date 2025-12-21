@@ -17,6 +17,7 @@ namespace GameCore.RefData
         public long id;
         public string skillName;
         public string skillIconObjName;
+        public bool isPlayerTarget;
         public int skillNeedMp;
         public int skillNeedHp;
         public string skillDesc;
@@ -32,6 +33,7 @@ namespace GameCore.RefData
             id = getLong("id");
             skillName = getString("skillName");
             skillIconObjName = getString("skillIconObjName");
+            isPlayerTarget = getBool("isPlayerTarget");
             skillNeedMp = getInt("skillNeedMp");
             skillNeedHp = getInt("skillNeedHp");
             skillDesc = getString("skillDesc");

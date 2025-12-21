@@ -1,3 +1,5 @@
+using GameCore.RefData;
+using GameCore.TBS;
 using SCFrame;
 using SCFrame.UI;
 using System.Collections;
@@ -62,8 +64,41 @@ namespace GameCore.UI
         {
             if (_m_tbsConfirmPanel == null)
                 return;
-            _m_tbsConfirmPanel.ShowPanel();
             _m_tbsConfirmPanel.SetInfo(_m_confirmType);
+            switch (_m_confirmType)
+            {
+                case SCUIConfirmType.NONE:
+                    break;
+                case SCUIConfirmType.SKILL:
+                    {
+                        TBSActorSkillRefObj skillRefObj = SCModel.instance.tbsModel.GetCurSkillRefObj();
+                        if (skillRefObj == null)
+                        {
+                            SCDebugHelper.LogError("skillRefObj为空!!!");
+                            return;
+                        }
+                        //这里做相机操作的话只需要判断是敌人还是玩家
+                        if (skillRefObj.isPlayerTarget)
+                        {
+                            TBSCursorMgr.instance.HideSelectionCursor();
+                            GameCoreMgr.instance.uiCoreMgr.HideNode(nameof(UINodeTBSEnemyHud));
+                            GameCameraMgr.instance.SetCameraPositionOffsetWithFollow(
+                                SCModel.instance.tbsModel.gameMono.playerLookEnemyCenterPos, true, null, _m_tbsConfirmPanel.ShowPanel);
+                            GameCameraMgr.instance.SetCameraTarget(SCModel.instance.tbsModel.gameMono.enemyLookPlayerCenterPos);
+                        }
+                        else
+                        {
+                            _m_tbsConfirmPanel.ShowPanel();
+                        }
+                    }
+                    break;
+                case SCUIConfirmType.ITEM:
+                    break;
+            }
+
+
+            //_m_tbsConfirmPanel.ShowPanel();
+            //_m_tbsConfirmPanel.SetInfo(_m_confirmType);
         }
 
         public override string GetNodeName()

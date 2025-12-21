@@ -1,0 +1,76 @@
+using DG.Tweening;
+using GameCore.TBS;
+using GameCore.Util;
+using SCFrame;
+using SCFrame.UI;
+using UnityEngine;
+
+namespace GameCore.UI
+{
+    public class UIPanelTBSPlayerHudItem : _ASCUIPanelBase<UIMonoTBSPlayerHudItem>
+    {
+
+        private TBSActorInfo _m_actorInfo;
+        public TBSActorInfo actorInfo => _m_actorInfo;
+        public UIPanelTBSPlayerHudItem(UIMonoTBSPlayerHudItem _mono, SCUIShowType _showType) : base(_mono, _showType)
+        {
+        }
+
+        public override void BeforeDiscard()
+        {
+            SCMsgCenter.UnregisterMsg(SCMsgConst.TBS_ACTOR_INFO_CHG, onTBSEnemyActorInfoChg);
+        }
+
+        public override void AfterInitialize()
+        {
+            SCMsgCenter.RegisterMsg(SCMsgConst.TBS_ACTOR_INFO_CHG, onTBSEnemyActorInfoChg);
+        }
+
+        public override void OnHidePanel()
+        {
+        }
+
+        public override void OnShowPanel()
+        {
+        }
+
+        public void SetInfo(TBSActorInfo _info)
+        {
+            if(_info == null)
+            {
+                Debug.LogError("UIPanelTBSEnemyHudItem setinfo 传参是空！！！");
+                return;
+            }
+            _m_actorInfo = _info;
+            refreshShow();
+        }
+
+        private void refreshShow()
+        {
+            if (mono == null)
+                return;
+            mono.txtNameWithLv.text = GameCommon.GetCharacterNameWithLv(_m_actorInfo.characterLv, _m_actorInfo.characterRefObj.characterName);
+            mono.imgHpBar.fillAmount = (float)_m_actorInfo.curHp / _m_actorInfo.maxHp;
+            mono.txtHp.text = LanguageHelper.instance.GetTextTranslate("#2_{0}/{1}", _m_actorInfo.curHp, _m_actorInfo.maxHp);
+            mono.imgPhysicalArmor.sprite = GameCommon.GetSpriteByPhysicalArmor(_m_actorInfo.armorLevel);
+            mono.imgMagicResistent.sprite = GameCommon.GetSpriteByMagicResistance(_m_actorInfo.magicResistanceLevel);
+            mono.imgFireResistent.sprite = GameCommon.GetSpriteByMagicAttributeWeak(EMagicAttributeType.FIRE, _m_actorInfo);
+            mono.imgWaterResistent.sprite = GameCommon.GetSpriteByMagicAttributeWeak(EMagicAttributeType.WATER, _m_actorInfo);
+            mono.imgWoodResistent.sprite = GameCommon.GetSpriteByMagicAttributeWeak(EMagicAttributeType.WOOD, _m_actorInfo);
+        }
+
+        private void onTBSEnemyActorInfoChg(object[] _objs)
+        {
+            if (_objs == null || _objs.Length == 0)
+                return;
+            if(_m_actorInfo == null)
+            {
+                Debug.LogError("onTBSEnemyActorInfoChg 调用时actorinfo为null！！！");
+                return;
+            }
+            long runningId = (long)_objs[0];
+            if (_m_actorInfo.runningId == runningId)
+                refreshShow();
+        }
+    }
+}

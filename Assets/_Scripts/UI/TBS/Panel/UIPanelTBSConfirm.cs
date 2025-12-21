@@ -3,6 +3,7 @@ using GameCore.Util;
 using SCFrame.UI;
 using SCFrame;
 using GameCore.TBS;
+using GameCore.RefData;
 
 namespace GameCore.UI
 {
@@ -37,6 +38,46 @@ namespace GameCore.UI
         public void SetInfo(SCUIConfirmType _confirmType)
         {
             _m_confirmType = _confirmType;
+
+            //refreshCamera();
+        }
+
+       private void refreshCamera()
+       {
+            if (_m_confirmType == SCUIConfirmType.NONE)
+                return;
+            switch (_m_confirmType)
+            {
+                case SCUIConfirmType.SKILL:
+                    {
+                        TBSActorSkillRefObj skillRefObj = SCModel.instance.tbsModel.GetCurSkillRefObj();
+                        if (skillRefObj == null)
+                        {
+                            SCDebugHelper.LogError("skillRefObj为空!!!");
+                            return;
+                        }
+                        //这里做相机操作的话只需要判断是敌人还是玩家
+                        if(skillRefObj.isPlayerTarget)
+                        {
+                            GameCameraMgr.instance.SetCameraPositionOffsetWithFollow(
+                                SCModel.instance.tbsModel.gameMono.playerLookEnemyCenterPos, true,HidePanel,ShowPanel);
+                            GameCameraMgr.instance.SetCameraTarget(SCModel.instance.tbsModel.gameMono.enemyLookPlayerCenterPos);
+                        }
+                        else
+                        {
+
+                        }
+                    }
+                    break;
+                case SCUIConfirmType.ITEM:
+                    {
+
+                    }
+                    break;
+                default:
+                    break;
+            }
+
         }
 
         private void onTBSActorConfirmRelease()
@@ -46,25 +87,31 @@ namespace GameCore.UI
             {
                 case SCUIConfirmType.SKILL:
                     {
-                        TBSActorInfo actorInfo = SCModel.instance.tbsModel.GetCurActorInfo();
-                        if (actorInfo == null)
+                        TBSActorSkillRefObj skillRefObj = SCModel.instance.tbsModel.GetCurSkillRefObj();
+                        if(skillRefObj == null)
+                        {
+                            SCDebugHelper.LogError("skillRefObj为空!!!");
                             return;
-                        long curSkillId = actorInfo.skillList[SCModel.instance.tbsModel.curSelectSkillIdx];
-                        SCMsgCenter.SendMsg(SCMsgConst.TBS_ACTOR_SKILL, curSkillId);
+                        }
+                        SCMsgCenter.SendMsg(SCMsgConst.TBS_ACTOR_SKILL, skillRefObj.id);
                     }
                     break;
                 case SCUIConfirmType.ITEM:
                     {
-                        TBSActorInfo actorInfo = SCModel.instance.tbsModel.GetCurActorInfo();
-                        if (actorInfo == null)
+                        ItemRefObj itemRefObj = SCModel.instance.tbsModel.GetCurItemRefObj();
+                        if (itemRefObj == null)
+                        {
+                            SCDebugHelper.LogError("itemRefObj为空!!!");
                             return;
-                        long curItemId = SCDataMgr.instance.itemDataList[SCModel.instance.tbsModel.curSelectItemIdx].itemId;
-                        SCMsgCenter.SendMsg(SCMsgConst.TBS_ACTOR_ITEM, curItemId);
+                        }
+                        SCMsgCenter.SendMsg(SCMsgConst.TBS_ACTOR_ITEM, itemRefObj.id);
                     } 
                     break;
                 default:
                     break;
             }
         }
+
+
     }
 }
