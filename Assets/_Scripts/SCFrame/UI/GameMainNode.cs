@@ -17,6 +17,9 @@ namespace SCFrame.UI
 
         public override bool canQuitByMouseRight => false;
 
+        public override bool ignoreOnUIList => false;
+
+
         public override string GetNodeName()
         {
             return nameof(GameMainNode);

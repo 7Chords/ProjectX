@@ -420,7 +420,7 @@ namespace GameCore.TBS
                     GameCoreMgr.instance.uiCoreMgr.AddNode(new UINodeTBSEnemyHud(SCUIShowType.ADDITION, _m_enemyActorModuleList));
                 else
                 {
-                    GameCoreMgr.instance.uiCoreMgr.ShowNodeButNoMove2Top(nameof(UINodeTBSEnemyHud));
+                    GameCoreMgr.instance.uiCoreMgr.ShowNodeButNotMove2Top(nameof(UINodeTBSEnemyHud));
                     GameCoreMgr.instance.uiCoreMgr.ShowNode(nameof(UINodeTBSMain));
                 }
 
@@ -444,11 +444,6 @@ namespace GameCore.TBS
                 GameCameraMgr.instance.SetCameraPositionOffsetWithFollow(_m_playerActorModuleList[_m_curSelectEnemyActorIndex].GetActorCameraTran(),true, hideUIAndCursor, showUIAndCursor);
             }
 
-            //void setCameraOffset_Enemy()
-            //{
-            //    GameCameraMgr.instance.SetCameraPositionOffsetWithFollow(_m_gameMono.enemyPosInfoList[_m_curSelectActorIndex].cameraIdlePos);
-            //}
-
             if (SCModel.instance.tbsModel.curTurnType == ETBSTurnType.PLAYER)
             {
                 //设置相机
@@ -457,13 +452,6 @@ namespace GameCore.TBS
                     GameCameraMgr.instance.SetCameraFollow(_m_playerActorModuleList[_m_curSelectEnemyActorIndex].GetModelGameObject().transform);
                 setCameraOffset_Player();
 
-            }
-            else if (SCModel.instance.tbsModel.curTurnType == ETBSTurnType.ENEMY)
-            {
-                ////设置相机
-                //GameCameraMgr.instance.SetCameraTarget(_m_gameMono.enemyLookPlayerCenterPos);
-                //GameCameraMgr.instance.SetCameraFollow(_m_enemyActorGOList[_m_curSelectActorIndex].transform);
-                //setCameraOffset_Enemy();
             }
         }
     }

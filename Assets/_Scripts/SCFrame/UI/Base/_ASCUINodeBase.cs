@@ -28,6 +28,9 @@ namespace SCFrame.UI
         //该节点是否可以被鼠标右键关闭
         public abstract bool canQuitByMouseRight { get; }
 
+        //该节点在UI列表里是否忽略
+        public abstract bool ignoreOnUIList { get; }
+
         public _ASCUINodeBase(SCUIShowType _showType)
         {
             _m_showType = _showType;
@@ -114,6 +117,8 @@ namespace SCFrame.UI
         public abstract string GetNodeName();
 
         public abstract string GetResName();
+
+        public virtual void CopyData(_ASCUINodeBase _anotherNode) { }
 
     }
 }

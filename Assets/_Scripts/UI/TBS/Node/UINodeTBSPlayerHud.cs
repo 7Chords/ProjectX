@@ -15,6 +15,8 @@ namespace GameCore.UI
 
         public override bool canQuitByMouseRight => false;
 
+        public override bool ignoreOnUIList => true;
+
         private GameObject _m_panelGO;
         private UIPanelTBSPlayerHud _m_tbsPlayerHudPanel;
         private UIMonoTBSPlayerHud _m_tbsPlayerHudMono;

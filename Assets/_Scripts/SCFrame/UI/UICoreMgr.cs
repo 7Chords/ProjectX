@@ -44,6 +44,7 @@ namespace SCFrame.UI
             _ASCUINodeBase node = _m_nodeList.Find(x => x.GetNodeName() == _node.GetNodeName());
             if (node != null)
             {
+                node.CopyData(_node);
                 if (node.hasHideNode)
                 {
                     //队列中原本就存在该node，重新展示并移动到尾部
@@ -90,7 +91,17 @@ namespace SCFrame.UI
             if (_m_nodeList == null || _m_nodeList.Count == 0)
                 return;
 
-            _ASCUINodeBase topNode = _m_nodeList[_m_nodeList.Count - 1];
+            //找到最顶层的可以关闭的节点
+            int nodeIdx = _m_nodeList.Count - 1;
+            _ASCUINodeBase topNode = _m_nodeList[nodeIdx];
+            while(topNode.ignoreOnUIList)
+            {
+                nodeIdx--;
+                if (nodeIdx < 0)
+                    return;
+                topNode = _m_nodeList[nodeIdx];
+            }
+
             if(topNode != null)
             {
                 topNode.HideNode();
@@ -125,7 +136,8 @@ namespace SCFrame.UI
         {
             if (_m_nodeList == null || _m_nodeList.Count == 0)
                 return;
-            _ASCUINodeBase topNode = _m_nodeList[_m_nodeList.Count - 1];
+            //igonreOnUIList类型的节点不能通过ESC关闭
+            _ASCUINodeBase topNode = GetTopNode(false);
             if (!topNode.canQuitByEsc)
                 return;
             CloseTopNode();
@@ -138,16 +150,17 @@ namespace SCFrame.UI
         {
             if (_m_nodeList == null || _m_nodeList.Count == 0)
                 return;
-            _ASCUINodeBase topNode = _m_nodeList[_m_nodeList.Count - 1];
+            //igonreOnUIList类型的节点不能通过鼠标右键关闭
+            _ASCUINodeBase topNode = GetTopNode(false);
             if (!topNode.canQuitByMouseRight)
                 return;
             CloseTopNode();
         }
 
 
-        public void HideTopNode()
+        public void HideTopNode(bool _includeIgnore = true)
         {
-            _ASCUINodeBase topNode = GetTopNode();
+            _ASCUINodeBase topNode = GetTopNode(_includeIgnore);
             if (topNode == null)
                 return;
             topNode.HideNode();
@@ -208,8 +221,12 @@ namespace SCFrame.UI
             //}
         }
 
-
-        public void ShowNodeButNoMove2Top(string _nodeName)
+        /// <summary>
+        /// 显示节点但是不移动到队列的顶部，一般用于igonreOnUIList类型的节点
+        /// 仅仅做展示 不涉及到顺序
+        /// </summary>
+        /// <param name="_nodeName"></param>
+        public void ShowNodeButNotMove2Top(string _nodeName)
         {
             for (int i = _m_nodeList.Count - 1; i > -1; i--)
             {
@@ -240,22 +257,48 @@ namespace SCFrame.UI
             return null;
         }
 
-        public _ASCUINodeBase GetTopNode()
+        public _ASCUINodeBase GetTopNode(bool _includeIgnore = true)
         {
             if (_m_nodeList == null)
                 return null;
-            _ASCUINodeBase topNode = _m_nodeList[_m_nodeList.Count - 1];
+            _ASCUINodeBase topNode = null;
+            if (_includeIgnore)
+                 topNode = _m_nodeList[_m_nodeList.Count - 1];
+            else
+            {
+                int nodeIdx = _m_nodeList.Count - 1;
+                topNode = _m_nodeList[nodeIdx];
+                while (topNode.ignoreOnUIList)
+                {
+                    nodeIdx--;
+                    if (nodeIdx < 0)
+                        return null;
+                    topNode = _m_nodeList[nodeIdx];
+                }
+            }
             return topNode;
         }
 
-        public _ASCUINodeBase GetTopNode(SCUIShowType _showType)
+        public _ASCUINodeBase GetTopNode(SCUIShowType _showType, bool _includeIgnore = true)
         {
             if (_m_nodeList == null)
                 return null;
-            for(int i = _m_nodeList.Count - 1; i >= 0;i--)
+
+            if(_includeIgnore)
             {
-                if (_m_nodeList[i].showType == _showType)
-                    return _m_nodeList[i];
+                for (int i = _m_nodeList.Count - 1; i >= 0; i--)
+                {
+                    if (_m_nodeList[i].showType == _showType)
+                        return _m_nodeList[i];
+                }
+            }
+            else
+            {
+                for (int i = _m_nodeList.Count - 1; i >= 0; i--)
+                {
+                    if (_m_nodeList[i].showType == _showType && !_m_nodeList[i].ignoreOnUIList)
+                        return _m_nodeList[i];
+                }
             }
             return null;
 
@@ -269,7 +312,10 @@ namespace SCFrame.UI
             StringBuilder sb = new StringBuilder();
             for (int i = 0; i < _m_nodeList.Count; i++)
             {
-                sb.Append(_m_nodeList[i].GetNodeName() + "---");
+                sb.Append(_m_nodeList[i].GetNodeName());
+                if(_m_nodeList[i].ignoreOnUIList)
+                    sb.Append("(ignore)");
+                sb.Append("---");
             }
             SCDebugHelper.Log(sb.ToString());
         }
