@@ -84,6 +84,11 @@ namespace SCFrame
                                     SCMsgCenter.SendMsg(SCMsgConst.TBS_MOUSE_CLICK_ENEMY_INPUT, _m_raycastHit.collider.gameObject);
                                 }
                                 break;
+                            case GameConst.TAG_PLAYER:
+                                {
+                                    SCMsgCenter.SendMsg(SCMsgConst.TBS_MOUSE_CLICK_PLAYER_INPUT, _m_raycastHit.collider.gameObject);
+                                }
+                                break;
                             default:
                                 break;
                         }

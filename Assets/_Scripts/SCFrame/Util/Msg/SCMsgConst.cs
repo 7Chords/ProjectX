@@ -12,6 +12,8 @@ public class SCMsgConst
     public const int TBS_CONFIRM_INPUT = 1008;
 
     public const int TBS_MOUSE_CLICK_ENEMY_INPUT = 1009;
+    public const int TBS_MOUSE_CLICK_PLAYER_INPUT = 1010;
+
     #endregion
 
 

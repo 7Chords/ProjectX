@@ -2819,9 +2819,9 @@ GameObject:
   - component: {fileID: 3518964339634075314}
   - component: {fileID: 6516085877911728873}
   - component: {fileID: 5724978734182254877}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Lorraine
-  m_TagString: Untagged
+  m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0

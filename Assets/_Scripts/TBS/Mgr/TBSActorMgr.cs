@@ -40,9 +40,6 @@ namespace GameCore.TBS
             SCMsgCenter.RegisterMsg(SCMsgConst.TBS_ACTOR_ITEM, onTBSActorItem);
             SCMsgCenter.RegisterMsgAct(SCMsgConst.TBS_SELECT_SINGLE_ENEMY_TARGET_CHG, onTBSSelectSingleEnemyTargetChg);
             SCMsgCenter.RegisterMsgAct(SCMsgConst.TBS_SELECT_SINGLE_PLAYER_TARGET_CHG, onTBSSelectSinglePlayerTargetChg);
-
-
-
             SCMsgCenter.RegisterMsgAct(SCMsgConst.TBS_TURN_CHG_SHOW_END, onTBSTurnChgShowEnd);
             SCMsgCenter.RegisterMsg(SCMsgConst.TBS_ACTOR_DIE, onTBSActorDie);
             SCMsgCenter.RegisterMsgAct(SCMsgConst.TBS_SELECT_ENEMY_ALL_OR_SINGLE_STATE_SWITCH, onTBSSelectEnemyAllOrSingleStateSwitch);
@@ -59,7 +56,6 @@ namespace GameCore.TBS
             SCMsgCenter.UnregisterMsg(SCMsgConst.TBS_ACTOR_ITEM, onTBSActorItem);
             SCMsgCenter.UnregisterMsgAct(SCMsgConst.TBS_SELECT_SINGLE_ENEMY_TARGET_CHG, onTBSSelectSingleEnemyTargetChg);
             SCMsgCenter.UnregisterMsgAct(SCMsgConst.TBS_SELECT_SINGLE_PLAYER_TARGET_CHG, onTBSSelectSinglePlayerTargetChg);
-
             SCMsgCenter.UnregisterMsgAct(SCMsgConst.TBS_TURN_CHG_SHOW_END, onTBSTurnChgShowEnd);
             SCMsgCenter.UnregisterMsg(SCMsgConst.TBS_ACTOR_DIE, onTBSActorDie);
             SCMsgCenter.UnregisterMsgAct(SCMsgConst.TBS_SELECT_ENEMY_ALL_OR_SINGLE_STATE_SWITCH, onTBSSelectEnemyAllOrSingleStateSwitch);
@@ -322,6 +318,23 @@ namespace GameCore.TBS
             if (itemRefObj == null)
                 return;
             //List<TBSActorBase> targetList = new List<TBSActorBase>();
+
+            //List<TBSActorBase> targetList = new List<TBSActorBase>();
+            //if (skillRefObj.damageTargetType == ETargetType.ALL)
+            //{
+            //    targetList = _m_enemyActorModuleList;
+            //    GameCameraMgr.instance.SetCameraTarget(_m_gameMono.playerLookEnemyCenterPos);
+            //    _m_playerActorModuleList[_m_curSelectEnemyActorIndex].ReleaseSkill(skillId, targetList);
+
+            //}
+            //else if (skillRefObj.damageTargetType == ETargetType.SINGLE)
+            //{
+            //    targetList.Add(_m_enemyActorModuleList[_m_selectSingleEnemyTargetIndex]);
+            //    GameCameraMgr.instance.SetCameraTarget(_m_enemyActorModuleList[_m_selectSingleEnemyTargetIndex].GetAsCameraTargetTran());
+            //    _m_playerActorModuleList[_m_curSelectEnemyActorIndex].ReleaseSkill(skillId, targetList);
+            //}
+
+
 
         }
         private void onTBSSelectSingleEnemyTargetChg()

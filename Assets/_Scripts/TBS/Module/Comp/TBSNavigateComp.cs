@@ -23,6 +23,8 @@ namespace GameCore.TBS
             SCMsgCenter.RegisterMsgAct(SCMsgConst.TBS_SWITCH_TO_DOWN_INPUT, onTBSSwitchToDownInput);
             SCMsgCenter.RegisterMsgAct(SCMsgConst.TBS_SWITCH_TO_UP_INPUT, onTBSSwitchToUpInput);
             SCMsgCenter.RegisterMsg(SCMsgConst.TBS_MOUSE_CLICK_ENEMY_INPUT, onTBSMouseClickEnemyInput);
+            SCMsgCenter.RegisterMsg(SCMsgConst.TBS_MOUSE_CLICK_PLAYER_INPUT, onTBSMouseClickPlayerInput);
+
 
             _m_singleEnemyTargetIndex = 0;
             _m_singlePlayerTargetIndex = 0;
@@ -36,6 +38,7 @@ namespace GameCore.TBS
             SCMsgCenter.UnregisterMsgAct(SCMsgConst.TBS_SWITCH_TO_DOWN_INPUT, onTBSSwitchToDownInput);
             SCMsgCenter.UnregisterMsgAct(SCMsgConst.TBS_SWITCH_TO_UP_INPUT, onTBSSwitchToUpInput);
             SCMsgCenter.UnregisterMsg(SCMsgConst.TBS_MOUSE_CLICK_ENEMY_INPUT, onTBSMouseClickEnemyInput);
+            SCMsgCenter.UnregisterMsg(SCMsgConst.TBS_MOUSE_CLICK_PLAYER_INPUT, onTBSMouseClickPlayerInput);
 
         }
 
@@ -146,7 +149,7 @@ namespace GameCore.TBS
             if (SCModel.instance.tbsModel.selectTargetType == ETargetType.ALL)
             {
                 _ASCUINodeBase topFullNode = GameCoreMgr.instance.uiCoreMgr.GetTopNode(SCUIShowType.FULL);
-                if (topFullNode.GetNodeName() == nameof(UINodeTBSConfirm))
+                if (topFullNode.GetNodeName() == nameof(UINodeTBSConfirm) && !(topFullNode as UINodeTBSConfirm).isPlayerTargetConfirm)
                     SCMsgCenter.SendMsg(SCMsgConst.TBS_CONFIRM_INPUT);
 
                 return;
@@ -169,6 +172,39 @@ namespace GameCore.TBS
             {
                 _m_singleEnemyTargetIndex = goIndex;
                 SCModel.instance.tbsModel.curSelectSingleEnemyTargetIdx = _m_singleEnemyTargetIndex;
+            }
+        }
+
+        private void onTBSMouseClickPlayerInput(object[] _objs)
+        {
+            if (_objs == null || _objs.Length == 0)
+                return;
+            if (SCModel.instance.tbsModel.selectTargetType == ETargetType.ALL)
+            {
+                _ASCUINodeBase topFullNode = GameCoreMgr.instance.uiCoreMgr.GetTopNode(SCUIShowType.FULL);
+                if (topFullNode.GetNodeName() == nameof(UINodeTBSConfirm) && (topFullNode as UINodeTBSConfirm).isPlayerTargetConfirm)
+                    SCMsgCenter.SendMsg(SCMsgConst.TBS_CONFIRM_INPUT);
+
+                return;
+            }
+
+
+            GameObject playerGO = _objs[0] as GameObject;
+            if (playerGO == null)
+                return;
+            int goIndex = SCModel.instance.tbsModel.GetActorGOIndex(playerGO, true);
+
+            //重复点击选择同一个角色 在处于确认状态的情况下表示“确认”
+            if (goIndex == _m_singlePlayerTargetIndex)
+            {
+                _ASCUINodeBase topFullNode = GameCoreMgr.instance.uiCoreMgr.GetTopNode(SCUIShowType.FULL);
+                if (topFullNode.GetNodeName() == nameof(UINodeTBSConfirm))
+                    SCMsgCenter.SendMsg(SCMsgConst.TBS_CONFIRM_INPUT);
+            }
+            else
+            {
+                _m_singlePlayerTargetIndex = goIndex;
+                SCModel.instance.tbsModel.curSelectSinglePlayerTargetIdx = _m_singlePlayerTargetIndex;
             }
         }
     }

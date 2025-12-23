@@ -36,6 +36,7 @@ namespace GameCore
 
         #region Tag
         public const string TAG_ENEMY = "Enemy";
+        public const string TAG_PLAYER = "Player";
         #endregion
 
         public const float MOUSE_RAY_MAX_DISTANCE = 99;
