@@ -68,8 +68,6 @@ namespace GameCore.UI
 
             switch(_m_confirmType)
             {
-                case SCUIConfirmType.NONE:
-                    break;
                 case SCUIConfirmType.SKILL:
                     {
                         //这里做相机操作的话只需要判断是敌人还是玩家 如果是玩家 需要等相机运动到合适的位置
@@ -101,8 +99,6 @@ namespace GameCore.UI
             _m_tbsConfirmPanel.SetInfo(_m_confirmType);
             switch (_m_confirmType)
             {
-                case SCUIConfirmType.NONE:
-                    break;
                 case SCUIConfirmType.SKILL:
                     {
                         TBSActorSkillRefObj skillRefObj = SCModel.instance.tbsModel.GetCurSkillRefObj();
@@ -148,49 +144,45 @@ namespace GameCore.UI
         }
         private void showUIAndCursor(bool _isPlayerTarget,ETargetType _targetType)
         {
-            if(_isPlayerTarget)
+            switch (_targetType)
             {
-                switch(_targetType)
-                {
-                    case ETargetType.NONE:
-                        break;
-                    case ETargetType.SINGLE:
+                case ETargetType.SINGLE:
+                    {
+                        //对于目标为玩家 光标默认在使用者身上
+                        List<Vector3> posList = new List<Vector3>();
+                        if(_isPlayerTarget)
                         {
-                            //todo：对于目标为玩家 光标默认在使用者身上
-                            List<Vector3> posList = new List<Vector3>();
-                            posList.Add(SCModel.instance.tbsModel.GetCurActor().GetCursorPos());
+                            posList.Add(SCModel.instance.tbsModel.GetCurSelectSinglePlayerTargetActor().GetCursorPos());
                             TBSCursorMgr.instance.SetSelectionCursor(posList);
                             GameCoreMgr.instance.uiCoreMgr.AddNode(new UINodeTBSPlayerHud(SCUIShowType.ADDITION, SCModel.instance.tbsModel.playerActorModuleList));
                         }
-                        break;
-                    case ETargetType.ALL:
+                        else
                         {
-
-                        }
-                        break;
-                }
-            }
-            else
-            {
-                switch (_targetType)
-                {
-                    case ETargetType.NONE:
-                        break;
-                    case ETargetType.SINGLE:
-                        {
-                            //todo：对于目标为玩家 光标默认在使用者身上
-                            List<Vector3> posList = new List<Vector3>();
-                            posList.Add(SCModel.instance.tbsModel.GetCurSingleSelectTargetActor().GetCursorPos());
+                            posList.Add(SCModel.instance.tbsModel.GetCurSelectSingleEnemyTargetActor().GetCursorPos());
                             TBSCursorMgr.instance.SetSelectionCursor(posList);
                             GameCoreMgr.instance.uiCoreMgr.AddNode(new UINodeTBSEnemyHud(SCUIShowType.ADDITION, SCModel.instance.tbsModel.enemyActorModuleList));
                         }
-                        break;
-                    case ETargetType.ALL:
+                    }
+                    break;
+                case ETargetType.ALL:
+                    {
+                        List<Vector3> posList = new List<Vector3>();
+                        if (_isPlayerTarget)
                         {
-
+                            for (int i = 0; i < SCModel.instance.tbsModel.playerActorModuleList.Count; i++)
+                                posList.Add(SCModel.instance.tbsModel.playerActorModuleList[i].GetCursorPos());
+                            TBSCursorMgr.instance.SetSelectionCursor(posList);
+                            GameCoreMgr.instance.uiCoreMgr.AddNode(new UINodeTBSPlayerHud(SCUIShowType.ADDITION, SCModel.instance.tbsModel.playerActorModuleList));
                         }
-                        break;
-                }
+                        else
+                        {
+                            for (int i = 0; i < SCModel.instance.tbsModel.enemyActorModuleList.Count; i++)
+                                posList.Add(SCModel.instance.tbsModel.enemyActorModuleList[i].GetCursorPos());
+                            TBSCursorMgr.instance.SetSelectionCursor(posList);
+                            GameCoreMgr.instance.uiCoreMgr.AddNode(new UINodeTBSEnemyHud(SCUIShowType.ADDITION, SCModel.instance.tbsModel.enemyActorModuleList));
+                        }
+                    }
+                    break;
             }
 
         }

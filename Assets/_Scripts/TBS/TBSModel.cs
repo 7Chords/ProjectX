@@ -247,12 +247,25 @@ namespace GameCore.TBS
         /// 获得当前的单个选择目标的Actor
         /// </summary>
         /// <returns></returns>
-        public TBSActorBase GetCurSingleSelectTargetActor()
+        public TBSActorBase GetCurSelectSingleEnemyTargetActor()
         {
             if (enemyActorModuleList == null || _m_curSelectSingleEnemyTargetIdx < 0 || _m_curSelectSingleEnemyTargetIdx >= enemyActorModuleList.Count)
                 return null;
             return enemyActorModuleList[_m_curSelectSingleEnemyTargetIdx];
         }
+
+
+        /// <summary>
+        /// 获得当前的单个选择目标的Actor
+        /// </summary>
+        /// <returns></returns>
+        public TBSActorBase GetCurSelectSinglePlayerTargetActor()
+        {
+            if (playerActorModuleList == null || _m_curSelectSinglePlayerTargetIdx < 0 || _m_curSelectSinglePlayerTargetIdx >= playerActorModuleList.Count)
+                return null;
+            return playerActorModuleList[_m_curSelectSinglePlayerTargetIdx];
+        }
+
 
         public bool CheckAllActorsDead(bool _isPlayer)
         {
