@@ -38,47 +38,9 @@ namespace GameCore.UI
         public void SetInfo(SCUIConfirmType _confirmType)
         {
             _m_confirmType = _confirmType;
-
-            //refreshCamera();
         }
 
-       private void refreshCamera()
-       {
-            if (_m_confirmType == SCUIConfirmType.NONE)
-                return;
-            switch (_m_confirmType)
-            {
-                case SCUIConfirmType.SKILL:
-                    {
-                        TBSActorSkillRefObj skillRefObj = SCModel.instance.tbsModel.GetCurSkillRefObj();
-                        if (skillRefObj == null)
-                        {
-                            SCDebugHelper.LogError("skillRefObj为空!!!");
-                            return;
-                        }
-                        //这里做相机操作的话只需要判断是敌人还是玩家
-                        if(skillRefObj.isPlayerTarget)
-                        {
-                            GameCameraMgr.instance.SetCameraPositionOffsetWithFollow(
-                                SCModel.instance.tbsModel.gameMono.playerLookEnemyCenterPos, true,HidePanel,ShowPanel);
-                            GameCameraMgr.instance.SetCameraTarget(SCModel.instance.tbsModel.gameMono.enemyLookPlayerCenterPos);
-                        }
-                        else
-                        {
 
-                        }
-                    }
-                    break;
-                case SCUIConfirmType.ITEM:
-                    {
-
-                    }
-                    break;
-                default:
-                    break;
-            }
-
-        }
 
         private void onTBSActorConfirmRelease()
         {

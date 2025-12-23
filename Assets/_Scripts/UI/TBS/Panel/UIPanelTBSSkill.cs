@@ -80,7 +80,8 @@ namespace GameCore.UI
             SCMsgCenter.RegisterMsgAct(SCMsgConst.TBS_ACTOR_SKILL_HIGHTLIGHT_DOWN, onTBSActorSkillHighLightDown);
             SCMsgCenter.RegisterMsg(SCMsgConst.TBS_ACTOR_SKILL_MOUSE_HIGHLIGHT, onTBSActorSkillMouseHighLight);
 
-            _m_curSelectSkillIdx = 0;
+            //tip：重新打开这个面板要恢复成之前选择的位置
+            _m_curSelectSkillIdx = SCModel.instance.tbsModel.curSelectSkillIdx;
 
             refreshPanel();
 
