@@ -87,6 +87,22 @@ namespace GameCore.UI
                     }
                     break;
                 case SCUIConfirmType.ITEM:
+                    {
+                        //这里做相机操作的话只需要判断是敌人还是玩家 如果是玩家 需要等相机运动到合适的位置
+                        if (isPlayerTargetConfirm)
+                        {
+                            GameCameraMgr.instance.SetCameraPositionOffsetWithFollow(
+                                SCModel.instance.tbsModel.GetCurActor().GetActorCameraTran(), true, hidePlayerHudAndCursor, () =>
+                                {
+                                    _m_tbsConfirmPanel.HidePanel();
+                                });
+                            GameCameraMgr.instance.SetCameraTarget(SCModel.instance.tbsModel.gameMono.playerLookEnemyCenterPos);
+                        }
+                        else
+                        {
+                            _m_tbsConfirmPanel.HidePanel();
+                        }
+                    }
                     break;
                 default:
                     break;
@@ -125,6 +141,29 @@ namespace GameCore.UI
                     }
                     break;
                 case SCUIConfirmType.ITEM:
+                    {
+                        ItemRefObj itemRefObj = SCModel.instance.tbsModel.GetCurItemRefObj();
+                        if (itemRefObj == null)
+                        {
+                            SCDebugHelper.LogError("itemRefObj为空!!!");
+                            return;
+                        }
+                        //这里做相机操作的话只需要判断是敌人还是玩家 如果是玩家 需要等相机运动到合适的位置
+                        if (isPlayerTargetConfirm)
+                        {
+                            GameCameraMgr.instance.SetCameraTarget(SCModel.instance.tbsModel.gameMono.enemyLookPlayerCenterPos);
+                            GameCameraMgr.instance.SetCameraPositionOffsetWithFollow(
+                                SCModel.instance.tbsModel.gameMono.playerLookEnemyCenterPos, true, hideEnemyHudAndCursor, () =>
+                                {
+                                    showUIAndCursor(true, itemRefObj.itemTargetType);
+                                    _m_tbsConfirmPanel.ShowPanel();
+                                });
+                        }
+                        else
+                        {
+                            _m_tbsConfirmPanel.ShowPanel();
+                        }
+                    }
                     break;
             }
         }
@@ -148,7 +187,6 @@ namespace GameCore.UI
             {
                 case ETargetType.SINGLE:
                     {
-                        //对于目标为玩家 光标默认在使用者身上
                         List<Vector3> posList = new List<Vector3>();
                         if(_isPlayerTarget)
                         {
