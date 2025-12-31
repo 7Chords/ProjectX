@@ -176,7 +176,24 @@ namespace GameCore.TBS
 
         public virtual void UseItem(long _itemId, List<TBSActorBase> _targetList)
         {
-            
+            ItemRefObj itemRefObj = SCRefDataMgr.instance.itemRefList.refDataList.Find(x => x.id == _itemId);
+            if (itemRefObj == null)
+            {
+                SCDebugHelper.LogError("找不到id为" + _itemId + "的道具配表数据！！！");
+                return;
+            }
+
+            GameCoreMgr.instance.uiCoreMgr.HideNode(nameof(UINodeTBSConfirm));
+            if (itemRefObj.isPlayerTarget)
+                GameCoreMgr.instance.uiCoreMgr.HideNode(nameof(UINodeTBSPlayerHud));
+            else
+                GameCoreMgr.instance.uiCoreMgr.HideNode(nameof(UINodeTBSEnemyHud));
+
+            TBSCursorMgr.instance.HideSelectionCursor();
+
+            TBSItemHandler.DealItem(itemRefObj, _targetList);
+
+            SCMsgCenter.SendMsg(SCMsgConst.TBS_ACTOR_ACTION_END, actorInfo.runningId);
         }
         public virtual void Defend()
         {

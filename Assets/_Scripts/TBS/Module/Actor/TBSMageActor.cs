@@ -98,7 +98,7 @@ namespace GameCore.TBS
             {
                 case "À¶ÑæÍÂÏ¢":
                     {
-                        GameCoreMgr.instance.uiCoreMgr.RemoveNode(nameof(UINodeTBSConfirm));
+                        GameCoreMgr.instance.uiCoreMgr.HideNode(nameof(UINodeTBSConfirm));
                         GameCoreMgr.instance.uiCoreMgr.HideNode(nameof(UINodeTBSEnemyHud));
                         TBSCursorMgr.instance.HideSelectionCursor();
 

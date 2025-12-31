@@ -24,7 +24,7 @@ namespace GameCore.TBS
         private GameObject _m_tbsStage;//回合制战斗舞台
         private TBSGameMono _m_gameMono;//回合制战斗全局mono
 
-        private int _m_curSelectEnemyActorIndex;
+        private int _m_curActionActorIndex;
 
 
         private int _m_selectSingleEnemyTargetIndex;
@@ -155,9 +155,9 @@ namespace GameCore.TBS
 
             }
 
-            _m_curSelectEnemyActorIndex = 0;
+            _m_curActionActorIndex = 0;
 
-            SCModel.instance.tbsModel.curActorIndex = _m_curSelectEnemyActorIndex;
+            SCModel.instance.tbsModel.curActorIndex = _m_curActionActorIndex;
             SCModel.instance.tbsModel.selectTargetType = _m_playerTeamInfo.actorInfoList[0].attackTargetType;
             SCModel.instance.tbsModel.playerActorModuleList = _m_playerActorModuleList;
             SCModel.instance.tbsModel.enemyActorModuleList = _m_enemyActorModuleList;
@@ -197,25 +197,25 @@ namespace GameCore.TBS
                 {
                     do
                     {
-                        _m_curSelectEnemyActorIndex++;
-                        if (_m_curSelectEnemyActorIndex >= _m_enemyActorGOList.Count)
+                        _m_curActionActorIndex++;
+                        if (_m_curActionActorIndex >= _m_enemyActorGOList.Count)
                         {
                             break;
                         }
                     }
-                    while (_m_enemyActorModuleList[_m_curSelectEnemyActorIndex].actorInfo.hasDead);
+                    while (_m_enemyActorModuleList[_m_curActionActorIndex].actorInfo.hasDead);
                 }
                 else if (SCModel.instance.tbsModel.curTurnType == ETBSTurnType.PLAYER)
                 {
                     do
                     {
-                        _m_curSelectEnemyActorIndex++;
-                        if (_m_curSelectEnemyActorIndex >= _m_playerActorGOList.Count)
+                        _m_curActionActorIndex++;
+                        if (_m_curActionActorIndex >= _m_playerActorGOList.Count)
                         {
                             break;
                         }
                     }
-                    while (_m_playerActorModuleList[_m_curSelectEnemyActorIndex].actorInfo.hasDead);
+                    while (_m_playerActorModuleList[_m_curActionActorIndex].actorInfo.hasDead);
                 }
             }
 
@@ -224,27 +224,27 @@ namespace GameCore.TBS
 
             //更换回合持有方了 代码时序保证先更换回合持有方 再更换角色操作
             if ((SCModel.instance.tbsModel.curTurnType == ETBSTurnType.ENEMY
-                && _m_curSelectEnemyActorIndex >= _m_enemyActorGOList.Count)
+                && _m_curActionActorIndex >= _m_enemyActorGOList.Count)
                 || (SCModel.instance.tbsModel.curTurnType == ETBSTurnType.PLAYER
-                && _m_curSelectEnemyActorIndex >= _m_playerActorGOList.Count))
+                && _m_curActionActorIndex >= _m_playerActorGOList.Count))
             {
-                _m_curSelectEnemyActorIndex = -1;
+                _m_curActionActorIndex = -1;
                 //发送队伍行动结束的信息
                 SCMsgCenter.SendMsg(SCMsgConst.TBS_TRAM_ACTION_END);
 
                 jumpToNextActorIdx();
             }
 
-            SCModel.instance.tbsModel.curActorIndex = _m_curSelectEnemyActorIndex;
+            SCModel.instance.tbsModel.curActorIndex = _m_curActionActorIndex;
 
             //不是牵扯到回合持有者切换的处理
-            if (_m_curSelectEnemyActorIndex != 0)
+            if (_m_curActionActorIndex != 0)
             {
 
                 if (SCModel.instance.tbsModel.curTurnType == ETBSTurnType.ENEMY)
-                    (_m_enemyActorModuleList[_m_curSelectEnemyActorIndex] as ITBSEnemyActor).DealEnemyAction();
+                    (_m_enemyActorModuleList[_m_curActionActorIndex] as ITBSEnemyActor).DealEnemyAction();
                 else
-                    SCModel.instance.tbsModel.selectTargetType = _m_playerActorModuleList[_m_curSelectEnemyActorIndex].actorInfo.attackTargetType;
+                    SCModel.instance.tbsModel.selectTargetType = _m_playerActorModuleList[_m_curActionActorIndex].actorInfo.attackTargetType;
 
                 refreshCameraAndCursor(true);
             }
@@ -259,24 +259,24 @@ namespace GameCore.TBS
 
         private void onTBSActorDefence()
         {
-            _m_playerActorModuleList[_m_curSelectEnemyActorIndex].Defend();
+            _m_playerActorModuleList[_m_curActionActorIndex].Defend();
         }
 
         private void onTBSActorAttack()
         {
             List<TBSActorBase> targetList = new List<TBSActorBase>();
-            if(_m_playerActorModuleList[_m_curSelectEnemyActorIndex].actorInfo.attackTargetType == ETargetType.ALL)
+            if(_m_playerActorModuleList[_m_curActionActorIndex].actorInfo.attackTargetType == ETargetType.ALL)
             {
                 targetList = _m_enemyActorModuleList;
                 GameCameraMgr.instance.SetCameraTarget(_m_gameMono.playerLookEnemyCenterPos);
-                _m_playerActorModuleList[_m_curSelectEnemyActorIndex].Attack(_m_playerActorModuleList[_m_curSelectEnemyActorIndex].actorInfo.attackTargetType
+                _m_playerActorModuleList[_m_curActionActorIndex].Attack(_m_playerActorModuleList[_m_curActionActorIndex].actorInfo.attackTargetType
                     ,targetList);
             }
-            else if(_m_playerActorModuleList[_m_curSelectEnemyActorIndex].actorInfo.attackTargetType == ETargetType.SINGLE)
+            else if(_m_playerActorModuleList[_m_curActionActorIndex].actorInfo.attackTargetType == ETargetType.SINGLE)
             {
                 targetList.Add(_m_enemyActorModuleList[_m_selectSingleEnemyTargetIndex]);
                 GameCameraMgr.instance.SetCameraTarget(_m_enemyActorModuleList[_m_selectSingleEnemyTargetIndex].GetAsCameraTargetTran());
-                _m_playerActorModuleList[_m_curSelectEnemyActorIndex].Attack(_m_playerActorModuleList[_m_curSelectEnemyActorIndex].actorInfo.attackTargetType
+                _m_playerActorModuleList[_m_curActionActorIndex].Attack(_m_playerActorModuleList[_m_curActionActorIndex].actorInfo.attackTargetType
                     ,targetList);
             }
         }
@@ -296,14 +296,14 @@ namespace GameCore.TBS
             {
                 targetList = _m_enemyActorModuleList;
                 GameCameraMgr.instance.SetCameraTarget(_m_gameMono.playerLookEnemyCenterPos);
-                _m_playerActorModuleList[_m_curSelectEnemyActorIndex].ReleaseSkill(skillId, targetList);
+                _m_playerActorModuleList[_m_curActionActorIndex].ReleaseSkill(skillId, targetList);
 
             }
             else if (skillRefObj.damageTargetType == ETargetType.SINGLE)
             {
                 targetList.Add(_m_enemyActorModuleList[_m_selectSingleEnemyTargetIndex]);
                 GameCameraMgr.instance.SetCameraTarget(_m_enemyActorModuleList[_m_selectSingleEnemyTargetIndex].GetAsCameraTargetTran());
-                _m_playerActorModuleList[_m_curSelectEnemyActorIndex].ReleaseSkill(skillId, targetList);
+                _m_playerActorModuleList[_m_curActionActorIndex].ReleaseSkill(skillId, targetList);
             }
         }
 
@@ -315,24 +315,26 @@ namespace GameCore.TBS
             ItemRefObj itemRefObj = SCRefDataMgr.instance.itemRefList.refDataList.Find(x => x.id == itemId);
             if (itemRefObj == null)
                 return;
-            //List<TBSActorBase> targetList = new List<TBSActorBase>();
-
-            //List<TBSActorBase> targetList = new List<TBSActorBase>();
-            //if (skillRefObj.damageTargetType == ETargetType.ALL)
-            //{
-            //    targetList = _m_enemyActorModuleList;
-            //    GameCameraMgr.instance.SetCameraTarget(_m_gameMono.playerLookEnemyCenterPos);
-            //    _m_playerActorModuleList[_m_curSelectEnemyActorIndex].ReleaseSkill(skillId, targetList);
-
-            //}
-            //else if (skillRefObj.damageTargetType == ETargetType.SINGLE)
-            //{
-            //    targetList.Add(_m_enemyActorModuleList[_m_selectSingleEnemyTargetIndex]);
-            //    GameCameraMgr.instance.SetCameraTarget(_m_enemyActorModuleList[_m_selectSingleEnemyTargetIndex].GetAsCameraTargetTran());
-            //    _m_playerActorModuleList[_m_curSelectEnemyActorIndex].ReleaseSkill(skillId, targetList);
-            //}
 
 
+            List<TBSActorBase> targetList = new List<TBSActorBase>();
+            if (itemRefObj.itemTargetType == ETargetType.ALL)
+            {
+                if (!itemRefObj.isPlayerTarget)
+                    targetList = _m_enemyActorModuleList;
+                else
+                    targetList = _m_playerActorModuleList;
+                _m_playerActorModuleList[_m_curActionActorIndex].UseItem(itemId, targetList);
+
+            }
+            else if (itemRefObj.itemTargetType == ETargetType.SINGLE)
+            {
+                if (!itemRefObj.isPlayerTarget)
+                    targetList.Add(_m_enemyActorModuleList[_m_selectSingleEnemyTargetIndex]);
+                else
+                    targetList.Add(_m_playerActorModuleList[_m_selectSinglePlayerTargetIndex]);
+                _m_playerActorModuleList[_m_curActionActorIndex].UseItem(itemId, targetList);
+            }
 
         }
         private void onTBSSelectSingleEnemyTargetChg()
@@ -349,9 +351,9 @@ namespace GameCore.TBS
         private void onTBSTurnChgShowEnd()
         {
             if (SCModel.instance.tbsModel.curTurnType == ETBSTurnType.ENEMY)
-                (_m_enemyActorModuleList[_m_curSelectEnemyActorIndex] as ITBSEnemyActor).DealEnemyAction();
+                (_m_enemyActorModuleList[_m_curActionActorIndex] as ITBSEnemyActor).DealEnemyAction();
             else
-                SCModel.instance.tbsModel.selectTargetType = _m_playerActorModuleList[_m_curSelectEnemyActorIndex].actorInfo.attackTargetType;
+                SCModel.instance.tbsModel.selectTargetType = _m_playerActorModuleList[_m_curActionActorIndex].actorInfo.attackTargetType;
 
 
             refreshCameraAndCursor(true);
@@ -448,7 +450,7 @@ namespace GameCore.TBS
             void setCameraOffset_Player()
             {
                 //todo(cam)
-                GameCameraMgr.instance.SetCameraPositionOffsetWithFollow(_m_playerActorModuleList[_m_curSelectEnemyActorIndex].GetActorCameraTran(),true, hideUIAndCursor, showUIAndCursor);
+                GameCameraMgr.instance.SetCameraPositionOffsetWithFollow(_m_playerActorModuleList[_m_curActionActorIndex].GetActorCameraTran(),true, hideUIAndCursor, showUIAndCursor);
             }
 
             if (SCModel.instance.tbsModel.curTurnType == ETBSTurnType.PLAYER)
@@ -456,7 +458,7 @@ namespace GameCore.TBS
                 //设置相机
                 GameCameraMgr.instance.SetCameraTarget(_m_gameMono.playerLookEnemyCenterPos);
                 if(_reSetFollow)
-                    GameCameraMgr.instance.SetCameraFollow(_m_playerActorModuleList[_m_curSelectEnemyActorIndex].GetModelGameObject().transform);
+                    GameCameraMgr.instance.SetCameraFollow(_m_playerActorModuleList[_m_curActionActorIndex].GetModelGameObject().transform);
                 setCameraOffset_Player();
 
             }

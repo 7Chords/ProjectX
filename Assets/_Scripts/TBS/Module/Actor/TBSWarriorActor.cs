@@ -110,7 +110,7 @@ namespace GameCore.TBS
 
             if (!_m_actorSkillRefObj.needMove)
             {
-                GameCoreMgr.instance.uiCoreMgr.RemoveNode(nameof(UINodeTBSConfirm));
+                GameCoreMgr.instance.uiCoreMgr.HideNode(nameof(UINodeTBSConfirm));
                 GameCoreMgr.instance.uiCoreMgr.HideNode(nameof(UINodeTBSEnemyHud));
                 TBSCursorMgr.instance.HideSelectionCursor();
   
@@ -156,7 +156,7 @@ namespace GameCore.TBS
                                 .OnStart(
                                 () =>
                                 {
-                                    GameCoreMgr.instance.uiCoreMgr.RemoveNode(nameof(UINodeTBSConfirm));
+                                    GameCoreMgr.instance.uiCoreMgr.HideNode(nameof(UINodeTBSConfirm));
                                     GameCoreMgr.instance.uiCoreMgr.HideNode(nameof(UINodeTBSEnemyHud));
                                     TBSCursorMgr.instance.HideSelectionCursor();
                                     _m_animationCtl.speed = 2f;
