@@ -61,8 +61,8 @@ namespace SCFrame.UI
 
             if (mono.uiAnimator != null && !string.IsNullOrEmpty(mono.hideUIName))
             {
-                mono.animEventTrigger?.RemoveAnimationEvent("HideAnimOver");
-                mono.animEventTrigger?.AddAnimationEvent("HideAnimOver", fadeCanvas);
+                mono.animEventTrigger?.RemoveAnimationEvent(SCConst.HIDE_ANIM_OVER_EVENT);
+                mono.animEventTrigger?.AddAnimationEvent(SCConst.HIDE_ANIM_OVER_EVENT, fadeCanvas);
                 mono.uiAnimator.Play(mono.hideUIName);
             }
             else

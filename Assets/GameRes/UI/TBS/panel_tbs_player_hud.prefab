@@ -107,4 +107,4 @@ MonoBehaviour:
   fadeInDuration: 0.1
   fadeOutDuration: 0.1
   playerHudItemObjName: prefab_player_hud_item
-  playerHudItemOffset: {x: 0, y: -100, z: 0}
+  playerHudItemOffset: {x: 200, y: 100, z: 0}

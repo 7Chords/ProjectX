@@ -40,5 +40,12 @@ namespace GameCore
         #endregion
 
         public const float MOUSE_RAY_MAX_DISTANCE = 99;
+
+
+        #region AnimEvent or SignalEvent
+        public const string SPAWN_DAMAGE_AREA_EVENT = "SpawnDamageArea";
+        public const string COMMON_DEAL_SKILL_EVENT = "CommonDealSkill";
+        #endregion
+
     }
 }

@@ -115,7 +115,7 @@ namespace GameCore.TBS
                 TBSCursorMgr.instance.HideSelectionCursor();
   
 
-                _m_actorMono.signalEventTrigger.AddSignalEvent("CommonDealSkill", dealSkill);
+                _m_actorMono.signalEventTrigger.AddSignalEvent(GameConst.COMMON_DEAL_SKILL_EVENT, dealSkill);
                 _m_actorMono.skillDirector.Play(skillAsset);
 
 
@@ -124,7 +124,7 @@ namespace GameCore.TBS
                     () =>
                     {
                         SCMsgCenter.SendMsg(SCMsgConst.TBS_ACTOR_ACTION_END, actorInfo.runningId);
-                        _m_actorMono.signalEventTrigger.RemoveSignalEvent("CommonDealSkill");
+                        _m_actorMono.signalEventTrigger.RemoveSignalEvent(GameConst.COMMON_DEAL_SKILL_EVENT);
                         _m_attackEnemyActorList.Clear();
 
                     }));
@@ -143,7 +143,7 @@ namespace GameCore.TBS
                             if (target == null)
                                 return;
 
-                            _m_actorMono.signalEventTrigger.AddSignalEvent("CommonDealSkill", dealSkill);
+                            _m_actorMono.signalEventTrigger.AddSignalEvent(GameConst.COMMON_DEAL_SKILL_EVENT, dealSkill);
                             Vector3 originalPos = _m_actorMono.gameObject.transform.position;
 
                             GameGeneralRefObj generalRefObj = SCRefDataMgr.instance.gameGeneralRefObj;
@@ -194,7 +194,7 @@ namespace GameCore.TBS
                                 () =>
                                 {
                                     SCMsgCenter.SendMsg(SCMsgConst.TBS_ACTOR_ACTION_END, actorInfo.runningId);
-                                    _m_actorMono.signalEventTrigger.RemoveSignalEvent("CommonDealSkill");
+                                    _m_actorMono.signalEventTrigger.RemoveSignalEvent(GameConst.COMMON_DEAL_SKILL_EVENT);
                                     _m_attackEnemyActorList.Clear();
 
                                 }));

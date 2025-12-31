@@ -2857,7 +2857,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   goModel: {fileID: 6954253278358570504}
   damageTextOffset: {x: 0, y: 3, z: 3}
-  cursorOffset: {x: 0, y: 0, z: 0}
+  cursorOffset: {x: 0, y: 3, z: 0}
   asCameraTargetTran: {fileID: 3062833000534301336}
   actorAnim: {fileID: 8898066990867049978}
   bottomSfxTran: {fileID: 0}

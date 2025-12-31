@@ -102,7 +102,7 @@ namespace GameCore.TBS
                         GameCoreMgr.instance.uiCoreMgr.HideNode(nameof(UINodeTBSEnemyHud));
                         TBSCursorMgr.instance.HideSelectionCursor();
 
-                        _m_actorMono.signalEventTrigger.AddSignalEvent("SpawnDamageArea", ()=>
+                        _m_actorMono.signalEventTrigger.AddSignalEvent(GameConst.SPAWN_DAMAGE_AREA_EVENT, ()=>
                         {
                             GameObject go = ParticleMgr.instance.PlayEffect("snow_hit"
                                 , _targetList[0].GetActorGameObject().transform.position).gameObject;
@@ -122,7 +122,7 @@ namespace GameCore.TBS
                             () =>
                             {
                                 SCMsgCenter.SendMsg(SCMsgConst.TBS_ACTOR_ACTION_END, actorInfo.runningId);
-                                _m_actorMono.signalEventTrigger.RemoveSignalEvent("SpawnDamageArea");
+                                _m_actorMono.signalEventTrigger.RemoveSignalEvent(GameConst.SPAWN_DAMAGE_AREA_EVENT);
                                 _m_attackEnemyActorList.Clear();
 
                             }));
