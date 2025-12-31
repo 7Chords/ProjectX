@@ -21,11 +21,6 @@ namespace GameCore.UI
 
         public override void BeforeDiscard()
         {
-            //SCMsgCenter.UnregisterMsgAct(SCMsgConst.TBS_ACTOR_SKILL_HIGHTLIGHT_UP, onTBSActorSkillHighLightUp);
-            //SCMsgCenter.UnregisterMsgAct(SCMsgConst.TBS_ACTOR_SKILL_HIGHTLIGHT_DOWN, onTBSActorSkillHighLightDown);
-            //SCMsgCenter.UnregisterMsg(SCMsgConst.TBS_ACTOR_SKILL_MOUSE_HIGHLIGHT, onTBSActorSkillMouseHighLight);
-            //SCMsgCenter.UnregisterMsgAct(SCMsgConst.TBS_ACTOR_CONFIRM_RELEASE, onTBSActorSkillRelease);
-
             if (_m_skillContainer != null)
                 _m_skillContainer.Discard();
 
@@ -33,11 +28,6 @@ namespace GameCore.UI
 
         public override void AfterInitialize()
         {
-            //SCMsgCenter.RegisterMsgAct(SCMsgConst.TBS_ACTOR_SKILL_HIGHTLIGHT_UP, onTBSActorSkillHighLightUp);
-            //SCMsgCenter.RegisterMsgAct(SCMsgConst.TBS_ACTOR_SKILL_HIGHTLIGHT_DOWN, onTBSActorSkillHighLightDown);
-            //SCMsgCenter.RegisterMsg(SCMsgConst.TBS_ACTOR_SKILL_MOUSE_HIGHLIGHT, onTBSActorSkillMouseHighLight);
-            //SCMsgCenter.RegisterMsgAct(SCMsgConst.TBS_ACTOR_CONFIRM_RELEASE, onTBSActorSkillRelease);
-
             if (mono.monoContainer != null)
                 _m_skillContainer = new UIPanelTBSSkillContainer(mono.monoContainer);
         }
@@ -49,8 +39,6 @@ namespace GameCore.UI
             SCMsgCenter.UnregisterMsgAct(SCMsgConst.TBS_ACTOR_SKILL_HIGHTLIGHT_UP, onTBSActorSkillHighLightUp);
             SCMsgCenter.UnregisterMsgAct(SCMsgConst.TBS_ACTOR_SKILL_HIGHTLIGHT_DOWN, onTBSActorSkillHighLightDown);
             SCMsgCenter.UnregisterMsg(SCMsgConst.TBS_ACTOR_SKILL_MOUSE_HIGHLIGHT, onTBSActorSkillMouseHighLight);
-
-
 
             if (_m_skillContainer != null)
                 _m_skillContainer.HidePanel();
@@ -80,6 +68,16 @@ namespace GameCore.UI
             SCMsgCenter.RegisterMsgAct(SCMsgConst.TBS_ACTOR_SKILL_HIGHTLIGHT_DOWN, onTBSActorSkillHighLightDown);
             SCMsgCenter.RegisterMsg(SCMsgConst.TBS_ACTOR_SKILL_MOUSE_HIGHLIGHT, onTBSActorSkillMouseHighLight);
 
+            if (_m_skillContainer != null)
+            {
+                _m_skillContainer.ShowPanel();
+                TBSActorInfo actorInfo = SCModel.instance.tbsModel.GetCurActorInfo();
+                if (actorInfo == null)
+                    return;
+                _m_curActorSkillCount = actorInfo.skillList.Count;
+                _m_skillContainer.SetListInfo(actorInfo.skillList, _m_curSelectSkillIdx);
+            }
+
             setSelectSkillIdx();
 
             refreshPanel();
@@ -103,9 +101,7 @@ namespace GameCore.UI
             TBSActorInfo actorInfo = SCModel.instance.tbsModel.GetCurActorInfo();
             if (actorInfo == null)
                 return;
-            _m_curActorSkillCount = actorInfo.skillList.Count;
-            _m_skillContainer.SetListInfo(actorInfo.skillList, _m_curSelectSkillIdx);
-            _m_skillContainer.ShowPanel();
+            _m_skillContainer.RefreshContainerShow(actorInfo.skillList, _m_curSelectSkillIdx);
         }
 
         private void refreshCurSkillDesc()

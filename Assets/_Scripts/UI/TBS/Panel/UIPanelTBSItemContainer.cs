@@ -55,16 +55,16 @@ namespace GameCore.UI
 
 
 
-        public void SetListInfo(List<ItemData> _skillList, int _selectIndex)
+        public void SetListInfo(List<ItemData> _itemDataList, int _selectIndex)
         {
-            if (_skillList == null)
+            if (_itemDataList == null)
                 return;
             if (_m_itemItemList == null)
                 return;
 
             int i = 0, count = 0;
             UIPanelTBSItemContainerItem item = null;
-            for (i = 0; i < _skillList.Count; i++)
+            for (i = 0; i < _itemDataList.Count; i++)
             {
                 if (i < _m_itemItemList.Count)
                 {
@@ -79,7 +79,7 @@ namespace GameCore.UI
                 }
                 if (item == null)
                     continue;
-                item.SetInfo(_skillList[i]);
+                item.SetInfo(_itemDataList[i]);
                 item.ShowPanel();
                 //设置技能是否选中
                 if (i == _selectIndex)
@@ -98,6 +98,34 @@ namespace GameCore.UI
                 item.HidePanel();
             }
 
+        }
+
+        public void RefreshContainerShow(List<ItemData> _itemDataList, int _selectIndex)
+        {
+            int i = 0;
+            UIPanelTBSItemContainerItem item = null;
+            for (i = 0; i < _itemDataList.Count; i++)
+            {
+                if (i < _m_itemItemList.Count)
+                {
+                    item = _m_itemItemList[i];
+                }
+                else
+                {
+                    GameObject itemGO = creatItemGO();
+                    item = creatItemPanel(itemGO.GetComponent<UIMonoTBSItemContainerItem>());
+                    itemGO.transform.SetParent(mono.layoutGroup.transform);
+                    _m_itemItemList.Add(item);
+                }
+                if (item == null)
+                    continue;
+                item.SetInfo(_itemDataList[i]);
+                //设置技能是否选中
+                if (i == _selectIndex)
+                    item.SetSelect(true);
+                else
+                    item.SetSelect(false);
+            }
         }
     }
 }

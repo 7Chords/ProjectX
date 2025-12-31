@@ -21,6 +21,15 @@ namespace SCFrame
             _m_allTween.Clear();
         }
 
+        public void CompleteAllDoTween()
+        {
+            //for (var i = 0; i < _m_allTween.Count; i++)
+            //{
+            //    _m_allTween[i].();
+            //}
+            //_m_allTween.Clear();
+        }
+
         /// <summary>
         /// ÔÝÍ£ËùÓÐDoTween
         /// </summary>

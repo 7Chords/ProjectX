@@ -17,10 +17,15 @@ namespace GameCore.TBS
         {
             _m_tweenContainer = new TweenContainer();
             _m_allSelectionCursorList = new List<GameObject>();
+
+            SCMsgCenter.RegisterMsgAct(SCMsgConst.TBS_SELECT_ENEMY_ALL_OR_SINGLE_STATE_SWITCH, onTBSSelectEnemyAllOrSingleStateSwitch);
+
         }
 
         public override void OnDiscard()
         {
+            SCMsgCenter.UnregisterMsgAct(SCMsgConst.TBS_SELECT_ENEMY_ALL_OR_SINGLE_STATE_SWITCH, onTBSSelectEnemyAllOrSingleStateSwitch);
+
             _m_tweenContainer?.KillAllDoTween();
             _m_tweenContainer = null;
             _m_allSelectionCursorList.Clear();
@@ -123,6 +128,7 @@ namespace GameCore.TBS
         /// </summary>
         private void ShowSelectionCursor_Single()
         {
+            _m_tweenContainer?.KillAllDoTween();
             ShowOneSelectionCursor(_m_singleSelectionCursor);
         }
 
@@ -144,7 +150,7 @@ namespace GameCore.TBS
             if (_m_allSelectionCursorList == null)
                 return;
 
-
+            _m_tweenContainer?.KillAllDoTween();
             foreach (var cursor in _m_allSelectionCursorList)
             {
                 if (cursor == null)
@@ -158,8 +164,6 @@ namespace GameCore.TBS
         {
             if (_cursor == null)
                 return;
-            _m_tweenContainer?.KillAllDoTween();
-
             float chgTime = SCRefDataMgr.instance.gameGeneralRefObj.tbsTargetHighLightChgTime;
             Tween tween_scale = _cursor.transform.DOScale(Vector3.one, chgTime);
             Tween tween_alpha = _cursor.GetImage().DOFade(1, chgTime).OnStart(() =>
@@ -174,16 +178,16 @@ namespace GameCore.TBS
         {
             if (_cursor == null)
                 return;
-            _m_tweenContainer?.KillAllDoTween();
-
+            Sequence seq = DOTween.Sequence();
             float chgTime = SCRefDataMgr.instance.gameGeneralRefObj.tbsTargetHighLightChgTime;
             Tween tween_scale = _cursor.transform.DOScale(Vector3.one * 1.5f, chgTime);
             Tween tween_alpha = _cursor.GetImage().DOFade(0, chgTime).OnComplete(() =>
             {
                 SCCommon.SetGameObjectEnable(_cursor, false);
             });
-            _m_tweenContainer.RegDoTween(tween_scale);
-            _m_tweenContainer.RegDoTween(tween_alpha);
+            seq.Append(tween_scale);
+            seq.Join(tween_alpha);
+            _m_tweenContainer.RegDoTween(seq);
         }
 
         #endregion
@@ -224,6 +228,11 @@ namespace GameCore.TBS
                 HideSelectionCursor_Single();
                 ShowSelectionCursor_All();
             }
+        }
+
+        private void onTBSSelectEnemyAllOrSingleStateSwitch()
+        {
+            ChangeCursorShowMode(SCModel.instance.tbsModel.selectTargetType);
         }
     }
 }

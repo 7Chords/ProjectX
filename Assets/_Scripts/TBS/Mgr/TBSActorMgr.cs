@@ -42,7 +42,6 @@ namespace GameCore.TBS
             SCMsgCenter.RegisterMsgAct(SCMsgConst.TBS_SELECT_SINGLE_PLAYER_TARGET_CHG, onTBSSelectSinglePlayerTargetChg);
             SCMsgCenter.RegisterMsgAct(SCMsgConst.TBS_TURN_CHG_SHOW_END, onTBSTurnChgShowEnd);
             SCMsgCenter.RegisterMsg(SCMsgConst.TBS_ACTOR_DIE, onTBSActorDie);
-            SCMsgCenter.RegisterMsgAct(SCMsgConst.TBS_SELECT_ENEMY_ALL_OR_SINGLE_STATE_SWITCH, onTBSSelectEnemyAllOrSingleStateSwitch);
 
         }
         public override void OnDiscard()
@@ -58,7 +57,6 @@ namespace GameCore.TBS
             SCMsgCenter.UnregisterMsgAct(SCMsgConst.TBS_SELECT_SINGLE_PLAYER_TARGET_CHG, onTBSSelectSinglePlayerTargetChg);
             SCMsgCenter.UnregisterMsgAct(SCMsgConst.TBS_TURN_CHG_SHOW_END, onTBSTurnChgShowEnd);
             SCMsgCenter.UnregisterMsg(SCMsgConst.TBS_ACTOR_DIE, onTBSActorDie);
-            SCMsgCenter.UnregisterMsgAct(SCMsgConst.TBS_SELECT_ENEMY_ALL_OR_SINGLE_STATE_SWITCH, onTBSSelectEnemyAllOrSingleStateSwitch);
 
             foreach (var actor in _m_playerActorModuleList)
             {
@@ -400,10 +398,6 @@ namespace GameCore.TBS
 
         }
 
-        private void onTBSSelectEnemyAllOrSingleStateSwitch()
-        {
-            TBSCursorMgr.instance.ChangeCursorShowMode(SCModel.instance.tbsModel.selectTargetType);
-        }
         #endregion
 
         /// <summary>

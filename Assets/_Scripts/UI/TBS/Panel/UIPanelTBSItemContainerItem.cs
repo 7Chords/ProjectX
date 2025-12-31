@@ -20,27 +20,25 @@ namespace GameCore.UI
 
         public override void AfterInitialize()
         {
-            SCMsgCenter.RegisterMsgAct(SCMsgConst.TBS_ACTOR_ITEM_CONFIRM, onTBSActorItemConfirm);
-            mono.btnItemClick.AddClickDown(onBtnItemClickDown);
-            mono.btnItemClick.AddMouseEnter(onBtnItemMouseEnter);
         }
 
 
         public override void BeforeDiscard()
+        {
+        }
+
+        public override void OnHidePanel()
         {
             SCMsgCenter.UnregisterMsgAct(SCMsgConst.TBS_ACTOR_ITEM_CONFIRM, onTBSActorItemConfirm);
             mono.btnItemClick.RemoveClickDown(onBtnItemClickDown);
             mono.btnItemClick.RemoveMouseEnter(onBtnItemMouseEnter);
         }
 
-        public override void OnHidePanel()
-        {
-
-        }
-
         public override void OnShowPanel()
         {
-
+            SCMsgCenter.RegisterMsgAct(SCMsgConst.TBS_ACTOR_ITEM_CONFIRM, onTBSActorItemConfirm);
+            mono.btnItemClick.AddClickDown(onBtnItemClickDown);
+            mono.btnItemClick.AddMouseEnter(onBtnItemMouseEnter);
         }
 
         public void SetInfo(ItemData _itemData)

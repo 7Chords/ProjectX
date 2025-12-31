@@ -19,9 +19,6 @@ namespace GameCore.UI
 
         public override void AfterInitialize()
         {
-            SCMsgCenter.RegisterMsgAct(SCMsgConst.TBS_ACTOR_ITEM_HIGHTLIGHT_UP, onTBSActorItemHighLightUp);
-            SCMsgCenter.RegisterMsgAct(SCMsgConst.TBS_ACTOR_ITEM_HIGHTLIGHT_DOWN, onTBSActorItemHighLightDown);
-            SCMsgCenter.RegisterMsg(SCMsgConst.TBS_ACTOR_ITEM_MOUSE_HIGHLIGHT, onTBSActorItemMouseHighLight);
 
             if (mono.monoContainer != null)
                 _m_itemContainer = new UIPanelTBSItemContainer(mono.monoContainer);
@@ -29,9 +26,6 @@ namespace GameCore.UI
 
         public override void BeforeDiscard()
         {
-            SCMsgCenter.UnregisterMsgAct(SCMsgConst.TBS_ACTOR_ITEM_HIGHTLIGHT_UP, onTBSActorItemHighLightUp);
-            SCMsgCenter.UnregisterMsgAct(SCMsgConst.TBS_ACTOR_ITEM_HIGHTLIGHT_DOWN, onTBSActorItemHighLightDown);
-            SCMsgCenter.UnregisterMsg(SCMsgConst.TBS_ACTOR_ITEM_MOUSE_HIGHLIGHT, onTBSActorItemMouseHighLight);
 
             if (_m_itemContainer != null)
                 _m_itemContainer.Discard();
@@ -39,6 +33,11 @@ namespace GameCore.UI
 
         public override void OnHidePanel()
         {
+
+            SCMsgCenter.UnregisterMsgAct(SCMsgConst.TBS_ACTOR_ITEM_HIGHTLIGHT_UP, onTBSActorItemHighLightUp);
+            SCMsgCenter.UnregisterMsgAct(SCMsgConst.TBS_ACTOR_ITEM_HIGHTLIGHT_DOWN, onTBSActorItemHighLightDown);
+            SCMsgCenter.UnregisterMsg(SCMsgConst.TBS_ACTOR_ITEM_MOUSE_HIGHLIGHT, onTBSActorItemMouseHighLight);
+
             if (_m_itemContainer != null)
                 _m_itemContainer.HidePanel();
 
@@ -61,9 +60,23 @@ namespace GameCore.UI
 
         public override void OnShowPanel()
         {
+            SCMsgCenter.RegisterMsgAct(SCMsgConst.TBS_ACTOR_ITEM_HIGHTLIGHT_UP, onTBSActorItemHighLightUp);
+            SCMsgCenter.RegisterMsgAct(SCMsgConst.TBS_ACTOR_ITEM_HIGHTLIGHT_DOWN, onTBSActorItemHighLightDown);
+            SCMsgCenter.RegisterMsg(SCMsgConst.TBS_ACTOR_ITEM_MOUSE_HIGHLIGHT, onTBSActorItemMouseHighLight);
+
+
             _m_itemDataList = SCDataMgr.instance.itemDataList;
 
             _m_curSelectItemIdx = 0;
+
+            if (_m_itemContainer != null)
+            {
+                _m_itemContainer.ShowPanel();
+                if (_m_itemDataList == null)
+                    return;
+                _m_itemContainer.SetListInfo(_m_itemDataList, _m_curSelectItemIdx);
+
+            }
 
             refreshPanel();
 
@@ -92,8 +105,7 @@ namespace GameCore.UI
         {
             if (_m_itemDataList == null)
                 return;
-            _m_itemContainer.SetListInfo(_m_itemDataList, _m_curSelectItemIdx);
-            _m_itemContainer.ShowPanel();
+            _m_itemContainer.RefreshContainerShow(_m_itemDataList, _m_curSelectItemIdx);
         }
 
         private void refreshCurItemDesc()

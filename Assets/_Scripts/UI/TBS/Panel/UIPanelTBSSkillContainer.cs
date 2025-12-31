@@ -96,5 +96,33 @@ namespace GameCore.UI
 
         }
 
+        public void RefreshContainerShow(List<long> _skillList, int _selectIndex)
+        {
+            int i = 0;
+            UIPanelTBSSkillContainerItem item = null;
+            for (i = 0; i < _skillList.Count; i++)
+            {
+                if (i < _m_skillItemList.Count)
+                {
+                    item = _m_skillItemList[i];
+                }
+                else
+                {
+                    GameObject itemGO = creatItemGO();
+                    item = creatItemPanel(itemGO.GetComponent<UIMonoTBSSkillContainerItem>());
+                    itemGO.transform.SetParent(mono.layoutGroup.transform);
+                    _m_skillItemList.Add(item);
+                }
+                if (item == null)
+                    continue;
+                item.SetInfo(_skillList[i]);
+                //设置技能是否选中
+                if (i == _selectIndex)
+                    item.SetSelect(true);
+                else
+                    item.SetSelect(false);
+            }
+        }
+
     }
 }
