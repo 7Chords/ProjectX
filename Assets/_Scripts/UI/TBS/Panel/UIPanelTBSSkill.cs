@@ -80,8 +80,7 @@ namespace GameCore.UI
             SCMsgCenter.RegisterMsgAct(SCMsgConst.TBS_ACTOR_SKILL_HIGHTLIGHT_DOWN, onTBSActorSkillHighLightDown);
             SCMsgCenter.RegisterMsg(SCMsgConst.TBS_ACTOR_SKILL_MOUSE_HIGHLIGHT, onTBSActorSkillMouseHighLight);
 
-            //tip：重新打开这个面板要恢复成之前选择的位置
-            _m_curSelectSkillIdx = SCModel.instance.tbsModel.curSelectSkillIdx;
+            setSelectSkillIdx();
 
             refreshPanel();
 
@@ -153,5 +152,22 @@ namespace GameCore.UI
             refreshPanel();
         }
 
+        private void setSelectSkillIdx()
+        {
+
+            //tip：重新打开这个面板要恢复成之前选择的位置 如果这个角色技能数量不支持 就恢复为最后一个技能
+            TBSActorInfo actorInfo = SCModel.instance.tbsModel.GetCurActorInfo();
+            if (actorInfo == null)
+                return;
+            _m_curActorSkillCount = actorInfo.skillList.Count;
+
+            if (_m_curActorSkillCount <= SCModel.instance.tbsModel.curSelectSkillIdx)
+            {
+                _m_curSelectSkillIdx = _m_curActorSkillCount - 1;
+                SCModel.instance.tbsModel.curSelectSkillIdx = _m_curSelectSkillIdx;
+            }
+            else
+                _m_curSelectSkillIdx = SCModel.instance.tbsModel.curSelectSkillIdx;
+        }
     }
 }
