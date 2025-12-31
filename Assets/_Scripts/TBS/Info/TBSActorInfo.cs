@@ -36,7 +36,9 @@ namespace GameCore.TBS
 
         public long runningId;//游戏运行分配的id 唯一标识一个actor
         public bool hasDead;//是否死亡
-        public bool isEnemy;
+        public bool isEnemy;//是否是敌人
+
+        public bool isDefending;//是否正在防御
         public void InitNewInfo(CharacterRefObj _characterRefObj,bool _isEnemy)
         {
             if(_characterRefObj == null)

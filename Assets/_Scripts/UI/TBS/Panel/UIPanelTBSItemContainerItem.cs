@@ -81,8 +81,6 @@ namespace GameCore.UI
         {
             if (!_m_isSelect)
                 return;
-
-            //SCModel.instance.tbsModel.selectTargetType = _m_skillRefObj.damageTargetType;
             GameCoreMgr.instance.uiCoreMgr.AddNode(new UINodeTBSConfirm(SCUIShowType.FULL, SCUIConfirmType.ITEM,_m_itemRefObj.isPlayerTarget));
         }
     }

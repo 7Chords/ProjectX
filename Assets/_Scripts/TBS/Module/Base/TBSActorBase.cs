@@ -67,13 +67,12 @@ namespace GameCore.TBS
                 _m_animationCtl.PlaySingleAniamtion(_m_idleAnimClip);
 
 
-            SCMsgCenter.RegisterMsg(SCMsgConst.TBS_ACTOR_ACTION_END, onTBSActorActionEnd);
-
+            SCMsgCenter.RegisterMsgAct(SCMsgConst.TBS_ACTOR_CHG, onTBSActorChg);
         }
         public override void OnDiscard()
         {
+            SCMsgCenter.UnregisterMsgAct(SCMsgConst.TBS_ACTOR_CHG, onTBSActorChg);
 
-            SCMsgCenter.UnregisterMsg(SCMsgConst.TBS_ACTOR_ACTION_END, onTBSActorActionEnd);
 
             _m_tweenContainer?.KillAllDoTween();
             _m_tweenContainer = null;
@@ -191,12 +190,14 @@ namespace GameCore.TBS
 
             TBSCursorMgr.instance.HideSelectionCursor();
 
-            TBSItemHandler.DealItem(itemRefObj, _targetList);
-
+            //TBSItemHandler.DealItem(itemRefObj, _targetList);
             SCMsgCenter.SendMsg(SCMsgConst.TBS_ACTOR_ACTION_END, actorInfo.runningId);
+
         }
         public virtual void Defend()
         {
+            //ÉèÖÃ·ÀÓù×´Ì¬
+            actorInfo.isDefending = true;
             Sequence seq = DOTween.Sequence();
             seq.Append(DOVirtual.DelayedCall(_m_actorMono.defendPlayTime,
                 () =>
@@ -216,6 +217,9 @@ namespace GameCore.TBS
 
         public virtual void GetHit()
         {
+            if (actorInfo.isDefending)
+                return;
+
             GameGeneralRefObj generalRefObj = SCRefDataMgr.instance.gameGeneralRefObj;
             if (generalRefObj == null)
                 return;
@@ -381,6 +385,12 @@ namespace GameCore.TBS
             TBSAttackHandler.DealSkill(skillInfo);
         }
 
+        public virtual void DealItem()
+        {
+
+            SCMsgCenter.SendMsg(SCMsgConst.TBS_ACTOR_ACTION_END, actorInfo.runningId);
+        }
+
         protected bool checkSkillCanRelease(long _skillId)
         {
             TBSActorSkillRefObj skillRefObj = SCRefDataMgr.instance.tbsActorSkillRefList.refDataList.Find(x => x.id == _skillId);
@@ -390,21 +400,18 @@ namespace GameCore.TBS
                 actorInfo.curMp >= skillRefObj.skillNeedMp;
         }
 
-        protected virtual void onTBSActorActionEnd(object[] _objs)
+        private void onTBSActorChg()
         {
-            if (_objs == null || _objs.Length == 0)
+            TBSActorBase actor = SCModel.instance.tbsModel.GetCurActor();
+            if (actor == null)
                 return;
-            if (actorInfo.hasDead)
-                return;
-            long runningId = (long)_objs[0];
-            //todo
-            //»Ö¸´Îªidle
-            if(runningId != actorInfo.runningId)
+            if(actor == this)
             {
+                //È¡Ïû·ÀÓù×´Ì¬
+                actorInfo.isDefending = false;
                 if (_m_idleAnimClip != null)
                     _m_animationCtl.PlaySingleAniamtion(_m_idleAnimClip);
             }
-
         }
 
         protected virtual void showDieOver()

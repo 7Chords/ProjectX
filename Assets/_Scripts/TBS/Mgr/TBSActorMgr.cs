@@ -157,13 +157,13 @@ namespace GameCore.TBS
 
             _m_curActionActorIndex = 0;
 
-            SCModel.instance.tbsModel.curActorIndex = _m_curActionActorIndex;
-            SCModel.instance.tbsModel.selectTargetType = _m_playerTeamInfo.actorInfoList[0].attackTargetType;
             SCModel.instance.tbsModel.playerActorModuleList = _m_playerActorModuleList;
             SCModel.instance.tbsModel.enemyActorModuleList = _m_enemyActorModuleList;
             SCModel.instance.tbsModel.playerActorGOList = _m_playerActorGOList;
             SCModel.instance.tbsModel.enemyActorGOList = _m_enemyActorGOList;
             SCModel.instance.tbsModel.gameMono = _m_gameMono;
+            SCModel.instance.tbsModel.curActorIndex = _m_curActionActorIndex;
+            SCModel.instance.tbsModel.selectTargetType = _m_playerTeamInfo.actorInfoList[0].attackTargetType;
 
             refreshCameraAndCursor(true,true);
 

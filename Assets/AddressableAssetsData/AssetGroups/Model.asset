@@ -25,10 +25,6 @@ MonoBehaviour:
     m_Address: Lorraine
     m_ReadOnly: 0
     m_SerializedLabels: []
-  - m_GUID: 8635d5bfafacb7e439b0bb3bc97e5d96
-    m_Address: Kaut
-    m_ReadOnly: 0
-    m_SerializedLabels: []
   - m_GUID: d84ac9ffad4a377458e9cfaf51273c3c
     m_Address: RedSlime
     m_ReadOnly: 0
