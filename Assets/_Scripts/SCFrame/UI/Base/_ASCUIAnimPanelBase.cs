@@ -17,6 +17,8 @@ namespace SCFrame.UI
         {
             void fadeCanvas(Action _onComplete)
             {
+                fadeCanvasContainer.KillAllDoTween();
+                mono.animEventTrigger?.RemoveAnimationEvent(SCConst.HIDE_ANIM_OVER_EVENT);
                 fadeCanvasContainer.RegDoTween(mono.canvasGroup.DOFade(1, mono.fadeInDuration)
                     .OnStart(() =>
                     {
@@ -50,6 +52,7 @@ namespace SCFrame.UI
 
             void fadeCanvas()
             {
+                fadeCanvasContainer.KillAllDoTween();
                 fadeCanvasContainer.RegDoTween(mono.canvasGroup.DOFade(0, mono.fadeOutDuration)
                     .OnComplete(() =>
                     {

@@ -71,6 +71,7 @@ namespace SCFrame.UI
         protected virtual void ShowPanelAnim(Action _onBeforeShow)
         {
             mono.canvasGroup.alpha = 0f;
+            fadeCanvasContainer.KillAllDoTween();
             fadeCanvasContainer.RegDoTween(mono.canvasGroup.DOFade(1, mono.fadeInDuration)
                 .OnStart(() =>
                 {
@@ -102,6 +103,7 @@ namespace SCFrame.UI
         protected virtual void HidePanelAnim(Action _onHideOver)
         {
             mono.canvasGroup.alpha = 1f;
+            fadeCanvasContainer.KillAllDoTween();
             fadeCanvasContainer.RegDoTween(mono.canvasGroup.DOFade(0, mono.fadeOutDuration)
                 .OnComplete(()=> 
                 {

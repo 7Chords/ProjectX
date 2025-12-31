@@ -158,6 +158,8 @@ namespace GameCore.TBS
         {
             if (_cursor == null)
                 return;
+            _m_tweenContainer?.KillAllDoTween();
+
             float chgTime = SCRefDataMgr.instance.gameGeneralRefObj.tbsTargetHighLightChgTime;
             Tween tween_scale = _cursor.transform.DOScale(Vector3.one, chgTime);
             Tween tween_alpha = _cursor.GetImage().DOFade(1, chgTime).OnStart(() =>
@@ -172,6 +174,8 @@ namespace GameCore.TBS
         {
             if (_cursor == null)
                 return;
+            _m_tweenContainer?.KillAllDoTween();
+
             float chgTime = SCRefDataMgr.instance.gameGeneralRefObj.tbsTargetHighLightChgTime;
             Tween tween_scale = _cursor.transform.DOScale(Vector3.one * 1.5f, chgTime);
             Tween tween_alpha = _cursor.GetImage().DOFade(0, chgTime).OnComplete(() =>
@@ -194,7 +198,7 @@ namespace GameCore.TBS
         {
             if (_m_singleSelectionCursor == null)
                 return;
-
+            _m_tweenContainer?.KillAllDoTween();
             Tween moveTween = _m_singleSelectionCursor.GetRectTransform().
                 DOLocalMove(SCUICommon.WorldPointToUIPoint(SCGame.instance.topLayerRoot.GetRectTransform(), _worldPos), 0.2f);
             Tween scaleChgTween = _m_singleSelectionCursor.GetRectTransform().DOScale(Vector3.zero, 0.1f).OnComplete(() =>
