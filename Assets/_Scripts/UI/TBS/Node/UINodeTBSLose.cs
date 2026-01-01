@@ -13,6 +13,7 @@ namespace GameCore.UI
 
         public override bool needHideWhenEnterNewSameTypeNode => false;
 
+        public override bool needShowWhenQuitNewSameTypeNode => false;
         public override bool canQuitByEsc => false;
 
         public override bool canQuitByMouseRight => false;

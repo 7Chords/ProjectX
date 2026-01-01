@@ -66,17 +66,17 @@ namespace SCFrame
         {
             AddEventListener(_com, ESCEventType.ON_MOUSE_EXIT, _action, _args);
         }
-        public static void AddClick(this Component _com, Action<PointerEventData, object[]> _action, params object[] _args)
+        public static void AddMouseLeftClick(this Component _com, Action<PointerEventData, object[]> _action, params object[] _args)
         {
-            AddEventListener(_com, ESCEventType.ON_CLICK, _action, _args);
+            AddEventListener(_com, ESCEventType.ON_MOUSE_LEFT_CLICK, _action, _args);
         }
-        public static void AddClickDown(this Component _com, Action<PointerEventData, object[]> _action, params object[] _args)
+        public static void AddMouseLeftClickDown(this Component _com, Action<PointerEventData, object[]> _action, params object[] _args)
         {
-            AddEventListener(_com, ESCEventType.ON_CLICK_DOWN, _action, _args);
+            AddEventListener(_com, ESCEventType.ON_MOUSE_LEFT_CLICK_DOWN, _action, _args);
         }
-        public static void AddClickUp(this Component _com, Action<PointerEventData, object[]> _action, params object[] _args)
+        public static void AddMouseLeftClickUp(this Component _com, Action<PointerEventData, object[]> _action, params object[] _args)
         {
-            AddEventListener(_com, ESCEventType.ON_CLICK_UP, _action, _args);
+            AddEventListener(_com, ESCEventType.ON_MOUSE_LEFT_CLICK_UP, _action, _args);
         }
         public static void AddDrag(this Component _com, Action<PointerEventData, object[]> _action, params object[] _args)
         {
@@ -92,15 +92,15 @@ namespace SCFrame
         }
         public static void RemoveClick(this Component _com, Action<PointerEventData, object[]> _action, bool _checkArgs = false, params object[] _args)
         {
-            RemoveEventListener(_com, ESCEventType.ON_CLICK, _action, _checkArgs, _args);
+            RemoveEventListener(_com, ESCEventType.ON_MOUSE_LEFT_CLICK, _action, _checkArgs, _args);
         }
         public static void RemoveClickDown(this Component _com, Action<PointerEventData, object[]> _action, bool _checkArgs = false, params object[] _args)
         {
-            RemoveEventListener(_com, ESCEventType.ON_CLICK_DOWN, _action, _checkArgs, _args);
+            RemoveEventListener(_com, ESCEventType.ON_MOUSE_LEFT_CLICK_DOWN, _action, _checkArgs, _args);
         }
         public static void RemoveClickUp(this Component _com, Action<PointerEventData, object[]> _action, bool _checkArgs = false, params object[] _args)
         {
-            RemoveEventListener(_com, ESCEventType.ON_CLICK_UP, _action, _checkArgs, _args);
+            RemoveEventListener(_com, ESCEventType.ON_MOUSE_LEFT_CLICK_UP, _action, _checkArgs, _args);
         }
         public static void RemoveDrag(this Component _com, Action<PointerEventData, object[]> _action, bool _checkArgs = false, params object[] _args)
         {

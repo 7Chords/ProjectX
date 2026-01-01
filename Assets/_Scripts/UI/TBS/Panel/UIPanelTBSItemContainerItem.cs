@@ -37,7 +37,7 @@ namespace GameCore.UI
         public override void OnShowPanel()
         {
             SCMsgCenter.RegisterMsgAct(SCMsgConst.TBS_ACTOR_ITEM_CONFIRM, onTBSActorItemConfirm);
-            mono.btnItemClick.AddClickDown(onBtnItemClickDown);
+            mono.btnItemClick.AddMouseLeftClickDown(onBtnItemClickDown);
             mono.btnItemClick.AddMouseEnter(onBtnItemMouseEnter);
         }
 

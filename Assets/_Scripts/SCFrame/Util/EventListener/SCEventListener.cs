@@ -12,9 +12,9 @@ namespace SCFrame
     {
         ON_MOUSE_ENTER = -10001,
         ON_MOUSE_EXIT = -10002,
-        ON_CLICK = -10003,
-        ON_CLICK_DOWN = -10004,
-        ON_CLICK_UP = -10005,
+        ON_MOUSE_LEFT_CLICK = -10003,
+        ON_MOUSE_LEFT_CLICK_DOWN = -10004,
+        ON_MOUSE_LEFT_CLICK_UP = -10005,
         ON_DRAG = -10006,
         ON_BEGIN_DRAG = -10007,
         ON_END_DRAG = -10008,
@@ -153,17 +153,20 @@ namespace SCFrame
 
         public void OnPointerClick(PointerEventData _eventData)
         {
-            TriggerAction(ESCEventType.ON_CLICK, _eventData);
+            if(_eventData.button == PointerEventData.InputButton.Left)
+                TriggerAction(ESCEventType.ON_MOUSE_LEFT_CLICK, _eventData);
         }
 
         public void OnPointerDown(PointerEventData _eventData)
         {
-            TriggerAction(ESCEventType.ON_CLICK_DOWN, _eventData);
+            if (_eventData.button == PointerEventData.InputButton.Left)
+                TriggerAction(ESCEventType.ON_MOUSE_LEFT_CLICK_DOWN, _eventData);
         }
 
         public void OnPointerUp(PointerEventData _eventData)
         {
-            TriggerAction(ESCEventType.ON_CLICK_UP, _eventData);
+            if (_eventData.button == PointerEventData.InputButton.Left)
+                TriggerAction(ESCEventType.ON_MOUSE_LEFT_CLICK_UP, _eventData);
         }
 
         public void OnBeginDrag(PointerEventData _eventData)

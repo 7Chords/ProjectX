@@ -182,7 +182,7 @@ namespace GameCore.TBS
                 return;
             }
 
-            GameCoreMgr.instance.uiCoreMgr.HideNode(nameof(UINodeTBSConfirm));
+            GameCoreMgr.instance.uiCoreMgr.RemoveNode(nameof(UINodeTBSConfirm));
             if (itemRefObj.isPlayerTarget)
                 GameCoreMgr.instance.uiCoreMgr.HideNode(nameof(UINodeTBSPlayerHud));
             else

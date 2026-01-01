@@ -66,7 +66,7 @@ namespace GameCore.TBS
                 case nameof(UINodeTBSItem):
                     SCMsgCenter.SendMsg(SCMsgConst.TBS_ACTOR_ITEM_CONFIRM);
                     break;
-                case nameof(UINodeTBSConfirm)://tip:skillcomp和itemcomp都需要确认的操作 但是只在一边监听确认就行 不要反复
+                case nameof(UINodeTBSConfirm):
                     SCMsgCenter.SendMsg(SCMsgConst.TBS_ACTOR_CONFIRM_RELEASE);
                     break;
                 default:

@@ -22,6 +22,9 @@ namespace SCFrame.UI
         //进入同类型（normal/addition）节点时是否隐藏当前节点
         public abstract bool needHideWhenEnterNewSameTypeNode { get; }
 
+        //退出同类型（normal/addition）节点时是否显示当前节点
+        public abstract bool needShowWhenQuitNewSameTypeNode { get; }
+
         //该节点是否可以被esc关闭
         public abstract bool canQuitByEsc { get; }
 

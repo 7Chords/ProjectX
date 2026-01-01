@@ -31,7 +31,7 @@ namespace GameCore.UI
         {
             SCMsgCenter.RegisterMsgAct(SCMsgConst.TBS_ACTOR_SKILL_CONFIRM, onTBSActorSkillConfirm);
 
-            mono.btnSkillClick.AddClickDown(onBtnSkillClickDown);
+            mono.btnSkillClick.AddMouseLeftClickDown(onBtnSkillClickDown);
             mono.btnSkillClick.AddMouseEnter(onBtnSkillMouseEnter);
         }
 

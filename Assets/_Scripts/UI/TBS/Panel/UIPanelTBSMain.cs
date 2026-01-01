@@ -45,10 +45,10 @@ namespace GameCore.UI
 
         public override void OnShowPanel()
         {
-            mono.btnNormalAttack.AddClickDown(onBtnNormalAttackClickDown);
-            mono.btnSkill.AddClickDown(onBtnSkillClickDown);
-            mono.btnItem.AddClickDown(onBtnItemClickDown);
-            mono.btnDefence.AddClickDown(onBtnDefenceClickDown);
+            mono.btnNormalAttack.AddMouseLeftClickDown(onBtnNormalAttackClickDown);
+            mono.btnSkill.AddMouseLeftClickDown(onBtnSkillClickDown);
+            mono.btnItem.AddMouseLeftClickDown(onBtnItemClickDown);
+            mono.btnDefence.AddMouseLeftClickDown(onBtnDefenceClickDown);
 
             SCMsgCenter.RegisterMsgAct(SCMsgConst.TBS_ATTACK_INPUT,onTBSAttackInput);
             SCMsgCenter.RegisterMsgAct(SCMsgConst.TBS_DEFEND_INPUT, onTBSDefendInput);
