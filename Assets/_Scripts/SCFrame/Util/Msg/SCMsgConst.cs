@@ -13,7 +13,8 @@ public class SCMsgConst
 
     public const int TBS_MOUSE_CLICK_ENEMY_INPUT = 1009;
     public const int TBS_MOUSE_CLICK_PLAYER_INPUT = 1010;
-
+    public const int ESC_INPUT = 1011;
+    public const int MOUSE_RIGHT_INPUT = 1012;
     #endregion
 
 

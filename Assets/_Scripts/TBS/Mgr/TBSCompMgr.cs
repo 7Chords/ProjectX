@@ -56,6 +56,10 @@ namespace GameCore.TBS
             TBSNavigateComp navigateComp = new TBSNavigateComp();
             navigateComp.Initialize();
             _m_tbsCompDict.Add(ETBSCompType.NAVIGATE, navigateComp);
+
+            TBSGeneralFuncComp generalFuncComp = new TBSGeneralFuncComp();
+            generalFuncComp.Initialize();
+            _m_tbsCompDict.Add(ETBSCompType.GENERAL_FUNC, generalFuncComp);
         }
 
         private void discardAllComp()

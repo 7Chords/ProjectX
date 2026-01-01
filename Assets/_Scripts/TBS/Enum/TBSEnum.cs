@@ -30,6 +30,7 @@ namespace GameCore.TBS
         NAVIGATE,//导航（光标）
         ANALYSE,//分析
         SWITCH_BOW,//切换弓的形态
+        GENERAL_FUNC,//通用功能 esc跳转 空格确认等
     }
 
     public enum EDamageType

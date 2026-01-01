@@ -73,6 +73,8 @@ namespace SCFrame.UI
                     if (lastSameTypeNode.needHideWhenEnterNewSameTypeNode)
                     {
                         lastSameTypeNode.HideNode();
+                        _m_nodeList.Remove(lastSameTypeNode);
+                        _m_nodeList.Insert(0, lastSameTypeNode);
                         break;
                     }
                 }

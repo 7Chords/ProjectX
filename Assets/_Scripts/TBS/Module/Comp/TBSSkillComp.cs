@@ -12,15 +12,12 @@ namespace GameCore.TBS
         public override void OnInitialize()
         {
             SCMsgCenter.RegisterMsgAct(SCMsgConst.TBS_SKILL_INPUT, onTBSSkillInput);
-            SCMsgCenter.RegisterMsgAct(SCMsgConst.TBS_CONFIRM_INPUT, onTBSConfirmInput);
 
         }
 
         public override void OnDiscard()
         {
             SCMsgCenter.UnregisterMsgAct(SCMsgConst.TBS_SKILL_INPUT, onTBSSkillInput);
-            SCMsgCenter.UnregisterMsgAct(SCMsgConst.TBS_CONFIRM_INPUT, onTBSConfirmInput);
-
         }
 
         private void onTBSSkillInput()
@@ -40,9 +37,6 @@ namespace GameCore.TBS
             {
                 case nameof(UINodeTBSSkill):
                     SCMsgCenter.SendMsg(SCMsgConst.TBS_ACTOR_SKILL_CONFIRM);
-                    break;
-                case nameof(UINodeTBSConfirm)://tip:skillcomp和itemcomp都需要确认的操作 但是只在一边监听确认就行 不要反复
-                    SCMsgCenter.SendMsg(SCMsgConst.TBS_ACTOR_CONFIRM_RELEASE);
                     break;
                 default:
                     break;

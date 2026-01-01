@@ -16,17 +16,17 @@ namespace SCFrame
         private RaycastHit _m_raycastHit;
         public override void OnInitialize()
         {
-            SCTaskHelper.instance.AddUpdateListener(update);
+            SCTaskHelper.instance.AddUpdateListener(updateInput);
             _m_tbsFrameInterval = SCRefDataMgr.instance.gameGeneralRefObj.tbsInputFrameInterval;
         }
 
         public override void OnDiscard()
         {
-            SCTaskHelper.instance.RemoveUpdateListener(update);
+            SCTaskHelper.instance.RemoveUpdateListener(updateInput);
         }
 
 
-        private void update()
+        private void updateInput()
         {
             if (GameCoreMgr.instance.tbsCoreMgr.tbsGameHasStarted)
             {
@@ -39,9 +39,9 @@ namespace SCFrame
                     _m_tbsFrameChecker = 0;
 
                 if (Input.GetKeyDown(KeyCode.Escape))
-                    GameCoreMgr.instance.uiCoreMgr.CloseNodeByEsc();
+                    SCMsgCenter.SendMsg(SCMsgConst.ESC_INPUT);
                 if (Input.GetMouseButtonDown(1))
-                    GameCoreMgr.instance.uiCoreMgr.CloseNodeByMouseRight();
+                    SCMsgCenter.SendMsg(SCMsgConst.MOUSE_RIGHT_INPUT);
                 if (Input.GetKeyDown(SCSettingMgr.instance.saveKeyInfo.tbsSkillKeyCode))
                     SCMsgCenter.SendMsg(SCMsgConst.TBS_SKILL_INPUT);
                 if (Input.GetKeyDown(SCSettingMgr.instance.saveKeyInfo.tbsAttackKeyCode))
