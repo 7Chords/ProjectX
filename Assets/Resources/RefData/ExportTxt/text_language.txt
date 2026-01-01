@@ -60,3 +60,4 @@
 10059	#1_allied	己方的	allied
 10060	#1_cursor_move	光标移动	move cursor
 10061	#1_select_skill	选择技能	select skill
+10062	#2_tbs_skill_desc_1004	凝聚心神，令{0}己方单位回复{1}生命值	Gather your mind and ask{0}your unit to recover {1} health points

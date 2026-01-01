@@ -2,3 +2,5 @@
 1001	迅捷攻击	spr_skill_1001	FALSE	5	0	#2_tbs_skill_desc_1001	SINGLE	PHYSICAL	LITTLE	MEDIUM	NONE	tl_stele_skill_1001	TRUE
 1002	蓝焰吐息	spr_skill_1002	FALSE	10	0	#2_tbs_skill_desc_1002	SINGLE	MAGIC	LITTLE	NONE	WATER	tl_lorraine_skill_1002	FALSE
 1003	四方剑影	spr_skill_1003	FALSE	5	0	#2_tbs_skill_desc_1003	ALL	PHYSICAL	LITTLE	LIGHT	NONE	tl_stele_skill_1003	FALSE
+1004	疗愈术	spr_skill_1004	TRUE	5	0	#2_tbs_skill_desc_1004	SINGLE	NONE	LITTLE	NONE	NONE	tl_lorraine_skill_1004	FALSE
+
