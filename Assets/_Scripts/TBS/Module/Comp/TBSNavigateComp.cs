@@ -71,9 +71,10 @@ namespace GameCore.TBS
             }
             else if(topFullNode.GetNodeName() == nameof(UINodeTBSConfirm) && (topFullNode as UINodeTBSConfirm).isPlayerTargetConfirm)
             {
-                _m_singlePlayerTargetIndex--;
-                if (_m_singlePlayerTargetIndex < 0)
-                    _m_singlePlayerTargetIndex = SCModel.instance.tbsModel.playerActorModuleList.Count - 1;//todo:玩家角色死后不会移除
+                //由于摄像头问题 所以索引要反过来处理
+                _m_singlePlayerTargetIndex++;
+                if (_m_singlePlayerTargetIndex > SCModel.instance.tbsModel.playerActorModuleList.Count - 1)//todo:玩家角色死后不会移除
+                    _m_singlePlayerTargetIndex = 0;
                 SCModel.instance.tbsModel.curSelectSinglePlayerTargetIdx = _m_singlePlayerTargetIndex;
             }
         }
@@ -97,9 +98,9 @@ namespace GameCore.TBS
             }
             else if (topFullNode.GetNodeName() == nameof(UINodeTBSConfirm) && (topFullNode as UINodeTBSConfirm).isPlayerTargetConfirm)
             {
-                _m_singlePlayerTargetIndex++;
-                if (_m_singlePlayerTargetIndex > SCModel.instance.tbsModel.playerActorModuleList.Count - 1)//todo:玩家角色死后不会移除
-                    _m_singlePlayerTargetIndex = 0;
+                _m_singlePlayerTargetIndex--;
+                if (_m_singlePlayerTargetIndex < 0)
+                    _m_singlePlayerTargetIndex = SCModel.instance.tbsModel.playerActorModuleList.Count - 1;//todo:玩家角色死后不会移除
                 SCModel.instance.tbsModel.curSelectSinglePlayerTargetIdx = _m_singlePlayerTargetIndex;
             }
         }

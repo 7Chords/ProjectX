@@ -68,7 +68,7 @@ namespace GameCore.TBS
             seq.Append(lookAtTargetTween);
             seq.Append(move2AttackTween);
 
-            seq.Append(DOVirtual.DelayedCall((_m_actorMono as TBSWarriorActorMono).attackAnimDuration,
+            seq.Append(DOVirtual.DelayedCall((_m_actorMono as TBSKnightActorMono).attackAnimDuration,
                 () =>
                 {
                     _m_attackEnemyActorList.Clear();
