@@ -103,6 +103,14 @@ namespace GameCore.TBS
         BUFF,
     }
 
+    public enum ESkillEffectType
+    {
+        NONE,
+        HEAL_HP,
+        HEAL_MP,
+        DAMAGE,
+        BUFF,
+    }
 
     public enum EBuffEffectType
     {

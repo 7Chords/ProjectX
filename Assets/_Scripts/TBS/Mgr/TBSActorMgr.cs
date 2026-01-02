@@ -292,18 +292,33 @@ namespace GameCore.TBS
                 return;
 
             List<TBSActorBase> targetList = new List<TBSActorBase>();
-            if (skillRefObj.damageTargetType == ETargetType.ALL)
+            if (!skillRefObj.isPlayerTarget)
             {
-                targetList = _m_enemyActorModuleList;
-                GameCameraMgr.instance.SetCameraTarget(_m_gameMono.playerLookEnemyCenterPos);
-                _m_playerActorModuleList[_m_curActionActorIndex].ReleaseSkill(skillId, targetList);
+                if (skillRefObj.damageTargetType == ETargetType.ALL)
+                {
+                    targetList = _m_enemyActorModuleList;
+                    _m_playerActorModuleList[_m_curActionActorIndex].ReleaseSkill(skillId, targetList);
 
+                }
+                else if (skillRefObj.damageTargetType == ETargetType.SINGLE)
+                {
+                    targetList.Add(_m_enemyActorModuleList[_m_selectSingleEnemyTargetIndex]);
+                    _m_playerActorModuleList[_m_curActionActorIndex].ReleaseSkill(skillId, targetList);
+                }
             }
-            else if (skillRefObj.damageTargetType == ETargetType.SINGLE)
+            else
             {
-                targetList.Add(_m_enemyActorModuleList[_m_selectSingleEnemyTargetIndex]);
-                GameCameraMgr.instance.SetCameraTarget(_m_enemyActorModuleList[_m_selectSingleEnemyTargetIndex].GetAsCameraTargetTran());
-                _m_playerActorModuleList[_m_curActionActorIndex].ReleaseSkill(skillId, targetList);
+                if (skillRefObj.damageTargetType == ETargetType.ALL)
+                {
+                    targetList = _m_playerActorModuleList;
+                    _m_playerActorModuleList[_m_curActionActorIndex].ReleaseSkill(skillId, targetList);
+
+                }
+                else if (skillRefObj.damageTargetType == ETargetType.SINGLE)
+                {
+                    targetList.Add(_m_playerActorModuleList[_m_selectSinglePlayerTargetIndex]);
+                    _m_playerActorModuleList[_m_curActionActorIndex].ReleaseSkill(skillId, targetList);
+                }
             }
         }
 

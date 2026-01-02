@@ -21,6 +21,7 @@ namespace GameCore.RefData
         public int skillNeedMp;
         public int skillNeedHp;
         public string skillDesc;
+        public ESkillEffectType skillEffectType;
         public ETargetType damageTargetType;
         public EDamageType damageType;
         public EDamageAmountType damageAmountType;
@@ -37,6 +38,7 @@ namespace GameCore.RefData
             skillNeedMp = getInt("skillNeedMp");
             skillNeedHp = getInt("skillNeedHp");
             skillDesc = getString("skillDesc");
+            skillEffectType = (ESkillEffectType)getEnum("skillEffectType", typeof(ESkillEffectType));
             damageTargetType = (ETargetType)getEnum("damageTargetType", typeof(ETargetType));
             damageType = (EDamageType)getEnum("damageType", typeof(EDamageType));
             damageAmountType = (EDamageAmountType)getEnum("damageAmountType", typeof(EDamageAmountType));

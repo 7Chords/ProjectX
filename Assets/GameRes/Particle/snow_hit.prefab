@@ -4895,7 +4895,7 @@ GameObject:
   - component: {fileID: 7882492310245188146}
   - component: {fileID: 1913416254692652203}
   m_Layer: 0
-  m_Name: Snow hit
+  m_Name: snow_hit
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

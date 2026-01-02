@@ -11,6 +11,7 @@ namespace GameCore.TBS
         public List<int> srcUseHpList;
         public List<int> srcUseMpList;
         public int baseDamage;
+        public ESkillEffectType skillEffectType;
         public EDamageType damageType;
         public EDamageAmountType damageAmountType;
         public EPhysicalLevelType physicsLevelType;

@@ -182,7 +182,7 @@ namespace GameCore.TBS
                 return;
             }
 
-            GameCoreMgr.instance.uiCoreMgr.RemoveNode(nameof(UINodeTBSConfirm));
+            GameCoreMgr.instance.uiCoreMgr.HideNode(nameof(UINodeTBSConfirm));
             if (itemRefObj.isPlayerTarget)
                 GameCoreMgr.instance.uiCoreMgr.HideNode(nameof(UINodeTBSPlayerHud));
             else
@@ -375,6 +375,7 @@ namespace GameCore.TBS
             skillInfo.srcUseMpList = new List<int>();
             skillInfo.srcUseMpList.Add(_m_actorSkillRefObj.skillNeedMp);
 
+            skillInfo.skillEffectType = _m_actorSkillRefObj.skillEffectType;
             skillInfo.baseDamage = actorInfo.attack;
             skillInfo.damageAmountType = _m_actorSkillRefObj.damageAmountType;
             skillInfo.damageType = _m_actorSkillRefObj.damageType;

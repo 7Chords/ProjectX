@@ -2944,6 +2944,10 @@ PlayableDirector:
     value: {fileID: 8898066990867049978}
   - key: {fileID: 2008177220952378097, guid: 1cba7b1a4df80ab4986d9cd4aa264310, type: 2}
     value: {fileID: 5724978734182254877}
+  - key: {fileID: 8329444532508780755, guid: 2fdad3e0ce2242d41ab40bdc12023862, type: 2}
+    value: {fileID: 8898066990867049978}
+  - key: {fileID: 2008177220952378097, guid: 2fdad3e0ce2242d41ab40bdc12023862, type: 2}
+    value: {fileID: 5724978734182254877}
   m_ExposedReferences:
     m_References:
     - 5116a7f505adddd49a9c3b5db9fd2158: {fileID: 3948134765084683364}
@@ -2963,6 +2967,7 @@ MonoBehaviour:
   m_Events:
     m_Signals:
     - {fileID: 11400000, guid: 8b177addaa5e49f479f19de29a08cb28, type: 2}
+    - {fileID: 11400000, guid: e1d42a9f51e94b64c9fb06f020d9a09b, type: 2}
     m_Events:
     - m_PersistentCalls:
         m_Calls:
@@ -2976,6 +2981,20 @@ MonoBehaviour:
             m_IntArgument: 0
             m_FloatArgument: 0
             m_StringArgument: SpawnDamageArea
+            m_BoolArgument: 0
+          m_CallState: 2
+    - m_PersistentCalls:
+        m_Calls:
+        - m_Target: {fileID: 3518964339634075314}
+          m_TargetAssemblyTypeName: GameCore.Util.SignalEventTrigger, Assembly-CSharp
+          m_MethodName: SignalEvent
+          m_Mode: 5
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_IntArgument: 0
+            m_FloatArgument: 0
+            m_StringArgument: SpawnParticleEffect
             m_BoolArgument: 0
           m_CallState: 2
 --- !u!1 &9032094378774273120

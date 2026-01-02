@@ -110,7 +110,7 @@ namespace GameCore.TBS
 
             if (!_m_actorSkillRefObj.needMove)
             {
-                GameCoreMgr.instance.uiCoreMgr.RemoveNode(nameof(UINodeTBSConfirm));
+                GameCoreMgr.instance.uiCoreMgr.HideNode(nameof(UINodeTBSConfirm));
                 GameCoreMgr.instance.uiCoreMgr.HideNode(nameof(UINodeTBSEnemyHud));
                 TBSCursorMgr.instance.HideSelectionCursor();
   
@@ -137,6 +137,12 @@ namespace GameCore.TBS
                 {
                     case "迅捷攻击":
                         {
+
+                            GameCoreMgr.instance.uiCoreMgr.HideNode(nameof(UINodeTBSConfirm));
+                            GameCoreMgr.instance.uiCoreMgr.HideNode(nameof(UINodeTBSEnemyHud));
+                            TBSCursorMgr.instance.HideSelectionCursor();
+                            GameCameraMgr.instance.SetCameraTarget(SCModel.instance.tbsModel.GetCurSelectSingleEnemyTargetActor().GetAsCameraTargetTran());
+
                             //该技能是单体攻击 所以取目标第一个 这边或许可以支持配置为多个敌人的处理 不过需要商榷todo
 
                             TBSActorBase target = _targetList[0];
@@ -156,9 +162,6 @@ namespace GameCore.TBS
                                 .OnStart(
                                 () =>
                                 {
-                                    GameCoreMgr.instance.uiCoreMgr.RemoveNode(nameof(UINodeTBSConfirm));
-                                    GameCoreMgr.instance.uiCoreMgr.HideNode(nameof(UINodeTBSEnemyHud));
-                                    TBSCursorMgr.instance.HideSelectionCursor();
                                     _m_animationCtl.speed = 2f;
                                     _m_animationCtl.PlaySingleAniamtion(_m_runAnimClip);
                                 })
@@ -209,7 +212,7 @@ namespace GameCore.TBS
                         break;
                     case "四方剑影":
                         {
-                            //GameCoreMgr.instance.uiCoreMgr.RemoveNode(nameof(UINodeTBSConfirm));
+                            //GameCoreMgr.instance.uiCoreMgr.HideNode(nameof(UINodeTBSConfirm));
                             //GameCoreMgr.instance.uiCoreMgr.HideNode(nameof(UINodeTBSMain));
                             //GameCoreMgr.instance.uiCoreMgr.HideNode(nameof(UINodeTBSEnemyHud));
                             //TBSCursorMgr.instance.HideSelectionCursor();

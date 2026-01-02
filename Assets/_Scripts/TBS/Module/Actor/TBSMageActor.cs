@@ -98,9 +98,11 @@ namespace GameCore.TBS
             {
                 case "À¶ÑæÍÂÏ¢":
                     {
-                        GameCoreMgr.instance.uiCoreMgr.RemoveNode(nameof(UINodeTBSConfirm));
+                        GameCoreMgr.instance.uiCoreMgr.HideNode(nameof(UINodeTBSConfirm));
                         GameCoreMgr.instance.uiCoreMgr.HideNode(nameof(UINodeTBSEnemyHud));
                         TBSCursorMgr.instance.HideSelectionCursor();
+
+                        GameCameraMgr.instance.SetCameraTarget(SCModel.instance.tbsModel.GetCurSelectSingleEnemyTargetActor().GetAsCameraTargetTran());
 
                         _m_actorMono.signalEventTrigger.AddSignalEvent(GameConst.SPAWN_DAMAGE_AREA_EVENT, ()=>
                         {
@@ -131,6 +133,43 @@ namespace GameCore.TBS
                         _m_tweenContainer?.RegDoTween(seq);
                     }
                     break;
+                case "ÁÆÓúÊõ":
+                    {
+                        GameCoreMgr.instance.uiCoreMgr.HideNode(nameof(UINodeTBSConfirm));
+                        GameCoreMgr.instance.uiCoreMgr.HideNode(nameof(UINodeTBSPlayerHud));
+
+                        TBSCursorMgr.instance.HideSelectionCursor();
+
+                        //todo
+                        GameCameraMgr.instance.SetCameraPositionOffsetWithFollow(SCModel.instance.tbsModel.gameMono.playerLookEnemyCenterPos, true);
+                        GameCameraMgr.instance.SetCameraTarget(SCModel.instance.tbsModel.GetCurSelectSinglePlayerTargetActor().GetAsCameraTargetTran());
+
+
+                        _m_actorMono.signalEventTrigger.AddSignalEvent(GameConst.SPAWN_PARTICLE_EFFECT_EVENT, () =>
+                        {
+                            GameObject go = ParticleMgr.instance.PlayEffect("heal_green"
+                                , _targetList[0].GetActorGameObject().transform.position).gameObject;
+                            //go.GetComponent<CommonDamageArea>().Initialize(_targetList[0].GetActorGameObject(), dealSkill);
+                        });
+
+                        _m_actorMono.skillDirector.Play(skillAsset);
+
+                        dealSkill();
+
+                        Sequence seq = DOTween.Sequence();
+
+                        seq.Append(DOVirtual.DelayedCall((float)skillAsset.duration,
+                            () =>
+                            {
+                                SCMsgCenter.SendMsg(SCMsgConst.TBS_ACTOR_ACTION_END, actorInfo.runningId);
+                                _m_actorMono.signalEventTrigger.RemoveSignalEvent(GameConst.SPAWN_PARTICLE_EFFECT_EVENT);
+                                _m_attackEnemyActorList.Clear();
+
+                            }));
+
+                        _m_tweenContainer?.RegDoTween(seq);
+                    }
+                    break;
                 default:
                     break;
             }
@@ -138,7 +177,7 @@ namespace GameCore.TBS
 
             //if (!_m_actorSkillRefObj.needMove)
             //{
-            //    GameCoreMgr.instance.uiCoreMgr.RemoveNode(nameof(UINodeTBSConfirm));
+            //    GameCoreMgr.instance.uiCoreMgr.HideNode(nameof(UINodeTBSConfirm));
             //    GameCoreMgr.instance.uiCoreMgr.HideNode(nameof(UINodeTBSEnemyHud));
             //    TBSCursorMgr.instance.HideSelectionCursor();
 

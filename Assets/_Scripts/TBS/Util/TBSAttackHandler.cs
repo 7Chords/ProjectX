@@ -129,6 +129,38 @@ namespace GameCore.TBS
                 if (_skillInfo.srcUseMpList != null && _skillInfo.srcUseMpList.Count > i)
                     _skillInfo.srcActorList[i].TakeMagic(_skillInfo.srcUseMpList[i]);
             }
+
+            switch(_skillInfo.skillEffectType)
+            {
+                case ESkillEffectType.HEAL_HP:
+                    {
+                        dealHealHpSkill(_skillInfo);
+                    }
+                    break;
+                case ESkillEffectType.DAMAGE:
+                    {
+                        dealDamageSkill(_skillInfo);
+                    }
+                    break;
+                case ESkillEffectType.HEAL_MP:
+                    {
+                        dealHealMpSkill(_skillInfo);
+                    }
+                    break;
+                case ESkillEffectType.BUFF:
+                    break;
+                default:
+                    break;
+            }
+        }
+
+
+
+        private static void dealDamageSkill(TBSGameSkillInfo _skillInfo)
+        {
+            TBSConfigRefObj tbsConfigRefObj = SCRefDataMgr.instance.tbsConfigRefObj;
+            if (tbsConfigRefObj == null)
+                return;
             //List<int> damageList = new List<int>();
             //如果是多人合击技能 不计算闪避
             //todo：目前没有多人合击设计 略过
@@ -196,6 +228,26 @@ namespace GameCore.TBS
                 }
             }
         }
+
+        private static void dealHealHpSkill(TBSGameSkillInfo _skillInfo)
+        {
+            int healAmount = Mathf.RoundToInt(_skillInfo.baseDamage * getDamageAmountRate(_skillInfo.damageAmountType));
+            foreach (var actor in _skillInfo.targetActorList)
+            {
+                actor.HealHp(healAmount);
+            }
+        }
+
+        private static void dealHealMpSkill(TBSGameSkillInfo _skillInfo)
+        {
+            int healAmount = Mathf.RoundToInt(_skillInfo.baseDamage * getDamageAmountRate(_skillInfo.damageAmountType));
+            foreach (var actor in _skillInfo.targetActorList)
+            {
+                actor.HealMp(healAmount);
+            }
+        }
+
+
 
         /// <summary>
         /// 获得物理穿透倍率

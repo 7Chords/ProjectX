@@ -29,6 +29,10 @@ MonoBehaviour:
     m_Address: snow_hit
     m_ReadOnly: 0
     m_SerializedLabels: []
+  - m_GUID: 1245b8d2997d5b34fb1637be70a7eb05
+    m_Address: heal_green
+    m_ReadOnly: 0
+    m_SerializedLabels: []
   m_ReadOnly: 0
   m_Settings: {fileID: 11400000, guid: d14fb1bbe98862146a7f5467a5bc79f8, type: 2}
   m_SchemaSet:

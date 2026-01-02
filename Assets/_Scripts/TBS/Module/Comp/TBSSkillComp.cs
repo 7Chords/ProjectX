@@ -28,20 +28,5 @@ namespace GameCore.TBS
             GameCoreMgr.instance.uiCoreMgr.AddNode(new UINodeTBSSkill(SCFrame.UI.SCUIShowType.FULL));
         }
 
-        private void onTBSConfirmInput()
-        {
-            _ASCUINodeBase topNode = GameCoreMgr.instance.uiCoreMgr.GetTopNode(SCUIShowType.FULL);
-            if (topNode == null || topNode.hasHideNode)
-                return;
-            switch(topNode.GetNodeName())
-            {
-                case nameof(UINodeTBSSkill):
-                    SCMsgCenter.SendMsg(SCMsgConst.TBS_ACTOR_SKILL_CONFIRM);
-                    break;
-                default:
-                    break;
-
-            }
-        }
     }
 }
