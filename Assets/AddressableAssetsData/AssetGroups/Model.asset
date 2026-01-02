@@ -41,6 +41,10 @@ MonoBehaviour:
     m_Address: FireBall
     m_ReadOnly: 0
     m_SerializedLabels: []
+  - m_GUID: 5c0f07ce20a68ac4a86ca835e87532f8
+    m_Address: Karenina
+    m_ReadOnly: 0
+    m_SerializedLabels: []
   m_ReadOnly: 0
   m_Settings: {fileID: 11400000, guid: d14fb1bbe98862146a7f5467a5bc79f8, type: 2}
   m_SchemaSet:

@@ -32,6 +32,9 @@ namespace GameCore.TBS
                 case EProfessionType.MONSTER:
                     res = new TBSMonsterActor(_mono);
                     break;
+                case EProfessionType.KNIGHT:
+                    res = new TBSKnightActor(_mono);
+                    break;
                 default:
                     Debug.LogError("TBSEnumFactory CreateTBSActorByProfession 无效的枚举类型！！！");
                     res = null;

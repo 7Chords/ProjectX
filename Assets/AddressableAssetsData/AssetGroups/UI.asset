@@ -97,6 +97,10 @@ MonoBehaviour:
     m_Address: prefab_player_hud_item
     m_ReadOnly: 0
     m_SerializedLabels: []
+  - m_GUID: bf90a36fee6cfca4db9a761d2b2cb422
+    m_Address: prefab_tbs_skill_name_tip
+    m_ReadOnly: 0
+    m_SerializedLabels: []
   m_ReadOnly: 0
   m_Settings: {fileID: 11400000, guid: d14fb1bbe98862146a7f5467a5bc79f8, type: 2}
   m_SchemaSet:

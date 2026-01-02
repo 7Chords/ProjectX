@@ -26,6 +26,7 @@ namespace GameCore
         public const string COMMON_TIP_PREFAB = "common_tip_prefab";
         public const string TBS_PLAYER_HUD_PANEL = "tbs_player_hud_panel";
         public const string TBS_PLAYER_HUD_ITEM_PREFAB = "tbs_player_hud_item_prefab";
+        public const string TBS_SKILL_NAME_TIP = "tbs_skill_name_tip";
         #endregion
 
 

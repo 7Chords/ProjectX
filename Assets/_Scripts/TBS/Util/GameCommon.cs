@@ -148,6 +148,14 @@ namespace GameCore
             tipGO.GetRectTransform().localPosition = SCGame.instance.tranTipPoint.localPosition;
             tipGO.GetComponent<TipFloatText>().Initialize(_content);
         }
+        public static void ShowSkillNameTip(string _content)
+        {
+            GameObject tipGO = ResourcesHelper.LoadGameObject(
+                GetUIResObjPath(GameConst.TBS_SKILL_NAME_TIP),
+                SCGame.instance.topLayerRoot.transform);
+            tipGO.GetRectTransform().localPosition = SCGame.instance.tranTipPoint.localPosition;
+            tipGO.GetComponent<TipFloatText>().Initialize(_content);
+        }
 
         public static string GetCharacterNameWithLv(int _level, string _characterNameKey)
         {

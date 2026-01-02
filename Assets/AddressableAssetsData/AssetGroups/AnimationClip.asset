@@ -113,6 +113,30 @@ MonoBehaviour:
     m_Address: lorraine_die_anim_clip
     m_ReadOnly: 0
     m_SerializedLabels: []
+  - m_GUID: bcee17c16fad5b646934139c5e34bb24
+    m_Address: karenina_run_anim_clip
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  - m_GUID: b6d3edd3a40e0e94892dee3327a1924f
+    m_Address: karenina_attack_anim_clip
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  - m_GUID: 5048bd869aee6a347b4c436113fbf9c4
+    m_Address: karenina_defend_anim_clip
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  - m_GUID: 354a9202ebaf2ee438f0d30cd6415a09
+    m_Address: karenina_die_anim_clip
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  - m_GUID: a1ee03377441ed74caba3fd4c2508f15
+    m_Address: karenina_getHit_anim_clip
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  - m_GUID: d8adbee6b127c5f4ebc984041504d0dc
+    m_Address: karenina_idle_anim_clip
+    m_ReadOnly: 0
+    m_SerializedLabels: []
   m_ReadOnly: 0
   m_Settings: {fileID: 11400000, guid: d14fb1bbe98862146a7f5467a5bc79f8, type: 2}
   m_SchemaSet:

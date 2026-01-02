@@ -94,10 +94,13 @@ namespace GameCore.TBS
 
             GameGeneralRefObj generalRefObj = SCRefDataMgr.instance.gameGeneralRefObj;
 
+            //GameCommon.ShowSkillNameTip(_m_actorSkillRefObj.skillName);
+
             switch (_m_actorSkillRefObj.skillName)
             {
                 case "À¶ÑæÍÂÏ¢":
                     {
+                        
                         GameCoreMgr.instance.uiCoreMgr.HideNode(nameof(UINodeTBSConfirm));
                         GameCoreMgr.instance.uiCoreMgr.HideNode(nameof(UINodeTBSEnemyHud));
                         TBSCursorMgr.instance.HideSelectionCursor();
