@@ -41,6 +41,8 @@ namespace SCFrame.UI
         {
             if (_m_nodeList == null)
                 return;
+            _ASCUINodeBase lastTopNode = GetTopNode(false);
+
             _ASCUINodeBase node = _m_nodeList.Find(x => x.GetNodeName() == _node.GetNodeName());
             if (node != null)
             {
@@ -60,6 +62,9 @@ namespace SCFrame.UI
                 if (_node.EnterNode())
                     _m_nodeList.Add(_node);
             }
+
+            //广播出节点变化的信息
+            SCMsgCenter.SendMsg(SCMsgConst.UI_NODE_CHG, lastTopNode, _node);
 
             //上一个同类型的节点
             _ASCUINodeBase lastSameTypeNode = null;
@@ -111,6 +116,10 @@ namespace SCFrame.UI
             //把该节点移动到头部
             //_m_nodeList.Remove(topNode);
             //_m_nodeList.Insert(0, topNode);
+
+            _ASCUINodeBase nextTopNode = GetTopNode(true);
+            //广播节点切换消息
+            SCMsgCenter.SendMsg(SCMsgConst.UI_NODE_CHG, topNode, nextTopNode);
 
             //上一个同类型的节点
             _ASCUINodeBase lastSameTypeNode = null;
