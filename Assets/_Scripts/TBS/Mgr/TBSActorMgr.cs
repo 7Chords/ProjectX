@@ -355,16 +355,11 @@ namespace GameCore.TBS
         private void onTBSSelectSingleEnemyTargetChg()
         {
             _m_selectSingleEnemyTargetIndex = SCModel.instance.tbsModel.curSelectSingleEnemyTargetIdx;
-
-            if(_m_selectSingleEnemyTargetIndex >= 0 && _m_selectSingleEnemyTargetIndex< _m_enemyActorModuleList.Count)
-                TBSCursorMgr.instance.MoveSingleCursor2Pos(_m_enemyActorModuleList[_m_selectSingleEnemyTargetIndex].GetCursorPos());
         }
 
         private void onTBSSelectSinglePlayerTargetChg()
         {
             _m_selectSinglePlayerTargetIndex = SCModel.instance.tbsModel.curSelectSinglePlayerTargetIdx;
-            if(_m_selectSinglePlayerTargetIndex >= 0 && _m_selectSinglePlayerTargetIndex < _m_playerActorModuleList.Count)
-                TBSCursorMgr.instance.MoveSingleCursor2Pos(_m_playerActorModuleList[_m_selectSinglePlayerTargetIndex].GetCursorPos());
         }
         private void onTBSTurnChgShowEnd()
         {

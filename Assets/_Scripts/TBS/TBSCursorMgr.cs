@@ -19,12 +19,15 @@ namespace GameCore.TBS
             _m_allSelectionCursorList = new List<GameObject>();
 
             SCMsgCenter.RegisterMsgAct(SCMsgConst.TBS_SELECT_ENEMY_ALL_OR_SINGLE_STATE_SWITCH, onTBSSelectEnemyAllOrSingleStateSwitch);
-
+            SCMsgCenter.RegisterMsgAct(SCMsgConst.TBS_SELECT_SINGLE_ENEMY_TARGET_CHG, onTBSSelectSingleEnemyTargetChg);
+            SCMsgCenter.RegisterMsgAct(SCMsgConst.TBS_SELECT_SINGLE_PLAYER_TARGET_CHG, onTBSSelectSinglePlayerTargetChg);
         }
 
         public override void OnDiscard()
         {
             SCMsgCenter.UnregisterMsgAct(SCMsgConst.TBS_SELECT_ENEMY_ALL_OR_SINGLE_STATE_SWITCH, onTBSSelectEnemyAllOrSingleStateSwitch);
+            SCMsgCenter.UnregisterMsgAct(SCMsgConst.TBS_SELECT_SINGLE_ENEMY_TARGET_CHG, onTBSSelectSingleEnemyTargetChg);
+            SCMsgCenter.UnregisterMsgAct(SCMsgConst.TBS_SELECT_SINGLE_PLAYER_TARGET_CHG, onTBSSelectSinglePlayerTargetChg);
 
             _m_tweenContainer?.KillAllDoTween();
             _m_tweenContainer = null;
@@ -233,6 +236,22 @@ namespace GameCore.TBS
         private void onTBSSelectEnemyAllOrSingleStateSwitch()
         {
             ChangeCursorShowMode(SCModel.instance.tbsModel.selectTargetType);
+        }
+
+        private void onTBSSelectSingleEnemyTargetChg()
+        {
+            TBSActorBase actor = SCModel.instance.tbsModel.GetCurSelectSingleEnemyTargetActor();
+            if (actor == null)
+                return;
+            MoveSingleCursor2Pos(actor.GetCursorPos());
+        }
+
+        private void onTBSSelectSinglePlayerTargetChg()
+        {
+            TBSActorBase actor = SCModel.instance.tbsModel.GetCurSelectSinglePlayerTargetActor();
+            if (actor == null)
+                return;
+            MoveSingleCursor2Pos(actor.GetCursorPos());
         }
     }
 }
