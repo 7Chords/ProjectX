@@ -1,6 +1,6 @@
-﻿id	effectType	isPlayerTarget	targetType	basicChgEffectList	buffEffectList
-1001	BASIC_CHG	TRUE	SINGLE	HP:25	*
-1002	BUFF	TRUE	SINGLE	*	1002:1:3
+﻿id	effectType	basicChgEffectList	buffEffectList
+1001	BASIC_CHG	HP:25	*
+1002	BUFF	*	1002:1:3
 
 
 

@@ -355,13 +355,16 @@ namespace GameCore.TBS
         private void onTBSSelectSingleEnemyTargetChg()
         {
             _m_selectSingleEnemyTargetIndex = SCModel.instance.tbsModel.curSelectSingleEnemyTargetIdx;
-            TBSCursorMgr.instance.MoveSingleCursor2Pos(_m_enemyActorModuleList[_m_selectSingleEnemyTargetIndex].GetCursorPos());
+
+            if(_m_selectSingleEnemyTargetIndex >= 0 && _m_selectSingleEnemyTargetIndex< _m_enemyActorModuleList.Count)
+                TBSCursorMgr.instance.MoveSingleCursor2Pos(_m_enemyActorModuleList[_m_selectSingleEnemyTargetIndex].GetCursorPos());
         }
 
         private void onTBSSelectSinglePlayerTargetChg()
         {
             _m_selectSinglePlayerTargetIndex = SCModel.instance.tbsModel.curSelectSinglePlayerTargetIdx;
-            TBSCursorMgr.instance.MoveSingleCursor2Pos(_m_playerActorModuleList[_m_selectSinglePlayerTargetIndex].GetCursorPos());
+            if(_m_selectSinglePlayerTargetIndex >= 0 && _m_selectSinglePlayerTargetIndex < _m_playerActorModuleList.Count)
+                TBSCursorMgr.instance.MoveSingleCursor2Pos(_m_playerActorModuleList[_m_selectSinglePlayerTargetIndex].GetCursorPos());
         }
         private void onTBSTurnChgShowEnd()
         {
@@ -383,36 +386,17 @@ namespace GameCore.TBS
             TBSActorBase actor = SCModel.instance.tbsModel.GetActorByRunningId(runningId);
             if (actor == null)
                 return;
-            int actorIdx = -1;
-            if (actor.actorInfo.isEnemy)
-            {
-                actorIdx = _m_enemyActorModuleList.IndexOf(actor);
-                _m_enemyActorModuleList.Remove(actor);
-                GameObject actorGO = actor.GetActorGameObject();
-                _m_enemyActorGOList.Remove(actorGO);
-                SCModel.instance.tbsModel.enemyActorModuleList = _m_enemyActorModuleList;
-                SCModel.instance.tbsModel.enemyActorGOList = _m_enemyActorGOList;
-
-                SCMsgCenter.SendMsg(SCMsgConst.TBS_ENEMY_ACTOR_REMOVE_FROM_LIST, runningId);
-
-                //处理光标的越界问题
-                if (actorIdx == _m_selectSingleEnemyTargetIndex)
-                {
-                    if (_m_selectSingleEnemyTargetIndex >= _m_enemyActorModuleList.Count)
-                    {
-                        if (_m_selectSingleEnemyTargetIndex - 1 >= 0)
-                            _m_selectSingleEnemyTargetIndex--;
-                        SCModel.instance.tbsModel.curSelectSingleEnemyTargetIdx = _m_selectSingleEnemyTargetIndex;
-                    }
-                }
-            }
-
 
             if (SCModel.instance.tbsModel.CheckAllActorsDead(true))
+            {
                 SCMsgCenter.SendMsg(SCMsgConst.TBS_ALL_PLAYER_ACTOR_DIE);
-            else if(SCModel.instance.tbsModel.CheckAllActorsDead(false))
+                return;
+            }
+            else if (SCModel.instance.tbsModel.CheckAllActorsDead(false))
+            {
                 SCMsgCenter.SendMsg(SCMsgConst.TBS_ALL_ENEMY_ACTOR_DIE);
-
+                return;
+            }
         }
 
         #endregion

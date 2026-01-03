@@ -34,7 +34,7 @@ namespace GameCore.TBS
             if (_collider.gameObject == _m_targetGO)
             {
                 _m_onDealAttack?.Invoke();
-                //todo
+                //todo:效果播放完毕后销毁
                 SCCommon.DestoryGameObject(gameObject);
             }
         }

@@ -22,6 +22,7 @@ namespace GameCore.RefData
         public EItemType itemType;
         public EItemUseType itemUseType;
         public ETargetType itemTargetType;
+        public ETargetAliveType itemTargetAliveType;
         public string itemDesc;
         public long itemEffectRefObjId;
 
@@ -34,6 +35,7 @@ namespace GameCore.RefData
             itemType = (EItemType)getEnum("itemType", typeof(EItemType));
             itemUseType = (EItemUseType)getEnum("itemUseType", typeof(EItemUseType));
             itemTargetType = (ETargetType)getEnum("itemTargetType", typeof(ETargetType));
+            itemTargetAliveType = (ETargetAliveType)getEnum("itemTargetAliveType", typeof(ETargetAliveType));
             itemDesc = getString("itemDesc");
             itemEffectRefObjId = getLong("itemEffectRefObjId");
         }

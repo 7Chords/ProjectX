@@ -50,11 +50,20 @@ namespace GameCore.TBS
         SUPER,
     }
 
+    //目标数量类型
     public enum ETargetType
     {
         NONE,
         SINGLE,//单体
         ALL,//所有
+    }
+
+    //目标存活状态
+    public enum ETargetAliveType
+    {
+        NONE,
+        ALIVE,
+        DEAD,
     }
 
     //护甲等级

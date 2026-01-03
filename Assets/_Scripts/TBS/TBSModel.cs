@@ -238,9 +238,17 @@ namespace GameCore.TBS
         public TBSActorBase GetCurActor()
         {
             if (curTurnType == ETBSTurnType.PLAYER)
+            {
+                if (curActorIndex < 0 || curActorIndex >= playerActorModuleList.Count)
+                    return null;
                 return playerActorModuleList[curActorIndex];
+            }
             else
+            {
+                if (curActorIndex < 0 || curActorIndex >= enemyActorModuleList.Count)
+                    return null;
                 return enemyActorModuleList[curActorIndex];
+            }
         }
 
         /// <summary>
@@ -401,6 +409,122 @@ namespace GameCore.TBS
             }
             SCDebugHelper.LogError("找不到这个物体所在的索引！！！");
             return -1;
+        }
+
+        public TBSActorBase GetNextAliveActor(bool _isPlayerActor, int _startIdx)
+        {
+            int tmpIdx = _startIdx + 1;
+            if(_isPlayerActor)
+            {
+                if (tmpIdx >= playerActorModuleList.Count)
+                    tmpIdx = 0;
+                TBSActorBase tmpActor = playerActorModuleList[tmpIdx];
+                while (tmpActor.actorInfo.hasDead)
+                {
+                    tmpIdx++;
+                    if (tmpIdx >= playerActorModuleList.Count)
+                        tmpIdx = 0;
+                    tmpActor = playerActorModuleList[tmpIdx];
+                }
+                return tmpActor;
+            }
+            else
+            {
+                if (tmpIdx >= enemyActorModuleList.Count)
+                    tmpIdx = 0;
+                TBSActorBase tmpActor = enemyActorModuleList[tmpIdx];
+                while (tmpActor.actorInfo.hasDead)
+                {
+                    tmpIdx++;
+                    if (tmpIdx >= enemyActorModuleList.Count)
+                        tmpIdx = 0;
+                    tmpActor = enemyActorModuleList[tmpIdx];
+                }
+                return tmpActor;
+            }
+        }
+
+        public int GetNextAliveActorIndex(bool _isPlayerActor, int _startIdx)
+        {
+            int tmpIdx = _startIdx + 1;
+            if (_isPlayerActor)
+            {
+                if (tmpIdx >= playerActorModuleList.Count)
+                    tmpIdx = 0;
+                TBSActorBase tmpActor = playerActorModuleList[tmpIdx];
+                while (tmpActor.actorInfo.hasDead)
+                {
+                    tmpIdx++;
+                    if (tmpIdx >= playerActorModuleList.Count)
+                        tmpIdx = 0;
+                    tmpActor = playerActorModuleList[tmpIdx];
+                }
+                return tmpIdx;
+            }
+            else
+            {
+                if (tmpIdx >= enemyActorModuleList.Count)
+                    tmpIdx = 0;
+                TBSActorBase tmpActor = enemyActorModuleList[tmpIdx];
+                while (tmpActor.actorInfo.hasDead)
+                {
+                    tmpIdx++;
+                    if (tmpIdx >= enemyActorModuleList.Count)
+                        tmpIdx = 0;
+                    tmpActor = enemyActorModuleList[tmpIdx];
+                }
+                return tmpIdx;
+            }
+        }
+
+
+        public int GetLastAliveActorIndex(bool _isPlayerActor, int _startIdx)
+        {
+            int tmpIdx = _startIdx - 1;
+            if (_isPlayerActor)
+            {
+                if (tmpIdx < 0)
+                    tmpIdx = playerActorModuleList.Count - 1;
+                TBSActorBase tmpActor = playerActorModuleList[tmpIdx];
+                while (tmpActor.actorInfo.hasDead)
+                {
+                    tmpIdx--;
+                    if (tmpIdx < 0)
+                        tmpIdx = playerActorModuleList.Count - 1;
+                    tmpActor = playerActorModuleList[tmpIdx];
+                }
+                return tmpIdx;
+            }
+            else
+            {
+                if (tmpIdx < 0)
+                    tmpIdx = enemyActorModuleList.Count - 1;
+                TBSActorBase tmpActor = enemyActorModuleList[tmpIdx];
+                while (tmpActor.actorInfo.hasDead)
+                {
+                    tmpIdx--;
+                    if (tmpIdx < 0)
+                        tmpIdx = enemyActorModuleList.Count - 1;
+                    tmpActor = enemyActorModuleList[tmpIdx];
+                }
+                return tmpIdx;
+            }
+        }
+
+        public TBSActorBase GetNextDeadPlayerActor(int _startIdx)
+        {
+            int tmpIdx = _startIdx + 1;
+            if (tmpIdx >= playerActorModuleList.Count)
+                tmpIdx = 0;
+            TBSActorBase tmpActor = playerActorModuleList[tmpIdx];
+            while (!tmpActor.actorInfo.hasDead)
+            {
+                tmpIdx++;
+                if (tmpIdx >= playerActorModuleList.Count)
+                    tmpIdx = 0;
+                tmpActor = playerActorModuleList[tmpIdx];
+            }
+            return tmpActor;
         }
 
         /// <summary>

@@ -22,7 +22,6 @@ namespace GameCore.TBS
         {
             _m_actorMono.animEventTrigger.AddAnimationEvent("dealAttack", dealAttack);
 
-            //todo
             _m_attackEnemyActorList.Add(_target);
 
             GameGeneralRefObj generalRefObj = SCRefDataMgr.instance.gameGeneralRefObj;
@@ -104,14 +103,6 @@ namespace GameCore.TBS
                 Attack_Single(targetActor);
             }
 
-
-            ////todo(cam)
-            //GameCameraMgr.instance.SetCameraPositionOffsetWithFollow(GetActorCameraTran());
-            ////…Ë÷√œ‡ª˙
-            //GameCameraMgr.instance.SetCameraFollow(GetGameObject().transform);
-
-            ////todo(cam)
-            //GameCameraMgr.instance.SetCameraPositionOffsetWithFollow(GetActorCameraTran());
 
         }
 

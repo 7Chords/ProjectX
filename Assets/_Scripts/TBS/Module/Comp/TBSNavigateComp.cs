@@ -24,7 +24,8 @@ namespace GameCore.TBS
             SCMsgCenter.RegisterMsgAct(SCMsgConst.TBS_SWITCH_TO_UP_INPUT, onTBSSwitchToUpInput);
             SCMsgCenter.RegisterMsg(SCMsgConst.TBS_MOUSE_CLICK_ENEMY_INPUT, onTBSMouseClickEnemyInput);
             SCMsgCenter.RegisterMsg(SCMsgConst.TBS_MOUSE_CLICK_PLAYER_INPUT, onTBSMouseClickPlayerInput);
-
+            SCMsgCenter.RegisterMsg(SCMsgConst.TBS_ACTOR_DIE, onTBSActorDie);
+            
 
             _m_singleEnemyTargetIndex = 0;
             _m_singlePlayerTargetIndex = 0;
@@ -39,6 +40,7 @@ namespace GameCore.TBS
             SCMsgCenter.UnregisterMsgAct(SCMsgConst.TBS_SWITCH_TO_UP_INPUT, onTBSSwitchToUpInput);
             SCMsgCenter.UnregisterMsg(SCMsgConst.TBS_MOUSE_CLICK_ENEMY_INPUT, onTBSMouseClickEnemyInput);
             SCMsgCenter.UnregisterMsg(SCMsgConst.TBS_MOUSE_CLICK_PLAYER_INPUT, onTBSMouseClickPlayerInput);
+            SCMsgCenter.UnregisterMsg(SCMsgConst.TBS_ACTOR_DIE, onTBSActorDie);
 
         }
 
@@ -72,9 +74,8 @@ namespace GameCore.TBS
             else if(topFullNode.GetNodeName() == nameof(UINodeTBSConfirm) && (topFullNode as UINodeTBSConfirm).isPlayerTargetConfirm)
             {
                 //由于摄像头问题 所以索引要反过来处理
-                _m_singlePlayerTargetIndex++;
-                if (_m_singlePlayerTargetIndex > SCModel.instance.tbsModel.playerActorModuleList.Count - 1)//todo:玩家角色死后不会移除
-                    _m_singlePlayerTargetIndex = 0;
+
+                _m_singlePlayerTargetIndex = SCModel.instance.tbsModel.GetNextAliveActorIndex(true, _m_singlePlayerTargetIndex);
                 SCModel.instance.tbsModel.curSelectSinglePlayerTargetIdx = _m_singlePlayerTargetIndex;
             }
         }
@@ -98,9 +99,7 @@ namespace GameCore.TBS
             }
             else if (topFullNode.GetNodeName() == nameof(UINodeTBSConfirm) && (topFullNode as UINodeTBSConfirm).isPlayerTargetConfirm)
             {
-                _m_singlePlayerTargetIndex--;
-                if (_m_singlePlayerTargetIndex < 0)
-                    _m_singlePlayerTargetIndex = SCModel.instance.tbsModel.playerActorModuleList.Count - 1;//todo:玩家角色死后不会移除
+                _m_singlePlayerTargetIndex = SCModel.instance.tbsModel.GetLastAliveActorIndex(true, _m_singlePlayerTargetIndex);
                 SCModel.instance.tbsModel.curSelectSinglePlayerTargetIdx = _m_singlePlayerTargetIndex;
             }
         }
@@ -206,6 +205,59 @@ namespace GameCore.TBS
             {
                 _m_singlePlayerTargetIndex = goIndex;
                 SCModel.instance.tbsModel.curSelectSinglePlayerTargetIdx = _m_singlePlayerTargetIndex;
+            }
+        }
+
+
+        private void onTBSActorDie(object[] _objs)
+        {
+            if (_objs == null || _objs.Length == 0)
+                return;
+            long runningId = (long)_objs[0];
+            TBSActorBase actor = SCModel.instance.tbsModel.GetActorByRunningId(runningId);
+            if (actor == null)
+                return;
+
+            int actorIdx = -1;
+            if (actor.actorInfo.isEnemy)
+            {
+                actorIdx = SCModel.instance.tbsModel.enemyActorModuleList.IndexOf(actor);
+                SCModel.instance.tbsModel.enemyActorModuleList.Remove(actor);
+                GameObject actorGO = actor.GetActorGameObject();
+                SCModel.instance.tbsModel.enemyActorGOList.Remove(actorGO);
+
+                SCMsgCenter.SendMsg(SCMsgConst.TBS_ENEMY_ACTOR_REMOVE_FROM_LIST, runningId);
+
+                //处理光标的越界问题
+                if (actorIdx == _m_singleEnemyTargetIndex)
+                {
+                    if (_m_singleEnemyTargetIndex >= SCModel.instance.tbsModel.enemyActorModuleList.Count)
+                    {
+                        if (_m_singleEnemyTargetIndex - 1 >= 0)
+                            _m_singleEnemyTargetIndex--;
+
+                        SCModel.instance.tbsModel.curSelectSingleEnemyTargetIdx = _m_singleEnemyTargetIndex;
+                    }
+                }
+            }
+            else//如果死亡的是玩家 只需要纠正一下当前选择的索引
+            {
+                if (SCModel.instance.tbsModel.CheckAllActorsDead(true))
+                    return;
+                actorIdx = SCModel.instance.tbsModel.playerActorModuleList.IndexOf(actor);
+                if (actorIdx == _m_singlePlayerTargetIndex)
+                {
+                    TBSActorBase tmpActor = SCModel.instance.tbsModel.playerActorModuleList[_m_singlePlayerTargetIndex];
+                    while(tmpActor.actorInfo.hasDead)
+                    {
+                        _m_singlePlayerTargetIndex++;
+                        if(_m_singlePlayerTargetIndex >= SCModel.instance.tbsModel.playerActorModuleList.Count)
+                            _m_singlePlayerTargetIndex = 0;
+                        tmpActor = SCModel.instance.tbsModel.playerActorModuleList[_m_singlePlayerTargetIndex];
+                    }
+
+                    SCModel.instance.tbsModel.curSelectSinglePlayerTargetIdx = _m_singlePlayerTargetIndex;
+                }
             }
         }
     }

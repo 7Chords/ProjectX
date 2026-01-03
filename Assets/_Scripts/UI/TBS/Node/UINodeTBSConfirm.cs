@@ -171,7 +171,7 @@ namespace GameCore.UI
 
         private void hideEnemyHudAndCursor()
         {
-            //todo:skill面板关闭时打开了光标 所以这里要再关掉
+            //tip:skill面板关闭时打开了光标 所以这里要再关掉
             //因为对于需要相机运动的情况 要先运动完再打开
             TBSCursorMgr.instance.HideSelectionCursor();
             GameCoreMgr.instance.uiCoreMgr.HideNode(nameof(UINodeTBSEnemyHud));

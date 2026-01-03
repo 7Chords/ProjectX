@@ -23,6 +23,7 @@ namespace GameCore.RefData
         public string skillDesc;
         public ESkillEffectType skillEffectType;
         public ETargetType damageTargetType;
+        public ETargetAliveType targetAliveType;
         public EDamageType damageType;
         public EDamageAmountType damageAmountType;
         public EPhysicalLevelType physicsLevelType;
@@ -40,6 +41,7 @@ namespace GameCore.RefData
             skillDesc = getString("skillDesc");
             skillEffectType = (ESkillEffectType)getEnum("skillEffectType", typeof(ESkillEffectType));
             damageTargetType = (ETargetType)getEnum("damageTargetType", typeof(ETargetType));
+            targetAliveType = (ETargetAliveType)getEnum("targetAliveType", typeof(ETargetAliveType));
             damageType = (EDamageType)getEnum("damageType", typeof(EDamageType));
             damageAmountType = (EDamageAmountType)getEnum("damageAmountType", typeof(EDamageAmountType));
             physicsLevelType = (EPhysicalLevelType)getEnum("physicsLevelType", typeof(EPhysicalLevelType));
