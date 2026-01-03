@@ -421,10 +421,17 @@ namespace GameCore.TBS
             return -1;
         }
 
-        public TBSActorBase GetNextAliveActor(bool _isPlayerActor, int _startIdx)
+
+
+        public TBSActorBase GetNextAliveActor(bool _isPlayerActor, int _startIdx,bool _includeSelf = false)
         {
-            int tmpIdx = _startIdx + 1;
-            if(_isPlayerActor)
+            int tmpIdx = 0;
+            if (_includeSelf)
+                tmpIdx = _startIdx;
+            else
+                tmpIdx = _startIdx +1;
+
+            if (_isPlayerActor)
             {
                 if (tmpIdx >= playerActorModuleList.Count)
                     tmpIdx = 0;
@@ -454,9 +461,13 @@ namespace GameCore.TBS
             }
         }
 
-        public int GetNextAliveActorIndex(bool _isPlayerActor, int _startIdx)
+        public int GetNextAliveActorIndex(bool _isPlayerActor, int _startIdx,bool _includeSelf = false)
         {
-            int tmpIdx = _startIdx + 1;
+            int tmpIdx = 0;
+            if (_includeSelf)
+                tmpIdx = _startIdx;
+            else
+                tmpIdx = _startIdx + 1;
             if (_isPlayerActor)
             {
                 if (tmpIdx >= playerActorModuleList.Count)
@@ -487,10 +498,13 @@ namespace GameCore.TBS
             }
         }
 
-
-        public int GetLastAliveActorIndex(bool _isPlayerActor, int _startIdx)
+        public int GetLastAliveActorIndex(bool _isPlayerActor, int _startIdx,bool _includeSelf = false)
         {
-            int tmpIdx = _startIdx - 1;
+            int tmpIdx = 0;
+            if (_includeSelf)
+                tmpIdx = _startIdx;
+            else
+                tmpIdx = _startIdx - 1;
             if (_isPlayerActor)
             {
                 if (tmpIdx < 0)
@@ -522,9 +536,14 @@ namespace GameCore.TBS
         }
 
 
-        public TBSActorBase GetNextDeadPlayerActor(int _startIdx)
+        public TBSActorBase GetNextDeadPlayerActor(int _startIdx,bool _includeSelf = false)
         {
-            int tmpIdx = _startIdx + 1;
+            int tmpIdx = 0;
+            if(_includeSelf)
+                tmpIdx = _startIdx;
+            else
+                 tmpIdx = _startIdx + 1;
+
             if (tmpIdx >= playerActorModuleList.Count)
                 tmpIdx = 0;
             TBSActorBase tmpActor = playerActorModuleList[tmpIdx];
@@ -538,9 +557,14 @@ namespace GameCore.TBS
             return tmpActor;
         }
 
-        public int GetNextDeadPlayerActorIndex(int _startIdx)
+        public int GetNextDeadPlayerActorIndex(int _startIdx,bool _includeSelf = false)
         {
-            int tmpIdx = _startIdx + 1;
+            int tmpIdx = 0;
+            if(_includeSelf)
+                tmpIdx = _startIdx;
+            else
+                tmpIdx = _startIdx + 1;
+
             if (tmpIdx >= playerActorModuleList.Count)
                 tmpIdx = 0;
             TBSActorBase tmpActor = playerActorModuleList[tmpIdx];
@@ -553,15 +577,20 @@ namespace GameCore.TBS
             }
             return tmpIdx;
         }
-        public TBSActorBase GetLastDeadPlayerActor(int _startIdx)
+        public TBSActorBase GetLastDeadPlayerActor(int _startIdx,bool _includeSelf = false)
         {
-            int tmpIdx = _startIdx - 1;
+            int tmpIdx = 0;
+            if(_includeSelf)
+                tmpIdx = _startIdx;
+            else
+                tmpIdx = _startIdx - 1;
+
             if (tmpIdx < 0)
                 tmpIdx = playerActorModuleList.Count - 1;
             TBSActorBase tmpActor = playerActorModuleList[tmpIdx];
             while (!tmpActor.actorInfo.hasDead)
             {
-                tmpIdx++;
+                tmpIdx--;
                 if (tmpIdx < 0)
                     tmpIdx = playerActorModuleList.Count - 1;
                 tmpActor = playerActorModuleList[tmpIdx];
@@ -569,21 +598,30 @@ namespace GameCore.TBS
             return tmpActor;
         }
 
-        public int GetLastDeadPlayerActorIndex(int _startIdx)
+        public int GetLastDeadPlayerActorIndex(int _startIdx,bool _includeSelf = false)
         {
-            int tmpIdx = _startIdx - 1;
+            int tmpIdx = 0;
+            if (_includeSelf)
+                tmpIdx = _startIdx;
+            else
+                tmpIdx = _startIdx - 1;
+
             if (tmpIdx < 0)
                 tmpIdx = playerActorModuleList.Count - 1;
             TBSActorBase tmpActor = playerActorModuleList[tmpIdx];
             while (!tmpActor.actorInfo.hasDead)
             {
-                tmpIdx++;
+                tmpIdx--;
                 if (tmpIdx < 0)
                     tmpIdx = playerActorModuleList.Count - 1;
                 tmpActor = playerActorModuleList[tmpIdx];
             }
             return tmpIdx;
         }
+
+
+
+
         /// <summary>
         /// 获得当前选择的技能的refObj
         /// </summary>

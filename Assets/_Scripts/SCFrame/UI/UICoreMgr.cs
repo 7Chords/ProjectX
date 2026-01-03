@@ -272,7 +272,7 @@ namespace SCFrame.UI
 
         public _ASCUINodeBase GetTopNode(bool _includeIgnore = true)
         {
-            if (_m_nodeList == null)
+            if (_m_nodeList == null || _m_nodeList.Count == 0)
                 return null;
             _ASCUINodeBase topNode = null;
             if (_includeIgnore)
