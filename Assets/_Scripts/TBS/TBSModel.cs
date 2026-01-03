@@ -538,6 +538,9 @@ namespace GameCore.TBS
 
         public TBSActorBase GetNextDeadPlayerActor(int _startIdx,bool _includeSelf = false)
         {
+            //没有人死 就返回空
+            if (!CheckHasPlayerActorDead())
+                return null;
             int tmpIdx = 0;
             if(_includeSelf)
                 tmpIdx = _startIdx;
@@ -557,8 +560,13 @@ namespace GameCore.TBS
             return tmpActor;
         }
 
-        public int GetNextDeadPlayerActorIndex(int _startIdx,bool _includeSelf = false)
+        public int GetNextDeadPlayerActorIndex(int _startIdx, bool _includeSelf = false)
         {
+            //没有人死 就返回原来的索引
+            if (!CheckHasPlayerActorDead())
+                return _startIdx;
+
+
             int tmpIdx = 0;
             if(_includeSelf)
                 tmpIdx = _startIdx;
@@ -579,6 +587,9 @@ namespace GameCore.TBS
         }
         public TBSActorBase GetLastDeadPlayerActor(int _startIdx,bool _includeSelf = false)
         {
+            //没有人死 就返回空
+            if (!CheckHasPlayerActorDead())
+                return null;
             int tmpIdx = 0;
             if(_includeSelf)
                 tmpIdx = _startIdx;
@@ -600,6 +611,9 @@ namespace GameCore.TBS
 
         public int GetLastDeadPlayerActorIndex(int _startIdx,bool _includeSelf = false)
         {
+            //没有人死 就返回原来的索引
+            if (!CheckHasPlayerActorDead())
+                return _startIdx;
             int tmpIdx = 0;
             if (_includeSelf)
                 tmpIdx = _startIdx;
