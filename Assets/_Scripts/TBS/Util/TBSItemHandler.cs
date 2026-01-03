@@ -31,7 +31,11 @@ namespace GameCore.TBS
                     break;
                 case EBattleItemEffectType.BUFF:
                     break;
-                
+                case EBattleItemEffectType.SPECIAL:
+                    {
+                        dealSpecialEffect(itemEffectRefObj, _targetList);
+                    }
+                    break;
                 default:
                     break;
             }
@@ -78,6 +82,23 @@ namespace GameCore.TBS
                 case EBasicAttribute.PHYSICAL_LEVEL:
                     break;
                 case EBasicAttribute.MAGIC_ATTRIBUTE:
+                    break;
+            }
+        }
+
+        private static void dealSpecialEffect(BattleItemEffectRefObj _itemEffectRefObj, List<TBSActorBase> _targetList)
+        {
+            switch(_itemEffectRefObj.id)
+            { 
+                case 1003://复活效果 回复50%
+                    {
+                        foreach(var actor in _targetList)
+                        {
+                            actor.Rebirth(0.5f);
+                        }
+                    }
+                    break;
+                default:
                     break;
             }
         }

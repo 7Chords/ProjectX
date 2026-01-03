@@ -305,6 +305,14 @@ namespace GameCore.TBS
             SCMsgCenter.SendMsg(SCMsgConst.TBS_ACTOR_INFO_CHG, actorInfo.runningId);
         }
 
+        public virtual void Rebirth(float _healRatio)
+        {
+            actorInfo.hasDead = false;
+            HealHp(Mathf.RoundToInt(_healRatio * actorInfo.maxHp));
+            if (_m_idleAnimClip != null)
+                _m_animationCtl.PlaySingleAniamtion(_m_idleAnimClip);
+        }
+
         public virtual bool MissJudge()
         {
             float randomNum = Random.Range(0f, 1f);

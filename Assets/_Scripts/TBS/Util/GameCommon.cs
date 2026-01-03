@@ -306,6 +306,10 @@ namespace GameCore
                         resStr = LanguageHelper.instance.GetTextTranslate(_translateKey, translateParamList.ToArray());
                     }
                     break;
+                case EBattleItemEffectType.SPECIAL:
+                    resStr = LanguageHelper.instance.GetTextTranslate(_translateKey);
+
+                    break;
             }
             return resStr;
         }
