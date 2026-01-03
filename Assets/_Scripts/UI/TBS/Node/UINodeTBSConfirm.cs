@@ -32,7 +32,7 @@ namespace GameCore.UI
         private bool _m_isPlayerTargetConfirm;
 
         public bool isPlayerTargetConfirm=> _m_isPlayerTargetConfirm;
-
+        public SCUIConfirmType confirmType => _m_confirmType;
 
         public override void OnEnterNode()
         {

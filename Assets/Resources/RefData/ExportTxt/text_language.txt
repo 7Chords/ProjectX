@@ -62,3 +62,5 @@
 10061	#1_select_skill	选择技能	select skill
 10062	#2_tbs_skill_desc_1004	凝聚心神，令{0}己方单位回复{1}生命值	Gather your mind and ask{0}your unit to recover {1} health points
 10063	#1_character_name_1007	卡列琳娜	Karenina
+10064	#1_item_name_1003	复活卷轴	rebirth sroll
+10065	#1_tbs_item_rebirth_sroll	复活一名已死亡的己方单位，令其生命值回复50%	Revive a fallen ally and restore 50% of their health.

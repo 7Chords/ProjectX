@@ -297,6 +297,16 @@ namespace GameCore.TBS
             }
         }
 
+        public bool CheckHasPlayerActorDead()
+        {
+            foreach (var actor in playerActorModuleList)
+            {
+                if (actor.actorInfo.hasDead)
+                    return true;
+            }
+            return false;
+        }
+
         /// <summary>
         /// 取得一个随机的未死亡的actor
         /// </summary>
@@ -511,6 +521,7 @@ namespace GameCore.TBS
             }
         }
 
+
         public TBSActorBase GetNextDeadPlayerActor(int _startIdx)
         {
             int tmpIdx = _startIdx + 1;
@@ -527,6 +538,52 @@ namespace GameCore.TBS
             return tmpActor;
         }
 
+        public int GetNextDeadPlayerActorIndex(int _startIdx)
+        {
+            int tmpIdx = _startIdx + 1;
+            if (tmpIdx >= playerActorModuleList.Count)
+                tmpIdx = 0;
+            TBSActorBase tmpActor = playerActorModuleList[tmpIdx];
+            while (!tmpActor.actorInfo.hasDead)
+            {
+                tmpIdx++;
+                if (tmpIdx >= playerActorModuleList.Count)
+                    tmpIdx = 0;
+                tmpActor = playerActorModuleList[tmpIdx];
+            }
+            return tmpIdx;
+        }
+        public TBSActorBase GetLastDeadPlayerActor(int _startIdx)
+        {
+            int tmpIdx = _startIdx - 1;
+            if (tmpIdx < 0)
+                tmpIdx = playerActorModuleList.Count - 1;
+            TBSActorBase tmpActor = playerActorModuleList[tmpIdx];
+            while (!tmpActor.actorInfo.hasDead)
+            {
+                tmpIdx++;
+                if (tmpIdx < 0)
+                    tmpIdx = playerActorModuleList.Count - 1;
+                tmpActor = playerActorModuleList[tmpIdx];
+            }
+            return tmpActor;
+        }
+
+        public int GetLastDeadPlayerActorIndex(int _startIdx)
+        {
+            int tmpIdx = _startIdx - 1;
+            if (tmpIdx < 0)
+                tmpIdx = playerActorModuleList.Count - 1;
+            TBSActorBase tmpActor = playerActorModuleList[tmpIdx];
+            while (!tmpActor.actorInfo.hasDead)
+            {
+                tmpIdx++;
+                if (tmpIdx < 0)
+                    tmpIdx = playerActorModuleList.Count - 1;
+                tmpActor = playerActorModuleList[tmpIdx];
+            }
+            return tmpIdx;
+        }
         /// <summary>
         /// 获得当前选择的技能的refObj
         /// </summary>

@@ -55,6 +55,7 @@ namespace GameCore
         NONE,
         BASIC_CHG,
         BUFF,
+        SPECIAL,
     }
 
 

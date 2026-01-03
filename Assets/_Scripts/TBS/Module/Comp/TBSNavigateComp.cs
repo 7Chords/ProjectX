@@ -75,8 +75,33 @@ namespace GameCore.TBS
             {
                 //由于摄像头问题 所以索引要反过来处理
 
-                _m_singlePlayerTargetIndex = SCModel.instance.tbsModel.GetNextAliveActorIndex(true, _m_singlePlayerTargetIndex);
-                SCModel.instance.tbsModel.curSelectSinglePlayerTargetIdx = _m_singlePlayerTargetIndex;
+                if ((topFullNode as UINodeTBSConfirm).confirmType == SCUIConfirmType.SKILL)
+                {
+                    if (SCModel.instance.tbsModel.GetCurSkillRefObj().targetAliveType == ETargetAliveType.ALIVE)
+                    {
+                        _m_singlePlayerTargetIndex = SCModel.instance.tbsModel.GetNextAliveActorIndex(true, _m_singlePlayerTargetIndex);
+                        SCModel.instance.tbsModel.curSelectSinglePlayerTargetIdx = _m_singlePlayerTargetIndex;
+                    }
+                    else if (SCModel.instance.tbsModel.GetCurSkillRefObj().targetAliveType == ETargetAliveType.DEAD)
+                    {
+                        _m_singlePlayerTargetIndex = SCModel.instance.tbsModel.GetNextDeadPlayerActorIndex(_m_singlePlayerTargetIndex);
+                        SCModel.instance.tbsModel.curSelectSinglePlayerTargetIdx = _m_singlePlayerTargetIndex;
+                    }
+                }
+                else if ((topFullNode as UINodeTBSConfirm).confirmType == SCUIConfirmType.ITEM)
+                {
+                    if (SCModel.instance.tbsModel.GetCurItemRefObj().itemTargetAliveType == ETargetAliveType.ALIVE)
+                    {
+                        _m_singlePlayerTargetIndex = SCModel.instance.tbsModel.GetNextAliveActorIndex(true, _m_singlePlayerTargetIndex);
+                        SCModel.instance.tbsModel.curSelectSinglePlayerTargetIdx = _m_singlePlayerTargetIndex;
+                    }
+                    else if (SCModel.instance.tbsModel.GetCurItemRefObj().itemTargetAliveType == ETargetAliveType.DEAD)
+                    {
+                        
+                        _m_singlePlayerTargetIndex = SCModel.instance.tbsModel.GetNextDeadPlayerActorIndex(_m_singlePlayerTargetIndex);
+                        SCModel.instance.tbsModel.curSelectSinglePlayerTargetIdx = _m_singlePlayerTargetIndex;
+                    }
+                }
             }
         }
 
@@ -99,8 +124,32 @@ namespace GameCore.TBS
             }
             else if (topFullNode.GetNodeName() == nameof(UINodeTBSConfirm) && (topFullNode as UINodeTBSConfirm).isPlayerTargetConfirm)
             {
-                _m_singlePlayerTargetIndex = SCModel.instance.tbsModel.GetLastAliveActorIndex(true, _m_singlePlayerTargetIndex);
-                SCModel.instance.tbsModel.curSelectSinglePlayerTargetIdx = _m_singlePlayerTargetIndex;
+                if((topFullNode as UINodeTBSConfirm).confirmType == SCUIConfirmType.SKILL)
+                {
+                    if(SCModel.instance.tbsModel.GetCurSkillRefObj().targetAliveType == ETargetAliveType.ALIVE)
+                    {
+                        _m_singlePlayerTargetIndex = SCModel.instance.tbsModel.GetLastAliveActorIndex(true, _m_singlePlayerTargetIndex);
+                        SCModel.instance.tbsModel.curSelectSinglePlayerTargetIdx = _m_singlePlayerTargetIndex;
+                    }
+                    else if(SCModel.instance.tbsModel.GetCurSkillRefObj().targetAliveType == ETargetAliveType.DEAD)
+                    {
+                        _m_singlePlayerTargetIndex = SCModel.instance.tbsModel.GetLastDeadPlayerActorIndex(_m_singlePlayerTargetIndex);
+                        SCModel.instance.tbsModel.curSelectSinglePlayerTargetIdx = _m_singlePlayerTargetIndex;
+                    }
+                }
+                else if((topFullNode as UINodeTBSConfirm).confirmType == SCUIConfirmType.ITEM)
+                {
+                    if (SCModel.instance.tbsModel.GetCurItemRefObj().itemTargetAliveType == ETargetAliveType.ALIVE)
+                    {
+                        _m_singlePlayerTargetIndex = SCModel.instance.tbsModel.GetLastAliveActorIndex(true, _m_singlePlayerTargetIndex);
+                        SCModel.instance.tbsModel.curSelectSinglePlayerTargetIdx = _m_singlePlayerTargetIndex;
+                    }
+                    else if (SCModel.instance.tbsModel.GetCurItemRefObj().itemTargetAliveType == ETargetAliveType.DEAD)
+                    {
+                        _m_singlePlayerTargetIndex = SCModel.instance.tbsModel.GetLastDeadPlayerActorIndex(_m_singlePlayerTargetIndex);
+                        SCModel.instance.tbsModel.curSelectSinglePlayerTargetIdx = _m_singlePlayerTargetIndex;
+                    }
+                }
             }
         }
 

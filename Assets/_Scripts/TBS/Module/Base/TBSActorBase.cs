@@ -181,7 +181,11 @@ namespace GameCore.TBS
                 SCDebugHelper.LogError("找不到id为" + _itemId + "的道具配表数据！！！");
                 return;
             }
-
+            if (!checkItemCanUse(_itemId))
+            {
+                GameCommon.ShowCommonTip("道具不满足使用条件！");
+                return;
+            }
             GameCoreMgr.instance.uiCoreMgr.HideNode(nameof(UINodeTBSConfirm));
             if (itemRefObj.isPlayerTarget)
                 GameCoreMgr.instance.uiCoreMgr.HideNode(nameof(UINodeTBSPlayerHud));
@@ -190,7 +194,7 @@ namespace GameCore.TBS
 
             TBSCursorMgr.instance.HideSelectionCursor();
 
-            //TBSItemHandler.DealItem(itemRefObj, _targetList);
+            TBSItemHandler.DealItem(itemRefObj, _targetList);
             SCMsgCenter.SendMsg(SCMsgConst.TBS_ACTOR_ACTION_END, actorInfo.runningId);
 
         }
@@ -400,7 +404,22 @@ namespace GameCore.TBS
             return actorInfo.curHp >= skillRefObj.skillNeedHp &&
                 actorInfo.curMp >= skillRefObj.skillNeedMp;
         }
-
+        protected bool checkItemCanUse(long _itemId)
+        {
+            ItemRefObj itemRefObj = SCRefDataMgr.instance.itemRefList.refDataList.Find(x => x.id == _itemId);
+            if(itemRefObj == null)
+                return false;
+            switch(itemRefObj.id)
+            {
+                case 1003://复活卷轴
+                    if (SCModel.instance.tbsModel.CheckHasPlayerActorDead())
+                        return true;
+                    return false;
+                default:
+                    break;
+            }
+            return true;
+        }
         private void onTBSActorChg()
         {
             TBSActorBase actor = SCModel.instance.tbsModel.GetCurActor();
