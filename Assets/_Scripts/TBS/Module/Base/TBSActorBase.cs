@@ -133,6 +133,12 @@ namespace GameCore.TBS
             return _m_actorMono.asCameraTargetTran;
         }
 
+        public Vector3 GetOpenSkillCameraPos()
+        {
+            //todo
+            return GetActorCameraTran().position + new Vector3(0, 2, 0);
+        }
+
         public Transform GetActorCameraTran()
         {
             return _m_actorMono.actorCameraInfoList.Find(x => x.posType == posInfo.posType).cameraTran;

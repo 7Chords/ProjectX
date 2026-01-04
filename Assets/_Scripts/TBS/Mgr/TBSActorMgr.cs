@@ -447,7 +447,8 @@ namespace GameCore.TBS
             void setCameraOffset_Player()
             {
                 //todo(cam)
-                GameCameraMgr.instance.SetCameraPositionOffsetWithFollow(_m_playerActorModuleList[_m_curActionActorIndex].GetActorCameraTran(),true, hideUIAndCursor, showUIAndCursor);
+                GameCameraMgr.instance.SetCameraPositionOffsetWithFollow(_m_playerActorModuleList[_m_curActionActorIndex].GetActorCameraTran().position
+                    ,true, hideUIAndCursor, showUIAndCursor);
             }
 
             if (SCModel.instance.tbsModel.curTurnType == ETBSTurnType.PLAYER)

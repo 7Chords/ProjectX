@@ -117,10 +117,6 @@ namespace SCFrame.UI
             //_m_nodeList.Remove(topNode);
             //_m_nodeList.Insert(0, topNode);
 
-            _ASCUINodeBase nextTopNode = GetTopNode(true);
-            //广播节点切换消息
-            SCMsgCenter.SendMsg(SCMsgConst.UI_NODE_CHG, topNode, nextTopNode);
-
             //上一个同类型的节点
             _ASCUINodeBase lastSameTypeNode = null;
 
@@ -140,6 +136,10 @@ namespace SCFrame.UI
                     }
                 }
             }
+
+            _ASCUINodeBase nextTopNode = GetTopNode(true);
+            //广播节点切换消息
+            SCMsgCenter.SendMsg(SCMsgConst.UI_NODE_CHG, topNode, nextTopNode);
         }
 
         /// <summary>

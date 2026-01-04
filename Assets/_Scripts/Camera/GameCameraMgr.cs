@@ -35,10 +35,10 @@ namespace GameCore
         /// <summary>
         /// 设置虚拟相机与目标的偏移（真正改变了虚拟相机的pos）
         /// </summary>
-        /// <param name="_tran"></param>
+        /// <param name="_offset"></param>
         /// <param name="_onStart"></param>
         /// <param name="_onFinish"></param>
-        public void SetCameraPositionOffsetWithFollow(Transform _tran,bool _isPlayer,Action _onStart = null,Action _onFinish = null)
+        public void SetCameraPositionOffsetWithFollow(Vector3 _offset,bool _isPlayer,Action _onStart = null,Action _onFinish = null)
         {
             if (_m_virtualCamera == null)
                 return;
@@ -49,7 +49,7 @@ namespace GameCore
             if (transposer == null)
                 return;
 
-            if(_tran.position == _m_followTran.position)
+            if(_offset == _m_followTran.position)
             {
                 _onStart?.Invoke();
                 _onFinish?.Invoke();
@@ -59,10 +59,10 @@ namespace GameCore
             Vector3 targetOffset = Vector3.zero;
             //计算目标偏移量
             if (_isPlayer)
-                targetOffset = _tran.position - _m_followTran.position;
+                targetOffset = _offset - _m_followTran.position;
             else
             {
-                targetOffset = _m_followTran.position - _tran.position;
+                targetOffset = _m_followTran.position - _offset;
                 targetOffset += new Vector3(0, -targetOffset.y * 2, 0);
             }
 

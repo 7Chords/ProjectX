@@ -86,7 +86,7 @@ namespace GameCore.TBS
             GameCameraMgr.instance.SetCameraFollow(GetModelGameObject().transform);
 
             //todo(cam)
-            GameCameraMgr.instance.SetCameraPositionOffsetWithFollow(GetActorCameraTran(),false);
+            GameCameraMgr.instance.SetCameraPositionOffsetWithFollow(GetActorCameraTran().position,false);
 
             TBSActorBase targetActor = SCModel.instance.tbsModel.GetRandomAliveActor(true);
             if (targetActor == null)
