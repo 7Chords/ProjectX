@@ -70,12 +70,20 @@ namespace SCFrame.UI
 
         protected virtual void ShowPanelAnim(Action _onBeforeShow)
         {
+            if (showType != SCUIShowType.INTERNAL)
+                SCInputListener.instance.SetCanInput(false);
+
             mono.canvasGroup.alpha = 0f;
             fadeCanvasContainer.KillAllDoTween();
             fadeCanvasContainer.RegDoTween(mono.canvasGroup.DOFade(1, mono.fadeInDuration)
                 .OnStart(() =>
                 {
                     _onBeforeShow?.Invoke();
+                })
+                .OnComplete(()=> 
+                {
+                    if (showType != SCUIShowType.INTERNAL)
+                        SCInputListener.instance.SetCanInput(true);
                 }));
         }
         protected virtual void OnBeforeShow()
@@ -91,6 +99,8 @@ namespace SCFrame.UI
 
         public void HidePanel()
         {
+            if (showType != SCUIShowType.INTERNAL)
+                SCInputListener.instance.SetCanInput(false);
             _m_hasShowed = false;
             _m_hasHided = true;
             OnHidePanel();
@@ -107,6 +117,8 @@ namespace SCFrame.UI
             fadeCanvasContainer.RegDoTween(mono.canvasGroup.DOFade(0, mono.fadeOutDuration)
                 .OnComplete(()=> 
                 {
+                    if (showType != SCUIShowType.INTERNAL)
+                        SCInputListener.instance.SetCanInput(true);
                     _onHideOver?.Invoke();
                 }));
         }

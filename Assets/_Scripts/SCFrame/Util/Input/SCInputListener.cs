@@ -14,6 +14,8 @@ namespace SCFrame
 
         private Ray _m_mouseRay;
         private RaycastHit _m_raycastHit;
+
+        public bool _m_canInput;
         public override void OnInitialize()
         {
             SCTaskHelper.instance.AddUpdateListener(updateInput);
@@ -30,6 +32,8 @@ namespace SCFrame
         {
             if (GameCoreMgr.instance.tbsCoreMgr.tbsGameHasStarted)
             {
+                if (!_m_canInput)
+                    return;
                 if (_m_tbsFrameChecker < _m_tbsFrameInterval)
                 {
                     _m_tbsFrameChecker += 1;
@@ -97,6 +101,12 @@ namespace SCFrame
                 }
             }
 
+        }
+
+
+        public void SetCanInput(bool _canInput)
+        {
+            _m_canInput = _canInput;
         }
     }
 }

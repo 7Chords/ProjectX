@@ -17,8 +17,11 @@ namespace SCFrame.UI
         {
             void fadeCanvas(Action _onComplete)
             {
+                if (showType != SCUIShowType.INTERNAL)
+                    SCInputListener.instance.SetCanInput(false);
                 fadeCanvasContainer.KillAllDoTween();
                 mono.animEventTrigger?.RemoveAnimationEvent(SCConst.HIDE_ANIM_OVER_EVENT);
+
                 fadeCanvasContainer.RegDoTween(mono.canvasGroup.DOFade(1, mono.fadeInDuration)
                     .OnStart(() =>
                     {
@@ -27,6 +30,7 @@ namespace SCFrame.UI
                     .OnComplete(() =>
                     {
                         _onComplete?.Invoke();
+
                     }));
             }
             mono.canvasGroup.alpha = 0f;
@@ -35,7 +39,11 @@ namespace SCFrame.UI
 
                 fadeCanvas(() =>
                 {
-
+                    mono.animEventTrigger?.AddAnimationEvent(SCConst.SHOW_ANIM_OVER_EVENT, () =>
+                    {
+                        if (showType != SCUIShowType.INTERNAL)
+                            SCInputListener.instance.SetCanInput(true);
+                    });
                     mono.uiAnimator.Play(mono.showUIName, 0, 0f); //在0层播放动画并从0秒处开始（即第一帧）
                     mono.uiAnimator.Update(0f); //立即强制更新一帧，确保状态应用
                     mono.uiAnimator.Play(mono.showUIName);
@@ -52,11 +60,18 @@ namespace SCFrame.UI
 
             void fadeCanvas()
             {
+                if (showType != SCUIShowType.INTERNAL)
+                    SCInputListener.instance.SetCanInput(false);
                 fadeCanvasContainer.KillAllDoTween();
+                mono.animEventTrigger?.RemoveAnimationEvent(SCConst.SHOW_ANIM_OVER_EVENT);
+
                 fadeCanvasContainer.RegDoTween(mono.canvasGroup.DOFade(0, mono.fadeOutDuration)
                     .OnComplete(() =>
                     {
                         _onHideOver?.Invoke();
+
+                        if (showType != SCUIShowType.INTERNAL)
+                            SCInputListener.instance.SetCanInput(true);
                     }));
             }
 
