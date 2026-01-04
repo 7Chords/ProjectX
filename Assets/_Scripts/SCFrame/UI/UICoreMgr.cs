@@ -317,6 +317,30 @@ namespace SCFrame.UI
 
         }
 
+
+        public _ASCUINodeBase GetTopShowNode(SCUIShowType _showType, bool _includeIgnore = true)
+        {
+            if (_m_nodeList == null)
+                return null;
+
+            if (_includeIgnore)
+            {
+                for (int i = _m_nodeList.Count - 1; i >= 0; i--)
+                {
+                    if (_m_nodeList[i].showType == _showType && !_m_nodeList[i].hasHideNode)
+                        return _m_nodeList[i];
+                }
+            }
+            else
+            {
+                for (int i = _m_nodeList.Count - 1; i >= 0; i--)
+                {
+                    if (_m_nodeList[i].showType == _showType && !_m_nodeList[i].ignoreOnUIList)
+                        return _m_nodeList[i];
+                }
+            }
+            return null;
+        }
         #endregion
 
 

@@ -38,7 +38,7 @@ namespace GameCore.TBS
 
         private void onESCInput()
         {
-            _ASCUINodeBase topNode = GameCoreMgr.instance.uiCoreMgr.GetTopNode(SCUIShowType.FULL);
+            _ASCUINodeBase topNode = GameCoreMgr.instance.uiCoreMgr.GetTopShowNode(SCUIShowType.FULL);
             if (topNode == null || topNode.GetNodeName() == nameof(UINodeTBSInfo))
                 return;
 
@@ -46,7 +46,7 @@ namespace GameCore.TBS
         }
         private void onMouseRightInput()
         {
-            _ASCUINodeBase topNode = GameCoreMgr.instance.uiCoreMgr.GetTopNode(SCUIShowType.FULL);
+            _ASCUINodeBase topNode = GameCoreMgr.instance.uiCoreMgr.GetTopShowNode(SCUIShowType.FULL);
             if (topNode == null || topNode.GetNodeName() == nameof(UINodeTBSInfo))
                 return;
 
