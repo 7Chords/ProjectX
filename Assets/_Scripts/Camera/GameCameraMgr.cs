@@ -159,19 +159,13 @@ namespace GameCore
 
 
         //todo: 临时方案，后续再优化
-        public void SwitchToVirtualCamera(CinemachineVirtualCamera _anotherVC,Action _switchOverCallback = null)
+        public void SwitchToVirtualCamera(CinemachineVirtualCamera _anotherVC, UnityAction<CinemachineBrain> _switchOverCallback = null)
         {
             _m_virtualCamera.gameObject.SetActive(false);
             _m_virtualCamera = _anotherVC;
             _m_virtualCamera.gameObject.SetActive(true);
             if (_switchOverCallback != null)
-            {
-                Tween tween = DOVirtual.DelayedCall(0.1f,
-                    () =>
-                    {
-                        _switchOverCallback?.Invoke();
-                    });
-            }
+                SCGame.instance.cinemachineBrain.m_CameraCutEvent.AddListener(_switchOverCallback);
         }
         public void SwitchToMainVirtualCamera(UnityAction<CinemachineBrain> _switchOverCallback = null)
         {

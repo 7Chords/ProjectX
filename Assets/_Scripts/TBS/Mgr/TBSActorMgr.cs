@@ -244,7 +244,10 @@ namespace GameCore.TBS
                 if (SCModel.instance.tbsModel.curTurnType == ETBSTurnType.ENEMY)
                     (_m_enemyActorModuleList[_m_curActionActorIndex] as ITBSEnemyActor).DealEnemyAction();
                 else
+                {
                     SCModel.instance.tbsModel.selectTargetType = _m_playerActorModuleList[_m_curActionActorIndex].actorInfo.attackTargetType;
+
+                }
 
                 refreshCameraAndCursor(true);
             }

@@ -126,13 +126,17 @@ namespace GameCore.UI
                         //这里做相机操作的话只需要判断是敌人还是玩家 如果是玩家 需要等相机运动到合适的位置
                         if (isPlayerTargetConfirm)
                         {
-                            GameCameraMgr.instance.SwitchToVirtualCamera(SCModel.instance.tbsModel.gameMono.lookAllPlayersVC,()=> 
+                            GameCameraMgr.instance.SwitchToVirtualCamera(SCModel.instance.tbsModel.gameMono.lookAllPlayersVC);
+                            //tip:放到下下帧执行 因为下一帧Cinemachine才成功设置当前激活的虚拟相机
+                            SCTaskHelper.instance.DoInNextUpdate(() =>
                             {
-                                hideEnemyHudAndCursor();
-                                showUIAndCursor(true, skillRefObj.damageTargetType);
-                                _m_tbsConfirmPanel.ShowPanel();
+                                SCTaskHelper.instance.DoInNextUpdate(() =>
+                                {
+                                    hideEnemyHudAndCursor();
+                                    showUIAndCursor(true, skillRefObj.damageTargetType);
+                                    _m_tbsConfirmPanel.ShowPanel();
+                                });
                             });
-
                         }
                         else
                         {
@@ -151,11 +155,15 @@ namespace GameCore.UI
                         //这里做相机操作的话只需要判断是敌人还是玩家 如果是玩家 需要等相机运动到合适的位置
                         if (isPlayerTargetConfirm)
                         {
-                            GameCameraMgr.instance.SwitchToVirtualCamera(SCModel.instance.tbsModel.gameMono.lookAllPlayersVC, () =>
+                            GameCameraMgr.instance.SwitchToVirtualCamera(SCModel.instance.tbsModel.gameMono.lookAllPlayersVC);
+                            SCTaskHelper.instance.DoInNextUpdate(() =>
                             {
-                                hideEnemyHudAndCursor();
-                                showUIAndCursor(true, itemRefObj.itemTargetType);
-                                _m_tbsConfirmPanel.ShowPanel();
+                                SCTaskHelper.instance.DoInNextUpdate(() =>
+                                {
+                                    hideEnemyHudAndCursor();
+                                    showUIAndCursor(true, itemRefObj.itemTargetType);
+                                    _m_tbsConfirmPanel.ShowPanel();
+                                });
                             });
                         }
                         else
