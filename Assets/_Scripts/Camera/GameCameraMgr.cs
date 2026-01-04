@@ -5,6 +5,7 @@ using SCFrame;
 using System;
 using System.Collections;
 using UnityEngine;
+using UnityEngine.Events;
 using static Cinemachine.CinemachineBlendDefinition;
 
 namespace GameCore
@@ -12,6 +13,8 @@ namespace GameCore
     public class GameCameraMgr : Singleton<GameCameraMgr>
     {
         private CinemachineVirtualCamera _m_virtualCamera;
+
+
 
         private Transform _m_followTran;
         private Transform _m_targetTran;
@@ -152,6 +155,31 @@ namespace GameCore
             Time.timeScale = 0;
             yield return new WaitForSecondsRealtime(pauseTime);
             Time.timeScale = 1;
+        }
+
+
+        //todo: 临时方案，后续再优化
+        public void SwitchToVirtualCamera(CinemachineVirtualCamera _anotherVC,Action _switchOverCallback = null)
+        {
+            _m_virtualCamera.gameObject.SetActive(false);
+            _m_virtualCamera = _anotherVC;
+            _m_virtualCamera.gameObject.SetActive(true);
+            if (_switchOverCallback != null)
+            {
+                Tween tween = DOVirtual.DelayedCall(0.1f,
+                    () =>
+                    {
+                        _switchOverCallback?.Invoke();
+                    });
+            }
+        }
+        public void SwitchToMainVirtualCamera(UnityAction<CinemachineBrain> _switchOverCallback = null)
+        {
+            _m_virtualCamera.gameObject.SetActive(false);
+            _m_virtualCamera = SCGame.instance.virtualCamera;
+            _m_virtualCamera.gameObject.SetActive(true);
+            if (_switchOverCallback != null)
+                SCGame.instance.cinemachineBrain.m_CameraCutEvent.AddListener(_switchOverCallback);
         }
     }
 }

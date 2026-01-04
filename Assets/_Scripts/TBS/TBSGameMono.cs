@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using System;
+using Cinemachine;
 
 namespace GameCore.TBS
 {
@@ -20,7 +21,7 @@ namespace GameCore.TBS
         public Transform playerLookEnemyCenterPos;
         public Transform enemyLookPlayerCenterPos;
 
-        //public Transform cameraLook
+        public CinemachineVirtualCamera lookAllPlayersVC;
 
 
         public static string assetGroupName = "Stage";
