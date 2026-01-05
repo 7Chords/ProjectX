@@ -189,6 +189,12 @@ namespace GameCore.TBS
                 SCDebugHelper.LogError("找不到id为" + _itemId + "的道具配表数据！！！");
                 return;
             }
+            GameGeneralRefObj generalRefObj = SCRefDataMgr.instance.gameGeneralRefObj;
+            if (generalRefObj == null)
+            {
+                SCDebugHelper.LogError("generalRefObj为空！！！");
+                return;
+            }
             if (!checkItemCanUse(_itemId))
             {
                 GameCommon.ShowCommonTip("道具不满足使用条件！");
@@ -207,8 +213,23 @@ namespace GameCore.TBS
 
             TBSCursorMgr.instance.HideSelectionCursor();
 
+            if (itemRefObj.isPlayerTarget)
+            {
+                GameCameraMgr.instance.SetCameraPositionOffsetWithFollow(SCModel.instance.tbsModel.gameMono.playerLookEnemyCenterPos.position, true, 0f);
+                GameCameraMgr.instance.SetCameraTarget(SCModel.instance.tbsModel.gameMono.enemyLookPlayerCenterPos);
+            }
+            else
+            {
+                GameCameraMgr.instance.SetCameraPositionOffsetWithFollow(SCModel.instance.tbsModel.GetCurActor().GetActorCameraTran().position, true, 0f);
+                GameCameraMgr.instance.SetCameraTarget(SCModel.instance.tbsModel.gameMono.playerLookEnemyCenterPos);
+            }
             TBSItemHandler.DealItem(itemRefObj, _targetList);
-            SCMsgCenter.SendMsg(SCMsgConst.TBS_ACTOR_ACTION_END, actorInfo.runningId);
+
+            Tween delayTween = DOVirtual.DelayedCall(generalRefObj.tbsUseItemKeepDuration, () =>
+            {
+                SCMsgCenter.SendMsg(SCMsgConst.TBS_ACTOR_ACTION_END, actorInfo.runningId);
+            });
+            _m_tweenContainer?.RegDoTween(delayTween);
 
         }
         public virtual void Defend()

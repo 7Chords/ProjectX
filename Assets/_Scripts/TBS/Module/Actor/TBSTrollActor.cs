@@ -82,12 +82,6 @@ namespace GameCore.TBS
         {
             //todo:完善逻辑 做普攻技能区分
 
-            //设置相机
-            GameCameraMgr.instance.SetCameraFollow(GetModelGameObject().transform);
-
-            //todo(cam)
-            GameCameraMgr.instance.SetCameraPositionOffsetWithFollow(GetActorCameraTran().position,false);
-
             TBSActorBase targetActor = SCModel.instance.tbsModel.GetRandomAliveActor(true);
             if (targetActor == null)
                 return;

@@ -240,16 +240,12 @@ namespace GameCore.TBS
             //不是牵扯到回合持有者切换的处理
             if (_m_curActionActorIndex != 0)
             {
+                refreshCameraAndCursor(true);
 
                 if (SCModel.instance.tbsModel.curTurnType == ETBSTurnType.ENEMY)
                     (_m_enemyActorModuleList[_m_curActionActorIndex] as ITBSEnemyActor).DealEnemyAction();
                 else
-                {
                     SCModel.instance.tbsModel.selectTargetType = _m_playerActorModuleList[_m_curActionActorIndex].actorInfo.attackTargetType;
-
-                }
-
-                refreshCameraAndCursor(true);
             }
             else
             {
@@ -400,7 +396,7 @@ namespace GameCore.TBS
         #endregion
 
         /// <summary>
-        /// 刷新光标和相机 只用于玩家
+        /// 刷新光标和相机
         /// </summary>
         /// <param name="_reSetFollow"></param>
         /// <param name="_firstSet"></param>
@@ -458,7 +454,13 @@ namespace GameCore.TBS
                 if(_reSetFollow)
                     GameCameraMgr.instance.SetCameraFollow(_m_playerActorModuleList[_m_curActionActorIndex].GetModelGameObject().transform);
                 setCameraOffset_Player();
+            }
+            else
+            {
+                //设置相机
+                GameCameraMgr.instance.SetCameraFollow(_m_enemyActorModuleList[_m_curActionActorIndex].GetModelGameObject().transform);
 
+                GameCameraMgr.instance.SetCameraPositionOffsetWithFollow(_m_enemyActorModuleList[_m_curActionActorIndex].GetActorCameraTran().position, false, 0f);
             }
         }
     }
