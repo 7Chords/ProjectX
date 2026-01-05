@@ -6,6 +6,7 @@ tbsInputFrameInterval	3
 tbsGetHitCamShakeDuration	.25
 tbsGetHitCamShakeStrength	.5
 tbsGetHitCamFreezeDuration	.1
+tbsOpenSkillAndItemCameraOffsetY	2
 tbsMeleeLookAtTargetDuration	.25
 tbsMeleeMoveToTargetDuration	1
 tbsMeleeRotateDuration	.5

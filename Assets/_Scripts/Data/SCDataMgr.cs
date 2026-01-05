@@ -54,7 +54,13 @@ namespace GameCore
                 return;
             }
             else
-                data.itemAmount = System.Math.Max(data.itemAmount -_itemAmount,0L);
+            {
+                data.itemAmount = System.Math.Max(data.itemAmount - _itemAmount, 0L);
+                if(data.itemAmount == 0)
+                {
+                    itemDataList.Remove(data);
+                }
+            }
 
             SCDebugHelper.Log("É¾³ýÁË" + LanguageHelper.instance.GetTextTranslate(refObj.itemName) + "¡Á" + _itemAmount);
         }

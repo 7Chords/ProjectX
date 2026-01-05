@@ -67,7 +67,7 @@ namespace GameCore.UI
 
             _m_itemDataList = SCDataMgr.instance.itemDataList;
 
-            _m_curSelectItemIdx = SCModel.instance.tbsModel.curSelectItemIdx;
+            setSelectItemIdx();
 
             if (_m_itemContainer != null)
             {
@@ -149,6 +149,19 @@ namespace GameCore.UI
                 }
             }
             refreshPanel();
+        }
+
+        private void setSelectItemIdx()
+        {
+            int itemTypeCount = _m_itemDataList.Count;
+
+            if (itemTypeCount <= SCModel.instance.tbsModel.curSelectItemIdx)
+            {
+                _m_curSelectItemIdx = itemTypeCount - 1;
+                SCModel.instance.tbsModel.curSelectItemIdx = _m_curSelectItemIdx;
+            }
+            else
+                _m_curSelectItemIdx = SCModel.instance.tbsModel.curSelectItemIdx;
         }
     }
 }

@@ -135,8 +135,10 @@ namespace GameCore.TBS
 
         public Vector3 GetOpenSkillCameraPos()
         {
-            //todo
-            return GetActorCameraTran().position + new Vector3(0, 2, 0);
+            GameGeneralRefObj generalRefObj = SCRefDataMgr.instance.gameGeneralRefObj;
+            if (generalRefObj == null)
+                return GetActorCameraTran().position;
+            return GetActorCameraTran().position + new Vector3(0, generalRefObj.tbsOpenSkillAndItemCameraOffsetY, 0);
         }
 
         public Transform GetActorCameraTran()
@@ -192,6 +194,11 @@ namespace GameCore.TBS
                 GameCommon.ShowCommonTip("道具不满足使用条件！");
                 return;
             }
+
+            //数据上消耗道具
+            SCDataMgr.instance.DeleteItem(_itemId, 1);
+
+
             GameCoreMgr.instance.uiCoreMgr.HideNode(nameof(UINodeTBSConfirm));
             if (itemRefObj.isPlayerTarget)
                 GameCoreMgr.instance.uiCoreMgr.HideNode(nameof(UINodeTBSPlayerHud));

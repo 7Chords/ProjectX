@@ -17,6 +17,7 @@ namespace GameCore.RefData
         public float tbsGetHitCamShakeDuration;
         public float tbsGetHitCamShakeStrength;
         public float tbsGetHitCamFreezeDuration;
+        public float tbsOpenSkillAndItemCameraOffsetY;
 
         //一些actor攻击的tween时间参数
         public float tbsMeleeLookAtTargetDuration;
@@ -33,6 +34,7 @@ namespace GameCore.RefData
             tbsGetHitCamShakeDuration = getFloat("tbsGetHitCamShakeDuration");
             tbsGetHitCamShakeStrength = getFloat("tbsGetHitCamShakeStrength");
             tbsGetHitCamFreezeDuration = getFloat("tbsGetHitCamFreezeDuration");
+            tbsOpenSkillAndItemCameraOffsetY = getFloat("tbsOpenSkillAndItemCameraOffsetY");
             tbsMeleeLookAtTargetDuration = getFloat("tbsMeleeLookAtTargetDuration");
             tbsMeleeMoveToTargetDuration = getFloat("tbsMeleeMoveToTargetDuration");
             tbsMeleeRotateDuration = getFloat("tbsMeleeRotateDuration");
