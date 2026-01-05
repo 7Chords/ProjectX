@@ -38,7 +38,7 @@ namespace GameCore
         /// <param name="_offset"></param>
         /// <param name="_onStart"></param>
         /// <param name="_onFinish"></param>
-        public void SetCameraPositionOffsetWithFollow(Vector3 _offset,bool _isPlayer,Action _onStart = null,Action _onFinish = null)
+        public void SetCameraPositionOffsetWithFollow(Vector3 _offset,bool _isPlayer,float _duration = 0.75f, Action _onStart = null,Action _onFinish = null)
         {
             if (_m_virtualCamera == null)
                 return;
@@ -66,21 +66,30 @@ namespace GameCore
                 targetOffset += new Vector3(0, -targetOffset.y * 2, 0);
             }
 
-            //使用 DOTween平滑过渡
-            Tween tween = DOTween.To(
-                () => transposer.m_FollowOffset,
-                x => transposer.m_FollowOffset = x,
-                targetOffset,
-                0.75f
-            ).SetEase(Ease.OutQuart).OnStart(() =>
+            if(_duration > 0f)
             {
-                _onStart?.Invoke();
-            }).OnComplete(() =>
-            {
-                _onFinish?.Invoke();
-            });
+                //使用 DOTween平滑过渡
+                Tween tween = DOTween.To(
+                    () => transposer.m_FollowOffset,
+                    x => transposer.m_FollowOffset = x,
+                    targetOffset,
+                    _duration
+                ).SetEase(Ease.OutQuart).OnStart(() =>
+                {
+                    _onStart?.Invoke();
+                }).OnComplete(() =>
+                {
+                    _onFinish?.Invoke();
+                });
 
-            _m_tweenContainer.RegDoTween(tween);
+                _m_tweenContainer.RegDoTween(tween);
+            }
+            else
+            {
+                transposer.m_FollowOffset = targetOffset;
+                _onStart?.Invoke();
+                _onFinish?.Invoke();
+            }
         }
 
         /// <summary>

@@ -143,8 +143,8 @@ namespace GameCore.TBS
 
                         TBSCursorMgr.instance.HideSelectionCursor();
 
-                        GameCameraMgr.instance.SetCameraPositionOffsetWithFollow(SCModel.instance.tbsModel.gameMono.playerLookEnemyCenterPos.position, true);
-                        GameCameraMgr.instance.SetCameraTarget(SCModel.instance.tbsModel.GetCurSelectSinglePlayerTargetActor().GetAsCameraTargetTran());
+                        GameCameraMgr.instance.SetCameraPositionOffsetWithFollow(SCModel.instance.tbsModel.gameMono.playerLookEnemyCenterPos.position, true,0f);
+                        GameCameraMgr.instance.SetCameraTarget(SCModel.instance.tbsModel.gameMono.enemyLookPlayerCenterPos);
 
 
                         _m_actorMono.signalEventTrigger.AddSignalEvent(GameConst.SPAWN_PARTICLE_EFFECT_EVENT, () =>
