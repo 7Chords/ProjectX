@@ -2486,7 +2486,7 @@ PlayableDirector:
   m_GameObject: {fileID: 7642780803937266571}
   m_Enabled: 1
   serializedVersion: 3
-  m_PlayableAsset: {fileID: 0}
+  m_PlayableAsset: {fileID: 11400000, guid: 2772013c4ea07ff4ba8e3587b6376b92, type: 2}
   m_InitialState: 0
   m_WrapMode: 2
   m_DirectorUpdateMode: 1
@@ -2503,6 +2503,10 @@ PlayableDirector:
   - key: {fileID: 3719293832218398522, guid: 40580aed4ba24a34fa5e6add776f0b20, type: 2}
     value: {fileID: 4174108089355672743}
   - key: {fileID: 2774030899252504993, guid: 40580aed4ba24a34fa5e6add776f0b20, type: 2}
+    value: {fileID: 6491189174454658846}
+  - key: {fileID: 2401234541533948270, guid: 2772013c4ea07ff4ba8e3587b6376b92, type: 2}
+    value: {fileID: 490798487549565008}
+  - key: {fileID: 2652932781080124968, guid: 2772013c4ea07ff4ba8e3587b6376b92, type: 2}
     value: {fileID: 6491189174454658846}
   m_ExposedReferences:
     m_References:
@@ -2522,6 +2526,7 @@ MonoBehaviour:
   m_Events:
     m_Signals:
     - {fileID: 11400000, guid: b815e3275168e4c42a74dbcc7bd18812, type: 2}
+    - {fileID: 11400000, guid: e1d42a9f51e94b64c9fb06f020d9a09b, type: 2}
     m_Events:
     - m_PersistentCalls:
         m_Calls:
@@ -2535,6 +2540,20 @@ MonoBehaviour:
             m_IntArgument: 0
             m_FloatArgument: 0
             m_StringArgument: CommonDealSkill
+            m_BoolArgument: 0
+          m_CallState: 2
+    - m_PersistentCalls:
+        m_Calls:
+        - m_Target: {fileID: 7657664738385348694}
+          m_TargetAssemblyTypeName: GameCore.Util.SignalEventTrigger, Assembly-CSharp
+          m_MethodName: SignalEvent
+          m_Mode: 5
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_IntArgument: 0
+            m_FloatArgument: 0
+            m_StringArgument: SpawnParticleEffect
             m_BoolArgument: 0
           m_CallState: 2
 --- !u!114 &7657664738385348694

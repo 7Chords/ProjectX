@@ -33,6 +33,10 @@ MonoBehaviour:
     m_Address: tl_lorraine_skill_1004
     m_ReadOnly: 0
     m_SerializedLabels: []
+  - m_GUID: 2772013c4ea07ff4ba8e3587b6376b92
+    m_Address: tl_karenina_skill_1005
+    m_ReadOnly: 0
+    m_SerializedLabels: []
   m_ReadOnly: 0
   m_Settings: {fileID: 11400000, guid: d14fb1bbe98862146a7f5467a5bc79f8, type: 2}
   m_SchemaSet:

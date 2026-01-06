@@ -1,9 +1,11 @@
 using DG.Tweening;
 using GameCore.RefData;
 using GameCore.UI;
+using GameCore.Util;
 using SCFrame;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Playables;
 
 namespace GameCore.TBS
 {
@@ -84,7 +86,69 @@ namespace GameCore.TBS
 
         public override void ReleaseSkill(long _skillId, List<TBSActorBase> _targetList)
         {
+            if (!checkSkillCanRelease(_skillId))
+            {
+                GameCommon.ShowCommonTip("MP不足！");
+                return;
+            }
 
+            if (_targetList == null || _targetList.Count == 0)
+                return;
+
+            _m_attackEnemyActorList.AddRange(_targetList);
+
+            TBSActorSkillRefObj skillRefObj = SCRefDataMgr.instance.tbsActorSkillRefList.refDataList.Find(x => x.id == _skillId);
+            if (skillRefObj == null)
+                return;
+            PlayableAsset skillAsset = ResourcesHelper.LoadAsset<PlayableAsset>(skillRefObj.skillPlayableAssetName);
+            if (skillAsset == null)
+                return;
+            _m_actorSkillRefObj = skillRefObj;
+
+
+            GameGeneralRefObj generalRefObj = SCRefDataMgr.instance.gameGeneralRefObj;
+
+
+            switch (_m_actorSkillRefObj.skillName)
+            {
+                case "骑士决心":
+                    {
+                        GameCoreMgr.instance.uiCoreMgr.HideNode(nameof(UINodeTBSConfirm));
+                        GameCoreMgr.instance.uiCoreMgr.HideNode(nameof(UINodeTBSPlayerHud));
+
+                        TBSCursorMgr.instance.HideSelectionCursor();
+
+                        GameCameraMgr.instance.SetCameraPositionOffsetWithFollow(SCModel.instance.tbsModel.gameMono.playerLookEnemyCenterPos.position, true, 0f);
+                        GameCameraMgr.instance.SetCameraTarget(SCModel.instance.tbsModel.gameMono.enemyLookPlayerCenterPos);
+
+
+                        _m_actorMono.signalEventTrigger.AddSignalEvent(GameConst.SPAWN_PARTICLE_EFFECT_EVENT, () =>
+                        {
+                            GameObject go = ParticleMgr.instance.PlayEffect("circle_yellow"
+                                , _targetList[0].GetActorGameObject().transform.position).gameObject;
+                        });
+
+                        _m_actorMono.skillDirector.Play(skillAsset);
+
+                        dealSkill();
+
+                        Sequence seq = DOTween.Sequence();
+
+                        seq.Append(DOVirtual.DelayedCall((float)skillAsset.duration,
+                            () =>
+                            {
+                                SCMsgCenter.SendMsg(SCMsgConst.TBS_ACTOR_ACTION_END, actorInfo.runningId);
+                                _m_actorMono.signalEventTrigger.RemoveSignalEvent(GameConst.SPAWN_PARTICLE_EFFECT_EVENT);
+                                _m_attackEnemyActorList.Clear();
+
+                            }));
+
+                        _m_tweenContainer?.RegDoTween(seq);
+                    }
+                    break;
+                default:
+                    break;
+            }
         }
     }
 
