@@ -108,6 +108,8 @@ namespace GameCore.TBS
 
             GameGeneralRefObj generalRefObj = SCRefDataMgr.instance.gameGeneralRefObj;
 
+            GameCommon.ShowSkillNameTip(_m_actorSkillRefObj.skillName);
+
 
             switch (_m_actorSkillRefObj.skillName)
             {

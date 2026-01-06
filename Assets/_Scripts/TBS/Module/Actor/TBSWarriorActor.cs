@@ -108,7 +108,7 @@ namespace GameCore.TBS
                 return;
             _m_actorSkillRefObj = skillRefObj;
 
-            //GameCommon.ShowSkillNameTip(_m_actorSkillRefObj.skillName);
+            GameCommon.ShowSkillNameTip(_m_actorSkillRefObj.skillName);
 
             if (!_m_actorSkillRefObj.needMove)
             {

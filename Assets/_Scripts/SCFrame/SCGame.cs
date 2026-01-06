@@ -20,6 +20,7 @@ namespace SCFrame
         public GameObject additionLayerRoot;
         public GameObject topLayerRoot;
         public Transform tranTipPoint;
+        public Transform tranSkillNamePoint;
 
         [Header("Camera")]
         public Camera gameCamera;
