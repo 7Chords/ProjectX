@@ -88,7 +88,7 @@ namespace GameCore.TBS
         {
             if (!checkSkillCanRelease(_skillId))
             {
-                GameCommon.ShowCommonTip("MP不足！");
+                GameCommon.ShowCommonTopTip("MP不足！");
                 return;
             }
 
@@ -122,6 +122,13 @@ namespace GameCore.TBS
 
                         GameCameraMgr.instance.SetCameraPositionOffsetWithFollow(SCModel.instance.tbsModel.gameMono.playerLookEnemyCenterPos.position, true, 0f);
                         GameCameraMgr.instance.SetCameraTarget(SCModel.instance.tbsModel.gameMono.enemyLookPlayerCenterPos);
+
+
+                        GameCommon.ShowTip("物理穿透提升", _targetList[0].GetCursorPos());
+                        SCTimeCaller.instance.CallDealy(0.5f, () =>
+                        {
+                            GameCommon.ShowTip("护甲提升", _targetList[0].GetCursorPos());
+                        });
 
 
                         _m_actorMono.signalEventTrigger.AddSignalEvent(GameConst.SPAWN_PARTICLE_EFFECT_EVENT, () =>

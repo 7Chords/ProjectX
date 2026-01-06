@@ -197,7 +197,7 @@ namespace GameCore.TBS
             }
             if (!checkItemCanUse(_itemId))
             {
-                GameCommon.ShowCommonTip("道具不满足使用条件！");
+                GameCommon.ShowCommonTopTip("道具不满足使用条件！");
                 return;
             }
 

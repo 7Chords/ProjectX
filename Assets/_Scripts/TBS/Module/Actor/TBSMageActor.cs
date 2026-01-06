@@ -75,7 +75,7 @@ namespace GameCore.TBS
         {
             if (!checkSkillCanRelease(_skillId))
             {
-                GameCommon.ShowCommonTip("MP²»×ã£¡");
+                GameCommon.ShowCommonTopTip("MP²»×ã£¡");
                 return;
             }
 

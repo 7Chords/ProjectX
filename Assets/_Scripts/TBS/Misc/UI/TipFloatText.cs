@@ -42,35 +42,46 @@ namespace GameCore.TBS
             gameObject.GetRectTransform().localScale = Vector3.zero;
             canvasGroup.alpha = 1f;
 
-            //创建放大动画
-            Tween biggerTween = gameObject.GetRectTransform().DOScale(Vector3.one, biggerDuration);
-
-            //创建抖动动画
-            Tween shakeTween = gameObject.GetRectTransform().DOShakePosition(shakeDuration, shakeStrength);
-
-            //创建上浮动画
-            Tween floatTween = gameObject.GetRectTransform().DOLocalMoveY(
-                _originalPosition.y + floatHeight, floatDuration);
-
-            //创建淡出动画
-            Tween fadeOutTween = canvasGroup.DOFade(0, fadeOutDuration).OnComplete(() =>
-            {
-                SCCommon.DestoryGameObject(gameObject);
-            });
 
             //组合动画序列
             Sequence mainSequence = DOTween.Sequence();
-
-            //第一阶段：同时执行放大和抖动
-            mainSequence.Append(biggerTween);
-            mainSequence.Join(shakeTween); // 与放大动画同时执行
+            if (biggerDuration > 0 )
+            {
+                //创建放大动画
+                Tween biggerTween = gameObject.GetRectTransform().DOScale(Vector3.one, biggerDuration);
+                mainSequence.Append(biggerTween);
+            }
+            if(shakeDuration > 0 && shakeStrength > 0)
+            {
+                //创建抖动动画
+                Tween shakeTween = gameObject.GetRectTransform().DOShakePosition(shakeDuration, shakeStrength);
+                mainSequence.Join(shakeTween); // 与放大动画同时执行
+            }
 
             //第二阶段：静止一段时间
             mainSequence.AppendInterval(stopDuration);
 
-            //第三阶段：同时执行上浮和淡出
-            mainSequence.Append(floatTween);
-            mainSequence.Join(fadeOutTween); // 与上浮动画同时执行
+            if(floatHeight > 0 && floatDuration > 0)
+            {
+                //创建上浮动画
+                Tween floatTween = gameObject.GetRectTransform().DOLocalMoveY(
+                    _originalPosition.y + floatHeight, floatDuration);
+                //第三阶段：同时执行上浮和淡出
+                mainSequence.Append(floatTween);
+            }
+
+
+            if(fadeOutDuration > 0)
+            {
+                //创建淡出动画
+                Tween fadeOutTween = canvasGroup.DOFade(0, fadeOutDuration).OnComplete(() =>
+                {
+                    SCCommon.DestoryGameObject(gameObject);
+                });
+
+
+                mainSequence.Join(fadeOutTween); // 与上浮动画同时执行
+            }
 
             _m_tweenContainer.RegDoTween(mainSequence);
         }

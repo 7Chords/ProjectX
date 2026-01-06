@@ -17,10 +17,12 @@ namespace SCFrame
             GameCameraMgr.instance.Initialize();
             TBSCursorMgr.instance.Initialize();
             ParticleMgr.instance.Initialize();
+            SCTimeCaller.instance.Initialize();
         }
 
         public override void OnDiscard()
         {
+            SCTimeCaller.instance.Discard();
             SCInputListener.instance.Discard();
             ParticleMgr.instance.Discard();
             SCSaveSys.instance.Discard();
