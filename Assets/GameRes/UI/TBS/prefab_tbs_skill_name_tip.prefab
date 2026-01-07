@@ -108,7 +108,7 @@ GameObject:
   - component: {fileID: 9077337890797147758}
   - component: {fileID: 9077337890797147759}
   - component: {fileID: 3565718928965338439}
-  - component: {fileID: 1352132902050106325}
+  - component: {fileID: 6325531236523626806}
   m_Layer: 5
   m_Name: prefab_tbs_skill_name_tip
   m_TagString: Untagged
@@ -187,7 +187,7 @@ CanvasGroup:
   m_Interactable: 1
   m_BlocksRaycasts: 1
   m_IgnoreParentGroups: 0
---- !u!114 &1352132902050106325
+--- !u!114 &6325531236523626806
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -196,15 +196,11 @@ MonoBehaviour:
   m_GameObject: {fileID: 9077337890797147757}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 6650ef0a7f1e8b1409796d242f3f76e7, type: 3}
+  m_Script: {fileID: 11500000, guid: 00175d8d1e0d9c847b20e3c321df721d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   tipText: {fileID: 9077337890141243374}
   canvasGroup: {fileID: 3565718928965338439}
-  biggerDuration: 0.1
-  floatDuration: 0.5
-  fadeOutDuration: 0.25
-  floatHeight: 0
-  stopDuration: 0.75
-  shakeStrength: 0
-  shakeDuration: 0
+  fadeInDuration: 0.25
+  fadeOutDuration: 0.5
+  stopDuration: 1

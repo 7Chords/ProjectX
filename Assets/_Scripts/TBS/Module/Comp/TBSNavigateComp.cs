@@ -239,6 +239,9 @@ namespace GameCore.TBS
                 return;
             }
 
+            _ASCUINodeBase topNode = GameCoreMgr.instance.uiCoreMgr.GetTopShowNode(SCUIShowType.FULL);
+            if (topNode is not UINodeTBSConfirm || !(topNode as UINodeTBSConfirm).isPlayerTargetConfirm)
+                return;
 
             GameObject playerGO = _objs[0] as GameObject;
             if (playerGO == null)
