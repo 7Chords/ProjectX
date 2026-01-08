@@ -69,7 +69,13 @@ namespace GameCore.TBS
             if (!string.IsNullOrEmpty(_m_actorMono.attackAnimClipName))
                 _m_attackAnimClip = ResourcesHelper.LoadAsset<AnimationClip>(_m_actorMono.attackAnimClipName);
             if (!string.IsNullOrEmpty(_m_actorMono.getHitAnimClipName))
+            {
                 _m_getHitAnimClip = ResourcesHelper.LoadAsset<AnimationClip>(_m_actorMono.getHitAnimClipName);
+                _m_actorMono.animEventTrigger.AddAnimationEvent(SCConst.PLAY_IDLE_ANIM_EVENT, () =>
+                {
+                    _m_animationCtl.PlaySingleAniamtion(_m_idleAnimClip);
+                });
+            }
             if (!string.IsNullOrEmpty(_m_actorMono.defendAnimClipName))
                 _m_defendAnimClip = ResourcesHelper.LoadAsset<AnimationClip>(_m_actorMono.defendAnimClipName);
             if (!string.IsNullOrEmpty(_m_actorMono.dieAnimClipName))
@@ -87,6 +93,7 @@ namespace GameCore.TBS
             SCMsgCenter.UnregisterMsgAct(SCMsgConst.TBS_ACTOR_CHG, onTBSActorChg);
             SCMsgCenter.UnregisterMsgAct(SCMsgConst.TBS_TURN_CHG, onTurnChg);
 
+            _m_actorMono.animEventTrigger.RemoveAllListener();
 
             _m_tweenContainer?.KillAllDoTween();
             _m_tweenContainer = null;
