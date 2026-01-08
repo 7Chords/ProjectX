@@ -202,5 +202,5 @@ MonoBehaviour:
   tipText: {fileID: 9077337890141243374}
   canvasGroup: {fileID: 3565718928965338439}
   fadeInDuration: 0.25
-  fadeOutDuration: 0.5
+  fadeOutDuration: 0.25
   stopDuration: 1

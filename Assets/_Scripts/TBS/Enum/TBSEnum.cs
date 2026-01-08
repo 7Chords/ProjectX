@@ -129,6 +129,18 @@ namespace GameCore.TBS
         SPECIAL,
     }
 
+    public enum EBuffCallBackPointType
+    {
+        NONE,
+        ADD,
+        REMOVE,
+        ATTACK,
+        GET_HIT,
+        DIE,
+        ACTION,
+    }
+
+
     public enum ETBSPos
     {
         CENTER_LEFT,

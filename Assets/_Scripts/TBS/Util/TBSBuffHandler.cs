@@ -10,12 +10,12 @@ namespace GameCore.TBS
         public override void OnInitialize()
         {
             buffList = new List<TBSGameBuffInfo>();
-            this.OnUpdate(buffTickAndRemove);
         }
 
         public override void OnDiscard()
         {
-            this.RemoveUpdate(buffTickAndRemove);
+            buffList?.Clear();
+            buffList = null;
         }
 
         public override void OnResume()
@@ -27,12 +27,10 @@ namespace GameCore.TBS
         }
 
 
-
-
         /// <summary>
         /// buff的效果周期和生命周期计时(回合制）
         /// </summary>
-        private void buffTickAndRemove()
+        public void BuffTickAndRemove()
         {
             List<TBSGameBuffInfo> deleteBuffList = new List<TBSGameBuffInfo>();
             foreach (var buffInfo in buffList)
@@ -62,7 +60,7 @@ namespace GameCore.TBS
         public void AddBuff(TBSGameBuffInfo _buffInfo)
         {
             if (_buffInfo == null) return;
-            TBSGameBuffInfo findBuffInfo = FindBuff(_buffInfo.buffRefObj.id);
+            TBSGameBuffInfo findBuffInfo = findBuff(_buffInfo.buffRefObj.id);
 
             if (findBuffInfo != null)
             {
@@ -72,12 +70,8 @@ namespace GameCore.TBS
             else
             {
                 buffList.Add(_buffInfo);
-                //对buffList进行排序
-                //按照优先级降序排序 优先级数字越大排得越前面
-                //buffList.Sort((buff1, buff2) => buff2.buffData.priority.CompareTo(buff1.buffData.priority));
-
                 //触发创建buff时的回调
-                findBuffInfo.onBuffAdd();
+                _buffInfo.onBuffAdd?.Invoke();
             }
         }
 
@@ -87,6 +81,9 @@ namespace GameCore.TBS
         /// <param name="_buffInfo"></param>
         public void RemoveBuff(TBSGameBuffInfo _buffInfo)
         {
+            if (!buffList.Contains(_buffInfo))
+                return;
+
             buffList.Remove(_buffInfo);
 
             _buffInfo.onBuffRemove?.Invoke();
@@ -97,17 +94,60 @@ namespace GameCore.TBS
         /// </summary>
         /// <param name="_buffDataID"></param>
         /// <returns></returns>
-        private TBSGameBuffInfo FindBuff(long _buffDataID)
+        private TBSGameBuffInfo findBuff(long _buffDataID)
         {
-            foreach (var buffinfo in buffList)
+            foreach (var buffInfo in buffList)
             {
-                if (buffinfo.buffRefObj.id == _buffDataID)
+                if (buffInfo.buffRefObj.id == _buffDataID)
                 {
-                    return buffinfo;
+                    return buffInfo;
                 }
             }
 
             return default;
         }
+
+        public void TriggerAttackBuff()
+        {
+            foreach (var buffInfo in buffList)
+            {
+                if (buffInfo == null)
+                    continue;
+                buffInfo.onAttack?.Invoke();
+            }
+        }
+
+        public void TriggerGetHitBuff()
+        {
+            foreach (var buffInfo in buffList)
+            {
+                if (buffInfo == null)
+                    continue;
+                buffInfo.onGetHit?.Invoke();
+            }
+        }
+
+        public void TriggerActorDieBuff()
+        {
+            foreach (var buffInfo in buffList)
+            {
+                if (buffInfo == null)
+                    continue;
+                buffInfo.onActorDie?.Invoke();
+            }
+        }
+
+        public void TriggerActorActionBuff()
+        {
+            foreach (var buffInfo in buffList)
+            {
+                if (buffInfo == null)
+                    continue;
+                buffInfo.onActorAction?.Invoke();
+            }
+        }
+
+
+
     }
 }

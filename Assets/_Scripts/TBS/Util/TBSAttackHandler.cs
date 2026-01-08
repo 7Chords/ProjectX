@@ -64,7 +64,7 @@ namespace GameCore.TBS
                         tmpDamage = _attackInfo.baseDamage;
                         if(_attackInfo.damageType == EDamageType.PHYSICAL)
                         {
-                            tmpDamage  *= getPhysicalPenetrateRate(_attackInfo.physicsLevelType, actor.actorInfo.armorLevel, out extraStr);
+                            tmpDamage  *= getPhysicalPenetrateRate(_attackInfo.physicsLevelType, actor.propertyDealer.GetResultArmorLevel(), out extraStr);
                             if (_attackInfo.srcActorList[0].CriticalJudge())
                                 tmpDamage *= tbsConfigRefObj.tbsCrticalMultiplier;
                         }
@@ -88,7 +88,7 @@ namespace GameCore.TBS
                             }
                             else
                             {
-                                tmpDamage *= getMagicResistanceRate(actor.actorInfo.magicResistanceLevel);
+                                tmpDamage *= getMagicResistanceRate(actor.propertyDealer.GetResultMagicResistenceLevel());
                                 tmpDamage *= getMagicWeakRate(_attackInfo.magicAttributeType, actor.actorInfo,out extraStr);
                             }
                         }
@@ -185,7 +185,7 @@ namespace GameCore.TBS
                         tmpDamage = _skillInfo.baseDamage * getDamageAmountRate(_skillInfo.damageAmountType);
                         if (_skillInfo.damageType == EDamageType.PHYSICAL)
                         {
-                            tmpDamage *= getPhysicalPenetrateRate(_skillInfo.physicsLevelType, actor.actorInfo.armorLevel, out extraStr);
+                            tmpDamage *= getPhysicalPenetrateRate(_skillInfo.physicsLevelType, actor.propertyDealer.GetResultArmorLevel(), out extraStr);
                             if (_skillInfo.srcActorList[0].CriticalJudge())
                                 tmpDamage *= tbsConfigRefObj.tbsCrticalMultiplier;
                         }
@@ -208,7 +208,7 @@ namespace GameCore.TBS
                             }
                             else
                             {
-                                tmpDamage *= getMagicResistanceRate(actor.actorInfo.magicResistanceLevel);
+                                tmpDamage *= getMagicResistanceRate(actor.propertyDealer.GetResultMagicResistenceLevel());
                                 tmpDamage *= getMagicWeakRate(_skillInfo.magicAttributeType, actor.actorInfo, out extraStr);
                             }
                         }

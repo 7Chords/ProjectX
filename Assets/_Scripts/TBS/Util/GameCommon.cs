@@ -51,7 +51,7 @@ namespace GameCore
             TBSConfigRefObj tbsConfigRefObj = SCRefDataMgr.instance.tbsConfigRefObj;
             if (tbsConfigRefObj == null)
             {
-                Debug.LogError("TBSCommon GetSpriteByMagicResistance 无法获得TBSConfigRefObj！！！");
+                Debug.LogError("GameCommon GetSpriteByMagicResistance 无法获得TBSConfigRefObj！！！");
                 return null;
             }
             switch (_resistanceLevel)
@@ -65,7 +65,7 @@ namespace GameCore
                 case EMagicResistanceLevelType.HERO:
                     return ResourcesHelper.LoadAsset<Sprite>(tbsConfigRefObj.tbsResistanceHeroSpriteObjName);
                 default:
-                    Debug.LogError("TBSCommon GetSpriteByMagicResistance 无效的枚举类型！！！");
+                    Debug.LogError("GameCommon GetSpriteByMagicResistance 无效的枚举类型！！！");
                     return null;
             }
         }
@@ -75,7 +75,7 @@ namespace GameCore
             TBSConfigRefObj tbsConfigRefObj = SCRefDataMgr.instance.tbsConfigRefObj;
             if (tbsConfigRefObj == null)
             {
-                Debug.LogError("TBSCommon GetSpriteByMagicAttributeWeak 无法获得TBSConfigRefObj！！！");
+                Debug.LogError("GameCommon GetSpriteByMagicAttributeWeak 无法获得TBSConfigRefObj！！！");
                 return null;
             }
             if(_actorInfo.weakAttributeList.Contains(_magicAttribute))
@@ -92,7 +92,7 @@ namespace GameCore
                 return ResourcesHelper.LoadAsset<Sprite>(tbsConfigRefObj.tbsAttributeSuckSpriteObjName);
             else
             {
-                Debug.Log("TBSCommon GetSpriteByMagicAttributeWeak 该魔法属性找不到关系！！！");
+                Debug.Log("GameCommon GetSpriteByMagicAttributeWeak 该魔法属性找不到关系！！！");
                 return null;
             }
         }

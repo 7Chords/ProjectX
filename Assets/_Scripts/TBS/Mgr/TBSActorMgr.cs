@@ -127,9 +127,9 @@ namespace GameCore.TBS
                     actorGO.GetComponent<TBSActorMonoBase>());
                 if (actor == null)
                     continue;
-                actor.Initialize();
                 actor.SetActorInfo(actorInfo);
                 actor.SetPosInfo(_m_gameMono.playerPosInfoList[i]);
+                actor.Initialize();
                 _m_playerActorModuleList.Add(actor);
             }
 
@@ -148,9 +148,9 @@ namespace GameCore.TBS
                     actorGO.GetComponent<TBSActorMonoBase>());
                 if (actor == null)
                     continue;
-                actor.Initialize();
                 actor.SetActorInfo(actorInfo);
                 actor.SetPosInfo(_m_gameMono.enemyPosInfoList[i]);
+                actor.Initialize();
                 _m_enemyActorModuleList.Add(actor);
 
             }

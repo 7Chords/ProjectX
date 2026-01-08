@@ -141,6 +141,12 @@ namespace GameCore.TBS
 
                         dealSkill();
 
+                        TBSGameBuffInfo buffInfo = TBSBuffFactory.CreateBuffInfo(1016, 3, _targetList[0]);
+                        TBSGameBuffInfo buffInfo_2 = TBSBuffFactory.CreateBuffInfo(1017, 3, _targetList[0]);
+                        _targetList[0].GetBuff(buffInfo);
+                        _targetList[0].GetBuff(buffInfo_2);
+
+
                         Sequence seq = DOTween.Sequence();
 
                         seq.Append(DOVirtual.DelayedCall((float)skillAsset.duration,

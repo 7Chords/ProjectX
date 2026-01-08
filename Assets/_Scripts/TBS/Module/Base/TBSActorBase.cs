@@ -16,6 +16,10 @@ namespace GameCore.TBS
 
         protected TweenContainer _m_tweenContainer;
         protected SCAnimationCtl _m_animationCtl;//动画控制器
+        protected TBSBuffHandler _m_buffHander;
+        protected TBSPropertyDealer _m_propertyDealer;
+
+        public TBSPropertyDealer propertyDealer => _m_propertyDealer;
 
         protected AnimationClip _m_idleAnimClip;
         protected AnimationClip _m_runAnimClip;
@@ -47,6 +51,14 @@ namespace GameCore.TBS
             _m_animationCtl = new SCAnimationCtl();
             _m_animationCtl.SetAnimator(_m_actorMono.actorAnim);
             _m_animationCtl.Initialize();
+
+            _m_propertyDealer = new TBSPropertyDealer();
+            _m_propertyDealer.Initialize();
+            _m_propertyDealer.SetActorInfo(_m_actorInfo);
+
+            _m_buffHander = new TBSBuffHandler();
+            _m_buffHander.Initialize();
+
             _m_attackEnemyActorList = new List<TBSActorBase>();
 
             //这些是基础动画 至于每个角色的技能动画名配在对应的技能RefObj里面
@@ -68,15 +80,20 @@ namespace GameCore.TBS
 
 
             SCMsgCenter.RegisterMsgAct(SCMsgConst.TBS_ACTOR_CHG, onTBSActorChg);
+            SCMsgCenter.RegisterMsgAct(SCMsgConst.TBS_TURN_CHG, onTurnChg);
         }
         public override void OnDiscard()
         {
             SCMsgCenter.UnregisterMsgAct(SCMsgConst.TBS_ACTOR_CHG, onTBSActorChg);
+            SCMsgCenter.UnregisterMsgAct(SCMsgConst.TBS_TURN_CHG, onTurnChg);
 
 
             _m_tweenContainer?.KillAllDoTween();
             _m_tweenContainer = null;
             _m_animationCtl?.Discard();
+            _m_buffHander?.Discard();
+            _m_propertyDealer?.Discard();
+
         }
 
         public override void OnResume()
@@ -173,6 +190,9 @@ namespace GameCore.TBS
                 Attack_Single(_targetList[0]);
             else if (_targetType == ETargetType.ALL)
                 Attack_All(_targetList);
+
+            _m_buffHander?.TriggerAttackBuff();
+            
         }
 
         public abstract void Attack_Single(TBSActorBase _target);
@@ -266,6 +286,9 @@ namespace GameCore.TBS
 
             if (_m_getHitAnimClip != null)
                 _m_animationCtl.PlaySingleAniamtion(_m_getHitAnimClip);
+
+            _m_buffHander?.TriggerGetHitBuff();
+
         }
 
         public virtual void Die()
@@ -284,13 +307,15 @@ namespace GameCore.TBS
             }
 
             SCMsgCenter.SendMsg(SCMsgConst.TBS_ACTOR_DIE, actorInfo.runningId);
+
+            _m_buffHander?.TriggerActorDieBuff();
+
         }
 
         public virtual void TakeDamage(int _damage, bool _needShowFloatText = true , string _extraStr ="")
         {
             if (_damage <= 0)
             {
-                Debug.LogError("伤害量小于等于0，请检查！！！");
                 return;
             }
             _m_actorInfo.curHp = Mathf.Max(_m_actorInfo.curHp - _damage, 0);
@@ -309,7 +334,6 @@ namespace GameCore.TBS
         {
             if (_magicAmount <= 0)
             {
-                SCDebugHelper.LogError("魔法消耗量小于等于0，请检查！！！");
                 return;
             }
             _m_actorInfo.curMp = Mathf.Max(_m_actorInfo.curMp - _magicAmount, 0);
@@ -397,9 +421,9 @@ namespace GameCore.TBS
             //attackInfo.srcUseMpList = new List<int>();
             //attackInfo.srcUseMpList.Add(_m_actorSkillRefObj.skillNeedMp);
 
-            attackInfo.baseDamage = actorInfo.attack;
+            attackInfo.baseDamage = _m_propertyDealer.GetResultAttack();
             attackInfo.damageType = actorInfo.attackDamageType;
-            attackInfo.physicsLevelType = actorInfo.attackPhysicalLevel;
+            attackInfo.physicsLevelType = _m_propertyDealer.GetResultPhysicsLevel();
             attackInfo.magicAttributeType = actorInfo.attackMagicAttribute;
             attackInfo.damageCauseType = EDamageCauseType.ATTACK;
             //处理器处理攻击信息
@@ -422,7 +446,7 @@ namespace GameCore.TBS
             skillInfo.srcUseMpList.Add(_m_actorSkillRefObj.skillNeedMp);
 
             skillInfo.skillEffectType = _m_actorSkillRefObj.skillEffectType;
-            skillInfo.baseDamage = actorInfo.attack;
+            skillInfo.baseDamage = _m_propertyDealer.GetResultAttack();
             skillInfo.damageAmountType = _m_actorSkillRefObj.damageAmountType;
             skillInfo.damageType = _m_actorSkillRefObj.damageType;
             skillInfo.physicsLevelType = _m_actorSkillRefObj.physicsLevelType;
@@ -432,11 +456,29 @@ namespace GameCore.TBS
             TBSAttackHandler.DealSkill(skillInfo);
         }
 
-        public virtual void DealItem()
+        public virtual void GetBuff(TBSGameBuffInfo _buffInfo)
         {
+            if (_buffInfo == null)
+                return;
+            if (_m_buffHander == null)
+                return;
+            _m_buffHander.AddBuff(_buffInfo);
 
-            SCMsgCenter.SendMsg(SCMsgConst.TBS_ACTOR_ACTION_END, actorInfo.runningId);
         }
+
+        public virtual void RemoveBuff(TBSGameBuffInfo _buffInfo)
+        {
+            if (_buffInfo == null)
+                return;
+            if (_m_buffHander == null)
+                return;
+            _m_buffHander.RemoveBuff(_buffInfo);
+        }
+        //public virtual void DealItem()
+        //{
+
+        //    SCMsgCenter.SendMsg(SCMsgConst.TBS_ACTOR_ACTION_END, actorInfo.runningId);
+        //}
 
         protected bool checkSkillCanRelease(long _skillId)
         {
@@ -473,6 +515,17 @@ namespace GameCore.TBS
                 actorInfo.isDefending = false;
                 if (_m_idleAnimClip != null)
                     _m_animationCtl.PlaySingleAniamtion(_m_idleAnimClip);
+
+                _m_buffHander?.TriggerActorActionBuff();
+
+            }
+        }
+
+        private void onTurnChg()
+        {
+            if (SCModel.instance.tbsModel.curTurnType == ETBSTurnType.PLAYER)
+            {
+                _m_buffHander?.BuffTickAndRemove();
             }
         }
 
