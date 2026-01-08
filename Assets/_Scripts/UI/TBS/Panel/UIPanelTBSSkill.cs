@@ -155,6 +155,8 @@ namespace GameCore.UI
             TBSActorInfo actorInfo = SCModel.instance.tbsModel.GetCurActorInfo();
             if (actorInfo == null)
                 return;
+            if (actorInfo.skillList == null || actorInfo.skillList.Count == 0)
+                return;
             _m_curActorSkillCount = actorInfo.skillList.Count;
 
             if (_m_curActorSkillCount <= SCModel.instance.tbsModel.curSelectSkillIdx)

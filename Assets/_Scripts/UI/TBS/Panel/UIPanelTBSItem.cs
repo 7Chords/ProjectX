@@ -153,6 +153,8 @@ namespace GameCore.UI
 
         private void setSelectItemIdx()
         {
+            if (_m_itemDataList == null || _m_itemDataList.Count == 0)
+                return;
             int itemTypeCount = _m_itemDataList.Count;
 
             if (itemTypeCount <= SCModel.instance.tbsModel.curSelectItemIdx)
