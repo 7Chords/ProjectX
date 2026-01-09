@@ -12,6 +12,8 @@ namespace GameCore.UI
         private TBSActorInfo _m_actorInfo;
 
         private TweenContainer _m_tweenContainer;
+
+        
         public UIPanelTBSInfoContainerItem(UIMonoTBSInfoContainerItem _mono, SCUIShowType _showType) : base(_mono, _showType)
         {
         }
