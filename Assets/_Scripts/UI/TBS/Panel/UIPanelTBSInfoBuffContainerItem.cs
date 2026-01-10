@@ -1,4 +1,5 @@
 using GameCore.TBS;
+using SCFrame;
 using SCFrame.UI;
 using System.Collections;
 using System.Collections.Generic;
@@ -45,7 +46,7 @@ namespace GameCore.UI
         {
             if (_m_buffInfo == null)
                 return;
-            mono.imgIcon.sprite = Resources.Load<Sprite>(_m_buffInfo.buffRefObj.buffIconObjName);
+            mono.imgIcon.sprite = ResourcesHelper.LoadAsset<Sprite>(_m_buffInfo.buffRefObj.buffIconObjName);
         }
     }
 

@@ -101,6 +101,10 @@ MonoBehaviour:
     m_Address: prefab_tbs_skill_name_tip
     m_ReadOnly: 0
     m_SerializedLabels: []
+  - m_GUID: 96794f196377a994295747bf47733f11
+    m_Address: prefab_tbs_info_buff_item
+    m_ReadOnly: 0
+    m_SerializedLabels: []
   m_ReadOnly: 0
   m_Settings: {fileID: 11400000, guid: d14fb1bbe98862146a7f5467a5bc79f8, type: 2}
   m_SchemaSet:

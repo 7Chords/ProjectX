@@ -52,7 +52,7 @@ namespace GameCore.UI
         {
         }
 
-        public void SetListInfo(List<TBSGameBuffInfo> _infoList, int _selectIndex)
+        public void SetListInfo(List<TBSGameBuffInfo> _infoList)
         {
             if (_infoList == null)
                 return;
@@ -91,7 +91,7 @@ namespace GameCore.UI
 
         }
 
-        public void RefreshContainerShow(List<TBSGameBuffInfo> _buffInfoList, int _selectIndex)
+        public void RefreshContainerShow(List<TBSGameBuffInfo> _buffInfoList)
         {
             int i = 0;
             UIPanelTBSInfoBuffContainerItem item = null;

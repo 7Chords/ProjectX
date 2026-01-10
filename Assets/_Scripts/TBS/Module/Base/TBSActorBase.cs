@@ -170,6 +170,10 @@ namespace GameCore.TBS
             return _m_actorMono.actorCameraInfoList.Find(x => x.posType == posInfo.posType).cameraTran;
         }
 
+        public List<TBSGameBuffInfo> GetBuffInfoList()
+        {
+            return _m_buffHander?.buffList;
+        }
 
         public virtual void LookTarget(Vector3 _target,Action _onStart,Action _onFinish)
         {
@@ -470,6 +474,7 @@ namespace GameCore.TBS
             if (_m_buffHander == null)
                 return;
             _m_buffHander.AddBuff(_buffInfo);
+            SCMsgCenter.SendMsg(SCMsgConst.TBS_ACTOR_GET_BUFF, _buffInfo);
 
         }
 
@@ -480,6 +485,8 @@ namespace GameCore.TBS
             if (_m_buffHander == null)
                 return;
             _m_buffHander.RemoveBuff(_buffInfo);
+            SCMsgCenter.SendMsg(SCMsgConst.TBS_ACTOR_REMOVE_BUFF, _buffInfo);
+
         }
         //public virtual void DealItem()
         //{

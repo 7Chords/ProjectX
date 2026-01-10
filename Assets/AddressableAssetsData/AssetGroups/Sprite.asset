@@ -109,6 +109,70 @@ MonoBehaviour:
     m_Address: spr_skill_1005
     m_ReadOnly: 0
     m_SerializedLabels: []
+  - m_GUID: 2d5d779ef92b194428403bcb11e76201
+    m_Address: spr_buff_armor_level_down_one
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  - m_GUID: 841b67528356fde44b4ce4e142612d68
+    m_Address: spr_buff_armor_level_down_three
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  - m_GUID: d4e62ed7a739b864399b1e81f1f6f344
+    m_Address: spr_buff_armor_level_down_two
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  - m_GUID: 22f4550d6e315214b9fc29b394e5f740
+    m_Address: spr_buff_armor_level_up_one
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  - m_GUID: c33170c29e613f642a277fe27c3927e6
+    m_Address: spr_buff_armor_level_up_three
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  - m_GUID: 929314781d500c345a6c213336b0f8ea
+    m_Address: spr_buff_armor_level_up_two
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  - m_GUID: 30dfaf2dd250a504b9a6cf9547cd8d00
+    m_Address: spr_buff_attack_down
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  - m_GUID: 4cb60bc298f9b104d839fabe8913fd4e
+    m_Address: spr_buff_attack_up
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  - m_GUID: 1a3d0c695e234b743865388168936319
+    m_Address: spr_buff_defend_down
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  - m_GUID: 742f8419cbd67f340a0e090470662a0e
+    m_Address: spr_buff_defend_up
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  - m_GUID: 10db6568539be9047818d51bdf9ec0f0
+    m_Address: spr_buff_physics_level_down_one
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  - m_GUID: 61dd39a228d403844a945dc5f4b6e782
+    m_Address: spr_buff_physics_level_down_three
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  - m_GUID: 83da78d0b13b0994cb30a04d90ccc164
+    m_Address: spr_buff_physics_level_down_two
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  - m_GUID: 08a66c56c724b3347826945137f00841
+    m_Address: spr_buff_physics_level_up_one
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  - m_GUID: 9aa8123242fad5b4c8372353153cdf5d
+    m_Address: spr_buff_physics_level_up_three
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  - m_GUID: 485e4ad9ba28af549ac5f5627ab803fa
+    m_Address: spr_buff_physics_level_up_two
+    m_ReadOnly: 0
+    m_SerializedLabels: []
   m_ReadOnly: 0
   m_Settings: {fileID: 11400000, guid: d14fb1bbe98862146a7f5467a5bc79f8, type: 2}
   m_SchemaSet:

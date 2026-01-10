@@ -69,7 +69,8 @@ public class SCMsgConst
     public const int TBS_ACTOR_ITEM_CONFIRM = 2037;//回合制战斗 - 道具确认
     public const int TBS_ACTOR_ITEM = 2038;
     public const int TBS_SELECT_SINGLE_PLAYER_TARGET_CHG = 2039;//回合制战斗 - 选择单个玩家角色目标 改变
-
+    public const int TBS_ACTOR_GET_BUFF = 2040;//回合制战斗 - 角色获得buff
+    public const int TBS_ACTOR_REMOVE_BUFF = 2041;//回合制战斗 - 角色移除buff
     #endregion
 
 
