@@ -65,3 +65,5 @@
 10064	#1_item_name_1003	复活卷轴	rebirth sroll
 10065	#1_tbs_item_rebirth_sroll	复活一名已死亡的己方单位，令其生命值回复50%	Revive a fallen ally and restore 50% of their health.
 10066	#2_tbs_skill_desc_1005	令一名己方单位的物理穿透和护甲级别提升一级，持续三回合	Increase the physical penetration and armor level of an allied unit by one tier for three turns.
+10067	#1_detail	详情	Detail
+10068	#1_select_item	选择道具	select item
