@@ -93,7 +93,7 @@ namespace GameCore.TBS
             SCMsgCenter.UnregisterMsgAct(SCMsgConst.TBS_ACTOR_CHG, onTBSActorChg);
             SCMsgCenter.UnregisterMsgAct(SCMsgConst.TBS_TURN_CHG, onTurnChg);
 
-            _m_actorMono.animEventTrigger.RemoveAllListener();
+            _m_actorMono.animEventTrigger?.RemoveAllListener();
 
             _m_tweenContainer?.KillAllDoTween();
             _m_tweenContainer = null;
@@ -432,9 +432,9 @@ namespace GameCore.TBS
             //attackInfo.srcUseMpList = new List<int>();
             //attackInfo.srcUseMpList.Add(_m_actorSkillRefObj.skillNeedMp);
 
-            attackInfo.baseDamage = _m_propertyDealer.GetResultAttack();
+            attackInfo.baseDamage = actorInfo.attack;
             attackInfo.damageType = actorInfo.attackDamageType;
-            attackInfo.physicsLevelType = _m_propertyDealer.GetResultPhysicsLevel();
+            attackInfo.physicsLevelType = actorInfo.attackPhysicalLevel;
             attackInfo.magicAttributeType = actorInfo.attackMagicAttribute;
             attackInfo.damageCauseType = EDamageCauseType.ATTACK;
             //处理器处理攻击信息
@@ -457,7 +457,7 @@ namespace GameCore.TBS
             skillInfo.srcUseMpList.Add(_m_actorSkillRefObj.skillNeedMp);
 
             skillInfo.skillEffectType = _m_actorSkillRefObj.skillEffectType;
-            skillInfo.baseDamage = _m_propertyDealer.GetResultAttack();
+            skillInfo.baseDamage = actorInfo.attack;
             skillInfo.damageAmountType = _m_actorSkillRefObj.damageAmountType;
             skillInfo.damageType = _m_actorSkillRefObj.damageType;
             skillInfo.physicsLevelType = _m_actorSkillRefObj.physicsLevelType;
@@ -474,6 +474,7 @@ namespace GameCore.TBS
             if (_m_buffHander == null)
                 return;
             _m_buffHander.AddBuff(_buffInfo);
+            GameCommon.ShowTip(_buffInfo.buffRefObj.buffName, GetCursorPos());
             SCMsgCenter.SendMsg(SCMsgConst.TBS_ACTOR_GET_BUFF, _buffInfo);
 
         }

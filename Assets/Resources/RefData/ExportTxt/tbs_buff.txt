@@ -1,8 +1,8 @@
 ﻿id	buffType	affectAttribute	callBackPointType	buffName	isPositive	buffDesc	buffIconObjName	dealSymbolType	buffValue
-1001	ATTRIBUTE_CHG	ATTACK	ADD	攻击力下降	FALSE	描述	spr_buff_attack_down	MULTIPLY	1.2
-1002	ATTRIBUTE_CHG	ATTACK	ADD	攻击力上升	TRUE	描述	spr_buff_attack_up	MULTIPLY	.8
-1003	ATTRIBUTE_CHG	DEFEND	ADD	防御力下降	FALSE	描述	spr_buff_defend_down	MULTIPLY	1.2
-1004	ATTRIBUTE_CHG	DEFEND	ADD	防御力上升	TRUE	描述	spr_buff_defend_up	MULTIPLY	.8
+1001	ATTRIBUTE_CHG	ATTACK	ADD	攻击力下降	FALSE	描述	spr_buff_attack_down	MULTIPLY	.8
+1002	ATTRIBUTE_CHG	ATTACK	ADD	攻击力上升	TRUE	描述	spr_buff_attack_up	MULTIPLY	1.2
+1003	ATTRIBUTE_CHG	DEFEND	ADD	防御力下降	FALSE	描述	spr_buff_defend_down	MULTIPLY	.8
+1004	ATTRIBUTE_CHG	DEFEND	ADD	防御力上升	TRUE	描述	spr_buff_defend_up	MULTIPLY	1.2
 1005	ATTRIBUTE_CHG	MISS	ADD	闪避率下降	FALSE	描述	11	MULTIPLY	-.2
 1006	ATTRIBUTE_CHG	MISS	ADD	闪避率上升	TRUE	描述	11	MULTIPLY	.2
 1007	ATTRIBUTE_CHG	CRITICAL_CHANCE	ADD	暴击率下降	FALSE	描述	11	ADD	-.2

@@ -1,10 +1,9 @@
 using SCFrame;
-using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
 
-namespace GameCore.TBS 
+namespace GameCore.TBS
 {
     public enum EPropertyDealSymbolType
     {
@@ -96,7 +95,6 @@ namespace GameCore.TBS
         public void AddDealItem(EBasicAttribute _attribute, EPropertyDealSymbolType _dealSymbol, float _value)
         {
             PropertyDealItem item = new PropertyDealItem(_attribute, _dealSymbol,_value);
-
             switch (_attribute)
             {
                 case EBasicAttribute.ATTACK:
@@ -137,6 +135,7 @@ namespace GameCore.TBS
                 default:
                     break;
             }
+            refreshActorInfo();
         }
 
         /// <summary>
@@ -195,13 +194,31 @@ namespace GameCore.TBS
                 default:
                     break;
             }
+            refreshActorInfo();
+        }
+
+
+        /// <summary>
+        /// 刷新actorinfo数据
+        /// </summary>
+        private void refreshActorInfo()
+        {
+            if (_actorInfo == null)
+                return;
+            _actorInfo.attack = getResultAttack();
+            _actorInfo.defend = getResultDefend();
+            _actorInfo.missChance = getResultMiss();
+            _actorInfo.criticalChance = getResultCriticalChance();
+            _actorInfo.armorLevel = getResultArmorLevel();
+            _actorInfo.attackPhysicalLevel = getResultPhysicsLevel();
+            _actorInfo.magicResistanceLevel = getResultMagicResistenceLevel();
         }
 
         /// <summary>
         /// 获取处理后的攻击力
         /// </summary>
         /// <returns></returns>
-        public int GetResultAttack()
+        private int getResultAttack()
         {
             if (_actorInfo == null)
                 return 0;
@@ -224,7 +241,7 @@ namespace GameCore.TBS
             return resAttack;
         }
 
-        public int GetResultDefend()
+        private int getResultDefend()
         {
             if (_actorInfo == null)
                 return 0;
@@ -247,7 +264,7 @@ namespace GameCore.TBS
             return resDefend;
         }
 
-        public float GetResultMiss()
+        private float getResultMiss()
         {
             if (_actorInfo == null)
                 return 0;
@@ -269,7 +286,7 @@ namespace GameCore.TBS
             }
             return resMiss;
         }
-        public float GetResultCriticalChance()
+        private float getResultCriticalChance()
         {
             if (_actorInfo == null)
                 return 0;
@@ -292,9 +309,7 @@ namespace GameCore.TBS
             return resCriticalChance;
         }
 
-
-
-        public EArmorLevelType GetResultArmorLevel()
+        private EArmorLevelType getResultArmorLevel()
         {
             if (_actorInfo == null)
                 return EArmorLevelType.NONE;
@@ -316,8 +331,7 @@ namespace GameCore.TBS
 
         }
 
-
-        public EMagicResistanceLevelType GetResultMagicResistenceLevel()
+        private EMagicResistanceLevelType getResultMagicResistenceLevel()
         {
             if (_actorInfo == null)
                 return EMagicResistanceLevelType.NONE;
@@ -338,7 +352,7 @@ namespace GameCore.TBS
             return (EMagicResistanceLevelType)resMagicResistence;
         }
 
-        public EPhysicalLevelType GetResultPhysicsLevel()
+        private EPhysicalLevelType getResultPhysicsLevel()
         {
             if (_actorInfo == null)
                 return EPhysicalLevelType.NONE;

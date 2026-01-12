@@ -96,7 +96,10 @@ namespace GameCore.UI
                     continue;
 
                 if (_m_curSelectActorIdxList.Contains(i))
+                {
                     tmpItem.ShowPanel();
+                    tmpItem.SetInfo(_m_playerActorList[i].actorInfo);
+                }
                 else
                     tmpItem.HidePanel();
             }
