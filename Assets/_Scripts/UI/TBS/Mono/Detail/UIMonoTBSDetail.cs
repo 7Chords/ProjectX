@@ -20,8 +20,11 @@ namespace GameCore.UI
         public Text txtHp;
         [Header("魔量文本")]
         public Text txtMp;
-        [Header("角色属性组Mono")]
+        [Header("角色属性组mono")]
         public UIMonoTBSDetailProps monoDetailPorps;
-
+        [Header("角色头像容器mono")]
+        public UIMonoCommonContainer monoHeaderContainer;
+        [Header("角色buff容器mono")]
+        public UIMonoCommonContainer monoBuffContainer;
     }
 }
