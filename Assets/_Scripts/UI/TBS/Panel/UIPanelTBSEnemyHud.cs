@@ -114,24 +114,6 @@ namespace GameCore.UI
             spawnItems();
         }
 
-        //private void onTBSActorTargetHighlightLeft()
-        //{
-        //    _m_curSelectActorIdx--;
-        //    if (_m_curSelectActorIdx < 0)
-        //        _m_curSelectActorIdx = _m_enemyHudItemList.Count - 1;
-        //    refreshItemListShow();
-        //}
-
-        //private void onTBSActorTargetHighlightRight()
-        //{
-        //    Debug.Log("right!!!");
-        //    _m_curSelectActorIdx++;
-        //    if (_m_curSelectActorIdx > _m_enemyHudItemList.Count - 1)
-        //        _m_curSelectActorIdx = 0;
-        //    refreshItemListShow();
-
-        //}
-
         private void onTBSSelectSingleEnemyTargetChg()
         {
             if (SCModel.instance.tbsModel.selectTargetType == ETargetType.ALL)
