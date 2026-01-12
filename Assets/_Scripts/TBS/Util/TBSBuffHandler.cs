@@ -37,13 +37,15 @@ namespace GameCore.TBS
             {
                 buffInfo.onTurnTick?.Invoke();
 
+                buffInfo.remainTurnCount--;
+
                 if (buffInfo.remainTurnCount == 0)
                 {
                     deleteBuffList.Add(buffInfo);
                 }
                 else
                 {
-                    buffInfo.remainTurnCount--;
+                    SCDebugHelper.LogWarning(buffInfo.buffRefObj.buffName + ":" + buffInfo.remainTurnCount);
                 }
             }
 
@@ -87,6 +89,9 @@ namespace GameCore.TBS
             buffList.Remove(_buffInfo);
 
             _buffInfo.onBuffRemove?.Invoke();
+
+            SCMsgCenter.SendMsg(SCMsgConst.TBS_ACTOR_REMOVE_BUFF, _buffInfo);
+
         }
 
         /// <summary>

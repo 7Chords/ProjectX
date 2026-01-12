@@ -124,13 +124,6 @@ namespace GameCore.TBS
                         GameCameraMgr.instance.SetCameraTarget(SCModel.instance.tbsModel.gameMono.enemyLookPlayerCenterPos);
 
 
-                        GameCommon.ShowTip("物理穿透提升", _targetList[0].GetCursorPos());
-                        SCTimeCaller.instance.CallDealy(0.5f, () =>
-                        {
-                            GameCommon.ShowTip("护甲提升", _targetList[0].GetCursorPos());
-                        });
-
-
                         _m_actorMono.signalEventTrigger.AddSignalEvent(GameConst.SPAWN_PARTICLE_EFFECT_EVENT, () =>
                         {
                             GameObject go = ParticleMgr.instance.PlayEffect("circle_yellow"

@@ -30,6 +30,12 @@ namespace GameCore.TBS
                     }
                     break;
                 case EBattleItemEffectType.BUFF:
+                    {
+                        for (int i = 0; i < itemEffectRefObj.buffEffectList.Count; i++)
+                        {
+                            dealBuffEffect(itemEffectRefObj.buffEffectList[i], _targetList);
+                        }
+                    }
                     break;
                 case EBattleItemEffectType.SPECIAL:
                     {
@@ -83,6 +89,14 @@ namespace GameCore.TBS
                     break;
                 case EBasicAttribute.MAGIC_ATTRIBUTE:
                     break;
+            }
+        }
+
+        private static void dealBuffEffect(BuffEffectObj _buffEffectObj, List<TBSActorBase> _targetList)
+        {
+            for(int i =0;i<_targetList.Count;i++)
+            {
+                _targetList[i].GetBuff(TBSBuffFactory.CreateBuffInfo(_buffEffectObj.buffRefObjId, _buffEffectObj.continueTurn, _targetList[i]));
             }
         }
 
