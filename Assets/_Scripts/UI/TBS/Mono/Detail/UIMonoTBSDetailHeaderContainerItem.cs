@@ -1,10 +1,11 @@
+using SCFrame.UI;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
 namespace GameCore.UI
 {
-    public class UIMonoTBSDetailHeaderContainerItem : MonoBehaviour
+    public class UIMonoTBSDetailHeaderContainerItem : _ASCUIMonoBase
     {
 
     }
