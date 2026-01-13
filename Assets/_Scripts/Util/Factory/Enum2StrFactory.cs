@@ -89,6 +89,9 @@ namespace GameCore.Util
             string translateKey = "#1_";
             switch (_magicAttributeType)
             {
+                case EMagicAttributeType.NONE:
+                    translateKey += "none";
+                    return LanguageHelper.instance.GetTextTranslate(translateKey);
                 case EMagicAttributeType.FIRE:
                     translateKey += "fire";
                     return LanguageHelper.instance.GetTextTranslate(translateKey);
@@ -161,6 +164,78 @@ namespace GameCore.Util
                     return LanguageHelper.instance.GetTextTranslate(translateKey);
                 case EBasicAttribute.MAGIC_ATTRIBUTE:
                     translateKey += "magic_attribute";
+                    return LanguageHelper.instance.GetTextTranslate(translateKey);
+                default:
+                    return "invalid enum";
+            }
+        }
+
+        public static string CreateLocalStrByMagicResistenceLevelEnum(EMagicResistanceLevelType _magicResistenceLevel)
+        {
+            string translateKey = "#1_";
+            switch (_magicResistenceLevel)
+            {
+                case EMagicResistanceLevelType.LIGHT:
+                    translateKey += "light";
+                    return LanguageHelper.instance.GetTextTranslate(translateKey);
+                case EMagicResistanceLevelType.MEDIUM:
+                    translateKey += "medium";
+                    return LanguageHelper.instance.GetTextTranslate(translateKey);
+                case EMagicResistanceLevelType.HEAVY:
+                    translateKey += "heavy";
+                    return LanguageHelper.instance.GetTextTranslate(translateKey);
+                case EMagicResistanceLevelType.HERO:
+                    translateKey += "hero";
+                    return LanguageHelper.instance.GetTextTranslate(translateKey);
+                default:
+                    return "invalid enum";
+            }
+        }
+
+        public static string CreateLocalStrByArmorLevelEnum(EArmorLevelType _armorLevel)
+        {
+            string translateKey = "#1_";
+            switch (_armorLevel)
+            {
+                case EArmorLevelType.LIGHT:
+                    translateKey += "light";
+                    return LanguageHelper.instance.GetTextTranslate(translateKey);
+                case EArmorLevelType.MEDIUM:
+                    translateKey += "medium";
+                    return LanguageHelper.instance.GetTextTranslate(translateKey);
+                case EArmorLevelType.HEAVY:
+                    translateKey += "heavy";
+                    return LanguageHelper.instance.GetTextTranslate(translateKey);
+                case EArmorLevelType.HERO:
+                    translateKey += "hero";
+                    return LanguageHelper.instance.GetTextTranslate(translateKey);
+                default:
+                    return "invalid enum";
+            }
+        }
+
+        public static string CreateLocalStrByMagicRestraintEnum(ETBSMagicRestraintType _magicRestraintType)
+        {
+            string translateKey = "#1_";
+            switch (_magicRestraintType)
+            {
+                case ETBSMagicRestraintType.NORMAL:
+                    translateKey += "normal";
+                    return LanguageHelper.instance.GetTextTranslate(translateKey);
+                case ETBSMagicRestraintType.WEAK:
+                    translateKey += "weak";
+                    return LanguageHelper.instance.GetTextTranslate(translateKey);
+                case ETBSMagicRestraintType.RESIST:
+                    translateKey += "resist";
+                    return LanguageHelper.instance.GetTextTranslate(translateKey);
+                case ETBSMagicRestraintType.SUCK:
+                    translateKey += "suck";
+                    return LanguageHelper.instance.GetTextTranslate(translateKey);
+                case ETBSMagicRestraintType.INVALID:
+                    translateKey += "invalid";
+                    return LanguageHelper.instance.GetTextTranslate(translateKey);
+                case ETBSMagicRestraintType.BOUNCE:
+                    translateKey += "suck";
                     return LanguageHelper.instance.GetTextTranslate(translateKey);
                 default:
                     return "invalid enum";

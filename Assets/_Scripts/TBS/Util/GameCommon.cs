@@ -97,6 +97,40 @@ namespace GameCore
             }
         }
 
+        public static ETBSMagicRestraintType GetMagicRestraintType(EMagicAttributeType _attributeType, TBSActorInfo _actorInfo)
+        {
+            if (_attributeType == EMagicAttributeType.NONE)
+                return ETBSMagicRestraintType.NONE;
+            if (_actorInfo.normalAttributeList.Contains(_attributeType))
+            {
+                return ETBSMagicRestraintType.NORMAL;
+            }
+            else if (_actorInfo.weakAttributeList.Contains(_attributeType))
+            {
+                return ETBSMagicRestraintType.WEAK;
+            }
+            else if (_actorInfo.resistentAttributeList.Contains(_attributeType))
+            {
+                return ETBSMagicRestraintType.RESIST;
+            }
+            else if (_actorInfo.invilidAttributeList.Contains(_attributeType))
+            {
+                return ETBSMagicRestraintType.INVALID;
+            }
+            else if (_actorInfo.suckAttributeList.Contains(_attributeType))
+            {
+                return ETBSMagicRestraintType.SUCK;
+            }
+            else if (_actorInfo.bounceAttributeList.Contains(_attributeType))
+            {
+                return ETBSMagicRestraintType.BOUNCE;
+            }
+            else
+            {
+                return ETBSMagicRestraintType.NONE;
+            }
+        }
+
         /// <summary>
         /// Õ¹Ê¾ÉËº¦Æ®×Ö
         /// </summary>

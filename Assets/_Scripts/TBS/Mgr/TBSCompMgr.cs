@@ -60,6 +60,10 @@ namespace GameCore.TBS
             TBSGeneralFuncComp generalFuncComp = new TBSGeneralFuncComp();
             generalFuncComp.Initialize();
             _m_tbsCompDict.Add(ETBSCompType.GENERAL_FUNC, generalFuncComp);
+
+            TBSDetailComp detailComp = new TBSDetailComp();
+            detailComp.Initialize();
+            _m_tbsCompDict.Add(ETBSCompType.DETAIL, detailComp);
         }
 
         private void discardAllComp()

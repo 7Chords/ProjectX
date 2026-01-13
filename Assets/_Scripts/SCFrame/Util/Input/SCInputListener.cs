@@ -64,8 +64,11 @@ namespace SCFrame
                     SCMsgCenter.SendMsg(SCMsgConst.TBS_SWITCH_TO_RIGHT_INPUT);
                 if (Input.GetKeyDown(SCSettingMgr.instance.saveKeyInfo.tbsConfirmKeyCode))
                     SCMsgCenter.SendMsg(SCMsgConst.TBS_CONFIRM_INPUT);
+                if(Input.GetKeyDown(SCSettingMgr.instance.saveKeyInfo.tbsDetailKeyCode))
+                    SCMsgCenter.SendMsg(SCMsgConst.TBS_DETAIL_INPUT);
 
-                if(Input.GetMouseButtonDown(0))
+
+                if (Input.GetMouseButtonDown(0))
                 {
                     _m_mouseRay = SCGame.instance.gameCamera.ScreenPointToRay(Input.mousePosition);
 

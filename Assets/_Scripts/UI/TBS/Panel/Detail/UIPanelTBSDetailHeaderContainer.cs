@@ -1,3 +1,4 @@
+using SCFrame;
 using SCFrame.UI;
 using System.Collections;
 using System.Collections.Generic;
@@ -29,12 +30,12 @@ namespace GameCore.UI
 
         protected override GameObject creatItemGO()
         {
-            throw new System.NotImplementedException();
+            return ResourcesHelper.LoadGameObject(mono.prefabItemObjName);
         }
 
         protected override UIPanelTBSDetailHeaderContainerItem creatItemPanel(UIMonoTBSDetailHeaderContainerItem _mono)
         {
-            throw new System.NotImplementedException();
+            return new UIPanelTBSDetailHeaderContainerItem(_mono, SCUIShowType.FULL);
         }
     }
 }

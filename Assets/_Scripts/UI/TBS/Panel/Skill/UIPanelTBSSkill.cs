@@ -42,22 +42,6 @@ namespace GameCore.UI
 
             if (_m_skillContainer != null)
                 _m_skillContainer.HidePanel();
-
-
-            GameCoreMgr.instance.uiCoreMgr.ShowNodeButNotMove2Top(nameof(UINodeTBSEnemyHud));
-
-            //重新设置光标
-            List<Vector3> worldPosList = new List<Vector3>();
-            if (SCModel.instance.tbsModel.selectTargetType == ETargetType.SINGLE)
-                worldPosList.Add(SCModel.instance.tbsModel.GetCurSelectSingleEnemyTargetActor().GetCursorPos());
-            else if (SCModel.instance.tbsModel.selectTargetType == ETargetType.ALL)
-            {
-                foreach (var module in SCModel.instance.tbsModel.enemyActorModuleList)
-                {
-                    worldPosList.Add(module.GetCursorPos());
-                }
-            }
-            TBSCursorMgr.instance.SetSelectionCursor(worldPosList);
         }
 
 
@@ -81,12 +65,6 @@ namespace GameCore.UI
             setSelectSkillIdx();
 
             refreshPanel();
-
-            //隐藏敌人hud
-            GameCoreMgr.instance.uiCoreMgr.HideNode(nameof(UINodeTBSEnemyHud));
-
-            //隐藏光标
-            TBSCursorMgr.instance.HideSelectionCursor();
         }
 
 

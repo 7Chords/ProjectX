@@ -1,7 +1,5 @@
+using SCFrame;
 using SCFrame.UI;
-using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
 
 namespace GameCore.UI
 {
@@ -41,6 +39,14 @@ namespace GameCore.UI
 
         public override void OnShowPanel()
         {
+            _m_panelDetailProps?.ShowPanel();
+            //todo
+            _m_panelDetailProps.SetInfo(SCModel.instance.tbsModel.GetCurActorInfo());
+
+
+            _m_detailHeaderContainer?.ShowPanel();
+            
+            _m_detailBuffContainer?.ShowPanel();
         }
     }
 }

@@ -31,6 +31,7 @@ namespace GameCore.TBS
         ANALYSE,//分析
         SWITCH_BOW,//切换弓的形态
         GENERAL_FUNC,//通用功能 esc跳转 空格确认等
+        DETAIL,//详情
     }
 
     public enum EDamageType
@@ -158,6 +159,15 @@ namespace GameCore.TBS
         SUCK,
         BOUNCE,
     }
-
+    public enum ETBSMagicRestraintType
+    {
+        NONE,
+        NORMAL,
+        WEAK,
+        RESIST,
+        SUCK,
+        INVALID,
+        BOUNCE,
+    }
 
 }

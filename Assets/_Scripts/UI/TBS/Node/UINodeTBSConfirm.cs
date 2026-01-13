@@ -139,7 +139,7 @@ namespace GameCore.UI
                             });
                         }
                         else
-                        {
+                         {
                             _m_tbsConfirmPanel.ShowPanel();
                         }
                     }

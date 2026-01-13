@@ -16,6 +16,8 @@ namespace GameCore.UI
         public Text txtCritical;
         [Header("普攻物理等级文本")]
         public Text txtPhysicsLevel;
+        [Header("普攻伤害类型文本")]
+        public Text txtAttackType;
         [Header("普攻属性文本")]
         public Text txtAttackAttribute;
         [Header("护甲等级文本")]

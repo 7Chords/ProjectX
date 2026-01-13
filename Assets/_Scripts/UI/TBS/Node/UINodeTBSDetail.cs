@@ -31,7 +31,7 @@ namespace GameCore.UI
 
         public override string GetResName()
         {
-            return GameConst.TBS_DETAIL_PANEL;
+            return GameCommon.GetUIResObjPath(GameConst.TBS_DETAIL_PANEL);
         }
 
         public override void OnEnterNode()
