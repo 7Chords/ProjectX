@@ -205,7 +205,7 @@ namespace GameCore.TBS
         {
             if (_m_singleSelectionCursor == null)
                 return;
-            _m_tweenContainer?.KillAllDoTween();
+            //_m_tweenContainer?.KillAllDoTween();
             Tween moveTween = _m_singleSelectionCursor.GetRectTransform().
                 DOLocalMove(SCUICommon.WorldPointToUIPoint(SCGame.instance.topLayerRoot.GetRectTransform(), _worldPos), 0.2f);
             Tween scaleChgTween = _m_singleSelectionCursor.GetRectTransform().DOScale(Vector3.zero, 0.1f).OnComplete(() =>

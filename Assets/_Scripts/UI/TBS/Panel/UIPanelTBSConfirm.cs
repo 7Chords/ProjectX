@@ -58,7 +58,7 @@ namespace GameCore.UI
                         SCMsgCenter.SendMsg(SCMsgConst.TBS_ACTOR_SKILL, skillRefObj.id);
                     }
                     break;
-                case SCUIConfirmType.ITEM:
+                case SCUIConfirmType.ITEM: 
                     {
                         ItemRefObj itemRefObj = SCModel.instance.tbsModel.GetCurItemRefObj();
                         if (itemRefObj == null)
