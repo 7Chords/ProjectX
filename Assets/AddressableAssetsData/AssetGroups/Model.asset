@@ -17,10 +17,6 @@ MonoBehaviour:
     m_SerializedData: []
   m_GUID: 94e6981336d42d14698a29d7137b8067
   m_SerializeEntries:
-  - m_GUID: b46411a421e02914c84082820ad6ed62
-    m_Address: RockGiant
-    m_ReadOnly: 0
-    m_SerializedLabels: []
   - m_GUID: 1100fcc3025fe9d42980abec91f0959d
     m_Address: Lorraine
     m_ReadOnly: 0
@@ -43,6 +39,10 @@ MonoBehaviour:
     m_SerializedLabels: []
   - m_GUID: 5c0f07ce20a68ac4a86ca835e87532f8
     m_Address: Karenina
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  - m_GUID: ea42da3d3a57ae44c90357f9edd1e744
+    m_Address: RockGiant
     m_ReadOnly: 0
     m_SerializedLabels: []
   m_ReadOnly: 0

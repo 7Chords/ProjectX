@@ -137,6 +137,26 @@ MonoBehaviour:
     m_Address: karenina_idle_anim_clip
     m_ReadOnly: 0
     m_SerializedLabels: []
+  - m_GUID: d3aad3207f5c7984a878d6d3e713003f
+    m_Address: rockGaint_die_anim_clip
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  - m_GUID: 09b34adea1295fb41a3122da43f2fa3d
+    m_Address: rockGaint_getHit_anim_clip
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  - m_GUID: e724ee346f18e7e43b5b92571f02faa1
+    m_Address: rockGaint_idle_anim_clip
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  - m_GUID: 55033e9d49b386b4eade59453a1d2618
+    m_Address: rockGaint_run_anim_clip
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  - m_GUID: 280edba104811d04a99462046f909840
+    m_Address: rockGiant_attack_anim_clip
+    m_ReadOnly: 0
+    m_SerializedLabels: []
   m_ReadOnly: 0
   m_Settings: {fileID: 11400000, guid: d14fb1bbe98862146a7f5467a5bc79f8, type: 2}
   m_SchemaSet:
