@@ -168,6 +168,9 @@ namespace GameCore.TBS
                 case nameof(UINodeTBSItem):
                     SCMsgCenter.SendMsg(SCMsgConst.TBS_ACTOR_ITEM_HIGHTLIGHT_UP);
                     break;
+                case nameof(UINodeTBSDetail):
+                    SCMsgCenter.SendMsg(SCMsgConst.TBS_DETAIL_SELECT_UP);
+                    break;
                 default:
                     break;
             }
@@ -187,6 +190,9 @@ namespace GameCore.TBS
                     break;
                 case nameof(UINodeTBSItem):
                     SCMsgCenter.SendMsg(SCMsgConst.TBS_ACTOR_ITEM_HIGHTLIGHT_DOWN);
+                    break;
+                case nameof(UINodeTBSDetail):
+                    SCMsgCenter.SendMsg(SCMsgConst.TBS_DETAIL_SELECT_DOWN);
                     break;
                 default:
                     break;

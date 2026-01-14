@@ -207,8 +207,8 @@ SphereCollider:
   m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
-  m_Radius: 1.5
-  m_Center: {x: 0, y: 1, z: 0}
+  m_Radius: 5
+  m_Center: {x: 0, y: 5, z: 0}
 --- !u!114 &7459146190065738193
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -223,7 +223,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   goModel: {fileID: 5581252708169749749}
   damageTextOffset: {x: 0, y: 2.5, z: 0}
-  cursorOffset: {x: 0, y: 0.5, z: 0}
+  cursorOffset: {x: 0, y: 5, z: 0}
   asCameraTargetTran: {fileID: 9158303650973223155}
   actorAnim: {fileID: 8322233200789386012}
   bottomSfxTran: {fileID: 0}

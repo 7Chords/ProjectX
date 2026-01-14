@@ -1,5 +1,8 @@
+using GameCore.TBS;
 using SCFrame;
 using SCFrame.UI;
+using System.Collections.Generic;
+using UnityEngine;
 
 namespace GameCore.UI
 {
@@ -9,6 +12,8 @@ namespace GameCore.UI
         private UIPanelTBSDetailHeaderContainer _m_detailHeaderContainer;
         private UIPanelTBSDetailBuffContainer _m_detailBuffContainer;
 
+        private int _m_curSelectHeaderIdx;
+        public List<TBSActorInfo> _m_actorInfoList;
         public UIPanelTBSDetail(UIMonoTBSDetail _mono, SCUIShowType _showType) : base(_mono, _showType)
         {
         }
@@ -32,6 +37,9 @@ namespace GameCore.UI
 
         public override void OnHidePanel()
         {
+            SCMsgCenter.UnregisterMsgAct(SCMsgConst.TBS_DETAIL_SELECT_DOWN, onTBSDetailSelectDown);
+            SCMsgCenter.UnregisterMsgAct(SCMsgConst.TBS_DETAIL_SELECT_UP, onTBSDetailSelectUp);
+
             _m_panelDetailProps?.HidePanel();
             _m_detailHeaderContainer?.HidePanel();
             _m_detailBuffContainer?.HidePanel();
@@ -39,14 +47,46 @@ namespace GameCore.UI
 
         public override void OnShowPanel()
         {
+            SCMsgCenter.RegisterMsgAct(SCMsgConst.TBS_DETAIL_SELECT_DOWN, onTBSDetailSelectDown);
+            SCMsgCenter.RegisterMsgAct(SCMsgConst.TBS_DETAIL_SELECT_UP, onTBSDetailSelectUp);
+
+            _m_actorInfoList = SCModel.instance.tbsModel.GetAllActorInfo();
+
             _m_panelDetailProps?.ShowPanel();
-            //todo
-            _m_panelDetailProps.SetInfo(SCModel.instance.tbsModel.GetCurActorInfo());
-
-
             _m_detailHeaderContainer?.ShowPanel();
-            
             _m_detailBuffContainer?.ShowPanel();
+            refreshShow();
+        }
+
+
+        private void refreshShow()
+        {
+            if (_m_actorInfoList == null || _m_actorInfoList.Count == 0)
+                return;
+            if(_m_curSelectHeaderIdx >= 0 && _m_curSelectHeaderIdx< _m_actorInfoList.Count)
+                _m_panelDetailProps.SetInfo(_m_actorInfoList[_m_curSelectHeaderIdx]);
+
+            _m_detailHeaderContainer.SetListInfo(_m_actorInfoList, _m_curSelectHeaderIdx);
+
+            mono.txtNameWithLv.text = GameCommon.GetCharacterNameWithLv(_m_actorInfoList[_m_curSelectHeaderIdx].characterLv,
+                _m_actorInfoList[_m_curSelectHeaderIdx].characterRefObj.characterName);
+            mono.imgHpBar.fillAmount = (float)_m_actorInfoList[_m_curSelectHeaderIdx].curHp / _m_actorInfoList[_m_curSelectHeaderIdx].maxHp;
+            mono.txtHp.text = LanguageHelper.instance.GetTextTranslate("#2_{0}/{1}", _m_actorInfoList[_m_curSelectHeaderIdx].curHp, _m_actorInfoList[_m_curSelectHeaderIdx].maxHp);
+            mono.imgMpBar.fillAmount = (float)_m_actorInfoList[_m_curSelectHeaderIdx].curMp / _m_actorInfoList[_m_curSelectHeaderIdx].maxMp;
+            mono.txtMp.text = LanguageHelper.instance.GetTextTranslate("#2_{0}/{1}", _m_actorInfoList[_m_curSelectHeaderIdx].curMp, _m_actorInfoList[_m_curSelectHeaderIdx].maxMp);
+            mono.txtCharacterDesc.text = LanguageHelper.instance.GetTextTranslate(_m_actorInfoList[_m_curSelectHeaderIdx].characterRefObj.characterDesc);
+        }
+
+        private void onTBSDetailSelectDown()
+        {
+            _m_curSelectHeaderIdx = Mathf.Min(_m_curSelectHeaderIdx + 1, _m_actorInfoList.Count - 1);
+            refreshShow();
+        }
+
+        private void onTBSDetailSelectUp()
+        {
+            _m_curSelectHeaderIdx = Mathf.Max(_m_curSelectHeaderIdx - 1, 0);
+            refreshShow();
         }
     }
 }

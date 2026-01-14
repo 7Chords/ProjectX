@@ -19,6 +19,7 @@ namespace GameCore.RefData
 
         public long id;
         public string characterName;
+        public string characterDesc;
         public long characterProfession;
         public string assetModelObjName;
         public string assetHeadIconObjName;
@@ -50,6 +51,7 @@ namespace GameCore.RefData
         {
             id = getInt("id");
             characterName = getString("characterName");
+            characterDesc = getString("characterDesc");
             characterProfession = getLong("characterProfession");
             assetModelObjName = getString("assetModelObjName");
             assetHeadIconObjName = getString("assetHeadIconObjName");

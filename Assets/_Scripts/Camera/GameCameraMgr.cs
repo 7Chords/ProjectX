@@ -145,8 +145,6 @@ namespace GameCore
         {
             SCGame.instance.cinemachineImpulseSource.m_ImpulseDefinition.m_ImpulseDuration = _shakeDuration;
             SCGame.instance.cinemachineImpulseSource.GenerateImpulse(_shakeStrength);
-            //Tween shakeTween = SCGame.instance.virtualCamera.transform.DOShakePosition(_shakeDuration, _shakeStrength);
-            //_m_tweenContainer?.RegDoTween(shakeTween);
         }
 
         /// <summary>
@@ -168,6 +166,12 @@ namespace GameCore
 
 
         //todo: 临时方案，后续再优化
+
+        /// <summary>
+        /// 切换虚拟相机
+        /// </summary>
+        /// <param name="_anotherVC">要切换到的虚拟相机</param>
+        /// <param name="_switchOverCallback">不知道为什么没有用 不要传参了</param>
         public void SwitchToVirtualCamera(CinemachineVirtualCamera _anotherVC, UnityAction<CinemachineBrain> _switchOverCallback = null)
         {
             _m_virtualCamera.gameObject.SetActive(false);
@@ -176,6 +180,12 @@ namespace GameCore
             if (_switchOverCallback != null)
                 SCGame.instance.cinemachineBrain.m_CameraCutEvent.AddListener(_switchOverCallback);
         }
+
+
+        /// <summary>
+        /// 切换回主虚拟相机
+        /// </summary>
+        /// <param name="_switchOverCallback"></param>
         public void SwitchToMainVirtualCamera(UnityAction<CinemachineBrain> _switchOverCallback = null)
         {
             _m_virtualCamera.gameObject.SetActive(false);

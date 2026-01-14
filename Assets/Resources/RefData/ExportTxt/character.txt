@@ -1,8 +1,8 @@
-﻿id	characterName	characterProfession	assetModelObjName	assetHeadIconObjName	extraCompList	init_skill_list	initHp	initMp	initAttack	initDefend	initMiss	initCritical	attackTargetType	initArmorLevel	initMgicResistanceLevel	attackDamageType	attackPhysicalLevel	attackMagicAttribute	weakAttributeList	normalAttributeList	resistentAttributeList	invilidAttributeList	bounceAttributeList	suckAttributeList
-1001	#1_character_name_1001	1001	Stele	spr_head_stele	NONE	1001;1003	75	50	25	3	.05	.05	SINGLE	LIGHT	LIGHT	PHYSICAL	MEDIUM	NONE	WATER	FIRE;WOOD	*	*	*	*
-1002	#1_character_name_1002	1003	Lorraine	spr_head_lorraine	NONE	1002;1004	40	80	20	2	.02	.05	SINGLE	LIGHT	MEDIUM	MAGIC	NONE	FIRE	*	FIRE;WATER;WOOD	*	*	*	*
-1003	#1_character_name_1003	1001	Kaut	none	NONE	9999	99	99	0	99	.05	0	SINGLE	LIGHT	LIGHT	PHYSICAL	LIGHT	NONE	*	FIRE;WATER;WOOD	*	*	*	*
-1004	#1_character_name_1004	1006	RedSlime	spr_head_redSlime	NONE	9999	99	99	15	1	.05	0	SINGLE	LIGHT	LIGHT	PHYSICAL	NONE	NONE	FIRE	WATER;WOOD	*	*	*	*
-1005	#1_character_name_1005	1006	SpikeSlime	spr_head_spikeSlime	NONE	9999	99	99	18	1	.05	0	SINGLE	LIGHT	LIGHT	PHYSICAL	NONE	NONE	*	*	WOOD	WATER	*	FIRE
-1006	#1_character_name_1006	1007	RockGiant	spr_head_rockGiant	NONE	9999	168	99	30	4	.05	0	SINGLE	HEAVY	LIGHT	PHYSICAL	MEDIUM	NONE	*	FIRE;WATER;WOOD	*	*	*	*
-1007	#1_character_name_1007	1004	Karenina	spr_head_karenina	NONE	1005	85	25	15	5	.05	0	SINGLE	MEDIUM	LIGHT	PHYSICAL	LIGHT	NONE	*	WOOD	FIRE;WATER	*	*	*
+﻿id	characterName	characterDesc	characterProfession	assetModelObjName	assetHeadIconObjName	extraCompList	init_skill_list	initHp	initMp	initAttack	initDefend	initMiss	initCritical	attackTargetType	initArmorLevel	initMgicResistanceLevel	attackDamageType	attackPhysicalLevel	attackMagicAttribute	weakAttributeList	normalAttributeList	resistentAttributeList	invilidAttributeList	bounceAttributeList	suckAttributeList
+1001	#1_character_name_1001	#1_character_desc_1001	1001	Stele	spr_head_stele	NONE	1001;1003	75	50	25	3	.05	.05	SINGLE	LIGHT	LIGHT	PHYSICAL	MEDIUM	NONE	WATER	FIRE;WOOD	*	*	*	*
+1002	#1_character_name_1002	#1_character_desc_1002	1003	Lorraine	spr_head_lorraine	NONE	1002;1004	40	80	20	2	.02	.05	SINGLE	LIGHT	MEDIUM	MAGIC	NONE	FIRE	*	FIRE;WATER;WOOD	*	*	*	*
+1003	#1_character_name_1003	#1_character_desc_1003	1001	Kaut	none	NONE	9999	99	99	0	99	.05	0	SINGLE	LIGHT	LIGHT	PHYSICAL	LIGHT	NONE	*	FIRE;WATER;WOOD	*	*	*	*
+1004	#1_character_name_1004	#1_character_desc_1004	1006	RedSlime	spr_head_redSlime	NONE	9999	99	99	15	1	.05	0	SINGLE	LIGHT	LIGHT	PHYSICAL	LIGHT	NONE	FIRE	WATER;WOOD	*	*	*	*
+1005	#1_character_name_1005	#1_character_desc_1005	1006	SpikeSlime	spr_head_spikeSlime	NONE	9999	99	99	18	1	.05	0	SINGLE	LIGHT	LIGHT	PHYSICAL	LIGHT	NONE	*	*	WOOD	WATER	*	FIRE
+1006	#1_character_name_1006	#1_character_desc_1006	1007	RockGiant	spr_head_rockGiant	NONE	9999	168	99	30	4	.05	0	SINGLE	HEAVY	LIGHT	PHYSICAL	MEDIUM	NONE	*	FIRE;WATER;WOOD	*	*	*	*
+1007	#1_character_name_1007	#1_character_desc_1007	1004	Karenina	spr_head_karenina	NONE	1005	85	25	15	5	.05	0	SINGLE	MEDIUM	LIGHT	PHYSICAL	LIGHT	NONE	*	WOOD	FIRE;WATER	*	*	*

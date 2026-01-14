@@ -2643,8 +2643,11 @@ PlayableDirector:
     value: {fileID: 1110854755152538500}
   - key: {fileID: 2774030899252504993, guid: 40580aed4ba24a34fa5e6add776f0b20, type: 2}
     value: {fileID: 7823512981348651069}
+  - key: {fileID: -6571096215520650539, guid: 40580aed4ba24a34fa5e6add776f0b20, type: 2}
+    value: {fileID: 0}
   m_ExposedReferences:
     m_References:
+    - 4ec19b97c30defb49b4eeccffe1ebda1: {fileID: 0}
     - e8934cf1ca20d244ab76568cf021bfa6: {fileID: 1110854755152538500}
 --- !u!114 &7823512981348651069
 MonoBehaviour:

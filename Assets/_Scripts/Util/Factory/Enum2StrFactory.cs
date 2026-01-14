@@ -67,6 +67,9 @@ namespace GameCore.Util
             string translateKey = "#1_";
             switch (_physicalLevelType)
             {
+                case EPhysicalLevelType.NONE:
+                    translateKey += "none";
+                    return LanguageHelper.instance.GetTextTranslate(translateKey);
                 case EPhysicalLevelType.LIGHT:
                     translateKey += "light";
                     return LanguageHelper.instance.GetTextTranslate(translateKey);

@@ -113,6 +113,10 @@ MonoBehaviour:
     m_Address: prefab_tbs_detail_buff_item
     m_ReadOnly: 0
     m_SerializedLabels: []
+  - m_GUID: da3445df66316e940b679ba203011c49
+    m_Address: prefab_tbs_detail_head_item
+    m_ReadOnly: 0
+    m_SerializedLabels: []
   m_ReadOnly: 0
   m_Settings: {fileID: 11400000, guid: d14fb1bbe98862146a7f5467a5bc79f8, type: 2}
   m_SchemaSet:
