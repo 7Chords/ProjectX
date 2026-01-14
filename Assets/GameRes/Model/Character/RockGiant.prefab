@@ -229,7 +229,7 @@ MonoBehaviour:
   bottomSfxTran: {fileID: 0}
   centerSfxTran: {fileID: 0}
   topSfxTran: {fileID: 0}
-  enemyAttackStopOffset: {x: 0, y: 0, z: 2}
+  enemyAttackStopOffset: {x: 0, y: 0, z: 7}
   attackAnimClipName: rockGiant_attack_anim_clip
   runAnimClipName: rockGaint_run_anim_clip
   getHitAnimClipName: rockGaint_getHit_anim_clip
