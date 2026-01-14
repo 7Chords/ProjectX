@@ -1,3 +1,5 @@
+using GameCore.TBS;
+using SCFrame;
 using SCFrame.UI;
 using System.Collections;
 using System.Collections.Generic;
@@ -7,6 +9,8 @@ namespace GameCore.UI
 {
     public class UIPanelTBSDetailBuffContainerItem : _ASCUIPanelBase<UIMonoTBSDetailBuffContainerItem>
     {
+        private TBSGameBuffInfo _m_buffInfo;
+
         public UIPanelTBSDetailBuffContainerItem(UIMonoTBSDetailBuffContainerItem _mono, SCUIShowType _showType) : base(_mono, _showType)
         {
         }
@@ -25,6 +29,19 @@ namespace GameCore.UI
 
         public override void OnShowPanel()
         {
+        }
+
+        public void SetInfo(TBSGameBuffInfo _buffInfo)
+        {
+            _m_buffInfo = _buffInfo;
+            refreshShow();
+        }
+
+        private void refreshShow()
+        {
+            if (_m_buffInfo == null)
+                return;
+            mono.imgBuffIcon.sprite = ResourcesHelper.LoadAsset<Sprite>(_m_buffInfo.buffRefObj.buffIconObjName);
         }
     }
 }

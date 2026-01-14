@@ -68,6 +68,11 @@ namespace GameCore.UI
 
             _m_detailHeaderContainer.SetListInfo(_m_actorInfoList, _m_curSelectHeaderIdx);
 
+            TBSActorBase actor = SCModel.instance.tbsModel.GetActorByRunningId(_m_actorInfoList[_m_curSelectHeaderIdx].runningId);
+            if(actor != null)
+                _m_detailBuffContainer.SetListInfo(actor.GetBuffInfoList());
+
+
             mono.txtNameWithLv.text = GameCommon.GetCharacterNameWithLv(_m_actorInfoList[_m_curSelectHeaderIdx].characterLv,
                 _m_actorInfoList[_m_curSelectHeaderIdx].characterRefObj.characterName);
             mono.imgHpBar.fillAmount = (float)_m_actorInfoList[_m_curSelectHeaderIdx].curHp / _m_actorInfoList[_m_curSelectHeaderIdx].maxHp;

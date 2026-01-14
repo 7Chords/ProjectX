@@ -59,7 +59,7 @@ namespace GameCore.Util
 
             //int inputCount = playable.GetInputCount();
 
-            Debug.Log(blendWeight);
+            //Debug.Log(blendWeight);
             //Vector3 currentPosition = Vector3.Lerp(
             //    _previousPosition,  // 起始值（上一个Clip的目标位置，或当前对象位置）
             //    targetPosition,     // 目标值（当前Clip的目标位置）

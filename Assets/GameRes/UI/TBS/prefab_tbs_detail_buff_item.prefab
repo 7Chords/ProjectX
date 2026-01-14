@@ -103,7 +103,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   uiMask: {fileID: 0}
-  canvasGroup: {fileID: 0}
+  canvasGroup: {fileID: 7779871126555955845}
   fadeInDuration: 0
   fadeOutDuration: 0
   imgBuffIcon: {fileID: 3445520338501484318}
