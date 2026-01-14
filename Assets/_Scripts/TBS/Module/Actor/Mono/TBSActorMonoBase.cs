@@ -55,6 +55,8 @@ namespace GameCore.TBS
         public float defendPlayTime;
         [Header("玩家常驻相机位置(四个)")]
         public List<ActorCameraInfo> actorCameraInfoList;
+        [Header("详情面板相机拍摄偏移")]
+        public Vector3 detailCamOffset;
         
     }
 }

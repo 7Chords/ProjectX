@@ -142,6 +142,11 @@ namespace GameCore.TBS
             return _m_actorMono.goModel.transform.position;
         }
 
+        public virtual Vector3 GetDetailCameraPos()
+        {
+            return _m_actorMono.transform.position + _m_actorMono.detailCamOffset;
+        }
+
         public GameObject GetActorGameObject()
         {
             return _m_actorMono.gameObject;

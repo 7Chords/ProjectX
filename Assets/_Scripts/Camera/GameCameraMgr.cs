@@ -194,5 +194,16 @@ namespace GameCore
             if (_switchOverCallback != null)
                 SCGame.instance.cinemachineBrain.m_CameraCutEvent.AddListener(_switchOverCallback);
         }
+
+
+        public void SetDetailCamera(Vector3 _pos,bool _isPlayer)
+        {
+            SCGame.instance.tbsDetailCamera.transform.position = _pos;
+            if(_isPlayer)
+                SCGame.instance.tbsDetailCamera.transform.rotation = Quaternion.Euler(new Vector3(0,180,0));
+            else
+                SCGame.instance.tbsDetailCamera.transform.rotation = Quaternion.identity;
+
+        }
     }
 }

@@ -80,17 +80,23 @@ namespace GameCore.UI
             mono.imgMpBar.fillAmount = (float)_m_actorInfoList[_m_curSelectHeaderIdx].curMp / _m_actorInfoList[_m_curSelectHeaderIdx].maxMp;
             mono.txtMp.text = LanguageHelper.instance.GetTextTranslate("#2_{0}/{1}", _m_actorInfoList[_m_curSelectHeaderIdx].curMp, _m_actorInfoList[_m_curSelectHeaderIdx].maxMp);
             mono.txtCharacterDesc.text = LanguageHelper.instance.GetTextTranslate(_m_actorInfoList[_m_curSelectHeaderIdx].characterRefObj.characterDesc);
+
+            GameCameraMgr.instance.SetDetailCamera(actor.GetDetailCameraPos(), !actor.actorInfo.isEnemy);
         }
 
         private void onTBSDetailSelectDown()
         {
-            _m_curSelectHeaderIdx = Mathf.Min(_m_curSelectHeaderIdx + 1, _m_actorInfoList.Count - 1);
+            _m_curSelectHeaderIdx++;
+            if (_m_curSelectHeaderIdx > _m_actorInfoList.Count - 1)
+                _m_curSelectHeaderIdx = 0;
             refreshShow();
         }
 
         private void onTBSDetailSelectUp()
         {
-            _m_curSelectHeaderIdx = Mathf.Max(_m_curSelectHeaderIdx - 1, 0);
+            _m_curSelectHeaderIdx--;
+            if (_m_curSelectHeaderIdx < 0)
+                _m_curSelectHeaderIdx = _m_actorInfoList.Count - 1;
             refreshShow();
         }
     }

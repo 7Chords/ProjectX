@@ -137,6 +137,7 @@ MonoBehaviour:
     cameraTran: {fileID: 4958553272266131818}
   - posType: 3
     cameraTran: {fileID: 3761288831009458934}
+  detailCamOffset: {x: 0, y: 2, z: -5}
   attackAnimDuration: 1
 --- !u!135 &3811845600490706096
 SphereCollider:

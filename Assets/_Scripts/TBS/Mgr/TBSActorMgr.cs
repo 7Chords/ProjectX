@@ -132,6 +132,7 @@ namespace GameCore.TBS
                 actor.Initialize();
                 _m_playerActorModuleList.Add(actor);
             }
+            GameCameraMgr.instance.SetDetailCamera(_m_playerActorModuleList[0].GetDetailCameraPos(), true);
 
             //生成敌人队伍角色
             for (int i = 0; i < _m_enemyTeamInfo.actorInfoList.Count; i++)

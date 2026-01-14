@@ -2883,6 +2883,7 @@ MonoBehaviour:
     cameraTran: {fileID: 6299156677848108147}
   - posType: 3
     cameraTran: {fileID: 3645416742883017731}
+  detailCamOffset: {x: 0, y: 3, z: 10}
   attackSourceTran: {fileID: 5225333171201662888}
   attackSpwanTime: 0.5
   attackFlySpeed: 40

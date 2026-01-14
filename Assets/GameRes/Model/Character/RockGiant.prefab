@@ -249,6 +249,7 @@ MonoBehaviour:
     cameraTran: {fileID: 4151498229856004997}
   - posType: 3
     cameraTran: {fileID: 5296105663410890777}
+  detailCamOffset: {x: 0, y: 4, z: -15}
   attackAnimDuration: 1
 --- !u!1 &8232016015386799705
 GameObject:
