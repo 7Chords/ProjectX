@@ -22,5 +22,7 @@ namespace GameCore.UI
         public float durationBtnScaleChg;
         [Header("按钮默认的缩放")]
         public float scaleBtnDefault;
+        [Header("详情按钮")]
+        public Button btnDetail;
     }
 }

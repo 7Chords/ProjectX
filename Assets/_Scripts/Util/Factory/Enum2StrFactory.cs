@@ -179,16 +179,16 @@ namespace GameCore.Util
             switch (_magicResistenceLevel)
             {
                 case EMagicResistanceLevelType.LIGHT:
-                    translateKey += "light";
+                    translateKey += "light_magic_resistent";
                     return LanguageHelper.instance.GetTextTranslate(translateKey);
                 case EMagicResistanceLevelType.MEDIUM:
-                    translateKey += "medium";
+                    translateKey += "medium_magic_resistent";
                     return LanguageHelper.instance.GetTextTranslate(translateKey);
                 case EMagicResistanceLevelType.HEAVY:
-                    translateKey += "heavy";
+                    translateKey += "heavy_magic_resistent";
                     return LanguageHelper.instance.GetTextTranslate(translateKey);
                 case EMagicResistanceLevelType.HERO:
-                    translateKey += "hero";
+                    translateKey += "hero_magic_resistent";
                     return LanguageHelper.instance.GetTextTranslate(translateKey);
                 default:
                     return "invalid enum";
@@ -201,16 +201,16 @@ namespace GameCore.Util
             switch (_armorLevel)
             {
                 case EArmorLevelType.LIGHT:
-                    translateKey += "light";
+                    translateKey += "light_armor";
                     return LanguageHelper.instance.GetTextTranslate(translateKey);
                 case EArmorLevelType.MEDIUM:
-                    translateKey += "medium";
+                    translateKey += "medium_armor";
                     return LanguageHelper.instance.GetTextTranslate(translateKey);
                 case EArmorLevelType.HEAVY:
-                    translateKey += "heavy";
+                    translateKey += "heavy_armor";
                     return LanguageHelper.instance.GetTextTranslate(translateKey);
                 case EArmorLevelType.HERO:
-                    translateKey += "hero";
+                    translateKey += "hero_armor";
                     return LanguageHelper.instance.GetTextTranslate(translateKey);
                 default:
                     return "invalid enum";

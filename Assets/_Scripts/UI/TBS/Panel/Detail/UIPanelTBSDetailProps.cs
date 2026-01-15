@@ -38,8 +38,8 @@ namespace GameCore.UI
         {
             mono.txtAttack.text = LanguageHelper.instance.GetTextTranslate("#1_detail_attack", _m_actorInfo.attack);
             mono.txtDefend.text = LanguageHelper.instance.GetTextTranslate("#1_detail_defend", _m_actorInfo.defend);
-            mono.txtMiss.text = LanguageHelper.instance.GetTextTranslate("#1_detail_miss_chance", _m_actorInfo.missChance);
-            mono.txtCritical.text = LanguageHelper.instance.GetTextTranslate("#1_detail_critical_chance", _m_actorInfo.criticalChance);
+            mono.txtMiss.text = LanguageHelper.instance.GetTextTranslate("#1_detail_miss_chance", _m_actorInfo.missChance.ToPercentString());
+            mono.txtCritical.text = LanguageHelper.instance.GetTextTranslate("#1_detail_critical_chance", _m_actorInfo.criticalChance.ToPercentString());
             mono.txtPhysicsLevel.text = LanguageHelper.instance.GetTextTranslate("#1_detail_physics_level",Enum2StrFactory.CreateLocalStrByPhysicalLevelEnum(_m_actorInfo.attackPhysicalLevel));
             mono.txtAttackAttribute.text = LanguageHelper.instance.GetTextTranslate("#1_detail_attack_attribute",Enum2StrFactory.CreateLocalStrByMagicAttributeEnum(_m_actorInfo.attackMagicAttribute));
             mono.txtMagicResistence.text = LanguageHelper.instance.GetTextTranslate("#1_detail_magic_resistence_level",Enum2StrFactory.CreateLocalStrByMagicResistenceLevelEnum(_m_actorInfo.magicResistanceLevel));

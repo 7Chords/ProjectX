@@ -1,8 +1,10 @@
 using GameCore.TBS;
 using SCFrame;
 using SCFrame.UI;
+using System;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.EventSystems;
 
 namespace GameCore.UI
 {
@@ -39,6 +41,9 @@ namespace GameCore.UI
         {
             SCMsgCenter.UnregisterMsgAct(SCMsgConst.TBS_DETAIL_SELECT_DOWN, onTBSDetailSelectDown);
             SCMsgCenter.UnregisterMsgAct(SCMsgConst.TBS_DETAIL_SELECT_UP, onTBSDetailSelectUp);
+            SCMsgCenter.UnregisterMsg(SCMsgConst.TBS_DETAIL_SELECT_CLICK, onTBSDetailSelectClick);
+
+            mono.btnClose.RemoveClickDown(onBtnCloseClickDown);
 
             _m_panelDetailProps?.HidePanel();
             _m_detailHeaderContainer?.HidePanel();
@@ -49,15 +54,19 @@ namespace GameCore.UI
         {
             SCMsgCenter.RegisterMsgAct(SCMsgConst.TBS_DETAIL_SELECT_DOWN, onTBSDetailSelectDown);
             SCMsgCenter.RegisterMsgAct(SCMsgConst.TBS_DETAIL_SELECT_UP, onTBSDetailSelectUp);
+            SCMsgCenter.RegisterMsg(SCMsgConst.TBS_DETAIL_SELECT_CLICK, onTBSDetailSelectClick);
+
+            mono.btnClose.AddMouseLeftClickDown(onBtnCloseClickDown);
 
             _m_actorInfoList = SCModel.instance.tbsModel.GetAllActorInfo();
 
             _m_panelDetailProps?.ShowPanel();
             _m_detailHeaderContainer?.ShowPanel();
             _m_detailBuffContainer?.ShowPanel();
+
+            _m_detailHeaderContainer.SetListInfo(_m_actorInfoList, _m_curSelectHeaderIdx);
             refreshShow();
         }
-
 
         private void refreshShow()
         {
@@ -66,12 +75,13 @@ namespace GameCore.UI
             if(_m_curSelectHeaderIdx >= 0 && _m_curSelectHeaderIdx< _m_actorInfoList.Count)
                 _m_panelDetailProps.SetInfo(_m_actorInfoList[_m_curSelectHeaderIdx]);
 
-            _m_detailHeaderContainer.SetListInfo(_m_actorInfoList, _m_curSelectHeaderIdx);
+            _m_detailHeaderContainer.RefreshContainerShow(_m_actorInfoList, _m_curSelectHeaderIdx);
 
             TBSActorBase actor = SCModel.instance.tbsModel.GetActorByRunningId(_m_actorInfoList[_m_curSelectHeaderIdx].runningId);
             if(actor != null)
                 _m_detailBuffContainer.SetListInfo(actor.GetBuffInfoList());
 
+            SCCommon.SetGameObjectEnable(mono.goIsPlayerActorShowList,!actor.actorInfo.isEnemy);
 
             mono.txtNameWithLv.text = GameCommon.GetCharacterNameWithLv(_m_actorInfoList[_m_curSelectHeaderIdx].characterLv,
                 _m_actorInfoList[_m_curSelectHeaderIdx].characterRefObj.characterName);
@@ -98,6 +108,25 @@ namespace GameCore.UI
             if (_m_curSelectHeaderIdx < 0)
                 _m_curSelectHeaderIdx = _m_actorInfoList.Count - 1;
             refreshShow();
+        }
+
+        private void onTBSDetailSelectClick(object[] _objs)
+        {
+            if (_objs == null || _objs.Length == 0)
+                return;
+            TBSActorInfo info = _objs[0] as TBSActorInfo;
+            if (info == null)
+                return;
+            int infoIdx = _m_actorInfoList.IndexOf(info);
+            if (infoIdx < 0 || infoIdx >= _m_actorInfoList.Count)
+                return;
+            _m_curSelectHeaderIdx = infoIdx;
+            refreshShow();
+        }
+
+        private void onBtnCloseClickDown(PointerEventData _data, object[] _objs)
+        {
+            GameCoreMgr.instance.uiCoreMgr.CloseTopNode();
         }
     }
 }

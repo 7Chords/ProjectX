@@ -76,8 +76,8 @@ namespace GameCore.UI
                 }
                 if (item == null)
                     continue;
-                item.SetInfo(_infoList[i]);
                 item.ShowPanel();
+                item.SetInfo(_infoList[i]);
                 //设置技能是否选中
                 if (i == _selectIndex)
                     item.SetSelect(true);
@@ -93,6 +93,34 @@ namespace GameCore.UI
                 if (item == null)
                     continue;
                 item.HidePanel();
+            }
+        }
+
+        public void RefreshContainerShow(List<TBSActorInfo> _infoList, int _selectIndex)
+        {
+            int i = 0;
+            UIPanelTBSDetailHeaderContainerItem item = null;
+            for (i = 0; i < _infoList.Count; i++)
+            {
+                if (i < _m_headerItemList.Count)
+                {
+                    item = _m_headerItemList[i];
+                }
+                else
+                {
+                    GameObject itemGO = creatItemGO();
+                    item = creatItemPanel(itemGO.GetComponent<UIMonoTBSDetailHeaderContainerItem>());
+                    itemGO.transform.SetParent(mono.layoutGroup.transform);
+                    _m_headerItemList.Add(item);
+                }
+                if (item == null)
+                    continue;
+                item.SetInfo(_infoList[i]);
+                //设置技能是否选中
+                if (i == _selectIndex)
+                    item.SetSelect(true);
+                else
+                    item.SetSelect(false);
             }
         }
 

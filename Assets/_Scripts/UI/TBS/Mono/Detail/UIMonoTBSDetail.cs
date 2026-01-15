@@ -1,4 +1,5 @@
 using SCFrame.UI;
+using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -26,5 +27,9 @@ namespace GameCore.UI
         public UIMonoCommonContainer monoHeaderContainer;
         [Header("角色buff容器mono")]
         public UIMonoCommonContainer monoBuffContainer;
+        [Header("关闭按钮")]
+        public Button btnClose;
+        [Header("是玩家详情时显示的物体列表")]
+        public List<GameObject> goIsPlayerActorShowList;
     }
 }

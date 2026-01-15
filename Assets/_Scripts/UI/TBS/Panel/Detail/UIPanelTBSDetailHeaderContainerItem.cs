@@ -1,7 +1,9 @@
 using GameCore.TBS;
 using SCFrame;
 using SCFrame.UI;
+using System;
 using UnityEngine;
+using UnityEngine.EventSystems;
 
 namespace GameCore.UI
 {
@@ -24,10 +26,12 @@ namespace GameCore.UI
 
         public override void OnHidePanel()
         {
+            mono.btnSelect.RemoveClickDown(onBtnSelectClick);
         }
 
         public override void OnShowPanel()
         {
+            mono.btnSelect.AddMouseLeftClickDown(onBtnSelectClick);
         }
 
         public void SetInfo(TBSActorInfo _info)
@@ -54,6 +58,13 @@ namespace GameCore.UI
         {
             _m_hasSelected = _isSelect;
             refreshSelectShow();
+        }
+
+        private void onBtnSelectClick(PointerEventData _data, object[] _objs)
+        {
+            if (_m_hasSelected)
+                return;
+            SCMsgCenter.SendMsg(SCMsgConst.TBS_DETAIL_SELECT_CLICK, _m_actorInfo);
         }
     }
 }

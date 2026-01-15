@@ -8,6 +8,8 @@ namespace GameCore.UI
 {
     public class UIMonoTBSDetailHeaderContainerItem : _ASCUIMonoBase
     {
+        [Header("头像按钮")]
+        public Button btnSelect;
         [Header("头像图标")]
         public Image imgHeadIcon;
         [Header("选择当前item时显示的对象列表")]

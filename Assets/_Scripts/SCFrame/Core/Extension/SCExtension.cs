@@ -55,6 +55,23 @@ namespace SCFrame
             return true;
         }
 
+        public static string ToPercentString(this float _num)
+        {
+            return string.Format("{0:0.00}%", _num * 100);
+        }
+        public static string ToPercentString(this int _num)
+        {
+            return string.Format("{0:0.00}%", _num * 100);
+        }
+        public static string ToPercentString(this long _num)
+        {
+            return string.Format("{0:0.00}%", _num * 100);
+        }
+
+        public static string ToPercentString(this double _num)
+        {
+            return string.Format("{0:0.00}%", _num * 100);
+        }
         #endregion
 
         #region 资源管理

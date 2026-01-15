@@ -34,6 +34,7 @@ namespace GameCore.UI
             mono.btnSkill.RemoveClickDown(onBtnSkillClickDown);
             mono.btnItem.RemoveClickDown(onBtnItemClickDown);
             mono.btnDefence.RemoveClickDown(onBtnDefenceClickDown);
+            mono.btnDetail.RemoveClickDown(onBtnDetailClickDown);
 
             SCMsgCenter.UnregisterMsgAct(SCMsgConst.TBS_ATTACK_INPUT, onTBSAttackInput);
             SCMsgCenter.UnregisterMsgAct(SCMsgConst.TBS_DEFEND_INPUT, onTBSDefendInput);
@@ -49,6 +50,7 @@ namespace GameCore.UI
             mono.btnSkill.AddMouseLeftClickDown(onBtnSkillClickDown);
             mono.btnItem.AddMouseLeftClickDown(onBtnItemClickDown);
             mono.btnDefence.AddMouseLeftClickDown(onBtnDefenceClickDown);
+            mono.btnDetail.AddMouseLeftClickDown(onBtnDetailClickDown);
 
             SCMsgCenter.RegisterMsgAct(SCMsgConst.TBS_ATTACK_INPUT,onTBSAttackInput);
             SCMsgCenter.RegisterMsgAct(SCMsgConst.TBS_DEFEND_INPUT, onTBSDefendInput);
@@ -64,6 +66,11 @@ namespace GameCore.UI
             SCModel.instance.tbsModel.selectTargetType = SCModel.instance.tbsModel.GetCurActorInfo().attackTargetType;
 
             refreshPanelShow();
+        }
+
+        private void onBtnDetailClickDown(PointerEventData _eventData, object[] _args)
+        {
+            GameCoreMgr.instance.uiCoreMgr.AddNode(new UINodeTBSDetail(SCUIShowType.FULL));
         }
 
         private void onBtnNormalAttackClickDown(PointerEventData _eventData, object[] _args)
