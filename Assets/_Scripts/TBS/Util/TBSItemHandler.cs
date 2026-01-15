@@ -96,7 +96,10 @@ namespace GameCore.TBS
         {
             for(int i =0;i<_targetList.Count;i++)
             {
-                _targetList[i].GetBuff(TBSBuffFactory.CreateBuffInfo(_buffEffectObj.buffRefObjId, _buffEffectObj.continueTurn, _targetList[i]));
+                TBSGameBuffInfo buffInfo = TBSBuffFactory.CreateBuffInfo(_buffEffectObj.buffRefObjId, _buffEffectObj.continueTurn, _targetList[i]);
+                _targetList[i].GetBuff(buffInfo);
+                GameCommon.ShowTip(buffInfo.buffRefObj.buffName, _targetList[i].GetCursorPos());
+
             }
         }
 

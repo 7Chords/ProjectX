@@ -134,11 +134,17 @@ namespace GameCore.TBS
 
                         dealSkill();
 
+
                         TBSGameBuffInfo buffInfo = TBSBuffFactory.CreateBuffInfo(1010, 3, _targetList[0]);
                         TBSGameBuffInfo buffInfo_2 = TBSBuffFactory.CreateBuffInfo(1011, 3, _targetList[0]);
                         _targetList[0].GetBuff(buffInfo);
                         _targetList[0].GetBuff(buffInfo_2);
 
+                        GameCommon.ShowTip(buffInfo.buffRefObj.buffName, _targetList[0].GetCursorPos());
+                        SCTimeCaller.instance.CallDealy(0.5f, () =>
+                        {
+                            GameCommon.ShowTip(buffInfo_2.buffRefObj.buffName, _targetList[0].GetCursorPos());
+                        });
 
                         Sequence seq = DOTween.Sequence();
 

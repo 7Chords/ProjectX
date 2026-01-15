@@ -479,7 +479,6 @@ namespace GameCore.TBS
             if (_m_buffHander == null)
                 return;
             _m_buffHander.AddBuff(_buffInfo);
-            GameCommon.ShowTip(_buffInfo.buffRefObj.buffName, GetCursorPos());
             SCMsgCenter.SendMsg(SCMsgConst.TBS_ACTOR_GET_BUFF, _buffInfo);
 
         }
