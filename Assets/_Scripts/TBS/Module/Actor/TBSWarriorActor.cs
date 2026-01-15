@@ -1,10 +1,12 @@
 using DG.Tweening;
 using GameCore.RefData;
 using GameCore.UI;
+using GameCore.Util;
 using SCFrame;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Playables;
+using UnityEngine.Timeline;
 
 namespace GameCore.TBS
 {
@@ -110,133 +112,120 @@ namespace GameCore.TBS
 
             GameCommon.ShowSkillNameTip(_m_actorSkillRefObj.skillName);
 
-            if (!_m_actorSkillRefObj.needMove)
+            switch (_m_actorSkillRefObj.skillName)
             {
-                GameCoreMgr.instance.uiCoreMgr.HideNode(nameof(UINodeTBSConfirm));
-                GameCoreMgr.instance.uiCoreMgr.HideNode(nameof(UINodeTBSEnemyHud));
-                TBSCursorMgr.instance.HideSelectionCursor();
-  
-
-                _m_actorMono.signalEventTrigger.AddSignalEvent(GameConst.COMMON_DEAL_SKILL_EVENT, dealSkill);
-                _m_actorMono.skillDirector.Play(skillAsset);
-
-
-                Sequence seq = DOTween.Sequence();
-                seq.Append(DOVirtual.DelayedCall((float)skillAsset.duration,
-                    () =>
+                case "迅捷攻击":
                     {
-                        SCMsgCenter.SendMsg(SCMsgConst.TBS_ACTOR_ACTION_END, actorInfo.runningId);
-                        _m_actorMono.signalEventTrigger.RemoveSignalEvent(GameConst.COMMON_DEAL_SKILL_EVENT);
-                        _m_attackEnemyActorList.Clear();
 
-                    }));
-
-                _m_tweenContainer?.RegDoTween(seq);
-            }
-            else
-            {
-                switch(_m_actorSkillRefObj.skillName)
-                {
-                    case "迅捷攻击":
-                        {
-
-                            GameCoreMgr.instance.uiCoreMgr.HideNode(nameof(UINodeTBSConfirm));
-                            GameCoreMgr.instance.uiCoreMgr.HideNode(nameof(UINodeTBSEnemyHud));
-                            TBSCursorMgr.instance.HideSelectionCursor();
-                            GameCameraMgr.instance.SetCameraTarget(SCModel.instance.tbsModel.GetCurSelectSingleEnemyTargetActor().GetAsCameraTargetTran());
-
-                            //该技能是单体攻击 所以取目标第一个 这边或许可以支持配置为多个敌人的处理 不过需要商榷todo
-
-                            TBSActorBase target = _targetList[0];
-                            if (target == null)
-                                return;
-
-                            _m_actorMono.signalEventTrigger.AddSignalEvent(GameConst.COMMON_DEAL_SKILL_EVENT, dealSkill);
-                            Vector3 originalPos = _m_actorMono.gameObject.transform.position;
-
-                            GameGeneralRefObj generalRefObj = SCRefDataMgr.instance.gameGeneralRefObj;
-                            Sequence seq = DOTween.Sequence();
-                            Tween lookAtTargetTween = _m_actorMono.goModel.transform.DOLookAt(new Vector3(target.GetActorGameObject().transform.position.x,
-                                GetActorGameObject().transform.position.y, target.GetActorGameObject().transform.position.z), generalRefObj.tbsMeleeLookAtTargetDuration);
+                        GameCoreMgr.instance.uiCoreMgr.HideNode(nameof(UINodeTBSConfirm));
+                        GameCoreMgr.instance.uiCoreMgr.HideNode(nameof(UINodeTBSEnemyHud));
+                        TBSCursorMgr.instance.HideSelectionCursor();
+                        GameCameraMgr.instance.SetCameraTarget(SCModel.instance.tbsModel.GetCurSelectSingleEnemyTargetActor().GetAsCameraTargetTran());
 
 
-                            Tween move2AttackTween = _m_actorMono.goModel.transform.DOMove(target.GetEnemyAttackStandPos(), 0.5f)
-                                .OnStart(
-                                () =>
-                                {
-                                    _m_animationCtl.speed = 2f;
-                                    _m_animationCtl.PlaySingleAniamtion(_m_runAnimClip);
-                                })
-                                .OnComplete(
-                                () =>
-                                {
-                                    _m_animationCtl.speed = 1f;
-                                    _m_actorMono.skillDirector.Play(skillAsset);
-                                });
+
+                        //该技能是单体攻击 所以取目标第一个 这边或许可以支持配置为多个敌人的处理 不过需要商榷todo
+
+                        TBSActorBase target = _targetList[0];
+                        if (target == null)
+                            return;
+
+                        _m_actorMono.signalEventTrigger.AddSignalEvent(GameConst.COMMON_DEAL_SKILL_EVENT, dealSkill);
+                        Vector3 originalPos = _m_actorMono.gameObject.transform.position;
+
+                        GameGeneralRefObj generalRefObj = SCRefDataMgr.instance.gameGeneralRefObj;
+                        Sequence seq = DOTween.Sequence();
+                        Tween lookAtTargetTween = _m_actorMono.goModel.transform.DOLookAt(new Vector3(target.GetActorGameObject().transform.position.x,
+                            GetActorGameObject().transform.position.y, target.GetActorGameObject().transform.position.z), generalRefObj.tbsMeleeLookAtTargetDuration);
 
 
-                            Tween rotateTween_1 = _m_actorMono.goModel.transform.DOLocalRotate(new Vector3(0, 180, 0), 0.5f);
-
-                            Tween move2OriginalTween = _m_actorMono.goModel.transform.DOMove(originalPos, 1f)
-                                .OnStart(
-                                () =>
-                                {
-                                    _m_animationCtl.PlaySingleAniamtion(_m_runAnimClip);
-                                })
-                                .OnComplete(
-                                () =>
-                                {
-                                    _m_animationCtl.PlaySingleAniamtion(_m_idleAnimClip);
-                                });
-                            Tween rotateTween_2 = _m_actorMono.goModel.transform.DOLocalRotate(Vector3.zero, 0.5f);
-
-
-                            seq.Append(lookAtTargetTween);
-
-                            seq.Append(move2AttackTween);
-
-                            seq.Append(DOVirtual.DelayedCall((float)skillAsset.duration,
-                                () =>
-                                {
-                                    SCMsgCenter.SendMsg(SCMsgConst.TBS_ACTOR_ACTION_END, actorInfo.runningId);
-                                    _m_actorMono.signalEventTrigger.RemoveSignalEvent(GameConst.COMMON_DEAL_SKILL_EVENT);
-                                    _m_attackEnemyActorList.Clear();
-
-                                }));
-                            seq.Append(rotateTween_1);
-                            seq.Append(move2OriginalTween);
-                            seq.Append(rotateTween_2);
+                        Tween move2AttackTween = _m_actorMono.goModel.transform.DOMove(target.GetEnemyAttackStandPos(), 0.5f)
+                            .OnStart(
+                            () =>
+                            {
+                                _m_animationCtl.speed = 2f;
+                                _m_animationCtl.PlaySingleAniamtion(_m_runAnimClip);
+                            })
+                            .OnComplete(
+                            () =>
+                            {
+                                _m_animationCtl.speed = 1f;
+                                _m_actorMono.skillDirector.Play(skillAsset);
+                            });
 
 
-                            _m_tweenContainer?.RegDoTween(seq);
+                        Tween rotateTween_1 = _m_actorMono.goModel.transform.DOLocalRotate(new Vector3(0, 180, 0), 0.5f);
 
-                        }
-                        break;
-                    case "四方剑影":
-                        {
-                            //GameCoreMgr.instance.uiCoreMgr.HideNode(nameof(UINodeTBSConfirm));
-                            //GameCoreMgr.instance.uiCoreMgr.HideNode(nameof(UINodeTBSMain));
-                            //GameCoreMgr.instance.uiCoreMgr.HideNode(nameof(UINodeTBSEnemyHud));
-                            //TBSCursorMgr.instance.HideSelectionCursor();
-                            //_m_actorMono.signalEventTrigger.AddSignalEvent("CommonDealSkill", dealSkill);
-                            //_m_actorMono.skillDirector.Play(skillAsset);
+                        Tween move2OriginalTween = _m_actorMono.goModel.transform.DOMove(originalPos, 1f)
+                            .OnStart(
+                            () =>
+                            {
+                                _m_animationCtl.PlaySingleAniamtion(_m_runAnimClip);
+                            })
+                            .OnComplete(
+                            () =>
+                            {
+                                _m_animationCtl.PlaySingleAniamtion(_m_idleAnimClip);
+                            });
+                        Tween rotateTween_2 = _m_actorMono.goModel.transform.DOLocalRotate(Vector3.zero, 0.5f);
 
 
-                            //Sequence seq = DOTween.Sequence();
-                            //seq.Append(DOVirtual.DelayedCall((float)skillAsset.duration,
-                            //    () =>
-                            //    {
-                            //        SCMsgCenter.SendMsg(SCMsgConst.TBS_ACTOR_ACTION_END, actorInfo.runningId);
-                            //        _m_actorMono.signalEventTrigger.RemoveSignalEvent("CommonDealSkill");
-                            //        _m_attackEnemyActorList.Clear();
+                        seq.Append(lookAtTargetTween);
 
-                            //    }));
+                        seq.Append(move2AttackTween);
 
-                            //_m_tweenContainer?.RegDoTween(seq);
+                        seq.Append(DOVirtual.DelayedCall((float)skillAsset.duration,
+                            () =>
+                            {
+                                SCMsgCenter.SendMsg(SCMsgConst.TBS_ACTOR_ACTION_END, actorInfo.runningId);
+                                _m_actorMono.signalEventTrigger.RemoveSignalEvent(GameConst.COMMON_DEAL_SKILL_EVENT);
+                                _m_attackEnemyActorList.Clear();
 
-                        }
-                        break;
-                }
+                            }));
+                        seq.Append(rotateTween_1);
+                        seq.Append(move2OriginalTween);
+                        seq.Append(rotateTween_2);
+
+
+                        _m_tweenContainer?.RegDoTween(seq);
+
+                    }
+                    break;
+                case "四方剑影":
+                    {
+                        GameCoreMgr.instance.uiCoreMgr.HideNode(nameof(UINodeTBSConfirm));
+                        GameCoreMgr.instance.uiCoreMgr.HideNode(nameof(UINodeTBSEnemyHud));
+                        TBSCursorMgr.instance.HideSelectionCursor();
+
+                        List<CameraMovingPlayableAsset> skillAssetList = GetCameraMovingAssets(skillAsset);
+                        skillAssetList[0].cameraMovingItem.lookAt = GetAsCameraTargetTran();
+                        skillAssetList[0].cameraMovingItem.follow = GetModelGameObject().transform;
+                        skillAssetList[0].cameraMovingItem.offset = GetActorCameraTran().position + new Vector3(7, 0, 15);
+                        skillAssetList[0].cameraMovingItem.offsetTranslateDuration = 0.5f;
+
+
+                        skillAssetList[1].cameraMovingItem.lookAt = SCModel.instance.tbsModel.GetCurSelectSingleEnemyTargetActor().GetAsCameraTargetTran();
+                        skillAssetList[1].cameraMovingItem.follow = GetModelGameObject().transform;
+                        skillAssetList[1].cameraMovingItem.offset = GetActorCameraTran().position + new Vector3(2,0,2);
+                        skillAssetList[0].cameraMovingItem.offsetTranslateDuration = 0.75f;
+
+                        _m_actorMono.signalEventTrigger.AddSignalEvent(GameConst.COMMON_DEAL_SKILL_EVENT, dealSkill);
+                        _m_actorMono.skillDirector.Play(skillAsset);
+
+
+                        Sequence seq = DOTween.Sequence();
+                        seq.Append(DOVirtual.DelayedCall((float)skillAsset.duration,
+                            () =>
+                            {
+                                SCMsgCenter.SendMsg(SCMsgConst.TBS_ACTOR_ACTION_END, actorInfo.runningId);
+                                _m_actorMono.signalEventTrigger.RemoveSignalEvent(GameConst.COMMON_DEAL_SKILL_EVENT);
+                                _m_attackEnemyActorList.Clear();
+
+                            }));
+
+                        _m_tweenContainer?.RegDoTween(seq);
+                    }
+                    break;
             }
 
 

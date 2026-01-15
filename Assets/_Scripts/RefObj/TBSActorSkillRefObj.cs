@@ -29,7 +29,6 @@ namespace GameCore.RefData
         public EPhysicalLevelType physicsLevelType;
         public EMagicAttributeType magicAttributeType;
         public string skillPlayableAssetName;
-        public bool needMove;
         protected override void _parseFromString()
         {
             id = getLong("id");
@@ -47,7 +46,6 @@ namespace GameCore.RefData
             physicsLevelType = (EPhysicalLevelType)getEnum("physicsLevelType", typeof(EPhysicalLevelType));
             magicAttributeType = (EMagicAttributeType)getEnum("magicAttributeType", typeof(EMagicAttributeType));
             skillPlayableAssetName = getString("skillPlayableAssetName");
-            needMove = getBool("needMove");
         }
         public static string assetPath => "RefData/ExportTxt";
         public static string sheetName => "tbs_actor_skill";

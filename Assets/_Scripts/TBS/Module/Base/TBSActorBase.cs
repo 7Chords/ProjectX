@@ -7,6 +7,8 @@ using Random = UnityEngine.Random;
 using System.Collections.Generic;
 using GameCore.RefData;
 using GameCore.UI;
+using UnityEngine.Playables;
+using UnityEngine.Timeline;
 
 namespace GameCore.TBS
 {
@@ -180,7 +182,7 @@ namespace GameCore.TBS
             return _m_buffHander?.buffList;
         }
 
-        public virtual void LookTarget(Vector3 _target,Action _onStart,Action _onFinish)
+        public virtual void LookTarget(Vector3 _target, Action _onStart, Action _onFinish)
         {
             if (_target == _m_actorMono.gameObject.transform.rotation.eulerAngles)
             {
@@ -198,7 +200,7 @@ namespace GameCore.TBS
             _m_tweenContainer.RegDoTween(tween);
         }
 
-        public virtual void Attack(ETargetType _targetType,List<TBSActorBase> _targetList)
+        public virtual void Attack(ETargetType _targetType, List<TBSActorBase> _targetList)
         {
             if (_targetList == null || _targetType == ETargetType.NONE)
                 return;
@@ -208,7 +210,7 @@ namespace GameCore.TBS
                 Attack_All(_targetList);
 
             _m_buffHander?.TriggerAttackBuff();
-            
+
         }
 
         public abstract void Attack_Single(TBSActorBase _target);
@@ -328,7 +330,7 @@ namespace GameCore.TBS
 
         }
 
-        public virtual void TakeDamage(int _damage, bool _needShowFloatText = true , string _extraStr ="")
+        public virtual void TakeDamage(int _damage, bool _needShowFloatText = true, string _extraStr = "")
         {
             if (_damage <= 0)
             {
@@ -337,7 +339,7 @@ namespace GameCore.TBS
             _m_actorInfo.curHp = Mathf.Max(_m_actorInfo.curHp - _damage, 0);
 
             //uiÆ®×Ö
-            if(_needShowFloatText)
+            if (_needShowFloatText)
                 GameCommon.ShowDamageFloatText(_damage, GetDamageTextPos(), _extraStr);
             SCMsgCenter.SendMsg(SCMsgConst.TBS_ACTOR_INFO_CHG, actorInfo.runningId);
             if (_m_actorInfo.curHp == 0)
@@ -364,7 +366,7 @@ namespace GameCore.TBS
                 return;
             }
             _m_actorInfo.curHp = Mathf.Min(_m_actorInfo.curHp + _healAmount, _m_actorInfo.maxHp);
-            GameCommon.ShowHealFloatText(_healAmount, GetDamageTextPos(),"");
+            GameCommon.ShowHealFloatText(_healAmount, GetDamageTextPos(), "");
             SCMsgCenter.SendMsg(SCMsgConst.TBS_ACTOR_INFO_CHG, actorInfo.runningId);
         }
 
@@ -397,7 +399,7 @@ namespace GameCore.TBS
 
         public virtual void Miss()
         {
-            GameCommon.ShowAttackStateText(ETBSAttackState.MISS,GetDamageTextPos());
+            GameCommon.ShowAttackStateText(ETBSAttackState.MISS, GetDamageTextPos());
         }
 
         public virtual bool CriticalJudge()
@@ -510,9 +512,9 @@ namespace GameCore.TBS
         protected bool checkItemCanUse(long _itemId)
         {
             ItemRefObj itemRefObj = SCRefDataMgr.instance.itemRefList.refDataList.Find(x => x.id == _itemId);
-            if(itemRefObj == null)
+            if (itemRefObj == null)
                 return false;
-            switch(itemRefObj.id)
+            switch (itemRefObj.id)
             {
                 case 1003://¸´»î¾íÖá
                     if (SCModel.instance.tbsModel.CheckHasPlayerActorDead())
@@ -528,7 +530,7 @@ namespace GameCore.TBS
             TBSActorBase actor = SCModel.instance.tbsModel.GetCurActor();
             if (actor == null)
                 return;
-            if(actor == this)
+            if (actor == this)
             {
                 //È¡Ïû·ÀÓù×´Ì¬
                 actorInfo.isDefending = false;
@@ -551,6 +553,26 @@ namespace GameCore.TBS
         protected virtual void showDieOver()
         {
             SCCommon.DestoryGameObject(GetActorGameObject());
+        }
+
+        protected List<CameraMovingPlayableAsset> GetCameraMovingAssets(PlayableAsset _skillAsset)
+        {
+            TrackAsset targetTrack = null;
+
+            foreach (PlayableBinding pb in _skillAsset.outputs)
+            {
+                targetTrack = pb.sourceObject as TrackAsset;
+                if (targetTrack is CameraMovingTrack)
+                {
+                    break;
+                }
+            }
+            List<CameraMovingPlayableAsset> assetList = new List<CameraMovingPlayableAsset>();
+            foreach (TimelineClip clip in targetTrack.GetClips())
+            {
+                assetList.Add(clip.asset as CameraMovingPlayableAsset);
+            }
+            return assetList;
         }
     }
 }

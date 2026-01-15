@@ -8,7 +8,7 @@ namespace GameCore.Util
 {
     [TrackColor(1, 0, 0)]
     [TrackClipType(typeof(CameraMovingPlayableAsset))]
-    [TrackBindingType(typeof(string))]
+    [TrackBindingType(typeof(GameObject))]
     public class CameraMovingTrack : TrackAsset
     {
     }
