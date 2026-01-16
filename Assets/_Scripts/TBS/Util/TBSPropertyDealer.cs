@@ -222,7 +222,7 @@ namespace GameCore.TBS
         {
             if (_actorInfo == null)
                 return 0;
-            int resAttack = _actorInfo.attack;
+            int resAttack = _actorInfo.originalAttack;
 
             for (int i = 0; i < m_attackDealItemList.Count; i++)
             {
@@ -245,7 +245,7 @@ namespace GameCore.TBS
         {
             if (_actorInfo == null)
                 return 0;
-            int resDefend = _actorInfo.defend;
+            int resDefend = _actorInfo.originalDefend;
 
             for (int i = 0; i < m_defendDealItemList.Count; i++)
             {
@@ -268,7 +268,7 @@ namespace GameCore.TBS
         {
             if (_actorInfo == null)
                 return 0;
-            float resMiss = _actorInfo.missChance;
+            float resMiss = _actorInfo.originalMissChance;
 
             for (int i = 0; i < m_missDealItemList.Count; i++)
             {
@@ -290,7 +290,7 @@ namespace GameCore.TBS
         {
             if (_actorInfo == null)
                 return 0;
-            float resCriticalChance = _actorInfo.criticalChance;
+            float resCriticalChance = _actorInfo.originalCriticalChance;
 
             for (int i = 0; i < m_criticalChanceDealItemList.Count; i++)
             {
@@ -313,7 +313,7 @@ namespace GameCore.TBS
         {
             if (_actorInfo == null)
                 return EArmorLevelType.NONE;
-            int resArmorLevel = (int)_actorInfo.armorLevel;
+            int resArmorLevel = (int)_actorInfo.originalArmorLevel;
 
             for (int i = 0; i < m_armorDealItemList.Count; i++)
             {
@@ -335,7 +335,7 @@ namespace GameCore.TBS
         {
             if (_actorInfo == null)
                 return EMagicResistanceLevelType.NONE;
-            int resMagicResistence = (int)_actorInfo.magicResistanceLevel;
+            int resMagicResistence = (int)_actorInfo.originalMagicResistanceLevel;
 
             for (int i = 0; i < m_magicResistenceDealItemList.Count; i++)
             {
@@ -356,7 +356,7 @@ namespace GameCore.TBS
         {
             if (_actorInfo == null)
                 return EPhysicalLevelType.NONE;
-            int resPhysicsLevel = (int)_actorInfo.attackPhysicalLevel;
+            int resPhysicsLevel = (int)_actorInfo.originalAttackPhysicalLevel;
 
             for (int i = 0; i < m_physicsLevelDealItemList.Count; i++)
             {

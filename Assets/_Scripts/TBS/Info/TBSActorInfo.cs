@@ -11,6 +11,22 @@ namespace GameCore.TBS
         public int characterLv;
         public List<ETBSCompType> extraCompList;
         public List<long> skillList;
+
+        #region original
+        public int originalAttack;
+        public int originalDefend;
+        public float originalMissChance;
+        public float originalCriticalChance;
+        public ETargetType originalAttackTargetType;
+        public EArmorLevelType originalArmorLevel;
+        public EMagicResistanceLevelType originalMagicResistanceLevel;
+        public EDamageType originalAttackDamageType;
+        public EPhysicalLevelType originalAttackPhysicalLevel;
+        public EMagicAttributeType originalAttackMagicAttribute;
+        #endregion
+
+        #region Runtime
+
         public int curHp;
         public int maxHp;
         public int curMp;
@@ -32,12 +48,13 @@ namespace GameCore.TBS
         public List<EMagicAttributeType> bounceAttributeList;
         public List<EMagicAttributeType> suckAttributeList;
 
+        #endregion
+
         public CharacterRefObj characterRefObj;
 
         public long runningId;//游戏运行分配的id 唯一标识一个actor
         public bool hasDead;//是否死亡
         public bool isEnemy;//是否是敌人
-
         public bool isDefending;//是否正在防御
         public void InitNewInfo(CharacterRefObj _characterRefObj,bool _isEnemy)
         {
@@ -57,6 +74,21 @@ namespace GameCore.TBS
             }
             professionType = professioRefObj.professionType;
             skillList = _characterRefObj.init_skill_list;
+
+            originalAttack = _characterRefObj.initAttack;
+            originalDefend = _characterRefObj.initDefend;
+            originalMissChance = _characterRefObj.initMiss;
+            originalCriticalChance = _characterRefObj.initCritical;
+            originalAttackTargetType = _characterRefObj.attackTargetType;
+            originalArmorLevel = _characterRefObj.initArmorLevel;
+            originalMagicResistanceLevel = _characterRefObj.initMgicResistanceLevel;
+            originalAttackDamageType = _characterRefObj.attackDamageType;
+            originalAttackPhysicalLevel = _characterRefObj.attackPhysicalLevel;
+            originalAttackMagicAttribute = _characterRefObj.attackMagicAttribute;
+
+
+
+
             maxHp = _characterRefObj.initHp;
             maxMp = _characterRefObj.initMp;
             attack = _characterRefObj.initAttack;
