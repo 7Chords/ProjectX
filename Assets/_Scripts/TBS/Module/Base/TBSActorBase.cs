@@ -328,6 +328,8 @@ namespace GameCore.TBS
 
             _m_buffHander?.TriggerActorDieBuff();
 
+            _m_buffHander?.ClearAllBuffs();
+
         }
 
         public virtual void TakeDamage(int _damage, bool _needShowFloatText = true, string _extraStr = "")

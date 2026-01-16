@@ -90,8 +90,22 @@ namespace GameCore.TBS
 
             _buffInfo.onBuffRemove?.Invoke();
 
-            SCMsgCenter.SendMsg(SCMsgConst.TBS_ACTOR_REMOVE_BUFF, _buffInfo);
+        }
 
+        public void ClearAllBuffs()
+        {
+            if (buffList == null)
+                return;
+            List<TBSGameBuffInfo> deleteInfoList = new List<TBSGameBuffInfo>();
+            foreach (TBSGameBuffInfo buffInfo in buffList)
+            {
+                deleteInfoList.Add(buffInfo);
+            }
+            buffList.Clear();
+            foreach (TBSGameBuffInfo buffInfo in deleteInfoList)
+            {
+                SCMsgCenter.SendMsg(SCMsgConst.TBS_ACTOR_REMOVE_BUFF, buffInfo);
+            }
         }
 
         /// <summary>
