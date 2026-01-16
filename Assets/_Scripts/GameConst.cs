@@ -47,6 +47,8 @@ namespace GameCore
         public const float CAMERA_OFFSET_TRANSITION_DURATION = 0.75f;
         public const float CAMERA_FOLLOW_CHANGE_DURATION = 0.75f;
 
+        public const long ENEMY_NORMAL_ATTACK_ID = 0;
+
         #region AnimEvent or SignalEvent
 
         public const string SPAWN_DAMAGE_AREA_EVENT = "SpawnDamageArea";

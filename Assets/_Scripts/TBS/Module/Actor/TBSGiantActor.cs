@@ -82,24 +82,46 @@ namespace GameCore.TBS
 
         public void DealEnemyAction()
         {
-            //todo:完善逻辑 做普攻技能区分
+            long actionId = TBSEnemyActionHandler.GetEnemyActionId(actorInfo.characterRefObj.id);
 
-            //TBSActorBase targetActor = SCModel.instance.tbsModel.GetRandomAliveActor(true);
-            //if (targetActor == null)
-            //    return;
+            if (actionId == GameConst.ENEMY_NORMAL_ATTACK_ID)
+            {
+                TBSActorBase targetActor = SCModel.instance.tbsModel.GetRandomAliveActor(true);
+                if (targetActor == null)
+                    return;
 
-            //if (actorInfo.attackTargetType == ETargetType.ALL)
-            //{
-            //    GameCameraMgr.instance.SetCameraTarget(SCModel.instance.tbsModel.gameMono.enemyLookPlayerCenterPos);
-            //    Attack_All(SCModel.instance.tbsModel.playerActorModuleList);
-            //}
-            //else if (actorInfo.attackTargetType == ETargetType.SINGLE)
-            //{
-            //    GameCameraMgr.instance.SetCameraTarget(targetActor.GetAsCameraTargetTran());
-            //    Attack_Single(targetActor);
-            //}
+                if (actorInfo.attackTargetType == ETargetType.ALL)
+                {
+                    GameCameraMgr.instance.SetCameraTarget(SCModel.instance.tbsModel.gameMono.enemyLookPlayerCenterPos);
+                    Attack_All(SCModel.instance.tbsModel.playerActorModuleList);
+                }
+                else if (actorInfo.attackTargetType == ETargetType.SINGLE)
+                {
+                    GameCameraMgr.instance.SetCameraTarget(targetActor.GetAsCameraTargetTran());
+                    Attack_Single(targetActor);
+                }
+            }
+            else
+            {
+                TBSActorSkillRefObj skillRefObj = SCRefDataMgr.instance.tbsActorSkillRefList.refDataList.Find(x => x.id == actionId);
+                if (skillRefObj == null)
+                    return;
+                List<TBSActorBase> targetList = new List<TBSActorBase>();
+                if (skillRefObj.damageTargetType == ETargetType.ALL)
+                {
+                    targetList = SCModel.instance.tbsModel.playerActorModuleList;
+                    ReleaseSkill(actionId, targetList);
+                }
+                else if (skillRefObj.damageTargetType == ETargetType.SINGLE)
+                {
+                    TBSActorBase targetActor = SCModel.instance.tbsModel.GetRandomAliveActor(true);
+                    if (targetActor == null)
+                        return;
+                    targetList.Add(targetActor);
+                    ReleaseSkill(actionId, targetList);
+                }
 
-            ReleaseSkill(1006, SCModel.instance.tbsModel.playerActorModuleList);
+            }
         }
 
         public override void ReleaseSkill(long _skillId, List<TBSActorBase> _targetList)
