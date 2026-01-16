@@ -9,10 +9,11 @@ namespace GameCore.TBS
     [System.Serializable]
     public class TBSSkillCameraMovingItem
     {
-        [HideInInspector]public Transform lookAt;
-        [HideInInspector]public Transform follow;
-        [HideInInspector]public Vector3 offset;
-        [HideInInspector]public float offsetTranslateDuration;
+        [HideInInspector] public Transform lookAt;
+        [HideInInspector] public Transform follow;
+        [HideInInspector] public Vector3 offset;
+        [HideInInspector] public float offsetTranslateDuration;
+        [HideInInspector] public bool isPlayerOffset;
         
     }
     [CreateAssetMenu(fileName = "new TBSSkillCameraMovingCfg", menuName = "MBC≈‰÷√/TBS/TBSSkillCameraMovingCfg")]

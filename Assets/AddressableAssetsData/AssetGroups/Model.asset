@@ -45,6 +45,10 @@ MonoBehaviour:
     m_Address: RockGiant
     m_ReadOnly: 0
     m_SerializedLabels: []
+  - m_GUID: 3ac83f54d000cb543a3b7bf9abfc16e6
+    m_Address: Rock
+    m_ReadOnly: 0
+    m_SerializedLabels: []
   m_ReadOnly: 0
   m_Settings: {fileID: 11400000, guid: d14fb1bbe98862146a7f5467a5bc79f8, type: 2}
   m_SchemaSet:

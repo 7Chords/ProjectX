@@ -177,6 +177,10 @@ MonoBehaviour:
     m_Address: spr_head_rockGiant
     m_ReadOnly: 0
     m_SerializedLabels: []
+  - m_GUID: 300abdf8cbdd5c742a05b6506767fd64
+    m_Address: spr_skill_1006
+    m_ReadOnly: 0
+    m_SerializedLabels: []
   m_ReadOnly: 0
   m_Settings: {fileID: 11400000, guid: d14fb1bbe98862146a7f5467a5bc79f8, type: 2}
   m_SchemaSet:

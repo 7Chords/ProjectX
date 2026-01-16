@@ -32,7 +32,7 @@ namespace GameCore.Util
 
             GameCameraMgr.instance.SetCameraFollow(cameraMovingItem.follow);
             GameCameraMgr.instance.SetCameraTarget(cameraMovingItem.lookAt);
-            GameCameraMgr.instance.SetCameraPositionOffsetWithFollow(cameraMovingItem.offset, true,cameraMovingItem.offsetTranslateDuration);
+            GameCameraMgr.instance.SetCameraPositionOffsetWithFollow(cameraMovingItem.offset, cameraMovingItem.isPlayerOffset, cameraMovingItem.offsetTranslateDuration);
         }
 
         // Called when the state of the playable is set to Paused

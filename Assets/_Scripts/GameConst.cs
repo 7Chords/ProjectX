@@ -46,9 +46,12 @@ namespace GameCore
 
 
         #region AnimEvent or SignalEvent
+
         public const string SPAWN_DAMAGE_AREA_EVENT = "SpawnDamageArea";
         public const string COMMON_DEAL_SKILL_EVENT = "CommonDealSkill";
-        public const string SPAWN_PARTICLE_EFFECT_EVENT = "SpawnParticleEffect"; 
+        public const string SPAWN_PARTICLE_EFFECT_EVENT = "SpawnParticleEffect";
+        public const string SPAWN_FLY_OBJ_EVENT = "SpawnFlyObj";
+
         #endregion
 
     }
