@@ -55,6 +55,8 @@ namespace GameCore.TBS
                 string extraStr = "";
                 foreach(var actor in _attackInfo.targetActorList)
                 {
+                    if (actor.actorInfo.hasDead)
+                        continue;
                     if (actor.MissJudge())
                     {
                         actor.Miss();
@@ -177,6 +179,8 @@ namespace GameCore.TBS
                 string extraStr = "";
                 foreach (var actor in _skillInfo.targetActorList)
                 {
+                    if (actor.actorInfo.hasDead)
+                        continue;
                     if (actor.MissJudge())
                     {
                         actor.Miss();
