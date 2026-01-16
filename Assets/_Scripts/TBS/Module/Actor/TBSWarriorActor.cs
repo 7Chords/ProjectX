@@ -208,8 +208,8 @@ namespace GameCore.TBS
                         skillAssetList[1].cameraMovingItem.lookAt = SCModel.instance.tbsModel.gameMono.playerLookEnemyCenterPos;
                         skillAssetList[1].cameraMovingItem.follow = GetModelGameObject().transform;
                         skillAssetList[1].cameraMovingItem.offset = GetActorCameraTran().position + new Vector3(2,0,2);
-                        skillAssetList[0].cameraMovingItem.offsetTranslateDuration = 0.75f;
-                        skillAssetList[0].cameraMovingItem.isPlayerOffset = true;
+                        skillAssetList[1].cameraMovingItem.offsetTranslateDuration = 0.75f;
+                        skillAssetList[1].cameraMovingItem.isPlayerOffset = true;
 
 
                         _m_actorMono.signalEventTrigger.AddSignalEvent(GameConst.COMMON_DEAL_SKILL_EVENT, dealSkill);
