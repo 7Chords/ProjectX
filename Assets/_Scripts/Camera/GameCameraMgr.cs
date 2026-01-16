@@ -104,7 +104,6 @@ namespace GameCore
                 return;
             _m_followTran = _follow;
             _m_virtualCamera.Follow = _m_followTran;
-
             _onCameraFollowStart?.Invoke();
 
             Tween tween = DOVirtual.DelayedCall(0.5f,

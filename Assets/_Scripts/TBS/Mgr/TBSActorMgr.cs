@@ -443,18 +443,24 @@ namespace GameCore.TBS
 
             void setCameraOffset_Player()
             {
-                //todo(cam)
+                float duration = 0;
+                if (_firstSet)
+                    duration = 0.75f;
+                else
+                    duration = _m_curActionActorIndex == 0 ? 0 : 0.75f;
+
                 GameCameraMgr.instance.SetCameraPositionOffsetWithFollow(_m_playerActorModuleList[_m_curActionActorIndex].GetActorCameraTran().position
-                    ,true,0.75f, hideUIAndCursor, showUIAndCursor);
+                    ,true, duration, hideUIAndCursor, showUIAndCursor);
             }
 
             if (SCModel.instance.tbsModel.curTurnType == ETBSTurnType.PLAYER)
             {
                 //…Ë÷√œ‡ª˙
                 GameCameraMgr.instance.SetCameraTarget(_m_gameMono.playerLookEnemyCenterPos);
-                if(_reSetFollow)
+                if (_reSetFollow)
                     GameCameraMgr.instance.SetCameraFollow(_m_playerActorModuleList[_m_curActionActorIndex].GetModelGameObject().transform);
                 setCameraOffset_Player();
+
             }
             else
             {
