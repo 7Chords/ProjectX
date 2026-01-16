@@ -37,6 +37,14 @@ MonoBehaviour:
     m_Address: circle_yellow
     m_ReadOnly: 0
     m_SerializedLabels: []
+  - m_GUID: d8703a33a4eb0b84a875202fde23e8f7
+    m_Address: sparks_red
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  - m_GUID: 8eb503696b886e04faff8fc0f480d473
+    m_Address: explosion
+    m_ReadOnly: 0
+    m_SerializedLabels: []
   m_ReadOnly: 0
   m_Settings: {fileID: 11400000, guid: d14fb1bbe98862146a7f5467a5bc79f8, type: 2}
   m_SchemaSet:

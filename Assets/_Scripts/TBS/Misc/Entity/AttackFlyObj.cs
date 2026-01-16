@@ -1,3 +1,4 @@
+using GameCore.Util;
 using SCFrame;
 using System;
 using UnityEngine;
@@ -15,6 +16,8 @@ namespace GameCore.TBS
         private GameObject _m_targetGO;
 
         private Action _m_onDealAttack;
+
+        public string destroyPlayPartical;
         public void Initialize(GameObject _target,Action _onDealAttack)
         {
             _m_targetGO = _target;
@@ -35,6 +38,8 @@ namespace GameCore.TBS
             {
                 _m_onDealAttack?.Invoke();
                 //todo:效果播放完毕后销毁
+                if(!string.IsNullOrEmpty(destroyPlayPartical))
+                    ParticleMgr.instance.PlayEffect(destroyPlayPartical, transform.position);
                 SCCommon.DestoryGameObject(gameObject);
             }
         }
