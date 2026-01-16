@@ -95,7 +95,7 @@ namespace GameCore.TBS
             SCMsgCenter.UnregisterMsgAct(SCMsgConst.TBS_ACTOR_CHG, onTBSActorChg);
             SCMsgCenter.UnregisterMsgAct(SCMsgConst.TBS_TURN_CHG, onTurnChg);
 
-            _m_actorMono.animEventTrigger?.RemoveAllListener();
+            _m_actorMono.animEventTrigger?.CleanAllActionEvent();
 
             _m_tweenContainer?.KillAllDoTween();
             _m_tweenContainer = null;

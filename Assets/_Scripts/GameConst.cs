@@ -44,6 +44,8 @@ namespace GameCore
 
         public const float MOUSE_RAY_MAX_DISTANCE = 99;
 
+        public const float CAMERA_OFFSET_TRANSITION_DURATION = 0.75f;
+        public const float CAMERA_FOLLOW_CHANGE_DURATION = 0.75f;
 
         #region AnimEvent or SignalEvent
 

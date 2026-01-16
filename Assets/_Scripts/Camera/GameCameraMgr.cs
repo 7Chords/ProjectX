@@ -38,7 +38,7 @@ namespace GameCore
         /// <param name="_offset"></param>
         /// <param name="_onStart"></param>
         /// <param name="_onFinish"></param>
-        public void SetCameraPositionOffsetWithFollow(Vector3 _offset,bool _isPlayer,float _duration = 0.75f, Action _onStart = null,Action _onFinish = null)
+        public void SetCameraPositionOffsetWithFollow(Vector3 _offset,bool _isPlayer,float _duration = GameConst.CAMERA_OFFSET_TRANSITION_DURATION, Action _onStart = null,Action _onFinish = null)
         {
             if (_m_virtualCamera == null)
                 return;
@@ -98,7 +98,7 @@ namespace GameCore
         /// <param name="_follow"></param>
         /// <param name="_onCameraFollowStart"></param>
         /// <param name="_onCameraFollowFinish"></param>
-        public void SetCameraFollow(Transform _follow, Action _onCameraFollowStart = null, Action _onCameraFollowFinish = null)
+        public void SetCameraFollow(Transform _follow, float _duration = GameConst.CAMERA_FOLLOW_CHANGE_DURATION, Action _onCameraFollowStart = null, Action _onCameraFollowFinish = null)
         {
             if (_m_virtualCamera == null)
                 return;
@@ -106,7 +106,7 @@ namespace GameCore
             _m_virtualCamera.Follow = _m_followTran;
             _onCameraFollowStart?.Invoke();
 
-            Tween tween = DOVirtual.DelayedCall(0.5f,
+            Tween tween = DOVirtual.DelayedCall(_duration,
                 () =>
                 {
                     _onCameraFollowFinish?.Invoke();

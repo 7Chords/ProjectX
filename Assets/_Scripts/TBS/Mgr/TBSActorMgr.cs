@@ -441,26 +441,35 @@ namespace GameCore.TBS
                 TBSCursorMgr.instance.SetSelectionCursor(worldPosList);
             }
 
-            void setCameraOffset_Player()
-            {
-                float duration = 0;
-                if (_firstSet)
-                    duration = 0.75f;
-                else
-                    duration = _m_curActionActorIndex == 0 ? 0 : 0.75f;
-
-                GameCameraMgr.instance.SetCameraPositionOffsetWithFollow(_m_playerActorModuleList[_m_curActionActorIndex].GetActorCameraTran().position
-                    ,true, duration, hideUIAndCursor, showUIAndCursor);
-            }
-
             if (SCModel.instance.tbsModel.curTurnType == ETBSTurnType.PLAYER)
             {
-                //设置相机
-                GameCameraMgr.instance.SetCameraTarget(_m_gameMono.playerLookEnemyCenterPos);
-                if (_reSetFollow)
-                    GameCameraMgr.instance.SetCameraFollow(_m_playerActorModuleList[_m_curActionActorIndex].GetModelGameObject().transform);
-                setCameraOffset_Player();
 
+                float offsetChangeDuration = 0;
+                if (_firstSet)
+                    offsetChangeDuration = GameConst.CAMERA_OFFSET_TRANSITION_DURATION;
+                else
+                    offsetChangeDuration = _m_curActionActorIndex == 0 ? 0 : GameConst.CAMERA_OFFSET_TRANSITION_DURATION;
+
+                if(offsetChangeDuration == 0)
+                {
+                    //设置相机
+                    GameCameraMgr.instance.SetCameraTarget(_m_gameMono.playerLookEnemyCenterPos);
+                    if (_reSetFollow)
+                        GameCameraMgr.instance.SetCameraFollow(_m_playerActorModuleList[_m_curActionActorIndex].GetModelGameObject().transform, GameConst.CAMERA_FOLLOW_CHANGE_DURATION, hideUIAndCursor, showUIAndCursor);
+
+                    GameCameraMgr.instance.SetCameraPositionOffsetWithFollow(_m_playerActorModuleList[_m_curActionActorIndex].GetActorCameraTran().position
+                        , true, offsetChangeDuration);
+                }
+                else if(offsetChangeDuration == GameConst.CAMERA_OFFSET_TRANSITION_DURATION)
+                {
+                    //设置相机
+                    GameCameraMgr.instance.SetCameraTarget(_m_gameMono.playerLookEnemyCenterPos);
+                    if (_reSetFollow)
+                        GameCameraMgr.instance.SetCameraFollow(_m_playerActorModuleList[_m_curActionActorIndex].GetModelGameObject().transform);
+
+                    GameCameraMgr.instance.SetCameraPositionOffsetWithFollow(_m_playerActorModuleList[_m_curActionActorIndex].GetActorCameraTran().position
+                        , true, offsetChangeDuration, hideUIAndCursor, showUIAndCursor);
+                }
             }
             else
             {
