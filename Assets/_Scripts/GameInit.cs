@@ -31,7 +31,7 @@ namespace GameCore
 
 
             SCMsgCenter.SendMsg(SCMsgConst.GAME_START);
-            SCMsgCenter.SendMsg(SCMsgConst.TBS_GAME_START);
+            //SCMsgCenter.SendMsg(SCMsgConst.TBS_GAME_START);
         }
 
 

@@ -16,9 +16,4 @@ namespace GameCore.TBS
         [HideInInspector] public bool isPlayerOffset;
         
     }
-    [CreateAssetMenu(fileName = "new TBSSkillCameraMovingCfg", menuName = "MBC≈‰÷√/TBS/TBSSkillCameraMovingCfg")]
-    public class TBSSkillCameraMovingCfg : ScriptableObject
-    {
-        public List<TBSSkillCameraMovingItem> skillCameraMovingItemList;
-    }
 }

@@ -1,7 +1,9 @@
 using Cinemachine;
+using GameCore.OW;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.InputSystem;
 
 namespace SCFrame
 {
@@ -13,6 +15,7 @@ namespace SCFrame
     {
         [Header("Player")]
         public GameObject playerGO;
+        public PlayerMono playerMono;
 
         [Header("UI")]
         public Canvas mainCanvas;

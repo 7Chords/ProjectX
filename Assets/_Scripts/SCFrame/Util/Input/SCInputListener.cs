@@ -102,7 +102,17 @@ namespace SCFrame
                     }
                 }
             }
-
+            else
+            {
+                if (Input.GetKey(SCSettingMgr.instance.saveKeyInfo.owForwardKeyCode))
+                    SCMsgCenter.SendMsg(SCMsgConst.OW_FORWARD_INPUT);
+                if (Input.GetKey(SCSettingMgr.instance.saveKeyInfo.owBackwardKeyCode))
+                    SCMsgCenter.SendMsg(SCMsgConst.OW_BACKWARD_INPUT);
+                if (Input.GetKey(SCSettingMgr.instance.saveKeyInfo.owLeftKeyCode))
+                    SCMsgCenter.SendMsg(SCMsgConst.OW_LEFT_INPUT);
+                if (Input.GetKey(SCSettingMgr.instance.saveKeyInfo.owRightKeyCode))
+                    SCMsgCenter.SendMsg(SCMsgConst.OW_RIGHT_INPUT);
+            }
         }
 
 

@@ -391,6 +391,7 @@ namespace GameCore.TBS
                 return;
             }
             _m_actorInfo.curMp = Mathf.Min(_m_actorInfo.curMp + _healAmount, _m_actorInfo.maxMp);
+            GameCommon.ShowHealFloatText(_healAmount, GetDamageTextPos(), "");
             SCMsgCenter.SendMsg(SCMsgConst.TBS_ACTOR_INFO_CHG, actorInfo.runningId);
 
             TBSConfigRefObj configRefObj = SCRefDataMgr.instance.tbsConfigRefObj;

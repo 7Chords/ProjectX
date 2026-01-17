@@ -79,9 +79,9 @@ namespace GameCore.UI
                 int idx = -1;
                 foreach(var actor in SCModel.instance.tbsModel.playerActorModuleList)
                 {
+                    idx++;
                     if (actor.actorInfo.hasDead)
                         continue;
-                    idx++;
                     _m_curSelectActorIdxList.Add(idx);
                 }
             }
@@ -118,34 +118,5 @@ namespace GameCore.UI
             refreshItemListShow();
         }
 
-        private void onTBSSelectEnemyAllOrSingleStateSwitch()
-        {
-            refreshItemListShow();
-        }
-
-        private void onEnemyActorRemoveFromList(object[] _objs)
-        {
-            if (_objs == null || _objs.Length == 0)
-                return;
-            long runningId = (long)_objs[0];
-            TBSActorInfo actorInfo = null;
-            UIPanelTBSPlayerHudItem tmpItem = null;
-            foreach(var item in _m_playerHudItemList)
-            {
-                if (item.actorInfo.runningId == runningId)
-                {
-                    tmpItem = item;
-                    actorInfo = item.actorInfo;
-                }
-            }
-            if (actorInfo == null)
-                return;
-            if (!actorInfo.isEnemy)
-                return;
-
-            _m_playerActorList = SCModel.instance.tbsModel.enemyActorModuleList;
-            SCCommon.DestoryGameObject(tmpItem.GetGameObject());
-            _m_playerHudItemList.Remove(tmpItem);
-        }
     }
 }

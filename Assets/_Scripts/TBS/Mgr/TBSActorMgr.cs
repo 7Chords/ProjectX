@@ -43,6 +43,8 @@ namespace GameCore.TBS
             SCMsgCenter.RegisterMsgAct(SCMsgConst.TBS_TURN_CHG_SHOW_END, onTBSTurnChgShowEnd);
             SCMsgCenter.RegisterMsg(SCMsgConst.TBS_ACTOR_DIE, onTBSActorDie);
 
+            _m_playerActorModuleList = new List<TBSActorBase>();
+            _m_enemyActorModuleList = new List<TBSActorBase>();
         }
         public override void OnDiscard()
         {
@@ -397,7 +399,7 @@ namespace GameCore.TBS
 
         /// <summary>
         /// 刷新光标和相机
-        /// </summary>
+        /// </summary>t
         /// <param name="_reSetFollow"></param>
         /// <param name="_firstSet"></param>
         private void refreshCameraAndCursor(bool _reSetFollow,bool _firstSet = false)
