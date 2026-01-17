@@ -376,7 +376,6 @@ namespace GameCore.TBS
         {
             if (_objs == null || _objs.Length == 0)
                 return;
-            //如果是敌人死亡 要从infolist里面移除掉 玩家的话可以复活 所以不用
             long runningId = (long)_objs[0];
             TBSActorBase actor = SCModel.instance.tbsModel.GetActorByRunningId(runningId);
             if (actor == null)

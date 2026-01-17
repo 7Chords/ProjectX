@@ -215,7 +215,9 @@ namespace GameCore.UI
                         if (_isPlayerTarget)
                         {
                             for (int i = 0; i < SCModel.instance.tbsModel.playerActorModuleList.Count; i++)
+                            {
                                 posList.Add(SCModel.instance.tbsModel.playerActorModuleList[i].GetCursorPos());
+                            }
                             TBSCursorMgr.instance.SetSelectionCursor(posList);
                             GameCoreMgr.instance.uiCoreMgr.AddNode(new UINodeTBSPlayerHud(SCUIShowType.ADDITION, SCModel.instance.tbsModel.playerActorModuleList));
                         }

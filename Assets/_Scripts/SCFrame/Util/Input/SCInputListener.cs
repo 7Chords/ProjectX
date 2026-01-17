@@ -87,7 +87,6 @@ namespace SCFrame
                         {
                             case GameConst.TAG_ENEMY:
                                 {
-                                    //SCMsgCenter.SendMsg(SCMsgConst.TBS_CONFIRM_INPUT);
                                     SCMsgCenter.SendMsg(SCMsgConst.TBS_MOUSE_CLICK_ENEMY_INPUT, _m_raycastHit.collider.gameObject);
                                 }
                                 break;

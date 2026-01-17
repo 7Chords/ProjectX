@@ -245,23 +245,46 @@ namespace GameCore.TBS
                 return;
             }
 
-            _ASCUINodeBase topNode = GameCoreMgr.instance.uiCoreMgr.GetTopShowNode(SCUIShowType.FULL);
-            if (topNode is not UINodeTBSConfirm || !(topNode as UINodeTBSConfirm).isPlayerTargetConfirm)
-                return;
-
             GameObject playerGO = _objs[0] as GameObject;
             if (playerGO == null)
                 return;
             int goIndex = SCModel.instance.tbsModel.GetActorGOIndex(playerGO, true);
+            TBSActorInfo actorInfo = SCModel.instance.tbsModel.playerActorModuleList[goIndex].actorInfo;
+            if (actorInfo == null)
+                return;
+
+
+            _ASCUINodeBase topNode = GameCoreMgr.instance.uiCoreMgr.GetTopShowNode(SCUIShowType.FULL);
+            if (topNode is not UINodeTBSConfirm || !(topNode as UINodeTBSConfirm).isPlayerTargetConfirm)
+                return;
+            UINodeTBSConfirm confirmNode = topNode as UINodeTBSConfirm;
+
+            //对与道具或技能要求的目标类型不匹配的目标剔除
+            if(confirmNode.confirmType == SCUIConfirmType.SKILL)
+            {
+                if (SCModel.instance.tbsModel.GetCurSkillRefObj().targetAliveType == ETargetAliveType.ALIVE &&
+                    actorInfo.hasDead)
+                    return;
+                if (SCModel.instance.tbsModel.GetCurSkillRefObj().targetAliveType == ETargetAliveType.DEAD &&
+                    !actorInfo.hasDead)
+                    return;
+            }
+            else if (confirmNode.confirmType == SCUIConfirmType.ITEM)
+            {
+                if (SCModel.instance.tbsModel.GetCurItemRefObj().itemTargetAliveType == ETargetAliveType.ALIVE &&
+                    actorInfo.hasDead)
+                    return;
+                if (SCModel.instance.tbsModel.GetCurItemRefObj().itemTargetAliveType == ETargetAliveType.DEAD &&
+                    !actorInfo.hasDead)
+                    return;
+            }
 
             //重复点击选择同一个角色 在处于确认状态的情况下表示“确认”
             if (goIndex == _m_singlePlayerTargetIndex)
             {
-                _ASCUINodeBase topFullNode = GameCoreMgr.instance.uiCoreMgr.GetTopNode(SCUIShowType.FULL);
-                if (topFullNode.GetNodeName() == nameof(UINodeTBSConfirm))
-                    SCMsgCenter.SendMsg(SCMsgConst.TBS_CONFIRM_INPUT);
+                SCMsgCenter.SendMsg(SCMsgConst.TBS_CONFIRM_INPUT);
             }
-            else
+            else//切换到选择的角色
             {
                 _m_singlePlayerTargetIndex = goIndex;
                 SCModel.instance.tbsModel.curSelectSinglePlayerTargetIdx = _m_singlePlayerTargetIndex;

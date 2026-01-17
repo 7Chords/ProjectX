@@ -173,7 +173,7 @@ namespace GameCore.TBS
 
                         _m_actorMono.signalEventTrigger.AddSignalEvent(GameConst.SPAWN_DAMAGE_AREA_EVENT, () =>
                         {
-                            GameObject go = ParticleMgr.instance.PlayEffect("snow_hit"
+                            GameObject go = ParticleMgr.instance.PlayEffect("fire_explosion"
                                 , SCModel.instance.tbsModel.gameMono.playerLookEnemyCenterPos.position).gameObject;
                             go.GetComponent<CommonDamageArea>().Initialize(SCModel.instance.tbsModel.gameMono.playerLookEnemyCenterPos.gameObject, dealSkill);
                         });
@@ -203,37 +203,6 @@ namespace GameCore.TBS
                 default:
                     break;
             }
-
-
-            //if (!_m_actorSkillRefObj.needMove)
-            //{
-            //    GameCoreMgr.instance.uiCoreMgr.HideNode(nameof(UINodeTBSConfirm));
-            //    GameCoreMgr.instance.uiCoreMgr.HideNode(nameof(UINodeTBSEnemyHud));
-            //    TBSCursorMgr.instance.HideSelectionCursor();
-
-
-            //    _m_actorMono.signalEventTrigger.AddSignalEvent("CommonDealSkill", dealSkill);
-            //    _m_actorMono.skillDirector.Play(skillAsset);
-
-
-            //    Sequence seq = DOTween.Sequence();
-            //    seq.Append(DOVirtual.DelayedCall((float)skillAsset.duration,
-            //        () =>
-            //        {
-            //            SCMsgCenter.SendMsg(SCMsgConst.TBS_ACTOR_ACTION_END, actorInfo.runningId);
-            //            _m_actorMono.signalEventTrigger.RemoveSignalEvent("CommonDealSkill");
-            //            _m_attackEnemyActorList.Clear();
-
-            //        }));
-
-            //    _m_tweenContainer?.RegDoTween(seq);
-            //}
-            //else
-            //{
-            //    switch (_m_actorSkillRefObj.skillName)
-            //    {
-            //    }
-            //}
         }
     }
 }
