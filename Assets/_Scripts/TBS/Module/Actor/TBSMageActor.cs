@@ -146,14 +146,6 @@ namespace GameCore.TBS
                         GameCameraMgr.instance.SetCameraPositionOffsetWithFollow(SCModel.instance.tbsModel.gameMono.playerLookEnemyCenterPos.position, true,0f);
                         GameCameraMgr.instance.SetCameraTarget(SCModel.instance.tbsModel.gameMono.enemyLookPlayerCenterPos);
 
-
-                        _m_actorMono.signalEventTrigger.AddSignalEvent(GameConst.SPAWN_PARTICLE_EFFECT_EVENT, () =>
-                        {
-                            GameObject go = ParticleMgr.instance.PlayEffect("heal_green"
-                                , _targetList[0].GetActorGameObject().transform.position).gameObject;
-                            //go.GetComponent<CommonDamageArea>().Initialize(_targetList[0].GetActorGameObject(), dealSkill);
-                        });
-
                         _m_actorMono.skillDirector.Play(skillAsset);
 
                         dealSkill();
@@ -164,7 +156,6 @@ namespace GameCore.TBS
                             () =>
                             {
                                 SCMsgCenter.SendMsg(SCMsgConst.TBS_ACTOR_ACTION_END, actorInfo.runningId);
-                                _m_actorMono.signalEventTrigger.RemoveSignalEvent(GameConst.SPAWN_PARTICLE_EFFECT_EVENT);
                                 _m_attackEnemyActorList.Clear();
 
                             }));

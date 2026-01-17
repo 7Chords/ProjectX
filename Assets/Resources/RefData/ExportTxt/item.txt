@@ -2,3 +2,4 @@
 1001	#1_item_name_1001	spr_item_1001	TRUE	BATTLE	BATTLE_USE	SINGLE	ALIVE	#2_tbs_item_desc_basic_up	1001
 1002	#1_item_name_1002	spr_item_1002	TRUE	BATTLE	BATTLE_USE	SINGLE	ALIVE	#2_tbs_item_desc_buff_up	1002
 1003	#1_item_name_1003	spr_item_1003	TRUE	BATTLE	BATTLE_USE	SINGLE	DEAD	#1_tbs_item_rebirth_sroll	1003
+1004	#1_item_name_1004	spr_item_1004	TRUE	BATTLE	BATTLE_USE	SINGLE	ALIVE	#2_tbs_item_desc_basic_up	1004

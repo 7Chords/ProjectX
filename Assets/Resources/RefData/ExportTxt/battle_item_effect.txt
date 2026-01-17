@@ -1,8 +1,8 @@
 ﻿id	effectType	basicChgEffectList	buffEffectList
-1001	BASIC_CHG	HP:25	*
+1001	BASIC_CHG	HP:100	*
 1002	BUFF	*	1002:3
 1003	SPECIAL	*	*
-
+1004	BASIC_CHG	MP:25	*
 
 
 

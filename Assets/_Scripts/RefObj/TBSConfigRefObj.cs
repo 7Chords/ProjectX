@@ -41,6 +41,10 @@ namespace GameCore.RefData
         public float tbsSuperAmountMultiplier;
         public float tbsDefendMultiplier;
         public string tbsHurtParticleName;
+        public string tbsHealHpParticleName;
+        public string tbsHealMpParticleName;
+
+
         protected override void _parseFromString()
         {
             tbsCrticalMultiplier = getFloat("tbsCrticalMultiplier");
@@ -75,6 +79,8 @@ namespace GameCore.RefData
             tbsSuperAmountMultiplier = getFloat("tbsSuperAmountMultiplier");
             tbsDefendMultiplier = getFloat("tbsDefendMultiplier");
             tbsHurtParticleName = getString("tbsHurtParticleName");
+            tbsHealHpParticleName = getString("tbsHealHpParticleName");
+            tbsHealMpParticleName = getString("tbsHealMpParticleName");
 
         }
 

@@ -45,6 +45,10 @@ MonoBehaviour:
     m_Address: explosion
     m_ReadOnly: 0
     m_SerializedLabels: []
+  - m_GUID: e5454eda08fea724799b38ff4db4f99f
+    m_Address: heal_orange
+    m_ReadOnly: 0
+    m_SerializedLabels: []
   m_ReadOnly: 0
   m_Settings: {fileID: 11400000, guid: d14fb1bbe98862146a7f5467a5bc79f8, type: 2}
   m_SchemaSet:

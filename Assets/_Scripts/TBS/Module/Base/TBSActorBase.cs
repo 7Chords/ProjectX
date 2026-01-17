@@ -375,6 +375,12 @@ namespace GameCore.TBS
             _m_actorInfo.curHp = Mathf.Min(_m_actorInfo.curHp + _healAmount, _m_actorInfo.maxHp);
             GameCommon.ShowHealFloatText(_healAmount, GetDamageTextPos(), "");
             SCMsgCenter.SendMsg(SCMsgConst.TBS_ACTOR_INFO_CHG, actorInfo.runningId);
+
+            TBSConfigRefObj configRefObj = SCRefDataMgr.instance.tbsConfigRefObj;
+            if (configRefObj == null)
+                return;
+            if (!string.IsNullOrEmpty(configRefObj.tbsHurtParticleName))
+                ParticleMgr.instance.PlayEffect(configRefObj.tbsHealHpParticleName, GetModelPos());
         }
 
         public virtual void HealMp(int _healAmount)
@@ -386,6 +392,12 @@ namespace GameCore.TBS
             }
             _m_actorInfo.curMp = Mathf.Min(_m_actorInfo.curMp + _healAmount, _m_actorInfo.maxMp);
             SCMsgCenter.SendMsg(SCMsgConst.TBS_ACTOR_INFO_CHG, actorInfo.runningId);
+
+            TBSConfigRefObj configRefObj = SCRefDataMgr.instance.tbsConfigRefObj;
+            if (configRefObj == null)
+                return;
+            if (!string.IsNullOrEmpty(configRefObj.tbsHurtParticleName))
+                ParticleMgr.instance.PlayEffect(configRefObj.tbsHealMpParticleName, GetModelPos());
         }
 
         public virtual void Rebirth(float _healRatio)

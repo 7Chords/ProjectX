@@ -2884,7 +2884,6 @@ MonoBehaviour:
   - posType: 3
     cameraTran: {fileID: 3645416742883017731}
   detailCamOffset: {x: 0, y: 3, z: 10}
-  hurtParticalName: sparks_red
   attackSourceTran: {fileID: 5225333171201662888}
   attackSpwanTime: 0.5
   attackFlySpeed: 40
@@ -2924,7 +2923,7 @@ PlayableDirector:
   m_GameObject: {fileID: 8804294570544746406}
   m_Enabled: 1
   serializedVersion: 3
-  m_PlayableAsset: {fileID: 11400000, guid: 1cba7b1a4df80ab4986d9cd4aa264310, type: 2}
+  m_PlayableAsset: {fileID: 11400000, guid: 2fdad3e0ce2242d41ab40bdc12023862, type: 2}
   m_InitialState: 0
   m_WrapMode: 2
   m_DirectorUpdateMode: 1
@@ -2948,8 +2947,6 @@ PlayableDirector:
     value: {fileID: 5724978734182254877}
   - key: {fileID: 8329444532508780755, guid: 2fdad3e0ce2242d41ab40bdc12023862, type: 2}
     value: {fileID: 8898066990867049978}
-  - key: {fileID: 2008177220952378097, guid: 2fdad3e0ce2242d41ab40bdc12023862, type: 2}
-    value: {fileID: 5724978734182254877}
   m_ExposedReferences:
     m_References:
     - 5116a7f505adddd49a9c3b5db9fd2158: {fileID: 3948134765084683364}
