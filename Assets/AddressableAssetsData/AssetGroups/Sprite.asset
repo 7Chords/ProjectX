@@ -106,7 +106,7 @@ MonoBehaviour:
     m_ReadOnly: 0
     m_SerializedLabels: []
   - m_GUID: a2563f2b8dbc4044b9a50537d3a29962
-    m_Address: spr_skill_1005
+    m_Address: spr_skill_1007
     m_ReadOnly: 0
     m_SerializedLabels: []
   - m_GUID: 2d5d779ef92b194428403bcb11e76201
@@ -179,6 +179,10 @@ MonoBehaviour:
     m_SerializedLabels: []
   - m_GUID: 300abdf8cbdd5c742a05b6506767fd64
     m_Address: spr_skill_1006
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  - m_GUID: ee40d72ece864764f9d17d015aedb524
+    m_Address: spr_skill_1005
     m_ReadOnly: 0
     m_SerializedLabels: []
   m_ReadOnly: 0

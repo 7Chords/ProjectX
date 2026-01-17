@@ -40,6 +40,7 @@ namespace GameCore.RefData
         public float tbsLargeAmountMultiplier;
         public float tbsSuperAmountMultiplier;
         public float tbsDefendMultiplier;
+        public string tbsHurtParticleName;
         protected override void _parseFromString()
         {
             tbsCrticalMultiplier = getFloat("tbsCrticalMultiplier");
@@ -73,6 +74,8 @@ namespace GameCore.RefData
             tbsLargeAmountMultiplier = getFloat("tbsLargeAmountMultiplier");
             tbsSuperAmountMultiplier = getFloat("tbsSuperAmountMultiplier");
             tbsDefendMultiplier = getFloat("tbsDefendMultiplier");
+            tbsHurtParticleName = getString("tbsHurtParticleName");
+
         }
 
         public static string assetPath => "RefData/ExportTxt";

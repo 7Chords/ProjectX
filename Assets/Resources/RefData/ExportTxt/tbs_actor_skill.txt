@@ -5,3 +5,4 @@
 1004	疗愈术	spr_skill_1004	TRUE	5	0	#2_tbs_skill_desc_1004	HEAL_HP	SINGLE	ALIVE	NONE	LITTLE	NONE	NONE	tl_lorraine_skill_1004
 1005	骑士决心	spr_skill_1005	TRUE	8	0	#2_tbs_skill_desc_1005	BUFF	SINGLE	ALIVE	NONE	NONE	NONE	NONE	tl_karenina_skill_1005
 1006	巨石坠	spr_skill_1006	TRUE	0	0	#2_tbs_skill_desc_1006	DAMAGE	ALL	ALIVE	PHYSICAL	MIDDLE	MEDIUM	NONE	tl_rockGiant_skill_1006
+1007	坚如磐石	spr_skill_1007	TRUE	10	0	#2_tbs_skill_desc_1007	BUFF	ALL	ALIVE	NONE	NONE	NONE	NONE	tl_karenina_skill_1005

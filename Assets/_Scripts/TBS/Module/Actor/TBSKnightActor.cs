@@ -160,6 +160,57 @@ namespace GameCore.TBS
                         _m_tweenContainer?.RegDoTween(seq);
                     }
                     break;
+                case "¼áÈçÅÍÊ¯":
+                    {
+                        GameCoreMgr.instance.uiCoreMgr.HideNode(nameof(UINodeTBSConfirm));
+                        GameCoreMgr.instance.uiCoreMgr.HideNode(nameof(UINodeTBSPlayerHud));
+
+                        TBSCursorMgr.instance.HideSelectionCursor();
+
+                        GameCameraMgr.instance.SetCameraPositionOffsetWithFollow(SCModel.instance.tbsModel.gameMono.playerLookEnemyCenterPos.position, true, 0f);
+                        GameCameraMgr.instance.SetCameraTarget(SCModel.instance.tbsModel.gameMono.enemyLookPlayerCenterPos);
+
+
+                        _m_actorMono.signalEventTrigger.AddSignalEvent(GameConst.SPAWN_PARTICLE_EFFECT_EVENT, () =>
+                        {
+                            ParticleMgr.instance.PlayEffect("circle_yellow", _targetList[0].GetActorGameObject().transform.position);
+                            ParticleMgr.instance.PlayEffect("circle_yellow", _targetList[1].GetActorGameObject().transform.position);
+                            ParticleMgr.instance.PlayEffect("circle_yellow", _targetList[2].GetActorGameObject().transform.position);
+
+                        });
+
+                        _m_actorMono.skillDirector.Play(skillAsset);
+
+                        dealSkill();
+
+
+                        TBSGameBuffInfo buffInfo = TBSBuffFactory.CreateBuffInfo(1004, 3, _targetList[0]);
+                        TBSGameBuffInfo buffInfo_2 = TBSBuffFactory.CreateBuffInfo(1004, 3, _targetList[1]);
+                        TBSGameBuffInfo buffInfo_3 = TBSBuffFactory.CreateBuffInfo(1004, 3, _targetList[2]);
+
+                        _targetList[0].GetBuff(buffInfo);
+                        _targetList[1].GetBuff(buffInfo_2);
+                        _targetList[2].GetBuff(buffInfo_3);
+
+                        GameCommon.ShowTip(buffInfo.buffRefObj.buffName, _targetList[0].GetCursorPos());
+                        GameCommon.ShowTip(buffInfo.buffRefObj.buffName, _targetList[1].GetCursorPos());
+                        GameCommon.ShowTip(buffInfo.buffRefObj.buffName, _targetList[2].GetCursorPos());
+
+
+                        Sequence seq = DOTween.Sequence();
+
+                        seq.Append(DOVirtual.DelayedCall((float)skillAsset.duration,
+                            () =>
+                            {
+                                SCMsgCenter.SendMsg(SCMsgConst.TBS_ACTOR_ACTION_END, actorInfo.runningId);
+                                _m_actorMono.signalEventTrigger.RemoveSignalEvent(GameConst.SPAWN_PARTICLE_EFFECT_EVENT);
+                                _m_attackEnemyActorList.Clear();
+
+                            }));
+
+                        _m_tweenContainer?.RegDoTween(seq);
+                    }
+                    break;
                 default:
                     break;
             }

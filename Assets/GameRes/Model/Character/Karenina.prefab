@@ -2609,6 +2609,7 @@ MonoBehaviour:
   - posType: 3
     cameraTran: {fileID: 2407530545689571336}
   detailCamOffset: {x: 0, y: 3, z: 10}
+  hurtParticalName: sparks_red
   attackAnimDuration: 1
 --- !u!1 &7682297364125714830
 GameObject:

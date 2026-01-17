@@ -60,7 +60,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6700b194199c46e428d1693c7afe0973, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  destroyPlayPartical: sparks_red
+  destroyPlayPartical: 
 --- !u!54 &8802042340291196843
 Rigidbody:
   m_ObjectHideFlags: 0

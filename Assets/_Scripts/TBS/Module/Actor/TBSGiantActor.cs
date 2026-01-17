@@ -89,7 +89,7 @@ namespace GameCore.TBS
                 TBSActorBase targetActor = SCModel.instance.tbsModel.GetRandomAliveActor(true);
                 if (targetActor == null)
                     return;
-
+                
                 if (actorInfo.attackTargetType == ETargetType.ALL)
                 {
                     GameCameraMgr.instance.SetCameraTarget(SCModel.instance.tbsModel.gameMono.enemyLookPlayerCenterPos);

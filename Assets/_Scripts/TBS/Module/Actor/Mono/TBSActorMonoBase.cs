@@ -57,6 +57,6 @@ namespace GameCore.TBS
         public List<ActorCameraInfo> actorCameraInfoList;
         [Header("详情面板相机拍摄偏移")]
         public Vector3 detailCamOffset;
-        
+
     }
 }

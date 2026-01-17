@@ -344,6 +344,11 @@ namespace GameCore.TBS
             if (_needShowFloatText)
                 GameCommon.ShowDamageFloatText(_damage, GetDamageTextPos(), _extraStr);
             SCMsgCenter.SendMsg(SCMsgConst.TBS_ACTOR_INFO_CHG, actorInfo.runningId);
+            TBSConfigRefObj configRefObj = SCRefDataMgr.instance.tbsConfigRefObj;
+            if (configRefObj == null)
+                return;
+            if (!string.IsNullOrEmpty(configRefObj.tbsHurtParticleName))
+                ParticleMgr.instance.PlayEffect(configRefObj.tbsHurtParticleName, GetModelPos());
             if (_m_actorInfo.curHp == 0)
                 Die();
             else

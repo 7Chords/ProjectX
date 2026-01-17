@@ -2884,6 +2884,7 @@ MonoBehaviour:
   - posType: 3
     cameraTran: {fileID: 3645416742883017731}
   detailCamOffset: {x: 0, y: 3, z: 10}
+  hurtParticalName: sparks_red
   attackSourceTran: {fileID: 5225333171201662888}
   attackSpwanTime: 0.5
   attackFlySpeed: 40

@@ -2603,6 +2603,7 @@ MonoBehaviour:
   - posType: 3
     cameraTran: {fileID: 1724493777016457003}
   detailCamOffset: {x: 0, y: 3, z: 10}
+  hurtParticalName: sparks_red
   attackAnimDuration: 1
 --- !u!136 &8821873457962801809
 CapsuleCollider:
