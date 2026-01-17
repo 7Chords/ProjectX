@@ -163,6 +163,43 @@ namespace GameCore.TBS
                         _m_tweenContainer?.RegDoTween(seq);
                     }
                     break;
+                case "ÁÒÑæÆÆ":
+                    {
+                        GameCoreMgr.instance.uiCoreMgr.HideNode(nameof(UINodeTBSConfirm));
+                        GameCoreMgr.instance.uiCoreMgr.HideNode(nameof(UINodeTBSEnemyHud));
+                        TBSCursorMgr.instance.HideSelectionCursor();
+
+                        GameCameraMgr.instance.SetCameraTarget(SCModel.instance.tbsModel.GetCurSelectSingleEnemyTargetActor().GetAsCameraTargetTran());
+
+                        _m_actorMono.signalEventTrigger.AddSignalEvent(GameConst.SPAWN_DAMAGE_AREA_EVENT, () =>
+                        {
+                            GameObject go = ParticleMgr.instance.PlayEffect("fire_explosion"
+                                , SCModel.instance.tbsModel.gameMono.playerLookEnemyCenterPos.position).gameObject;
+                            go.GetComponent<CommonDamageArea>().Initialize(SCModel.instance.tbsModel.gameMono.playerLookEnemyCenterPos.gameObject, dealSkill);
+                        });
+
+                        _m_actorMono.skillDirector.Play(skillAsset);
+
+
+                        Sequence seq = DOTween.Sequence();
+
+                        Tween lookAtTargetTween = _m_actorMono.goModel.transform.DOLookAt(new Vector3(SCModel.instance.tbsModel.gameMono.playerLookEnemyCenterPos.position.x,
+                            GetActorGameObject().transform.position.y, SCModel.instance.tbsModel.gameMono.playerLookEnemyCenterPos.position.z), generalRefObj.tbsMeleeLookAtTargetDuration);
+
+                        seq.Append(lookAtTargetTween);
+                        seq.Append(DOVirtual.DelayedCall((float)skillAsset.duration,
+                            () =>
+                            {
+                                SCMsgCenter.SendMsg(SCMsgConst.TBS_ACTOR_ACTION_END, actorInfo.runningId);
+                                _m_actorMono.signalEventTrigger.RemoveSignalEvent(GameConst.SPAWN_DAMAGE_AREA_EVENT);
+                                _m_attackEnemyActorList.Clear();
+
+                            }));
+                        seq.Append(_m_actorMono.goModel.transform.DOLocalRotate(Vector3.zero, generalRefObj.tbsMeleeRotateDuration));
+
+                        _m_tweenContainer?.RegDoTween(seq);
+                    }
+                    break;
                 default:
                     break;
             }

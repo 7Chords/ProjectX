@@ -99,3 +99,4 @@
 10098	#1_hero_magic_resistent	英雄抗性	hero_magic_resistent
 10099	#2_tbs_skill_desc_1007	令所有己方单位的防御力少量提示，持续三回合	Slightly increases the defense of all allied units for three turns
 10100	#1_item_name_1004	魔法宝石	magic gem
+10101	#2_tbs_skill_desc_1008	借神灵之力引发焰火爆炸，对{0}敌方单位造成{1}{2}{3}伤害	Harness the power of the gods to trigger a fireworks explosion, dealing {1}{2}{3} damage to {0} enemy units
