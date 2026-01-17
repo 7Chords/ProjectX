@@ -173,7 +173,7 @@ namespace GameCore.TBS
 
                         _m_actorMono.signalEventTrigger.AddSignalEvent(GameConst.SPAWN_DAMAGE_AREA_EVENT, () =>
                         {
-                            GameObject go = ParticleMgr.instance.PlayEffect("fire_explosion"
+                            GameObject go = ParticleMgr.instance.PlayEffect("snow_hit"
                                 , SCModel.instance.tbsModel.gameMono.playerLookEnemyCenterPos.position).gameObject;
                             go.GetComponent<CommonDamageArea>().Initialize(SCModel.instance.tbsModel.gameMono.playerLookEnemyCenterPos.gameObject, dealSkill);
                         });

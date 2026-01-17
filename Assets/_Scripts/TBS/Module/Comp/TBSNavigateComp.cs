@@ -288,7 +288,7 @@ namespace GameCore.TBS
 
                 SCMsgCenter.SendMsg(SCMsgConst.TBS_ENEMY_ACTOR_REMOVE_FROM_LIST, runningId);
 
-                //处理光标的越界问题
+                //纠正一下当前选择的索引
                 if (actorIdx == _m_singleEnemyTargetIndex)
                 {
                     if (_m_singleEnemyTargetIndex >= SCModel.instance.tbsModel.enemyActorModuleList.Count)

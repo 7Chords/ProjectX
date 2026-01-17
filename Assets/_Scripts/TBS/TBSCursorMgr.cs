@@ -92,6 +92,17 @@ namespace GameCore.TBS
                         _m_allSelectionCursorList.Add(cursorGO);
                 }
             }
+            int deleteCount = _m_allSelectionCursorList.Count - _worldPosList.Count;
+            if(deleteCount > 0)
+            {
+                GameObject cursor = null;
+                for(int i =0; i< deleteCount;i++)
+                {
+                    cursor = _m_allSelectionCursorList[_m_allSelectionCursorList.Count - 1];
+                    _m_allSelectionCursorList.Remove(cursor);
+                    SCCommon.DestoryGameObject(cursor);
+                }
+            }
 
             if (_needShow)
                 ShowSelectionCursor_All();
