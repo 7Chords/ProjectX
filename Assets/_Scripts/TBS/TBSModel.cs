@@ -673,5 +673,36 @@ namespace GameCore.TBS
             }
             return refObj;
         }
+
+        public List<Vector3> GetPosList(bool _isPlayer,ETargetAliveType _aliveType)
+        {
+            List<Vector3> posList = new List<Vector3>();
+            TBSActorBase actor = null;
+            if (_isPlayer)
+            {
+                for (int i = 0; i < playerActorModuleList.Count; i++)
+                {
+                    actor = playerActorModuleList[i];
+                    if (_aliveType == ETargetAliveType.ALIVE && actor.actorInfo.hasDead)
+                        continue;
+                    if (_aliveType == ETargetAliveType.DEAD && !actor.actorInfo.hasDead)
+                        continue;
+                    posList.Add(actor.GetCursorPos());
+                }
+            }
+            else
+            {
+                for (int i = 0; i < enemyActorModuleList.Count; i++)
+                {
+                    actor = enemyActorModuleList[i];
+                    if (_aliveType == ETargetAliveType.ALIVE && actor.actorInfo.hasDead)
+                        continue;
+                    if (_aliveType == ETargetAliveType.DEAD && !actor.actorInfo.hasDead)
+                        continue;
+                    posList.Add(enemyActorModuleList[i].GetCursorPos());
+                }
+            }
+            return posList;
+        }
     }
 }

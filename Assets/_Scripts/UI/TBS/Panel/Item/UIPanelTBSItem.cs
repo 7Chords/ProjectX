@@ -50,10 +50,7 @@ namespace GameCore.UI
                 worldPosList.Add(SCModel.instance.tbsModel.GetCurSelectSingleEnemyTargetActor().GetCursorPos());
             else if (SCModel.instance.tbsModel.selectTargetType == ETargetType.ALL)
             {
-                foreach (var module in SCModel.instance.tbsModel.enemyActorModuleList)
-                {
-                    worldPosList.Add(module.GetCursorPos());
-                }
+                worldPosList = SCModel.instance.tbsModel.GetPosList(false, ETargetAliveType.ALIVE);
             }
             TBSCursorMgr.instance.SetSelectionCursor(worldPosList);
         }
