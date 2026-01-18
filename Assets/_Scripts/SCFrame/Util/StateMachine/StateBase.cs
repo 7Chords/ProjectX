@@ -3,7 +3,7 @@ namespace SCFrame
     /// <summary>
     /// 状态机状态基类
     /// </summary>
-    public class StateBase
+    public abstract class StateBase
     {
         protected StateMachine stateMachine;
 
@@ -29,19 +29,37 @@ namespace SCFrame
             this.ObjectPushPool();
         }
 
-        /// <summary>
-        /// 状态进入
-        /// 每次进入都会执行
-        /// </summary>
-        public virtual void Enter() { }
+        public virtual void Enter() 
+        {
+            OnEnter();
+        }
+        public virtual void Exit()
+        {
+            OnExit();
+        }
+        public virtual void Update() 
+        {
+            OnUpdate();
+        }
+        public virtual void LateUpdate() 
+        {
+            OnLateUpdate();
+        }
+        public virtual void FixedUpdate()
+        {
+            OnFixedUpdate();
+        }
 
-        /// <summary>
-        /// 状态退出
-        /// </summary>
-        public virtual void Exit() { }
 
-        public virtual void Update() { }
-        public virtual void LateUpdate() { }
-        public virtual void FixedUpdate() { }
+
+
+
+        public abstract void OnEnter();
+        public abstract void OnExit();
+
+        public abstract void OnUpdate();
+        public abstract void OnLateUpdate();
+        public abstract void OnFixedUpdate();
+
     }
 }

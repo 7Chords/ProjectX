@@ -77,6 +77,10 @@ namespace SCFrame
         {
             _m_owner = _owner;
         }
+        public IStateMachineOwner GetOwner()
+        {
+            return _m_owner;
+        }
 
         /// <summary>
         /// ÇÐ»»×´Ì¬

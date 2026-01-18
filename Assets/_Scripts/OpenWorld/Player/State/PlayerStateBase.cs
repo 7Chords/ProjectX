@@ -1,12 +1,14 @@
 using SCFrame;
-using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
 
 namespace GameCore.OW
 {
-    public class PlayerStateBase : StateBase
+    public abstract class PlayerStateBase : StateBase
     {
-        
+        protected PlayerController _m_playerController;
+        public override void Init(StateMachine _stateMachine)
+        {
+            base.Init(_stateMachine);
+            _m_playerController = _stateMachine.GetOwner() as PlayerController;
+        }
     }
 }
