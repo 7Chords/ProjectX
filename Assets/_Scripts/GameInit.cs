@@ -1,3 +1,4 @@
+using GameCore.OW;
 using GameCore.TBS;
 using GameCore.UI;
 using SCFrame;
@@ -32,6 +33,8 @@ namespace GameCore
 
             SCMsgCenter.SendMsg(SCMsgConst.GAME_START);
             //SCMsgCenter.SendMsg(SCMsgConst.TBS_GAME_START);
+
+            PlayerController.instance.Initialize();
         }
 
 

@@ -58,5 +58,13 @@ namespace GameCore
 
         #endregion
 
+        #region OW Anim
+        public const string PLAYER_IDLE_ANIM_NAME = "idle";
+        public const string PLAYER_WALK_ANIM_NAME = "walk";
+        public const string PLAYER_RUN_ANIM_NAME = "run";
+        public const string PLAYER_ATTACK_ANIM_NAME = "attack";
+        #endregion
+
+
     }
 }

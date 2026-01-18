@@ -222,22 +222,5 @@ namespace SCFrame
         }
 
 
-        //#region RootMotion
-        //private Action<Vector3, Quaternion> rootMotionAction;
-        //private void OnAnimatorMove()
-        //{
-        //    rootMotionAction?.Invoke(_m_animator.deltaPosition, _m_animator.deltaRotation);
-        //}
-        //public void SetRootMotionAction(Action<Vector3, Quaternion> rootMotionAction)
-        //{
-        //    this.rootMotionAction = rootMotionAction;
-        //}
-        //public void ClearRootMotionAction()
-        //{
-        //    rootMotionAction = null;
-        //}
-        //#endregion
-
-
     }
 }
