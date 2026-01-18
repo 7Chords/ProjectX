@@ -34,12 +34,14 @@ namespace GameCore.TBS
             _m_stepCounter.RegAllDoneDelegate(OnLoadOver);
             if (SCGame.instance.globalVolumn.TryGet<LensDistortion>(out LensDistortion comp))
             {
+                Time.timeScale = 0;
                 Tween tween = DOTween.To(
                      () => comp.intensity.value,
                      x => comp.intensity.value = x,
                      -0.75f,
                      0.1f
                  );
+                tween.SetUpdate(true);
                 _m_tweenContainer?.RegDoTween(tween);
             }
         }
@@ -72,13 +74,8 @@ namespace GameCore.TBS
                 }
                 if (SCGame.instance.globalVolumn.TryGet<LensDistortion>(out LensDistortion comp))
                 {
-                    Tween tween = DOTween.To(
-                         () => comp.intensity.value,
-                         x => comp.intensity.value = x,
-                         0f,
-                         0.2f
-                     );
-                    _m_tweenContainer?.RegDoTween(tween);
+                    Time.timeScale = 1;
+                    comp.intensity.value = 0;
                 }
             });
             _m_tweenContainer.RegDoTween(tween);
