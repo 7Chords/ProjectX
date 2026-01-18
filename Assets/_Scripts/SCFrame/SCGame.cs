@@ -30,6 +30,8 @@ namespace SCFrame
         public Camera uiCamera;
         public Camera tbsDetailCamera;
         public CinemachineVirtualCamera virtualCamera;
+        public CinemachineFreeLook owCamera;
+
         public CinemachineBrain cinemachineBrain;
         public CinemachineImpulseSource cinemachineImpulseSource;
 

@@ -2,6 +2,7 @@ using GameCore.UI;
 using SCFrame;
 using SCFrame.UI;
 using System.Collections.Generic;
+using UnityEngine;
 
 namespace GameCore.TBS
 {
@@ -106,6 +107,10 @@ namespace GameCore.TBS
         {
             //隐藏大世界玩家
             SCCommon.SetGameObjectEnable(SCGame.instance.playerGO, false);
+            SCGame.instance.owCamera.gameObject.SetActive(false);
+            SCGame.instance.virtualCamera.gameObject.SetActive(true);
+            Cursor.visible = true;
+
 
             SCMsgCenter.SendMsg(SCMsgConst.TBS_TURN_MGR_WORK);
             SCMsgCenter.SendMsg(SCMsgConst.TBS_ACTOR_MGR_WORK);
