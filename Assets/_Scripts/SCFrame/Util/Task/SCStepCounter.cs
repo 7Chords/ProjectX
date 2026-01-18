@@ -5,7 +5,7 @@ namespace SCFrame
     /// <summary>
     /// SCFrame计步器
     /// </summary>
-    public class SCStepCounter : Singleton<SCStepCounter>
+    public class SCStepCounter
     {
         //所有步骤完成后的回调对象
         private Action _m_onAllStepDone;

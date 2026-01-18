@@ -18,7 +18,7 @@ namespace GameCore.TBS
             this.AddTriggerEnter(onTriggerEnter);
         }
 
-        private void OnDestroy()
+        private void OnDisable()
         {
             this.RemoveTriggerEnter(onTriggerEnter);
         }

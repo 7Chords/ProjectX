@@ -18,10 +18,12 @@ namespace SCFrame
             TBSCursorMgr.instance.Initialize();
             ParticleMgr.instance.Initialize();
             SCTimeCaller.instance.Initialize();
+            TBSGameStarter.instance.Initialize();
         }
 
         public override void OnDiscard()
         {
+            TBSGameStarter.instance.Discard();
             SCTimeCaller.instance.Discard();
             SCInputListener.instance.Discard();
             ParticleMgr.instance.Discard();

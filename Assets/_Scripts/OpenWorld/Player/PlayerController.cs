@@ -30,6 +30,8 @@ namespace GameCore.OW
 
         public override void OnDiscard()
         {
+            _m_animationCtl?.Discard();
+            _m_playerStateMachine?.Discard();
         }
 
         public void SetMono(PlayerMono _mono)

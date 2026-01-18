@@ -118,12 +118,26 @@ namespace SCFrame
         {
 
             SCTaskHelper.instance.StartCoroutine(DoLoadGameObjectAsync<T>(_assetName, _callBack, _parent));
+        }
+
+        public static void LoadGameObjectAsync<T>(string _assetName, Vector3 _pos,Quaternion _rotate, Action<T> _callBack = null, Transform _parent = null) where T : UnityEngine.Object
+        {
+
+            SCTaskHelper.instance.StartCoroutine(DoLoadGameObjectAsync<T>(_assetName, _pos, _rotate,_callBack, _parent));
 
         }
         static IEnumerator DoLoadGameObjectAsync<T>(string _assetName, Action<T> _callBack = null, Transform _parent = null) where T : UnityEngine.Object
         {
             AsyncOperationHandle<GameObject> request = Addressables.InstantiateAsync(_assetName, _parent);
             yield return request;
+            _callBack?.Invoke(request.Result.GetComponent<T>());
+        }
+        static IEnumerator DoLoadGameObjectAsync<T>(string _assetName, Vector3 _pos,Quaternion _rotate, Action<T> _callBack = null, Transform _parent = null) where T : UnityEngine.Object
+        {
+            AsyncOperationHandle<GameObject> request = Addressables.InstantiateAsync(_assetName, _parent);
+            yield return request;
+            request.Result.transform.position = _pos;
+            request.Result.transform.rotation = _rotate;
             _callBack?.Invoke(request.Result.GetComponent<T>());
         }
 
@@ -167,7 +181,83 @@ namespace SCFrame
             yield return request;
             _callBack?.Invoke(request.Result);
         }
+        /// <summary>
+        /// 异步加载游戏物体（直接返回 GameObject，不获取组件）
+        /// </summary>
+        /// <param name="_assetName">资源名称</param>
+        /// <param name="_parent">父物体</param>
+        /// <param name="_automaticRelease">物体销毁时自动释放</param>
+        /// <param name="_callBack">加载完成回调（返回 GameObject）</param>
+        public static void LoadGameObjectDirectAsync(string _assetName, Action<GameObject> _callBack, Transform _parent = null, bool _automaticRelease = true)
+        {
+            SCTaskHelper.instance.StartCoroutine(DoLoadGameObjectDirectAsync(_assetName, _callBack, _parent, _automaticRelease));
+        }
 
+        /// <summary>
+        /// 异步加载游戏物体（带位置、旋转，直接返回 GameObject）
+        /// </summary>
+        /// <param name="_assetName">资源名称</param>
+        /// <param name="_pos">位置</param>
+        /// <param name="_rot">旋转</param>
+        /// <param name="_callBack">加载完成回调（返回 GameObject）</param>
+        /// <param name="_parent">父物体</param>
+        /// <param name="_automaticRelease">物体销毁时自动释放</param>
+        public static void LoadGameObjectDirectAsync(string _assetName, Vector3 _pos, Quaternion _rot, Action<GameObject> _callBack, Transform _parent = null, bool _automaticRelease = true)
+        {
+            SCTaskHelper.instance.StartCoroutine(DoLoadGameObjectDirectAsync(_assetName, _pos, _rot, _callBack, _parent, _automaticRelease));
+        }
+
+        /// <summary>
+        /// 协程逻辑：直接返回 GameObject
+        /// </summary>
+        private static IEnumerator DoLoadGameObjectDirectAsync(string _assetName, Action<GameObject> _callBack, Transform _parent = null, bool _automaticRelease = true)
+        {
+            AsyncOperationHandle<GameObject> request = Addressables.InstantiateAsync(_assetName, _parent);
+            yield return request;
+
+            GameObject resultGO = null;
+            if (request.Status == AsyncOperationStatus.Succeeded && request.Result != null)
+            {
+                resultGO = request.Result;
+                if (_automaticRelease)
+                {
+                    resultGO.transform.AddReleaseAddressableAsset(AutomaticReleaseAssetAction);
+                }
+                resultGO.name = _assetName;
+            }
+            else
+            {
+                Debug.LogError($"直接加载 GameObject 失败！资源名称：{_assetName}，错误：{request.OperationException?.Message}");
+            }
+
+            _callBack?.Invoke(resultGO);
+        }
+
+        /// <summary>
+        /// 协程逻辑：带位置、旋转，直接返回 GameObject
+        /// </summary>
+        private static IEnumerator DoLoadGameObjectDirectAsync(string _assetName, Vector3 _pos, Quaternion _rot, Action<GameObject> _callBack, Transform _parent = null, bool _automaticRelease = true)
+        {
+            AsyncOperationHandle<GameObject> request = Addressables.InstantiateAsync(_assetName, _pos, _rot, _parent);
+            yield return request;
+
+            GameObject resultGO = null;
+            if (request.Status == AsyncOperationStatus.Succeeded && request.Result != null)
+            {
+                resultGO = request.Result;
+                if (_automaticRelease)
+                {
+                    resultGO.transform.AddReleaseAddressableAsset(AutomaticReleaseAssetAction);
+                }
+                resultGO.name = _assetName;
+            }
+            else
+            {
+                Debug.LogError($"直接加载 GameObject 失败！资源名称：{_assetName}，错误：{request.OperationException?.Message}");
+            }
+
+            _callBack?.Invoke(resultGO);
+        }
         public static void Release<T>(T _obj)
         {
             Addressables.Release<T>(_obj);

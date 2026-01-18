@@ -4,6 +4,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem;
+using UnityEngine.Rendering;
 
 namespace SCFrame
 {
@@ -31,9 +32,12 @@ namespace SCFrame
         public Camera tbsDetailCamera;
         public CinemachineVirtualCamera virtualCamera;
         public CinemachineFreeLook owCamera;
-
         public CinemachineBrain cinemachineBrain;
         public CinemachineImpulseSource cinemachineImpulseSource;
+        public VolumeProfile globalVolumn;
+
+        [Header("Scene")]
+        public Transform tranTbsBattle;
 
     }
 }

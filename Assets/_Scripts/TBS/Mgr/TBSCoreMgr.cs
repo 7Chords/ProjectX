@@ -105,23 +105,17 @@ namespace GameCore.TBS
         #region 事件回调
         private void onTBSGameStart()
         {
-            //隐藏大世界玩家
-            SCCommon.SetGameObjectEnable(SCGame.instance.playerGO, false);
-            SCGame.instance.owCamera.gameObject.SetActive(false);
-            SCGame.instance.virtualCamera.gameObject.SetActive(true);
-            Cursor.visible = true;
 
-
+            TBSGameStarter.instance.StartGame();
+            TBSGameStarter.instance.RegisterLoadOverCallback(() =>
+            {
+                _m_tbsGameHasStarted = true;
+                SCModel.instance.tbsModel.gameStarted = true;
+            });
             SCMsgCenter.SendMsg(SCMsgConst.TBS_TURN_MGR_WORK);
             SCMsgCenter.SendMsg(SCMsgConst.TBS_ACTOR_MGR_WORK);
             SCMsgCenter.SendMsg(SCMsgConst.TBS_EFFECT_MGR_WORK);
             SCMsgCenter.SendMsg(SCMsgConst.TBS_COMP_MGR_WORK);
-
-
-            GameCoreMgr.instance.uiCoreMgr.AddNode(new UINodeTBSInfo(SCUIShowType.FULL));
-            GameCoreMgr.instance.uiCoreMgr.AddNode(new UINodeTBSMain(SCUIShowType.FULL),true);
-            _m_tbsGameHasStarted = true;
-            SCModel.instance.tbsModel.gameStarted = true;
         }
 
         private void onTBSGameFinish()
