@@ -21,6 +21,8 @@ namespace SCFrame
         public KeyCode owBackwardKeyCode = KeyCode.S;
         public KeyCode owLeftKeyCode = KeyCode.A;
         public KeyCode owRightKeyCode = KeyCode.D;
+        public KeyCode owRunKeyCode = KeyCode.LeftShift;
+        public KeyCode owAttackKeyCode = KeyCode.Mouse0;
 
     }
 }

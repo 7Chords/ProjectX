@@ -35,6 +35,7 @@ namespace GameCore
             //SCMsgCenter.SendMsg(SCMsgConst.TBS_GAME_START);
 
             PlayerController.instance.Initialize();
+            Cursor.visible = false;
         }
 
 

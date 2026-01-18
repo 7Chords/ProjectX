@@ -1,3 +1,4 @@
+using GameCore.Util;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -14,5 +15,7 @@ namespace GameCore.OW
         public GameObject playerModel;
         [Header("玩家物体")]
         public GameObject playerGO;
+        [Header("动画事件触发器")]
+        public AnimationEventTrigger animEventTrigger;
     }
 }

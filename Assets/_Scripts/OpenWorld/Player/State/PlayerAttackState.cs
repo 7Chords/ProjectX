@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -9,10 +10,14 @@ namespace GameCore.OW
     {
         public override void OnEnter()
         {
+            _m_playerController.PlayAnimation(GameConst.PLAYER_ATTACK_ANIM_NAME);
+            _m_playerController.playerMono.animEventTrigger.AddAnimationEvent(GameConst.PLAYER_ATTACK_OVER_EVENT, OnPlayerAttackOver);
         }
+
 
         public override void OnExit()
         {
+            _m_playerController.playerMono.animEventTrigger.RemoveAnimationEvent(GameConst.PLAYER_ATTACK_OVER_EVENT);
         }
 
         public override void OnFixedUpdate()
@@ -25,6 +30,10 @@ namespace GameCore.OW
 
         public override void OnUpdate()
         {
+        }
+        private void OnPlayerAttackOver()
+        {
+            _m_playerController.ChangeState(PlayerStateType.IDLE);
         }
     }
 }

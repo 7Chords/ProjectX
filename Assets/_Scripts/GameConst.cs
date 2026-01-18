@@ -56,6 +56,7 @@ namespace GameCore
         public const string SPAWN_PARTICLE_EFFECT_EVENT = "SpawnParticleEffect";
         public const string SPAWN_FLY_OBJ_EVENT = "SpawnFlyObj";
 
+        public const string PLAYER_ATTACK_OVER_EVENT = "PlayerAttackOver";
         #endregion
 
         #region OW Anim

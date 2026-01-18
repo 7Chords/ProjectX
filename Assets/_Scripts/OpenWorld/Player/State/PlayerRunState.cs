@@ -38,6 +38,15 @@ namespace GameCore.OW
 
         public override void OnUpdate()
         {
+
+            if (Input.GetKey(SCSettingMgr.instance.saveKeyInfo.owAttackKeyCode))
+            {
+                _m_playerController.ChangeState(PlayerStateType.ATTACK);
+                return;
+            }
+
+
+                //todo
             float h = Input.GetAxis("Horizontal");
             float v = Input.GetAxis("Vertical");
 
@@ -50,7 +59,7 @@ namespace GameCore.OW
             {
                 // ¥¶¿Ì“∆∂Ø
                 Vector3 input = new Vector3(h, 0, v);
-                if (Input.GetKey(KeyCode.LeftShift))
+                if (Input.GetKey(SCSettingMgr.instance.saveKeyInfo.owRunKeyCode))
                     runTransition = Mathf.Clamp(runTransition + Time.deltaTime * _m_playerController.playerMono.controlCfg.walk2RunTransitionSpeed, 0, 1);
                 else
                     runTransition = Mathf.Clamp(runTransition - Time.deltaTime * _m_playerController.playerMono.controlCfg.walk2RunTransitionSpeed, 0, 1);
