@@ -105,13 +105,8 @@ namespace GameCore.TBS
         #region 事件回调
         private void onTBSGameStart()
         {
-
-            TBSGameStarter.instance.StartGame();
-            TBSGameStarter.instance.RegisterLoadOverCallback(() =>
-            {
-                _m_tbsGameHasStarted = true;
-                SCModel.instance.tbsModel.gameStarted = true;
-            });
+            _m_tbsGameHasStarted = true;
+            SCModel.instance.tbsModel.gameStarted = true;
             SCMsgCenter.SendMsg(SCMsgConst.TBS_TURN_MGR_WORK);
             SCMsgCenter.SendMsg(SCMsgConst.TBS_ACTOR_MGR_WORK);
             SCMsgCenter.SendMsg(SCMsgConst.TBS_EFFECT_MGR_WORK);

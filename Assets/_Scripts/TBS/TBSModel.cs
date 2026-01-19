@@ -181,12 +181,14 @@ namespace GameCore.TBS
         /// <summary>
         /// 创新新游戏的时候初始化新的数据
         /// </summary>
-        public void InitNewData()
+        public void Init(TBSBattleInfo _battleInfo)
         {
+            if (_battleInfo == null)
+                return;
             _m_curTurnType = ETBSTurnType.PLAYER;
             _m_curTurnCount = 1;
-            _m_battleInfo = new TBSBattleInfo();
-            _m_battleInfo.InitNewInfo();
+            _m_battleInfo = _battleInfo;
+
             _m_curActorIndex = 0;
             _m_curSelectSingleEnemyTargetIdx = 0;
             _m_curSelectSinglePlayerTargetIdx = 0;
@@ -198,15 +200,6 @@ namespace GameCore.TBS
             _m_curSelectSkillIdx = 0;
             _m_curSelectItemIdx = 0;
             _m_canUseRunningId = 0;
-        }
-
-
-        /// <summary>
-        /// 从存档中加载数据
-        /// </summary>
-        public void LoadData()
-        {
-
         }
 
         /// <summary>

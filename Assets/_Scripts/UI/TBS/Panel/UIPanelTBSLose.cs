@@ -1,3 +1,4 @@
+using GameCore.TBS;
 using SCFrame;
 using SCFrame.UI;
 using System;
@@ -37,22 +38,22 @@ namespace GameCore.UI
         private void onBtnRetryClickDown(PointerEventData _data, object[] _objs)
         {
             GameCoreMgr.instance.uiCoreMgr.CloseTopNode();
-            //todo
-            SCModel.instance.tbsModel.InitNewData();
             GameCoreMgr.instance.uiCoreMgr.RemoveNode(nameof(UINodeTBSEnemyHud));
             GameCoreMgr.instance.uiCoreMgr.RemoveNode(nameof(UINodeTBSPlayerHud));
             GameCoreMgr.instance.uiCoreMgr.RemoveNode(nameof(UINodeTBSMain));
             GameCoreMgr.instance.uiCoreMgr.RemoveNode(nameof(UINodeTBSInfo));
 
-            SCMsgCenter.SendMsg(SCMsgConst.TBS_GAME_FINISH);
-            SCMsgCenter.SendMsg(SCMsgConst.TBS_GAME_START);
+            TBSGameStarter.instance.ReloadTBSGame();
         }
         private void onBtnExitClickDown(PointerEventData _data, object[] _objs)
         {
             GameCoreMgr.instance.uiCoreMgr.CloseTopNode();
-            //todo
-            SCModel.instance.tbsModel.InitNewData();
-            SCMsgCenter.SendMsg(SCMsgConst.TBS_GAME_FINISH);
+            GameCoreMgr.instance.uiCoreMgr.RemoveNode(nameof(UINodeTBSEnemyHud));
+            GameCoreMgr.instance.uiCoreMgr.RemoveNode(nameof(UINodeTBSPlayerHud));
+            GameCoreMgr.instance.uiCoreMgr.RemoveNode(nameof(UINodeTBSMain));
+            GameCoreMgr.instance.uiCoreMgr.RemoveNode(nameof(UINodeTBSInfo));
+            TBSGameStarter.instance.UnloadTBSGame();
+
         }
     }
 }

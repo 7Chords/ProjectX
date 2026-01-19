@@ -12,17 +12,5 @@ namespace SCFrame
             _m_tbsModel = new TBSModel();
         }
 
-        /// <summary>
-        /// 新游戏初始化数据
-        /// </summary>
-        public void InitNewData()
-        {
-            _m_tbsModel.InitNewData();
-        }
-
-        public void LoadData()
-        {
-
-        }
     }
 }

@@ -56,57 +56,60 @@ namespace GameCore.TBS
         public bool hasDead;//是否死亡
         public bool isEnemy;//是否是敌人
         public bool isDefending;//是否正在防御
-        public void InitNewInfo(CharacterRefObj _characterRefObj,bool _isEnemy)
+
+
+        public void Init(ActorData _data,bool _isEnemy)
         {
-            if(_characterRefObj == null)
+            CharacterRefObj refObj = SCRefDataMgr.instance.characterRefList.refDataList.Find(x => x.id == _data.characterId);
+            if (refObj == null)
             {
-                Debug.LogError("TBSActorInfo传入空参数！！！");
+                Debug.LogError("没有id为"+_data.characterId+"的角色配表数据！！！");
                 return;
             }
-            characterRefObj = _characterRefObj;
+            characterRefObj = refObj;
 
-            characterLv = 1;//todo
-            ProfessionRefObj professioRefObj = SCRefDataMgr.instance.professionRefList.refDataList.Find(x => x.id == _characterRefObj.characterProfession);
-            if(professioRefObj == null)
+            characterLv = _data.characterLv;
+            ProfessionRefObj professioRefObj = SCRefDataMgr.instance.professionRefList.refDataList.Find(x => x.id == characterRefObj.characterProfession);
+            if (professioRefObj == null)
             {
                 Debug.LogError("读取professioRefObj时出错！！！");
                 return;
             }
             professionType = professioRefObj.professionType;
-            skillList = _characterRefObj.init_skill_list;
+            skillList = _data.skillList;
 
-            originalAttack = _characterRefObj.initAttack;
-            originalDefend = _characterRefObj.initDefend;
-            originalMissChance = _characterRefObj.initMiss;
-            originalCriticalChance = _characterRefObj.initCritical;
-            originalAttackTargetType = _characterRefObj.attackTargetType;
-            originalArmorLevel = _characterRefObj.initArmorLevel;
-            originalMagicResistanceLevel = _characterRefObj.initMgicResistanceLevel;
-            originalAttackDamageType = _characterRefObj.attackDamageType;
-            originalAttackPhysicalLevel = _characterRefObj.attackPhysicalLevel;
-            originalAttackMagicAttribute = _characterRefObj.attackMagicAttribute;
-
-
+            originalAttack = _data.attack;
+            originalDefend = _data.defend;
+            originalMissChance = _data.missChance;
+            originalCriticalChance = _data.criticalChance;
+            originalAttackTargetType = _data.attackTargetType;
+            originalArmorLevel = _data.armorLevel;
+            originalMagicResistanceLevel = _data.magicResistanceLevel;
+            originalAttackDamageType = _data.attackDamageType;
+            originalAttackPhysicalLevel = _data.attackPhysicalLevel;
+            originalAttackMagicAttribute = _data.attackMagicAttribute;
 
 
-            maxHp = _characterRefObj.initHp;
-            maxMp = _characterRefObj.initMp;
-            attack = _characterRefObj.initAttack;
-            defend = _characterRefObj.initDefend;
-            missChance = _characterRefObj.initMiss;
-            criticalChance = _characterRefObj.initCritical;
-            attackTargetType = _characterRefObj.attackTargetType;
-            armorLevel = _characterRefObj.initArmorLevel;
-            magicResistanceLevel = _characterRefObj.initMgicResistanceLevel;
-            attackDamageType = _characterRefObj.attackDamageType;
-            attackPhysicalLevel = _characterRefObj.attackPhysicalLevel;
-            attackMagicAttribute = _characterRefObj.attackMagicAttribute;
-            weakAttributeList = _characterRefObj.weakAttributeList;
-            normalAttributeList = _characterRefObj.normalAttributeList;
-            resistentAttributeList = _characterRefObj.resistentAttributeList;
-            invilidAttributeList = _characterRefObj.invilidAttributeList;
-            bounceAttributeList = _characterRefObj.bounceAttributeList;
-            suckAttributeList = _characterRefObj.suckAttributeList;
+
+
+            maxHp = _data.maxHp;
+            maxMp = _data.maxMp;
+            attack = _data.attack;
+            defend = _data.defend;
+            missChance = _data.missChance;
+            criticalChance = _data.criticalChance;
+            attackTargetType = _data.attackTargetType;
+            armorLevel = _data.armorLevel;
+            magicResistanceLevel = _data.magicResistanceLevel;
+            attackDamageType = _data.attackDamageType;
+            attackPhysicalLevel = _data.attackPhysicalLevel;
+            attackMagicAttribute = _data.attackMagicAttribute;
+            weakAttributeList = _data.weakAttributeList;
+            normalAttributeList = _data.normalAttributeList;
+            resistentAttributeList = _data.resistentAttributeList;
+            invilidAttributeList = _data.invilidAttributeList;
+            bounceAttributeList = _data.bounceAttributeList;
+            suckAttributeList = _data.suckAttributeList;
 
 
             curHp = maxHp;
@@ -115,13 +118,6 @@ namespace GameCore.TBS
             runningId = SCModel.instance.tbsModel.TakeRunningId();
             hasDead = false;
             isEnemy = _isEnemy;
-
-        }
-
-
-        public void LoadInfo()
-        {
-
         }
     }
 }

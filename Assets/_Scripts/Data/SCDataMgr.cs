@@ -1,4 +1,5 @@
 using GameCore.RefData;
+using GameCore.TBS;
 using SCFrame;
 using System.Collections.Generic;
 
@@ -7,7 +8,7 @@ namespace GameCore
     public class SCDataMgr : Singleton<SCDataMgr>
     {
         public List<ItemData> itemDataList;
-
+        public List<TBSActorInfo> playerActorInfo;
 
         public override void OnInitialize()
         {

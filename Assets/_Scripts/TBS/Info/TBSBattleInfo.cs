@@ -16,20 +16,26 @@ namespace GameCore.TBS
         public List<TBSEffectInfo> effectInfoList;
         public List<ETBSCompType> basicCompTypeList;
 
-        public void InitNewInfo()
+        public void Init(List<ActorData> _playerTeamDataList, List<ActorData> _enemyTeamDataList)
         {
             firstMoveTurnType = ETBSTurnType.PLAYER;
-            playerTeamInfo = new TBSTeamInfo();
-            playerTeamInfo.InitNewPlayerTeamInfo();
-            enemyTeamInfo = new TBSTeamInfo();
-            enemyTeamInfo.InitNewEnemyTeamInfo();
             effectInfoList = new List<TBSEffectInfo>();
             basicCompTypeList = new List<ETBSCompType>();
+
+            playerTeamInfo = new TBSTeamInfo();
+            playerTeamInfo.Init("Player", _playerTeamDataList, false);
+            enemyTeamInfo = new TBSTeamInfo();
+            enemyTeamInfo.Init("Enemy", _enemyTeamDataList, true);
+
             //³õÊ¼ËÄ¼þÌ×
             basicCompTypeList.Add(ETBSCompType.NORMAL_ATTACK);
             basicCompTypeList.Add(ETBSCompType.DEFEND);
             basicCompTypeList.Add(ETBSCompType.ITEM);
             basicCompTypeList.Add(ETBSCompType.SKILL);
+        }
+
+        public void DeepCopy(TBSBattleInfo _anotherInfo)
+        { 
 
         }
     }

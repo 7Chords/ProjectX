@@ -12,6 +12,12 @@ namespace GameCore.TBS
         private List<Action> _m_onLoadOverActionList = new List<Action>();
         private SCStepCounter _m_stepCounter = new SCStepCounter();
         private TweenContainer _m_tweenContainer;
+
+        private TBSBattleInfo _m_battleInfo;
+
+        private List<ActorData> _m_playerTeamDataList;
+        private List<ActorData> _m_enemyTeamDataList;
+
         public override void OnInitialize()
         {
             _m_onLoadOverActionList = new List<Action>();
@@ -28,10 +34,43 @@ namespace GameCore.TBS
             _m_tweenContainer?.KillAllDoTween();
             _m_tweenContainer = null;
         }
-        public void StartGame()
+
+        public void LoadTBSGame(List<ActorData> _playerTeamDataList, List<ActorData> _enemyTeamDataList)
         {
+            if (_playerTeamDataList == null || _enemyTeamDataList == null)
+                return;
+            _m_playerTeamDataList = _playerTeamDataList;
+            _m_enemyTeamDataList = _enemyTeamDataList;
+            _m_battleInfo = new TBSBattleInfo();
+            _m_battleInfo.Init(_m_playerTeamDataList, _m_enemyTeamDataList);
+            SCModel.instance.tbsModel.Init(_m_battleInfo);
             Reset();
             _m_stepCounter.RegAllDoneDelegate(OnLoadOver);
+            change2TBSGame();
+            SCMsgCenter.SendMsg(SCMsgConst.TBS_GAME_START);
+        }
+
+        public void ReloadTBSGame()
+        {
+            if (_m_battleInfo == null)
+                return;
+            SCMsgCenter.SendMsg(SCMsgConst.TBS_GAME_FINISH);
+            _m_battleInfo = new TBSBattleInfo();
+            _m_battleInfo.Init(_m_playerTeamDataList, _m_enemyTeamDataList);
+            SCModel.instance.tbsModel.Init(_m_battleInfo);
+            Reset();
+            _m_stepCounter.RegAllDoneDelegate(OnLoadOver);
+            change2TBSGame();
+            SCMsgCenter.SendMsg(SCMsgConst.TBS_GAME_START);
+        }
+
+        public void UnloadTBSGame()
+        {
+            SCMsgCenter.SendMsg(SCMsgConst.TBS_GAME_FINISH);
+            change2OWGame();
+        }
+        private void change2TBSGame()
+        {
             if (SCGame.instance.globalVolumn.TryGet<LensDistortion>(out LensDistortion comp))
             {
                 Time.timeScale = 0;
@@ -45,6 +84,15 @@ namespace GameCore.TBS
                 _m_tweenContainer?.RegDoTween(tween);
             }
         }
+
+        public void change2OWGame()
+        {
+            SCCommon.SetGameObjectEnable(SCGame.instance.playerGO, true);
+            SCGame.instance.owCamera.gameObject.SetActive(true);
+            SCGame.instance.virtualCamera.gameObject.SetActive(false);
+            Cursor.visible = false;
+        }
+
         public void AddOneLoadStep()
         {
             _m_stepCounter.AddDoneStepCount();
@@ -63,7 +111,6 @@ namespace GameCore.TBS
         {
             Tween tween = DOVirtual.DelayedCall(1f, () =>
             {
-
                 SCCommon.SetGameObjectEnable(SCGame.instance.playerGO, false);
                 SCGame.instance.owCamera.gameObject.SetActive(false);
                 SCGame.instance.virtualCamera.gameObject.SetActive(true);

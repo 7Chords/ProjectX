@@ -14,7 +14,7 @@ namespace GameCore
     public class GameInit : MonoBehaviour
     {
         //test
-        public bool isNewGame = true;
+        //public bool isNewGame = true;
 
         private void Awake()
         {
@@ -24,12 +24,6 @@ namespace GameCore
         }
         public void Start()
         {
-
-            if (isNewGame)
-                SCModel.instance.InitNewData();
-            else
-                SCModel.instance.LoadData();
-
 
             SCMsgCenter.SendMsg(SCMsgConst.GAME_START);
             //SCMsgCenter.SendMsg(SCMsgConst.TBS_GAME_START);
