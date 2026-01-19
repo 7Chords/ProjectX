@@ -8,5 +8,7 @@ namespace GameCore.UI
     {
         [Header("显示时间")]
         public float showDuration;
+        [Header("离开按钮")]
+        public Button btnExit;
     }
 }

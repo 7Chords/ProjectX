@@ -87,6 +87,7 @@ namespace GameCore.TBS
 
         public void change2OWGame()
         {
+            Time.timeScale = 1;
             SCCommon.SetGameObjectEnable(SCGame.instance.playerGO, true);
             SCGame.instance.owCamera.gameObject.SetActive(true);
             SCGame.instance.virtualCamera.gameObject.SetActive(false);

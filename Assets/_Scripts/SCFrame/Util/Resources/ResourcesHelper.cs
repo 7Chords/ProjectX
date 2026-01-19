@@ -250,6 +250,7 @@ namespace SCFrame
                     resultGO.transform.AddReleaseAddressableAsset(AutomaticReleaseAssetAction);
                 }
                 resultGO.name = _assetName;
+
             }
             else
             {
