@@ -118,6 +118,7 @@ namespace GameCore.TBS
 
         }
 
+
         public void LoadInfo()
         {
 

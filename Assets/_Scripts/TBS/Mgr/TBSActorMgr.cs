@@ -106,12 +106,12 @@ namespace GameCore.TBS
                 _m_enemyActorModuleList = new List<TBSActorBase>();
             _m_enemyActorModuleList.Clear();
 
-            // 核心修改1：异步加载舞台（替代同步LoadGameObject）
+            //异步加载舞台
             LoadStageAsync();
         }
 
         /// <summary>
-        /// 异步加载战斗舞台（前提：舞台加载完成后，才能加载角色）
+        /// 异步加载战斗舞台
         /// </summary>
         private void LoadStageAsync()
         {
@@ -147,6 +147,9 @@ namespace GameCore.TBS
                     {
                         _m_tbsStage.SetActive(true);
 
+                        _m_curActionActorIndex = 0;
+                        _m_selectSingleEnemyTargetIndex = 0;
+                        _m_selectSinglePlayerTargetIndex = 0;
                         SCModel.instance.tbsModel.playerActorModuleList = _m_playerActorModuleList;
                         SCModel.instance.tbsModel.enemyActorModuleList = _m_enemyActorModuleList;
                         SCModel.instance.tbsModel.playerActorGOList = _m_playerActorGOList;
@@ -160,7 +163,7 @@ namespace GameCore.TBS
                         GameCoreMgr.instance.uiCoreMgr.AddNode(new UINodeTBSMain(SCUIShowType.FULL), true);
                     });
 
-                    // 舞台加载完成，计数+1（对应总步骤中的+1）
+                    // 舞台加载完成，计数+1
                     TBSGameStarter.instance.AddOneLoadStep();
 
                     // 舞台加载完成后，异步加载玩家和敌人角色
@@ -372,6 +375,7 @@ namespace GameCore.TBS
                         }
                     }
                     while (_m_enemyActorModuleList[_m_curActionActorIndex].actorInfo.hasDead);
+
                 }
                 else if (SCModel.instance.tbsModel.curTurnType == ETBSTurnType.PLAYER)
                 {
@@ -386,7 +390,6 @@ namespace GameCore.TBS
                     while (_m_playerActorModuleList[_m_curActionActorIndex].actorInfo.hasDead);
                 }
             }
-
             jumpToNextActorIdx();
 
             //更换回合持有方了 代码时序保证先更换回合持有方 再更换角色操作
@@ -402,7 +405,22 @@ namespace GameCore.TBS
                 jumpToNextActorIdx();
             }
 
+            //当刚好最后一个玩家角色/敌人死亡时，没有下一个行动角色了
+            if (SCModel.instance.tbsModel.curTurnType == ETBSTurnType.ENEMY)
+            {
+                if (_m_curActionActorIndex < 0 || _m_curActionActorIndex >= _m_enemyActorGOList.Count)
+                    return;
+            }
+            else if (SCModel.instance.tbsModel.curTurnType == ETBSTurnType.PLAYER)
+            {
+                if (_m_curActionActorIndex < 0 || _m_curActionActorIndex >= _m_playerActorGOList.Count)
+                    return;
+            }
+
+
             SCModel.instance.tbsModel.curActorIndex = _m_curActionActorIndex;
+
+
 
             //不是牵扯到回合持有者切换的处理
             if (_m_curActionActorIndex != 0)

@@ -21,6 +21,10 @@ namespace GameCore.TBS
         public override void OnSuspend()
         {
         }
+        public virtual void Reset()
+        {
+
+        }
 
     }
 }

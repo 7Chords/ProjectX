@@ -62,3 +62,43 @@
 10061	#1_select_skill	选择技能	select skill
 10062	#2_tbs_skill_desc_1004	凝聚心神，令{0}己方单位回复{1}生命值	Gather your mind and ask{0}your unit to recover {1} health points
 10063	#1_character_name_1007	卡列琳娜	Karenina
+10064	#1_item_name_1003	复活卷轴	rebirth sroll
+10065	#1_tbs_item_rebirth_sroll	复活一名已死亡的己方单位，令其生命值回复50%	Revive a fallen ally and restore 50% of their health.
+10066	#2_tbs_skill_desc_1005	令一名己方单位的物理穿透和护甲级别提升一级，持续三回合	Increase the physical penetration and armor level of an allied unit by one tier for three turns.
+10067	#1_detail	详情	Detail
+10068	#1_select_item	选择道具	select item
+10069	#1_detail_attack	攻击力：{0}	atk:{0}
+10070	#1_detail_defend	防御力：{0}	def:{0}
+10071	#1_detail_miss_chance	闪避率：{0}	miss chance:{0}
+10072	#1_detail_critical_chance	暴击率：{0}	critical chance:{0}
+10073	#1_detail_physics_level	普攻物理等级：{0}	attack physics level:{0}
+10074	#1_detail_attack_attribute	普攻属性：{0}	attack attribute:{0}
+10075	#1_detail_armor_level	护甲等级：{0}	armor level:{0}
+10076	#1_detail_magic_resistence_level	法术抗性等级：{0}	magic resistence level:{0}
+10077	#1_detail_fire	火抗性：{0}	fire resistance:{0}
+10078	#1_detail_water	水抗性：{0}	water resistance:{0}
+10079	#1_detail_wood	木抗性：{0}	wood resistance:{0}
+10080	#1_none	无	empty
+10081	#1_detail_attack_damage_type	普攻伤害类型：{0}	attack damage type:{0}
+10082	#1_normal	正常	normal
+10083	#1_character_desc_1001	斯特尔的描述	desc...
+10084	#1_character_desc_1002	洛林的描述	desc...
+10085	#1_character_desc_1003	考特的描述	desc...
+10086	#1_character_desc_1004	红色史莱姆的描述	desc...
+10087	#1_character_desc_1005	尖刺史莱姆的描述	desc...
+10088	#1_character_desc_1006	石头巨人的描述	desc...
+10089	#1_character_desc_1007	卡列琳娜的描述	desc...
+10090	#1_switch_character	切换角色	switch_character
+10091	#1_light_armor	布甲	light_armor
+10092	#1_medium_armor	轻甲	medium_armor
+10093	#1_heavy_armor	铁甲	heavy_armor
+10094	#1_hero_armor	英雄甲	hero_armor
+10095	#1_light_magic_resistent	轻度抗性	light_magic_resistent
+10096	#1_medium_magic_resistent	中度抗性	medium_magic_resistent
+10097	#1_heavy_magic_resistent	重度抗性	heavy_magic_resistent
+10098	#1_hero_magic_resistent	英雄抗性	hero_magic_resistent
+10099	#2_tbs_skill_desc_1007	令所有己方单位的防御力少量提升，持续三回合	Slightly increases the defense of all allied units for three turns
+10100	#1_item_name_1004	魔法宝石	magic gem
+10101	#2_tbs_skill_desc_1008	借神灵之力引发焰火爆炸，对{0}敌方单位造成{1}{2}{3}伤害	Harness the power of the gods to trigger a fireworks explosion, dealing {1}{2}{3} damage to {0} enemy units
+10102	#1_retry	重试	retry
+10103	#1_exit	退出	exit

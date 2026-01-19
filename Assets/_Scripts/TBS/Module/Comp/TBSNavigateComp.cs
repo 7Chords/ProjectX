@@ -413,5 +413,11 @@ namespace GameCore.TBS
                 }
             }
         }
+
+        public override void Reset()
+        {
+            _m_singleEnemyTargetIndex = 0;
+            _m_singlePlayerTargetIndex = 0;
+        }
     }
 }

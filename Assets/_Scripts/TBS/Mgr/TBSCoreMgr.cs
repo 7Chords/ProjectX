@@ -127,8 +127,6 @@ namespace GameCore.TBS
 
             //显示大世界玩家
             SCCommon.SetGameObjectEnable(SCGame.instance.playerGO, false);
-
-            _m_tbsGameHasStarted = false;
         }
 
         private void onTBSAllPlayerActorDie()

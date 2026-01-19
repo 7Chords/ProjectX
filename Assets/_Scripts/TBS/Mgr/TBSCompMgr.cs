@@ -15,6 +15,9 @@ namespace GameCore.TBS
         {
             _m_tbsCompDict = new Dictionary<ETBSCompType, TBSCompBase>();
             initAllCompModule();
+
+            SCMsgCenter.RegisterMsgAct(SCMsgConst.TBS_COMP_MGR_WORK, onTBSCompMgrWork);
+
         }
 
         public override void OnDiscard()
@@ -22,6 +25,8 @@ namespace GameCore.TBS
             discardAllComp();
             _m_tbsCompDict.Clear();
             _m_tbsCompDict = null;
+            SCMsgCenter.UnregisterMsgAct(SCMsgConst.TBS_COMP_MGR_WORK, onTBSCompMgrWork);
+
         }
         public override void OnResume()
         {
@@ -99,6 +104,18 @@ namespace GameCore.TBS
                 if (compBase == null)
                     continue;
                 compBase.Resume();
+            }
+        }
+
+        private void onTBSCompMgrWork()
+        {
+            TBSCompBase compBase = null;
+            foreach (var pair in _m_tbsCompDict)
+            {
+                compBase = pair.Value;
+                if (compBase == null)
+                    continue;
+                compBase.Reset();
             }
         }
 

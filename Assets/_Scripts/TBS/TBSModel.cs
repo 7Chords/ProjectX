@@ -189,11 +189,14 @@ namespace GameCore.TBS
             _m_battleInfo.InitNewInfo();
             _m_curActorIndex = 0;
             _m_curSelectSingleEnemyTargetIdx = 0;
+            _m_curSelectSinglePlayerTargetIdx = 0;
             _m_selectTargetType = battleInfo.playerTeamInfo.actorInfoList[0].attackTargetType;
             _m_playerActorModuleList = new List<TBSActorBase>();
             _m_enemyActorModuleList = new List<TBSActorBase>();
             _m_enemyActorGOList = new List<GameObject>();
             _m_playerActorGOList = new List<GameObject>();
+            _m_curSelectSkillIdx = 0;
+            _m_curSelectItemIdx = 0;
             _m_canUseRunningId = 0;
         }
 
@@ -226,9 +229,17 @@ namespace GameCore.TBS
         public TBSActorInfo GetCurActorInfo()
         {
             if (curTurnType == ETBSTurnType.PLAYER)
+            {
+                if (curActorIndex < 0 || curActorIndex >= playerActorModuleList.Count)
+                    return null;
                 return playerActorModuleList[curActorIndex].actorInfo;
+            }
             else
+            {
+                if (curActorIndex < 0 || curActorIndex >= enemyActorModuleList.Count)
+                    return null;
                 return enemyActorModuleList[curActorIndex].actorInfo;
+            }
         }
 
         /// <summary>

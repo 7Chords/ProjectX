@@ -19,3 +19,4 @@
 1018	tbs_player_hud_panel	panel_tbs_player_hud
 1019	tbs_player_hud_item_prefab	prefab_player_hud_item
 1020	tbs_skill_name_tip	prefab_tbs_skill_name_tip
+1021	tbs_detail_panel	panel_tbs_detail

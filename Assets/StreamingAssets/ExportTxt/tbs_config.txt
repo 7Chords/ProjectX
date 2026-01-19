@@ -30,3 +30,6 @@ tbsMiddleAmountMultiplier	1.5
 tbsLargeAmountMultiplier	1.8
 tbsSuperAmountMultiplier	2.2
 tbsDefendMultiplier	.7
+tbsHurtParticleName	sparks_red
+tbsHealHpParticleName	heal_green
+tbsHealMpParticleName	heal_orange
