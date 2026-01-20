@@ -12,6 +12,9 @@ namespace GameCore.OW
 
         private float runTransition;
 
+
+        private Vector3 _m_nextPos;
+        private Vector3 _m_moveDir;
         public override void Init(StateMachine _stateMachine)
         {
             base.Init(_stateMachine);
@@ -30,6 +33,12 @@ namespace GameCore.OW
 
         public override void OnFixedUpdate()
         {
+
+            _m_playerController.Move(_m_nextPos + _m_playerController.playerMono.transform.position);
+
+            // 处理旋转
+            _m_playerController.SetRotation(Quaternion.Slerp(_m_playerController.playerMono.playerModel.transform.rotation,
+                Quaternion.LookRotation(_m_moveDir), Time.deltaTime * _m_playerController.playerMono.controlCfg.rotateSpeed));
         }
 
         public override void OnLateUpdate()
@@ -70,15 +79,10 @@ namespace GameCore.OW
                 float y = Camera.main.transform.rotation.eulerAngles.y;
                 // 让input也旋转y角度
                 // 四元数和向量相乘：表示这个向量按照这个四元数进行旋转之后得到新的向量
-                Vector3 moveDir = Quaternion.Euler(0, y, 0) * input;
+                _m_moveDir = Quaternion.Euler(0, y, 0) * input;
 
                 float speed = Mathf.Lerp(_m_playerController.playerMono.controlCfg.walkSpeed, _m_playerController.playerMono.controlCfg.runSpeed, runTransition);
-                Vector3 motion = Time.deltaTime * speed * moveDir;
-                _m_playerController.Move(motion + _m_playerController.playerMono.transform.position);
-
-                // 处理旋转
-                _m_playerController.SetRotation(Quaternion.Slerp(_m_playerController.playerMono.playerModel.transform.rotation, 
-                    Quaternion.LookRotation(moveDir), Time.deltaTime * _m_playerController.playerMono.controlCfg.rotateSpeed));
+                _m_nextPos = Time.deltaTime * speed * _m_moveDir;
             }
         }
 

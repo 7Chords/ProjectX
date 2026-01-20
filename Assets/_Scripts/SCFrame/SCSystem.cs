@@ -17,6 +17,7 @@ namespace SCFrame
             GameCameraMgr.instance.Initialize();
             TBSCursorMgr.instance.Initialize();
             ParticleMgr.instance.Initialize();
+            AudioMgr.instance.Initialize();
             SCTimeCaller.instance.Initialize();
             TBSGameStarter.instance.Initialize();
         }
@@ -27,6 +28,7 @@ namespace SCFrame
             SCTimeCaller.instance.Discard();
             SCInputListener.instance.Discard();
             ParticleMgr.instance.Discard();
+            AudioMgr.instance.Discard();
             SCSaveSys.instance.Discard();
             LanguageHelper.instance.Discard();
             SCPoolMgr.instance.Discard();

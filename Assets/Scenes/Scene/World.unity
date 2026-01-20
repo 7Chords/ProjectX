@@ -30490,6 +30490,7 @@ MonoBehaviour:
   playerAnim: {fileID: 4627569865175469966}
   playerModel: {fileID: 4627569865182903346}
   playerGO: {fileID: 6671934514498428528}
+  playerRb: {fileID: 6671934514498428534}
   animEventTrigger: {fileID: 4627569865182903347}
 --- !u!54 &6671934514498428534
 Rigidbody:
