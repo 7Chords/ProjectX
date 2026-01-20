@@ -74,7 +74,7 @@ namespace GameCore.OW
 
                 float speed = Mathf.Lerp(_m_playerController.playerMono.controlCfg.walkSpeed, _m_playerController.playerMono.controlCfg.runSpeed, runTransition);
                 Vector3 motion = Time.deltaTime * speed * moveDir;
-                _m_playerController.Move(motion);
+                _m_playerController.Move(motion + _m_playerController.playerMono.transform.position);
 
                 // ´¦ÀíÐý×ª
                 _m_playerController.SetRotation(Quaternion.Slerp(_m_playerController.playerMono.playerModel.transform.rotation, 

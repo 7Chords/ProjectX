@@ -106,7 +106,7 @@ namespace SCFrame
             }
             else
             {
-                if (Input.GetKey(SCSettingMgr.instance.saveKeyInfo.owNextDialogueKeyCode))
+                if (Input.GetKeyDown(SCSettingMgr.instance.saveKeyInfo.owNextDialogueKeyCode))
                     SCMsgCenter.SendMsg(SCMsgConst.OW_NEXT_DIALOGUE_INPUT);
             }
         }

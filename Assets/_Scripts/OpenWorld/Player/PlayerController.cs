@@ -95,9 +95,9 @@ namespace GameCore.OW
             _m_animationCtl.PlayBlendAnimation(clip1, clip2, _speed, _transitionFixedTime);
         }
 
-        public void Move(Vector3 _motion)
-        { 
-            _m_playerMono.playerGO.transform.position += _motion;
+        public void Move(Vector3 _targetPos)
+        {
+            _m_playerMono.playerRb.MovePosition(_targetPos);
         }
 
         public void SetRotation(Quaternion _rotation)
