@@ -20,6 +20,8 @@ namespace SCFrame
         {
             SCTaskHelper.instance.AddUpdateListener(updateInput);
             _m_tbsFrameInterval = SCRefDataMgr.instance.gameGeneralRefObj.tbsInputFrameInterval;
+
+            _m_canInput = true;
         }
 
         public override void OnDiscard()
@@ -30,10 +32,10 @@ namespace SCFrame
 
         private void updateInput()
         {
+            if (!_m_canInput)
+                return;
             if (GameCoreMgr.instance.tbsCoreMgr.tbsGameHasStarted)
             {
-                if (!_m_canInput)
-                    return;
                 if (_m_tbsFrameChecker < _m_tbsFrameInterval)
                 {
                     _m_tbsFrameChecker += 1;
@@ -115,6 +117,31 @@ namespace SCFrame
             }
         }
 
+        public float GetHorizontalInput()
+        {
+            if (!_m_canInput)
+                return 0;
+            return Input.GetAxis("Horizontal");
+        }
+        public float GetVerticalInput()
+        {
+            if (!_m_canInput)
+                return 0;
+            return Input.GetAxis("Vertical");
+        }
+
+        public bool GetKeyCodeDown(KeyCode _code)
+        {
+            if (!_m_canInput)
+                return false;
+            return Input.GetKeyDown(_code);
+        }
+        public bool GetKeyCode(KeyCode _code)
+        {
+            if (!_m_canInput)
+                return false;
+            return Input.GetKey(_code);
+        }
 
         public void SetCanInput(bool _canInput)
         {

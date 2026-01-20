@@ -1,3 +1,4 @@
+using SCFrame;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -13,16 +14,15 @@ namespace GameCore.OW
         }
         public override void OnUpdate()
         {
-            if (Input.GetKey(SCSettingMgr.instance.saveKeyInfo.owAttackKeyCode))
+            if (SCInputListener.instance.GetKeyCodeDown(SCSettingMgr.instance.saveKeyInfo.owAttackKeyCode))
             {
                 _m_playerController.ChangeState(PlayerStateType.ATTACK);
                 return;
             }
 
-            //_m_playerController.mono.Move(new Vector3(0, -9.8f * Time.deltaTime, 0));
             // ¼ì²âÍæ¼ÒµÄÊäÈë
-            float h = Input.GetAxis("Horizontal");
-            float v = Input.GetAxis("Vertical");
+            float h = SCInputListener.instance.GetHorizontalInput();
+            float v = SCInputListener.instance.GetVerticalInput();
             if (h != 0 || v != 0)
             {
                 // ÇÐ»»×´Ì¬

@@ -1,0 +1,4 @@
+﻿id	group	characterName	content
+1001	1001	斯特尔	你好
+1002	1001	猫a	你好2
+1003	1001	斯特尔	3你好

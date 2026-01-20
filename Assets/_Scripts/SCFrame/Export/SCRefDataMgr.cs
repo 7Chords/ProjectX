@@ -28,6 +28,9 @@ namespace SCFrame
         public SCRefDataList<BattleItemEffectRefObj> battleItemEffectRefList = new SCRefDataList<BattleItemEffectRefObj>(BattleItemEffectRefObj.assetPath, BattleItemEffectRefObj.sheetName);
 
         public SCRefDataList<ItemRefObj> itemRefList = new SCRefDataList<ItemRefObj>(ItemRefObj.assetPath, ItemRefObj.sheetName);
+
+        public SCRefDataList<DialogueRefObj> dialogueRefList = new SCRefDataList<DialogueRefObj>(DialogueRefObj.assetPath, DialogueRefObj.sheetName);
+
         public override void OnInitialize()
         {
             gameGeneralRefObj.readFromTxt();
@@ -41,6 +44,7 @@ namespace SCFrame
             tbsBuffRefList.readFromTxt();
             battleItemEffectRefList.readFromTxt();
             itemRefList.readFromTxt();
+            dialogueRefList.readFromTxt();
         }
     }
 }

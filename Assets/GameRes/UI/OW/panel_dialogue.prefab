@@ -250,6 +250,8 @@ GameObject:
   - component: {fileID: 4721789147541159844}
   - component: {fileID: 4721789147541159846}
   - component: {fileID: 4721789147541159847}
+  - component: {fileID: 1334807951242011358}
+  - component: {fileID: 2648261616358515887}
   m_Layer: 5
   m_Name: panel_dialogue
   m_TagString: Untagged
@@ -316,6 +318,37 @@ MonoBehaviour:
   m_FillOrigin: 0
   m_UseSpriteMesh: 0
   m_PixelsPerUnitMultiplier: 1
+--- !u!225 &1334807951242011358
+CanvasGroup:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4721789147541159845}
+  m_Enabled: 1
+  m_Alpha: 1
+  m_Interactable: 1
+  m_BlocksRaycasts: 1
+  m_IgnoreParentGroups: 0
+--- !u!114 &2648261616358515887
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4721789147541159845}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1a49836b08f32564e8d7ed28a65307ac, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  uiMask: {fileID: 0}
+  canvasGroup: {fileID: 1334807951242011358}
+  fadeInDuration: 0.5
+  fadeOutDuration: 0.5
+  txtContent: {fileID: 4721789146615412685}
+  txtName: {fileID: 4721789145907792458}
+  goNext: {fileID: 4721789147552747713}
 --- !u!1 &4721789147552747713
 GameObject:
   m_ObjectHideFlags: 0

@@ -10,13 +10,5 @@ namespace GameCore.OW
             base.Init(_stateMachine);
             _m_playerController = _stateMachine.GetOwner() as PlayerController;
         }
-        public override void Discard()
-        {
-
-
-
-            base.Discard();
-        }
-
     }
 }

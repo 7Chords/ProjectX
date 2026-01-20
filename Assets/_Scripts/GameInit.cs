@@ -37,7 +37,7 @@ namespace GameCore
         {
         }
 
-        private void OnDisable()
+        private void OnDestroy()
         {
             SCModel.instance.Discard();
             SCPlayer.instance.Discard();
