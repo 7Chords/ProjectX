@@ -37,21 +37,12 @@ namespace GameCore.UI
 
         private void onBtnRetryClickDown(PointerEventData _data, object[] _objs)
         {
-            GameCoreMgr.instance.uiCoreMgr.CloseTopNode();
-            GameCoreMgr.instance.uiCoreMgr.RemoveNode(nameof(UINodeTBSEnemyHud));
-            GameCoreMgr.instance.uiCoreMgr.RemoveNode(nameof(UINodeTBSPlayerHud));
-            GameCoreMgr.instance.uiCoreMgr.RemoveNode(nameof(UINodeTBSMain));
-            GameCoreMgr.instance.uiCoreMgr.RemoveNode(nameof(UINodeTBSInfo));
-
+            GameCoreMgr.instance.uiCoreMgr.RemoveAllNodes(SCUINodeFuncType.TBS);
             TBSGameStarter.instance.ReloadTBSGame();
         }
         private void onBtnExitClickDown(PointerEventData _data, object[] _objs)
         {
-            GameCoreMgr.instance.uiCoreMgr.CloseTopNode();
-            GameCoreMgr.instance.uiCoreMgr.RemoveNode(nameof(UINodeTBSEnemyHud));
-            GameCoreMgr.instance.uiCoreMgr.RemoveNode(nameof(UINodeTBSPlayerHud));
-            GameCoreMgr.instance.uiCoreMgr.RemoveNode(nameof(UINodeTBSMain));
-            GameCoreMgr.instance.uiCoreMgr.RemoveNode(nameof(UINodeTBSInfo));
+            GameCoreMgr.instance.uiCoreMgr.RemoveAllNodes(SCUINodeFuncType.TBS);
             TBSGameStarter.instance.UnloadTBSGame();
 
         }

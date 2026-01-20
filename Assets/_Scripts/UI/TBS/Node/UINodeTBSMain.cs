@@ -16,6 +16,7 @@ namespace GameCore.UI
         public override bool canQuitByMouseRight => false;
 
         public override bool ignoreOnUIList => false;
+        public override SCUINodeFuncType nodeFuncType => SCUINodeFuncType.TBS;
 
         public UINodeTBSMain(SCUIShowType _showType) : base(_showType)
         {

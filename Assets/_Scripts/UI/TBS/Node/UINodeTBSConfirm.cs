@@ -24,6 +24,7 @@ namespace GameCore.UI
 
         public override bool canQuitByMouseRight => true;
         public override bool ignoreOnUIList => false;
+        public override SCUINodeFuncType nodeFuncType => SCUINodeFuncType.TBS;
 
         private GameObject _m_panelGO;
         private UIPanelTBSConfirm _m_tbsConfirmPanel;

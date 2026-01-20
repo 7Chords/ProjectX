@@ -119,9 +119,6 @@ namespace GameCore.TBS
             SCMsgCenter.SendMsg(SCMsgConst.TBS_ACTOR_MGR_REST);
             SCMsgCenter.SendMsg(SCMsgConst.TBS_EFFECT_MGR_REST);
             SCMsgCenter.SendMsg(SCMsgConst.TBS_COMP_MGR_REST);
-
-            //显示大世界玩家
-            SCCommon.SetGameObjectEnable(SCGame.instance.playerGO, false);
         }
 
         private void onTBSAllPlayerActorDie()

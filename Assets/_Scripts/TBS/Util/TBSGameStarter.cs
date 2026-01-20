@@ -71,6 +71,8 @@ namespace GameCore.TBS
         }
         private void change2TBSGame()
         {
+            SCCommon.SetGameObjectEnable(SCGame.instance.playerGO, false);
+
             if (SCGame.instance.globalVolumn.TryGet<LensDistortion>(out LensDistortion comp))
             {
                 Time.timeScale = 0;

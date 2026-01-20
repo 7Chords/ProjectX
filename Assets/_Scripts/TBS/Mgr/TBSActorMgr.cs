@@ -79,9 +79,13 @@ namespace GameCore.TBS
             _m_enemyActorModuleList = null;
         }
 
-        public override void OnResume() { }
+        public override void OnResume() 
+        {
+        }
 
-        public override void OnSuspend() { }
+        public override void OnSuspend() 
+        {
+        }
 
         #region 事件回调
 
@@ -345,12 +349,16 @@ namespace GameCore.TBS
 
             if (_m_playerActorModuleList != null)
             {
+                foreach (var actor in _m_playerActorModuleList)
+                    actor.Discard();
                 _m_playerActorModuleList.Clear();
                 _m_playerActorModuleList = null;
             }
 
             if (_m_enemyActorModuleList != null)
             {
+                foreach (var actor in _m_enemyActorModuleList)
+                    actor.Discard();
                 _m_enemyActorModuleList.Clear();
                 _m_enemyActorModuleList = null;
             }

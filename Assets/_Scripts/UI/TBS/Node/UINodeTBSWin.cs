@@ -17,6 +17,7 @@ namespace GameCore.UI
 
         public override bool canQuitByMouseRight => false;
         public override bool ignoreOnUIList => false;
+        public override SCUINodeFuncType nodeFuncType => SCUINodeFuncType.TBS;
 
         private GameObject _m_panelGO;
         private UIPanelTBSWin _m_tbsWinPanel;
@@ -46,7 +47,6 @@ namespace GameCore.UI
             if (_m_tbsWinPanel == null)
                 return;
             _m_tbsWinPanel.HidePanel();
-            SCCommon.SetGameObjectEnable(_m_panelGO, false);
         }
 
         public override void OnQuitNode()
@@ -54,14 +54,12 @@ namespace GameCore.UI
             if (_m_tbsWinPanel == null)
                 return;
             _m_tbsWinPanel.Discard();
-            SCCommon.DestoryGameObject(_m_panelGO);
         }
 
         public override void OnShowNode()
         {
             if (_m_tbsWinPanel == null)
                 return;
-            SCCommon.SetGameObjectEnable(_m_panelGO, true);
             _m_tbsWinPanel.ShowPanel();
         }
         public override string GetNodeName()

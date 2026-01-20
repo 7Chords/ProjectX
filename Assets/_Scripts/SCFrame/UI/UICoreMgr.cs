@@ -223,15 +223,6 @@ namespace SCFrame.UI
                     return;
                 }
             }
-
-            //for (int i = _m_nodeList.Count - 1; i > -1; i--)
-            //{
-            //    if (_m_nodeList[i].GetNodeName() == _nodeName)
-            //    {
-            //        _m_nodeList[i].ShowNode();
-            //        return;
-            //    }
-            //}
         }
 
         /// <summary>
@@ -259,7 +250,22 @@ namespace SCFrame.UI
             node.QuitNode();
             _m_nodeList.Remove(node);
         }
-
+        public void RemoveAllNodes(SCUINodeFuncType _nodeFuncType)
+        {
+            _ASCUINodeBase node = null;
+            for (int i = _m_nodeList.Count - 1; i > -1; i--)
+            {
+                node = _m_nodeList[i];
+                if (node == null)
+                    continue;
+                if (node.nodeFuncType == _nodeFuncType)
+                {
+                    node.HideNode();
+                    node.QuitNode();
+                    _m_nodeList.RemoveAt(i);
+                }
+            }
+        }
         public _ASCUINodeBase GetNodeByName(string _nodeName)
         {
             foreach(var node in _m_nodeList)

@@ -50,13 +50,14 @@ namespace GameCore.UI
         {
             SCMsgCenter.RegisterMsgAct(SCMsgConst.TBS_TURN_CHG_SHOW_END, onTBSTurnChgShowEnd);
 
-            _m_allActorInfoList = SCModel.instance.tbsModel.GetAllActorInfo();
-
             refreshPanel();
         }
 
         private void refreshPanel()
         {
+            _m_allActorInfoList = SCModel.instance.tbsModel.GetAllActorInfo();
+
+
             refreshInfoContainer();
             refreshCharacterActionContainer();
             refreshTurnCountText();

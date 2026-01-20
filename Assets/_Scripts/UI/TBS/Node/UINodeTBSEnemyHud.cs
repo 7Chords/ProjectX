@@ -19,6 +19,7 @@ namespace GameCore.UI
 
         public override bool ignoreOnUIList => true;
 
+        public override SCUINodeFuncType nodeFuncType => SCUINodeFuncType.TBS;
 
         private GameObject _m_panelGO;
         private UIPanelTBSEnemyHud _m_tbsEnemyHudPanel;

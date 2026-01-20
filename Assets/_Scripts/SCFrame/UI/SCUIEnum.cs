@@ -23,4 +23,12 @@ namespace SCFrame.UI
         ITEM
     }
 
+    public enum SCUINodeFuncType
+    {
+        NONE,
+        OW,
+        TBS
+    }
+
+
 }

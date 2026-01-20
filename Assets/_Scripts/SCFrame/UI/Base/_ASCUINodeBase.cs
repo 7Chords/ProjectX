@@ -34,6 +34,8 @@ namespace SCFrame.UI
         //该节点在UI列表里是否忽略
         public abstract bool ignoreOnUIList { get; }
 
+        public abstract SCUINodeFuncType nodeFuncType { get; }
+
         public _ASCUINodeBase(SCUIShowType _showType)
         {
             _m_showType = _showType;
@@ -76,7 +78,7 @@ namespace SCFrame.UI
             }
             if(!_m_hasHideNode)
             {
-                Debug.LogError(GetNodeName() + "当前正在show,无法再次Show!!!");
+                Debug.LogWarning(GetNodeName() + "当前正在show,无法再次Show!!!");
                 return;
             }
 
