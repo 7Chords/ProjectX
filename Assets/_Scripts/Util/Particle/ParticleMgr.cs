@@ -309,7 +309,7 @@ namespace GameCore.Util
         #region 辅助方法
 
         /// <summary>
-        /// 获取粒子预制体（带缓存）
+        /// 获取粒子预制体
         /// </summary>
         private GameObject GetParticlePrefab(string _effectName)
         {
@@ -377,6 +377,8 @@ namespace GameCore.Util
 
             if (_info.rootGameObject != null)
             {
+                SCTaskHelper.instance.KillAllCoroutines(_info.rootGameObject);
+
                 SCCommon.DestoryGameObject(_info.rootGameObject);
             }
         }

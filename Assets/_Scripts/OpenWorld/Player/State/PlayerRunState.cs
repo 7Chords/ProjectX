@@ -13,7 +13,7 @@ namespace GameCore.OW
         private float runTransition;
 
 
-        private Vector3 _m_nextPos;
+        private Vector3 _m_motion;
         private Vector3 _m_moveDir;
         public override void Init(StateMachine _stateMachine)
         {
@@ -34,7 +34,7 @@ namespace GameCore.OW
         public override void OnFixedUpdate()
         {
 
-            _m_playerController.Move(_m_nextPos + _m_playerController.playerMono.transform.position);
+            _m_playerController.Move(_m_motion + _m_playerController.playerMono.transform.position);
 
             // ´¦ÀíÐý×ª
             _m_playerController.SetRotation(Quaternion.Slerp(_m_playerController.playerMono.playerModel.transform.rotation,
@@ -82,7 +82,7 @@ namespace GameCore.OW
                 _m_moveDir = Quaternion.Euler(0, y, 0) * input;
 
                 float speed = Mathf.Lerp(_m_playerController.playerMono.controlCfg.walkSpeed, _m_playerController.playerMono.controlCfg.runSpeed, runTransition);
-                _m_nextPos = Time.deltaTime * speed * _m_moveDir;
+                _m_motion = Time.deltaTime * speed * _m_moveDir;
             }
         }
 

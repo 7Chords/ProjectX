@@ -50,6 +50,7 @@ namespace GameCore.Util
         }
         public override void OnDiscard()
         {
+            SCTaskHelper.instance.KillAllCoroutines(this);
             _tweenContainer?.KillAllDoTween();
             _tweenContainer = null;
         }
