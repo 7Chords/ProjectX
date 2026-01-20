@@ -17,10 +17,7 @@ public class SCMsgConst
     public const int MOUSE_RIGHT_INPUT = 1012;
     public const int TBS_DETAIL_INPUT = 1013;
 
-    //public const int OW_FORWARD_INPUT = 1014;
-    //public const int OW_BACKWARD_INPUT = 1015;
-    //public const int OW_LEFT_INPUT = 1016;
-    //public const int OW_RIGHT_INPUT = 1017;
+    public const int OW_NEXT_DIALOGUE_INPUT = 1014;
 
     #endregion
 

@@ -12,6 +12,10 @@ namespace GameCore.OW
         public PlayerMono playerMono => _m_playerMono;
 
         private StateMachine _m_playerStateMachine;
+
+
+        private bool _m_canControl;
+        public bool canControl => _m_canControl;
         public override void OnInitialize()
         {
             _m_playerMono = SCGame.instance.playerMono;
@@ -24,6 +28,7 @@ namespace GameCore.OW
             _m_playerStateMachine.Initialize();
             _m_playerStateMachine.SetOwner(this);
 
+            _m_canControl = true;
 
             ChangeState(PlayerStateType.IDLE);
         }
@@ -98,6 +103,11 @@ namespace GameCore.OW
         public void SetRotation(Quaternion _rotation)
         {
             _m_playerMono.playerModel.transform.rotation = _rotation;
+        }
+
+        public void SetCanControl(bool _canControl)
+        {
+            _m_canControl = _canControl;
         }
     }
 }

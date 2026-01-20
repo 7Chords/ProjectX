@@ -14,6 +14,9 @@ namespace GameCore.OW
         }
         public override void OnUpdate()
         {
+            if (!_m_playerController.canControl)
+                return;
+
             if (SCInputListener.instance.GetKeyCodeDown(SCSettingMgr.instance.saveKeyInfo.owAttackKeyCode))
             {
                 _m_playerController.ChangeState(PlayerStateType.ATTACK);

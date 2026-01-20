@@ -171,22 +171,6 @@ namespace SCFrame.UI
         }
 
 
-        public void HideTopNode(bool _includeIgnore = true)
-        {
-            _ASCUINodeBase topNode = GetTopNode(_includeIgnore);
-            if (topNode == null)
-                return;
-            topNode.HideNode();
-        }
-
-        public void ShowTopNode()
-        {
-            _ASCUINodeBase topNode = GetTopNode();
-            if (topNode == null)
-                return;
-            topNode.ShowNode();
-        }
-
         public void HideNode(string _nodeName)
         {
             _ASCUINodeBase node = null;
