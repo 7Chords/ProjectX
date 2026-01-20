@@ -325,7 +325,7 @@ MonoBehaviour:
   targetTransform:
     exposedName: e8934cf1ca20d244ab76568cf021bfa6
     defaultValue: {fileID: 0}
-  positionOffset: {x: 0, y: 0.26, z: 1.45}
+  positionOffset: {x: 0, y: 0.4, z: 1.45}
   useLocalOffset: 1
   rotation: {x: 0, y: 180, z: 0}
   relativeToTarget: 0
@@ -371,9 +371,9 @@ MonoBehaviour:
   cameraMovingItem:
     lookAt: {fileID: 0}
     follow: {fileID: 0}
-    offset: {x: 7.3, y: 4.5, z: -15.4}
-    offsetTranslateDuration: 1
-    isPlayerOffset: 0
+    offset: {x: -228.83, y: 1.5, z: 106.11}
+    offsetTranslateDuration: 0.5
+    isPlayerOffset: 1
 --- !u!114 &-1547842889048559729
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -389,9 +389,9 @@ MonoBehaviour:
   cameraMovingItem:
     lookAt: {fileID: 0}
     follow: {fileID: 0}
-    offset: {x: 2.3000002, y: 4.5, z: -28.4}
-    offsetTranslateDuration: 0
-    isPlayerOffset: 0
+    offset: {x: -230.33, y: 2.5, z: 100.61}
+    offsetTranslateDuration: 0.75
+    isPlayerOffset: 1
 --- !u!114 &-1254790726744159128
 MonoBehaviour:
   m_ObjectHideFlags: 1
