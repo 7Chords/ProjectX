@@ -149,7 +149,7 @@ MonoBehaviour:
   targetTransform:
     exposedName: e8934cf1ca20d244ab76568cf021bfa6
     defaultValue: {fileID: 0}
-  positionOffset: {x: 0, y: 4, z: 2}
+  positionOffset: {x: 0, y: 0.6, z: 0.75}
   useLocalOffset: 1
   rotation: {x: 0, y: 0, z: -25}
   relativeToTarget: 0

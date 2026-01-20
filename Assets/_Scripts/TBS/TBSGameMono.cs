@@ -20,6 +20,7 @@ namespace GameCore.TBS
 
         public Transform playerLookEnemyCenterPos;
         public Transform enemyLookPlayerCenterPos;
+        public Transform lookAllPlayersVC_LookPos;
 
         public CinemachineVirtualCamera lookAllPlayersVC;
 

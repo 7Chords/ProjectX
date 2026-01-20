@@ -153,7 +153,7 @@ namespace GameCore.TBS
                         skillAssetList[0].cameraMovingItem.lookAt = SCModel.instance.tbsModel.gameMono.playerLookEnemyCenterPos;
                         skillAssetList[0].cameraMovingItem.follow = GetModelGameObject().transform;
                         skillAssetList[0].cameraMovingItem.offset = SCModel.instance.tbsModel.gameMono.enemyLookPlayerCenterPos.position 
-                            + new Vector3(0, 2, -20);
+                            + new Vector3(0, 2, -10);
                         skillAssetList[0].cameraMovingItem.offsetTranslateDuration = 1f;
                         skillAssetList[0].cameraMovingItem.isPlayerOffset = false;
 

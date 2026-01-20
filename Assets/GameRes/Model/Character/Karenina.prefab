@@ -220,7 +220,7 @@ Transform:
   m_GameObject: {fileID: 724731330230026705}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 4, y: 4, z: 4}
+  m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 1
   m_Children:
   - {fileID: 858014161105366898}
@@ -719,7 +719,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1964146660105879672}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 13.43, y: 4.5, z: -1.09}
+  m_LocalPosition: {x: 2.49, y: 1, z: -1.15}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -1060,7 +1060,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2910005750977084678}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 2.08, y: 4.5, z: -9.4}
+  m_LocalPosition: {x: 0.56, y: 1, z: -2.6}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -1781,7 +1781,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 5590296646522348551}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 10.5, y: 4.5, z: -7.47}
+  m_LocalPosition: {x: 1.89, y: 1, z: -1.64}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -2473,10 +2473,10 @@ CapsuleCollider:
   m_Material: {fileID: 0}
   m_IsTrigger: 1
   m_Enabled: 1
-  m_Radius: 1.5
-  m_Height: 8
+  m_Radius: 0.5
+  m_Height: 2
   m_Direction: 1
-  m_Center: {x: 0, y: 3.5, z: 0}
+  m_Center: {x: 0, y: 1, z: 0}
 --- !u!320 &2053062290983052493
 PlayableDirector:
   m_ObjectHideFlags: 0
@@ -2581,14 +2581,14 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   goModel: {fileID: 3941071980731936205}
-  damageTextOffset: {x: 0, y: 3, z: 3}
-  cursorOffset: {x: 0, y: 3, z: 0}
+  damageTextOffset: {x: 0, y: 0.75, z: 0.75}
+  cursorOffset: {x: 0, y: 0.75, z: 0}
   asCameraTargetTran: {fileID: 5111766000885010648}
   actorAnim: {fileID: 490798487549565008}
   bottomSfxTran: {fileID: 0}
   centerSfxTran: {fileID: 0}
   topSfxTran: {fileID: 0}
-  enemyAttackStopOffset: {x: 0, y: 0, z: -3}
+  enemyAttackStopOffset: {x: 0, y: 0, z: -1}
   attackAnimClipName: karenina_attack_anim_clip
   runAnimClipName: karenina_run_anim_clip
   getHitAnimClipName: karenina_getHit_anim_clip
@@ -2608,8 +2608,7 @@ MonoBehaviour:
     cameraTran: {fileID: 6716328687976633201}
   - posType: 3
     cameraTran: {fileID: 2407530545689571336}
-  detailCamOffset: {x: 0, y: 3, z: 10}
-  hurtParticalName: sparks_red
+  detailCamOffset: {x: 0, y: 1, z: 2}
   attackAnimDuration: 1
 --- !u!1 &7682297364125714830
 GameObject:
@@ -2667,7 +2666,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 7749344640438532114}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 6, z: 0}
+  m_LocalPosition: {x: 0, y: 1, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -2796,7 +2795,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 8324991989676808435}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 6.3, y: 4.5, z: -9.4}
+  m_LocalPosition: {x: 1.17, y: 1, z: -2.09}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []

@@ -200,14 +200,14 @@ namespace GameCore.TBS
                         List<CameraMovingPlayableAsset> skillAssetList = GetCameraMovingAssets(skillAsset);
                         skillAssetList[0].cameraMovingItem.lookAt = GetAsCameraTargetTran();
                         skillAssetList[0].cameraMovingItem.follow = GetModelGameObject().transform;
-                        skillAssetList[0].cameraMovingItem.offset = GetActorCameraTran().position + new Vector3(7, 0, 15);
+                        skillAssetList[0].cameraMovingItem.offset = GetActorCameraTran().position + new Vector3(2, 0, 5);
                         skillAssetList[0].cameraMovingItem.offsetTranslateDuration = 0.5f;
                         skillAssetList[0].cameraMovingItem.isPlayerOffset = true;
 
 
                         skillAssetList[1].cameraMovingItem.lookAt = SCModel.instance.tbsModel.gameMono.playerLookEnemyCenterPos;
                         skillAssetList[1].cameraMovingItem.follow = GetModelGameObject().transform;
-                        skillAssetList[1].cameraMovingItem.offset = GetActorCameraTran().position + new Vector3(2,0,2);
+                        skillAssetList[1].cameraMovingItem.offset = GetActorCameraTran().position + new Vector3(0.5f,1f,-0.5f);
                         skillAssetList[1].cameraMovingItem.offsetTranslateDuration = 0.75f;
                         skillAssetList[1].cameraMovingItem.isPlayerOffset = true;
 

@@ -253,8 +253,8 @@ namespace GameCore.TBS
 
             if (itemRefObj.isPlayerTarget)
             {
-                GameCameraMgr.instance.SetCameraPositionOffsetWithFollow(SCModel.instance.tbsModel.gameMono.playerLookEnemyCenterPos.position, true, 0f);
-                GameCameraMgr.instance.SetCameraTarget(SCModel.instance.tbsModel.gameMono.enemyLookPlayerCenterPos);
+                GameCameraMgr.instance.SetCameraPositionOffsetWithFollow(SCModel.instance.tbsModel.gameMono.lookAllPlayersVC.transform.position, true, 0f);
+                GameCameraMgr.instance.SetCameraTarget(SCModel.instance.tbsModel.gameMono.lookAllPlayersVC_LookPos);
             }
             else
             {
