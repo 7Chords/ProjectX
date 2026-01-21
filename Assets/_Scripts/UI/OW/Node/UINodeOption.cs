@@ -59,11 +59,6 @@ namespace GameCore.UI
         {
             if (_m_optionPanel == null)
                 return;
-            Cursor.visible = false;
-            SCGame.instance.owCamera.m_YAxis.m_MaxSpeed = 3;
-            SCGame.instance.owCamera.m_XAxis.m_MaxSpeed = 400;
-            PlayerController.instance.SetCanControl(true);
-
             _m_optionPanel.HidePanel();
         }
 
@@ -78,11 +73,6 @@ namespace GameCore.UI
         {
             if (_m_optionPanel == null)
                 return;
-            Cursor.visible = true;
-            SCGame.instance.owCamera.m_YAxis.m_MaxSpeed = 0;
-            SCGame.instance.owCamera.m_XAxis.m_MaxSpeed = 0;
-            PlayerController.instance.SetCanControl(false);
-            PlayerController.instance.ChangeState(PlayerStateType.IDLE);
             _m_optionPanel.ShowPanel();
         }
     }

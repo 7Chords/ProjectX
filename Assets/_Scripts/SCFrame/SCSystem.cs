@@ -21,10 +21,12 @@ namespace SCFrame
             AudioMgr.instance.Initialize();
             SCTimeCaller.instance.Initialize();
             TBSGameStarter.instance.Initialize();
+            GameStateHandler.instance.Initialize();
         }
 
         public override void OnDiscard()
         {
+            GameStateHandler.instance.Discard();
             TBSGameStarter.instance.Discard();
             SCTimeCaller.instance.Discard();
             SCInputListener.instance.Discard();

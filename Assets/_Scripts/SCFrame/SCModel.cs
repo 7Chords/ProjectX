@@ -13,7 +13,11 @@ namespace SCFrame
         public OWModel owModel { get { return _m_owModel; } }
 
         public EGameStateType _m_gameStateType;
-        public EGameStateType gameStateType => _m_gameStateType;
+        public EGameStateType gameStateType
+        {
+            get { return _m_gameStateType; }
+            set { _m_gameStateType = value;}
+        }
         public override void OnInitialize()
         {
             _m_tbsModel = new TBSModel();
