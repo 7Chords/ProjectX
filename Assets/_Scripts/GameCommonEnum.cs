@@ -1,10 +1,19 @@
 namespace GameCore
 {
+
+    public enum EGameStateType
+    {
+        NONE,
+        PAUSE,
+        OW,
+        TBS,
+    }
+
+
     /// <summary>
     /// 游戏通用枚举
     /// </summary>
-    
-
+   
     public enum EBasicAttribute
     {
         HP,

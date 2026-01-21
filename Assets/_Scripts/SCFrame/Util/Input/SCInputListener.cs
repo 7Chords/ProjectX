@@ -109,10 +109,19 @@ namespace SCFrame
             }
             else
             {
-                if (Input.GetKeyDown(SCSettingMgr.instance.saveKeyInfo.owNextDialogueKeyCode))
+                if (Input.GetKeyDown(SCSettingMgr.instance.saveKeyInfo.owConfirmKeyCode))
                     SCMsgCenter.SendMsg(SCMsgConst.OW_NEXT_DIALOGUE_INPUT);
                 if (Input.GetKeyDown(SCSettingMgr.instance.saveKeyInfo.owOptionKeyCode))
                     SCMsgCenter.SendMsg(SCMsgConst.OW_OPTION_INPUT);
+                if (Input.GetKeyDown(SCSettingMgr.instance.saveKeyInfo.owSwitchToDownKeyCode))
+                    SCMsgCenter.SendMsg(SCMsgConst.OW_SWITCH_TO_DOWN_INPUT);
+                if (Input.GetKeyDown(SCSettingMgr.instance.saveKeyInfo.owSwitchToUpKeyCode))
+                    SCMsgCenter.SendMsg(SCMsgConst.OW_SWITCH_TO_UP_INPUT);
+                if (Input.GetKeyDown(SCSettingMgr.instance.saveKeyInfo.owSwitchToLeftKeyCode))
+                    SCMsgCenter.SendMsg(SCMsgConst.OW_SWITCH_TO_LEFT_INPUT);
+                if (Input.GetKeyDown(SCSettingMgr.instance.saveKeyInfo.owSwitchToRightKeyCode))
+                    SCMsgCenter.SendMsg(SCMsgConst.OW_SWITCH_TO_RIGHT_INPUT);
+
             }
         }
 

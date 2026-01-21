@@ -1,7 +1,8 @@
 using GameCore.UI;
 using SCFrame;
 using SCFrame.UI;
-
+using System.Collections.Generic;
+using UnityEngine;
 
 namespace GameCore.TBS
 {
@@ -45,6 +46,30 @@ namespace GameCore.TBS
             else if ((firstNode is UINodeTBSItem) && (secondNode is UINodeTBSMain))
             {
                 GameCameraMgr.instance.SetCameraPositionOffsetWithFollow(SCModel.instance.tbsModel.GetCurActor().GetActorCameraTran().position, true);
+            }
+
+            if (firstNode is UINodeTBSItem)
+            {
+
+                GameCoreMgr.instance.uiCoreMgr.ShowNodeButNotMove2Top(nameof(UINodeTBSEnemyHud));
+
+                //重新设置光标
+                List<Vector3> worldPosList = new List<Vector3>();
+                if (SCModel.instance.tbsModel.selectTargetType == ETargetType.SINGLE)
+                    worldPosList.Add(SCModel.instance.tbsModel.GetCurSelectSingleEnemyTargetActor().GetCursorPos());
+                else if (SCModel.instance.tbsModel.selectTargetType == ETargetType.ALL)
+                {
+                    worldPosList = SCModel.instance.tbsModel.GetPosList(false, ETargetAliveType.ALIVE);
+                }
+                TBSCursorMgr.instance.SetSelectionCursor(worldPosList);
+            }
+            else if (secondNode is UINodeTBSItem)
+            {
+                //隐藏敌人hud
+                GameCoreMgr.instance.uiCoreMgr.HideNode(nameof(UINodeTBSEnemyHud));
+
+                //隐藏光标
+                TBSCursorMgr.instance.HideSelectionCursor();
             }
         }
     }

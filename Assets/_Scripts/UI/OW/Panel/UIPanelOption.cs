@@ -120,6 +120,7 @@ namespace GameCore.UI
 
         private void onBtnItemClickDown(PointerEventData _data, object[] _objs)
         {
+            GameCoreMgr.instance.uiCoreMgr.AddNode(new UINodeItem(SCUIShowType.FULL));
         }
 
         private void onBtnCharacterClickDown(PointerEventData _data, object[] _objs)

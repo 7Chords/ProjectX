@@ -129,6 +129,14 @@ MonoBehaviour:
     m_Address: panel_option
     m_ReadOnly: 0
     m_SerializedLabels: []
+  - m_GUID: 8535634a4ab6ffe4881033cb4ff0fba6
+    m_Address: panel_item
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  - m_GUID: 70976f96f4302424fae5fc50fc1aa753
+    m_Address: prefab_item_item
+    m_ReadOnly: 0
+    m_SerializedLabels: []
   m_ReadOnly: 0
   m_Settings: {fileID: 11400000, guid: d14fb1bbe98862146a7f5467a5bc79f8, type: 2}
   m_SchemaSet:

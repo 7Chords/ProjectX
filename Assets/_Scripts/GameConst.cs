@@ -31,6 +31,7 @@ namespace GameCore
         public const string DIALOGUE_PANEL = "dialogue_panel";
         public const string OPTION_PANEL = "option_panel";
         public const string MAIN_PANEL = "main_panel";
+        public const string ITEM_PANEL = "item_panel";
         #endregion
 
 

@@ -23,3 +23,4 @@
 1022	dialogue_panel	panel_dialogue
 1023	option_panel	panel_option
 1024	main_panel	panel_main
+1025	item_panel	panel_item

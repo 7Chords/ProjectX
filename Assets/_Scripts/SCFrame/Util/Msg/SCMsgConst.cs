@@ -19,11 +19,14 @@ public class SCMsgConst
 
     public const int OW_NEXT_DIALOGUE_INPUT = 1014;
     public const int OW_OPTION_INPUT = 1014;
-
+    public const int OW_SWITCH_TO_UP_INPUT = 1015;
+    public const int OW_SWITCH_TO_DOWN_INPUT = 1016;
+    public const int OW_SWITCH_TO_LEFT_INPUT = 1017;
+    public const int OW_SWITCH_TO_RIGHT_INPUT = 1018;
     #endregion
 
 
-    #region 回合制战斗相关 20
+    #region TBS回合制战斗相关 20
     public const int TBS_GAME_START = 2000;
     public const int TBS_GAME_FINISH = 2001;
 
@@ -81,6 +84,10 @@ public class SCMsgConst
     public const int TBS_DETAIL_SELECT_CLICK = 2044;//回合制战斗 - 角色详情面板选择查看角色
     #endregion
 
+    #region OpenWorld大世界相关 30
+    public const int OW_ITEM_CONFIRM = 3001;
+    public const int OW_ITEM_MOUSE_HIGHLIGHT = 3002;
+    #endregion
 
     #region 系统相关 99
     public const int GAME_START = 9901;

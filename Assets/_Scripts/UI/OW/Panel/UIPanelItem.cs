@@ -1,5 +1,4 @@
 using GameCore.RefData;
-using GameCore.TBS;
 using SCFrame;
 using SCFrame.UI;
 using System.Collections;
@@ -8,20 +7,19 @@ using UnityEngine;
 
 namespace GameCore.UI
 {
-    public class UIPanelTBSItem : _ASCUIPanelBase<UIMonoTBSItem>
+    public class UIPanelItem : _ASCUIPanelBase<UIMonoItem>
     {
-        private UIPanelTBSItemContainer _m_itemContainer;//道具container
+        private UIPanelItemContainer _m_itemContainer;//道具container
         private List<ItemData> _m_itemDataList;
         private int _m_curSelectItemIdx;
-        public UIPanelTBSItem(UIMonoTBSItem _mono, SCUIShowType _showType) : base(_mono, _showType)
+        public UIPanelItem(UIMonoItem _mono, SCUIShowType _showType) : base(_mono, _showType)
         {
         }
 
         public override void AfterInitialize()
         {
-
             if (mono.monoContainer != null)
-                _m_itemContainer = new UIPanelTBSItemContainer(mono.monoContainer);
+                _m_itemContainer = new UIPanelItemContainer(mono.monoContainer);
         }
 
         public override void BeforeDiscard()
@@ -33,21 +31,19 @@ namespace GameCore.UI
 
         public override void OnHidePanel()
         {
-
-            SCMsgCenter.UnregisterMsgAct(SCMsgConst.TBS_ACTOR_ITEM_HIGHTLIGHT_UP, onTBSActorItemHighLightUp);
-            SCMsgCenter.UnregisterMsgAct(SCMsgConst.TBS_ACTOR_ITEM_HIGHTLIGHT_DOWN, onTBSActorItemHighLightDown);
-            SCMsgCenter.UnregisterMsg(SCMsgConst.TBS_ACTOR_ITEM_MOUSE_HIGHLIGHT, onTBSActorItemMouseHighLight);
+            SCMsgCenter.UnregisterMsgAct(SCMsgConst.OW_SWITCH_TO_UP_INPUT, onOWItemHighLightUp);
+            SCMsgCenter.UnregisterMsgAct(SCMsgConst.OW_SWITCH_TO_DOWN_INPUT, onOWItemHighLightDown);
+            SCMsgCenter.UnregisterMsg(SCMsgConst.OW_ITEM_MOUSE_HIGHLIGHT, onOWItemMouseHighLight);
 
             if (_m_itemContainer != null)
                 _m_itemContainer.HidePanel();
-
         }
 
         public override void OnShowPanel()
         {
-            SCMsgCenter.RegisterMsgAct(SCMsgConst.TBS_ACTOR_ITEM_HIGHTLIGHT_UP, onTBSActorItemHighLightUp);
-            SCMsgCenter.RegisterMsgAct(SCMsgConst.TBS_ACTOR_ITEM_HIGHTLIGHT_DOWN, onTBSActorItemHighLightDown);
-            SCMsgCenter.RegisterMsg(SCMsgConst.TBS_ACTOR_ITEM_MOUSE_HIGHLIGHT, onTBSActorItemMouseHighLight);
+            SCMsgCenter.RegisterMsgAct(SCMsgConst.OW_SWITCH_TO_UP_INPUT, onOWItemHighLightUp);
+            SCMsgCenter.RegisterMsgAct(SCMsgConst.OW_SWITCH_TO_DOWN_INPUT, onOWItemHighLightDown);
+            SCMsgCenter.RegisterMsg(SCMsgConst.OW_ITEM_MOUSE_HIGHLIGHT, onOWItemMouseHighLight);
 
 
             _m_itemDataList = SCDataMgr.instance.itemDataList;
@@ -64,16 +60,13 @@ namespace GameCore.UI
             }
 
             refreshPanel();
-
         }
-
         private void refreshPanel()
         {
             refreshHasItemShow();
             refreshItemContainer();
             refreshCurItemDesc();
         }
-
         private void refreshHasItemShow()
         {
             bool hasItem = _m_itemDataList != null && _m_itemDataList.Count > 0;
@@ -90,7 +83,7 @@ namespace GameCore.UI
 
         private void refreshCurItemDesc()
         {
-            if (_m_itemDataList == null || _m_curSelectItemIdx < 0 || _m_curSelectItemIdx>= _m_itemDataList.Count)
+            if (_m_itemDataList == null || _m_curSelectItemIdx < 0 || _m_curSelectItemIdx >= _m_itemDataList.Count)
                 return;
             ItemData itemData = _m_itemDataList[_m_curSelectItemIdx];
             ItemRefObj itemRefObj = SCRefDataMgr.instance.itemRefList.refDataList.Find(x => x.id == itemData.itemId);
@@ -99,21 +92,21 @@ namespace GameCore.UI
             mono.txtItemDesc.text = GameCommon.GetItemDescTranslate(itemRefObj.id);
         }
 
-        private void onTBSActorItemHighLightUp()
+        private void onOWItemHighLightUp()
         {
             _m_curSelectItemIdx = Mathf.Max(_m_curSelectItemIdx - 1, 0);
             SCModel.instance.tbsModel.curSelectItemIdx = _m_curSelectItemIdx;
             refreshPanel();
         }
 
-        private void onTBSActorItemHighLightDown()
+        private void onOWItemHighLightDown()
         {
             _m_curSelectItemIdx = Mathf.Min(_m_curSelectItemIdx + 1, _m_itemDataList.Count - 1);
             SCModel.instance.tbsModel.curSelectItemIdx = _m_curSelectItemIdx;
             refreshPanel();
         }
 
-        private void onTBSActorItemMouseHighLight(object[] _objs)
+        private void onOWItemMouseHighLight(object[] _objs)
         {
             if (_objs == null || _objs.Length == 0)
                 return;
