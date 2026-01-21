@@ -23,6 +23,10 @@ namespace GameCore.UI
 
         public override void OnHidePanel()
         {
+            SCMsgCenter.UnregisterMsgAct(SCMsgConst.OW_SWITCH_TO_UP_INPUT, onOWOptionHighLightUp);
+            SCMsgCenter.UnregisterMsgAct(SCMsgConst.OW_SWITCH_TO_DOWN_INPUT, onOWOptionHighLightDown);
+            SCMsgCenter.UnregisterMsgAct(SCMsgConst.OW_CONFIRM_INPUT, onOWConfirmInput);
+
             for (int i = 0; i < mono.optionList.Count; i++)
             {
                 switch (mono.optionList[i].optionType)
@@ -47,9 +51,15 @@ namespace GameCore.UI
             }
         }
 
+
         public override void OnShowPanel()
         {
-            for(int i =0;i<mono.optionList.Count;i++)
+            SCMsgCenter.RegisterMsgAct(SCMsgConst.OW_SWITCH_TO_UP_INPUT, onOWOptionHighLightUp);
+            SCMsgCenter.RegisterMsgAct(SCMsgConst.OW_SWITCH_TO_DOWN_INPUT, onOWOptionHighLightDown);
+            SCMsgCenter.RegisterMsgAct(SCMsgConst.OW_CONFIRM_INPUT, onOWConfirmInput);
+
+
+            for (int i =0;i<mono.optionList.Count;i++)
             {
                 switch(mono.optionList[i].optionType)
                 {
@@ -74,6 +84,20 @@ namespace GameCore.UI
             _m_curSelectOptionIndex = 0;
             refreshShow();
         }
+        private void refreshShow()
+        {
+            for (int i = 0; i < mono.optionList.Count; i++)
+            {
+                if (i == _m_curSelectOptionIndex)
+                {
+                    SCCommon.SetGameObjectEnable(mono.optionList[i].goSelectShowList, true);
+                }
+                else
+                {
+                    SCCommon.SetGameObjectEnable(mono.optionList[i].goSelectShowList, false);
+                }
+            }
+        }
 
         private void onBtnCharacterMouseEnter(PointerEventData _data, object[] _objs)
         {
@@ -95,20 +119,6 @@ namespace GameCore.UI
             _m_curSelectOptionIndex = mono.optionList.FindIndex(x => x.optionType == EOptionType.EXIT);
             refreshShow();
         }
-        private void refreshShow()
-        {
-            for (int i = 0; i < mono.optionList.Count; i++)
-            {
-                if(i == _m_curSelectOptionIndex)
-                {
-                    SCCommon.SetGameObjectEnable(mono.optionList[i].goSelectShowList, true);
-                }
-                else
-                {
-                    SCCommon.SetGameObjectEnable(mono.optionList[i].goSelectShowList, false);
-                }
-            }
-        }
 
         private void onBtnExitClickDown(PointerEventData _data, object[] _objs)
         {
@@ -125,6 +135,39 @@ namespace GameCore.UI
 
         private void onBtnCharacterClickDown(PointerEventData _data, object[] _objs)
         {
+        }
+        private void onOWOptionHighLightDown()
+        {
+            _m_curSelectOptionIndex = Mathf.Min(_m_curSelectOptionIndex + 1, mono.optionList.Count - 1);
+            refreshShow();
+        }
+
+        private void onOWOptionHighLightUp()
+        {
+            _m_curSelectOptionIndex = Mathf.Max(_m_curSelectOptionIndex - 1, 0);
+            refreshShow();
+
+        }
+
+        private void onOWConfirmInput()
+        {
+            EOptionType curOption = mono.optionList[_m_curSelectOptionIndex].optionType;
+            switch (curOption)
+            {
+                case EOptionType.NONE:
+                    break;
+                case EOptionType.CHARACTER:
+                    break;
+                case EOptionType.ITEM:
+                    {
+                        GameCoreMgr.instance.uiCoreMgr.AddNode(new UINodeItem(SCUIShowType.FULL));
+                    }
+                    break;
+                case EOptionType.SETTING:
+                    break;
+                case EOptionType.EXIT:
+                    break;
+            }
         }
     }
 }

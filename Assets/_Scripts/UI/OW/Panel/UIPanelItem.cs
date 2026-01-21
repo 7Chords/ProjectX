@@ -48,7 +48,6 @@ namespace GameCore.UI
 
             _m_itemDataList = SCDataMgr.instance.itemDataList;
 
-            setSelectItemIdx();
 
             if (_m_itemContainer != null)
             {
@@ -95,14 +94,12 @@ namespace GameCore.UI
         private void onOWItemHighLightUp()
         {
             _m_curSelectItemIdx = Mathf.Max(_m_curSelectItemIdx - 1, 0);
-            SCModel.instance.tbsModel.curSelectItemIdx = _m_curSelectItemIdx;
             refreshPanel();
         }
 
         private void onOWItemHighLightDown()
         {
             _m_curSelectItemIdx = Mathf.Min(_m_curSelectItemIdx + 1, _m_itemDataList.Count - 1);
-            SCModel.instance.tbsModel.curSelectItemIdx = _m_curSelectItemIdx;
             refreshPanel();
         }
 
@@ -116,7 +113,6 @@ namespace GameCore.UI
                 if (_m_itemDataList[i].itemId == itemId)
                 {
                     _m_curSelectItemIdx = i;
-                    SCModel.instance.tbsModel.curSelectItemIdx = _m_curSelectItemIdx;
 
                     break;
                 }
@@ -124,19 +120,5 @@ namespace GameCore.UI
             refreshPanel();
         }
 
-        private void setSelectItemIdx()
-        {
-            if (_m_itemDataList == null || _m_itemDataList.Count == 0)
-                return;
-            int itemTypeCount = _m_itemDataList.Count;
-
-            if (itemTypeCount <= SCModel.instance.tbsModel.curSelectItemIdx)
-            {
-                _m_curSelectItemIdx = itemTypeCount - 1;
-                SCModel.instance.tbsModel.curSelectItemIdx = _m_curSelectItemIdx;
-            }
-            else
-                _m_curSelectItemIdx = SCModel.instance.tbsModel.curSelectItemIdx;
-        }
     }
 }

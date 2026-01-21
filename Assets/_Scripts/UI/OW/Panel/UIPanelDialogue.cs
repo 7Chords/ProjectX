@@ -25,13 +25,13 @@ namespace GameCore.UI
 
         public override void OnHidePanel()
         {
-            SCMsgCenter.UnregisterMsgAct(SCMsgConst.OW_NEXT_DIALOGUE_INPUT, onNextDialogueInput);
+            SCMsgCenter.UnregisterMsgAct(SCMsgConst.OW_CONFIRM_INPUT, onConfirmInput);
         }
 
 
         public override void OnShowPanel()
         {
-            SCMsgCenter.RegisterMsgAct(SCMsgConst.OW_NEXT_DIALOGUE_INPUT, onNextDialogueInput);
+            SCMsgCenter.RegisterMsgAct(SCMsgConst.OW_CONFIRM_INPUT, onConfirmInput);
 
             _m_dialogueInfo = SCModel.instance.owModel.dialogueInfo;
             _m_dialogueIndex = 0;
@@ -49,7 +49,7 @@ namespace GameCore.UI
             mono.txtContent.text = _m_dialogueInfo.dialogueList[_m_dialogueIndex].content;
         }
 
-        private void onNextDialogueInput()
+        private void onConfirmInput()
         {
             _m_dialogueIndex++;
             if(_m_dialogueIndex >= _m_dialogueInfo.dialogueList.Count)

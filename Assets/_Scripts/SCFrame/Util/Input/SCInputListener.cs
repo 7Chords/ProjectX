@@ -110,7 +110,7 @@ namespace SCFrame
             else
             {
                 if (Input.GetKeyDown(SCSettingMgr.instance.saveKeyInfo.owConfirmKeyCode))
-                    SCMsgCenter.SendMsg(SCMsgConst.OW_NEXT_DIALOGUE_INPUT);
+                    SCMsgCenter.SendMsg(SCMsgConst.OW_CONFIRM_INPUT);
                 if (Input.GetKeyDown(SCSettingMgr.instance.saveKeyInfo.owOptionKeyCode))
                     SCMsgCenter.SendMsg(SCMsgConst.OW_OPTION_INPUT);
                 if (Input.GetKeyDown(SCSettingMgr.instance.saveKeyInfo.owSwitchToDownKeyCode))
