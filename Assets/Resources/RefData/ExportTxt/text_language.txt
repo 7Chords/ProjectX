@@ -102,3 +102,5 @@
 10101	#2_tbs_skill_desc_1008	借神灵之力引发焰火爆炸，对{0}敌方单位造成{1}{2}{3}伤害	Harness the power of the gods to trigger a fireworks explosion, dealing {1}{2}{3} damage to {0} enemy units
 10102	#1_retry	重试	retry
 10103	#1_exit	退出	exit
+10104	#1_move	移动	move
+10105	#1_option	选项	option

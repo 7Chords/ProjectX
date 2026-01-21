@@ -3398,6 +3398,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: _OWPlayerCamera
       objectReference: {fileID: 0}
+    - target: {fileID: 3995066059357427382, guid: 6b3be4388925d164e88ce13476eb7381, type: 3}
+      propertyPath: m_CameraRadius
+      value: 0.1
+      objectReference: {fileID: 0}
     - target: {fileID: 3995066059357427383, guid: 6b3be4388925d164e88ce13476eb7381, type: 3}
       propertyPath: m_Follow
       value: 

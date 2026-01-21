@@ -18,6 +18,7 @@ public class SCMsgConst
     public const int TBS_DETAIL_INPUT = 1013;
 
     public const int OW_NEXT_DIALOGUE_INPUT = 1014;
+    public const int OW_OPTION_INPUT = 1014;
 
     #endregion
 

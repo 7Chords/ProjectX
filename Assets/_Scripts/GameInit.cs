@@ -30,6 +30,7 @@ namespace GameCore
 
             PlayerController.instance.Initialize();
             Cursor.visible = false;
+            GameCoreMgr.instance.uiCoreMgr.AddNode(new UINodeMain(SCUIShowType.FULL));
         }
 
         private void OnDisable()

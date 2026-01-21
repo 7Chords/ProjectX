@@ -34,20 +34,23 @@ namespace SCFrame
         {
             if (!_m_canInput)
                 return;
+
+            if (_m_tbsFrameChecker < _m_tbsFrameInterval)
+            {
+                _m_tbsFrameChecker += 1;
+                return;
+            }
+            if (Input.anyKeyDown)
+                _m_tbsFrameChecker = 0;
+
+            if (Input.GetKeyDown(KeyCode.Escape))
+                SCMsgCenter.SendMsg(SCMsgConst.ESC_INPUT);
+            if (Input.GetMouseButtonDown(1))
+                SCMsgCenter.SendMsg(SCMsgConst.MOUSE_RIGHT_INPUT);
+
             if (SCModel.instance.tbsModel.gameStarted)
             {
-                if (_m_tbsFrameChecker < _m_tbsFrameInterval)
-                {
-                    _m_tbsFrameChecker += 1;
-                    return;
-                }
-                if (Input.anyKeyDown)
-                    _m_tbsFrameChecker = 0;
 
-                if (Input.GetKeyDown(KeyCode.Escape))
-                    SCMsgCenter.SendMsg(SCMsgConst.ESC_INPUT);
-                if (Input.GetMouseButtonDown(1))
-                    SCMsgCenter.SendMsg(SCMsgConst.MOUSE_RIGHT_INPUT);
                 if (Input.GetKeyDown(SCSettingMgr.instance.saveKeyInfo.tbsSkillKeyCode))
                     SCMsgCenter.SendMsg(SCMsgConst.TBS_SKILL_INPUT);
                 if (Input.GetKeyDown(SCSettingMgr.instance.saveKeyInfo.tbsAttackKeyCode))
@@ -108,6 +111,8 @@ namespace SCFrame
             {
                 if (Input.GetKeyDown(SCSettingMgr.instance.saveKeyInfo.owNextDialogueKeyCode))
                     SCMsgCenter.SendMsg(SCMsgConst.OW_NEXT_DIALOGUE_INPUT);
+                if (Input.GetKeyDown(SCSettingMgr.instance.saveKeyInfo.owOptionKeyCode))
+                    SCMsgCenter.SendMsg(SCMsgConst.OW_OPTION_INPUT);
             }
         }
 

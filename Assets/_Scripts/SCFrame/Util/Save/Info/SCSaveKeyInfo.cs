@@ -24,6 +24,7 @@ namespace SCFrame
         public KeyCode owRunKeyCode = KeyCode.LeftShift;
         public KeyCode owAttackKeyCode = KeyCode.Mouse0;
         public KeyCode owNextDialogueKeyCode = KeyCode.Space;
+        public KeyCode owOptionKeyCode = KeyCode.Tab;
 
     }
 }

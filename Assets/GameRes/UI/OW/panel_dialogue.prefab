@@ -344,8 +344,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   uiMask: {fileID: 0}
   canvasGroup: {fileID: 1334807951242011358}
-  fadeInDuration: 0.5
-  fadeOutDuration: 0.5
+  fadeInDuration: 0.25
+  fadeOutDuration: 0.25
   txtContent: {fileID: 4721789146615412685}
   txtName: {fileID: 4721789145907792458}
   goNext: {fileID: 4721789147552747713}

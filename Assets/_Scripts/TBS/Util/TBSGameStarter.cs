@@ -1,5 +1,6 @@
 using DG.Tweening;
 using GameCore.OW;
+using GameCore.UI;
 using SCFrame;
 using System;
 using System.Collections.Generic;
@@ -96,7 +97,7 @@ namespace GameCore.TBS
             SCGame.instance.owCamera.gameObject.SetActive(true);
             SCGame.instance.virtualCamera.gameObject.SetActive(false);
             Cursor.visible = false;
-
+            GameCoreMgr.instance.uiCoreMgr.AddNode(new UINodeMain(SCFrame.UI.SCUIShowType.FULL));
         }
 
         public void AddOneLoadStep()

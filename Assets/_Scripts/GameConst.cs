@@ -29,6 +29,8 @@ namespace GameCore
         public const string TBS_SKILL_NAME_TIP = "tbs_skill_name_tip";
         public const string TBS_DETAIL_PANEL = "tbs_detail_panel";
         public const string DIALOGUE_PANEL = "dialogue_panel";
+        public const string OPTION_PANEL = "option_panel";
+        public const string MAIN_PANEL = "main_panel";
         #endregion
 
 
