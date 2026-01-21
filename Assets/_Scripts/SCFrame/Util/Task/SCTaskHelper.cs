@@ -28,9 +28,21 @@ namespace SCFrame
         private Dictionary<object, List<string>> _m_ownerCoroutineMap;
         private long _m_coroutineIdCounter;
 
-        protected override void Awake()
+        //protected override void Awake()
+        //{
+        //    base.Awake();
+        //    _m_nextUpdateActionQueue = new Queue<Action>();
+        //    _m_nextLateUpdateActionQueue = new Queue<Action>();
+        //    _m_nextFixedUpdateActionQueue = new Queue<Action>();
+        //    _m_tweenContainer = new TweenContainer();
+
+        //    // 初始化协程相关字段
+        //    _m_coroutineDict = new Dictionary<string, CoroutineItem>();
+        //    _m_ownerCoroutineMap = new Dictionary<object, List<string>>();
+        //    _m_coroutineIdCounter = 0;
+        //}
+        public override void OnInitialize()
         {
-            base.Awake();
             _m_nextUpdateActionQueue = new Queue<Action>();
             _m_nextLateUpdateActionQueue = new Queue<Action>();
             _m_nextFixedUpdateActionQueue = new Queue<Action>();
@@ -41,7 +53,6 @@ namespace SCFrame
             _m_ownerCoroutineMap = new Dictionary<object, List<string>>();
             _m_coroutineIdCounter = 0;
         }
-
         private void OnDestroy()
         {
             _m_updateEvent = null;

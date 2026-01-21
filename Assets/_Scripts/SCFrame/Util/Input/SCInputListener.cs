@@ -34,7 +34,7 @@ namespace SCFrame
         {
             if (!_m_canInput)
                 return;
-            if (GameCoreMgr.instance.tbsCoreMgr.tbsGameHasStarted)
+            if (SCModel.instance.tbsModel.gameStarted)
             {
                 if (_m_tbsFrameChecker < _m_tbsFrameInterval)
                 {

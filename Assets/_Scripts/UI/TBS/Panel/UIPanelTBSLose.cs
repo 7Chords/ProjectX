@@ -44,7 +44,7 @@ namespace GameCore.UI
         {
             GameCoreMgr.instance.uiCoreMgr.RemoveAllNodes(SCUINodeFuncType.TBS);
             TBSGameStarter.instance.UnloadTBSGame();
-
+            SCInputListener.instance.SetCanInput(true);
         }
     }
 }

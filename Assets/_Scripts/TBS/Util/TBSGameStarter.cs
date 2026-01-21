@@ -1,4 +1,5 @@
 using DG.Tweening;
+using GameCore.OW;
 using SCFrame;
 using System;
 using System.Collections.Generic;
@@ -44,8 +45,8 @@ namespace GameCore.TBS
             _m_battleInfo = new TBSBattleInfo();
             _m_battleInfo.Init(_m_playerTeamDataList, _m_enemyTeamDataList);
             SCModel.instance.tbsModel.Init(_m_battleInfo);
-            Reset();
-            _m_stepCounter.RegAllDoneDelegate(OnLoadOver);
+            reset();
+            _m_stepCounter.RegAllDoneDelegate(onLoadOver);
             change2TBSGame();
             SCMsgCenter.SendMsg(SCMsgConst.TBS_GAME_START);
         }
@@ -58,8 +59,8 @@ namespace GameCore.TBS
             _m_battleInfo = new TBSBattleInfo();
             _m_battleInfo.Init(_m_playerTeamDataList, _m_enemyTeamDataList);
             SCModel.instance.tbsModel.Init(_m_battleInfo);
-            Reset();
-            _m_stepCounter.RegAllDoneDelegate(OnLoadOver);
+            reset();
+            _m_stepCounter.RegAllDoneDelegate(onLoadOver);
             change2TBSGame();
             SCMsgCenter.SendMsg(SCMsgConst.TBS_GAME_START);
         }
@@ -87,13 +88,15 @@ namespace GameCore.TBS
             }
         }
 
-        public void change2OWGame()
+        private void change2OWGame()
         {
             Time.timeScale = 1;
+
             SCCommon.SetGameObjectEnable(SCGame.instance.playerGO, true);
             SCGame.instance.owCamera.gameObject.SetActive(true);
             SCGame.instance.virtualCamera.gameObject.SetActive(false);
             Cursor.visible = false;
+
         }
 
         public void AddOneLoadStep()
@@ -110,7 +113,7 @@ namespace GameCore.TBS
                 _m_onLoadOverActionList.Add(_callBack);
         }
 
-        public void OnLoadOver()
+        private void onLoadOver()
         {
             Tween tween = DOVirtual.DelayedCall(1f, () =>
             {
@@ -131,7 +134,7 @@ namespace GameCore.TBS
             _m_tweenContainer.RegDoTween(tween);
         }
 
-        public void Reset()
+        public void reset()
         {
             if (SCGame.instance.globalVolumn.TryGet<LensDistortion>(out LensDistortion comp))
             {

@@ -32,12 +32,7 @@ namespace GameCore
             Cursor.visible = false;
         }
 
-
-        private void Update()
-        {
-        }
-
-        private void OnDestroy()
+        private void OnDisable()
         {
             SCModel.instance.Discard();
             SCPlayer.instance.Discard();

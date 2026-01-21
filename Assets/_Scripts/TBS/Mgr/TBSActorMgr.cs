@@ -60,23 +60,28 @@ namespace GameCore.TBS
             SCMsgCenter.UnregisterMsgAct(SCMsgConst.TBS_TURN_CHG_SHOW_END, onTBSTurnChgShowEnd);
             SCMsgCenter.UnregisterMsg(SCMsgConst.TBS_ACTOR_DIE, onTBSActorDie);
 
-            foreach (var actor in _m_playerActorModuleList)
+            if(_m_playerActorModuleList != null)
             {
-                if (actor == null)
-                    continue;
-                actor.Discard();
+                foreach (var actor in _m_playerActorModuleList)
+                {
+                    if (actor == null)
+                        continue;
+                    actor.Discard();
+                }
+                _m_playerActorModuleList.Clear();
+                _m_playerActorModuleList = null;
             }
-            _m_playerActorModuleList.Clear();
-            _m_playerActorModuleList = null;
-
-            foreach (var actor in _m_enemyActorModuleList)
+            if (_m_playerActorModuleList != null)
             {
-                if (actor == null)
-                    continue;
-                actor.Discard();
+                foreach (var actor in _m_playerActorModuleList)
+                {
+                    if (actor == null)
+                        continue;
+                    actor.Discard();
+                }
+                _m_enemyActorModuleList.Clear();
+                _m_enemyActorModuleList = null;
             }
-            _m_enemyActorModuleList.Clear();
-            _m_enemyActorModuleList = null;
         }
 
         public override void OnResume() 

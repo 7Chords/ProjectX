@@ -8,6 +8,7 @@ namespace SCFrame
     {
         public override void OnInitialize()
         {
+            SCTaskHelper.instance.Initialize();
             SCRefDataMgr.instance.Initialize();
             SCMsgCenter.instance.Initialize();
             SCSaveSys.instance.Initialize();
@@ -36,6 +37,7 @@ namespace SCFrame
             GameCameraMgr.instance.Discard();
             SCMsgCenter.instance.Discard();
             SCRefDataMgr.instance.Discard();
+            SCTaskHelper.instance.Discard();
         }
     }
 }
