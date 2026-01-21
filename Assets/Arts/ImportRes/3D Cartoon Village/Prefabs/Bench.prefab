@@ -73,7 +73,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4705275285025232}
-  - component: {fileID: 3829350488582075976}
+  - component: {fileID: 3739422113202265081}
   m_Layer: 0
   m_Name: Bench
   m_TagString: Untagged
@@ -97,7 +97,7 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!65 &3829350488582075976
+--- !u!65 &3739422113202265081
 BoxCollider:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -108,8 +108,8 @@ BoxCollider:
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 12.7, y: 5, z: 3.9}
-  m_Center: {x: -5.5, y: 2.45, z: 1.11}
+  m_Size: {x: 11.999999, y: 4.8127165, z: 3.5}
+  m_Center: {x: -5.582352, y: 2.402542, z: 1.3503723}
 --- !u!1 &1207752615905730
 GameObject:
   m_ObjectHideFlags: 0

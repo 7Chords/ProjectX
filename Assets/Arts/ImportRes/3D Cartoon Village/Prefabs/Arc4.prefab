@@ -125,7 +125,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4028327965513554}
-  - component: {fileID: 2513051219691232342}
+  - component: {fileID: 1642649742921971958}
   m_Layer: 0
   m_Name: Arc4
   m_TagString: Untagged
@@ -149,7 +149,7 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!65 &2513051219691232342
+--- !u!65 &1642649742921971958
 BoxCollider:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -160,5 +160,5 @@ BoxCollider:
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 6, y: 25, z: 30}
-  m_Center: {x: -2.98, y: 11.87, z: 6.5}
+  m_Size: {x: 6.3999996, y: 23, z: 29.6}
+  m_Center: {x: -3, y: 11.5, z: 6.4655905}

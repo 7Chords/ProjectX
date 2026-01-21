@@ -1855,7 +1855,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4838756617176420}
-  - component: {fileID: 6719245881420402753}
+  - component: {fileID: 538406868684856463}
   m_Layer: 0
   m_Name: Box
   m_TagString: Untagged
@@ -1879,7 +1879,7 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!65 &6719245881420402753
+--- !u!65 &538406868684856463
 BoxCollider:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -1890,8 +1890,8 @@ BoxCollider:
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 6, y: 6, z: 6}
-  m_Center: {x: -2.63, y: 2.81, z: 2.45}
+  m_Size: {x: 5.5, y: 5.5, z: 5.5}
+  m_Center: {x: -2.6999998, y: 2.7, z: 2.7}
 --- !u!1 &1489458519395178
 GameObject:
   m_ObjectHideFlags: 0
