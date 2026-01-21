@@ -8,22 +8,20 @@ namespace GameCore.UI
     {
         [Header("道具image")]
         public Image imgItem;
-
         [Header("道具图标")]
         public Image imgItemIcon;
-
         [Header("道具名称")]
         public Text txtItemName;
-
         [Header("道具剩余")]
         public Text txtItemRemain;
-
         [Header("道具选中颜色")]
         public Color colorItemSelect;
-
         [Header("道具未选中颜色")]
         public Color colorItemUnSelect;
-
+        [Header("文字选中颜色")]
+        public Color colorTextSelect;
+        [Header("文字未选中颜色")]
+        public Color colorTextUnSelect;
         [Header("道具点击按钮")]
         public Button btnItemClick;
     }

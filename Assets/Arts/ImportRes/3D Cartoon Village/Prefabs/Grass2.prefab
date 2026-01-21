@@ -1851,7 +1851,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4245394302746316}
-  - component: {fileID: 2147684608966464441}
   m_Layer: 0
   m_Name: Grass2
   m_TagString: Untagged
@@ -1875,19 +1874,6 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!65 &2147684608966464441
-BoxCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1347448579212828}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 1
-  serializedVersion: 2
-  m_Size: {x: 6.4657617, y: 2.2230654, z: 6.454426}
-  m_Center: {x: -3.2328808, y: 1.1115327, z: -0.42054796}
 --- !u!1 &1358402093935144
 GameObject:
   m_ObjectHideFlags: 0

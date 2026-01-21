@@ -98,6 +98,7 @@ namespace GameCore.TBS
             SCGame.instance.virtualCamera.gameObject.SetActive(false);
             Cursor.visible = false;
             GameCoreMgr.instance.uiCoreMgr.AddNode(new UINodeMain(SCFrame.UI.SCUIShowType.FULL));
+            PlayerController.instance.ChangeState(PlayerStateType.IDLE);
         }
 
         public void AddOneLoadStep()

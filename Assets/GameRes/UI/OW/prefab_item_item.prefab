@@ -238,8 +238,10 @@ MonoBehaviour:
   imgItemIcon: {fileID: 9219016526575588616}
   txtItemName: {fileID: 3137645830998389639}
   txtItemRemain: {fileID: 2732335216494503268}
-  colorItemSelect: {r: 0.3301887, g: 0.3301887, b: 0.3301887, a: 1}
+  colorItemSelect: {r: 0.5660378, g: 0.5660378, b: 0.5660378, a: 1}
   colorItemUnSelect: {r: 0, g: 0, b: 0, a: 1}
+  colorTextSelect: {r: 0, g: 0, b: 0, a: 1}
+  colorTextUnSelect: {r: 1, g: 1, b: 1, a: 1}
   btnItemClick: {fileID: 5832121385639292088}
 --- !u!1 &5748494171365238120
 GameObject:

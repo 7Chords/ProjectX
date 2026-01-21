@@ -59,6 +59,8 @@ namespace GameCore.UI
         public void SetSelect(bool _isSelect)
         {
             mono.imgItem.color = _isSelect ? mono.colorItemSelect : mono.colorItemUnSelect;
+            mono.txtItemName.color = _isSelect ? mono.colorTextSelect : mono.colorTextUnSelect;
+            mono.txtItemRemain.color = _isSelect ? mono.colorTextSelect : mono.colorTextUnSelect;
             _m_isSelect = _isSelect;
         }
 
