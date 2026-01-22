@@ -119,5 +119,51 @@ namespace GameCore.TBS
             hasDead = false;
             isEnemy = _isEnemy;
         }
+
+        public void CopyData(TBSActorInfo _other)
+        {
+            characterRefObj = _other.characterRefObj;
+            characterLv = _other.characterLv;
+
+            professionType = _other.professionType;
+            skillList = _other.skillList;
+
+            originalAttack = _other.attack;
+            originalDefend = _other.defend;
+            originalMissChance = _other.missChance;
+            originalCriticalChance = _other.criticalChance;
+            originalAttackTargetType = _other.attackTargetType;
+            originalArmorLevel = _other.armorLevel;
+            originalMagicResistanceLevel = _other.magicResistanceLevel;
+            originalAttackDamageType = _other.attackDamageType;
+            originalAttackPhysicalLevel = _other.attackPhysicalLevel;
+            originalAttackMagicAttribute = _other.attackMagicAttribute;
+
+            maxHp = _other.maxHp;
+            maxMp = _other.maxMp;
+            attack = _other.attack;
+            defend = _other.defend;
+            missChance = _other.missChance;
+            criticalChance = _other.criticalChance;
+            attackTargetType = _other.attackTargetType;
+            armorLevel = _other.armorLevel;
+            magicResistanceLevel = _other.magicResistanceLevel;
+            attackDamageType = _other.attackDamageType;
+            attackPhysicalLevel = _other.attackPhysicalLevel;
+            attackMagicAttribute = _other.attackMagicAttribute;
+            weakAttributeList = _other.weakAttributeList;
+            normalAttributeList = _other.normalAttributeList;
+            resistentAttributeList = _other.resistentAttributeList;
+            invilidAttributeList = _other.invilidAttributeList;
+            bounceAttributeList = _other.bounceAttributeList;
+            suckAttributeList = _other.suckAttributeList;
+
+            curHp = maxHp;
+            curMp = maxMp;
+
+            runningId = _other.runningId;
+            hasDead = _other.hasDead;
+            isEnemy = _other.isEnemy;
+        }
     }
 }

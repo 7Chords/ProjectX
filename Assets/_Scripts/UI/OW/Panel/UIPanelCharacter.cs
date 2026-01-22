@@ -66,7 +66,7 @@ namespace GameCore.UI
             SCMsgCenter.RegisterMsgAct(SCMsgConst.OW_SWITCH_TO_UP_INPUT, onSwitchToUpInput);
             SCMsgCenter.RegisterMsg(SCMsgConst.OW_CHARACTER_SELECT_CLICK, onCharacterSelectClick);
             //todo
-            _m_actorInfoList = SCDataMgr.instance.playerActorInfo;
+            _m_actorInfoList = SCDataMgr.instance.playerActorInfoList;
 
             _m_panelDetailProps?.ShowPanel();
             _m_detailHeaderContainer?.ShowPanel();

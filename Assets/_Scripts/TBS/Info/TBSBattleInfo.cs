@@ -16,7 +16,7 @@ namespace GameCore.TBS
         public List<TBSEffectInfo> effectInfoList;
         public List<ETBSCompType> basicCompTypeList;
 
-        public void Init(List<ActorData> _playerTeamDataList, List<ActorData> _enemyTeamDataList)
+        public void Init(List<TBSActorInfo> _playerTeamDataList, List<ActorData> _enemyTeamDataList)
         {
             firstMoveTurnType = ETBSTurnType.PLAYER;
             effectInfoList = new List<TBSEffectInfo>();

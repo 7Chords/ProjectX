@@ -44,9 +44,7 @@ namespace GameCore.OW
                     data.InitNew(enemyIdList[i]);
                     dataList.Add(data);
                 }
-                TBSBattleInfo battleInfo = new TBSBattleInfo();
-                battleInfo.Init(SCSaveSys.instance.gameData.playerActorDataList, dataList);
-                TBSGameStarter.instance.LoadTBSGame(SCSaveSys.instance.gameData.playerActorDataList, dataList);
+                TBSGameStarter.instance.LoadTBSGame(SCDataMgr.instance.playerActorInfoList, dataList);
                 Destroy(gameObject);
             }
         }

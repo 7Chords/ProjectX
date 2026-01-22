@@ -41,11 +41,7 @@ namespace GameCore.OW
                 case EDialogueEffectType.CHARACTER_JOIN:
                     {
                         long characterId = SCCommon.ParseLong(_effectObj.effectParamList[0].ToString());
-                        TBSActorInfo info = new TBSActorInfo();
-                        ActorData data = new ActorData();
-                        data.InitNew(characterId);
-                        info.Init(data, false);
-                        SCDataMgr.instance.playerActorInfo.Add(info);
+                        SCDataMgr.instance.AddCharacter(characterId);
                         CharacterRefObj characterRefObj = SCRefDataMgr.instance.characterRefList.refDataList.Find(x => x.id == characterId);
                         TipQueueDealer.instance.EnqueueCommonTopTip(LanguageHelper.instance.GetTextTranslate(characterRefObj.characterName) + "加入了队伍");
                     }

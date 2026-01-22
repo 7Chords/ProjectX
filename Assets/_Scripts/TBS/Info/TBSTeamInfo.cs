@@ -11,18 +11,25 @@ namespace GameCore.TBS
         public string teamName;
         public List<TBSActorInfo> actorInfoList;
 
-        public void Init(string _teamName,List<ActorData> _playerTeamDataList,bool _isEnemy)
+        public void Init(string _teamName,List<ActorData> _teamDataList,bool _isEnemy)
         {
-            if (_playerTeamDataList == null)
+            if (_teamDataList == null)
                 return;
             teamName = _teamName;
             actorInfoList = new List<TBSActorInfo>();
-            for(int i =0;i< _playerTeamDataList.Count;i++)
+            for(int i =0;i< _teamDataList.Count;i++)
             {
                 TBSActorInfo actorInfo = new TBSActorInfo();
-                actorInfo.Init(_playerTeamDataList[i], _isEnemy);
+                actorInfo.Init(_teamDataList[i], _isEnemy);
                 actorInfoList.Add(actorInfo);
             }
+        }
+        public void Init(string _teamName, List<TBSActorInfo> _teamInfoList, bool _isEnemy)
+        {
+            if (_teamInfoList == null)
+                return;
+            teamName = _teamName;
+            actorInfoList = _teamInfoList;
         }
     }
 }

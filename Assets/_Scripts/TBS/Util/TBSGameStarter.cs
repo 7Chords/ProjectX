@@ -17,9 +17,10 @@ namespace GameCore.TBS
 
         private TBSBattleInfo _m_battleInfo;
 
-        private List<ActorData> _m_playerTeamDataList;
+        private List<TBSActorInfo> _m_playerTeamDataList;
         private List<ActorData> _m_enemyTeamDataList;
 
+        private List<TBSActorInfo> _m_cachePlayerTeamInfoList;
         public override void OnInitialize()
         {
             _m_onLoadOverActionList = new List<Action>();
@@ -37,11 +38,22 @@ namespace GameCore.TBS
             _m_tweenContainer = null;
         }
 
-        public void LoadTBSGame(List<ActorData> _playerTeamDataList, List<ActorData> _enemyTeamDataList)
+        public void LoadTBSGame(List<TBSActorInfo> _playerTeamDataList, List<ActorData> _enemyTeamDataList)
         {
             if (_playerTeamDataList == null || _enemyTeamDataList == null)
                 return;
-            _m_playerTeamDataList = _playerTeamDataList;
+            //缓存起来 用于恢复
+            _m_cachePlayerTeamInfoList = _playerTeamDataList;
+
+            if (_m_playerTeamDataList == null)
+                _m_playerTeamDataList = new List<TBSActorInfo>();
+            _m_playerTeamDataList.Clear();
+            for (int i = 0; i < _playerTeamDataList.Count; i++)
+            {
+                TBSActorInfo info = new TBSActorInfo();
+                info.CopyData(_playerTeamDataList[i]);
+                _m_playerTeamDataList.Add(info);
+            }
             _m_enemyTeamDataList = _enemyTeamDataList;
             _m_battleInfo = new TBSBattleInfo();
             _m_battleInfo.Init(_m_playerTeamDataList, _m_enemyTeamDataList);
@@ -58,6 +70,17 @@ namespace GameCore.TBS
                 return;
             SCMsgCenter.SendMsg(SCMsgConst.TBS_GAME_FINISH);
             _m_battleInfo = new TBSBattleInfo();
+
+            if (_m_playerTeamDataList == null)
+                _m_playerTeamDataList = new List<TBSActorInfo>();
+            _m_playerTeamDataList.Clear();
+            for (int i = 0; i < _m_cachePlayerTeamInfoList.Count; i++)
+            {
+                TBSActorInfo info = new TBSActorInfo();
+                info.CopyData(_m_cachePlayerTeamInfoList[i]);
+                _m_playerTeamDataList.Add(info);
+            }
+
             _m_battleInfo.Init(_m_playerTeamDataList, _m_enemyTeamDataList);
             SCModel.instance.tbsModel.Init(_m_battleInfo);
             reset();
@@ -68,6 +91,7 @@ namespace GameCore.TBS
 
         public void UnloadTBSGame()
         {
+            _m_cachePlayerTeamInfoList = null;
             SCMsgCenter.SendMsg(SCMsgConst.TBS_GAME_FINISH);
             change2OWGame();
         }

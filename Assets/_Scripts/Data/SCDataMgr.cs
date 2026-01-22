@@ -8,18 +8,18 @@ namespace GameCore
     public class SCDataMgr : Singleton<SCDataMgr>
     {
         public List<ItemData> itemDataList;
-        public List<TBSActorInfo> playerActorInfo;
+        public List<TBSActorInfo> playerActorInfoList;
 
         public override void OnInitialize()
         {
             itemDataList = SCSaveSys.instance.gameData.itemDataList;
             //todo:测试道具面板
-            playerActorInfo = new List<TBSActorInfo>();
+            playerActorInfoList = new List<TBSActorInfo>();
             for(int i =0;i<SCSaveSys.instance.gameData.playerActorDataList.Count;i++)
             {
                 TBSActorInfo info = new TBSActorInfo();
                 info.Init(SCSaveSys.instance.gameData.playerActorDataList[i],false);
-                playerActorInfo.Add(info);
+                playerActorInfoList.Add(info);
             }
         }
 
@@ -72,7 +72,21 @@ namespace GameCore
             SCDebugHelper.Log("删除了" + LanguageHelper.instance.GetTextTranslate(refObj.itemName) + "×" + _itemAmount);
         }
 
+        public void AddCharacter(long _characterId)
+        {
+            if (playerActorInfoList.Find(x => x.characterRefObj.id == _characterId) != null)
+                return;
+            TBSActorInfo info = new TBSActorInfo();
+            ActorData data = new ActorData();
+            data.InitNew(_characterId);
+            info.Init(data, false);
+            playerActorInfoList.Add(info);
+        }
 
+        public void RemoveCharacter(long _characterId)
+        {
+
+        }
 
     }
 
