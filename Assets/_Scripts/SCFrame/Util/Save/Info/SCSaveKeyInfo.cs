@@ -29,5 +29,6 @@ namespace SCFrame
         public KeyCode owSwitchToRightKeyCode = KeyCode.D;
         public KeyCode owSwitchToUpKeyCode = KeyCode.W;
         public KeyCode owSwitchToDownKeyCode = KeyCode.S;
+        public KeyCode owInteractKeyCode = KeyCode.E;
     }
 }

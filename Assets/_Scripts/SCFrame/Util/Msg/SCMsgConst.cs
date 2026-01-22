@@ -23,6 +23,8 @@ public class SCMsgConst
     public const int OW_SWITCH_TO_DOWN_INPUT = 1016;
     public const int OW_SWITCH_TO_LEFT_INPUT = 1017;
     public const int OW_SWITCH_TO_RIGHT_INPUT = 1018;
+    public const int OW_INTERACT_INPUT = 1019;
+
     #endregion
 
 
@@ -87,6 +89,8 @@ public class SCMsgConst
     #region OpenWorld大世界相关 30
     public const int OW_ITEM_CONFIRM = 3001;
     public const int OW_ITEM_MOUSE_HIGHLIGHT = 3002;
+    public const int OW_CHARACTER_SELECT_CLICK = 3003;//
+
     #endregion
 
     #region 系统相关 99

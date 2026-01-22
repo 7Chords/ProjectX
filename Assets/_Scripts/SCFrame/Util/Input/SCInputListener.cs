@@ -121,7 +121,8 @@ namespace SCFrame
                     SCMsgCenter.SendMsg(SCMsgConst.OW_SWITCH_TO_LEFT_INPUT);
                 if (Input.GetKeyDown(SCSettingMgr.instance.saveKeyInfo.owSwitchToRightKeyCode))
                     SCMsgCenter.SendMsg(SCMsgConst.OW_SWITCH_TO_RIGHT_INPUT);
-
+                if (Input.GetKeyDown(SCSettingMgr.instance.saveKeyInfo.owInteractKeyCode))
+                    SCMsgCenter.SendMsg(SCMsgConst.OW_INTERACT_INPUT);
             }
         }
 

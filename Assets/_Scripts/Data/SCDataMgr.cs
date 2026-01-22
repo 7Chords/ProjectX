@@ -14,7 +14,13 @@ namespace GameCore
         {
             itemDataList = SCSaveSys.instance.gameData.itemDataList;
             //todo:≤‚ ‘µ¿æﬂ√Ê∞Â
-            
+            playerActorInfo = new List<TBSActorInfo>();
+            for(int i =0;i<SCSaveSys.instance.gameData.playerActorDataList.Count;i++)
+            {
+                TBSActorInfo info = new TBSActorInfo();
+                info.Init(SCSaveSys.instance.gameData.playerActorDataList[i],false);
+                playerActorInfo.Add(info);
+            }
         }
 
         public override void OnDiscard()

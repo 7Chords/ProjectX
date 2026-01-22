@@ -18,9 +18,9 @@ namespace GameCore
 
         private void Awake()
         {
+            SCModel.instance.Initialize();
             SCSystem.instance.Initialize();
             SCPlayer.instance.Initialize();
-            SCModel.instance.Initialize();
         }
         public void Start()
         {
@@ -35,9 +35,9 @@ namespace GameCore
 
         private void OnDisable()
         {
-            SCModel.instance.Discard();
             SCPlayer.instance.Discard();
             SCSystem.instance.Discard();
+            SCModel.instance.Discard();
         }
 
 

@@ -10,9 +10,23 @@ namespace GameCore.OW
 {
     public class CommonEnemy : MonoBehaviour
     {
+        [Header("敌人列表")]
         public List<long> enemyIdList;
+        [Header("角色动画机")]
+        public Animator animator;
+        [Header("空闲动画名")]
+        public string idleAnimName;
+        private SCAnimationCtl _m_animCtl;
+
         private void Start()
         {
+            _m_animCtl = new SCAnimationCtl();
+            _m_animCtl.SetAnimator(animator);
+            _m_animCtl.Initialize();
+
+            if (!string.IsNullOrEmpty(idleAnimName))
+                _m_animCtl.PlaySingleAniamtion(ResourcesHelper.LoadAsset<AnimationClip>(idleAnimName));
+
             this.AddCollisionEnter(onCollisionEnter);
         }
         private void OnDisable()

@@ -32,6 +32,8 @@ namespace GameCore
         public const string OPTION_PANEL = "option_panel";
         public const string MAIN_PANEL = "main_panel";
         public const string ITEM_PANEL = "item_panel";
+        public const string COMMON_INTERACT_PREFAB = "common_interact_prefab";
+        public const string CHARACTER_PANEL = "character_panel";
         #endregion
 
 

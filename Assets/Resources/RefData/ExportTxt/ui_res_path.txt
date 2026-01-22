@@ -24,3 +24,5 @@
 1023	option_panel	panel_option
 1024	main_panel	panel_main
 1025	item_panel	panel_item
+1026	common_interact_prefab	prefab_common_interact
+1027	character_panel	panel_character

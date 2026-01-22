@@ -1,3 +1,4 @@
+using GameCore.OW;
 using GameCore.RefData;
 using GameCore.TBS;
 using GameCore.Util;
@@ -13,7 +14,7 @@ namespace GameCore
     /// </summary>
     public static class GameCommon
     {
-
+        private static GameObject _m_cacheInteractUIGO;
         public static string GetUIResObjPath(string _uiName)
         {
             List<UIResPathRefObj> uiResRefList = SCRefDataMgr.instance.uiResPathRefList.refDataList;
@@ -200,6 +201,23 @@ namespace GameCore
             tipGO.GetComponent<FadeTipText>().Initialize(_content);
         }
 
+        public static void ShowInteractText(string _content,Transform _followTran)
+        {
+            GameObject tipGO = ResourcesHelper.LoadGameObject(
+                GetUIResObjPath(GameConst.COMMON_INTERACT_PREFAB),
+                SCGame.instance.topLayerRoot.transform);
+            tipGO.GetRectTransform().localPosition = SCUICommon.WorldPointToUIPoint(SCGame.instance.topLayerRoot.GetRectTransform(), _followTran.position);
+            tipGO.GetComponent<InteractiveText>().Initialize(_content, _followTran);
+            _m_cacheInteractUIGO = tipGO;
+        }
+
+        public static void DiscardCurrentInteractText()
+        {
+            if (_m_cacheInteractUIGO != null)
+            {
+                _m_cacheInteractUIGO.GetComponent<InteractiveText>().Discard();
+            }
+        }
         public static string GetCharacterNameWithLv(int _level, string _characterNameKey)
         {
             string characterName = LanguageHelper.instance.GetTextTranslate(_characterNameKey);

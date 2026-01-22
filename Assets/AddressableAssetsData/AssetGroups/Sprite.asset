@@ -29,14 +29,6 @@ MonoBehaviour:
     m_Address: spr_skill_1003
     m_ReadOnly: 0
     m_SerializedLabels: []
-  - m_GUID: 5997fb4280cc01f45a5cbb3d6c585521
-    m_Address: spr_head_lorraine
-    m_ReadOnly: 0
-    m_SerializedLabels: []
-  - m_GUID: 4907ddc334237dd4c9a20aa5a7254d54
-    m_Address: spr_head_stele
-    m_ReadOnly: 0
-    m_SerializedLabels: []
   - m_GUID: f03f0e1644ce40c4b9c7a0ffaf959dc9
     m_Address: spr_attribute_bounce
     m_ReadOnly: 0
@@ -77,14 +69,6 @@ MonoBehaviour:
     m_Address: spr_roman_two
     m_ReadOnly: 0
     m_SerializedLabels: []
-  - m_GUID: ff472c557d713f8419d82756fa8c3952
-    m_Address: spr_head_redSlime
-    m_ReadOnly: 0
-    m_SerializedLabels: []
-  - m_GUID: 6ff8490508bc9874095134738bc07b14
-    m_Address: spr_head_spikeSlime
-    m_ReadOnly: 0
-    m_SerializedLabels: []
   - m_GUID: 14f92f6e506380c47a6764ef0249ef52
     m_Address: spr_item_1001
     m_ReadOnly: 0
@@ -95,10 +79,6 @@ MonoBehaviour:
     m_SerializedLabels: []
   - m_GUID: bb67b03c2969d104caba950c446f8c8d
     m_Address: spr_skill_1004
-    m_ReadOnly: 0
-    m_SerializedLabels: []
-  - m_GUID: 087263855d207e047a612e628b2720f2
-    m_Address: spr_head_karenina
     m_ReadOnly: 0
     m_SerializedLabels: []
   - m_GUID: 815a61e0165026a4285bb9aeac127089
@@ -173,10 +153,6 @@ MonoBehaviour:
     m_Address: spr_buff_physics_level_up_two
     m_ReadOnly: 0
     m_SerializedLabels: []
-  - m_GUID: 6e7ab787f3dff5845a1b89355749871f
-    m_Address: spr_head_rockGiant
-    m_ReadOnly: 0
-    m_SerializedLabels: []
   - m_GUID: 300abdf8cbdd5c742a05b6506767fd64
     m_Address: spr_skill_1006
     m_ReadOnly: 0
@@ -191,6 +167,30 @@ MonoBehaviour:
     m_SerializedLabels: []
   - m_GUID: 6da9980b858878d4cb7899fa449de3b3
     m_Address: spr_skill_1008
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  - m_GUID: 06f27914a43366b4f9f735460ebe2e0b
+    m_Address: spr_head_karenina
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  - m_GUID: 05ffa72af95841a40b4cfc010e2351de
+    m_Address: spr_head_lorraine
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  - m_GUID: b656c7b96c434324a8176e6144ede505
+    m_Address: spr_head_redSlime
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  - m_GUID: a5969a9d7a3719144adc26d43b663334
+    m_Address: spr_head_rockGiant
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  - m_GUID: e5b3d6c7ef4c6df4883a0412c6181a96
+    m_Address: spr_head_spikeSlime
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  - m_GUID: ee21c53c9e263b148aa42391978c930b
+    m_Address: spr_head_stele
     m_ReadOnly: 0
     m_SerializedLabels: []
   m_ReadOnly: 0

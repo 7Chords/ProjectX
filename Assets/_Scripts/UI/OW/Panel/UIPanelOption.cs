@@ -135,6 +135,7 @@ namespace GameCore.UI
 
         private void onBtnCharacterClickDown(PointerEventData _data, object[] _objs)
         {
+            GameCoreMgr.instance.uiCoreMgr.AddNode(new UINodeCharacter(SCUIShowType.FULL));
         }
         private void onOWOptionHighLightDown()
         {
@@ -157,6 +158,9 @@ namespace GameCore.UI
                 case EOptionType.NONE:
                     break;
                 case EOptionType.CHARACTER:
+                    {
+                        GameCoreMgr.instance.uiCoreMgr.AddNode(new UINodeCharacter(SCUIShowType.FULL));
+                    }
                     break;
                 case EOptionType.ITEM:
                     {

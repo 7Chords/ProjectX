@@ -105,3 +105,5 @@
 10104	#1_move	移动	move
 10105	#1_option	选项	option
 10106	#1_attack	攻击	attack
+10107	#2_hp_value	HP:{0}	HP:{0}
+10108	#2_mp_value	MP:{0}	MP:{0}
