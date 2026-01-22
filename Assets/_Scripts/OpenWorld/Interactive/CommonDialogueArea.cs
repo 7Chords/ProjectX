@@ -28,7 +28,7 @@ namespace GameCore.OW
                 List<DialogueRefObj> dialogueRefList = SCRefDataMgr.instance.dialogueRefList.refDataList
                     .FindAll(x=>x.group == dialogueGroup);
                 DialogueInfo dialogueInfo = new DialogueInfo(dialogueRefList);
-                DialogueStarter.LoadDialogue(dialogueInfo);
+                DialogueHandler.LoadDialogue(dialogueInfo);
             }
         }
     }

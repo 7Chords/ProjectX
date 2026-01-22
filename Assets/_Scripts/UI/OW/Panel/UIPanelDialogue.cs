@@ -1,8 +1,10 @@
 using DG.Tweening;
 using GameCore.OW;
+using GameCore.RefData;
 using SCFrame;
 using SCFrame.UI;
 using System;
+using System.Collections.Generic;
 using UnityEngine;
 
 namespace GameCore.UI
@@ -45,6 +47,12 @@ namespace GameCore.UI
                 return;
             if (_m_dialogueIndex < 0 || _m_dialogueIndex >= _m_dialogueInfo.dialogueList.Count)
                 return;
+            //处理效果
+            List<DialogueEffectObj> effectList = _m_dialogueInfo.dialogueList[_m_dialogueIndex].dialogueEffectRefList;
+            for (int i = 0; i < effectList.Count; i++)
+            {
+                DialogueHandler.DealDialogueEffect(effectList[i]);
+            }
             mono.txtName.text = _m_dialogueInfo.dialogueList[_m_dialogueIndex].characterName;
             mono.txtContent.text = _m_dialogueInfo.dialogueList[_m_dialogueIndex].content;
         }
@@ -54,7 +62,7 @@ namespace GameCore.UI
             _m_dialogueIndex++;
             if(_m_dialogueIndex >= _m_dialogueInfo.dialogueList.Count)
             {
-                DialogueStarter.UnloadDialogue();
+                DialogueHandler.UnloadDialogue();
                 return;
             }
             refreshShow();

@@ -67,5 +67,12 @@ namespace GameCore
         SPECIAL,
     }
 
-
+    public enum EDialogueEffectType
+    {
+        NONE,
+        CHARACTER_JOIN,
+        CHARACTER_LEAVE,
+        ITEM_GET,
+        ITEM_LOST
+    }
 }

@@ -245,7 +245,11 @@ namespace GameCore
                 effectObj = new BuffEffectObj();
                 effectObj.Deserialize(_str);
             }
-
+            else if (_type == typeof(DialogueEffectObj))
+            {
+                effectObj = new DialogueEffectObj();
+                effectObj.Deserialize(_str);
+            }
             return effectObj;
 
         }

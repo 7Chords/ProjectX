@@ -17,6 +17,6 @@ MonoBehaviour:
   animClipRun: {fileID: 7400000, guid: 9f0e03164414016409d28995a128ba98, type: 2}
   animClipAttack: {fileID: 7400000, guid: eccbae3cfc77ad245ade46e143aa3200, type: 2}
   walkSpeed: 7
-  runSpeed: 15
+  runSpeed: 12
   walk2RunTransitionSpeed: 2
   rotateSpeed: 10

@@ -3,6 +3,8 @@ using UnityEditor;
 using System.Globalization;
 using System.Collections.Generic;
 using System;
+using GameCore.RefData;
+using GameCore;
 
 namespace SCFrame
 {
@@ -147,5 +149,108 @@ namespace SCFrame
             Debug.LogError("string解析成long出错！！！");
             return 0L;
         }
+
+
+        public static List<T> ParseList<T>(string _name, bool _canNull = true)
+        {
+            List<T> list = new List<T>();
+
+            string tempValue = _name;
+            //空列表标识
+            if (tempValue == "*")
+                return list;
+
+            string[] strs = tempValue.Split(new char[] { ';' });
+            for (var i = 0; i < strs.Length; i++)
+            {
+                string tempStr = strs[i];
+                object value = ParseValue(tempStr, typeof(T));
+                if (value == null)
+                {
+                    continue;
+                }
+                else
+                {
+                    list.Add((T)value);
+                }
+            }
+
+
+            return list;
+        }
+
+        // 解析字段值
+        public static object ParseValue(string _value, Type _type)
+        {
+            try
+            {
+                if (_value.Equals(string.Empty))
+                {
+                    if (_type == typeof(string))
+                    {
+                        return "";
+                    }
+                    return Activator.CreateInstance(_type, true);
+                }
+                else
+                {
+                    _value = _value.Trim();
+
+                    // 枚举 
+                    if (_type.IsEnum)
+                    {
+                        return Enum.Parse(_type, _value);
+                    }
+
+                    // 字符串
+                    else if (_type == typeof(string))
+                    {
+                        return _value;
+                    }
+
+                    // 浮点型
+                    else if (_type == typeof(float))
+                    {
+                        if (_value == "0" || _value == "" || _value == string.Empty)
+                            return 0f;
+
+                        return float.Parse(_value, CultureInfo.InvariantCulture);
+                    }
+
+                    // 整形
+                    else if (_type == typeof(int))
+                    {
+                        if (_value == "")
+                            return 0;
+
+                        return int.Parse(_value);
+                    }
+
+                    else if (_type == typeof(bool))
+                    {
+                        return bool.Parse(_value);
+                    }
+
+                    else if (_type == typeof(long))
+                    {
+                        return long.Parse(_value);
+                    }
+                    else if (_type.IsSubclassOf(typeof(_AEffectObjBase)))
+                    {
+                        return GameCommon.ParseEffectObj(_value, _type);
+                    }
+                    else if(_type == typeof(object))
+                    {
+                        return _value;
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                Debug.LogError($"ParseValue type:{_type.ToString()}, value:{_value}, failed: {ex}");
+            }
+            return null;
+        }
     }
+
 }
