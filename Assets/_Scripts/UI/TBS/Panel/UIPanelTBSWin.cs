@@ -35,6 +35,7 @@ namespace GameCore.UI
         private void onBtnExitClickDown(PointerEventData _data, object[] _objs)
         {
             GameCoreMgr.instance.uiCoreMgr.RemoveAllNodes(SCUINodeFuncType.TBS);
+            TBSCursorMgr.instance.HideSelectionCursor();
             TBSGameStarter.instance.UnloadTBSGame();
 
         }
