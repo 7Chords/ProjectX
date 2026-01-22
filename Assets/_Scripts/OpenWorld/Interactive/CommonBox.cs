@@ -1,3 +1,4 @@
+using GameCore.RefData;
 using GameCore.Util;
 using SCFrame;
 using System;
@@ -71,7 +72,12 @@ namespace GameCore.OW
                 return;
             for(int i = 0; i < boxItemList.Count; i++)
             {
+                ItemRefObj itemRefObj = SCRefDataMgr.instance.itemRefList.refDataList.Find(x => x.id == boxItemList[i].itemId);
+                if (itemRefObj == null)
+                    continue;
                 SCDataMgr.instance.GetItem(boxItemList[i].itemId, boxItemList[i].itemAmount);
+                TipQueueDealer.instance.EnqueueCommonTopTip("»ñµÃ" + LanguageHelper.instance.GetTextTranslate(itemRefObj.itemName)
+                    + "¡Á"+ boxItemList[i].itemAmount);
             }
             _m_animCtl.PlaySingleAniamtion(ResourcesHelper.LoadAsset<AnimationClip>(openAnimName));
         }

@@ -22,10 +22,12 @@ namespace SCFrame
             SCTimeCaller.instance.Initialize();
             TBSGameStarter.instance.Initialize();
             GameStateHandler.instance.Initialize();
+            TipQueueDealer.instance.Initialize();
         }
 
         public override void OnDiscard()
         {
+            TipQueueDealer.instance.Discard();
             GameStateHandler.instance.Discard();
             TBSGameStarter.instance.Discard();
             SCTimeCaller.instance.Discard();

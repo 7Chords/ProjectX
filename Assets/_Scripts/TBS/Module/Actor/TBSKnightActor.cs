@@ -88,7 +88,7 @@ namespace GameCore.TBS
         {
             if (!checkSkillCanRelease(_skillId))
             {
-                GameCommon.ShowCommonTopTip("MP²»×ã£¡");
+                TipQueueDealer.instance.EnqueueCommonTopTip("MP²»×ã£¡");
                 return;
             }
 
@@ -140,11 +140,9 @@ namespace GameCore.TBS
                         _targetList[0].GetBuff(buffInfo);
                         _targetList[0].GetBuff(buffInfo_2);
 
-                        GameCommon.ShowTip(buffInfo.buffRefObj.buffName, _targetList[0].GetCursorPos());
-                        SCTimeCaller.instance.CallDealy(0.5f, () =>
-                        {
-                            GameCommon.ShowTip(buffInfo_2.buffRefObj.buffName, _targetList[0].GetCursorPos());
-                        });
+                        TipQueueDealer.instance.EnqueueWorldPositionTip(buffInfo.buffRefObj.buffName, _targetList[0].GetCursorPos());
+                        TipQueueDealer.instance.EnqueueWorldPositionTip(buffInfo_2.buffRefObj.buffName, _targetList[0].GetCursorPos());
+
 
                         Sequence seq = DOTween.Sequence();
 
@@ -192,9 +190,9 @@ namespace GameCore.TBS
                         _targetList[1].GetBuff(buffInfo_2);
                         _targetList[2].GetBuff(buffInfo_3);
 
-                        GameCommon.ShowTip(buffInfo.buffRefObj.buffName, _targetList[0].GetCursorPos());
-                        GameCommon.ShowTip(buffInfo.buffRefObj.buffName, _targetList[1].GetCursorPos());
-                        GameCommon.ShowTip(buffInfo.buffRefObj.buffName, _targetList[2].GetCursorPos());
+                        TipQueueDealer.instance.EnqueueWorldPositionTip(buffInfo.buffRefObj.buffName, _targetList[0].GetCursorPos());
+                        TipQueueDealer.instance.EnqueueWorldPositionTip(buffInfo.buffRefObj.buffName, _targetList[1].GetCursorPos());
+                        TipQueueDealer.instance.EnqueueWorldPositionTip(buffInfo.buffRefObj.buffName, _targetList[2].GetCursorPos());
 
 
                         Sequence seq = DOTween.Sequence();

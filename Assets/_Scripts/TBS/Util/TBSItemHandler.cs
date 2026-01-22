@@ -1,4 +1,5 @@
 using GameCore.RefData;
+using GameCore.Util;
 using SCFrame;
 using System.Collections.Generic;
 
@@ -98,8 +99,7 @@ namespace GameCore.TBS
             {
                 TBSGameBuffInfo buffInfo = TBSBuffFactory.CreateBuffInfo(_buffEffectObj.buffRefObjId, _buffEffectObj.continueTurn, _targetList[i]);
                 _targetList[i].GetBuff(buffInfo);
-                GameCommon.ShowTip(buffInfo.buffRefObj.buffName, _targetList[i].GetCursorPos());
-
+                TipQueueDealer.instance.EnqueueWorldPositionTip(buffInfo.buffRefObj.buffName, _targetList[i].GetCursorPos());
             }
         }
 
