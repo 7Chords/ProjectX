@@ -157,6 +157,10 @@ MonoBehaviour:
     m_Address: rockGiant_attack_anim_clip
     m_ReadOnly: 0
     m_SerializedLabels: []
+  - m_GUID: b3a7e435076971445b0ba675aeb0b7f5
+    m_Address: box_open_anim_clip
+    m_ReadOnly: 0
+    m_SerializedLabels: []
   m_ReadOnly: 0
   m_Settings: {fileID: 11400000, guid: d14fb1bbe98862146a7f5467a5bc79f8, type: 2}
   m_SchemaSet:

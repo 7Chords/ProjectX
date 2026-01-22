@@ -62,6 +62,7 @@ namespace GameCore
         public const string SPAWN_FLY_OBJ_EVENT = "SpawnFlyObj";
 
         public const string PLAYER_ATTACK_OVER_EVENT = "PlayerAttackOver";
+        public const string SHOW_OPEN_BOX_OVER = "ShowOpenBoxOver";
         #endregion
 
         #region OW Anim

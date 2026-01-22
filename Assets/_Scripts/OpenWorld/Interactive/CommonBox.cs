@@ -1,72 +1,87 @@
+using GameCore.Util;
+using SCFrame;
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using SCFrame;
-using System;
-using GameCore.RefData;
 
 namespace GameCore.OW
 {
-    public class CommonNPC : MonoBehaviour
+    [Serializable]
+    public class BoxItem
+    {
+        public long itemId;
+        public int itemAmount;
+    }
+    public class CommonBox : MonoBehaviour
     {
         [Header("角色动画机")]
         public Animator animator;
-        [Header("对话组")]
-        public long dialogueGroup;
-        [Header("空闲动画名")]
-        public string idleAnimName;
+        [Header("开箱动画名")]
+        public string openAnimName;
+        [Header("动画事件监听器")]
+        public AnimationEventTrigger animationEventTrigger;
+        [Header("获得道具")]
+        public List<BoxItem> boxItemList;
 
         private SCAnimationCtl _m_animCtl;
 
-        private bool _m_hasEnterTalkArea;
+        private bool _m_hasEnterOpenArea;
+
+
         private void Start()
         {
             _m_animCtl = new SCAnimationCtl();
             _m_animCtl.SetAnimator(animator);
             _m_animCtl.Initialize();
 
-            if(!string.IsNullOrEmpty(idleAnimName))
-                _m_animCtl.PlaySingleAniamtion(ResourcesHelper.LoadAsset<AnimationClip>(idleAnimName));
-
             SCMsgCenter.RegisterMsgAct(SCMsgConst.OW_INTERACT_INPUT, onInteractInput);
             this.AddTriggerEnter(onTriggerEnter);
             this.AddTriggerExit(onTriggerExit);
-
+            animationEventTrigger.AddAnimationEvent(GameConst.SHOW_OPEN_BOX_OVER, onShowOpenOver);
         }
-
         private void OnDisable()
         {
             SCMsgCenter.UnregisterMsgAct(SCMsgConst.OW_INTERACT_INPUT, onInteractInput);
             this.RemoveTriggerEnter(onTriggerEnter);
             this.RemoveTriggerExit(onTriggerExit);
+            animationEventTrigger.RemoveAnimationEvent(GameConst.SHOW_OPEN_BOX_OVER);
 
         }
 
         private void onTriggerEnter(Collider _coll, object[] _objs)
         {
-            if(_coll.gameObject.tag == GameConst.TAG_PLAYER)
+            if (_coll.gameObject.tag == GameConst.TAG_PLAYER)
             {
-                _m_hasEnterTalkArea = true;
-                GameCommon.ShowInteractText("对话", transform);
+                _m_hasEnterOpenArea = true;
+                GameCommon.ShowInteractText("打开", transform);
             }
         }
         private void onTriggerExit(Collider _coll, object[] _objs)
         {
             if (_coll.gameObject.tag == GameConst.TAG_PLAYER)
             {
-                _m_hasEnterTalkArea = false;
+                _m_hasEnterOpenArea = false;
                 GameCommon.DiscardCurrentInteractText();
             }
         }
         private void onInteractInput()
         {
-            if (!_m_hasEnterTalkArea)
+            if (!_m_hasEnterOpenArea)
                 return;
-            List<DialogueRefObj> dialogueRefList = SCRefDataMgr.instance.dialogueRefList.refDataList
-                .FindAll(x => x.group == dialogueGroup);
-            DialogueInfo dialogueInfo = new DialogueInfo(dialogueRefList);
-            DialogueStarter.LoadDialogue(dialogueInfo);
-            GameCommon.DiscardCurrentInteractText();
+            for(int i = 0; i < boxItemList.Count; i++)
+            {
+                SCDataMgr.instance.GetItem(boxItemList[i].itemId, boxItemList[i].itemAmount);
+            }
+            _m_animCtl.PlaySingleAniamtion(ResourcesHelper.LoadAsset<AnimationClip>(openAnimName));
         }
+
+        private void onShowOpenOver()
+        {
+            GameCommon.DiscardCurrentInteractText();
+            SCCommon.DestoryGameObject(gameObject);
+        }
+
     }
+
 }
