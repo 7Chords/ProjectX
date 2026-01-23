@@ -41,9 +41,11 @@ namespace GameCore.OW
                 case EDialogueEffectType.CHARACTER_JOIN:
                     {
                         long characterId = SCCommon.ParseLong(_effectObj.effectParamList[0].ToString());
-                        SCDataMgr.instance.AddCharacter(characterId);
-                        CharacterRefObj characterRefObj = SCRefDataMgr.instance.characterRefList.refDataList.Find(x => x.id == characterId);
-                        TipQueueDealer.instance.EnqueueCommonTopTip(LanguageHelper.instance.GetTextTranslate(characterRefObj.characterName) + "加入了队伍");
+                        if (SCDataMgr.instance.AddCharacter(characterId))
+                        {
+                            CharacterRefObj characterRefObj = SCRefDataMgr.instance.characterRefList.refDataList.Find(x => x.id == characterId);
+                            TipQueueDealer.instance.EnqueueCommonTopTip(LanguageHelper.instance.GetTextTranslate(characterRefObj.characterName) + "加入了队伍");
+                        }
                     }
                     break;
                 case EDialogueEffectType.CHARACTER_LEAVE:

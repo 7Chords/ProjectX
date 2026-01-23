@@ -10,26 +10,54 @@ namespace GameCore.OW
 {
     public class CommonDialogueArea : MonoBehaviour
     {
+        [Header("对话组")]
         public long dialogueGroup;
+
+        private bool _m_hasEnterTalkArea;
+
         private void Start()
         {
             this.AddTriggerEnter(onTriggerEnter);
+            this.AddTriggerExit(onTriggerExit);
+            SCMsgCenter.RegisterMsgAct(SCMsgConst.OW_INTERACT_INPUT, onInteractInput);
+
         }
+
         private void OnDisable()
         {
             this.RemoveTriggerEnter(onTriggerEnter);
+            this.RemoveTriggerExit(onTriggerExit);
+            SCMsgCenter.UnregisterMsgAct(SCMsgConst.OW_INTERACT_INPUT, onInteractInput);
+
         }
 
         private void onTriggerEnter(Collider _coll, object[] _objs)
         {
             if(_coll.gameObject.tag == GameConst.TAG_PLAYER)
             {
-
-                List<DialogueRefObj> dialogueRefList = SCRefDataMgr.instance.dialogueRefList.refDataList
-                    .FindAll(x=>x.group == dialogueGroup);
-                DialogueInfo dialogueInfo = new DialogueInfo(dialogueRefList);
-                DialogueHandler.LoadDialogue(dialogueInfo);
+                _m_hasEnterTalkArea = true;
+                GameCommon.ShowInteractText("查看", transform);
             }
         }
+
+        private void onTriggerExit(Collider _coll, object[] _objs)
+        {
+            if (_coll.gameObject.tag == GameConst.TAG_PLAYER)
+            {
+                _m_hasEnterTalkArea = false;
+                GameCommon.DiscardCurrentInteractText();
+            }
+        }
+        private void onInteractInput()
+        {
+            if (!_m_hasEnterTalkArea)
+                return;
+            List<DialogueRefObj> dialogueRefList = SCRefDataMgr.instance.dialogueRefList.refDataList
+                .FindAll(x => x.group == dialogueGroup);
+            DialogueInfo dialogueInfo = new DialogueInfo(dialogueRefList);
+            DialogueHandler.LoadDialogue(dialogueInfo);
+            GameCommon.DiscardCurrentInteractText();
+        }
+
     }
 }

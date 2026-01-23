@@ -47,7 +47,7 @@ namespace GameCore.UI
 
 
             _m_itemDataList = SCDataMgr.instance.itemDataList;
-
+            _m_curSelectItemIdx = 0;
 
             if (_m_itemContainer != null)
             {

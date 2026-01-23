@@ -72,20 +72,21 @@ namespace GameCore
             SCDebugHelper.Log("É¾³ýÁË" + LanguageHelper.instance.GetTextTranslate(refObj.itemName) + "¡Á" + _itemAmount);
         }
 
-        public void AddCharacter(long _characterId)
+        public bool AddCharacter(long _characterId)
         {
             if (playerActorInfoList.Find(x => x.characterRefObj.id == _characterId) != null)
-                return;
+                return false;
             TBSActorInfo info = new TBSActorInfo();
             ActorData data = new ActorData();
             data.InitNew(_characterId);
             info.Init(data, false);
             playerActorInfoList.Add(info);
+            return true;
         }
 
-        public void RemoveCharacter(long _characterId)
+        public bool RemoveCharacter(long _characterId)
         {
-
+            return false;
         }
 
     }
