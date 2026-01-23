@@ -75,16 +75,14 @@ namespace GameCore.UI
 
         private void refreshCharacterActionContainer()
         {
-            List<TBSActorInfo> aliveActorInfoList = new List<TBSActorInfo>();
-            for(int i =0;i<_m_allActorInfoList.Count;i++)
-            {
-                if (_m_allActorInfoList[i].hasDead)
-                    continue;
-                aliveActorInfoList.Add(_m_allActorInfoList[i]);
-            }
-            if (_m_allActorInfoList == null || _m_allActorInfoList.Count == 0)
+            //List<TBSActorInfo> aliveActorInfoList = new List<TBSActorInfo>();
+            //for(int i =0;i<_m_allActorInfoList.Count;i++)
+            //{
+            //    aliveActorInfoList.Add(_m_allActorInfoList[i]);
+            //}
+            if (_m_allActorInfoList == null)
                 return;
-            _m_characterActionContainer.SetInfoList(aliveActorInfoList);
+            _m_characterActionContainer.SetInfoList(_m_allActorInfoList);
             _m_characterActionContainer.ShowPanel();
         }
 

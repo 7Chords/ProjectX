@@ -161,7 +161,7 @@ namespace GameCore.TBS
             curHp = maxHp;
             curMp = maxMp;
 
-            runningId = _other.runningId;
+            runningId = SCModel.instance.tbsModel.TakeRunningId();
             hasDead = _other.hasDead;
             isEnemy = _other.isEnemy;
         }

@@ -47,6 +47,7 @@ namespace GameCore.UI
         {
             if (_m_actorInfoList == null || _m_actorInfoList.Count == 0)
                 return;
+
             if (_m_curSelectHeaderIdx >= 0 && _m_curSelectHeaderIdx < _m_actorInfoList.Count)
                 _m_panelDetailProps.SetInfo(_m_actorInfoList[_m_curSelectHeaderIdx]);
 
@@ -67,6 +68,8 @@ namespace GameCore.UI
             SCMsgCenter.RegisterMsg(SCMsgConst.OW_CHARACTER_SELECT_CLICK, onCharacterSelectClick);
             //todo
             _m_actorInfoList = SCDataMgr.instance.playerActorInfoList;
+
+            _m_curSelectHeaderIdx = 0;
 
             _m_panelDetailProps?.ShowPanel();
             _m_detailHeaderContainer?.ShowPanel();
