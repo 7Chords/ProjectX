@@ -97,6 +97,7 @@ namespace GameCore.UI
                     SCCommon.SetGameObjectEnable(mono.optionList[i].goSelectShowList, false);
                 }
             }
+            mono.txtMoney.text = LanguageHelper.instance.GetTextTranslate("#2_money_value", SCDataMgr.instance.money);
         }
 
         private void onBtnCharacterMouseEnter(PointerEventData _data, object[] _objs)

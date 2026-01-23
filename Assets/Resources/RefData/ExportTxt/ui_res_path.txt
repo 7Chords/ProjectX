@@ -26,3 +26,5 @@
 1025	item_panel	panel_item
 1026	common_interact_prefab	prefab_common_interact
 1027	character_panel	panel_character
+1028	common_two_btn_panel	panel_common_two_btn
+1029	store_panel	panel_store

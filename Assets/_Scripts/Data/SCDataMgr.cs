@@ -9,7 +9,8 @@ namespace GameCore
     {
         public List<ItemData> itemDataList;
         public List<TBSActorInfo> playerActorInfoList;
-
+        public long money;
+        public Dictionary<long, StoreData> storeDataDict;
         public override void OnInitialize()
         {
             itemDataList = SCSaveSys.instance.gameData.itemDataList;
@@ -21,6 +22,9 @@ namespace GameCore
                 info.Init(SCSaveSys.instance.gameData.playerActorDataList[i],false);
                 playerActorInfoList.Add(info);
             }
+            money = 1000;
+            storeDataDict = new Dictionary<long, StoreData>();
+            
         }
 
         public override void OnDiscard()

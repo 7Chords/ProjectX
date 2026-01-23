@@ -19,6 +19,7 @@ namespace GameCore.RefData
         protected override string OnSerialise()
         {
             string str = effectType.ToString();
+            str += ":";
             foreach (var obj in effectParamList)
             {
                 str += obj;

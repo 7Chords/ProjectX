@@ -73,6 +73,7 @@ namespace GameCore
         CHARACTER_JOIN,
         CHARACTER_LEAVE,
         ITEM_GET,
-        ITEM_LOST
+        ITEM_LOST,
+        OPEN_STORE_PANEL
     }
 }

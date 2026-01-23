@@ -72,3 +72,9 @@ public class ActorData
     }
 
 }
+
+public class StoreData
+{
+    public long storeId;
+    public List<ItemData> dataList;
+}

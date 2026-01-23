@@ -18,6 +18,7 @@ namespace SCFrame
     {
         public List<ItemData> itemDataList;
         public List<ActorData> playerActorDataList;
+        public Dictionary<long, StoreData> storeDataDict;
     }
 
     /// <summary>
@@ -51,6 +52,23 @@ namespace SCFrame
                 ActorData data = new ActorData();
                 data.InitNew(initRefObj.init_player_team_list[i]);
                 gameData.playerActorDataList.Add(data);
+            }
+            gameData.storeDataDict = new Dictionary<long, StoreData>();
+            List<StoreRefObj> storeRefList = SCRefDataMgr.instance.storeRefList.refDataList;
+            if (storeRefList == null)
+                return;
+            StoreData storeData = new StoreData();
+            ItemData itemData = null;
+            for (int i = 0; i < storeRefList.Count; i++)
+            {
+                storeData = new StoreData();
+                storeData.dataList = new List<ItemData>();
+                for (int j =0;j<storeRefList[i].itemList.Count;j++)
+                {
+                    itemData = new ItemData(storeRefList[i].itemList[j].itemId, storeRefList[i].itemList[j].itemAmount);
+                    storeData.dataList.Add(itemData);
+                }
+                gameData.storeDataDict.Add(storeRefList[i].id, storeData);
             }
 
 

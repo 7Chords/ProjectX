@@ -27,7 +27,8 @@ namespace SCFrame.UI
     {
         NONE,
         OW,
-        TBS
+        TBS,
+        COMMON,
     }
 
 

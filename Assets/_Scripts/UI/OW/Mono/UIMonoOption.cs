@@ -25,5 +25,6 @@ namespace GameCore.UI
     public class UIMonoOption : _ASCUIMonoBase
     {
         public List<OptionItem> optionList;
+        public Text txtMoney;
     }
 }

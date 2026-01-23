@@ -107,3 +107,4 @@
 10106	#1_attack	攻击	attack
 10107	#2_hp_value	HP:{0}	HP:{0}
 10108	#2_mp_value	MP:{0}	MP:{0}
+10109	#2_money_value	金币:{0}	Money:{0}

@@ -31,6 +31,7 @@ namespace SCFrame
 
         public SCRefDataList<DialogueRefObj> dialogueRefList = new SCRefDataList<DialogueRefObj>(DialogueRefObj.assetPath, DialogueRefObj.sheetName);
 
+        public SCRefDataList<StoreRefObj> storeRefList = new SCRefDataList<StoreRefObj>(StoreRefObj.assetPath, StoreRefObj.sheetName);
         public override void OnInitialize()
         {
             gameGeneralRefObj.readFromTxt();
@@ -45,6 +46,7 @@ namespace SCFrame
             battleItemEffectRefList.readFromTxt();
             itemRefList.readFromTxt();
             dialogueRefList.readFromTxt();
+            storeRefList.readFromTxt();
         }
     }
 }

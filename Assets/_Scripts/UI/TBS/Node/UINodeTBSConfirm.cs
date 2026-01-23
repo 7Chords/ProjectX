@@ -250,10 +250,10 @@ namespace GameCore.UI
 
         public override void CopyData(_ASCUINodeBase _anotherNode)
         {
-            if(_anotherNode is UINodeTBSConfirm)
+            if(_anotherNode is UINodeTBSConfirm node)
             {
-                _m_confirmType = (_anotherNode as UINodeTBSConfirm)._m_confirmType;
-                _m_isPlayerTargetConfirm = (_anotherNode as UINodeTBSConfirm)._m_isPlayerTargetConfirm;
+                _m_confirmType = node._m_confirmType;
+                _m_isPlayerTargetConfirm = node._m_isPlayerTargetConfirm;
 
             }
         }

@@ -250,6 +250,11 @@ namespace GameCore
                 effectObj = new DialogueEffectObj();
                 effectObj.Deserialize(_str);
             }
+            else if(_type == typeof(StoreItemEffectObj))
+            {
+                effectObj = new StoreItemEffectObj();
+                effectObj.Deserialize(_str);
+            }
             return effectObj;
 
         }

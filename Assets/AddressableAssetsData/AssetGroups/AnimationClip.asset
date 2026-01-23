@@ -161,6 +161,10 @@ MonoBehaviour:
     m_Address: box_open_anim_clip
     m_ReadOnly: 0
     m_SerializedLabels: []
+  - m_GUID: 15d5d0415f20df84cb6749eef953e8a7
+    m_Address: kaut_idle_anim_clip
+    m_ReadOnly: 0
+    m_SerializedLabels: []
   m_ReadOnly: 0
   m_Settings: {fileID: 11400000, guid: d14fb1bbe98862146a7f5467a5bc79f8, type: 2}
   m_SchemaSet:
