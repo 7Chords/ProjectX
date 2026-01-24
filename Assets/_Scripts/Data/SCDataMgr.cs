@@ -23,8 +23,8 @@ namespace GameCore
                 playerActorInfoList.Add(info);
             }
             money = 1000;
-            storeDataDict = new Dictionary<long, StoreData>();
-            
+
+            storeDataDict = SCSaveSys.instance.gameData.storeDataDict;
         }
 
         public override void OnDiscard()

@@ -36,6 +36,9 @@ namespace SCFrame.UI
 
         public abstract SCUINodeFuncType nodeFuncType { get; }
 
+        //该节点是否需要移动到最底层
+        public abstract bool needMoveToBottomWhenHide { get; }
+
         public _ASCUINodeBase(SCUIShowType _showType)
         {
             _m_showType = _showType;

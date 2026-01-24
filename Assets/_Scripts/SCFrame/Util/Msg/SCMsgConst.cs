@@ -87,10 +87,9 @@ public class SCMsgConst
     #endregion
 
     #region OpenWorld大世界相关 30
-    public const int OW_ITEM_CONFIRM = 3001;
-    public const int OW_ITEM_MOUSE_HIGHLIGHT = 3002;
-    public const int OW_CHARACTER_SELECT_CLICK = 3003;//
-
+    public const int OW_ITEM_MOUSE_HIGHLIGHT = 3001;
+    public const int OW_CHARACTER_SELECT_CLICK = 3002;//
+    public const int OW_PURCHASE_ITEM = 3003;//大世界 - 购买物品
     #endregion
 
     #region 系统相关 99

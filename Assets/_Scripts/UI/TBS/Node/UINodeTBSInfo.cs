@@ -22,7 +22,7 @@ namespace GameCore.UI
 
         public override bool ignoreOnUIList => false;
         public override SCUINodeFuncType nodeFuncType => SCUINodeFuncType.TBS;
-
+        public override bool needMoveToBottomWhenHide => false;
 
         private GameObject _m_panelGO;
         private UIPanelTBSInfo _m_tbsInfoPanel;

@@ -392,7 +392,7 @@ MonoBehaviour:
   canvasGroup: {fileID: 1428886708108891258}
   fadeInDuration: 0.1
   fadeOutDuration: 0.1
-  txtContent: {fileID: 1200524185184312075}
+  txtContent: {fileID: 1200524186101198668}
   btnLeft: {fileID: 1200524185307660270}
   btnRight: {fileID: 1200524186052876131}
   txtLeft: {fileID: 1200524185184312075}

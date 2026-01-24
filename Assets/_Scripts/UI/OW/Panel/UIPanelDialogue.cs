@@ -47,25 +47,29 @@ namespace GameCore.UI
                 return;
             if (_m_dialogueIndex < 0 || _m_dialogueIndex >= _m_dialogueInfo.dialogueList.Count)
                 return;
-            //处理效果
-            List<DialogueEffectObj> effectList = _m_dialogueInfo.dialogueList[_m_dialogueIndex].dialogueEffectRefList;
-            for (int i = 0; i < effectList.Count; i++)
-            {
-                DialogueHandler.DealDialogueEffect(effectList[i]);
-            }
+
             mono.txtName.text = _m_dialogueInfo.dialogueList[_m_dialogueIndex].characterName;
             mono.txtContent.text = _m_dialogueInfo.dialogueList[_m_dialogueIndex].content;
         }
 
         private void onConfirmInput()
         {
+
             _m_dialogueIndex++;
-            if(_m_dialogueIndex >= _m_dialogueInfo.dialogueList.Count)
+            if (_m_dialogueIndex >= _m_dialogueInfo.dialogueList.Count)
             {
                 DialogueHandler.UnloadDialogue();
-                return;
             }
-            refreshShow();
+            else
+            {
+                refreshShow();
+            }
+            //处理效果
+            List<DialogueEffectObj> effectList = _m_dialogueInfo.dialogueList[_m_dialogueIndex - 1].dialogueEffectRefList;
+            for (int i = 0; i < effectList.Count; i++)
+            {
+                DialogueHandler.DealDialogueEffect(effectList[i]);
+            }
         }
     }
 }

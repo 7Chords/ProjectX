@@ -26,14 +26,14 @@ namespace GameCore.UI
 
         public override void OnHidePanel()
         {
-            SCMsgCenter.UnregisterMsgAct(SCMsgConst.OW_ITEM_CONFIRM, onOWItemConfirm);
+            SCMsgCenter.UnregisterMsgAct(SCMsgConst.OW_CONFIRM_INPUT, onOWItemConfirm);
             mono.btnItemClick.RemoveClickDown(onBtnItemClickDown);
             mono.btnItemClick.RemoveMouseEnter(onBtnItemMouseEnter);
         }
 
         public override void OnShowPanel()
         {
-            SCMsgCenter.RegisterMsgAct(SCMsgConst.OW_ITEM_CONFIRM, onOWItemConfirm);
+            SCMsgCenter.RegisterMsgAct(SCMsgConst.OW_CONFIRM_INPUT, onOWItemConfirm);
             mono.btnItemClick.AddMouseLeftClickDown(onBtnItemClickDown);
             mono.btnItemClick.AddMouseEnter(onBtnItemMouseEnter);
         }

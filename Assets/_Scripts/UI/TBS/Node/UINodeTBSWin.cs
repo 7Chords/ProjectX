@@ -18,6 +18,7 @@ namespace GameCore.UI
         public override bool canQuitByMouseRight => false;
         public override bool ignoreOnUIList => false;
         public override SCUINodeFuncType nodeFuncType => SCUINodeFuncType.TBS;
+        public override bool needMoveToBottomWhenHide => false;
 
         private GameObject _m_panelGO;
         private UIPanelTBSWin _m_tbsWinPanel;

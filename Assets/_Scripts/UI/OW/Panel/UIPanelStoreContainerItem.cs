@@ -1,4 +1,5 @@
 using GameCore.RefData;
+using GameCore.Util;
 using SCFrame;
 using SCFrame.UI;
 using System.Collections;
@@ -28,16 +29,18 @@ namespace GameCore.UI
 
         public override void OnHidePanel()
         {
-            SCMsgCenter.UnregisterMsgAct(SCMsgConst.OW_ITEM_CONFIRM, onOWItemConfirm);
+            SCMsgCenter.UnregisterMsgAct(SCMsgConst.OW_CONFIRM_INPUT, onOWItemConfirm);
             mono.btnItemClick.RemoveClickDown(onBtnItemClickDown);
             mono.btnItemClick.RemoveMouseEnter(onBtnItemMouseEnter);
         }
 
         public override void OnShowPanel()
         {
-            SCMsgCenter.RegisterMsgAct(SCMsgConst.OW_ITEM_CONFIRM, onOWItemConfirm);
+            SCMsgCenter.RegisterMsgAct(SCMsgConst.OW_CONFIRM_INPUT, onOWItemConfirm);
             mono.btnItemClick.AddMouseLeftClickDown(onBtnItemClickDown);
             mono.btnItemClick.AddMouseEnter(onBtnItemMouseEnter);
+
+            _m_isSelect = false;
         }
         public void SetInfo(ItemData _itemData)
         {
@@ -68,7 +71,24 @@ namespace GameCore.UI
         {
             if (!_m_isSelect)
                 return;
-
+            if (_m_itemData == null || _m_itemRefObj == null)
+                return;
+            GameCoreMgr.instance.uiCoreMgr.AddNode(new UINodeCommonTwoBtn(SCUIShowType.ADDITION,
+                "是否购买" + LanguageHelper.instance.GetTextTranslate(_m_itemRefObj.itemName),
+                "购买",
+                "取消",
+                () =>
+                {
+                    _m_itemData.itemAmount--;
+                    SCDataMgr.instance.GetItem(_m_itemData.itemId, 1);
+                    TipQueueDealer.instance.EnqueueCommonTopTip("购买成功！");
+                    GameCoreMgr.instance.uiCoreMgr.HideNode(nameof(UINodeCommonTwoBtn));
+                    SCMsgCenter.SendMsg(SCMsgConst.OW_PURCHASE_ITEM);
+                },
+                () =>
+                {
+                    GameCoreMgr.instance.uiCoreMgr.HideNode(nameof(UINodeCommonTwoBtn));
+                }));
         }
         private void onBtnItemMouseEnter(PointerEventData _eventData, object[] _args)
         {
@@ -79,7 +99,24 @@ namespace GameCore.UI
         {
             if (!_m_isSelect)
                 return;
-
+            if (_m_itemData == null || _m_itemRefObj == null)
+                return;
+            GameCoreMgr.instance.uiCoreMgr.AddNode(new UINodeCommonTwoBtn(SCUIShowType.ADDITION,
+                "是否购买" + _m_itemRefObj.itemName, 
+                "购买",
+                "取消",
+                () =>
+                {
+                    _m_itemData.itemAmount--;
+                    SCDataMgr.instance.GetItem(_m_itemData.itemId, 1);
+                    TipQueueDealer.instance.EnqueueCommonTopTip("购买成功！");
+                    GameCoreMgr.instance.uiCoreMgr.HideNode(nameof(UINodeCommonTwoBtn));
+                    SCMsgCenter.SendMsg(SCMsgConst.OW_PURCHASE_ITEM);
+                },
+                () =>
+                {
+                    GameCoreMgr.instance.uiCoreMgr.HideNode(nameof(UINodeCommonTwoBtn));
+                }));
 
         }
     }

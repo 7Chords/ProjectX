@@ -17,6 +17,7 @@ namespace GameCore.UI
 
         public override bool ignoreOnUIList => false;
         public override SCUINodeFuncType nodeFuncType => SCUINodeFuncType.TBS;
+        public override bool needMoveToBottomWhenHide => false;
 
         public UINodeTBSMain(SCUIShowType _showType) : base(_showType)
         {

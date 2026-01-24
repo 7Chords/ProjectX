@@ -12,9 +12,9 @@ namespace GameCore.UI
         {
         }
 
-        public override bool needHideWhenEnterNewSameTypeNode => true;
+        public override bool needHideWhenEnterNewSameTypeNode => false;
 
-        public override bool needShowWhenQuitNewSameTypeNode => true;
+        public override bool needShowWhenQuitNewSameTypeNode => false;
 
         public override bool canQuitByEsc => false;
 
@@ -23,6 +23,7 @@ namespace GameCore.UI
         public override bool ignoreOnUIList => false;
 
         public override SCUINodeFuncType nodeFuncType => SCUINodeFuncType.OW;
+        public override bool needMoveToBottomWhenHide => false;
 
 
         private GameObject _m_panelGO;

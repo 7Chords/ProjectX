@@ -1,6 +1,7 @@
 using GameCore.RefData;
 using SCFrame;
 using SCFrame.UI;
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -35,6 +36,7 @@ namespace GameCore.UI
             SCMsgCenter.UnregisterMsgAct(SCMsgConst.OW_SWITCH_TO_UP_INPUT, onOWItemHighLightUp);
             SCMsgCenter.UnregisterMsgAct(SCMsgConst.OW_SWITCH_TO_DOWN_INPUT, onOWItemHighLightDown);
             SCMsgCenter.UnregisterMsg(SCMsgConst.OW_ITEM_MOUSE_HIGHLIGHT, onOWItemMouseHighLight);
+            SCMsgCenter.UnregisterMsgAct(SCMsgConst.OW_PURCHASE_ITEM, onOWPurchaseItem);
 
             if (_m_itemContainer != null)
                 _m_itemContainer.HidePanel();
@@ -45,6 +47,7 @@ namespace GameCore.UI
             SCMsgCenter.RegisterMsgAct(SCMsgConst.OW_SWITCH_TO_UP_INPUT, onOWItemHighLightUp);
             SCMsgCenter.RegisterMsgAct(SCMsgConst.OW_SWITCH_TO_DOWN_INPUT, onOWItemHighLightDown);
             SCMsgCenter.RegisterMsg(SCMsgConst.OW_ITEM_MOUSE_HIGHLIGHT, onOWItemMouseHighLight);
+            SCMsgCenter.RegisterMsgAct(SCMsgConst.OW_PURCHASE_ITEM, onOWPurchaseItem);
 
 
             _m_itemDataList = SCDataMgr.instance.storeDataDict[_m_storeRefObj.id].dataList;
@@ -75,7 +78,7 @@ namespace GameCore.UI
         {
             refreshHasItemShow();
             refreshItemContainer();
-            refreshCurItemDesc();
+            refreshInfo();
         }
         private void refreshHasItemShow()
         {
@@ -91,7 +94,7 @@ namespace GameCore.UI
             _m_itemContainer.RefreshContainerShow(_m_itemDataList, _m_curSelectItemIdx);
         }
 
-        private void refreshCurItemDesc()
+        private void refreshInfo()
         {
             if (_m_itemDataList == null || _m_curSelectItemIdx < 0 || _m_curSelectItemIdx >= _m_itemDataList.Count)
                 return;
@@ -100,6 +103,8 @@ namespace GameCore.UI
             if (itemRefObj == null)
                 return;
             mono.txtItemDesc.text = GameCommon.GetItemDescTranslate(itemRefObj.id);
+            mono.txtStoreName.text = _m_storeRefObj.storeName;
+            mono.txtMoney.text = LanguageHelper.instance.GetTextTranslate("#2_money_value", SCDataMgr.instance.money);
         }
 
         private void onOWItemHighLightUp()
@@ -128,6 +133,11 @@ namespace GameCore.UI
                     break;
                 }
             }
+            refreshPanel();
+        }
+
+        private void onOWPurchaseItem()
+        {
             refreshPanel();
         }
     }

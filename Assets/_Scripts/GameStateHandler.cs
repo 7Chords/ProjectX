@@ -61,6 +61,24 @@ namespace GameCore
                 SCGame.instance.owCamera.m_XAxis.m_MaxSpeed = 400;
                 PlayerController.instance.SetCanControl(true);
             }
+            else if(firstNode is UINodeMain && secondNode is UINodeStore)
+            {
+                SCModel.instance.gameStateType = EGameStateType.PAUSE;
+                Cursor.visible = true;
+                SCGame.instance.owCamera.m_YAxis.m_MaxSpeed = 0;
+                SCGame.instance.owCamera.m_XAxis.m_MaxSpeed = 0;
+                PlayerController.instance.SetCanControl(false);
+                PlayerController.instance.ChangeState(PlayerStateType.IDLE);
+            }
+            else if (firstNode is UINodeStore && secondNode is UINodeMain)
+            {
+                SCModel.instance.gameStateType = EGameStateType.OW;
+
+                Cursor.visible = false;
+                SCGame.instance.owCamera.m_YAxis.m_MaxSpeed = 3;
+                SCGame.instance.owCamera.m_XAxis.m_MaxSpeed = 400;
+                PlayerController.instance.SetCanControl(true);
+            }
         }
 
     }

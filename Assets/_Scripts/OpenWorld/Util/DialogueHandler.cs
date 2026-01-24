@@ -4,6 +4,7 @@ using GameCore.UI;
 using GameCore.Util;
 using SCFrame;
 using UnityEngine;
+using SCFrame.UI;
 
 namespace GameCore.OW
 {
@@ -53,6 +54,14 @@ namespace GameCore.OW
                 case EDialogueEffectType.ITEM_GET:
                     break;
                 case EDialogueEffectType.ITEM_LOST:
+                    break;
+                case EDialogueEffectType.OPEN_STORE_PANEL:
+                    {
+                        long storeId = SCCommon.ParseLong(_effectObj.effectParamList[0].ToString());
+                        GameCoreMgr.instance.uiCoreMgr.AddNode(new UINodeStore(SCUIShowType.FULL, storeId));
+                    }
+                    break;
+                default:
                     break;
             }
         }

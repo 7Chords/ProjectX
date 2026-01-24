@@ -78,8 +78,11 @@ namespace SCFrame.UI
                     if (lastSameTypeNode.needHideWhenEnterNewSameTypeNode)
                     {
                         lastSameTypeNode.HideNode();
-                        //_m_nodeList.Remove(lastSameTypeNode);
-                        //_m_nodeList.Insert(0, lastSameTypeNode);
+                        if(lastSameTypeNode.needMoveToBottomWhenHide)
+                        {
+                            _m_nodeList.Remove(lastSameTypeNode);
+                            _m_nodeList.Insert(0, lastSameTypeNode);
+                        }
                         break;
                     }
                 }
@@ -112,10 +115,14 @@ namespace SCFrame.UI
             if(topNode != null)
             {
                 topNode.HideNode();
+
+                if(topNode.needMoveToBottomWhenHide)
+                {
+                    //把该节点移动到头部
+                    _m_nodeList.Remove(topNode);
+                    _m_nodeList.Insert(0, topNode);
+                }
             }
-            //把该节点移动到头部
-            //_m_nodeList.Remove(topNode);
-            //_m_nodeList.Insert(0, topNode);
 
             //上一个同类型的节点
             _ASCUINodeBase lastSameTypeNode = null;
@@ -183,8 +190,11 @@ namespace SCFrame.UI
                 if (node.GetNodeName()==_nodeName)
                 {
                     node.HideNode();
-                    //_m_nodeList.Remove(node);
-                    //_m_nodeList.Insert(0, node);
+                    if(node.needMoveToBottomWhenHide)
+                    {
+                        _m_nodeList.Remove(node);
+                        _m_nodeList.Insert(0, node);
+                    }
                     return;
                 }
             }

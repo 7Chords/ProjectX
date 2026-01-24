@@ -23,6 +23,8 @@ namespace GameCore.UI
 
         public override SCUINodeFuncType nodeFuncType => SCUINodeFuncType.OW;
 
+        public override bool needMoveToBottomWhenHide => false;
+
         private GameObject _m_panelGO;
         private UIPanelOption _m_optionPanel;
         private UIMonoOption _m_optionMono;

@@ -22,6 +22,7 @@ namespace GameCore.UI
         public override bool canQuitByMouseRight => false;
 
         public override bool ignoreOnUIList => false;
+        public override bool needMoveToBottomWhenHide => false;
 
         public override SCUINodeFuncType nodeFuncType => SCUINodeFuncType.OW;
 

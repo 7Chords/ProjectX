@@ -17,5 +17,7 @@ namespace GameCore.UI
         public List<GameObject> goNoItemShowList;
         [Header("商店名字")]
         public Text txtStoreName;
+        [Header("金币文本")]
+        public Text txtMoney;
     }
 }

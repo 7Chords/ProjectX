@@ -47,12 +47,12 @@ namespace GameCore.UI
 
         private void onBtnRightClickDown(PointerEventData _data, object[] _objs)
         {
-            _m_onLeftBtnClick?.Invoke();
+            _m_onRightBtnClick?.Invoke();
         }
 
         private void onBtnLeftClickDown(PointerEventData _data, object[] _objs)
         {
-            _m_onRightBtnClick?.Invoke();
+            _m_onLeftBtnClick?.Invoke();
         }
     }
 

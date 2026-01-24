@@ -30,6 +30,7 @@ namespace GameCore.UI
 
         public override SCUINodeFuncType nodeFuncType => SCUINodeFuncType.COMMON;
 
+        public override bool needMoveToBottomWhenHide => true;
 
 
         private GameObject _m_panelGO;
@@ -69,7 +70,6 @@ namespace GameCore.UI
 
             _m_twoBtnPanel = new UIPanelCommonTwoBtn(_m_twoBtnMono, _m_showType);
             _m_twoBtnPanel.Initialize();
-            _m_twoBtnPanel.SetInfo(_m_content, _m_leftContent, _m_rightContent, _m_onLeftBtnClick, _m_onRightBtnClick); 
         }
 
         public override void OnHideNode()
@@ -91,6 +91,7 @@ namespace GameCore.UI
             if (_m_twoBtnPanel == null)
                 return;
             _m_twoBtnPanel.ShowPanel();
+            _m_twoBtnPanel.SetInfo(_m_content, _m_leftContent, _m_rightContent, _m_onLeftBtnClick, _m_onRightBtnClick);
         }
 
         public override void CopyData(_ASCUINodeBase _anotherNode)
