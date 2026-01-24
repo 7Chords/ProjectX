@@ -25,7 +25,7 @@ namespace GameCore.RefData
         public ETargetAliveType itemTargetAliveType;
         public string itemDesc;
         public long itemEffectRefObjId;
-
+        public int itemPrice;
         protected override void _parseFromString()
         {
             id = getLong("id");
@@ -38,6 +38,7 @@ namespace GameCore.RefData
             itemTargetAliveType = (ETargetAliveType)getEnum("itemTargetAliveType", typeof(ETargetAliveType));
             itemDesc = getString("itemDesc");
             itemEffectRefObjId = getLong("itemEffectRefObjId");
+            itemPrice = getInt("itemPrice");
         }
 
         public static string assetPath => "RefData/ExportTxt";

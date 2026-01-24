@@ -45,7 +45,7 @@ namespace GameCore
             if (data == null)
                 itemDataList.Add(new ItemData(_itemId, _itemAmount));
             else
-                data.itemAmount = _itemAmount;
+                data.itemAmount += _itemAmount;
 
             SCDebugHelper.Log("ªÒµ√¡À"+ LanguageHelper.instance.GetTextTranslate(refObj.itemName)+"°¡"+_itemAmount);
         }
@@ -91,6 +91,20 @@ namespace GameCore
         public bool RemoveCharacter(long _characterId)
         {
             return false;
+        }
+
+        public bool UseMoney(long _money)
+        {
+            if (money < _money)
+                return false;
+            money -= _money;
+            return true;
+        }
+
+        public bool GetMoney(long _money)
+        {
+            money += _money;
+            return true;
         }
 
     }

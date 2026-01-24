@@ -16,6 +16,8 @@ namespace GameCore.UI
         public Text txtItemName;
         [Header("道具剩余")]
         public Text txtItemRemain;
+        [Header("道具价格")]
+        public Text txtPrice;
         [Header("道具选中颜色")]
         public Color colorItemSelect;
         [Header("道具未选中颜色")]

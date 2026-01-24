@@ -58,6 +58,7 @@ namespace GameCore.UI
             mono.txtItemName.text = LanguageHelper.instance.GetTextTranslate(_m_itemRefObj.itemName);
             mono.imgItemIcon.sprite = ResourcesHelper.LoadAsset<Sprite>(_m_itemRefObj.itemIconObjName);
             mono.txtItemRemain.text = LanguageHelper.instance.GetTextTranslate("#1_*{0}", _m_itemData.itemAmount);
+            mono.txtPrice.text = _m_itemRefObj.itemPrice.ToString();
         }
 
         public void SetSelect(bool _isSelect)
@@ -79,11 +80,18 @@ namespace GameCore.UI
                 "取消",
                 () =>
                 {
-                    _m_itemData.itemAmount--;
-                    SCDataMgr.instance.GetItem(_m_itemData.itemId, 1);
-                    TipQueueDealer.instance.EnqueueCommonTopTip("购买成功！");
-                    GameCoreMgr.instance.uiCoreMgr.HideNode(nameof(UINodeCommonTwoBtn));
-                    SCMsgCenter.SendMsg(SCMsgConst.OW_PURCHASE_ITEM);
+                    if (SCDataMgr.instance.UseMoney(_m_itemRefObj.itemPrice))
+                    {
+                        _m_itemData.itemAmount--;
+                        SCDataMgr.instance.GetItem(_m_itemData.itemId, 1);
+                        TipQueueDealer.instance.EnqueueCommonTopTip("购买成功！");
+                        GameCoreMgr.instance.uiCoreMgr.HideNode(nameof(UINodeCommonTwoBtn));
+                        SCMsgCenter.SendMsg(SCMsgConst.OW_PURCHASE_ITEM);
+                    }
+                    else
+                    {
+                        TipQueueDealer.instance.EnqueueCommonTopTip("金币不足！");
+                    }
                 },
                 () =>
                 {
@@ -102,16 +110,23 @@ namespace GameCore.UI
             if (_m_itemData == null || _m_itemRefObj == null)
                 return;
             GameCoreMgr.instance.uiCoreMgr.AddNode(new UINodeCommonTwoBtn(SCUIShowType.ADDITION,
-                "是否购买" + _m_itemRefObj.itemName, 
+                "是否购买" + LanguageHelper.instance.GetTextTranslate(_m_itemRefObj.itemName), 
                 "购买",
                 "取消",
                 () =>
                 {
-                    _m_itemData.itemAmount--;
-                    SCDataMgr.instance.GetItem(_m_itemData.itemId, 1);
-                    TipQueueDealer.instance.EnqueueCommonTopTip("购买成功！");
-                    GameCoreMgr.instance.uiCoreMgr.HideNode(nameof(UINodeCommonTwoBtn));
-                    SCMsgCenter.SendMsg(SCMsgConst.OW_PURCHASE_ITEM);
+                    if (SCDataMgr.instance.UseMoney(_m_itemRefObj.itemPrice))
+                    {
+                        _m_itemData.itemAmount--;
+                        SCDataMgr.instance.GetItem(_m_itemData.itemId, 1);
+                        TipQueueDealer.instance.EnqueueCommonTopTip("购买成功！");
+                        GameCoreMgr.instance.uiCoreMgr.HideNode(nameof(UINodeCommonTwoBtn));
+                        SCMsgCenter.SendMsg(SCMsgConst.OW_PURCHASE_ITEM);
+                    }
+                    else
+                    {
+                        TipQueueDealer.instance.EnqueueCommonTopTip("金币不足！");
+                    }
                 },
                 () =>
                 {
