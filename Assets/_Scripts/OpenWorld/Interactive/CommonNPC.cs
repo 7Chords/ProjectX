@@ -62,6 +62,7 @@ namespace GameCore.OW
         {
             if (!_m_hasEnterTalkArea)
                 return;
+            _m_hasEnterTalkArea = false;
             List<DialogueRefObj> dialogueRefList = SCRefDataMgr.instance.dialogueRefList.refDataList
                 .FindAll(x => x.group == dialogueGroup);
             DialogueInfo dialogueInfo = new DialogueInfo(dialogueRefList);

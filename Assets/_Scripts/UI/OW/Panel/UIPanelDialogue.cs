@@ -27,13 +27,13 @@ namespace GameCore.UI
 
         public override void OnHidePanel()
         {
-            SCMsgCenter.UnregisterMsgAct(SCMsgConst.OW_CONFIRM_INPUT, onConfirmInput);
+            SCMsgCenter.UnregisterMsgAct(SCMsgConst.OW_DIALOG_CONFIRM, onConfirmInput);
         }
 
 
         public override void OnShowPanel()
         {
-            SCMsgCenter.RegisterMsgAct(SCMsgConst.OW_CONFIRM_INPUT, onConfirmInput);
+            SCMsgCenter.RegisterMsgAct(SCMsgConst.OW_DIALOG_CONFIRM, onConfirmInput);
 
             _m_dialogueInfo = SCModel.instance.owModel.dialogueInfo;
             _m_dialogueIndex = 0;

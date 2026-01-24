@@ -36,8 +36,8 @@ namespace GameCore.UI
 
         public override void OnHidePanel()
         {
-            SCMsgCenter.UnregisterMsgAct(SCMsgConst.OW_SWITCH_TO_DOWN_INPUT, onSwitchToDownInput);
-            SCMsgCenter.UnregisterMsgAct(SCMsgConst.OW_SWITCH_TO_UP_INPUT, onSwitchToUpInput);
+            SCMsgCenter.UnregisterMsgAct(SCMsgConst.OW_CHARACTER_HIGHLIGHT_DOWN, onSwitchToDownInput);
+            SCMsgCenter.UnregisterMsgAct(SCMsgConst.OW_CHARACTER_HIGHLIGHT_UP, onSwitchToUpInput);
             SCMsgCenter.UnregisterMsg(SCMsgConst.OW_CHARACTER_SELECT_CLICK, onCharacterSelectClick);
 
             _m_panelDetailProps?.HidePanel();
@@ -63,8 +63,8 @@ namespace GameCore.UI
         }
         public override void OnShowPanel()
         {
-            SCMsgCenter.RegisterMsgAct(SCMsgConst.OW_SWITCH_TO_DOWN_INPUT, onSwitchToDownInput);
-            SCMsgCenter.RegisterMsgAct(SCMsgConst.OW_SWITCH_TO_UP_INPUT, onSwitchToUpInput);
+            SCMsgCenter.RegisterMsgAct(SCMsgConst.OW_CHARACTER_HIGHLIGHT_DOWN, onSwitchToDownInput);
+            SCMsgCenter.RegisterMsgAct(SCMsgConst.OW_CHARACTER_HIGHLIGHT_UP, onSwitchToUpInput);
             SCMsgCenter.RegisterMsg(SCMsgConst.OW_CHARACTER_SELECT_CLICK, onCharacterSelectClick);
             //todo
             _m_actorInfoList = SCDataMgr.instance.playerActorInfoList;

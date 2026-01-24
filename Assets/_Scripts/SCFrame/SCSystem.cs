@@ -1,4 +1,5 @@
 using GameCore;
+using GameCore.OW;
 using GameCore.TBS;
 using GameCore.Util;
 
@@ -23,10 +24,12 @@ namespace SCFrame
             TBSGameStarter.instance.Initialize();
             GameStateHandler.instance.Initialize();
             TipQueueDealer.instance.Initialize();
+            OWInputDealer.instance.Initialize();
         }
 
         public override void OnDiscard()
         {
+            OWInputDealer.instance.Discard();
             TipQueueDealer.instance.Discard();
             GameStateHandler.instance.Discard();
             TBSGameStarter.instance.Discard();

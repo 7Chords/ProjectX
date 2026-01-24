@@ -23,9 +23,9 @@ namespace GameCore.UI
 
         public override void OnHidePanel()
         {
-            SCMsgCenter.UnregisterMsgAct(SCMsgConst.OW_SWITCH_TO_UP_INPUT, onOWOptionHighLightUp);
-            SCMsgCenter.UnregisterMsgAct(SCMsgConst.OW_SWITCH_TO_DOWN_INPUT, onOWOptionHighLightDown);
-            SCMsgCenter.UnregisterMsgAct(SCMsgConst.OW_CONFIRM_INPUT, onOWConfirmInput);
+            SCMsgCenter.UnregisterMsgAct(SCMsgConst.OW_OPTION_HIGHLIGHT_UP, onOWOptionHighLightUp);
+            SCMsgCenter.UnregisterMsgAct(SCMsgConst.OW_OPTION_HIGHLIGHT_DOWN, onOWOptionHighLightDown);
+            SCMsgCenter.UnregisterMsgAct(SCMsgConst.OW_OPTION_CONFIRM, onOWConfirmInput);
 
             for (int i = 0; i < mono.optionList.Count; i++)
             {
@@ -54,9 +54,9 @@ namespace GameCore.UI
 
         public override void OnShowPanel()
         {
-            SCMsgCenter.RegisterMsgAct(SCMsgConst.OW_SWITCH_TO_UP_INPUT, onOWOptionHighLightUp);
-            SCMsgCenter.RegisterMsgAct(SCMsgConst.OW_SWITCH_TO_DOWN_INPUT, onOWOptionHighLightDown);
-            SCMsgCenter.RegisterMsgAct(SCMsgConst.OW_CONFIRM_INPUT, onOWConfirmInput);
+            SCMsgCenter.RegisterMsgAct(SCMsgConst.OW_OPTION_HIGHLIGHT_UP, onOWOptionHighLightUp);
+            SCMsgCenter.RegisterMsgAct(SCMsgConst.OW_OPTION_HIGHLIGHT_DOWN, onOWOptionHighLightDown);
+            SCMsgCenter.RegisterMsgAct(SCMsgConst.OW_OPTION_CONFIRM, onOWConfirmInput);
 
 
             for (int i =0;i<mono.optionList.Count;i++)

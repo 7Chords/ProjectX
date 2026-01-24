@@ -33,8 +33,8 @@ namespace GameCore.UI
 
         public override void OnHidePanel()
         {
-            SCMsgCenter.UnregisterMsgAct(SCMsgConst.OW_SWITCH_TO_UP_INPUT, onOWItemHighLightUp);
-            SCMsgCenter.UnregisterMsgAct(SCMsgConst.OW_SWITCH_TO_DOWN_INPUT, onOWItemHighLightDown);
+            SCMsgCenter.UnregisterMsgAct(SCMsgConst.OW_STORE_HIGHLIGHT_UP, onOWItemHighLightUp);
+            SCMsgCenter.UnregisterMsgAct(SCMsgConst.OW_STORE_HIGHLIGHT_DOWN, onOWItemHighLightDown);
             SCMsgCenter.UnregisterMsg(SCMsgConst.OW_ITEM_MOUSE_HIGHLIGHT, onOWItemMouseHighLight);
             SCMsgCenter.UnregisterMsgAct(SCMsgConst.OW_PURCHASE_ITEM, onOWPurchaseItem);
 
@@ -44,8 +44,8 @@ namespace GameCore.UI
 
         public override void OnShowPanel()
         {
-            SCMsgCenter.RegisterMsgAct(SCMsgConst.OW_SWITCH_TO_UP_INPUT, onOWItemHighLightUp);
-            SCMsgCenter.RegisterMsgAct(SCMsgConst.OW_SWITCH_TO_DOWN_INPUT, onOWItemHighLightDown);
+            SCMsgCenter.RegisterMsgAct(SCMsgConst.OW_STORE_HIGHLIGHT_UP, onOWItemHighLightUp);
+            SCMsgCenter.RegisterMsgAct(SCMsgConst.OW_STORE_HIGHLIGHT_DOWN, onOWItemHighLightDown);
             SCMsgCenter.RegisterMsg(SCMsgConst.OW_ITEM_MOUSE_HIGHLIGHT, onOWItemMouseHighLight);
             SCMsgCenter.RegisterMsgAct(SCMsgConst.OW_PURCHASE_ITEM, onOWPurchaseItem);
 

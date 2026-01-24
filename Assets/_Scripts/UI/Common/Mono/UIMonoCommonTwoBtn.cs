@@ -16,5 +16,13 @@ namespace GameCore.UI
         public Text txtLeft;
         [Header("右边文本")]
         public Text txtRight;
+        [Header("选中的按钮颜色")]
+        public Color colorBtnSelect;
+        [Header("选中的文本颜色")]
+        public Color colorTextSelect;
+        [Header("未选中的按钮颜色")]
+        public Color colorBtnUnselect;
+        [Header("未选中的文本颜色")]
+        public Color colorTextUnselect;
     }
 }

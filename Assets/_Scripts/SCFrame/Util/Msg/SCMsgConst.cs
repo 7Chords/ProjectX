@@ -90,6 +90,23 @@ public class SCMsgConst
     public const int OW_ITEM_MOUSE_HIGHLIGHT = 3001;
     public const int OW_CHARACTER_SELECT_CLICK = 3002;//
     public const int OW_PURCHASE_ITEM = 3003;//大世界 - 购买物品
+    public const int OW_ITEM_CONFIRM = 3004;
+    public const int OW_STORE_CONFIRM = 3005;
+    public const int OW_OPTION_CONFIRM = 3006;
+    public const int OW_DIALOG_CONFIRM = 3007;
+    public const int OW_COMMON_TWO_BTN_CONFIRM = 3008;
+
+    public const int OW_ITEM_HIGHLIGHT_UP = 3009;
+    public const int OW_ITEM_HIGHLIGHT_DOWN = 3010;
+    public const int OW_STORE_HIGHLIGHT_UP = 3011;
+    public const int OW_STORE_HIGHLIGHT_DOWN = 3012;
+    public const int OW_OPTION_HIGHLIGHT_UP = 3013;
+    public const int OW_OPTION_HIGHLIGHT_DOWN = 3014;
+    public const int OW_CHARACTER_HIGHLIGHT_UP = 3015;
+    public const int OW_CHARACTER_HIGHLIGHT_DOWN = 3016;
+    public const int OW_COMMON_TWO_BTN_HIGHLIGHT_LEFT=3017;
+    public const int OW_COMMON_TWO_BTN_HIGHLIGHT_RIGHT = 3018;
+
     #endregion
 
     #region 系统相关 99

@@ -22,9 +22,9 @@ namespace GameCore.UI
 
         public override bool needShowWhenQuitNewSameTypeNode => false;
 
-        public override bool canQuitByEsc => true;
+        public override bool canQuitByEsc => false;
 
-        public override bool canQuitByMouseRight => true;
+        public override bool canQuitByMouseRight => false;
 
         public override bool ignoreOnUIList => false;
 
@@ -90,8 +90,8 @@ namespace GameCore.UI
         {
             if (_m_twoBtnPanel == null)
                 return;
-            _m_twoBtnPanel.ShowPanel();
             _m_twoBtnPanel.SetInfo(_m_content, _m_leftContent, _m_rightContent, _m_onLeftBtnClick, _m_onRightBtnClick);
+            _m_twoBtnPanel.ShowPanel();
         }
 
         public override void CopyData(_ASCUINodeBase _anotherNode)
