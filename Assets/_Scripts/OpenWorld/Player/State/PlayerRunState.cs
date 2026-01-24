@@ -79,7 +79,7 @@ namespace GameCore.OW
                 float y = Camera.main.transform.rotation.eulerAngles.y;
                 // 让input也旋转y角度
                 // 四元数和向量相乘：表示这个向量按照这个四元数进行旋转之后得到新的向量
-                _m_moveDir = Quaternion.Euler(0, y, 0) * input;
+                _m_moveDir = Quaternion.Euler(0, y, 0) * input.normalized;
 
                 float speed = Mathf.Lerp(_m_playerController.playerMono.controlCfg.walkSpeed, _m_playerController.playerMono.controlCfg.runSpeed, runTransition);
                 _m_motion = Time.deltaTime * speed * _m_moveDir;
