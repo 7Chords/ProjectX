@@ -108,3 +108,5 @@
 10107	#2_hp_value	HP:{0}	HP:{0}
 10108	#2_mp_value	MP:{0}	MP:{0}
 10109	#2_money_value	金币:{0}	Money:{0}
+10110	#1_character_name_1008	流浪巫妖	Lich
+10111	#1_character_desc_1008	流浪巫妖的描述	Lich......

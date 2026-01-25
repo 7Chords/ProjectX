@@ -165,6 +165,26 @@ MonoBehaviour:
     m_Address: kaut_idle_anim_clip
     m_ReadOnly: 0
     m_SerializedLabels: []
+  - m_GUID: ac020f17c11acfd48aedee7c0836bb7c
+    m_Address: lich_attack_anim_clip
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  - m_GUID: c56630fd64243784ba85756594187aed
+    m_Address: lich_die_anim_clip
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  - m_GUID: 08eed54d82626b34181d3b8bbf3c2330
+    m_Address: lich_getHit_anim_clip
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  - m_GUID: cedb46a5d1eb36d45ac1adcf8a749ceb
+    m_Address: lich_idle_anim_clip
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  - m_GUID: b6a4939c817268d47984d04fdde7af31
+    m_Address: lich_run_anim_clip
+    m_ReadOnly: 0
+    m_SerializedLabels: []
   m_ReadOnly: 0
   m_Settings: {fileID: 11400000, guid: d14fb1bbe98862146a7f5467a5bc79f8, type: 2}
   m_SchemaSet:

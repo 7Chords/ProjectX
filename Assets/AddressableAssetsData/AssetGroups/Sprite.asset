@@ -193,6 +193,10 @@ MonoBehaviour:
     m_Address: spr_head_stele
     m_ReadOnly: 0
     m_SerializedLabels: []
+  - m_GUID: 2d1c6f90b1e7712458b294e87e6e73fa
+    m_Address: spr_head_lich
+    m_ReadOnly: 0
+    m_SerializedLabels: []
   m_ReadOnly: 0
   m_Settings: {fileID: 11400000, guid: d14fb1bbe98862146a7f5467a5bc79f8, type: 2}
   m_SchemaSet:

@@ -38,6 +38,9 @@ namespace GameCore.TBS
                 case EProfessionType.GIANT:
                     res = new TBSGiantActor(_mono);
                     break;
+                case EProfessionType.ELF:
+                    res = new TBSElfActor(_mono);
+                    break;
                 default:
                     Debug.LogError("TBSEnumFactory CreateTBSActorByProfession 无效的枚举类型！！！");
                     res = null;

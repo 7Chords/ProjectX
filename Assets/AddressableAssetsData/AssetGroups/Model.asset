@@ -49,6 +49,14 @@ MonoBehaviour:
     m_Address: Rock
     m_ReadOnly: 0
     m_SerializedLabels: []
+  - m_GUID: 402584a2de19a234d9aa2fecd6e92e9d
+    m_Address: Lich
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  - m_GUID: e63df1ef411b7d24fb8bcc703d96266b
+    m_Address: MagicBall
+    m_ReadOnly: 0
+    m_SerializedLabels: []
   m_ReadOnly: 0
   m_Settings: {fileID: 11400000, guid: d14fb1bbe98862146a7f5467a5bc79f8, type: 2}
   m_SchemaSet:
