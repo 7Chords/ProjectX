@@ -185,6 +185,46 @@ MonoBehaviour:
     m_Address: lich_run_anim_clip
     m_ReadOnly: 0
     m_SerializedLabels: []
+  - m_GUID: 75fa1aed7902e7345afc0dc93ad60f56
+    m_Address: mushroom_attack_anim_clip
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  - m_GUID: c24b4bdcb78ca9549a74de4752ca659e
+    m_Address: mushroom_die_anim_clip
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  - m_GUID: a742411f64a42a54fbd2bf02a1717aa4
+    m_Address: mushroom_getHit_anim_clip
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  - m_GUID: ceadc2915fa69114892fe62f6c644860
+    m_Address: mushroom_idle_anim_clip
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  - m_GUID: 1f5f85c942ccd1345b06fa0c54d119ce
+    m_Address: mushroom_run_anim_clip
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  - m_GUID: 88c0968b6aa6a51428c6345e654539de
+    m_Address: cactus_attack_anim_clip
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  - m_GUID: 1fef8c575fb18214b91543ffe83f6796
+    m_Address: cactus_die_anim_clip
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  - m_GUID: 302467a6180fde9448f77bbecc14bd8e
+    m_Address: cactus_getHit_anim_clip
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  - m_GUID: ff56cfc0f8f888349956474741018006
+    m_Address: cactus_idle_anim_clip
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  - m_GUID: 07761548bac43cf40b7ba908dccccb58
+    m_Address: cactus_run_anim_clip
+    m_ReadOnly: 0
+    m_SerializedLabels: []
   m_ReadOnly: 0
   m_Settings: {fileID: 11400000, guid: d14fb1bbe98862146a7f5467a5bc79f8, type: 2}
   m_SchemaSet:

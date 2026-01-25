@@ -197,6 +197,14 @@ MonoBehaviour:
     m_Address: spr_head_lich
     m_ReadOnly: 0
     m_SerializedLabels: []
+  - m_GUID: d3b752218f1799a4ba86ce9b45070f6f
+    m_Address: spr_head_cactus
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  - m_GUID: 982ddf8c9f2386e409c1fb61b69f1b0f
+    m_Address: spr_head_mushroom
+    m_ReadOnly: 0
+    m_SerializedLabels: []
   m_ReadOnly: 0
   m_Settings: {fileID: 11400000, guid: d14fb1bbe98862146a7f5467a5bc79f8, type: 2}
   m_SchemaSet:

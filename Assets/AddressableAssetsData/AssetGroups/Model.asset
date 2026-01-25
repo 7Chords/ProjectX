@@ -57,6 +57,14 @@ MonoBehaviour:
     m_Address: MagicBall
     m_ReadOnly: 0
     m_SerializedLabels: []
+  - m_GUID: 758525d353647ea4a8f52e23ad7a36b4
+    m_Address: Mushroom
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  - m_GUID: 53d8eb51cb840be4ca9ce5dad5abe5ed
+    m_Address: Cactus
+    m_ReadOnly: 0
+    m_SerializedLabels: []
   m_ReadOnly: 0
   m_Settings: {fileID: 11400000, guid: d14fb1bbe98862146a7f5467a5bc79f8, type: 2}
   m_SchemaSet:
