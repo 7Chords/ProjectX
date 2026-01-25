@@ -30,6 +30,14 @@ namespace GameCore.TBS
                         else
                             return characterRefObj.init_skill_list[Random.Range(0, characterRefObj.init_skill_list.Count)];
                     }
+                case 1010://œ…»À’∆»≠ ÷
+                    {
+                        int randomNum = Random.Range(0, 2);
+                        if (randomNum == 0)
+                            return GameConst.ENEMY_NORMAL_ATTACK_ID;
+                        else
+                            return characterRefObj.init_skill_list[Random.Range(0, characterRefObj.init_skill_list.Count)];
+                    }
                 default:
                     break;
             }

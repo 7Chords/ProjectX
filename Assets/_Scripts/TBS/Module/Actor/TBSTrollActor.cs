@@ -4,6 +4,7 @@ using SCFrame;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Playables;
 
 namespace GameCore.TBS
 {
@@ -124,8 +125,95 @@ namespace GameCore.TBS
 
         }
 
-        public override void ReleaseSkill(long skillId, List<TBSActorBase> _targetList)
+        public override void ReleaseSkill(long _skillId, List<TBSActorBase> _targetList)
         {
+            if (_targetList == null || _targetList.Count == 0)
+                return;
+
+            _m_attackEnemyActorList.AddRange(_targetList);
+
+            TBSActorSkillRefObj skillRefObj = SCRefDataMgr.instance.tbsActorSkillRefList.refDataList.Find(x => x.id == _skillId);
+            if (skillRefObj == null)
+                return;
+            PlayableAsset skillAsset = ResourcesHelper.LoadAsset<PlayableAsset>(skillRefObj.skillPlayableAssetName);
+            if (skillAsset == null)
+                return;
+            _m_actorSkillRefObj = skillRefObj;
+            GameCommon.ShowSkillNameTip(_m_actorSkillRefObj.skillName);
+
+            switch (_m_actorSkillRefObj.skillName)
+            {
+                case "ÎÞµÐÍ·é³":
+                    {
+
+                        TBSActorBase target = _targetList[0];
+                        if (target == null)
+                            return;
+
+                        _m_actorMono.signalEventTrigger.AddSignalEvent(GameConst.COMMON_DEAL_SKILL_EVENT, dealSkill);
+                        Vector3 originalPos = _m_actorMono.gameObject.transform.position;
+
+                        GameGeneralRefObj generalRefObj = SCRefDataMgr.instance.gameGeneralRefObj;
+                        Sequence seq = DOTween.Sequence();
+                        Tween lookAtTargetTween = _m_actorMono.goModel.transform.DOLookAt(new Vector3(target.GetActorGameObject().transform.position.x,
+                            GetActorGameObject().transform.position.y, target.GetActorGameObject().transform.position.z), generalRefObj.tbsMeleeLookAtTargetDuration);
+
+
+                        Tween move2AttackTween = _m_actorMono.goModel.transform.DOMove(target.GetEnemyAttackStandPos(), 0.5f)
+                            .OnStart(
+                            () =>
+                            {
+                                _m_animationCtl.speed = 2f;
+                                _m_animationCtl.PlaySingleAniamtion(_m_runAnimClip);
+                            })
+                            .OnComplete(
+                            () =>
+                            {
+                                _m_animationCtl.speed = 1f;
+                                _m_actorMono.skillDirector.Play(skillAsset);
+                            });
+
+
+                        Tween rotateTween_1 = _m_actorMono.goModel.transform.DOLocalRotate(new Vector3(0,180,0), 0.5f);
+
+                        Tween move2OriginalTween = _m_actorMono.goModel.transform.DOMove(originalPos, 1f)
+                            .OnStart(
+                            () =>
+                            {
+                                _m_animationCtl.PlaySingleAniamtion(_m_runAnimClip);
+                            })
+                            .OnComplete(
+                            () =>
+                            {
+                                _m_animationCtl.PlaySingleAniamtion(_m_idleAnimClip);
+                            });
+                        Tween rotateTween_2 = _m_actorMono.goModel.transform.DOLocalRotate(Vector3.zero, 0.5f);
+
+
+                        seq.Append(lookAtTargetTween);
+
+                        seq.Append(move2AttackTween);
+
+                        seq.Append(DOVirtual.DelayedCall((float)skillAsset.duration,
+                            () =>
+                            {
+                                SCMsgCenter.SendMsg(SCMsgConst.TBS_ACTOR_ACTION_END, actorInfo.runningId);
+                                _m_actorMono.signalEventTrigger.RemoveSignalEvent(GameConst.COMMON_DEAL_SKILL_EVENT);
+                                _m_attackEnemyActorList.Clear();
+
+                            }));
+                        seq.Append(rotateTween_1);
+                        seq.Append(move2OriginalTween);
+                        seq.Append(rotateTween_2);
+
+
+                        _m_tweenContainer?.RegDoTween(seq);
+
+                        break;
+                    }
+                default:
+                    break;
+            }
         }
     }
 }
