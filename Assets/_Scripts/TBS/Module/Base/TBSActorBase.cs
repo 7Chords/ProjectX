@@ -318,8 +318,8 @@ namespace GameCore.TBS
                 //如果是敌人的话 播放完死亡动画要销毁
                 if (actorInfo.isEnemy)
                 {
-                    _m_actorMono.animEventTrigger.RemoveAnimationEvent("showDieOver");
-                    _m_actorMono.animEventTrigger.AddAnimationEvent("showDieOver", showDieOver);
+                    _m_actorMono.animEventTrigger.RemoveAnimationEvent(GameConst.SHOW_DIE_OVER_EVENT);
+                    _m_actorMono.animEventTrigger.AddAnimationEvent(GameConst.SHOW_DIE_OVER_EVENT, showDieOver);
                 }
                 _m_animationCtl.PlaySingleAniamtion(_m_dieAnimClip);
             }

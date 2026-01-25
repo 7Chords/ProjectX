@@ -13889,7 +13889,7 @@ AnimationClip:
   m_Events:
   - time: 1.3333334
     functionName: AnimationEvent
-    data: showDieOver
+    data: ShowDieOver
     objectReferenceParameter: {fileID: 0}
     floatParameter: 0
     intParameter: 0
