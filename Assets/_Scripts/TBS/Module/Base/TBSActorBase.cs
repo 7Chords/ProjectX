@@ -89,11 +89,13 @@ namespace GameCore.TBS
 
             SCMsgCenter.RegisterMsgAct(SCMsgConst.TBS_ACTOR_CHG, onTBSActorChg);
             SCMsgCenter.RegisterMsgAct(SCMsgConst.TBS_TURN_CHG, onTurnChg);
+            SCMsgCenter.RegisterMsgAct(SCMsgConst.TBS_ACTOR_READY_CONTROL,onActorReadyControl);
         }
         public override void OnDiscard()
         {
             SCMsgCenter.UnregisterMsgAct(SCMsgConst.TBS_ACTOR_CHG, onTBSActorChg);
             SCMsgCenter.UnregisterMsgAct(SCMsgConst.TBS_TURN_CHG, onTurnChg);
+            SCMsgCenter.UnregisterMsgAct(SCMsgConst.TBS_ACTOR_READY_CONTROL, onActorReadyControl);
 
             _m_actorMono.animEventTrigger?.CleanAllActionEvent();
 
@@ -558,8 +560,6 @@ namespace GameCore.TBS
                 if (_m_idleAnimClip != null)
                     _m_animationCtl.PlaySingleAniamtion(_m_idleAnimClip);
 
-                _m_buffHander?.TriggerActorActionBuff();
-
             }
         }
 
@@ -571,6 +571,16 @@ namespace GameCore.TBS
             }
         }
 
+        private void onActorReadyControl()
+        {
+            TBSActorBase actor = SCModel.instance.tbsModel.GetCurActor();
+            if (actor == null)
+                return;
+            if (actor == this)
+            {
+                _m_buffHander?.TriggerActorActionBuff();
+            }
+        }
         protected virtual void showDieOver()
         {
             SCCommon.DestoryGameObject(GetActorGameObject());

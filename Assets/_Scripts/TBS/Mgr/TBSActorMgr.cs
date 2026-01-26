@@ -626,6 +626,7 @@ namespace GameCore.TBS
                     worldPosList = SCModel.instance.tbsModel.GetPosList(false, ETargetAliveType.ALIVE);
                 }
                 TBSCursorMgr.instance.SetSelectionCursor(worldPosList);
+                SCMsgCenter.SendMsg(SCMsgConst.TBS_ACTOR_READY_CONTROL);
             }
 
             if (SCModel.instance.tbsModel.curTurnType == ETBSTurnType.PLAYER)

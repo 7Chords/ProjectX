@@ -84,6 +84,7 @@ public class SCMsgConst
     public const int TBS_DETAIL_SELECT_UP = 2042;//回合制战斗 - 角色详情面板选择角色上移
     public const int TBS_DETAIL_SELECT_DOWN = 2043;//回合制战斗 - 角色详情面板选择角色下移
     public const int TBS_DETAIL_SELECT_CLICK = 2044;//回合制战斗 - 角色详情面板选择查看角色
+    public const int TBS_ACTOR_READY_CONTROL = 2045;//回合制战斗 - 角色准备好操作（相机和UI显示正确）
     #endregion
 
     #region OpenWorld大世界相关 30

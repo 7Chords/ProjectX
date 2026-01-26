@@ -1,4 +1,5 @@
 using GameCore.RefData;
+using GameCore.Util;
 using SCFrame;
 using System;
 using UnityEngine;
@@ -148,6 +149,7 @@ namespace GameCore.TBS
                                 {
                                     return () =>
                                     {
+                                        TipQueueDealer.instance.EnqueueWorldPositionTip(_buffRefObj.buffName, _targetActor.GetCursorPos());
                                         _targetActor.TakeDamage(Mathf.RoundToInt(_buffRefObj.buffValue));
                                     };
                                 }
