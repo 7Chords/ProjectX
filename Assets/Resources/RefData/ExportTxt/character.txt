@@ -1,11 +1,11 @@
 ﻿id	characterName	characterDesc	characterProfession	assetModelObjName	assetHeadIconObjName	extraCompList	init_skill_list	initHp	initMp	initAttack	initDefend	initMiss	initCritical	attackTargetType	initArmorLevel	initMgicResistanceLevel	attackDamageType	attackPhysicalLevel	attackMagicAttribute	weakAttributeList	normalAttributeList	resistentAttributeList	invilidAttributeList	bounceAttributeList	suckAttributeList
-1001	#1_character_name_1001	#1_character_desc_1001	1001	Stele	spr_head_stele	NONE	1001;1003	100	50	35	7	.05	.05	SINGLE	LIGHT	LIGHT	PHYSICAL	MEDIUM	NONE	WATER	FIRE;WOOD	*	*	*	*
-1002	#1_character_name_1002	#1_character_desc_1002	1003	Lorraine	spr_head_lorraine	NONE	1002;1004;1008	70	80	43	5	.02	.05	SINGLE	LIGHT	MEDIUM	MAGIC	NONE	FIRE	*	FIRE;WATER;WOOD	*	*	*	*
+1001	#1_character_name_1001	#1_character_desc_1001	1001	Stele	spr_head_stele	NONE	1001;1003	165	50	35	7	.05	.05	SINGLE	LIGHT	LIGHT	PHYSICAL	MEDIUM	NONE	WATER	FIRE;WOOD	*	*	*	*
+1002	#1_character_name_1002	#1_character_desc_1002	1003	Lorraine	spr_head_lorraine	NONE	1002;1004;1008	122	80	43	5	.02	.05	SINGLE	LIGHT	MEDIUM	MAGIC	NONE	FIRE	*	FIRE;WATER;WOOD	*	*	*	*
 1003	#1_character_name_1003	#1_character_desc_1003	1001	Kaut	none	NONE	*	200	0	0	99	.05	0	SINGLE	LIGHT	LIGHT	PHYSICAL	LIGHT	NONE	*	FIRE;WATER;WOOD	*	*	*	*
 1004	#1_character_name_1004	#1_character_desc_1004	1006	RedSlime	spr_head_redSlime	NONE	*	120	0	15	2	.02	.05	SINGLE	LIGHT	LIGHT	PHYSICAL	LIGHT	NONE	FIRE	WATER;WOOD	*	*	*	*
 1005	#1_character_name_1005	#1_character_desc_1005	1006	SpikeSlime	spr_head_spikeSlime	NONE	*	120	0	18	2	.02	.05	SINGLE	LIGHT	LIGHT	PHYSICAL	LIGHT	NONE	*	FIRE;WOOD	*	WATER	*	*
 1006	#1_character_name_1006	#1_character_desc_1006	1007	RockGiant	spr_head_rockGiant	NONE	1006	235	0	30	8	.01	.05	SINGLE	HEAVY	LIGHT	PHYSICAL	MEDIUM	NONE	*	FIRE;WATER;WOOD	*	*	*	*
-1007	#1_character_name_1007	#1_character_desc_1007	1004	Karenina	spr_head_karenina	NONE	1005;1007	150	25	26	10	.05	.05	SINGLE	MEDIUM	LIGHT	PHYSICAL	LIGHT	NONE	*	WOOD	FIRE;WATER	*	*	*
+1007	#1_character_name_1007	#1_character_desc_1007	1004	Karenina	spr_head_karenina	NONE	1005;1007	215	25	26	10	.05	.05	SINGLE	MEDIUM	LIGHT	PHYSICAL	LIGHT	NONE	*	WOOD	FIRE;WATER	*	*	*
 1008	#1_character_name_1008	#1_character_desc_1008	1008	Lich	spr_head_lich	NONE	1010	130	0	35	1	.01	.05	SINGLE	LIGHT	MEDIUM	MAGIC	NONE	WATER	*	FIRE;WATER;WOOD	*	*	*	*
 1009	#1_character_name_1009	#1_character_desc_1009	1006	Mushroom	spr_head_mushroom	NONE	*	85	0	15	2	.1	.1	SINGLE	LIGHT	LIGHT	PHYSICAL	LIGHT	NONE	WATER	FIRE;WOOD	*	*	*	*
 1010	#1_character_name_1010	#1_character_desc_1010	1006	Cactus	spr_head_cactus	NONE	1009	160	0	40	4	.1	.1	SINGLE	LIGHT	LIGHT	PHYSICAL	MEDIUM	NONE	FIRE	WATER;WOOD	*	*	*	*
