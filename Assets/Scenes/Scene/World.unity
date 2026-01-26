@@ -15503,7 +15503,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3893824558001785679, guid: 7fbe133aa8e44c84c9968abfbb7e8fa4, type: 3}
       propertyPath: enemyIdList.Array.data[2]
-      value: 1010
+      value: 1008
       objectReference: {fileID: 0}
     - target: {fileID: 4671830747058898569, guid: 7fbe133aa8e44c84c9968abfbb7e8fa4, type: 3}
       propertyPath: m_LocalScale.x

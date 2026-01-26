@@ -490,6 +490,7 @@ namespace GameCore.TBS
             skillInfo.physicsLevelType = _m_actorSkillRefObj.physicsLevelType;
             skillInfo.magicAttributeType = _m_actorSkillRefObj.magicAttributeType;
             skillInfo.damageCauseType = EDamageCauseType.SKILL;
+            skillInfo.buffEffectList = _m_actorSkillRefObj.buffEffectList;
             //处理器处理技能信息
             TBSAttackHandler.DealSkill(skillInfo);
         }
@@ -502,7 +503,7 @@ namespace GameCore.TBS
                 return;
             _m_buffHander.AddBuff(_buffInfo);
             SCMsgCenter.SendMsg(SCMsgConst.TBS_ACTOR_GET_BUFF, _buffInfo);
-
+            TipQueueDealer.instance.EnqueueWorldPositionTip(_buffInfo.buffRefObj.buffName, GetModelPos());
         }
 
         public virtual void RemoveBuff(TBSGameBuffInfo _buffInfo)

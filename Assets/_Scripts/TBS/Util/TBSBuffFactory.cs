@@ -1,6 +1,7 @@
 using GameCore.RefData;
 using SCFrame;
 using System;
+using UnityEngine;
 
 namespace GameCore.TBS
 {
@@ -140,6 +141,20 @@ namespace GameCore.TBS
                     }
                     return null;
                 case EBuffEffectType.DAMAGE:
+                    {
+                        switch (_buffRefObj.affectAttribute)
+                        {
+                            case EBasicAttribute.HP:
+                                {
+                                    return () =>
+                                    {
+                                        _targetActor.TakeDamage(Mathf.RoundToInt(_buffRefObj.buffValue));
+                                    };
+                                }
+                            default:
+                                break;
+                        }
+                    }
                     return null;
                 case EBuffEffectType.SPECIAL:
                     return null;

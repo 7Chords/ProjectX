@@ -1,5 +1,6 @@
 using GameCore.TBS;
 using SCFrame;
+using System.Collections.Generic;
 using UnityEngine;
 
 namespace GameCore.RefData
@@ -28,6 +29,7 @@ namespace GameCore.RefData
         public EDamageAmountType damageAmountType;
         public EPhysicalLevelType physicsLevelType;
         public EMagicAttributeType magicAttributeType;
+        public List<BuffEffectObj> buffEffectList;
         public string skillPlayableAssetName;
         protected override void _parseFromString()
         {
@@ -45,6 +47,7 @@ namespace GameCore.RefData
             damageAmountType = (EDamageAmountType)getEnum("damageAmountType", typeof(EDamageAmountType));
             physicsLevelType = (EPhysicalLevelType)getEnum("physicsLevelType", typeof(EPhysicalLevelType));
             magicAttributeType = (EMagicAttributeType)getEnum("magicAttributeType", typeof(EMagicAttributeType));
+            buffEffectList = getList<BuffEffectObj>("buffEffectList");
             skillPlayableAssetName = getString("skillPlayableAssetName");
         }
         public static string assetPath => "RefData/ExportTxt";

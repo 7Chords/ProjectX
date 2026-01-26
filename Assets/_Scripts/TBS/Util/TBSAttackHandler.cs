@@ -151,6 +151,9 @@ namespace GameCore.TBS
                     }
                     break;
                 case ESkillEffectType.BUFF:
+                    {
+                        dealBuffSkill(_skillInfo);
+                    }
                     break;
                 default:
                     break;
@@ -187,6 +190,17 @@ namespace GameCore.TBS
                     }
                     else
                     {
+                        //先处理buff
+                        if(_skillInfo.buffEffectList != null && _skillInfo.buffEffectList.Count>0)
+                        {
+                            foreach (var buffEffect in _skillInfo.buffEffectList)
+                            {
+                                TBSGameBuffInfo buffInfo = TBSBuffFactory.CreateBuffInfo(buffEffect.buffRefObjId, buffEffect.continueTurn, actor);
+                                actor.GetBuff(buffInfo);
+                            }
+                        }
+
+
                         tmpDamage = _skillInfo.baseDamage * getDamageAmountRate(_skillInfo.damageAmountType);
                         if (_skillInfo.damageType == EDamageType.PHYSICAL)
                         {
@@ -237,9 +251,20 @@ namespace GameCore.TBS
 
         private static void dealHealHpSkill(TBSGameSkillInfo _skillInfo)
         {
+
             int healAmount = Mathf.RoundToInt(_skillInfo.baseDamage * getDamageAmountRate(_skillInfo.damageAmountType));
             foreach (var actor in _skillInfo.targetActorList)
             {
+                //先处理buff
+                if (_skillInfo.buffEffectList != null && _skillInfo.buffEffectList.Count > 0)
+                {
+                    foreach (var buffEffect in _skillInfo.buffEffectList)
+                    {
+                        TBSGameBuffInfo buffInfo = TBSBuffFactory.CreateBuffInfo(buffEffect.buffRefObjId, buffEffect.continueTurn, actor);
+                        actor.GetBuff(buffInfo);
+                    }
+                }
+
                 actor.HealHp(healAmount);
             }
         }
@@ -249,7 +274,32 @@ namespace GameCore.TBS
             int healAmount = Mathf.RoundToInt(_skillInfo.baseDamage * getDamageAmountRate(_skillInfo.damageAmountType));
             foreach (var actor in _skillInfo.targetActorList)
             {
+                //先处理buff
+                if (_skillInfo.buffEffectList != null && _skillInfo.buffEffectList.Count > 0)
+                {
+                    foreach (var buffEffect in _skillInfo.buffEffectList)
+                    {
+                        TBSGameBuffInfo buffInfo = TBSBuffFactory.CreateBuffInfo(buffEffect.buffRefObjId, buffEffect.continueTurn, actor);
+                        actor.GetBuff(buffInfo);
+                    }
+                }
                 actor.HealMp(healAmount);
+            }
+        }
+
+        private static void dealBuffSkill(TBSGameSkillInfo _skillInfo)
+        {
+            foreach(var actor in _skillInfo.targetActorList)
+            {
+                //先处理buff
+                if (_skillInfo.buffEffectList != null && _skillInfo.buffEffectList.Count > 0)
+                {
+                    foreach (var buffEffect in _skillInfo.buffEffectList)
+                    {
+                        TBSGameBuffInfo buffInfo = TBSBuffFactory.CreateBuffInfo(buffEffect.buffRefObjId, buffEffect.continueTurn, actor);
+                        actor.GetBuff(buffInfo);
+                    }
+                }
             }
         }
 

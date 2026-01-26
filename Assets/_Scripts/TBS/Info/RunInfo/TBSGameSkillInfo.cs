@@ -1,6 +1,5 @@
-using System.Collections;
+using GameCore.RefData;
 using System.Collections.Generic;
-using UnityEngine;
 
 namespace GameCore.TBS
 {
@@ -17,6 +16,7 @@ namespace GameCore.TBS
         public EPhysicalLevelType physicsLevelType;
         public EMagicAttributeType magicAttributeType;
         public EDamageCauseType damageCauseType;
-        
+        public List<BuffEffectObj> buffEffectList;
+
     }
 }

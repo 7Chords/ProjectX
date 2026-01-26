@@ -1,11 +1,11 @@
-﻿id	skillName	skillIconObjName	isPlayerTarget	skillNeedMp	skillNeedHp	skillDesc	skillEffectType	damageTargetType	targetAliveType	damageType	damageAmountType	physicsLevelType	magicAttributeType	skillPlayableAssetName
-1001	迅捷攻击	spr_skill_1001	FALSE	5	0	#2_tbs_skill_desc_1001	DAMAGE	SINGLE	ALIVE	PHYSICAL	LITTLE	MEDIUM	NONE	tl_stele_skill_1001
-1002	蓝焰吐息	spr_skill_1002	FALSE	10	0	#2_tbs_skill_desc_1002	DAMAGE	SINGLE	ALIVE	MAGIC	LITTLE	NONE	WATER	tl_lorraine_skill_1002
-1003	四方剑影	spr_skill_1003	FALSE	5	0	#2_tbs_skill_desc_1003	DAMAGE	ALL	ALIVE	PHYSICAL	LITTLE	LIGHT	NONE	tl_stele_skill_1003
-1004	疗愈术	spr_skill_1004	TRUE	5	0	#2_tbs_skill_desc_1004	HEAL_HP	SINGLE	ALIVE	NONE	LITTLE	NONE	NONE	tl_lorraine_skill_1004
-1005	骑士决心	spr_skill_1005	TRUE	8	0	#2_tbs_skill_desc_1005	BUFF	SINGLE	ALIVE	NONE	NONE	NONE	NONE	tl_karenina_skill_1005
-1006	巨石坠	spr_skill_1006	TRUE	0	0	#2_tbs_skill_desc_1006	DAMAGE	ALL	ALIVE	PHYSICAL	MIDDLE	MEDIUM	NONE	tl_rockGiant_skill_1006
-1007	坚如磐石	spr_skill_1007	TRUE	10	0	#2_tbs_skill_desc_1007	BUFF	ALL	ALIVE	NONE	NONE	NONE	NONE	tl_karenina_skill_1005
-1008	烈焰破	spr_skill_1008	FALSE	35	0	#2_tbs_skill_desc_1008	DAMAGE	ALL	ALIVE	MAGIC	MIDDLE	NONE	FIRE	tl_lorraine_skill_1008
-1009	无敌头槌	spr_skill_1006	TRUE	0	0	#2_tbs_skill_desc_1009	DAMAGE	SINGLE	ALIVE	PHYSICAL	MIDDLE	MEDIUM	NONE	tl_cactus_skill_1009
-
+﻿id	skillName	skillIconObjName	isPlayerTarget	skillNeedMp	skillNeedHp	skillDesc	skillEffectType	damageTargetType	targetAliveType	damageType	damageAmountType	physicsLevelType	magicAttributeType	buffEffectList	skillPlayableAssetName
+1001	迅捷攻击	spr_skill_1001	FALSE	5	0	#2_tbs_skill_desc_1001	DAMAGE	SINGLE	ALIVE	PHYSICAL	LITTLE	MEDIUM	NONE	*	tl_stele_skill_1001
+1002	蓝焰吐息	spr_skill_1002	FALSE	10	0	#2_tbs_skill_desc_1002	DAMAGE	SINGLE	ALIVE	MAGIC	LITTLE	NONE	WATER	*	tl_lorraine_skill_1002
+1003	四方剑影	spr_skill_1003	FALSE	5	0	#2_tbs_skill_desc_1003	DAMAGE	ALL	ALIVE	PHYSICAL	LITTLE	LIGHT	NONE	*	tl_stele_skill_1003
+1004	疗愈术	spr_skill_1004	TRUE	5	0	#2_tbs_skill_desc_1004	HEAL_HP	SINGLE	ALIVE	NONE	LITTLE	NONE	NONE	*	tl_lorraine_skill_1004
+1005	骑士决心	spr_skill_1005	TRUE	8	0	#2_tbs_skill_desc_1005	BUFF	SINGLE	ALIVE	NONE	NONE	NONE	NONE	*	tl_karenina_skill_1005
+1006	巨石坠	spr_skill_1006	TRUE	0	0	#2_tbs_skill_desc_1006	DAMAGE	ALL	ALIVE	PHYSICAL	MIDDLE	MEDIUM	NONE	*	tl_rockGiant_skill_1006
+1007	坚如磐石	spr_skill_1007	TRUE	10	0	#2_tbs_skill_desc_1007	BUFF	ALL	ALIVE	NONE	NONE	NONE	NONE	*	tl_karenina_skill_1005
+1008	烈焰破	spr_skill_1008	FALSE	35	0	#2_tbs_skill_desc_1008	DAMAGE	ALL	ALIVE	MAGIC	MIDDLE	NONE	FIRE	*	tl_lorraine_skill_1008
+1009	无敌头槌	spr_skill_1006	TRUE	0	0	#2_tbs_skill_desc_1009	DAMAGE	SINGLE	ALIVE	PHYSICAL	MIDDLE	MEDIUM	NONE	*	tl_cactus_skill_1009
+1010	地火	spr_skill_1006	TRUE	0	0	#2_tbs_skill_desc_1010	DAMAGE	SINGLE	ALIVE	MAGIC	MIDDLE	NONE	FIRE	1027:2	tl_lich_skill_1010

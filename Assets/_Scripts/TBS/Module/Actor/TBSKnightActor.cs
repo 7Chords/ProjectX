@@ -134,16 +134,6 @@ namespace GameCore.TBS
 
                         dealSkill();
 
-
-                        TBSGameBuffInfo buffInfo = TBSBuffFactory.CreateBuffInfo(1010, 3, _targetList[0]);
-                        TBSGameBuffInfo buffInfo_2 = TBSBuffFactory.CreateBuffInfo(1011, 3, _targetList[0]);
-                        _targetList[0].GetBuff(buffInfo);
-                        _targetList[0].GetBuff(buffInfo_2);
-
-                        TipQueueDealer.instance.EnqueueWorldPositionTip(buffInfo.buffRefObj.buffName, _targetList[0].GetCursorPos());
-                        TipQueueDealer.instance.EnqueueWorldPositionTip(buffInfo_2.buffRefObj.buffName, _targetList[0].GetCursorPos());
-
-
                         Sequence seq = DOTween.Sequence();
 
                         seq.Append(DOVirtual.DelayedCall((float)skillAsset.duration,
@@ -180,20 +170,6 @@ namespace GameCore.TBS
                         _m_actorMono.skillDirector.Play(skillAsset);
 
                         dealSkill();
-
-
-                        TBSGameBuffInfo buffInfo = TBSBuffFactory.CreateBuffInfo(1004, 3, _targetList[0]);
-                        TBSGameBuffInfo buffInfo_2 = TBSBuffFactory.CreateBuffInfo(1004, 3, _targetList[1]);
-                        TBSGameBuffInfo buffInfo_3 = TBSBuffFactory.CreateBuffInfo(1004, 3, _targetList[2]);
-
-                        _targetList[0].GetBuff(buffInfo);
-                        _targetList[1].GetBuff(buffInfo_2);
-                        _targetList[2].GetBuff(buffInfo_3);
-
-                        TipQueueDealer.instance.EnqueueWorldPositionTip(buffInfo.buffRefObj.buffName, _targetList[0].GetCursorPos());
-                        TipQueueDealer.instance.EnqueueWorldPositionTip(buffInfo.buffRefObj.buffName, _targetList[1].GetCursorPos());
-                        TipQueueDealer.instance.EnqueueWorldPositionTip(buffInfo.buffRefObj.buffName, _targetList[2].GetCursorPos());
-
 
                         Sequence seq = DOTween.Sequence();
 
