@@ -140,6 +140,7 @@ namespace GameCore.TBS
                         TBSActorBase target = _targetList[0];
                         if (target == null)
                             return;
+                        GameCameraMgr.instance.SetCameraTarget(target.GetAsCameraTargetTran());
 
 
                         _m_actorMono.signalEventTrigger.AddSignalEvent(GameConst.SPAWN_DAMAGE_AREA_EVENT, () =>

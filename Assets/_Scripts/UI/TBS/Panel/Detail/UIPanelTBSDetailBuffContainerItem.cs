@@ -42,6 +42,7 @@ namespace GameCore.UI
             if (_m_buffInfo == null)
                 return;
             mono.imgBuffIcon.sprite = ResourcesHelper.LoadAsset<Sprite>(_m_buffInfo.buffRefObj.buffIconObjName);
+            mono.txtRemainTurn.text = LanguageHelper.instance.GetTextTranslate("#2_remain_turn", _m_buffInfo.remainTurnCount.ToString());
         }
     }
 }

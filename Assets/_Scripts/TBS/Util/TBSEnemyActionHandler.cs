@@ -32,7 +32,7 @@ namespace GameCore.TBS
                     }
                 case 1008:
                     {
-                        int randomNum = Random.Range(0, 2);
+                        int randomNum = Random.Range(0, 3);
                         if (randomNum == 0)
                             return GameConst.ENEMY_NORMAL_ATTACK_ID;
                         else
@@ -40,7 +40,7 @@ namespace GameCore.TBS
                     }
                 case 1010://œ…»À’∆»≠ ÷
                     {
-                        int randomNum = Random.Range(0, 2);
+                        int randomNum = Random.Range(0, 3);
                         if (randomNum == 0)
                             return GameConst.ENEMY_NORMAL_ATTACK_ID;
                         else

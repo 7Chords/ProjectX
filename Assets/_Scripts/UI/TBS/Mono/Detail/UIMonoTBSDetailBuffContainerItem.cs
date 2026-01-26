@@ -8,5 +8,7 @@ namespace GameCore.UI
     {
         [Header("buff图标")]
         public Image imgBuffIcon;
+        [Header("剩余回合数文本")]
+        public Text txtRemainTurn;
     }
 }
