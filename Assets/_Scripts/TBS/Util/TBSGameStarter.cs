@@ -95,13 +95,9 @@ namespace GameCore.TBS
 
         public void UnloadTBSGame(bool _isWin)
         {
-            //赢了就销毁敌人
-            if (_isWin & _m_battleEnemyGO != null)
-                SCCommon.DestoryGameObject(_m_battleEnemyGO.gameObject);
-
             _m_cachePlayerTeamInfoList = null;
             SCMsgCenter.SendMsg(SCMsgConst.TBS_GAME_FINISH);
-            change2OWGame();
+            change2OWGame(_isWin);
         }
         private void change2TBSGame()
         {
@@ -121,10 +117,17 @@ namespace GameCore.TBS
             }
         }
 
-        private void change2OWGame()
+        private void change2OWGame(bool _isWin)
         {
             Time.timeScale = 1;
             PlayerController.instance.SetCanControl(true);
+            if(!_isWin)
+                PlayerController.instance.SetPosition((_m_battleEnemyGO as CommonEnemy).tranPlayerLose.position);
+            else
+            {
+                if(_m_battleEnemyGO)
+                    SCCommon.DestoryGameObject(_m_battleEnemyGO.gameObject);
+            }
             SCCommon.SetGameObjectEnable(SCGame.instance.playerGO, true);
             SCGame.instance.owCamera.gameObject.SetActive(true);
             SCGame.instance.virtualCamera.gameObject.SetActive(false);

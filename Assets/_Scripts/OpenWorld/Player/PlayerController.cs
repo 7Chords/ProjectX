@@ -109,5 +109,9 @@ namespace GameCore.OW
         {
             _m_canControl = _canControl;
         }
+        public void SetPosition(Vector3 _position)
+        {
+            _m_playerMono.transform.position = _position;
+        }
     }
 }

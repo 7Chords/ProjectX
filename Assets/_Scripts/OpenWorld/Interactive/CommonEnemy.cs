@@ -17,7 +17,8 @@ namespace GameCore.OW
         [Header("空闲动画名")]
         public string idleAnimName;
         private SCAnimationCtl _m_animCtl;
-
+        [Header("玩家战败后位置")]
+        public Transform tranPlayerLose;
         private bool _m_hasEnter;
         private void Start()
         {
