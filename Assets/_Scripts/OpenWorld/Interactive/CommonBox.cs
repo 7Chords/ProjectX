@@ -14,7 +14,7 @@ namespace GameCore.OW
         public long itemId;
         public int itemAmount;
     }
-    public class CommonBox : MonoBehaviour
+    public class CommonBox : _ASCLifeGameObjBase
     {
         [Header("½ÇÉ«¶¯»­»ú")]
         public Animator animator;
@@ -32,22 +32,7 @@ namespace GameCore.OW
 
         private void Start()
         {
-            _m_animCtl = new SCAnimationCtl();
-            _m_animCtl.SetAnimator(animator);
-            _m_animCtl.Initialize();
-
-            SCMsgCenter.RegisterMsgAct(SCMsgConst.OW_INTERACT_INPUT, onInteractInput);
-            this.AddTriggerEnter(onTriggerEnter);
-            this.AddTriggerExit(onTriggerExit);
-            animationEventTrigger.AddAnimationEvent(GameConst.SHOW_OPEN_BOX_OVER, onShowOpenOver);
-        }
-        private void OnDisable()
-        {
-            SCMsgCenter.UnregisterMsgAct(SCMsgConst.OW_INTERACT_INPUT, onInteractInput);
-            this.RemoveTriggerEnter(onTriggerEnter);
-            this.RemoveTriggerExit(onTriggerExit);
-            animationEventTrigger.RemoveAnimationEvent(GameConst.SHOW_OPEN_BOX_OVER);
-
+            Initialize();
         }
 
         private void onTriggerEnter(Collider _coll, object[] _objs)
@@ -85,9 +70,40 @@ namespace GameCore.OW
         private void onShowOpenOver()
         {
             GameCommon.DiscardCurrentInteractText();
+            Discard();
             SCCommon.DestoryGameObject(gameObject);
         }
 
+        public override void OnInitialize()
+        {
+            _m_animCtl = new SCAnimationCtl();
+            _m_animCtl.SetAnimator(animator);
+            _m_animCtl.Initialize();
+
+            SCMsgCenter.RegisterMsgAct(SCMsgConst.OW_INTERACT_INPUT, onInteractInput);
+            this.AddTriggerEnter(onTriggerEnter);
+            this.AddTriggerExit(onTriggerExit);
+            animationEventTrigger.AddAnimationEvent(GameConst.SHOW_OPEN_BOX_OVER, onShowOpenOver);
+            OWEntityMgr.instance.RegisterEntity(this);
+        }
+
+        public override void OnDiscard()
+        {
+            SCMsgCenter.UnregisterMsgAct(SCMsgConst.OW_INTERACT_INPUT, onInteractInput);
+            this.RemoveTriggerEnter(onTriggerEnter);
+            this.RemoveTriggerExit(onTriggerExit);
+            animationEventTrigger.RemoveAnimationEvent(GameConst.SHOW_OPEN_BOX_OVER);
+            OWEntityMgr.instance.UnRegisterEntity(this);
+
+        }
+
+        public override void OnResume()
+        {
+        }
+
+        public override void OnSuspend()
+        {
+        }
     }
 
 }

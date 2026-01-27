@@ -1,14 +1,11 @@
-using System.Collections;
+using GameCore.RefData;
+using SCFrame;
 using System.Collections.Generic;
 using UnityEngine;
-using SCFrame;
-using System;
-using GameCore.RefData;
-using GameCore.UI;
 
 namespace GameCore.OW
 {
-    public class CommonDialogueArea : MonoBehaviour
+    public class CommonDialogueArea : _ASCLifeGameObjBase
     {
         [Header("¶Ô»°×é")]
         public long dialogueGroup;
@@ -17,19 +14,10 @@ namespace GameCore.OW
 
         private void Start()
         {
-            this.AddTriggerEnter(onTriggerEnter);
-            this.AddTriggerExit(onTriggerExit);
-            SCMsgCenter.RegisterMsgAct(SCMsgConst.OW_INTERACT_INPUT, onInteractInput);
+            Initialize();
 
         }
 
-        private void OnDisable()
-        {
-            this.RemoveTriggerEnter(onTriggerEnter);
-            this.RemoveTriggerExit(onTriggerExit);
-            SCMsgCenter.UnregisterMsgAct(SCMsgConst.OW_INTERACT_INPUT, onInteractInput);
-
-        }
 
         private void onTriggerEnter(Collider _coll, object[] _objs)
         {
@@ -59,5 +47,30 @@ namespace GameCore.OW
             GameCommon.DiscardCurrentInteractText();
         }
 
+        public override void OnInitialize()
+        {
+            this.AddTriggerEnter(onTriggerEnter);
+            this.AddTriggerExit(onTriggerExit);
+            SCMsgCenter.RegisterMsgAct(SCMsgConst.OW_INTERACT_INPUT, onInteractInput);
+            OWEntityMgr.instance.RegisterEntity(this);
+
+        }
+
+        public override void OnDiscard()
+        {
+            this.RemoveTriggerEnter(onTriggerEnter);
+            this.RemoveTriggerExit(onTriggerExit);
+            SCMsgCenter.UnregisterMsgAct(SCMsgConst.OW_INTERACT_INPUT, onInteractInput);
+            OWEntityMgr.instance.UnRegisterEntity(this);
+
+        }
+
+        public override void OnResume()
+        {
+        }
+
+        public override void OnSuspend()
+        {
+        }
     }
 }

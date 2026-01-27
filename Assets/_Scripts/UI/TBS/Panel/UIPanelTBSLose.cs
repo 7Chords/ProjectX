@@ -1,10 +1,6 @@
 using GameCore.TBS;
 using SCFrame;
 using SCFrame.UI;
-using System;
-using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
 using UnityEngine.EventSystems;
 
 namespace GameCore.UI
@@ -43,7 +39,7 @@ namespace GameCore.UI
         private void onBtnExitClickDown(PointerEventData _data, object[] _objs)
         {
             GameCoreMgr.instance.uiCoreMgr.RemoveAllNodes(SCUINodeFuncType.TBS);
-            TBSGameStarter.instance.UnloadTBSGame();
+            TBSGameStarter.instance.UnloadTBSGame(false);
             SCInputListener.instance.SetCanInput(true);
         }
     }

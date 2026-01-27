@@ -8,7 +8,7 @@ using GameCore.TBS;
 
 namespace GameCore.OW
 {
-    public class CommonEnemy : MonoBehaviour
+    public class CommonEnemy : _ASCLifeGameObjBase
     {
         [Header("µ–»À¡–±Ì")]
         public List<long> enemyIdList;
@@ -18,20 +18,10 @@ namespace GameCore.OW
         public string idleAnimName;
         private SCAnimationCtl _m_animCtl;
 
+        private bool _m_hasEnter;
         private void Start()
         {
-            _m_animCtl = new SCAnimationCtl();
-            _m_animCtl.SetAnimator(animator);
-            _m_animCtl.Initialize();
-
-            if (!string.IsNullOrEmpty(idleAnimName))
-                _m_animCtl.PlaySingleAniamtion(ResourcesHelper.LoadAsset<AnimationClip>(idleAnimName));
-
-            this.AddCollisionEnter(onCollisionEnter);
-        }
-        private void OnDisable()
-        {
-            this.RemoveCollisionEnter(onCollisionEnter);
+            Initialize();
         }
         private void onCollisionEnter(Collision _coll, object[] _objs)
         {
@@ -44,10 +34,38 @@ namespace GameCore.OW
                     data.InitNew(enemyIdList[i]);
                     dataList.Add(data);
                 }
-                TBSGameStarter.instance.LoadTBSGame(SCDataMgr.instance.playerActorInfoList, dataList);
-                Destroy(gameObject);
+                TBSGameStarter.instance.LoadTBSGame(SCDataMgr.instance.playerActorInfoList, dataList,this);
             }
         }
+        public override void OnInitialize()
+        {
+            _m_animCtl = new SCAnimationCtl();
+            _m_animCtl.SetAnimator(animator);
+            _m_animCtl.Initialize();
 
+            if (!string.IsNullOrEmpty(idleAnimName))
+                _m_animCtl.PlaySingleAniamtion(ResourcesHelper.LoadAsset<AnimationClip>(idleAnimName));
+
+            this.AddCollisionEnter(onCollisionEnter);
+            OWEntityMgr.instance.RegisterEntity(this);
+
+        }
+
+        public override void OnDiscard()
+        {
+            _m_animCtl?.Discard();
+            _m_animCtl = null;
+            this.RemoveCollisionEnter(onCollisionEnter);
+            OWEntityMgr.instance.UnRegisterEntity(this);
+
+        }
+
+        public override void OnResume()
+        {
+        }
+
+        public override void OnSuspend()
+        {
+        }
     }
 }

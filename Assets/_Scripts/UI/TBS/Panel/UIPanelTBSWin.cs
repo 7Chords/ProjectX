@@ -36,7 +36,7 @@ namespace GameCore.UI
         {
             GameCoreMgr.instance.uiCoreMgr.RemoveAllNodes(SCUINodeFuncType.TBS);
             TBSCursorMgr.instance.HideSelectionCursor();
-            TBSGameStarter.instance.UnloadTBSGame();
+            TBSGameStarter.instance.UnloadTBSGame(true);
 
         }
     }

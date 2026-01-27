@@ -21,6 +21,8 @@ namespace GameCore.TBS
         private List<ActorData> _m_enemyTeamDataList;
 
         private List<TBSActorInfo> _m_cachePlayerTeamInfoList;
+
+        private _ASCLifeGameObjBase _m_battleEnemyGO;
         public override void OnInitialize()
         {
             _m_onLoadOverActionList = new List<Action>();
@@ -38,7 +40,7 @@ namespace GameCore.TBS
             _m_tweenContainer = null;
         }
 
-        public void LoadTBSGame(List<TBSActorInfo> _playerTeamDataList, List<ActorData> _enemyTeamDataList)
+        public void LoadTBSGame(List<TBSActorInfo> _playerTeamDataList, List<ActorData> _enemyTeamDataList, _ASCLifeGameObjBase _enemyGO)
         {
             if (_playerTeamDataList == null || _enemyTeamDataList == null)
                 return;
@@ -55,6 +57,8 @@ namespace GameCore.TBS
                 _m_playerTeamDataList.Add(info);
             }
             _m_enemyTeamDataList = _enemyTeamDataList;
+            _m_battleEnemyGO = _enemyGO;
+
             _m_battleInfo = new TBSBattleInfo();
             _m_battleInfo.Init(_m_playerTeamDataList, _m_enemyTeamDataList);
             SCModel.instance.tbsModel.Init(_m_battleInfo);
@@ -89,16 +93,20 @@ namespace GameCore.TBS
             SCMsgCenter.SendMsg(SCMsgConst.TBS_GAME_START);
         }
 
-        public void UnloadTBSGame()
+        public void UnloadTBSGame(bool _isWin)
         {
+            //赢了就销毁敌人
+            if (_isWin & _m_battleEnemyGO != null)
+                SCCommon.DestoryGameObject(_m_battleEnemyGO.gameObject);
+
             _m_cachePlayerTeamInfoList = null;
             SCMsgCenter.SendMsg(SCMsgConst.TBS_GAME_FINISH);
             change2OWGame();
         }
         private void change2TBSGame()
         {
-            SCCommon.SetGameObjectEnable(SCGame.instance.playerGO, false);
-
+            //SCCommon.SetGameObjectEnable(SCGame.instance.playerGO, false);
+            PlayerController.instance.SetCanControl(false);
             if (SCGame.instance.globalVolumn.TryGet<LensDistortion>(out LensDistortion comp))
             {
                 Time.timeScale = 0;
@@ -116,7 +124,7 @@ namespace GameCore.TBS
         private void change2OWGame()
         {
             Time.timeScale = 1;
-
+            PlayerController.instance.SetCanControl(true);
             SCCommon.SetGameObjectEnable(SCGame.instance.playerGO, true);
             SCGame.instance.owCamera.gameObject.SetActive(true);
             SCGame.instance.virtualCamera.gameObject.SetActive(false);

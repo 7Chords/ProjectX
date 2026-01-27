@@ -7,7 +7,7 @@ using GameCore.RefData;
 
 namespace GameCore.OW
 {
-    public class CommonNPC : MonoBehaviour
+    public class CommonNPC : _ASCLifeGameObjBase
     {
         [Header("½ÇÉ«¶¯»­»ú")]
         public Animator animator;
@@ -21,26 +21,9 @@ namespace GameCore.OW
         private bool _m_hasEnterTalkArea;
         private void Start()
         {
-            _m_animCtl = new SCAnimationCtl();
-            _m_animCtl.SetAnimator(animator);
-            _m_animCtl.Initialize();
-
-            if(!string.IsNullOrEmpty(idleAnimName))
-                _m_animCtl.PlaySingleAniamtion(ResourcesHelper.LoadAsset<AnimationClip>(idleAnimName));
-
-            SCMsgCenter.RegisterMsgAct(SCMsgConst.OW_INTERACT_INPUT, onInteractInput);
-            this.AddTriggerEnter(onTriggerEnter);
-            this.AddTriggerExit(onTriggerExit);
-
+            Initialize();
         }
 
-        private void OnDisable()
-        {
-            SCMsgCenter.UnregisterMsgAct(SCMsgConst.OW_INTERACT_INPUT, onInteractInput);
-            this.RemoveTriggerEnter(onTriggerEnter);
-            this.RemoveTriggerExit(onTriggerExit);
-
-        }
 
         private void onTriggerEnter(Collider _coll, object[] _objs)
         {
@@ -68,6 +51,39 @@ namespace GameCore.OW
             DialogueInfo dialogueInfo = new DialogueInfo(dialogueRefList);
             DialogueHandler.LoadDialogue(dialogueInfo);
             GameCommon.DiscardCurrentInteractText();
+        }
+        public override void OnInitialize()
+        {
+            _m_animCtl = new SCAnimationCtl();
+            _m_animCtl.SetAnimator(animator);
+            _m_animCtl.Initialize();
+
+            if (!string.IsNullOrEmpty(idleAnimName))
+                _m_animCtl.PlaySingleAniamtion(ResourcesHelper.LoadAsset<AnimationClip>(idleAnimName));
+
+            SCMsgCenter.RegisterMsgAct(SCMsgConst.OW_INTERACT_INPUT, onInteractInput);
+            this.AddTriggerEnter(onTriggerEnter);
+            this.AddTriggerExit(onTriggerExit);
+            OWEntityMgr.instance.RegisterEntity(this);
+
+        }
+
+        public override void OnDiscard()
+        {
+            _m_animCtl?.Discard();
+            SCMsgCenter.UnregisterMsgAct(SCMsgConst.OW_INTERACT_INPUT, onInteractInput);
+            this.RemoveTriggerEnter(onTriggerEnter);
+            this.RemoveTriggerExit(onTriggerExit);
+            OWEntityMgr.instance.UnRegisterEntity(this);
+
+        }
+
+        public override void OnResume()
+        {
+        }
+
+        public override void OnSuspend()
+        {
         }
     }
 }

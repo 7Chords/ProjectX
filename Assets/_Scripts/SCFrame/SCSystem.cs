@@ -25,10 +25,12 @@ namespace SCFrame
             GameStateHandler.instance.Initialize();
             TipQueueDealer.instance.Initialize();
             OWInputDealer.instance.Initialize();
+            OWEntityMgr.instance.Initialize();
         }
 
         public override void OnDiscard()
         {
+            OWEntityMgr.instance.Discard();
             OWInputDealer.instance.Discard();
             TipQueueDealer.instance.Discard();
             GameStateHandler.instance.Discard();

@@ -13,7 +13,7 @@ namespace GameCore.OW
         public long itemId;
         public int itemAmount;
     }
-    public class CommonPickItem : MonoBehaviour
+    public class CommonPickItem : _ASCLifeGameObjBase
     {
         [Header("获得道具")]
         public List<PickItem> boxItemList;
@@ -24,16 +24,7 @@ namespace GameCore.OW
 
         private void Start()
         {
-
-            SCMsgCenter.RegisterMsgAct(SCMsgConst.OW_INTERACT_INPUT, onInteractInput);
-            this.AddTriggerEnter(onTriggerEnter);
-            this.AddTriggerExit(onTriggerExit);
-        }
-        private void OnDisable()
-        {
-            SCMsgCenter.UnregisterMsgAct(SCMsgConst.OW_INTERACT_INPUT, onInteractInput);
-            this.RemoveTriggerEnter(onTriggerEnter);
-            this.RemoveTriggerExit(onTriggerExit);
+            Initialize();
         }
 
         private void onTriggerEnter(Collider _coll, object[] _objs)
@@ -66,8 +57,33 @@ namespace GameCore.OW
                     + "×" + boxItemList[i].itemAmount);
             }
             GameCommon.DiscardCurrentInteractText();
+            Discard();
             SCCommon.DestoryGameObject(gameObject);
         }
+        public override void OnInitialize()
+        {
+            SCMsgCenter.RegisterMsgAct(SCMsgConst.OW_INTERACT_INPUT, onInteractInput);
+            this.AddTriggerEnter(onTriggerEnter);
+            this.AddTriggerExit(onTriggerExit);
+            OWEntityMgr.instance.RegisterEntity(this);
 
+        }
+
+        public override void OnDiscard()
+        {
+            SCMsgCenter.UnregisterMsgAct(SCMsgConst.OW_INTERACT_INPUT, onInteractInput);
+            this.RemoveTriggerEnter(onTriggerEnter);
+            this.RemoveTriggerExit(onTriggerExit);
+            OWEntityMgr.instance.UnRegisterEntity(this);
+
+        }
+
+        public override void OnResume()
+        {
+        }
+
+        public override void OnSuspend()
+        {
+        }
     }
 }

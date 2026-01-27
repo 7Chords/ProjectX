@@ -53,7 +53,7 @@ namespace SCFrame
             _m_ownerCoroutineMap = new Dictionary<object, List<string>>();
             _m_coroutineIdCounter = 0;
         }
-        private void OnDestroy()
+        public override void OnDiscard()
         {
             _m_updateEvent = null;
             _m_lateUpdateEvent = null;
