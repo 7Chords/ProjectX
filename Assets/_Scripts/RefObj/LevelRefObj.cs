@@ -46,8 +46,8 @@ public class LevelRefObj : SCRefDataCore
         maxMp = getInt("maxMp");
         attack = getInt("attack");
         defend = getInt("defend");
-        missChance = getFloat("miss");
-        criticalChance = getFloat("initCritical");
+        missChance = getFloat("missChance");
+        criticalChance = getFloat("criticalChance");
         attackTargetType = (ETargetType)getEnum("attackTargetType", typeof(ETargetType));
         armorLevel = (EArmorLevelType)getEnum("armorLevel", typeof(EArmorLevelType));
         magicResistanceLevel = (EMagicResistanceLevelType)getEnum("magicResistanceLevel", typeof(EMagicResistanceLevelType));
