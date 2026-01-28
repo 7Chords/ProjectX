@@ -107,6 +107,27 @@ namespace GameCore
             return true;
         }
 
+        public void GetExp(long _characterId,int _exp)
+        {
+            TBSActorInfo info = playerActorInfoList.Find(x => x.characterRefObj.id == _characterId);
+            if (info == null)
+            {
+                SCDebugHelper.LogError("没有找到id为" + _characterId + "的角色信息！！！");
+                return;
+            }
+
+            //更新经验和等级相关信息
+            info.curExp += _exp;
+            if(info.curExp >= info.levelFullExp)
+            {
+                info.characterLv++;
+                info.curExp -= info.levelFullExp;
+                LevelRefObj levelRefObj = SCRefDataMgr.instance.levelRefList.refDataList.Find(x => (x.characterId == _characterId && x.characterLevel == info.characterLv));
+                info.levelFullExp = levelRefObj.needExpToNextLevel;
+            }
+
+        }
+
     }
 
 

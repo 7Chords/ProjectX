@@ -19,6 +19,7 @@ public class ActorData
 {
     public long characterId;
     public int characterLv;
+    public int curExp;
     public List<long> skillList;
     public int maxHp;
     public int maxMp;
@@ -49,6 +50,7 @@ public class ActorData
         }
         characterId = _id;
         characterLv = 1;
+        curExp = 0;
         skillList = characterRefObj.init_skill_list;
         maxHp = characterRefObj.initHp;
         maxMp = characterRefObj.initMp;

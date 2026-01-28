@@ -11,6 +11,9 @@ namespace GameCore.TBS
         public int characterLv;
         public List<ETBSCompType> extraCompList;
         public List<long> skillList;
+        public int curExp;
+        public int levelFullExp;
+
 
         #region original
         public int originalAttack;
@@ -57,7 +60,6 @@ namespace GameCore.TBS
         public bool isEnemy;//是否是敌人
         public bool isDefending;//是否正在防御
 
-
         public void Init(ActorData _data,bool _isEnemy)
         {
             CharacterRefObj refObj = SCRefDataMgr.instance.characterRefList.refDataList.Find(x => x.id == _data.characterId);
@@ -69,6 +71,12 @@ namespace GameCore.TBS
             characterRefObj = refObj;
 
             characterLv = _data.characterLv;
+            curExp = _data.curExp;
+
+            //找到当前角色当前等级的配表数据
+            LevelRefObj levelRefObj = SCRefDataMgr.instance.levelRefList.refDataList.Find(x => (x.characterId == _data.characterId && x.characterLevel == characterLv));
+            levelFullExp = levelRefObj.needExpToNextLevel;
+
             ProfessionRefObj professioRefObj = SCRefDataMgr.instance.professionRefList.refDataList.Find(x => x.id == characterRefObj.characterProfession);
             if (professioRefObj == null)
             {
@@ -124,6 +132,8 @@ namespace GameCore.TBS
         {
             characterRefObj = _other.characterRefObj;
             characterLv = _other.characterLv;
+            curExp = _other.curExp;
+            levelFullExp = _other.levelFullExp;
 
             professionType = _other.professionType;
             skillList = _other.skillList;

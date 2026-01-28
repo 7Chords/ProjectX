@@ -32,6 +32,9 @@ namespace SCFrame
         public SCRefDataList<DialogueRefObj> dialogueRefList = new SCRefDataList<DialogueRefObj>(DialogueRefObj.assetPath, DialogueRefObj.sheetName);
 
         public SCRefDataList<StoreRefObj> storeRefList = new SCRefDataList<StoreRefObj>(StoreRefObj.assetPath, StoreRefObj.sheetName);
+
+        public SCRefDataList<LevelRefObj> levelRefList = new SCRefDataList<LevelRefObj>(LevelRefObj.assetPath, LevelRefObj.sheetName);
+
         public override void OnInitialize()
         {
             gameGeneralRefObj.readFromTxt();
@@ -47,6 +50,7 @@ namespace SCFrame
             itemRefList.readFromTxt();
             dialogueRefList.readFromTxt();
             storeRefList.readFromTxt();
+            levelRefList.readFromTxt();
         }
     }
 }
