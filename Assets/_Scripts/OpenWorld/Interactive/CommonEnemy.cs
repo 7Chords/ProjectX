@@ -8,10 +8,17 @@ using GameCore.TBS;
 
 namespace GameCore.OW
 {
+    [Serializable]
+    public class EnemyItem
+    {
+        public long enemyId;
+        public int enemyLevel;
+    }
+
     public class CommonEnemy : _ASCLifeGameObjBase
     {
         [Header("敌人列表")]
-        public List<long> enemyIdList;
+        public List<EnemyItem> enemyItemList;
         [Header("角色动画机")]
         public Animator animator;
         [Header("空闲动画名")]
@@ -29,10 +36,10 @@ namespace GameCore.OW
             if (_coll.gameObject.tag == GameConst.TAG_PLAYER)
             {
                 List<ActorData> dataList = new List<ActorData>();
-                for(int i =0;i<enemyIdList.Count;i++)
+                for(int i =0;i<enemyItemList.Count;i++)
                 {
                     ActorData data = new ActorData();
-                    data.InitNew(enemyIdList[i]);
+                    data.InitNew(enemyItemList[i].enemyId,enemyItemList[i].enemyLevel);
                     dataList.Add(data);
                 }
                 TBSGameStarter.instance.LoadTBSGame(SCDataMgr.instance.playerActorInfoList, dataList,this);

@@ -82,7 +82,7 @@ namespace GameCore
                 return false;
             TBSActorInfo info = new TBSActorInfo();
             ActorData data = new ActorData();
-            data.InitNew(_characterId);
+            data.InitNew(_characterId,1);
             info.Init(data, false);
             playerActorInfoList.Add(info);
             return true;

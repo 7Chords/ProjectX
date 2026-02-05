@@ -40,7 +40,7 @@ public class ActorData
     public List<EMagicAttributeType> bounceAttributeList;
     public List<EMagicAttributeType> suckAttributeList;
 
-    public void InitNew(long _id)
+    public void InitNew(long _id,int _level)
     {
         CharacterRefObj characterRefObj = SCRefDataMgr.instance.characterRefList.refDataList.Find(x => x.id == _id);
         if(characterRefObj == null)
@@ -48,28 +48,31 @@ public class ActorData
             SCDebugHelper.LogError("找不到id为" + _id + "的配表数据！！！");
             return;
         }
+        LevelRefObj levelRefObj = SCRefDataMgr.instance.levelRefList.refDataList.Find(x => (x.characterId == _id && x.characterLevel == _level));
+        if (levelRefObj == null)
+            return;
         characterId = _id;
-        characterLv = 1;
+        characterLv = _level;
         curExp = 0;
-        skillList = characterRefObj.init_skill_list;
-        maxHp = characterRefObj.initHp;
-        maxMp = characterRefObj.initMp;
-        attack = characterRefObj.initAttack;
-        defend = characterRefObj.initDefend;
-        missChance = characterRefObj.initMiss;
-        criticalChance = characterRefObj.initCritical;
-        attackTargetType = characterRefObj.attackTargetType;
-        armorLevel = characterRefObj.initArmorLevel;
-        magicResistanceLevel = characterRefObj.initMgicResistanceLevel;
-        attackDamageType = characterRefObj.attackDamageType;
-        attackPhysicalLevel = characterRefObj.attackPhysicalLevel;
-        attackMagicAttribute = characterRefObj.attackMagicAttribute;
-        weakAttributeList = characterRefObj.weakAttributeList;
-        normalAttributeList = characterRefObj.normalAttributeList;
-        resistentAttributeList = characterRefObj.resistentAttributeList;
-        invilidAttributeList = characterRefObj.invilidAttributeList;
-        bounceAttributeList = characterRefObj.bounceAttributeList;
-        suckAttributeList = characterRefObj.suckAttributeList;
+        skillList = levelRefObj.skill_list;
+        maxHp = levelRefObj.maxHp;
+        maxMp = levelRefObj.maxMp;
+        attack = levelRefObj.attack;
+        defend = levelRefObj.defend;
+        missChance = levelRefObj.missChance;
+        criticalChance = levelRefObj.criticalChance;
+        attackTargetType = levelRefObj.attackTargetType;
+        armorLevel = levelRefObj.armorLevel;
+        magicResistanceLevel = levelRefObj.magicResistanceLevel;
+        attackDamageType = levelRefObj.attackDamageType;
+        attackPhysicalLevel = levelRefObj.attackPhysicalLevel;
+        attackMagicAttribute = levelRefObj.attackMagicAttribute;
+        weakAttributeList = levelRefObj.weakAttributeList;
+        normalAttributeList = levelRefObj.normalAttributeList;
+        resistentAttributeList = levelRefObj.resistentAttributeList;
+        invilidAttributeList = levelRefObj.invilidAttributeList;
+        bounceAttributeList = levelRefObj.bounceAttributeList;
+        suckAttributeList = levelRefObj.suckAttributeList;
 
     }
 

@@ -50,7 +50,7 @@ namespace SCFrame
             for(int i = 0; i < initRefObj.init_player_team_list.Count; i++)
             {
                 ActorData data = new ActorData();
-                data.InitNew(initRefObj.init_player_team_list[i]);
+                data.InitNew(initRefObj.init_player_team_list[i],1);
                 gameData.playerActorDataList.Add(data);
             }
             gameData.storeDataDict = new Dictionary<long, StoreData>();

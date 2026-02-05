@@ -103,7 +103,8 @@ namespace GameCore.TBS
                         if (actor.actorInfo.isDefending)
                             tmpDamage *= tbsConfigRefObj.tbsDefendMultiplier;
 
-                        tmpDamage = Mathf.Max(tmpDamage - actor.actorInfo.defend,0);
+                        //最低也要1伤害
+                        tmpDamage = Mathf.Max(tmpDamage - actor.actorInfo.defend,1);
                         actor.TakeDamage(Mathf.RoundToInt(tmpDamage),true, extraStr);
                         SCDebugHelper.Log("===TBS===" + LanguageHelper.instance.GetTextTranslate(actor.actorInfo.characterRefObj.characterName) 
                             + "受到了" + Mathf.RoundToInt(tmpDamage) + "点伤害");
