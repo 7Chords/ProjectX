@@ -115,3 +115,4 @@
 10114	#1_character_name_1010	仙人掌拳手	Cactus
 10115	#1_character_desc_1010	仙人掌拳手的描述	Cactus......
 10116	#2_remain_turn	剩余回合:{0}	remain turn:{0}
+10117	#2_get_money	获得金币:{0}	Get Money:{0}

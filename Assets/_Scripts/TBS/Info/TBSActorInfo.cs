@@ -13,8 +13,8 @@ namespace GameCore.TBS
         public List<long> skillList;
         public int curExp;
         public int levelFullExp;
-
-
+        public int dropExp;
+        public int dropMoney;
         #region original
         public int originalAttack;
         public int originalDefend;
@@ -76,6 +76,8 @@ namespace GameCore.TBS
             //找到当前角色当前等级的配表数据
             LevelRefObj levelRefObj = SCRefDataMgr.instance.levelRefList.refDataList.Find(x => (x.characterId == _data.characterId && x.characterLevel == characterLv));
             levelFullExp = levelRefObj.needExpToNextLevel;
+            dropExp = levelRefObj.dropExp;
+            dropMoney = levelRefObj.dropMoney;
 
             ProfessionRefObj professioRefObj = SCRefDataMgr.instance.professionRefList.refDataList.Find(x => x.id == characterRefObj.characterProfession);
             if (professioRefObj == null)
@@ -174,6 +176,36 @@ namespace GameCore.TBS
             runningId = SCModel.instance.tbsModel.TakeRunningId();
             hasDead = _other.hasDead;
             isEnemy = _other.isEnemy;
+        }
+
+        public void ResetDataByLevel()
+        {
+            //找到当前角色当前等级的配表数据
+            LevelRefObj levelRefObj = SCRefDataMgr.instance.levelRefList.refDataList.Find(x => (x.characterId == characterRefObj.id && x.characterLevel == characterLv));
+            levelFullExp = levelRefObj.needExpToNextLevel;
+            dropExp = levelRefObj.dropExp;
+            dropMoney = levelRefObj.dropMoney;
+            skillList = levelRefObj.skill_list;
+            extraCompList = levelRefObj.extraCompList;
+
+            maxHp = levelRefObj.maxHp;
+            maxMp = levelRefObj.maxMp;
+            attack = levelRefObj.attack;
+            defend = levelRefObj.defend;
+            missChance = levelRefObj.missChance;
+            criticalChance = levelRefObj.criticalChance;
+            attackTargetType = levelRefObj.attackTargetType;
+            armorLevel = levelRefObj.armorLevel;
+            magicResistanceLevel = levelRefObj.magicResistanceLevel;
+            attackDamageType = levelRefObj.attackDamageType;
+            attackPhysicalLevel = levelRefObj.attackPhysicalLevel;
+            attackMagicAttribute = levelRefObj.attackMagicAttribute;
+            weakAttributeList = levelRefObj.weakAttributeList;
+            normalAttributeList = levelRefObj.normalAttributeList;
+            resistentAttributeList = levelRefObj.resistentAttributeList;
+            invilidAttributeList = levelRefObj.invilidAttributeList;
+            bounceAttributeList = levelRefObj.bounceAttributeList;
+            suckAttributeList = levelRefObj.suckAttributeList;
         }
     }
 }

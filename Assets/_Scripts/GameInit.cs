@@ -18,6 +18,7 @@ namespace GameCore
 
         private void Awake()
         {
+            Application.targetFrameRate = 90;
             SCModel.instance.Initialize();
             SCSystem.instance.Initialize();
             SCPlayer.instance.Initialize();

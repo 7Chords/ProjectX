@@ -75,6 +75,6 @@ namespace GameCore
         public const string PLAYER_ATTACK_ANIM_NAME = "attack";
         #endregion
 
-
+        public const int CHARACTER_MAX_LEVEL = 5;
     }
 }

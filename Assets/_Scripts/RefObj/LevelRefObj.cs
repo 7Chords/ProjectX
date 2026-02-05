@@ -35,6 +35,8 @@ public class LevelRefObj : SCRefDataCore
     public List<EMagicAttributeType> bounceAttributeList;
     public List<EMagicAttributeType> suckAttributeList;
     public int needExpToNextLevel;
+    public int dropExp;
+    public int dropMoney;
     protected override void _parseFromString()
     {
         id = getInt("id");
@@ -61,7 +63,8 @@ public class LevelRefObj : SCRefDataCore
         bounceAttributeList = getList<EMagicAttributeType>("bounceAttributeList");
         suckAttributeList = getList<EMagicAttributeType>("suckAttributeList");
         needExpToNextLevel = getInt("needExpToNextLevel");
-
+        dropExp = getInt("dropExp");
+        dropMoney = getInt("dropMoney");
     }
     public static string assetPath => "RefData/ExportTxt";
 

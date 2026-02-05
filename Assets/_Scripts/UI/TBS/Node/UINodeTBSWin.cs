@@ -1,13 +1,16 @@
 using SCFrame;
 using SCFrame.UI;
+using System.Collections.Generic;
 using UnityEngine;
 
 namespace GameCore.UI
 {
     public class UINodeTBSWin : _ASCUINodeBase
     {
-        public UINodeTBSWin(SCUIShowType _showType) : base(_showType)
+        public UINodeTBSWin(SCUIShowType _showType, List<bool> _hasLevelUpStateList,int _money) : base(_showType)
         {
+            _m_hasLevelUpStateList = _hasLevelUpStateList;
+            _m_money = _money;
         }
 
         public override bool needHideWhenEnterNewSameTypeNode => false;
@@ -24,6 +27,8 @@ namespace GameCore.UI
         private UIPanelTBSWin _m_tbsWinPanel;
         private UIMonoTBSWin _m_tbsWinMono;
 
+        private List<bool> _m_hasLevelUpStateList;//是否升级了的状态列表
+        private int _m_money;
         public override void OnEnterNode()
         {
             _m_panelGO = ResourcesHelper.LoadGameObject(GetResName(), GetRootTransform(), true);
@@ -62,6 +67,7 @@ namespace GameCore.UI
             if (_m_tbsWinPanel == null)
                 return;
             _m_tbsWinPanel.ShowPanel();
+            _m_tbsWinPanel.SetInfo(_m_hasLevelUpStateList,_m_money);
         }
         public override string GetNodeName()
         {

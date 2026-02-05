@@ -132,7 +132,9 @@ namespace GameCore.TBS
         {
             _m_tbsGameHasStarted = false;
             SCModel.instance.tbsModel.gameStarted = false;
-            GameCoreMgr.instance.uiCoreMgr.AddNode(new UINodeTBSWin(SCUIShowType.ADDITION));
+            List<bool> hasLevelUpStateList = SCModel.instance.tbsModel.ApplyExp2AllPlayerActor();
+            int money = SCModel.instance.tbsModel.ApplyMoney2Player();
+            GameCoreMgr.instance.uiCoreMgr.AddNode(new UINodeTBSWin(SCUIShowType.ADDITION, hasLevelUpStateList, money));
         }
         #endregion
     }

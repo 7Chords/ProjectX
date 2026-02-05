@@ -575,6 +575,9 @@ namespace GameCore.TBS
             if (actor == null)
                 return;
 
+            if (actor.actorInfo.isEnemy)
+                SCModel.instance.tbsModel.AddKillEnemyLoot(actor.actorInfo);
+
             if (SCModel.instance.tbsModel.CheckAllActorsDead(true))
             {
                 SCMsgCenter.SendMsg(SCMsgConst.TBS_ALL_PLAYER_ACTOR_DIE);

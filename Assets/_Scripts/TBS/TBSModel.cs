@@ -178,6 +178,9 @@ namespace GameCore.TBS
             }
         }
 
+        private int _m_curKillEnemyExp;
+
+        private int _m_curKillEnemyMoney;
         /// <summary>
         /// 创新新游戏的时候初始化新的数据
         /// </summary>
@@ -358,6 +361,26 @@ namespace GameCore.TBS
             for (int i = 0; i < enemyActorModuleList.Count; i++)
             {
                 resInfoList.Add(enemyActorModuleList[i].actorInfo);
+            }
+            return resInfoList;
+        }
+
+        public List<TBSActorInfo> GetActorInfoList(bool _isPlayer)
+        {
+            List<TBSActorInfo> resInfoList = new List<TBSActorInfo>();
+            if(_isPlayer)
+            {
+                for (int i = 0; i < playerActorModuleList.Count; i++)
+                {
+                    resInfoList.Add(playerActorModuleList[i].actorInfo);
+                }
+            }
+            else
+            {
+                for (int i = 0; i < enemyActorModuleList.Count; i++)
+                {
+                    resInfoList.Add(enemyActorModuleList[i].actorInfo);
+                }
             }
             return resInfoList;
         }
@@ -708,5 +731,40 @@ namespace GameCore.TBS
             }
             return posList;
         }
+
+        public List<bool> ApplyExp2AllPlayerActor()
+        {
+            List<bool> resList = new List<bool>();
+            List<TBSActorInfo> actorInfoList = GetActorInfoList(true);
+            TBSActorInfo actorInfo = null;
+            bool tmpBool = false;
+            for (int i = 0; i < actorInfoList.Count; i++)
+            {
+                actorInfo = actorInfoList[i];
+                if (actorInfo == null)
+                    continue;
+
+                tmpBool = SCDataMgr.instance.GetExp(actorInfo.characterRefObj.id, _m_curKillEnemyExp);
+                resList.Add(tmpBool);
+            }
+            return resList;
+
+        }
+        public int ApplyMoney2Player()
+        {
+            SCDataMgr.instance.GetMoney(_m_curKillEnemyMoney);
+            return _m_curKillEnemyMoney;
+        }
+
+        public void AddKillEnemyLoot(TBSActorInfo _enemyInfo)
+        {
+            if (_enemyInfo == null)
+                return;
+            _m_curKillEnemyExp += _enemyInfo.dropExp;
+            _m_curKillEnemyMoney += _enemyInfo.dropMoney;
+        }
+
+
+
     }
 }
