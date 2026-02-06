@@ -89,6 +89,7 @@ namespace GameCore.TBS
             buffList.Remove(_buffInfo);
 
             _buffInfo.onBuffRemove?.Invoke();
+            SCMsgCenter.SendMsg(SCMsgConst.TBS_ACTOR_REMOVE_BUFF, _buffInfo);
 
         }
 

@@ -8,14 +8,21 @@ namespace GameCore.TBS
 {
     public static class TBSEnemyActionHandler
     {
-        public static long GetEnemyActionId(long _characterId)
+        public static long GetEnemyActionId(long _characterId,int _characterLevel)
         {
-            CharacterRefObj characterRefObj = SCRefDataMgr.instance.characterRefList.refDataList.Find(x => x.id == _characterId);
-            if(characterRefObj == null)
+            //CharacterRefObj characterRefObj = SCRefDataMgr.instance.characterRefList.refDataList.Find(x => x.id == _characterId);
+            //if(characterRefObj == null)
+            //{
+            //    SCDebugHelper.LogError("找不到id为" + _characterId + "的角色配表数据！！！");
+            //    return GameConst.ENEMY_NORMAL_ATTACK_ID;
+            //}
+            LevelRefObj levelRefObj = SCRefDataMgr.instance.levelRefList.refDataList.Find(x => x.characterId == _characterId && x.characterLevel == _characterLevel);
+            if (levelRefObj == null)
             {
-                SCDebugHelper.LogError("找不到id为" + _characterId + "的角色配表数据！！！");
+                SCDebugHelper.LogError("找不到角色id为" + _characterId + ",等级为"+_characterLevel + "的角色配表数据！！！");
                 return GameConst.ENEMY_NORMAL_ATTACK_ID;
             }
+
             switch (_characterId)
             {
                 case 1004://红色史莱姆
@@ -28,7 +35,7 @@ namespace GameCore.TBS
                         if (randomNum == 0)
                             return GameConst.ENEMY_NORMAL_ATTACK_ID;
                         else
-                            return characterRefObj.init_skill_list[Random.Range(0, characterRefObj.init_skill_list.Count)];
+                            return levelRefObj.skill_list[Random.Range(0, levelRefObj.skill_list.Count)];
                     }
                 case 1008:
                     {
@@ -36,7 +43,7 @@ namespace GameCore.TBS
                         if (randomNum == 0)
                             return GameConst.ENEMY_NORMAL_ATTACK_ID;
                         else
-                            return characterRefObj.init_skill_list[Random.Range(0, characterRefObj.init_skill_list.Count)];
+                            return levelRefObj.skill_list[Random.Range(0, levelRefObj.skill_list.Count)];
                     }
                 case 1010://仙人掌拳手
                     {
@@ -44,7 +51,7 @@ namespace GameCore.TBS
                         if (randomNum == 0)
                             return GameConst.ENEMY_NORMAL_ATTACK_ID;
                         else
-                            return characterRefObj.init_skill_list[Random.Range(0, characterRefObj.init_skill_list.Count)];
+                            return levelRefObj.skill_list[Random.Range(0, levelRefObj.skill_list.Count)];
                     }
                 default:
                     break;

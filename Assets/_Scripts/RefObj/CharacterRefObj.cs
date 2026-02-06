@@ -24,26 +24,26 @@ namespace GameCore.RefData
         public string assetModelObjName;
         public string assetHeadIconObjName;
 
-        public List<ETBSCompType> extraCompList;
-        public List<long> init_skill_list;
-        public int initHp;
-        public int initMp;
-        public int initAttack;
-        public int initDefend;
-        public float initMiss;
-        public float initCritical;
-        public ETargetType attackTargetType;
-        public EArmorLevelType initArmorLevel;
-        public EMagicResistanceLevelType initMgicResistanceLevel;
-        public EDamageType attackDamageType;
-        public EPhysicalLevelType attackPhysicalLevel;
-        public EMagicAttributeType attackMagicAttribute;
-        public List<EMagicAttributeType> weakAttributeList;
-        public List<EMagicAttributeType> normalAttributeList;
-        public List<EMagicAttributeType> resistentAttributeList;
-        public List<EMagicAttributeType> invilidAttributeList;
-        public List<EMagicAttributeType> bounceAttributeList;
-        public List<EMagicAttributeType> suckAttributeList;
+        //public List<ETBSCompType> extraCompList;
+        //public List<long> init_skill_list;
+        //public int initHp;
+        //public int initMp;
+        //public int initAttack;
+        //public int initDefend;
+        //public float initMiss;
+        //public float initCritical;
+        //public ETargetType attackTargetType;
+        //public EArmorLevelType initArmorLevel;
+        //public EMagicResistanceLevelType initMgicResistanceLevel;
+        //public EDamageType attackDamageType;
+        //public EPhysicalLevelType attackPhysicalLevel;
+        //public EMagicAttributeType attackMagicAttribute;
+        //public List<EMagicAttributeType> weakAttributeList;
+        //public List<EMagicAttributeType> normalAttributeList;
+        //public List<EMagicAttributeType> resistentAttributeList;
+        //public List<EMagicAttributeType> invilidAttributeList;
+        //public List<EMagicAttributeType> bounceAttributeList;
+        //public List<EMagicAttributeType> suckAttributeList;
 
 
 
@@ -55,26 +55,26 @@ namespace GameCore.RefData
             characterProfession = getLong("characterProfession");
             assetModelObjName = getString("assetModelObjName");
             assetHeadIconObjName = getString("assetHeadIconObjName");
-            extraCompList = getList<ETBSCompType>("extraCompList");
-            init_skill_list = getList<long>("init_skill_list");
-            initHp = getInt("initHp");
-            initMp = getInt("initMp");
-            initAttack = getInt("initAttack");
-            initDefend = getInt("initDefend");
-            initMiss = getFloat("initMiss");
-            initCritical = getFloat("initCritical");
-            attackTargetType = (ETargetType)getEnum("attackTargetType", typeof(ETargetType));
-            initArmorLevel = (EArmorLevelType)getEnum("initArmorLevel", typeof(EArmorLevelType));
-            initMgicResistanceLevel = (EMagicResistanceLevelType)getEnum("initMgicResistanceLevel", typeof(EMagicResistanceLevelType));
-            attackDamageType = (EDamageType)getEnum("attackDamageType", typeof(EDamageType));
-            attackPhysicalLevel = (EPhysicalLevelType)getEnum("attackPhysicalLevel", typeof(EPhysicalLevelType));
-            attackMagicAttribute = (EMagicAttributeType)getEnum("attackMagicAttribute", typeof(EMagicAttributeType));
-            weakAttributeList = getList<EMagicAttributeType>("weakAttributeList");
-            normalAttributeList = getList<EMagicAttributeType>("normalAttributeList");
-            resistentAttributeList = getList<EMagicAttributeType>("resistentAttributeList");
-            invilidAttributeList = getList<EMagicAttributeType>("invilidAttributeList");
-            bounceAttributeList = getList<EMagicAttributeType>("bounceAttributeList");
-            suckAttributeList = getList<EMagicAttributeType>("suckAttributeList");
+            //extraCompList = getList<ETBSCompType>("extraCompList");
+            //init_skill_list = getList<long>("init_skill_list");
+            //initHp = getInt("initHp");
+            //initMp = getInt("initMp");
+            //initAttack = getInt("initAttack");
+            //initDefend = getInt("initDefend");
+            //initMiss = getFloat("initMiss");
+            //initCritical = getFloat("initCritical");
+            //attackTargetType = (ETargetType)getEnum("attackTargetType", typeof(ETargetType));
+            //initArmorLevel = (EArmorLevelType)getEnum("initArmorLevel", typeof(EArmorLevelType));
+            //initMgicResistanceLevel = (EMagicResistanceLevelType)getEnum("initMgicResistanceLevel", typeof(EMagicResistanceLevelType));
+            //attackDamageType = (EDamageType)getEnum("attackDamageType", typeof(EDamageType));
+            //attackPhysicalLevel = (EPhysicalLevelType)getEnum("attackPhysicalLevel", typeof(EPhysicalLevelType));
+            //attackMagicAttribute = (EMagicAttributeType)getEnum("attackMagicAttribute", typeof(EMagicAttributeType));
+            //weakAttributeList = getList<EMagicAttributeType>("weakAttributeList");
+            //normalAttributeList = getList<EMagicAttributeType>("normalAttributeList");
+            //resistentAttributeList = getList<EMagicAttributeType>("resistentAttributeList");
+            //invilidAttributeList = getList<EMagicAttributeType>("invilidAttributeList");
+            //bounceAttributeList = getList<EMagicAttributeType>("bounceAttributeList");
+            //suckAttributeList = getList<EMagicAttributeType>("suckAttributeList");
 
         }
 

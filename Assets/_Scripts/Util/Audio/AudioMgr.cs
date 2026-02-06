@@ -63,7 +63,7 @@ namespace GameCore.Util
         public void PlayBgm(string fadeInMusicName, float fadeInDuration = 0.5f,
             float fadeOutDuration = 0.5f, bool loop = true)
         {
-            if (bgmAudioInfo.audioSource == null)
+            if (bgmAudioInfo == null || bgmAudioInfo.audioSource == null)
             {
                 // 创建新的BGM AudioSource
                 GameObject bgmGO = new GameObject(fadeInMusicName + "_BGM");

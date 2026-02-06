@@ -1,6 +1,7 @@
 using GameCore.OW;
 using GameCore.TBS;
 using GameCore.UI;
+using GameCore.Util;
 using SCFrame;
 using SCFrame.UI;
 using UnityEngine;
@@ -27,11 +28,10 @@ namespace GameCore
         {
 
             SCMsgCenter.SendMsg(SCMsgConst.GAME_START);
-            //SCMsgCenter.SendMsg(SCMsgConst.TBS_GAME_START);
-
             PlayerController.instance.Initialize();
             Cursor.visible = false;
             GameCoreMgr.instance.uiCoreMgr.AddNode(new UINodeMain(SCUIShowType.FULL));
+            AudioMgr.instance.PlayBgm("bgm_main");
         }
 
         private void OnDisable()

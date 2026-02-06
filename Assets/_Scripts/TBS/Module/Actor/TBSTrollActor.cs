@@ -81,7 +81,7 @@ namespace GameCore.TBS
 
         public void DealEnemyAction()
         {
-            long actionId = TBSEnemyActionHandler.GetEnemyActionId(actorInfo.characterRefObj.id);
+            long actionId = TBSEnemyActionHandler.GetEnemyActionId(actorInfo.characterRefObj.id,actorInfo.characterLv);
 
             if (actionId == GameConst.ENEMY_NORMAL_ATTACK_ID)
             {

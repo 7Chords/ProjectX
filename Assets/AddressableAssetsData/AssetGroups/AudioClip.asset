@@ -16,7 +16,19 @@ MonoBehaviour:
   m_Data:
     m_SerializedData: []
   m_GUID: 78559d768dfced140815c2307b868e60
-  m_SerializeEntries: []
+  m_SerializeEntries:
+  - m_GUID: d274c9438df4f004eadcd56bace5eb6e
+    m_Address: bgm_boss_battle
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  - m_GUID: 4f98e02b32d99954c8020cafab4884e2
+    m_Address: bgm_common_battle
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  - m_GUID: a3a7ff63394dd154fab01e32bdafd4d4
+    m_Address: bgm_main
+    m_ReadOnly: 0
+    m_SerializedLabels: []
   m_ReadOnly: 0
   m_Settings: {fileID: 11400000, guid: d14fb1bbe98862146a7f5467a5bc79f8, type: 2}
   m_SchemaSet:
