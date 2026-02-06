@@ -29,6 +29,10 @@ MonoBehaviour:
     m_Address: bgm_main
     m_ReadOnly: 0
     m_SerializedLabels: []
+  - m_GUID: 5af678f138e150a4eadff8606a69614a
+    m_Address: sfx_walk
+    m_ReadOnly: 0
+    m_SerializedLabels: []
   m_ReadOnly: 0
   m_Settings: {fileID: 11400000, guid: d14fb1bbe98862146a7f5467a5bc79f8, type: 2}
   m_SchemaSet:

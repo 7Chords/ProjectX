@@ -66,6 +66,8 @@ namespace GameCore
         public const string PLAYER_ATTACK_OVER_EVENT = "PlayerAttackOver";
         public const string SHOW_OPEN_BOX_OVER = "ShowOpenBoxOver";
         public const string SHOW_DIE_OVER_EVENT = "ShowDieOver";
+
+        public const string PLAY_FOOT_STEP_SOUND_EVENT = "PlayFootStepSound";
         #endregion
 
         #region OW Anim

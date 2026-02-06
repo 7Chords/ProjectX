@@ -41,12 +41,18 @@ namespace GameCore.Util
         {
             // 创建BGM和SFX的AudioSource根节点
             _bgmSourcesRootGO = new GameObject("BGM_ROOT");
+            _bgmSourcesRootGO.transform.SetParent(SCGame.instance.transform);
             _sfxSourcesRootGO = new GameObject("SFX_ROOT");
+            _sfxSourcesRootGO.transform.SetParent(SCGame.instance.transform);
 
             // 初始化列表
             sfxAudioInfoList = new List<AudioInfo>();
 
             _tweenContainer = new TweenContainer();
+
+            mainVolumeFactor = 1f;
+            bgmVolumeFactor = 0.1f;
+            sfxVolumeFactor = 1f;
         }
         public override void OnDiscard()
         {

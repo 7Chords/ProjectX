@@ -1,3 +1,4 @@
+using GameCore.Util;
 using SCFrame;
 using UnityEngine;
 
@@ -31,12 +32,19 @@ namespace GameCore.OW
             _m_canControl = true;
 
             ChangeState(PlayerStateType.IDLE);
+
+            _m_playerMono.animEventTrigger.AddAnimationEvent(GameConst.PLAY_FOOT_STEP_SOUND_EVENT, () =>
+            {
+                AudioMgr.instance.PlaySfx("sfx_walk");
+            });
         }
 
         public override void OnDiscard()
         {
             _m_animationCtl?.Discard();
             _m_playerStateMachine?.Discard();
+
+            _m_playerMono.animEventTrigger.RemoveAnimationEvent(GameConst.PLAY_FOOT_STEP_SOUND_EVENT);
         }
 
         public void SetMono(PlayerMono _mono)
