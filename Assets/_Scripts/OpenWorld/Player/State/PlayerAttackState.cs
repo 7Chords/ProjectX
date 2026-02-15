@@ -1,3 +1,4 @@
+using GameCore.Util;
 using System;
 using System.Collections;
 using System.Collections.Generic;
@@ -10,6 +11,7 @@ namespace GameCore.OW
     {
         public override void OnEnter()
         {
+            AudioMgr.instance.PlaySfx("sfx_attack");
             _m_playerController.PlayAnimation(GameConst.PLAYER_ATTACK_ANIM_NAME);
             _m_playerController.playerMono.animEventTrigger.AddAnimationEvent(GameConst.PLAYER_ATTACK_OVER_EVENT, OnPlayerAttackOver);
         }

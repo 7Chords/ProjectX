@@ -165,6 +165,10 @@ MonoBehaviour:
     m_Address: prefab_tbs_win_exp_item
     m_ReadOnly: 0
     m_SerializedLabels: []
+  - m_GUID: 9475d51439f0e1745baf5afa9ff4b843
+    m_Address: panel_setting
+    m_ReadOnly: 0
+    m_SerializedLabels: []
   m_ReadOnly: 0
   m_Settings: {fileID: 11400000, guid: d14fb1bbe98862146a7f5467a5bc79f8, type: 2}
   m_SchemaSet:

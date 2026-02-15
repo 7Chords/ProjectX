@@ -36,6 +36,7 @@ namespace GameCore
         public const string CHARACTER_PANEL = "character_panel";
         public const string COMMON_TWO_BTN_PANEL = "common_two_btn_panel";
         public const string STORE_PANEL = "store_panel";
+        public const string SETTING_PANEL = "setting_panel";
         #endregion
 
 

@@ -1,6 +1,7 @@
 using DG.Tweening;
 using GameCore.OW;
 using GameCore.UI;
+using GameCore.Util;
 using SCFrame;
 using System;
 using System.Collections.Generic;
@@ -102,6 +103,7 @@ namespace GameCore.TBS
         private void change2TBSGame()
         {
             //SCCommon.SetGameObjectEnable(SCGame.instance.playerGO, false);
+            AudioMgr.instance.PlayBgm("bgm_boss_battle");
             PlayerController.instance.SetCanControl(false);
             if (SCGame.instance.globalVolumn.TryGet<LensDistortion>(out LensDistortion comp))
             {
@@ -119,7 +121,10 @@ namespace GameCore.TBS
 
         private void change2OWGame(bool _isWin)
         {
+
             Time.timeScale = 1;
+            AudioMgr.instance.PlayBgm("bgm_main");
+
             PlayerController.instance.SetCanControl(true);
             if(!_isWin)
                 PlayerController.instance.SetPosition((_m_battleEnemyGO as CommonEnemy).tranPlayerLose.position);

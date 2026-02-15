@@ -123,14 +123,15 @@ namespace GameCore.OW
                         {
                             return;
                         }
-                        else
-                        {
-                            SCMsgCenter.SendMsg(SCMsgConst.OW_STORE_HIGHLIGHT_UP);
-                        }
+                        SCMsgCenter.SendMsg(SCMsgConst.OW_STORE_HIGHLIGHT_UP);
                     }
                     break;
                 case nameof(UINodeOption):
                     {
+                        if (topAdditionNode != null && topAdditionNode.GetNodeName() == nameof(UINodeSetting))
+                        {
+                            return;
+                        }
                         SCMsgCenter.SendMsg(SCMsgConst.OW_OPTION_HIGHLIGHT_UP);
                     }
                     break;
@@ -169,6 +170,10 @@ namespace GameCore.OW
                     break;
                 case nameof(UINodeOption):
                     {
+                        if (topAdditionNode != null && topAdditionNode.GetNodeName() == nameof(UINodeSetting))
+                        {
+                            return;
+                        }
                         SCMsgCenter.SendMsg(SCMsgConst.OW_OPTION_HIGHLIGHT_DOWN);
                     }
                     break;

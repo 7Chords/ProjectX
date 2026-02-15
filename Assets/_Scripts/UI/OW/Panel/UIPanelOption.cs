@@ -123,10 +123,12 @@ namespace GameCore.UI
 
         private void onBtnExitClickDown(PointerEventData _data, object[] _objs)
         {
+            Application.Quit();
         }
 
         private void onBtnSettingClickDown(PointerEventData _data, object[] _objs)
         {
+            GameCoreMgr.instance.uiCoreMgr.AddNode(new UINodeSetting(SCUIShowType.ADDITION));
         }
 
         private void onBtnItemClickDown(PointerEventData _data, object[] _objs)
@@ -169,6 +171,9 @@ namespace GameCore.UI
                     }
                     break;
                 case EOptionType.SETTING:
+                    {
+                        GameCoreMgr.instance.uiCoreMgr.AddNode(new UINodeSetting(SCUIShowType.ADDITION));
+                    }
                     break;
                 case EOptionType.EXIT:
                     break;

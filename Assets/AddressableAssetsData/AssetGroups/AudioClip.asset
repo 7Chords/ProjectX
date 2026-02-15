@@ -33,6 +33,14 @@ MonoBehaviour:
     m_Address: sfx_walk
     m_ReadOnly: 0
     m_SerializedLabels: []
+  - m_GUID: 72c796181d8b63741ae686447941c71f
+    m_Address: sfx_ui_click
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  - m_GUID: 524c2d945427f604f8d1a6cc147531e6
+    m_Address: sfx_attack
+    m_ReadOnly: 0
+    m_SerializedLabels: []
   m_ReadOnly: 0
   m_Settings: {fileID: 11400000, guid: d14fb1bbe98862146a7f5467a5bc79f8, type: 2}
   m_SchemaSet:
