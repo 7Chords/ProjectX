@@ -19,5 +19,7 @@ namespace GameCore.OW
         public Rigidbody playerRb;
         [Header("动画事件触发器")]
         public AnimationEventTrigger animEventTrigger;
+        [Header("玩家剑碰撞体")]
+        public Collider playerSwordCollider;
     }
 }

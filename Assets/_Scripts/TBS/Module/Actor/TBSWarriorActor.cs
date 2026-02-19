@@ -49,6 +49,7 @@ namespace GameCore.TBS
                 .OnComplete(
                 () =>
                 {
+                    AudioMgr.instance.PlaySfx("sfx_attack");
                     _m_animationCtl.PlaySingleAniamtion(_m_attackAnimClip);
                 });
 

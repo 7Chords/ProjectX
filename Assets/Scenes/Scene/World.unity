@@ -21250,13 +21250,27 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4627569865182470626}
+  - component: {fileID: 4627569865182903747}
   m_Layer: 0
   m_Name: Weapon
-  m_TagString: Untagged
+  m_TagString: PlayerSword
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
+--- !u!65 &4627569865182903747
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4627569865182903746}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 0
+  serializedVersion: 2
+  m_Size: {x: 0.46988305, y: 1.5182483, z: 0.3482624}
+  m_Center: {x: -0.0000012136969, y: 0.9358373, z: 0.00000026589703}
 --- !u!1 &4627569865182903748
 GameObject:
   m_ObjectHideFlags: 0
@@ -23025,6 +23039,7 @@ MonoBehaviour:
   playerGO: {fileID: 6671934514498428528}
   playerRb: {fileID: 6671934514498428534}
   animEventTrigger: {fileID: 4627569865182903347}
+  playerSwordCollider: {fileID: 4627569865182903747}
 --- !u!54 &6671934514498428534
 Rigidbody:
   m_ObjectHideFlags: 0

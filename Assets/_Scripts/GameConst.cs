@@ -48,6 +48,7 @@ namespace GameCore
         #region Tag
         public const string TAG_ENEMY = "Enemy";
         public const string TAG_PLAYER = "Player";
+        public const string TAG_PLAYER_SWORD = "PlayerSword";
         #endregion
 
         public const float MOUSE_RAY_MAX_DISTANCE = 99;
@@ -69,6 +70,9 @@ namespace GameCore
         public const string SHOW_DIE_OVER_EVENT = "ShowDieOver";
 
         public const string PLAY_FOOT_STEP_SOUND_EVENT = "PlayFootStepSound";
+        public const string PLAYER_SWORD_TRIGGER_ACTIVE = "PlayerSwordTriggerActive";
+        public const string PLAYER_SWORD_TRIGGER_INACTIVE = "PlayerSwordTriggerInactive";
+
         #endregion
 
         #region OW Anim

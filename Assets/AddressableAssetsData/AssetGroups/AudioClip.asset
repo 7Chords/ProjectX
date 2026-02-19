@@ -41,6 +41,30 @@ MonoBehaviour:
     m_Address: sfx_attack
     m_ReadOnly: 0
     m_SerializedLabels: []
+  - m_GUID: fb8cf82b6b763e449bff3e5007dbc7b9
+    m_Address: sfx_buff
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  - m_GUID: 5c94bce61e63153408b6eca81b1980d8
+    m_Address: sfx_fail
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  - m_GUID: 4cb53f3042750bc4092c00af326a83aa
+    m_Address: sfx_fire_ball
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  - m_GUID: 1f7b89561f757e740a941761800e4a10
+    m_Address: sfx_getHit
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  - m_GUID: d5d4898e6e7d62c43ae3e421f0208a53
+    m_Address: sfx_heal
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  - m_GUID: 1f1e4de875b24ad46811e0d4283e2143
+    m_Address: sfx_vectory
+    m_ReadOnly: 0
+    m_SerializedLabels: []
   m_ReadOnly: 0
   m_Settings: {fileID: 11400000, guid: d14fb1bbe98862146a7f5467a5bc79f8, type: 2}
   m_SchemaSet:

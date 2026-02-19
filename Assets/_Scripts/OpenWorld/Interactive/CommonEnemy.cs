@@ -45,6 +45,20 @@ namespace GameCore.OW
                 TBSGameStarter.instance.LoadTBSGame(SCDataMgr.instance.playerActorInfoList, dataList,this);
             }
         }
+        private void onTriggerEnter(Collider _coll, object[] _objs)
+        {
+            if (_coll.gameObject.tag == GameConst.TAG_PLAYER_SWORD)
+            {
+                List<ActorData> dataList = new List<ActorData>();
+                for (int i = 0; i < enemyItemList.Count; i++)
+                {
+                    ActorData data = new ActorData();
+                    data.InitNew(enemyItemList[i].enemyId, enemyItemList[i].enemyLevel);
+                    dataList.Add(data);
+                }
+                TBSGameStarter.instance.LoadTBSGame(SCDataMgr.instance.playerActorInfoList, dataList, this);
+            }
+        }
         public override void OnInitialize()
         {
             _m_animCtl = new SCAnimationCtl();
@@ -55,15 +69,20 @@ namespace GameCore.OW
                 _m_animCtl.PlaySingleAniamtion(ResourcesHelper.LoadAsset<AnimationClip>(idleAnimName));
 
             this.AddCollisionEnter(onCollisionEnter);
+            this.AddTriggerEnter(onTriggerEnter);
+
             OWEntityMgr.instance.RegisterEntity(this);
 
         }
+
 
         public override void OnDiscard()
         {
             _m_animCtl?.Discard();
             _m_animCtl = null;
             this.RemoveCollisionEnter(onCollisionEnter);
+            this.RemoveTriggerEnter(onTriggerEnter);
+
             OWEntityMgr.instance.UnRegisterEntity(this);
 
         }
