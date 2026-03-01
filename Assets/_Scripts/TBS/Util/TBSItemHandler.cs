@@ -105,7 +105,7 @@ namespace GameCore.TBS
 
                 TBSGameBuffInfo buffInfo = TBSBuffFactory.CreateBuffInfo(_buffEffectObj.buffRefObjId, _buffEffectObj.continueTurn, _targetList[i]);
                 _targetList[i].GetBuff(buffInfo);
-                TipQueueDealer.instance.EnqueueWorldPositionTip(buffInfo.buffRefObj.buffName, _targetList[i].GetCursorPos());
+                //TipQueueDealer.instance.EnqueueWorldPositionTip(buffInfo.buffRefObj.buffName, _targetList[i].GetCursorPos());
             }
         }
 
