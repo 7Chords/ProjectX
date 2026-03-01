@@ -588,6 +588,11 @@ namespace GameCore.TBS
                 SCMsgCenter.SendMsg(SCMsgConst.TBS_ALL_ENEMY_ACTOR_DIE);
                 return;
             }
+
+            if(actor == SCModel.instance.tbsModel.GetCurActor())
+            {
+                SCMsgCenter.SendMsg(SCMsgConst.TBS_ACTOR_ACTION_END,actor.actorInfo.runningId);
+            }
         }
 
         #endregion
