@@ -301,6 +301,7 @@ namespace GameCore.TBS
             GameGeneralRefObj generalRefObj = SCRefDataMgr.instance.gameGeneralRefObj;
             if (generalRefObj == null)
                 return;
+            AudioMgr.instance.PlaySfx("sfx_getHit");
             GameCameraMgr.instance.ShakeCamera(generalRefObj.tbsGetHitCamShakeDuration, generalRefObj.tbsGetHitCamShakeStrength);
             GameCameraMgr.instance.FreezeCamera(generalRefObj.tbsGetHitCamFreezeDuration);
 

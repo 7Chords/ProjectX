@@ -1,4 +1,5 @@
 using GameCore.UI;
+using GameCore.Util;
 using SCFrame;
 using SCFrame.UI;
 using System.Collections.Generic;
@@ -132,6 +133,7 @@ namespace GameCore.TBS
         {
             _m_tbsGameHasStarted = false;
             SCModel.instance.tbsModel.gameStarted = false;
+            AudioMgr.instance.PlaySfx("sfx_vectory");
             List<bool> hasLevelUpStateList = SCModel.instance.tbsModel.ApplyExp2AllPlayerActor();
             int money = SCModel.instance.tbsModel.ApplyMoney2Player();
             GameCoreMgr.instance.uiCoreMgr.AddNode(new UINodeTBSWin(SCUIShowType.ADDITION, hasLevelUpStateList, money));

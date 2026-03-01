@@ -54,6 +54,8 @@ namespace GameCore.TBS
             {
                 case EBasicAttribute.HP:
                     {
+                        AudioMgr.instance.PlaySfx("sfx_heal");
+
                         foreach (var actor in _targetList)
                         {
                             if (actor != null)
@@ -65,6 +67,8 @@ namespace GameCore.TBS
                     break;
                 case EBasicAttribute.MP:
                     {
+                        AudioMgr.instance.PlaySfx("sfx_heal");
+
                         foreach (var actor in _targetList)
                         {
                             if (actor != null)
@@ -97,6 +101,8 @@ namespace GameCore.TBS
         {
             for(int i =0;i<_targetList.Count;i++)
             {
+                AudioMgr.instance.PlaySfx("sfx_buff");
+
                 TBSGameBuffInfo buffInfo = TBSBuffFactory.CreateBuffInfo(_buffEffectObj.buffRefObjId, _buffEffectObj.continueTurn, _targetList[i]);
                 _targetList[i].GetBuff(buffInfo);
                 TipQueueDealer.instance.EnqueueWorldPositionTip(buffInfo.buffRefObj.buffName, _targetList[i].GetCursorPos());

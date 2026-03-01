@@ -9,6 +9,8 @@ namespace GameCore.Util
 {
     public class PlaySfxPlayableBehaviour : PlayableBehaviour
     {
+        public string sfxName;
+
         // Called when the owning graph starts playing
         public override void OnGraphStart(Playable playable)
         {
@@ -24,7 +26,7 @@ namespace GameCore.Util
         // Called when the state of the playable is set to Play
         public override void OnBehaviourPlay(Playable playable, FrameData info)
         {
-
+            AudioMgr.instance.PlaySfx(sfxName);
         }
 
         // Called when the state of the playable is set to Paused

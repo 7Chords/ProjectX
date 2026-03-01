@@ -1,5 +1,5 @@
 ﻿id	characterId	characterLevel	extraCompList	skill_list	maxHp	maxMp	attack	defend	missChance	criticalChance	attackTargetType	armorLevel	magicResistanceLevel	attackDamageType	attackPhysicalLevel	attackMagicAttribute	weakAttributeList	normalAttributeList	resistentAttributeList	invilidAttributeList	bounceAttributeList	suckAttributeList	needExpToNextLevel	dropExp	dropMoney
-1001	1001	1	*	1001	165	50	35	7	.05	.05	SINGLE	LIGHT	LIGHT	PHYSICAL	MEDIUM	NONE	WATER	FIRE;WOOD	*	*	*	*	100	50	50
+1001	1001	1	*	1001	70	50	35	7	.05	.05	SINGLE	LIGHT	LIGHT	PHYSICAL	MEDIUM	NONE	WATER	FIRE;WOOD	*	*	*	*	100	50	50
 1002	1001	2	*	1001	200	80	45	10	.05	.05	SINGLE	LIGHT	LIGHT	PHYSICAL	MEDIUM	NONE	WATER	FIRE;WOOD	*	*	*	*	150	51	51
 1003	1001	3	*	1001;1003	245	110	58	13	.05	.05	SINGLE	LIGHT	LIGHT	PHYSICAL	MEDIUM	NONE	WATER	FIRE;WOOD	*	*	*	*	250	52	52
 1004	1001	4	*	1001;1003	305	130	70	16	.05	.05	SINGLE	LIGHT	LIGHT	PHYSICAL	MEDIUM	NONE	WATER	FIRE;WOOD	*	*	*	*	400	53	53

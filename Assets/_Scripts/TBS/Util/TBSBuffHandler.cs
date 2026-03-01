@@ -129,41 +129,33 @@ namespace GameCore.TBS
 
         public void TriggerAttackBuff()
         {
-            foreach (var buffInfo in buffList)
+            for (int i = 0; i < buffList.Count; i++)
             {
-                if (buffInfo == null)
-                    continue;
-                buffInfo.onAttack?.Invoke();
+                buffList[i].onAttack?.Invoke();
             }
         }
 
         public void TriggerGetHitBuff()
         {
-            foreach (var buffInfo in buffList)
+            for (int i = 0; i < buffList.Count; i++)
             {
-                if (buffInfo == null)
-                    continue;
-                buffInfo.onGetHit?.Invoke();
+                buffList[i].onGetHit?.Invoke();
             }
         }
 
         public void TriggerActorDieBuff()
         {
-            foreach (var buffInfo in buffList)
+            for (int i = 0; i < buffList.Count; i++)
             {
-                if (buffInfo == null)
-                    continue;
-                buffInfo.onActorDie?.Invoke();
+                buffList[i].onActorDie?.Invoke();
             }
         }
 
         public void TriggerActorActionBuff()
         {
-            foreach (var buffInfo in buffList)
+            for(int i =0;i<buffList.Count;i++)
             {
-                if (buffInfo == null)
-                    continue;
-                buffInfo.onActorAction?.Invoke();
+                buffList[i].onActorAction?.Invoke();
             }
         }
 

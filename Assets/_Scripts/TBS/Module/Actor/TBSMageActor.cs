@@ -44,6 +44,7 @@ namespace GameCore.TBS
             seq.Append(DOVirtual.DelayedCall(actorMono.attackSpwanTime,
                 () =>
                 {
+                    AudioMgr.instance.PlaySfx("sfx_fire_ball");
                     flyBall = ResourcesHelper.LoadGameObject(actorMono.attackSpawnObjName, actorMono.attackSourceTran.position, Quaternion.identity);
                     Vector3 dir = (_target.GetModelPos() - flyBall.transform.position).normalized;
                     flyBall.transform.LookAt(dir);

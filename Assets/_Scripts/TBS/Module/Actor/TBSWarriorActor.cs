@@ -150,6 +150,7 @@ namespace GameCore.TBS
                             .OnComplete(
                             () =>
                             {
+                                AudioMgr.instance.PlaySfx("sfx_attack");
                                 _m_animationCtl.speed = 1f;
                                 _m_actorMono.skillDirector.Play(skillAsset);
                             });

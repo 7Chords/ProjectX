@@ -12,9 +12,6 @@ namespace SCFrame
         private Dictionary<int, List<MsgRecAction>> _m_broadcastDict;
         private Dictionary<int, List<Action>> _m_broadcastActDict;
 
-        //private List<MsgRecAction> _m_cacheBroadcastList;
-        //private List<Action> _m_cacheBroadcastActList;
-
         public override void OnInitialize()
         {
             _m_broadcastDict = new Dictionary<int, List<MsgRecAction>>();
@@ -35,31 +32,6 @@ namespace SCFrame
                 _m_broadcastActDict = null;
             }
         }
-
-        //public static void SendMsgAct(int _msg)
-        //{
-        //    instance.sendMsgAct(_msg);
-        //}
-        //private void sendMsgAct(int _msg)
-        //{
-        //    List<Action> srcList;
-        //    if (_m_broadcastActDict.TryGetValue(_msg, out srcList) && srcList.Count > 0)
-        //    {
-        //        //if (_m_cacheBroadcastActList == null)
-        //        //    _m_cacheBroadcastActList = new List<Action>();
-        //        //else
-        //        //    _m_cacheBroadcastActList.Clear();
-
-        //        //_m_cacheBroadcastActList.AddRange(srcList);
-        //        for (int i = 0; i < srcList.Count; ++i)
-        //        {
-        //            srcList[i]();
-        //        }
-        //    }
-        //}
-
-
-
 
         public static void SendMsg(int _msg, params object[] _obj)
         {
@@ -88,10 +60,6 @@ namespace SCFrame
             }
         }
 
-
-
-
-
         public static void RegisterMsgAct(int _msg, Action _callback)
         {
             instance.registerMsgAct(_msg, _callback);
@@ -114,10 +82,6 @@ namespace SCFrame
             }
         }
 
-
-
-
-
         public static void RegisterMsg(int _msg, MsgRecAction _callback)
         {
             instance.registerMsg(_msg, _callback);
@@ -138,10 +102,6 @@ namespace SCFrame
             }
         }
 
-
-
-
-
         public static void UnregisterMsg(int _msg, MsgRecAction _callback)
         {
             instance.unregisterMsg(_msg, _callback);
@@ -158,9 +118,6 @@ namespace SCFrame
             broadcast.Remove(_callback);
 
         }
-
-
-
 
         public static void UnregisterMsgAct(int _msg, Action _callback)
         {

@@ -124,7 +124,6 @@ namespace GameCore.TBS
                         GameCameraMgr.instance.SetCameraPositionOffsetWithFollow(SCModel.instance.tbsModel.gameMono.lookAllPlayersVC.transform.position, true, 0f);
                         GameCameraMgr.instance.SetCameraTarget(SCModel.instance.tbsModel.gameMono.lookAllPlayersVC_LookPos);
 
-
                         _m_actorMono.signalEventTrigger.AddSignalEvent(GameConst.SPAWN_PARTICLE_EFFECT_EVENT, () =>
                         {
                             GameObject go = ParticleMgr.instance.PlayEffect("circle_yellow"
@@ -158,8 +157,6 @@ namespace GameCore.TBS
 
                         GameCameraMgr.instance.SetCameraPositionOffsetWithFollow(SCModel.instance.tbsModel.gameMono.lookAllPlayersVC.transform.position, true, 0f);
                         GameCameraMgr.instance.SetCameraTarget(SCModel.instance.tbsModel.gameMono.lookAllPlayersVC_LookPos);
-
-
                         _m_actorMono.signalEventTrigger.AddSignalEvent(GameConst.SPAWN_PARTICLE_EFFECT_EVENT, () =>
                         {
                             ParticleMgr.instance.PlayEffect("circle_yellow", _targetList[0].GetActorGameObject().transform.position);

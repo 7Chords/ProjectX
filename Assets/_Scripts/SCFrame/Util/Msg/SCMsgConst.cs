@@ -48,7 +48,7 @@ public class SCMsgConst
     public const int TBS_GAME_RESULT = 2012;
 
     public const int TBS_ACTOR_ATTACK = 2013;
-    public const int TBS_ACTOR_DEFENCE = 2014;
+    public const int TBS_ACTOR_DEFENCE = 2014; 
     public const int TBS_ACTOR_SKILL = 2015;
 
     public const int TBS_ACTOR_SKILL_HIGHTLIGHT_UP = 2016;//回合制战斗 - 选择技能高光上移

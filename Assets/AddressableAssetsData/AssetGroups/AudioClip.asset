@@ -65,6 +65,10 @@ MonoBehaviour:
     m_Address: sfx_vectory
     m_ReadOnly: 0
     m_SerializedLabels: []
+  - m_GUID: 87bca8c464ca32e44ba8b2b791660507
+    m_Address: sfx_enemy_attack
+    m_ReadOnly: 0
+    m_SerializedLabels: []
   m_ReadOnly: 0
   m_Settings: {fileID: 11400000, guid: d14fb1bbe98862146a7f5467a5bc79f8, type: 2}
   m_SchemaSet:
